@@ -1,0 +1,383 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "admin": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/admin",
+      "sourceRoot": "projects/admin/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/admin",
+            "index": "projects/admin/src/index.html",
+            "main": "projects/admin/src/main.ts",
+            "polyfills": "projects/admin/src/polyfills.ts",
+            "tsConfig": "projects/admin/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/admin/src/favicon.ico",
+              "projects/admin/src/assets"
+            ],
+            "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/swiper/swiper-bundle.min.css",
+              "node_modules/select2/dist/css/select2.min.css",
+              "node_modules/@fortawesome/fontawesome-free/css/all.css",
+              "node_modules/@mdi/font/css/materialdesignicons.css",
+              "projects/admin/src/assets/css/fontface.css",
+              "projects/admin/src/styles.css"
+            ],
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+              "node_modules/swiper/swiper-bundle.min.js",
+              "node_modules/select2/dist/js/select2.min.js",
+              "node_modules/vanilla-lazyload/dist/lazyload.min.js",
+              "projects/admin/src/assets/js/main.min.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [{
+                "replace": "projects/admin/src/environments/environment.ts",
+                "with": "projects/admin/src/environments/environment.prod.ts"
+              }],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [{
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "admin:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "admin:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "admin:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/admin/src/test.ts",
+            "polyfills": "projects/admin/src/polyfills.ts",
+            "tsConfig": "projects/admin/tsconfig.spec.json",
+            "karmaConfig": "projects/admin/karma.conf.js",
+            "assets": [
+              "projects/admin/src/favicon.ico",
+              "projects/admin/src/assets"
+            ],
+            "styles": [
+              "projects/admin/src/styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/admin/tsconfig.app.json",
+              "projects/admin/tsconfig.spec.json",
+              "projects/admin/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/admin/e2e/protractor.conf.js",
+            "devServerTarget": "admin:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "admin:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "cntt": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/cntt",
+      "sourceRoot": "projects/cntt/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/cntt",
+            "index": "projects/cntt/src/index.html",
+            "main": "projects/cntt/src/main.ts",
+            "polyfills": "projects/cntt/src/polyfills.ts",
+            "tsConfig": "projects/cntt/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/cntt/src/favicon.ico",
+              "projects/cntt/src/assets"
+            ],
+            "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/swiper/swiper-bundle.min.css",
+              "node_modules/aos/dist/aos.css",
+              "node_modules/@fortawesome/fontawesome-free/css/all.css",
+              "node_modules/@mdi/font/css/materialdesignicons.css",
+              "projects/cntt/src/assets/css/fontface.css",
+              "projects/cntt/src/styles.css"
+            ],
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+              "node_modules/aos/dist/aos.js",
+              "node_modules/swiper/swiper-bundle.min.js",
+              "node_modules/vanilla-lazyload/dist/lazyload.min.js",
+              "projects/cntt/src/assets/js/main.min.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [{
+                "replace": "projects/cntt/src/environments/environment.ts",
+                "with": "projects/cntt/src/environments/environment.prod.ts"
+              }],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [{
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "cntt:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "cntt:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "cntt:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/cntt/src/test.ts",
+            "polyfills": "projects/cntt/src/polyfills.ts",
+            "tsConfig": "projects/cntt/tsconfig.spec.json",
+            "karmaConfig": "projects/cntt/karma.conf.js",
+            "assets": [
+              "projects/cntt/src/favicon.ico",
+              "projects/cntt/src/assets"
+            ],
+            "styles": [
+              "projects/cntt/src/styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/cntt/tsconfig.app.json",
+              "projects/cntt/tsconfig.spec.json",
+              "projects/cntt/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/cntt/e2e/protractor.conf.js",
+            "devServerTarget": "cntt:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "cntt:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "elearning": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/elearning",
+      "sourceRoot": "projects/elearning/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/elearning",
+            "index": "projects/elearning/src/index.html",
+            "main": "projects/elearning/src/main.ts",
+            "polyfills": "projects/elearning/src/polyfills.ts",
+            "tsConfig": "projects/elearning/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/elearning/src/favicon.ico",
+              "projects/elearning/src/assets"
+            ],
+            "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/@fortawesome/fontawesome-free/css/all.css",
+              "node_modules/@mdi/font/css/materialdesignicons.css",
+              "projects/elearning/src/assets/css/fontface.css",
+              "projects/elearning/src/styles.css"
+            ],
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [{
+                "replace": "projects/elearning/src/environments/environment.ts",
+                "with": "projects/elearning/src/environments/environment.prod.ts"
+              }],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [{
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "elearning:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "elearning:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "elearning:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/elearning/src/test.ts",
+            "polyfills": "projects/elearning/src/polyfills.ts",
+            "tsConfig": "projects/elearning/tsconfig.spec.json",
+            "karmaConfig": "projects/elearning/karma.conf.js",
+            "assets": [
+              "projects/elearning/src/favicon.ico",
+              "projects/elearning/src/assets"
+            ],
+            "styles": [
+              "projects/elearning/src/styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/elearning/tsconfig.app.json",
+              "projects/elearning/tsconfig.spec.json",
+              "projects/elearning/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/elearning/e2e/protractor.conf.js",
+            "devServerTarget": "elearning:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "elearning:serve:production"
+            }
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "admin"
+}
