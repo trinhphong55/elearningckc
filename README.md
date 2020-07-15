@@ -109,6 +109,7 @@ Mỗi nhóm đại diện 1 thành viên thực hiện bước này rồi push c
 ```
 git checkout 'branch của bạn'
 git merge master
+git push
 ```
 
 # Mô hình dữ liệu
