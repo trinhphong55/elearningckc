@@ -104,6 +104,8 @@ git push
 
 Hãy **commit** và **push** code của bạn lên GitHub trước khi thực hiện các lệnh **checkout**, **merge**
 
+Mỗi nhóm đại diện 1 thành viên thực hiện bước này rồi push code branch của nhóm. Các thành viên khác chỉ cần pull về là được
+
 ```
 git checkout 'branch của bạn'
 git merge master
