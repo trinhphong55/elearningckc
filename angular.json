@@ -377,6 +377,133 @@
           }
         }
       }
+    },
+    "ttth": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/ttth",
+      "sourceRoot": "projects/ttth/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/ttth",
+            "index": "projects/ttth/src/index.html",
+            "main": "projects/ttth/src/main.ts",
+            "polyfills": "projects/ttth/src/polyfills.ts",
+            "tsConfig": "projects/ttth/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/ttth/src/favicon.ico",
+              "projects/ttth/src/assets"
+            ],
+            "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/swiper/swiper-bundle.min.css",
+              "node_modules/aos/dist/aos.css",
+              "node_modules/@fortawesome/fontawesome-free/css/all.css",
+              "projects/ttth/src/assets/css/fontface.css",
+              "projects/ttth/src/styles.css"
+            ],
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+              "node_modules/aos/dist/aos.js",
+              "node_modules/swiper/swiper-bundle.min.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/ttth/src/environments/environment.ts",
+                  "with": "projects/ttth/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "ttth:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "ttth:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "ttth:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ttth/src/test.ts",
+            "polyfills": "projects/ttth/src/polyfills.ts",
+            "tsConfig": "projects/ttth/tsconfig.spec.json",
+            "karmaConfig": "projects/ttth/karma.conf.js",
+            "assets": [
+              "projects/ttth/src/favicon.ico",
+              "projects/ttth/src/assets"
+            ],
+            "styles": [
+              "projects/ttth/src/styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ttth/tsconfig.app.json",
+              "projects/ttth/tsconfig.spec.json",
+              "projects/ttth/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/ttth/e2e/protractor.conf.js",
+            "devServerTarget": "ttth:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "ttth:serve:production"
+            }
+          }
+        }
+      }
     }
   },
   "defaultProject": "admin"
