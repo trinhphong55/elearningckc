@@ -48,9 +48,3 @@
 │  │  │  │  │  │  ├── styles => Import các file .css từ các module thư viện UI như Bootstrap, Swiper, Các font icon,...
 │  │  │  │  │  │  ├── scripts => Import các file .js từ các module thư viện UI như Bootstrap, Jquery, Swiper,...
 ├── package.json
-│  ├── scripts
-│  │  ├── start => start 4 project cùng 1 lúc
-│  │  ├── run-backend => start 1 project Backend-API
-│  │  ├── run-admin => start 1 project Admin
-│  │  ├── run-cntt => start 1 project CNTT
-│  │  ├── run-elearning => start 1 project Elearning
