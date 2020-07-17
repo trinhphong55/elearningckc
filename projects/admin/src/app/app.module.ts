@@ -52,7 +52,6 @@ import { ModalLogoComponent } from './components/modal/ttth/modal-logo/modal-log
 import { ModalBannerComponent } from './components/modal/ttth/modal-banner/modal-banner.component';
 import { ModalDangkikhoahocComponent } from './components/modal/ttth/modal-dangkikhoahoc/modal-dangkikhoahoc.component';
 import { ModalHomeCamonComponent } from './components/modal/ttth/modal-home-camon/modal-home-camon.component';
-import { ModalHomeChuongtrinhdaodaoComponent } from './components/modal/ttth/modal-home-chuongtrinhdaodao/modal-home-chuongtrinhdaodao.component';
 import { ModalHomeTienichComponent } from './components/modal/ttth/modal-home-tienich/modal-home-tienich.component';
 import { ModalKhoahocComponent } from './components/modal/ttth/modal-khoahoc/modal-khoahoc.component';
 import { ModalLichkhaigiangComponent } from './components/modal/ttth/modal-lichkhaigiang/modal-lichkhaigiang.component';
@@ -61,6 +60,7 @@ import { ModalLoaitintucComponent } from './components/modal/ttth/modal-loaitint
 import { ModalMenuComponent } from './components/modal/ttth/modal-menu/modal-menu.component';
 import { ModalSubmenuComponent } from './components/modal/ttth/modal-submenu/modal-submenu.component';
 import { ModalTintucComponent } from './components/modal/ttth/modal-tintuc/modal-tintuc.component';
+import { ModalHomeChuongtrinhdaotaoComponent } from './components/modal/ttth/modal-home-chuongtrinhdaotao/modal-home-chuongtrinhdaotao.component';
 
 @NgModule({
   declarations: [
@@ -112,7 +112,6 @@ import { ModalTintucComponent } from './components/modal/ttth/modal-tintuc/modal
     ModalBannerComponent,
     ModalDangkikhoahocComponent,
     ModalHomeCamonComponent,
-    ModalHomeChuongtrinhdaodaoComponent,
     ModalHomeTienichComponent,
     ModalKhoahocComponent,
     ModalLichkhaigiangComponent,
@@ -120,7 +119,8 @@ import { ModalTintucComponent } from './components/modal/ttth/modal-tintuc/modal
     ModalLoaitintucComponent,
     ModalMenuComponent,
     ModalSubmenuComponent,
-    ModalTintucComponent
+    ModalTintucComponent,
+    ModalHomeChuongtrinhdaotaoComponent
   ],
   imports: [
     BrowserModule,

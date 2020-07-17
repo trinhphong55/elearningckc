@@ -413,13 +413,17 @@
               "node_modules/aos/dist/aos.css",
               "node_modules/@fortawesome/fontawesome-free/css/all.css",
               "projects/ttth/src/assets/css/fontface.css",
-              "projects/ttth/src/styles.css"
+              "projects/ttth/src/styles.css",
+              "projects/ttth/src/assets/css/style.css",
+              "projects/ttth/src/assets/css/responsive.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
               "node_modules/aos/dist/aos.js",
-              "node_modules/swiper/swiper-bundle.min.js"
+              "node_modules/swiper/swiper-bundle.min.js",
+              "projects/ttth/src/assets/js/myscript.js",
+
             ]
           },
           "configurations": {
