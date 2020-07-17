@@ -15,6 +15,7 @@ import { PageDocumentComponent } from './pages/page-document/page-document.compo
 import { PageJobComponent } from './pages/page-job/page-job.component';
 import { PageJobDetailComponent } from './pages/page-job-detail/page-job-detail.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +29,8 @@ import { PageJobDetailComponent } from './pages/page-job-detail/page-job-detail.
     PageSearchComponent,
     PageDocumentComponent,
     PageJobComponent,
-    PageJobDetailComponent
+    PageJobDetailComponent,
+
   ],
   imports: [
     BrowserModule,

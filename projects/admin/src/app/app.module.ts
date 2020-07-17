@@ -49,6 +49,8 @@ import { ModalQuanlyheadercnttComponent } from './components/modal/cntt/modal-qu
 import { PageTtthComponent } from './pages/page-ttth/page-ttth.component';
 import { SidebarTtthComponent } from './components/sidebar/sidebar-ttth/sidebar-ttth.component';
 import { ModalLogoComponent } from './components/modal/ttth/modal-logo/modal-logo.component';
+import { ModalQuanlypartnerComponent } from './components/modal/cntt/modal-quanlypartner/modal-quanlypartner.component';
+import { ModalQuanlyfootercnttComponent } from './components/modal/cntt/modal-quanlyfootercntt/modal-quanlyfootercntt.component';
 
 @NgModule({
   declarations: [
@@ -96,7 +98,9 @@ import { ModalLogoComponent } from './components/modal/ttth/modal-logo/modal-log
     ModalQuanlyheadercnttComponent,
     PageTtthComponent,
     SidebarTtthComponent,
-    ModalLogoComponent
+    ModalLogoComponent,
+    ModalQuanlypartnerComponent,
+    ModalQuanlyfootercnttComponent
   ],
   imports: [
     BrowserModule,
