@@ -48,21 +48,3 @@
 │  │  │  │  │  │  ├── styles => Import các file .css từ các module thư viện UI như Bootstrap, Swiper, Các font icon,...
 │  │  │  │  │  │  ├── scripts => Import các file .js từ các module thư viện UI như Bootstrap, Jquery, Swiper,...
 ├── package.json
-│  ├── scripts
-│  │  ├── start => start 4 project cùng 1 lúc
-│  │  ├── run-backend => start 1 project Backend-API
-│  │  ├── run-admin => start 1 project Admin
-│  │  ├── run-cntt => start 1 project CNTT
-│  │  ├── run-elearning => start 1 project Elearning
-
-
-
-# SCRIPT RUN
-
-Để sử dụng các lệnh `yarn` bắt buộc phải cài đặt yarn vào máy tính của bạn. Chạy lệnh `npm i -g yarn` để cài đặt, sau đó reset lại máy tính.
-
-Script run: `npm start` hoặc `yarn start`: start 4 project cùng 1 lúc
-Script run: `npm run run-backend` hoặc `yarn run-backend`: start 1 project Backend-API
-Script run: `npm run run-admin` hoặc `yarn run-admin`: start 1 project Admin
-Script run: `npm run run-cntt` hoặc `yarn run-cntt`: start 1 project CNTT
-Script run: `npm run run-elearning` hoặc `yarn run-elearning`: start 1 project Elearning
