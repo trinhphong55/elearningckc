@@ -7,6 +7,63 @@
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+<!-- SCRIPT FACEBOOK -->
+<!-- Script để sử dụng social plugin facebook -->
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v7.0&appId=726531241502023&autoLogAppEvents=1" nonce="i06wgSqK">
+</script>
+
+<!-- Script những thành phần quan trọng để sử dụng API facebook -->
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '726531241502023',
+      cookie     : true,
+      xfbml      : true,
+      version    : '7.0'
+    });
+      
+    FB.AppEvents.logPageView();   
+    // Kiểm tra trạng thái người dùng
+    FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+    });
+      
+  };
+
+ 
+</script>
+
+
+<script>
+  
+  // Xử lý trạng thái đăng nhập
+  function statusChangeCallback(response) {
+    //User đã login facebook và login ứng dụng
+    if(response.status==='connected') {
+      alert(response.name + ' access grandted');
+    }
+    //User đã login facebook nhưng chưa login ứng dụng
+    else if (response.status==='not_authorized'){
+       alert('Chưa đăng nhập ứng dụng, vui lòng đăng nhập lại');
+    }
+    //User chưa đăng nhập facebook
+    else {
+        alert('Bạn chưa đăng nhập facebook');
+    }
+  };
+
+</script>
+<script>
+  (function(d, s, id){
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {return;}
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
 </head>
 
 <body style="opacity: 0">
