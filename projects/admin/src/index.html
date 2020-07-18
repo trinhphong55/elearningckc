@@ -41,7 +41,7 @@
   function statusChangeCallback(response) {
     //User đã login facebook và login ứng dụng
     if(response.status==='connected') {
-      alert(response.name + ' access grandted');
+      alert(response.name + ' access granted');
     }
     //User đã login facebook nhưng chưa login ứng dụng
     else if (response.status==='not_authorized'){
