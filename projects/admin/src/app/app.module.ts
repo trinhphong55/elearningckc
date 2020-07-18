@@ -49,10 +49,8 @@ import { ModalQuanlyheadercnttComponent } from './components/modal/cntt/modal-qu
 import { PageTtthComponent } from './pages/page-ttth/page-ttth.component';
 import { SidebarTtthComponent } from './components/sidebar/sidebar-ttth/sidebar-ttth.component';
 import { ModalLogoComponent } from './components/modal/ttth/modal-logo/modal-logo.component';
-<<<<<<< HEAD
 import { ModalQuanlypartnerComponent } from './components/modal/cntt/modal-quanlypartner/modal-quanlypartner.component';
 import { ModalQuanlyfootercnttComponent } from './components/modal/cntt/modal-quanlyfootercntt/modal-quanlyfootercntt.component';
-=======
 import { ModalBannerComponent } from './components/modal/ttth/modal-banner/modal-banner.component';
 import { ModalDangkikhoahocComponent } from './components/modal/ttth/modal-dangkikhoahoc/modal-dangkikhoahoc.component';
 import { ModalHomeCamonComponent } from './components/modal/ttth/modal-home-camon/modal-home-camon.component';
@@ -65,7 +63,10 @@ import { ModalMenuComponent } from './components/modal/ttth/modal-menu/modal-men
 import { ModalSubmenuComponent } from './components/modal/ttth/modal-submenu/modal-submenu.component';
 import { ModalTintucComponent } from './components/modal/ttth/modal-tintuc/modal-tintuc.component';
 import { ModalHomeChuongtrinhdaotaoComponent } from './components/modal/ttth/modal-home-chuongtrinhdaotao/modal-home-chuongtrinhdaotao.component';
->>>>>>> bbeccd1db5c2f48a452073bf7613dd46a357f468
+import { ModalQuanlyslideshowcnttComponent } from './components/modal/cntt/modal-quanlyslideshowcntt/modal-quanlyslideshowcntt.component';
+import { ModalQuanlytintuccnttComponent } from './components/modal/cntt/modal-quanlytintuccntt/modal-quanlytintuccntt.component';
+import { ModalThemtintuccnttComponent } from './components/modal/cntt/modal-themtintuccntt/modal-themtintuccntt.component';
+import { ModalChinhsuatintuccnttComponent } from './components/modal/cntt/modal-chinhsuatintuccntt/modal-chinhsuatintuccntt.component';
 
 @NgModule({
   declarations: [
@@ -114,10 +115,8 @@ import { ModalHomeChuongtrinhdaotaoComponent } from './components/modal/ttth/mod
     PageTtthComponent,
     SidebarTtthComponent,
     ModalLogoComponent,
-<<<<<<< HEAD
     ModalQuanlypartnerComponent,
-    ModalQuanlyfootercnttComponent
-=======
+    ModalQuanlyfootercnttComponent,
     ModalBannerComponent,
     ModalDangkikhoahocComponent,
     ModalHomeCamonComponent,
@@ -129,8 +128,11 @@ import { ModalHomeChuongtrinhdaotaoComponent } from './components/modal/ttth/mod
     ModalMenuComponent,
     ModalSubmenuComponent,
     ModalTintucComponent,
-    ModalHomeChuongtrinhdaotaoComponent
->>>>>>> bbeccd1db5c2f48a452073bf7613dd46a357f468
+    ModalHomeChuongtrinhdaotaoComponent,
+    ModalQuanlyslideshowcnttComponent,
+    ModalQuanlytintuccnttComponent,
+    ModalThemtintuccnttComponent,
+    ModalChinhsuatintuccnttComponent
   ],
   imports: [
     BrowserModule,

@@ -31,6 +31,7 @@ import { PageJobDetailComponent } from './pages/page-job-detail/page-job-detail.
     PageJobComponent,
     PageJobDetailComponent,
 
+
   ],
   imports: [
     BrowserModule,
