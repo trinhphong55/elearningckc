@@ -58,10 +58,8 @@ import { ModalHomeTienichComponent } from './components/modal/ttth/modal-home-ti
 import { ModalKhoahocComponent } from './components/modal/ttth/modal-khoahoc/modal-khoahoc.component';
 import { ModalLichkhaigiangComponent } from './components/modal/ttth/modal-lichkhaigiang/modal-lichkhaigiang.component';
 import { ModalLienheComponent } from './components/modal/ttth/modal-lienhe/modal-lienhe.component';
-import { ModalLoaitintucComponent } from './components/modal/ttth/modal-loaitintuc/modal-loaitintuc.component';
 import { ModalMenuComponent } from './components/modal/ttth/modal-menu/modal-menu.component';
 import { ModalSubmenuComponent } from './components/modal/ttth/modal-submenu/modal-submenu.component';
-import { ModalTintucComponent } from './components/modal/ttth/modal-tintuc/modal-tintuc.component';
 import { ModalHomeChuongtrinhdaotaoComponent } from './components/modal/ttth/modal-home-chuongtrinhdaotao/modal-home-chuongtrinhdaotao.component';
 import { ModalQuanlyslideshowcnttComponent } from './components/modal/cntt/modal-quanlyslideshowcntt/modal-quanlyslideshowcntt.component';
 import { ModalQuanlytintuccnttComponent } from './components/modal/cntt/modal-quanlytintuccntt/modal-quanlytintuccntt.component';
@@ -124,15 +122,14 @@ import { ModalChinhsuatintuccnttComponent } from './components/modal/cntt/modal-
     ModalKhoahocComponent,
     ModalLichkhaigiangComponent,
     ModalLienheComponent,
-    ModalLoaitintucComponent,
     ModalMenuComponent,
     ModalSubmenuComponent,
-    ModalTintucComponent,
     ModalHomeChuongtrinhdaotaoComponent,
     ModalQuanlyslideshowcnttComponent,
     ModalQuanlytintuccnttComponent,
     ModalThemtintuccnttComponent,
-    ModalChinhsuatintuccnttComponent
+    ModalChinhsuatintuccnttComponent,
+    ModalHomeChuongtrinhdaotaoComponent
   ],
   imports: [
     BrowserModule,
