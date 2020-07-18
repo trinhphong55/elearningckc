@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ###### Angular CLI v10.0.2//Test Hius
+=======
+###### Angular CLI v10.0.2 Lộc chỉnh sửa
+>>>>>>> f30173b74d8ff85e772db84bfadc7345ac028075
 ###### NodeJS v12.18.0
 ###### NPM v6.14.4
 
