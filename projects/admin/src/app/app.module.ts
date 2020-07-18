@@ -47,6 +47,7 @@ import { ModalPagefacebookComponent } from './components/modal/facebook/modal-pa
 import { ModalComponent } from './components/modal/modal.component';
 import { ModalQuanlyheadercnttComponent } from './components/modal/cntt/modal-quanlyheadercntt/modal-quanlyheadercntt.component';
 
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -90,13 +91,17 @@ import { ModalQuanlyheadercnttComponent } from './components/modal/cntt/modal-qu
     ModalGroupfacebookComponent,
     ModalPagefacebookComponent,
     ModalComponent,
-    ModalQuanlyheadercnttComponent
+    ModalQuanlyheadercnttComponent,
+
+
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    NgxUsefulSwiperModule
+    NgxUsefulSwiperModule,
+    ReactiveFormsModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
