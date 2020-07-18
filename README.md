@@ -1,4 +1,4 @@
-###### Angular CLI v10.0.2
+###### Angular CLI v10.0.2 Lộc chỉnh sửa
 ###### NodeJS v12.18.0
 ###### NPM v6.14.4
 
