@@ -2,6 +2,8 @@
 ###### NodeJS v12.18.0
 ###### NPM v6.14.4
 
+# Cập nhật master
+
 # Hướng dẫn sử dụng
 
 **Bước 1:** Clone source code vê và bật **Terminal** chạy lệnh sau để cài đặt các modules được sử dụng trong source code tại thư mục **root**
