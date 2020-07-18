@@ -95,7 +95,7 @@ exports.deleteKhoaBoMon = async (req, res) => {
     } else {
       result = {
         status: true,
-        msg: " Deleted successful",
+        msg: "Xóa thành công ",
       };
     }
     res.json(result);
