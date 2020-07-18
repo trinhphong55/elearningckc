@@ -74,6 +74,7 @@ export class ModalKhoabomonComponent implements OnInit {
     }
     return false;
   }
+  //lấy tất cả LoaiDonViLoaiDonVi
   retriveLoaiDonVi() {
     this.loaiDonviService.getAll().subscribe(
       (data) => {
@@ -85,6 +86,7 @@ export class ModalKhoabomonComponent implements OnInit {
       }
     );
   }
+  //lay tất cả KhoaBoMonKhoaBoMon
   retriveKhoaBoMon() {
     this.KhoaBonmonService.getAll().subscribe(
       (data) => {
@@ -96,6 +98,7 @@ export class ModalKhoabomonComponent implements OnInit {
       }
     );
   }
+  // thêm KhoaBoMon
   addModal() {
     const data = {
       tenKhoa: this.addForm.value.tenKhoa,
@@ -108,21 +111,17 @@ export class ModalKhoabomonComponent implements OnInit {
     console.log(data);
     this.KhoaBonmonService.create(data).subscribe(
       (response) => {
+
         this.result.msg = response.msg;
         this.result.status = response.status;
-
-        console.log(this.result);
-        this.router
-          .navigateByUrl('/RefreshComponent', { skipLocationChange: true })
-          .then(() => {
-            this.router.navigate(['/chuongtrinhdaotao']);
-          });
+          this.retriveKhoaBoMon();
       },
       (error) => {
         console.log(error);
       }
     );
   }
+  // cập nhật KhoaBoMonKhoaBoMon
   updateModal(id, khoa) {
     khoa = {
       tenKhoa: this.addForm.value.tenKhoa,
@@ -136,28 +135,22 @@ export class ModalKhoabomonComponent implements OnInit {
     this.KhoaBonmonService.update(id, khoa).subscribe(
       (response) => {
         console.log(response);
-        //this.router.navigate(['/']);
-        this.router
-          .navigateByUrl('/RefreshComponent', { skipLocationChange: true })
-          .then(() => {
-            this.router.navigate(['/chuongtrinhdaotao']);
-          });
+       //load lại dữ liệuliệu
+        this.retriveKhoaBoMon();
       },
       (error) => {
         console.log(error);
       }
     );
   }
-
+//Xoa KhoaBoMonKhoaBoMon
   deleteModal(khoa_id) {
     this.KhoaBonmonService.delete(khoa_id).subscribe(
       (response) => {
         console.log(response);
-        this.router
-          .navigateByUrl('/RefreshComponent', { skipLocationChange: true })
-          .then(() => {
-            this.router.navigate(['/chuongtrinhdaotao']);
-          });
+        //load lại dữ liệuliệu
+        this.retriveKhoaBoMon();
+
       },
       (error) => {
         console.log(error);
