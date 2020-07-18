@@ -92,7 +92,9 @@ import { ModalQuanlyheadercnttComponent } from './components/modal/cntt/modal-qu
     ModalGroupfacebookComponent,
     ModalPagefacebookComponent,
     ModalComponent,
-    ModalQuanlyheadercnttComponent
+    ModalQuanlyheadercnttComponent,
+
+
   ],
   imports: [
     BrowserModule,
