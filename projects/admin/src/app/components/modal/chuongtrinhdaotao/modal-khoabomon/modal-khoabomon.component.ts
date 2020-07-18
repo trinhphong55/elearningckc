@@ -111,10 +111,9 @@ export class ModalKhoabomonComponent implements OnInit {
     console.log(data);
     this.KhoaBonmonService.create(data).subscribe(
       (response) => {
-
         this.result.msg = response.msg;
         this.result.status = response.status;
-          this.retriveKhoaBoMon();
+        this.retriveKhoaBoMon();
       },
       (error) => {
         console.log(error);
@@ -134,8 +133,9 @@ export class ModalKhoabomonComponent implements OnInit {
 
     this.KhoaBonmonService.update(id, khoa).subscribe(
       (response) => {
-        console.log(response);
-       //load lại dữ liệuliệu
+        this.result.msg = response.msg;
+        this.result.status = response.status;
+        //load lại dữ liệuliệu
         this.retriveKhoaBoMon();
       },
       (error) => {
@@ -143,14 +143,14 @@ export class ModalKhoabomonComponent implements OnInit {
       }
     );
   }
-//Xoa KhoaBoMonKhoaBoMon
+  //Xoa KhoaBoMonKhoaBoMon
   deleteModal(khoa_id) {
     this.KhoaBonmonService.delete(khoa_id).subscribe(
       (response) => {
-        console.log(response);
+        this.result.msg = response.msg;
+        this.result.status = response.status;
         //load lại dữ liệuliệu
         this.retriveKhoaBoMon();
-
       },
       (error) => {
         console.log(error);

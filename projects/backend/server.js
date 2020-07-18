@@ -39,9 +39,7 @@ app.listen(4100, function () {
   console.log('Backend API running!');
 });
 
-const khoabomonRoute = require('./routes/khoabomon');
 
-app.use('/admin', khoabomonRoute);
 app.use('/api', require('./api/api'));
 
 app.get('/', (req, res) => {
