@@ -24,7 +24,14 @@ mongoose.connection.once('open', () => {
 
 // Make sure you place body-parser before your CRUD handlers!
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json());
 app.use(cors())
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 app.listen(4100, function () {
   console.log('Backend API running!')

@@ -43,10 +43,12 @@
           },
           "configurations": {
             "production": {
-              "fileReplacements": [{
-                "replace": "projects/admin/src/environments/environment.ts",
-                "with": "projects/admin/src/environments/environment.prod.ts"
-              }],
+              "fileReplacements": [
+                {
+                  "replace": "projects/admin/src/environments/environment.ts",
+                  "with": "projects/admin/src/environments/environment.prod.ts"
+                }
+              ],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -55,7 +57,8 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
-              "budgets": [{
+              "budgets": [
+                {
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
@@ -170,10 +173,12 @@
           },
           "configurations": {
             "production": {
-              "fileReplacements": [{
-                "replace": "projects/cntt/src/environments/environment.ts",
-                "with": "projects/cntt/src/environments/environment.prod.ts"
-              }],
+              "fileReplacements": [
+                {
+                  "replace": "projects/cntt/src/environments/environment.ts",
+                  "with": "projects/cntt/src/environments/environment.prod.ts"
+                }
+              ],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -182,7 +187,8 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
-              "budgets": [{
+              "budgets": [
+                {
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
@@ -291,10 +297,12 @@
           },
           "configurations": {
             "production": {
-              "fileReplacements": [{
-                "replace": "projects/elearning/src/environments/environment.ts",
-                "with": "projects/elearning/src/environments/environment.prod.ts"
-              }],
+              "fileReplacements": [
+                {
+                  "replace": "projects/elearning/src/environments/environment.ts",
+                  "with": "projects/elearning/src/environments/environment.prod.ts"
+                }
+              ],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -303,7 +311,8 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
-              "budgets": [{
+              "budgets": [
+                {
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
@@ -379,5 +388,8 @@
       }
     }
   },
-  "defaultProject": "admin"
+  "defaultProject": "admin",
+  "cli": {
+    "analytics": "0d2e49a6-6fa1-4f7e-a7aa-284ea1f863e7"
+  }
 }
