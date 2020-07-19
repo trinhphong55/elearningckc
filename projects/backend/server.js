@@ -1,12 +1,20 @@
-const express = require('express')
-const bodyParser = require('body-parser')
-const mongoose = require('mongoose')
-const cors = require('cors')
-const app = express()
+const express = require('express');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const cors = require('cors');
+const app = express();
 
-const crawl = require('./crawl').crawl()
+require('./crawl').crawl()
 
-const MONGODB_URI = 'mongodb://localhost:27017/'
+app.use(function (req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:4200');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  next();
+});
+
+const MONGODB_URI = 'mongodb://elearning_team:123@103.92.26.177:27017/testAngularckc'; //'mongodb://localhost:27017/'
 
 // Connect with MongoDB
 mongoose.connect(MONGODB_URI, {
@@ -14,23 +22,34 @@ mongoose.connect(MONGODB_URI, {
   useFindAndModify: false,
   useCreateIndex: true,
   useUnifiedTopology: true
-})
+});
 
 mongoose.connection.on('error', (err) => {
   console.log('Mongoose conection error:' + err)
-})
+});
 
 mongoose.connection.once('open', () => {
   console.log('MongoDB connected!')
-})
+});
 
 // Make sure you place body-parser before your CRUD handlers!
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json());
 app.use(cors())
 
-app.listen(4100, function () {
-  console.log('Backend API running!')
-})
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
-const apiRoutes = require('./api/api')
-app.use('/api', apiRoutes)
+app.listen(4100, function () {
+  console.log('Backend API running!');
+});
+
+
+app.use('/api', require('./api/api'));
+
+app.get('/', (req, res) => {
+  res.send('Back end API');
+});

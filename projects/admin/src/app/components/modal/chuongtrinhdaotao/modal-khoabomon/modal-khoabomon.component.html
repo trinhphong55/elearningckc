@@ -1,49 +1,88 @@
-<app-modal class="modal_chucnang__wrapper" id="ctdt_khoabomon">
+<app-modal class="modal_chucnang__wrapper show" id="ctdt_khoabomon">
+
   <div (click)="closeModal('ctdt_khoabomon')" class="modal_chucnang__close mdi mdi-chevron-left text-white"></div>
   <div class="container-fluid mt-3">
     <div class="row">
       <div class="col-12">
         <h1 class="text-center text-white">Quản lý Khoa - Bộ môn</h1>
       </div>
-      <div class="col-12">
-        <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
-          <div class="row justify-content-center align-items-center">
-            <div class="col-3">
-              <div class="form-group">
-                <label>Mã khoa - Bộ môn</label>
-                <input class="form-control">
+      <form [formGroup]="addForm" class="col-12">
+        <div class="col-12">
+          <div class="alert alert-info" >
+           <p>{{ (result.msg) }}</p>
+          </div>
+          <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
+            <div class="row justify-content-center align-items-center">
+              <div class="col-3">
+                <div class="form-group">
+                  <label>Mã khoa - Bộ môn </label>
+                  <input class="form-control" formControlName="maKhoa" required>
+                  <div *ngIf="maKhoa.invalid && (maKhoa.dirty || maKhoa.touched)" class="alert alert-danger">
+
+                    <div *ngIf="maKhoa.errors.required">
+                      Mã khoa is required.
+                    </div>
+
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Tên khoa - Bộ môn</label>
+                  <input class="form-control" formControlName="tenKhoa">
+                  <div *ngIf="tenKhoa.invalid && (tenKhoa.dirty || tenKhoa.touched)" class="alert alert-danger">
+
+                    <div *ngIf="tenKhoa.errors.required">
+                      Tên Khoa is required.
+                    </div>
+
+                  </div>
+                </div>
               </div>
-              <div class="form-group">
-                <label>Tên khoa - Bộ môn</label>
-                <input class="form-control">
+              <div class="col-3">
+                <div class="form-group">
+                  <label>Tên viết tắt</label>
+                  <input class="form-control" formControlName="tenVietTat">
+                  <div *ngIf="tenVietTat.invalid && (tenVietTat.dirty || tenVietTat.touched)" class="alert alert-danger">
+
+                    <div *ngIf="tenVietTat.errors.required">
+                      Tên viết tắt is required.
+                    </div>
+
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Loại đơn vị</label>
+                  <select class="form-control" formControlName="loaiDonVi">
+                    <option value="" disabled>Chọn...</option>
+                    <option *ngFor="let loai of loais" [ngValue]=loai.maLoaiDonVi>{{ loai.tenLoaiDonVi }}</option>
+                    <div *ngIf="loaiDonVi.invalid && (loaiDonVi.dirty || loaiDonVi.touched)" class="alert alert-danger">
+
+                      <div *ngIf="loaiDonVi.errors.required">
+                        Name is required.
+                      </div>
+
+                    </div>
+                  </select>
+                </div>
               </div>
-            </div>
-            <div class="col-3">
-              <div class="form-group">
-                <label>Tên viết tắt</label>
-                <input class="form-control">
-              </div>
-              <div class="form-group">
-                <label>Loại đơn vị</label>
-                <select class="form-control">
-                  <option>Khoa</option>
-                  <option>Phòng</option>
-                  <option>Bộ môn</option>
-                  <option>Bộ phận</option>
-                </select>
-              </div>
-            </div>
-            <div class="col-auto">
-              <div class="modal_chucnang__group__button">
-                <button class="modal_chucnang__button btn btn-outline-primary px-4 mx-2"><img
-                    class="modal_chucnang__button__icon mb-2" src="assets/img/icons/add.png" alt="image icon">
-                  <div>Thêm mới</div>
+              <div class="col-auto">
+                <div class="modal_chucnang__group__button" (click)="addModal()">
+                  <button class="modal_chucnang__button btn btn-outline-primary px-4 mx-2"><img
+                      class="modal_chucnang__button__icon mb-2" src="assets/img/icons/add.png" alt="image icon">
+                    <div>Thêm mới</div>
+
+                  </button>
+                  <button class="modal_chucnang__button btn btn-outline-success px-4 mx-2"><img
+                    class="modal_chucnang__button__icon mb-2" src="assets/img/icons/upgrade.png" alt="image icon">
+                  <div>Import Excel</div>
                 </button>
+                </div>
               </div>
+
+
             </div>
           </div>
         </div>
-      </div>
+      </form>
       <div class="col-12">
         <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
           <div class="d-flex align-items-center mb-2">
@@ -69,27 +108,38 @@
                   class="modal_chucnang__button__save ml-2 mdi mdi-content-save-outline mdi-24px"></span></th>
             </thead>
             <tbody>
-              <tr>
-                <td style="max-width: 50px">1</td>
-                <td style="max-width: 100px">
-                  <input class="form-control" disabled value="TH">
-                </td>
-                <td>
-                  <input class="form-control" disabled value="Bộ môn tin học">
-                </td>
-                <td>
-                  <input class="form-control" disabled value="TH">
-                </td>
-                <td>
-                  <select class="form-control" disabled>
-                    <option>Khoa</option>
-                    <option>Phòng</option>
-                  </select>
-                </td>
-                <td class="text-center"><span
-                    class="modal_chucnang__button__edit mdi mdi-file-document-edit-outline mdi-24px"></span><span
-                    class="modal_chucnang__button__delete ml-2 mdi mdi-delete-outline mdi-24px"></span></td>
+
+              <tr *ngFor="let khoa of khoas; let i= index">
+                <ng-template [ngIf]="removeDisplayKhoa(khoa)">
+                  <td style="max-width: 50px">{{ i+1  }}</td>
+                  <td style="max-width: 100px">
+                    <input class="form-control" disabled value="{{ khoa.maKhoa}}">
+                  </td>
+                  <td>
+                    <input class="form-control" disabled value=" {{ khoa.tenKhoa }}">
+                  </td>
+                  <td>
+                    <input class="form-control" disabled value=" {{ khoa.tenVietTat }}">
+                  </td>
+                  <td>
+                    <select class="form-control">
+                      <option value="" disabled>Chọn...</option>
+                      <option *ngFor="let loai of loais" [ngValue]=loai.maLoaiDonVi>{{ loai.tenLoaiDonVi }}</option>
+                    </select>
+                  </td>
+                  <td class="text-center">
+                    <span class="modal_chucnang__button__edit mdi mdi-file-document-edit-outline mdi-24px"
+                      (click)="updateModal(khoa._id,khoa)">
+                    </span>
+                    <span class="modal_chucnang__button__delete ml-2 mdi mdi-delete-outline mdi-24px "
+                      (click)="deleteModal(khoa._id)">
+                    </span>
+                  </td>
+                </ng-template>
               </tr>
+
+
+
             </tbody>
           </table>
         </div>

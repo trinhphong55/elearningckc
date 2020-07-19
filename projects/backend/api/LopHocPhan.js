@@ -9,7 +9,7 @@ router.get('/danhsachlophocphan', (req, res) => {
 })
 
 router.post('/lophocphan', (req, res) => {
-  console.log(req.body)
+  res.send(req.body)
 })
 
 module.exports = router

@@ -521,6 +521,6 @@
   },
   "defaultProject": "admin",
   "cli": {
-    "analytics": "dbd44198-434d-424d-b2af-908fbdbbc0d5"
+    "analytics": false
   }
 }

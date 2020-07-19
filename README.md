@@ -1,6 +1,4 @@
-###### Angular CLI v10.0.2 Lộc chỉnh sửa ahdsjad asjd ajdj 
-###### Angular CLI v10.0.2//Test Hius lan 2
-###### Angular CLI v10.0.2 Lộc chỉnh sửa
+###### Angular CLI v10.0.2
 ###### NodeJS v12.18.0
 ###### NPM v6.14.4
 
