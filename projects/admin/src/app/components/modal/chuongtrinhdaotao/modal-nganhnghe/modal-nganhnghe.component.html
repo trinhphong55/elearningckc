@@ -11,50 +11,52 @@
             <div class="col-3">
               <div class="form-group">
                 <label>Tên ngành nghề</label>
-                <input class="form-control">
+                <input class="form-control" value="{{tenNganhNghe}}" [(ngModel)]="tenNganhNghe">
               </div>
               <div class="form-group">
                 <label>Tên viết tắt</label>
-                <input class="form-control">
+                <input class="form-control" value="{{tenVietTat}}" [(ngModel)]="tenVietTat">
               </div>
             </div>
             <div class="col-3">
               <div class="row no-gutters">
                 <div class="form-group col-5">
                   <label>Mã ngành nghề</label>
-                  <input class="form-control">
+                  <input class="form-control" value="{{maNganhNghe}}" [(ngModel)]="maNganhNghe">
                 </div>
                 <div class="form-group col ml-2">
-                  <label>Bậc</label>
-                  <select class="form-control">
-                    <option>Cao đẳng</option>
-                    <option>Cao đẳng nghề</option>
-                    <option>Đại học</option>
+                  <label >Bậc</label>
+                  <select class="form-control"  [(ngModel)]="TenBac" >
+                    <option *ngFor="let b of bac">{{b.tenBac}}</option>
+                    
                   </select>
                 </div>
               </div>
               <div class="form-group">
                 <label>Ngành cha</label>
                 <select class="form-control modal_chucnang__select2">
-                  <option>Ngành cha 1</option>
-                  <option>Ngành cha 2</option>
+                  <option>Không Có Ngành Cha</option>
                 </select>
               </div>
             </div>
             <div class="col-auto">
               <div class="modal_chucnang__group__button">
-                <button class="modal_chucnang__button btn btn-outline-primary px-4 mx-2"><img
+                <button class="modal_chucnang__button btn btn-outline-primary px-4 mx-2" (click)="add()"><img
                     class="modal_chucnang__button__icon mb-2" src="assets/img/icons/add.png" alt="image icon">
                   <div>Thêm mới</div>
                 </button>
-                <button class="modal_chucnang__button btn btn-outline-success px-4 mx-2"><img
+                <button class="modal_chucnang__button btn btn-outline-success px-4 mx-2"(click)="update()"><img
                     class="modal_chucnang__button__icon mb-2" src="assets/img/icons/upgrade.png" alt="image icon">
                   <div>Cập nhật</div>
                 </button>
-                <button class="modal_chucnang__button btn btn-outline-danger px-4 mx-2" type="reset"><img
+                <button class="modal_chucnang__button btn btn-outline-danger px-4 mx-2" type="reset" (click)="huy()"><img
                     class="modal_chucnang__button__icon mb-2" src="assets/img/icons/error.png" alt="image icon">
                   <div>Huỷ</div>
                 </button>
+                <button class="modal_chucnang__button btn btn-outline-primary px-4 mx-2" type="reset"><img
+                  class="modal_chucnang__button__icon mb-2" src="https://img.icons8.com/dusk/64/000000/ms-excel.png" alt="image icon">
+                <div>Nhập Excel</div>
+              </button>
               </div>
             </div>
           </div>
@@ -71,7 +73,7 @@
               </select><span class="text-nowrap">&nbsp; hàng</span>
             </label>
             <label class="ml-auto mb-0 d-flex align-items-center"><span class="text-nowrap">Tìm kiếm: &nbsp;</span>
-              <input class="form-control form-control-sm" placeholder="Tìm kiếm">
+              <input class="form-control form-control-sm" placeholder="Tìm kiếm" [(ngModel)]="searchName">
             </label>
           </div>
           <table class="modal_chucnang__table table table-hover" id="danhsach_nganhnghe">
@@ -85,26 +87,26 @@
               <th class="text-center" scope="col"><span
                   class="modal_chucnang__button__save mdi mdi-content-save-outline mdi-24px"></span></th>
             </thead>
-            <tbody>
+            <tbody *ngFor="let x of data |filter:searchName ; index as stt">
               <tr>
-                <td style="max-width: 50px">1</td>
+                <td (click)="Detail(x)" style="max-width: 50px">{{stt+1}}</td>
                 <td style="max-width: 100px">
-                  <input class="form-control" value="PM">
+                  <input class="form-control" readonly="true" value="{{x.maNganhNghe}}">
                 </td>
                 <td>
-                  <input class="form-control" value="Công nghệ phần mềm">
+                  <input class="form-control" readonly="true" value="{{x.tenNganhNghe}}">
                 </td>
                 <td>
-                  <input class="form-control" value="PM">
+                  <input class="form-control" readonly="true" value="{{x.tenVietTat}}">
                 </td>
                 <td>
-                  <input class="form-control" value="Cao đẳng">
+                  <input class="form-control" readonly="true" value="{{x.maBac}}">
                 </td>
                 <td>
-                  <input class="form-control" value="CNTT">
+                  <input class="form-control" readonly="true" value="CNTT">
                 </td>
                 <td class="text-center"><span
-                    class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px"></span></td>
+                    class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px" (click)="delete(x)"></span></td>
               </tr>
             </tbody>
           </table>

@@ -8,7 +8,13 @@ router.use('/giaovien', GiaoVienRoutes)
 const khoabomonController = require("../api/khoabomon");
 const loaidonviController = require("../api/loaidonvi");
 //
-
+//nganhnghe bac
+const NganhNgheRoutes = require('./NganhNghe')
+const BacRoutes = require('./Bac')
+//nganhnghe
+router.use('/', NganhNgheRoutes)
+//bac
+router.use('/', BacRoutes)
 //Route KhoaBoMon
 router.get("/khoabomon", khoabomonController.getKhoaBonMon);
 

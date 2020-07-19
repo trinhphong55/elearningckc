@@ -68,7 +68,7 @@ import { ModalQuanlytintuccnttComponent } from './components/modal/cntt/modal-qu
 import { ModalThemtintuccnttComponent } from './components/modal/cntt/modal-themtintuccntt/modal-themtintuccntt.component';
 import { ModalChinhsuatintuccnttComponent } from './components/modal/cntt/modal-chinhsuatintuccntt/modal-chinhsuatintuccntt.component';
 import { ModalQuanlyloaitintuccnttComponent } from './components/modal/cntt/modal-quanlyloaitintuccntt/modal-quanlyloaitintuccntt.component';
-
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 @NgModule({
   declarations: [
     AppComponent,
@@ -141,7 +141,8 @@ import { ModalQuanlyloaitintuccnttComponent } from './components/modal/cntt/moda
     AppRoutingModule,
     NgxUsefulSwiperModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    Ng2SearchPipeModule,
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]
