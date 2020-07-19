@@ -179,37 +179,37 @@ git push
 1. Vào thư mục **ssl** double click file **localhost.crt** và chọn ***Install Certificate...***
 
 <p align='center'>
-  <img src='md-assets/install-cert-1.png' alt='md-assets/install-cert-1.png'>
+  <img src='md-assets/install-cert-1.PNG' alt='md-assets/install-cert-1.PNG'>
 </p>
 
 2. Chọn **Current User** hoặc **Local Machine**
 
 <p align='center'>
-  <img src='md-assets/install-cert-2.png' alt='md-assets/install-cert-2.png'>
+  <img src='md-assets/install-cert-2.PNG' alt='md-assets/install-cert-2.PNG'>
 </p>
 
 3. Chọn **Place all certificates in the following store** > **Browse** > **Trusted Root Certification Authorities** > **OK**
 
 <p align='center'>
-  <img src='md-assets/install-cert-3.png' alt='md-assets/install-cert-3.png'>
+  <img src='md-assets/install-cert-3.PNG' alt='md-assets/install-cert-3.PNG'>
 </p>
 
 3. Click **Next**
 
 <p align='center'>
-  <img src='md-assets/install-cert-4.png' alt='md-assets/install-cert-4.png'>
+  <img src='md-assets/install-cert-4.PNG' alt='md-assets/install-cert-4.PNG'>
 </p>
 
 4. Click **Finish**
 
 <p align='center'>
-  <img src='md-assets/install-cert-5.png' alt='md-assets/install-cert-5.png'>
+  <img src='md-assets/install-cert-5.PNG' alt='md-assets/install-cert-5.PNG'>
 </p>
 
 5. Cài đặt thành công
 
 <p align='center'>
-  <img src='md-assets/install-cert-done.png' alt='md-assets/install-cert-done.png'>
+  <img src='md-assets/install-cert-done.PNG' alt='md-assets/install-cert-done.PNG'>
 </p>
 
 6. Khởi động lại máy tính
