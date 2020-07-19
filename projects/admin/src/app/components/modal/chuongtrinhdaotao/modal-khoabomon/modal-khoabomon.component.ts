@@ -18,10 +18,7 @@ export class ModalKhoabomonComponent implements OnInit {
   loais: any;
   addForm: FormGroup;
 
-  result = {
-    msg: '',
-    status: false,
-  };
+  result = { msg: '', status: false };
 
   constructor(
     private loaiDonviService: LoaidonviService,
@@ -113,6 +110,8 @@ export class ModalKhoabomonComponent implements OnInit {
       (response) => {
         // this.result.msg = response.msg;
         // this.result.status = response.status;
+        console.log(response);
+
         this.retriveKhoaBoMon();
       },
       (error) => {
@@ -124,17 +123,18 @@ export class ModalKhoabomonComponent implements OnInit {
   updateModal(id, khoa) {
     khoa = {
       tenKhoa: this.addForm.value.tenKhoa,
-      maKhoa: this.addForm.value.maKhoamaKhoa,
+      maKhoa: this.addForm.value.maKhoa,
       tenVietTat: this.addForm.value.tenVietTat,
       maLoai: this.addForm.value.maLoai,
       nguoiTao: 'Them do sau',
       nguoiChinhSua: 'huy',
     };
-
+    console.log(khoa);
     this.KhoaBonmonService.update(id, khoa).subscribe(
       (response) => {
         // this.result.msg = response.msg;
         // this.result.status = response.status;
+        console.log(response);
         //load lại dữ liệuliệu
         this.retriveKhoaBoMon();
       },
@@ -149,6 +149,7 @@ export class ModalKhoabomonComponent implements OnInit {
       (response) => {
         // this.result.msg = response.msg;
         // this.result.status = response.status;
+        console.log(response);
         //load lại dữ liệuliệu
         this.retriveKhoaBoMon();
       },

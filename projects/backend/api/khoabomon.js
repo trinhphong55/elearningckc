@@ -2,7 +2,7 @@ const KhoaBoMon = require("../models/khoabomon.model");
 
 exports.getKhoaBonMon = async (req, res) => {
   try {
-    const khoabomon = await KhoaBoMon.find({'trangThai':'1'});
+    const khoabomon = await KhoaBoMon.find({ trangThai: "1" });
 
     res.json(khoabomon);
   } catch (error) {
@@ -36,7 +36,7 @@ exports.postKhoaBoMon = async (req, res) => {
     if (idIsExist > 0) {
       res.json({
         status: false,
-        msg: "Id nay da ton tai",
+        msg: "Mã khoa này đã tồn tại",
       });
     } else if (nameIsExist > 0) {
       res.json({
@@ -55,7 +55,7 @@ exports.postKhoaBoMon = async (req, res) => {
       const saveKhoa = await khoaBoMon.save();
       res.json({
         status: true,
-        msg: "Created Khoa Successful",
+        msg: "Thêm thành công Khoa-Bộ môn vào danh sách",
         data: saveKhoa,
       });
     }
@@ -90,12 +90,13 @@ exports.deleteKhoaBoMon = async (req, res) => {
     if (updateKhoa.n === 0) {
       result = {
         status: false,
-        msg: "err",
+        msg: "Xóa thất bại",
       };
     } else {
       result = {
         status: true,
         msg: "Xóa thành công ",
+
       };
     }
     res.json(result);
@@ -120,16 +121,16 @@ exports.updateKhoaBoMon = async (req, res) => {
     );
 
     let result;
-
-    if (updateKhoa.n === 0) {
+    console.log(updateKhoa.n);
+    if (updateKhoa.nModified === 0) {
       result = {
         status: false,
-        msg: "err",
+        msg: "Chưa được cập nhật",
       };
     } else {
       result = {
         status: true,
-        msg: " Update successful",
+        msg: "Cập nhật thành công Khoa-Bộ môn",
       };
     }
     res.json(result);
