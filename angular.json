@@ -422,7 +422,7 @@
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
               "node_modules/aos/dist/aos.js",
               "node_modules/swiper/swiper-bundle.min.js",
-              "projects/ttth/src/assets/js/myscript.js",
+              "projects/ttth/src/assets/js/myscript.js"
 
             ]
           },
