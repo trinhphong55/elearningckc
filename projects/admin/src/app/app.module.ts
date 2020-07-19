@@ -46,6 +46,26 @@ import { ModalGroupfacebookComponent } from './components/modal/facebook/modal-g
 import { ModalPagefacebookComponent } from './components/modal/facebook/modal-pagefacebook/modal-pagefacebook.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { ModalQuanlyheadercnttComponent } from './components/modal/cntt/modal-quanlyheadercntt/modal-quanlyheadercntt.component';
+import { PageTtthComponent } from './pages/page-ttth/page-ttth.component';
+import { SidebarTtthComponent } from './components/sidebar/sidebar-ttth/sidebar-ttth.component';
+import { ModalLogoComponent } from './components/modal/ttth/modal-logo/modal-logo.component';
+import { ModalQuanlypartnerComponent } from './components/modal/cntt/modal-quanlypartner/modal-quanlypartner.component';
+import { ModalQuanlyfootercnttComponent } from './components/modal/cntt/modal-quanlyfootercntt/modal-quanlyfootercntt.component';
+import { ModalBannerComponent } from './components/modal/ttth/modal-banner/modal-banner.component';
+import { ModalDangkikhoahocComponent } from './components/modal/ttth/modal-dangkikhoahoc/modal-dangkikhoahoc.component';
+import { ModalHomeCamonComponent } from './components/modal/ttth/modal-home-camon/modal-home-camon.component';
+import { ModalHomeTienichComponent } from './components/modal/ttth/modal-home-tienich/modal-home-tienich.component';
+import { ModalKhoahocComponent } from './components/modal/ttth/modal-khoahoc/modal-khoahoc.component';
+import { ModalLichkhaigiangComponent } from './components/modal/ttth/modal-lichkhaigiang/modal-lichkhaigiang.component';
+import { ModalLienheComponent } from './components/modal/ttth/modal-lienhe/modal-lienhe.component';
+import { ModalMenuComponent } from './components/modal/ttth/modal-menu/modal-menu.component';
+import { ModalSubmenuComponent } from './components/modal/ttth/modal-submenu/modal-submenu.component';
+import { ModalHomeChuongtrinhdaotaoComponent } from './components/modal/ttth/modal-home-chuongtrinhdaotao/modal-home-chuongtrinhdaotao.component';
+import { ModalQuanlyslideshowcnttComponent } from './components/modal/cntt/modal-quanlyslideshowcntt/modal-quanlyslideshowcntt.component';
+import { ModalQuanlytintuccnttComponent } from './components/modal/cntt/modal-quanlytintuccntt/modal-quanlytintuccntt.component';
+import { ModalThemtintuccnttComponent } from './components/modal/cntt/modal-themtintuccntt/modal-themtintuccntt.component';
+import { ModalChinhsuatintuccnttComponent } from './components/modal/cntt/modal-chinhsuatintuccntt/modal-chinhsuatintuccntt.component';
+import { ModalQuanlyloaitintuccnttComponent } from './components/modal/cntt/modal-quanlyloaitintuccntt/modal-quanlyloaitintuccntt.component';
 
 @NgModule({
   declarations: [
@@ -90,7 +110,28 @@ import { ModalQuanlyheadercnttComponent } from './components/modal/cntt/modal-qu
     ModalGroupfacebookComponent,
     ModalPagefacebookComponent,
     ModalComponent,
-    ModalQuanlyheadercnttComponent
+    ModalQuanlyheadercnttComponent,
+    PageTtthComponent,
+    SidebarTtthComponent,
+    ModalLogoComponent,
+    ModalQuanlypartnerComponent,
+    ModalQuanlyfootercnttComponent,
+    ModalBannerComponent,
+    ModalDangkikhoahocComponent,
+    ModalHomeCamonComponent,
+    ModalHomeTienichComponent,
+    ModalKhoahocComponent,
+    ModalLichkhaigiangComponent,
+    ModalLienheComponent,
+    ModalMenuComponent,
+    ModalSubmenuComponent,
+    ModalHomeChuongtrinhdaotaoComponent,
+    ModalQuanlyslideshowcnttComponent,
+    ModalQuanlytintuccnttComponent,
+    ModalThemtintuccnttComponent,
+    ModalChinhsuatintuccnttComponent,
+    ModalHomeChuongtrinhdaotaoComponent,
+    ModalQuanlyloaitintuccnttComponent
   ],
   imports: [
     BrowserModule,

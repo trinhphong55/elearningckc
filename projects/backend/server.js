@@ -4,6 +4,8 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 const app = express()
 
+const crawl = require('./crawl').crawl()
+
 const MONGODB_URI = 'mongodb://localhost:27017/'
 
 // Connect with MongoDB
