@@ -12,8 +12,8 @@ const MONGODB_URI = 'mongodb://elearning_team:123@103.92.26.177:27017/testAngula
 const PORT = 4100
 
 const httpsOptions = {
-  key: fs.readFileSync('./security/cert.key'),
-  cert: fs.readFileSync('./security/cert.crt')
+  key: fs.readFileSync('security/localhost.key'),
+  cert: fs.readFileSync('security/localhost.crt')
 }
 
 // Connect with MongoDB
@@ -37,7 +37,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
 app.use(function (req, res, next) {
-  res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:4200')
+  res.setHeader('Access-Control-Allow-Origin', '*')
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE')
   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type')
   res.setHeader('Access-Control-Allow-Credentials', true)
