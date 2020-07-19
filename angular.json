@@ -413,13 +413,17 @@
               "node_modules/aos/dist/aos.css",
               "node_modules/@fortawesome/fontawesome-free/css/all.css",
               "projects/ttth/src/assets/css/fontface.css",
-              "projects/ttth/src/styles.css"
+              "projects/ttth/src/styles.css",
+              "projects/ttth/src/assets/css/style.css",
+              "projects/ttth/src/assets/css/responsive.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
               "node_modules/aos/dist/aos.js",
-              "node_modules/swiper/swiper-bundle.min.js"
+              "node_modules/swiper/swiper-bundle.min.js",
+              "projects/ttth/src/assets/js/myscript.js"
+
             ]
           },
           "configurations": {
@@ -517,6 +521,6 @@
   },
   "defaultProject": "admin",
   "cli": {
-    "analytics": "0d2e49a6-6fa1-4f7e-a7aa-284ea1f863e7"
+    "analytics": false
   }
 }

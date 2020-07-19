@@ -2,23 +2,21 @@
 ###### NodeJS v12.18.0
 ###### NPM v6.14.4
 
-# Cập nhật master
-
 # Hướng dẫn sử dụng
 
-**Bước 1:** Clone source code vê và bật **Terminal** chạy lệnh sau để cài đặt các modules được sử dụng trong source code tại thư mục **root**
+**Bước 1:** Clone source code về và bật **Terminal** chạy lệnh sau để cài đặt các modules được sử dụng trong source code tại thư mục `root`
 
 ```
 npm install
 ``` 
 
-**Bước 2:** Bật **Terminal** tại thư mục `propjects/backend` và chạy lệnh sau để cài đặt các modules được sử dụng trong project Backend-API.
+**Bước 2:** Bật **Terminal** tại thư mục `projects/backend` và chạy lệnh sau để cài đặt các modules được sử dụng trong project Backend-API.
 
 ```
 npm install
 ``` 
 
-**Bước 3:** Bật **Terminal** tại thư mục `root` và chạy lên 1 trong các lệnh sau
+**Bước 3:** Bật **Terminal** tại thư mục `root` và chạy 1 trong các lệnh sau
 
 Khởi động toàn bộ project: **`npm start`**
 
@@ -61,7 +59,7 @@ Khởi động project TTTH: **`npm run ckc-ttth`**
 git clone https://github.com/CaoThangEducation/CaoThangAngular.git
 ```
 
-**Bước 2 (QUAN TRỌNG):** Chuyển về branch của nhóm các bạn
+**Bước 2 (QUAN TRỌNG):** Chuyển về branch của nhóm
 
 ```
 git checkout 'tên branch'
@@ -75,7 +73,7 @@ git checkout 'tên branch'
 ```
 git add .
 git commit -m 'nội dung commit, bạn sẽ nhập thông tin này'
-git push
+git push    # Lưu code lên GitHub remote
 ```
 
 **Bước 4:** Đồng bộ code giữa các thành viên trong nhóm với nhau
@@ -98,19 +96,19 @@ git commit -m 'nội dung commit, bạn sẽ nhập thông tin này'
 - **4.3:** Đồng bộ code từ thành viên khác và lưu những thay đổi đó lên GitHub
 
 ```
-git pull
-git push
+git pull    # Xử lý các conflict (nếu có) trước khi push
+git push    # Lưu code lên GitHub remote
 ```
 
-## Đồng bộ những thay đổi mới nhất từ branch master về branch của bạn
+# Đồng bộ dữ liệu từ branch master về branch của nhóm
 
-Hãy **commit** và **push** code của bạn lên GitHub trước khi thực hiện các lệnh **checkout**, **merge**
-
-Mỗi nhóm đại diện 1 thành viên thực hiện bước này rồi push code branch của nhóm. Các thành viên khác chỉ cần pull về là được
+**QUAN TRỌNG:** Hãy **commit**, **pull**, **push** code của **tất cả thành viên** trong nhóm lên GitHub trước khi thực hiện đồng bộ những thay đổi từ branch master. Mỗi nhóm đại diện **1 thành viên** thực hiện bước đồng bộ thay đổi từ branch master. Các thành viên khác trong nhóm chỉ việc
 
 ```
-git checkout 'branch của bạn'
-git merge master
+git checkout master
+git pull    # Cập nhật chỉnh sửa mới nhất từ Master về máy của bạn
+git checkout 'branch của nhóm'
+git merge master # Sau khi chạy lệnh này, ta sẽ tiến hành kiểm tra các conflict(Nếu có)
 git push
 ```
 
@@ -120,18 +118,18 @@ git push
   <img src='markdown-assets/Diagram.png' alt='markdown-assets/Diagram.png'>
 </p>
 
-# Các modules được sử dụng
+# Các modules sử dụng
 
 **Roboto** được sử dụng làm webfont cho toàn bộ project, bao gồm các font-weight sau `300`, `400`, `500`, `700`, `900`
 
-### Project Backend-API
+### Backend-API
 
 1. body-parser@1.19.0
 2. cors@2.8.5
 3. express@4.17.1
 4. mongoose@5.9.23
 
-### Project Admin
+### Admin
 
 1. @fortawesome/fontawesome-free@5.13.1
 2. @mdi/font@5.3.45
@@ -141,7 +139,7 @@ git push
 6. swiper@6.0.2
 7. vanilla-lazyload@17.1.0
 
-### Project CNTT
+### CNTT
 
 1. @fortawesome/fontawesome-free@5.13.1
 2. @mdi/font@5.3.45
@@ -151,7 +149,7 @@ git push
 7. vanilla-lazyload@17.1.0
 8. aos@2.3.4
 
-### Project Elearning
+### Elearning
 
 1. @fortawesome/fontawesome-free@5.13.1
 2. @mdi/font@5.3.45
@@ -159,7 +157,7 @@ git push
 4. jquery@3.5.1
 
 
-### Project TTTH
+### TTTH
 
 1. @fortawesome/fontawesome-free@5.13.1
 2. bootstrap@4.5.0
