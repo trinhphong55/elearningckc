@@ -1,20 +1,31 @@
-<app-modal class="modal_chucnang__wrapper" id="ttth-home-tienich">
-  <div (click)="closeModal('ttth-home-tienich')" class="modal_chucnang__close mdi mdi-chevron-left text-white"></div>
+<app-modal class="modal_chucnang__wrapper" id="ttth-tintuc">
+  <div (click)="closeModal('ttth-tintuc')" class="modal_chucnang__close mdi mdi-chevron-left text-white"></div>
   <div class="container-fluid mt-3">
     <div class="row">
       <div class="col-12">
-        <h1 class="text-center text-white">Quản lý mục tiện ích ở trang chủ</h1>
+        <h1 class="text-center text-white">Quản lý tin tức</h1>
       </div>
       <div class="col-12">
         <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
           <div class="row justify-content-center align-items-center">
             <div class="col-9">
               <div class="form-group">
+                <label>Chọn menu</label>
+                <select class="modal_chucnang__select2 form-control">
+                  <option>a</option>
+                  <option>....</option>
+                </select>
+              </div>
+              <div class="form-group">
                 <label for="exampleFormControlFile1">Tải hình ảnh</label>
                 <input type="file" class="form-control-file" id="exampleFormControlFile1">
               </div>
               <div class="form-group">
                 <label>Tiêu đề </label>
+                <input type="text" class="form-control">
+              </div>
+              <div class="form-group">
+                <label>Mô tả </label>
                 <input type="text" class="form-control">
               </div>
               <div class="form-group">
@@ -39,8 +50,10 @@
             <thead class="bg__caothang text-white">
               <tr>
                 <th>#</th>
+                <th scope="col">Menu</th>
                 <th scope="col">Image</th>
                 <th scope="col">Tiêu đề </th>
+                <th scope="col">Mô tả</th>
                 <th scope="col">Nội dung </th>
                 <th scope="col">Hiển thị</th>
                 <th class="text-center" scope="col"><span
@@ -50,12 +63,14 @@
             <tbody>
               <tr>
                 <td style="max-width: 50px">1</td>
+                <td>Tin tức</td>
                 <td style="max-width: 100px">
                   <img src="https://via.placeholder.com/50" alt="">
                 </td>
                 <td>
                   Tiêu đề
                 </td>
+                <td>Mô tả</td>
                 <td>
                   Nội dung
                 </td>

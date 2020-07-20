@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ModalSubmenuComponent } from './modal-submenu.component';
+import { ModalTintucComponent } from './modal-tintuc.component';
 
-describe('ModalSubmenuComponent', () => {
-  let component: ModalSubmenuComponent;
-  let fixture: ComponentFixture<ModalSubmenuComponent>;
+describe('ModalTintucComponent', () => {
+  let component: ModalTintucComponent;
+  let fixture: ComponentFixture<ModalTintucComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ModalSubmenuComponent ]
+      declarations: [ ModalTintucComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ModalSubmenuComponent);
+    fixture = TestBed.createComponent(ModalTintucComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
