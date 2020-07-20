@@ -8,6 +8,7 @@ import { PageCnttComponent } from './pages/page-cntt/page-cntt.component';
 import { PageDiemComponent } from './pages/page-diem/page-diem.component';
 import { PageChuongtrinhdaotaoComponent } from './pages/page-chuongtrinhdaotao/page-chuongtrinhdaotao.component';
 import { PageDashboardComponent } from './pages/page-dashboard/page-dashboard.component';
+import { PageTtthComponent } from './pages/page-ttth/page-ttth.component';
 
 const routes: Routes = [
   {
@@ -27,6 +28,9 @@ const routes: Routes = [
   },
   {
     path: 'cntt', component: PageCnttComponent
+  },
+  {
+    path: 'ttth', component: PageTtthComponent
   },
   {
     path: 'facebook', component: PageFacebookComponent

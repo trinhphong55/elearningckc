@@ -1,0 +1,86 @@
+<app-modal class="modal_chucnang__wrapper" id="ttth-logo">
+  <script>
+    $(document).on('click', '.add', function (event) {
+      event.preventDefault();
+      var count = parseInt($('#parent').attr('edu-card')) + 1;
+      var html = '<div class="row" id="edu-card-list-' + count +
+        '">  <div class="image-button remove mt-14">Xóa</div>';
+      $('#parent').append(html);
+      $('#parent').attr('edu-card', count);
+    });
+    $(document).on('click', '.remove', function (event) {
+      event.preventDefault();
+      $(this).parent().remove();
+    });
+
+  </script>
+  <div (click)="closeModal('ttth-logo')" class="modal_chucnang__close mdi mdi-chevron-left text-white"></div>
+  <div class="container-fluid mt-3">
+    <div class="row">
+      <div class="col-12">
+        <h1 class="text-center text-white">Quản lý thông tin website</h1>
+      </div>
+      <div class="col-12">
+        <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
+          <div class="row justify-content-left align-items-center">
+            <div class="col-3">
+              <div class="form-group">
+                <label>Logo</label>
+                <div class="input-group mb-3">
+                  <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="inputGroupFile01">
+                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="form-group">
+                <label>Địa chỉ</label>
+                <input type="text" class="form-control">
+              </div>
+              <div class="form-group">
+                <label>Giờ làm việc</label>
+                <input type="text" class="form-control">
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="form-group">
+                <label>Hotline</label>
+                <input type="text" class="form-control">
+              </div>
+              <div class="form-group">
+                <label>Copyright</label>
+                <input type="text" class="form-control">
+              </div>
+            </div>
+            <div class="col-3 text-center">
+              <div class="modal_chucnang__group__button">
+                <button class="modal_chucnang__button btn btn-outline-success px-4 mx-2"><img
+                    class="modal_chucnang__button__icon mb-2" src="assets/img/icons/upgrade.png" alt="image icon">
+                  <div>Cập nhật</div>
+                </button>
+              </div>
+            </div>
+            <div edu-card="0" class="col-12">
+              <div class="row" id="parent">
+                <div class="col-3">
+                  <div class="form-group">
+                    <label>Liên kết mạng xã hội(tối đa 6)</label>
+                    <input type="text" class="form-control">
+                    <small class="form-text text-muted">Icon</small>
+                    <input type="text" class="form-control">
+                    <small class="form-text text-muted">Link</small>
+                  </div>
+                  <div class="form-group">
+                    <div class="btn btn-primary add">Thêm</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-modal>

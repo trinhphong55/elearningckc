@@ -1,0 +1,300 @@
+<app-modal class="modal_chucnang__wrapper" id="cntt_quanlytintuc">
+    <div (click)="closeModal('cntt_quanlytintuc')" class="modal_chucnang__close mdi mdi-chevron-left text-white"></div>
+    <div class="container-fluid mt-3">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="text-center text-white">Quản lý Tin tức</h1>
+            </div>
+            <div class="col-12">
+                <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
+                    <div class="d-flex align-items-center mb-2">
+                        <label class="mb-0 d-flex align-items-center"><span class="text-nowrap">Hiển thị &nbsp;</span>
+                            <select class="custom-select custom-select-sm form-control">
+                                <option>10</option>
+                                <option>25</option>
+                                <option>50</option>
+                            </select><span class="text-nowrap">&nbsp; hàng</span>
+                        </label>
+                        <label class="ml-auto mb-0 d-flex align-items-center"><span class="text-nowrap">Tìm kiếm:
+                                &nbsp;</span>
+                            <input class="form-control form-control-sm" placeholder="Tìm kiếm">
+                        </label>
+                    </div>
+                    <table class="modal_chucnang__table table table-hover" id="danhsach_monhoc">
+                        <thead class="bg__caothang text-white">
+                            <th class="text-center" scope="col" style="max-width: 100px">Mã MH</th>
+                            <th scope="col">Tiêu đề tin tức</th>
+                            <th scope="col">Nội dung ngắn</th>
+                            <th scope="col">Loại Tin tức Lớn</th>
+                            <th scope="col">Loại Tin tức</th>
+                            <th scope="col">Ảnh đại diện</th>
+                            <th class="text-center" scope="col"><span
+                                    class="modal_chucnang__button__save mdi mdi-content-save-outline mdi-24px"></span>
+                            </th>
+                        </thead>
+                        <tfoot class="d-none">
+                            <tr>
+                                <td style="max-width: 100px">
+                                    <input class="form-control">
+                                </td>
+                                <td>
+                                    <input class="form-control">
+                                </td>
+                                <td>
+                                    <input class="form-control">
+                                </td>
+                                <td>
+                                    <input class="form-control">
+                                </td>
+                                <td>
+                                    <input class="form-control">
+                                </td>
+                                <td>
+                                    <select class="form-control">
+                                        <option>Thực hành</option>
+                                        <option>Lý thuyết</option>
+                                        <option>Module</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            <tr>
+                                <td style="max-width: 100px">
+                                    <input class="form-control" disabled value="0001">
+                                </td>
+                                <td>
+                                    <input class="form-control" disabled
+                                        value="[S4L] KẾT QUẢ SOLUTIONS FOR LIFE KỲ 03 TRANSLATING INTO PROTEIN">
+                                </td>
+                                <td>
+                                    <input class="form-control" disabled
+                                        value="CLB Tin học xin chúc mừng bạn Lê Hoàng Khang (CĐ TH 19C) và bạn Võ Bằng Kiều (CĐ TH 19D) đã có lời giải chính xác cho bài toán kỳ 03 Solutions For Life với chủ đề “Translating into Protein”. Thân mời bạn đến VP. BM. Tin học lầu 7 dãy F vào lúc 11h15 ngày thứ 4 (18.12.2019) để nhận thưởng.">
+                                </td>
+                                <td>
+                                    <input class="form-control" disabled value="Thông báo ">
+                                </td>
+                                <td>
+                                    <input class="form-control" disabled value="Thông báo chung">
+                                </td>
+                                <td>
+                                    <img class="modal_chucnang__button__icon mb-2" src="assets/img/icons/add.png"
+                                        alt="image icon">
+                                </td>
+                                <td class="text-center">
+                                    <span
+                                        class="modal_chucnang__button__edit mdi mdi-file-document-edit-outline mdi-24px"
+                                        (click)="openModal('cntt_chinhsuatintuc')"></span>
+                                    <span class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px"></span>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tbody>
+                            <tr>
+                                <td style="max-width: 100px">
+                                    <input class="form-control" disabled value="0001">
+                                </td>
+                                <td>
+                                    <input class="form-control" disabled
+                                        value="[S4L] KẾT QUẢ SOLUTIONS FOR LIFE KỲ 03 TRANSLATING INTO PROTEIN">
+                                </td>
+                                <td>
+                                    <input class="form-control" disabled
+                                        value="CLB Tin học xin chúc mừng bạn Lê Hoàng Khang (CĐ TH 19C) và bạn Võ Bằng Kiều (CĐ TH 19D) đã có lời giải chính xác cho bài toán kỳ 03 Solutions For Life với chủ đề “Translating into Protein”. Thân mời bạn đến VP. BM. Tin học lầu 7 dãy F vào lúc 11h15 ngày thứ 4 (18.12.2019) để nhận thưởng.">
+                                </td>
+                                <td>
+                                    <input class="form-control" disabled value="Thông báo ">
+                                </td>
+                                <td>
+                                    <input class="form-control" disabled value="Thông báo chung">
+                                </td>
+                                <td>
+                                    <img class="modal_chucnang__button__icon mb-2" src="assets/img/icons/add.png"
+                                        alt="image icon">
+                                </td>
+                                <td class="text-center"><span
+                                        class="modal_chucnang__button__edit mdi mdi-file-document-edit-outline mdi-24px"></span><span
+                                        class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px"></span>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tbody>
+                            <tr>
+                                <td style="max-width: 100px">
+                                    <input class="form-control" disabled value="0001">
+                                </td>
+                                <td>
+                                    <input class="form-control" disabled
+                                        value="[S4L] KẾT QUẢ SOLUTIONS FOR LIFE KỲ 03 TRANSLATING INTO PROTEIN">
+                                </td>
+                                <td>
+                                    <input class="form-control" disabled
+                                        value="CLB Tin học xin chúc mừng bạn Lê Hoàng Khang (CĐ TH 19C) và bạn Võ Bằng Kiều (CĐ TH 19D) đã có lời giải chính xác cho bài toán kỳ 03 Solutions For Life với chủ đề “Translating into Protein”. Thân mời bạn đến VP. BM. Tin học lầu 7 dãy F vào lúc 11h15 ngày thứ 4 (18.12.2019) để nhận thưởng.">
+                                </td>
+                                <td>
+                                    <input class="form-control" disabled value="Thông báo ">
+                                </td>
+                                <td>
+                                    <input class="form-control" disabled value="Thông báo chung">
+                                </td>
+                                <td>
+                                    <img class="modal_chucnang__button__icon mb-2" src="assets/img/icons/add.png"
+                                        alt="image icon">
+                                </td>
+                                <td class="text-center"><span
+                                        class="modal_chucnang__button__edit mdi mdi-file-document-edit-outline mdi-24px"></span><span
+                                        class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px"></span>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tbody>
+                            <tr>
+                                <td style="max-width: 100px">
+                                    <input class="form-control" disabled value="0001">
+                                </td>
+                                <td>
+                                    <input class="form-control" disabled
+                                        value="[S4L] KẾT QUẢ SOLUTIONS FOR LIFE KỲ 03 TRANSLATING INTO PROTEIN">
+                                </td>
+                                <td>
+                                    <input class="form-control" disabled
+                                        value="CLB Tin học xin chúc mừng bạn Lê Hoàng Khang (CĐ TH 19C) và bạn Võ Bằng Kiều (CĐ TH 19D) đã có lời giải chính xác cho bài toán kỳ 03 Solutions For Life với chủ đề “Translating into Protein”. Thân mời bạn đến VP. BM. Tin học lầu 7 dãy F vào lúc 11h15 ngày thứ 4 (18.12.2019) để nhận thưởng.">
+                                </td>
+                                <td>
+                                    <input class="form-control" disabled value="Thông báo ">
+                                </td>
+                                <td>
+                                    <input class="form-control" disabled value="Thông báo chung">
+                                </td>
+                                <td>
+                                    <img class="modal_chucnang__button__icon mb-2" src="assets/img/icons/add.png"
+                                        alt="image icon">
+                                </td>
+                                <td class="text-center"><span
+                                        class="modal_chucnang__button__edit mdi mdi-file-document-edit-outline mdi-24px"></span><span
+                                        class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px"></span>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tbody>
+                            <tr>
+                                <td style="max-width: 100px">
+                                    <input class="form-control" disabled value="0001">
+                                </td>
+                                <td>
+                                    <input class="form-control" disabled
+                                        value="[S4L] KẾT QUẢ SOLUTIONS FOR LIFE KỲ 03 TRANSLATING INTO PROTEIN">
+                                </td>
+                                <td>
+                                    <input class="form-control" disabled
+                                        value="CLB Tin học xin chúc mừng bạn Lê Hoàng Khang (CĐ TH 19C) và bạn Võ Bằng Kiều (CĐ TH 19D) đã có lời giải chính xác cho bài toán kỳ 03 Solutions For Life với chủ đề “Translating into Protein”. Thân mời bạn đến VP. BM. Tin học lầu 7 dãy F vào lúc 11h15 ngày thứ 4 (18.12.2019) để nhận thưởng.">
+                                </td>
+                                <td>
+                                    <input class="form-control" disabled value="Thông báo ">
+                                </td>
+                                <td>
+                                    <input class="form-control" disabled value="Thông báo chung">
+                                </td>
+                                <td>
+                                    <img class="modal_chucnang__button__icon mb-2" src="assets/img/icons/add.png"
+                                        alt="image icon">
+                                </td>
+                                <td class="text-center"><span
+                                        class="modal_chucnang__button__edit mdi mdi-file-document-edit-outline mdi-24px"></span><span
+                                        class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px"></span>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tbody>
+                            <tr>
+                                <td style="max-width: 100px">
+                                    <input class="form-control" disabled value="0001">
+                                </td>
+                                <td>
+                                    <input class="form-control" disabled
+                                        value="[S4L] KẾT QUẢ SOLUTIONS FOR LIFE KỲ 03 TRANSLATING INTO PROTEIN">
+                                </td>
+                                <td>
+                                    <input class="form-control" disabled
+                                        value="CLB Tin học xin chúc mừng bạn Lê Hoàng Khang (CĐ TH 19C) và bạn Võ Bằng Kiều (CĐ TH 19D) đã có lời giải chính xác cho bài toán kỳ 03 Solutions For Life với chủ đề “Translating into Protein”. Thân mời bạn đến VP. BM. Tin học lầu 7 dãy F vào lúc 11h15 ngày thứ 4 (18.12.2019) để nhận thưởng.">
+                                </td>
+                                <td>
+                                    <input class="form-control" disabled value="Thông báo ">
+                                </td>
+                                <td>
+                                    <input class="form-control" disabled value="Thông báo chung">
+                                </td>
+                                <td>
+                                    <img class="modal_chucnang__button__icon mb-2" src="assets/img/icons/add.png"
+                                        alt="image icon">
+                                </td>
+                                <td class="text-center"><span
+                                        class="modal_chucnang__button__edit mdi mdi-file-document-edit-outline mdi-24px"></span><span
+                                        class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px"></span>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tbody>
+                            <tr>
+                                <td style="max-width: 100px">
+                                    <input class="form-control" disabled value="0001">
+                                </td>
+                                <td>
+                                    <input class="form-control" disabled
+                                        value="[S4L] KẾT QUẢ SOLUTIONS FOR LIFE KỲ 03 TRANSLATING INTO PROTEIN">
+                                </td>
+                                <td>
+                                    <input class="form-control" disabled
+                                        value="CLB Tin học xin chúc mừng bạn Lê Hoàng Khang (CĐ TH 19C) và bạn Võ Bằng Kiều (CĐ TH 19D) đã có lời giải chính xác cho bài toán kỳ 03 Solutions For Life với chủ đề “Translating into Protein”. Thân mời bạn đến VP. BM. Tin học lầu 7 dãy F vào lúc 11h15 ngày thứ 4 (18.12.2019) để nhận thưởng.">
+                                </td>
+                                <td>
+                                    <input class="form-control" disabled value="Thông báo ">
+                                </td>
+                                <td>
+                                    <input class="form-control" disabled value="Thông báo chung">
+                                </td>
+                                <td>
+                                    <img class="modal_chucnang__button__icon mb-2" src="assets/img/icons/add.png"
+                                        alt="image icon">
+                                </td>
+                                <td class="text-center"><span
+                                        class="modal_chucnang__button__edit mdi mdi-file-document-edit-outline mdi-24px"></span><span
+                                        class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px"></span>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tbody>
+                            <tr>
+                                <td style="max-width: 100px">
+                                    <input class="form-control" disabled value="0001">
+                                </td>
+                                <td>
+                                    <input class="form-control" disabled
+                                        value="[S4L] KẾT QUẢ SOLUTIONS FOR LIFE KỲ 03 TRANSLATING INTO PROTEIN">
+                                </td>
+                                <td>
+                                    <input class="form-control" disabled
+                                        value="CLB Tin học xin chúc mừng bạn Lê Hoàng Khang (CĐ TH 19C) và bạn Võ Bằng Kiều (CĐ TH 19D) đã có lời giải chính xác cho bài toán kỳ 03 Solutions For Life với chủ đề “Translating into Protein”. Thân mời bạn đến VP. BM. Tin học lầu 7 dãy F vào lúc 11h15 ngày thứ 4 (18.12.2019) để nhận thưởng.">
+                                </td>
+                                <td>
+                                    <input class="form-control" disabled value="Thông báo ">
+                                </td>
+                                <td>
+                                    <input class="form-control" disabled value="Thông báo chung">
+                                </td>
+                                <td>
+                                    <img class="modal_chucnang__button__icon mb-2" src="assets/img/icons/add.png"
+                                        alt="image icon">
+                                </td>
+                                <td class="text-center"><span
+                                        class="modal_chucnang__button__edit mdi mdi-file-document-edit-outline mdi-24px"></span><span
+                                        class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px"></span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</app-modal>
