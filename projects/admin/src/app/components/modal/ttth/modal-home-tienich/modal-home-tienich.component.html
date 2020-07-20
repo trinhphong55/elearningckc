@@ -8,7 +8,7 @@
       <div class="col-12">
         <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
           <div class="row justify-content-center align-items-center">
-            <div class="col-3">
+            <div class="col-9">
               <div class="form-group">
                 <label for="exampleFormControlFile1">Tải hình ảnh</label>
                 <input type="file" class="form-control-file" id="exampleFormControlFile1">
@@ -19,7 +19,7 @@
               </div>
               <div class="form-group">
                 <label>Nội dung</label>
-                <textarea  class="form-control"></textarea>
+                <ckeditor [editor]="Editor" ></ckeditor>
               </div>
             </div>
             <div class="col-auto">
@@ -35,27 +35,17 @@
       </div>
       <div class="col-12">
         <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
-          <div class="d-flex align-items-center mb-2">
-            <label class="mb-0 d-flex align-items-center"><span class="text-nowrap">Hiển thị &nbsp;</span>
-              <select class="custom-select custom-select-sm form-control">
-                <option>10</option>
-                <option>25</option>
-                <option>50</option>
-              </select><span class="text-nowrap">&nbsp; hàng</span>
-            </label>
-            <label class="ml-auto mb-0 d-flex align-items-center"><span class="text-nowrap">Tìm kiếm: &nbsp;</span>
-              <input class="form-control form-control-sm" placeholder="Tìm kiếm">
-            </label>
-          </div>
-          <table class="modal_chucnang__table table table-hover" id="danhsach_nganhnghe">
+          <table class="modal_chucnang__table table table-hover" datatable>
             <thead class="bg__caothang text-white">
-              <th>#</th>
-              <th scope="col">Image</th>
-              <th scope="col">Tiêu đề </th>
-              <th scope="col">Nội dung </th>
-              <th scope="col">Hiển thị</th>
-              <th class="text-center" scope="col"><span
-                  class="modal_chucnang__button__save mdi mdi-content-save-outline mdi-24px"></span></th>
+              <tr>
+                <th>#</th>
+                <th scope="col">Image</th>
+                <th scope="col">Tiêu đề </th>
+                <th scope="col">Nội dung </th>
+                <th scope="col">Hiển thị</th>
+                <th class="text-center" scope="col"><span
+                    class="modal_chucnang__button__save mdi mdi-content-save-outline mdi-24px"></span></th>
+              </tr>
             </thead>
             <tbody>
               <tr>
