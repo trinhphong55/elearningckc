@@ -115,7 +115,7 @@ git push
 # Mô hình dữ liệu
 
 <p align='center'>
-  <img src='markdown-assets/Diagram.png' alt='markdown-assets/Diagram.png'>
+  <img src='md-assets/Diagram.png' alt='md-assets/Diagram.png'>
 </p>
 
 # Các modules sử dụng
@@ -138,6 +138,12 @@ git push
 5. select2@4.0.13
 6. swiper@6.0.2
 7. vanilla-lazyload@17.1.0
+8. angular-datatables@9.0.2
+9. datatables.net": "^1.10.21",
+10. datatables.net-dt": "^1.10.21",
+11. @ckeditor/ckeditor5-angular@1.2.3
+12. @ckeditor/ckeditor5-build-classic@20.0.0
+13. ngx-useful-swiper @9.0.3
 
 ### CNTT
 
@@ -156,7 +162,6 @@ git push
 3. bootstrap@4.5.0
 4. jquery@3.5.1
 
-
 ### TTTH
 
 1. @fortawesome/fontawesome-free@5.13.1
@@ -165,6 +170,49 @@ git push
 4. swiper@6.0.2
 5. aos@2.3.4
 
+# Fix lỗi `Certificate is not trusted` trên Web browser
+
+<p align='center'>
+  <img src='md-assets/Certificate-is-not-trusted.png' alt='md-assets/Certificate-is-not-trusted.png'>
+</p>
+
+1. Vào thư mục **ssl** double click file **localhost.crt** và chọn ***Install Certificate...***
+
+<p align='center'>
+  <img src='md-assets/install-cert-1.PNG' alt='md-assets/install-cert-1.PNG'>
+</p>
+
+2. Chọn **Current User** hoặc **Local Machine**
+
+<p align='center'>
+  <img src='md-assets/install-cert-2.PNG' alt='md-assets/install-cert-2.PNG'>
+</p>
+
+3. Chọn **Place all certificates in the following store** > **Browse** > **Trusted Root Certification Authorities** > **OK**
+
+<p align='center'>
+  <img src='md-assets/install-cert-3.PNG' alt='md-assets/install-cert-3.PNG'>
+</p>
+
+3. Click **Next**
+
+<p align='center'>
+  <img src='md-assets/install-cert-4.PNG' alt='md-assets/install-cert-4.PNG'>
+</p>
+
+4. Click **Finish**
+
+<p align='center'>
+  <img src='md-assets/install-cert-5.PNG' alt='md-assets/install-cert-5.PNG'>
+</p>
+
+5. Cài đặt thành công
+
+<p align='center'>
+  <img src='md-assets/install-cert-done.PNG' alt='md-assets/install-cert-done.PNG'>
+</p>
+
+6. Khởi động lại máy tính
 
 # Structure & Generate
 

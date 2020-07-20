@@ -8,8 +8,8 @@
       </div>
       <form [formGroup]="addForm" class="col-12">
         <div class="col-12">
-          <div class="alert alert-info" >
-           <p>{{ (result.msg) }}</p>
+          <div class="alert alert-info">
+            <p>{{ (result.msg) }}</p>
           </div>
           <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
             <div class="row justify-content-center align-items-center">
@@ -41,7 +41,8 @@
                 <div class="form-group">
                   <label>Tên viết tắt</label>
                   <input class="form-control" formControlName="tenVietTat">
-                  <div *ngIf="tenVietTat.invalid && (tenVietTat.dirty || tenVietTat.touched)" class="alert alert-danger">
+                  <div *ngIf="tenVietTat.invalid && (tenVietTat.dirty || tenVietTat.touched)"
+                    class="alert alert-danger">
 
                     <div *ngIf="tenVietTat.errors.required">
                       Tên viết tắt is required.
@@ -72,13 +73,11 @@
 
                   </button>
                   <button class="modal_chucnang__button btn btn-outline-success px-4 mx-2"><img
-                    class="modal_chucnang__button__icon mb-2" src="assets/img/icons/upgrade.png" alt="image icon">
-                  <div>Import Excel</div>
-                </button>
+                      class="modal_chucnang__button__icon mb-2" src="assets/img/icons/upgrade.png" alt="image icon">
+                    <div>Import Excel</div>
+                  </button>
                 </div>
               </div>
-
-
             </div>
           </div>
         </div>
