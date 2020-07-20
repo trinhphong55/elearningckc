@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalService } from '../../../../services/modal.service';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
   selector: 'app-modal-themtintuccntt',
@@ -7,7 +8,7 @@ import { ModalService } from '../../../../services/modal.service';
   styleUrls: ['./modal-themtintuccntt.component.css']
 })
 export class ModalThemtintuccnttComponent implements OnInit {
-
+  public Editor = ClassicEditor;
   constructor(private modalService: ModalService) { }
 
   ngOnInit(): void {
