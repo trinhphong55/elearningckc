@@ -21,6 +21,15 @@
                     <div *ngIf="maKhoa.errors.required">
                       Mã khoa không được để trống
                     </div>
+                    <div *ngIf="maKhoa.errors.minlength">
+                     Mã khoa không được ít 2 kí tự
+                    </div>
+                    <div *ngIf="maKhoa.errors.pattern">
+                      Không được có ký tự đặc biệt
+                    </div>
+                    <div *ngIf="maKhoa.errors.maxlength">
+                      Mã khoa không được nhiều hơn 6 kí tự
+                    </div>
                   </div>
                 </div>
                 <div class="form-group">
@@ -30,6 +39,15 @@
                     <div *ngIf="tenKhoa.errors.required">
                       Tên Khoa không được để trống
                     </div>
+                    <div *ngIf="tenKhoa.errors.minlength">
+                      Tên viết tắt không được ít hơn 4 kí tự.
+                    </div>
+                     <div *ngIf="tenKhoa.errors.pattern">
+                       Không được có ký tự đặc biệt
+                     </div>
+                     <div *ngIf="tenKhoa.errors.maxlength">
+                      Không được nhiều hơn 50 kí tự
+                     </div>
                   </div>
                 </div>
               </div>
@@ -45,6 +63,12 @@
                     <div *ngIf="tenVietTat.errors.minlength">
                       Tên viết tắt không được ít hơn 2 kí tự.
                     </div>
+                     <div *ngIf="tenVietTat.errors.pattern">
+                      Không được có ký tự đặc biệt
+                     </div>
+                     <div *ngIf="tenVietTat.errors.maxlength">
+                       Không được dài hơn 6 kí tự
+                     </div>
                   </div>
                 </div>
                 <div class="form-group">
@@ -63,14 +87,19 @@
                 </div>
               </div>
               <div class="col-auto">
-                <div class="modal_chucnang__group__button" (click)="addModal()">
-                  <button class="modal_chucnang__button btn btn-outline-primary px-4 mx-2"><img
+                <div class="modal_chucnang__group__button">
+                  <button class="modal_chucnang__button btn btn-outline-primary px-4 mx-2" (click)="addModal()"><img
                       class="modal_chucnang__button__icon mb-2" src="assets/img/icons/add.png" alt="image icon">
                     <div>Thêm mới</div>
                   </button>
                   <button class="modal_chucnang__button btn btn-outline-success px-4 mx-2"><img
                       class="modal_chucnang__button__icon mb-2" src="assets/img/icons/upgrade.png" alt="image icon">
                     <div>Import Excel</div>
+                  </button>
+                  <button class="modal_chucnang__button btn btn-outline-success px-4 mx-2"
+                    (click)="updateModal(currentIndex,currentKhoa)"><img class="modal_chucnang__button__icon mb-2"
+                      src="assets/img/icons/upgrade.png" alt="image icon">
+                    <div>Cập nhật </div>
                   </button>
                 </div>
               </div>
@@ -104,7 +133,7 @@
             </thead>
             <tbody>
               <tr *ngFor="let khoa of khoas; let i= index" [ngClass]="statusElementList"
-                (dblclick)="insertDateforForm(khoa)">
+                (click)="insertDateforForm(khoa)">
 
                 <td style="max-width: 50px">{{ i+1  }}</td>
                 <td style="max-width: 100px">
@@ -118,22 +147,19 @@
                 </td>
                 <td>
 
-                  <div *ngFor="let loai of loais" >
+                  <div *ngFor="let loai of loais">
                     <p *ngIf="khoa.maLoai == loai.maLoaiDonVi"> {{ loai.tenLoaiDonVi }}</p>
                   </div>
 
                 </td>
                 <td class="text-center">
                   <span class="modal_chucnang__button__edit mdi mdi-file-document-edit-outline mdi-24px"
-                    (click)="updateModal(khoa._id,khoa)">
+                    (click)="insertDateforForm(khoa)">
                   </span>
                   <span class="modal_chucnang__button__delete ml-2 mdi mdi-delete-outline mdi-24px "
                     (click)="deleteModal(khoa._id)">
                   </span>
                 </td>
-
-
-
               </tr>
             </tbody>
           </table>

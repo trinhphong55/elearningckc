@@ -1,4 +1,5 @@
 const KhoaBoMon = require("../models/khoabomon.model");
+const { check, validationResult } = require("express-validator");
 
 exports.getKhoaBonMon = async (req, res) => {
   try {
@@ -22,6 +23,8 @@ exports.postKhoaBoMon = async (req, res) => {
   let nameIsExist = 0;
 
   try {
+    const err = validationResult(req);
+    
     const khoabomon = await KhoaBoMon.find();
 
     khoabomon.forEach((element) => {
@@ -104,9 +107,22 @@ exports.deleteKhoaBoMon = async (req, res) => {
   }
 };
 
+exports.checkValidate = () => {
+  return [
+
+    check("maKhoa", "maKhoa is required").not().isEmpty(),
+    // check("tenKhoa", "maKhoa is required").notEmpty(),
+    // check("tenVietTat", "tenVietTat is required").notEmpty(),
+    // check("nguoiTao", "nguoiTao is required").notEmpty(),
+    // check("nguoiChinhSua", "nguoiChinhSua is required").notEmpty(),
+    // check("maLoai", "maLoai is required").notEmpty()
+  ];
+};
+
 exports.updateKhoaBoMon = async (req, res) => {
   try {
-    console.log(req.body);
+
+
     const updateKhoa = await KhoaBoMon.updateOne(
       { _id: req.params.id },
       {
@@ -116,7 +132,7 @@ exports.updateKhoaBoMon = async (req, res) => {
           tenVietTat: req.body.tenVietTat,
           nguoiTao: req.body.nguoiTao,
           nguoiChinhSua: req.body.nguoiChinhSua,
-          maLoai:req.body.maLoai
+          maLoai: req.body.maLoai,
         },
       }
     );

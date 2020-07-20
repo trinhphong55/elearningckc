@@ -5,6 +5,7 @@ const mongoose = require('mongoose')
 const fs = require('fs')
 const cors = require('cors')
 
+
 const app = express()
 
 require('./crawl').crawl()

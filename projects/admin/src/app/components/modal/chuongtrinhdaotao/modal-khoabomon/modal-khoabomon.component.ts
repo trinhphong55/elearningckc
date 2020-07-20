@@ -39,20 +39,31 @@ export class ModalKhoabomonComponent implements OnInit {
     private router: Router
   ) {}
 
-
-
   ngOnInit(): void {
     this.retriveKhoaBoMon();
     this.retriveLoaiDonVi();
     this.addForm = new FormGroup({
       loaiDonVi: new FormControl('', [Validators.required]),
-      maKhoa: new FormControl('', [Validators.required]),
-      tenKhoa: new FormControl('', [Validators.required]),
+      maKhoa: new FormControl('', [
+        Validators.required,
+        Validators.minLength(2),
+        Validators.maxLength(6),
+        Validators.pattern('[a-zA-Z0-9]*'),
+      ]),
+      tenKhoa: new FormControl('', [
+        Validators.required,
+        Validators.minLength(4),
+        Validators.maxLength(50),
+        Validators.pattern('[a-zA-Z0-9]*'),
+      ]),
       tenVietTat: new FormControl('', [
         Validators.required,
         Validators.minLength(2),
+        Validators.maxLength(6),
+        Validators.pattern('[a-zA-Z0-9]*'),
       ]),
     });
+
     this.setStatusElementList();
   }
 
@@ -70,21 +81,12 @@ export class ModalKhoabomonComponent implements OnInit {
     return this.addForm.get('loaiDonVi');
   }
 
-  setActiveKhoaBoMon(khoa, index) {
-    this.currentKhoa = khoa;
-    this.currentIndex = index;
-
-    // this.tenKhoa.setValue(khoa.tenKhoa);
-    // this.maKhoa.setValue(khoa.maKhoa);
-    // this.tenVietTat.setValue(khoa.tenVietTat);
-    // this.loai.setValue(khoa.loai);
-  }
   //lấy tất cả LoaiDonViLoaiDonVi
   retriveLoaiDonVi() {
     this.loaiDonviService.getAll().subscribe(
       (data) => {
         this.loais = data;
-        console.log(this.loais);
+
       },
       (error) => {
         console.log(error);
@@ -96,7 +98,7 @@ export class ModalKhoabomonComponent implements OnInit {
     this.KhoaBonmonService.getAll().subscribe(
       (data) => {
         this.khoas = data;
-        console.log(this.khoas);
+
       },
       (error) => {
         console.log(error);
@@ -128,9 +130,12 @@ export class ModalKhoabomonComponent implements OnInit {
     );
   }
   insertDateforForm(khoa) {
-    console.log(khoa);
+
 
     this.editting = true;
+    this.currentIndex = khoa._id;
+    this.currentKhoa = khoa;
+
     this.tenKhoa.setValue(khoa.tenKhoa);
     this.maKhoa.setValue(khoa.maKhoa);
     this.tenVietTat.setValue(khoa.tenVietTat);
@@ -138,7 +143,6 @@ export class ModalKhoabomonComponent implements OnInit {
   }
   // cập nhật KhoaBoMonKhoaBoMon
   updateModal(id, khoa) {
-
     // if (
     //   this.addForm.value.tenKhoa &&
     //   this.addForm.value.maKhoa  &&
@@ -146,14 +150,14 @@ export class ModalKhoabomonComponent implements OnInit {
     //   this.addForm.value.maLoai
     // ) {
 
-      khoa = {
-        tenKhoa: this.addForm.value.tenKhoa,
-        maKhoa: this.addForm.value.maKhoa,
-        tenVietTat: this.addForm.value.tenVietTat,
-        maLoai: this.addForm.value.loaiDonVi,
-        nguoiTao: 'Them do sau',
-        nguoiChinhSua: 'huy',
-      };
+    khoa = {
+      tenKhoa: this.addForm.value.tenKhoa,
+      maKhoa: this.addForm.value.maKhoa,
+      tenVietTat: this.addForm.value.tenVietTat,
+      maLoai: this.addForm.value.loaiDonVi,
+      nguoiTao: 'Them do sau',
+      nguoiChinhSua: 'huy',
+    };
 
     //}
 
