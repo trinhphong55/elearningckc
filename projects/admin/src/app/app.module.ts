@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
+import { FormsModule } from '@angular/forms';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -46,6 +48,7 @@ import { ModalGroupfacebookComponent } from './components/modal/facebook/modal-g
 import { ModalPagefacebookComponent } from './components/modal/facebook/modal-pagefacebook/modal-pagefacebook.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { ModalQuanlyheadercnttComponent } from './components/modal/cntt/modal-quanlyheadercntt/modal-quanlyheadercntt.component';
+import { ModalImportExcelMonhocComponent } from './components/modal/chuongtrinhdaotao/modal-import-excel-monhoc/modal-import-excel-monhoc.component';
 
 @NgModule({
   declarations: [
@@ -90,13 +93,16 @@ import { ModalQuanlyheadercnttComponent } from './components/modal/cntt/modal-qu
     ModalGroupfacebookComponent,
     ModalPagefacebookComponent,
     ModalComponent,
-    ModalQuanlyheadercnttComponent
+    ModalQuanlyheadercnttComponent,
+    ModalImportExcelMonhocComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    NgxUsefulSwiperModule
+    NgxUsefulSwiperModule,
+    FormsModule,
+    Ng2SearchPipeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

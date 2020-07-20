@@ -1,6 +1,9 @@
-const router = require('express').Router()
-const LopHocPhanRoutes = require('./LopHocPhan')
+const express = require('express');
+const router = express.Router();
+const LopHocPhanRoutes = require('./LopHocPhan');
+const MonHoc = require('./MonHoc');
 
-router.use('/lophocphan', LopHocPhanRoutes)
+router.use('/', LopHocPhanRoutes);
+router.use('/', MonHoc);
 
-module.exports = router
+module.exports = router;
