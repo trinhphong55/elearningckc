@@ -25,7 +25,10 @@
       </div> 
       <div id="fb-root"></div>
       <!-- Button login facebook -->
-      <div class="fb-login-button" data-size="large" data-button-type="login_with" data-layout="default" data-auto-logout-link="false" data-use-continue-as="true" data-width="">
+        <!-- <input id="btnLoginfb" type="button" value="Continute with Facebook" style="width: 200px; height: 60px;" onclick="checkLoginState()"> -->
+        <input id="btnLoginFB" type="button" value="Login with Facebook" onclick="RequestLoginFB()" style="width: 170px; height: 40px; margin-left: 50px;">
+        <!-- <div class="fb-login-button" data-size="large" data-button-type="login_with" data-layout="rounded" data-auto-logout-link="false" data-use-continue-as="true" data-width="" onclick="RequestLoginFB()"></div> -->
+        <div id="status" style="display: none; margin-bottom: 150px;">
       </div>
     </div>
   </div>
