@@ -18,12 +18,12 @@ class MongoDB {
     } catch(ex) {
       console.log('connect error db', ex)
       throw ex
-    } 
+    }
   }
 
   async updateOrInsertOne(key, data, collectionName, callback) {
-    console.log('key', key);
-    console.log('data', data);
+    // console.log('key', key);
+    // console.log('data', data);
     let result = false;
     try {
       await this.connectDB();
@@ -33,8 +33,7 @@ class MongoDB {
       result = await this.conDb.collection(collectionName).updateOne(key,{$set: data}, { upsert: true});
       await this.closeDB();
     } catch (error) {
-      if(callback) callback('',error)
-      console.log(error);
+      console.log('error: ', error.message);
       await this.closeDB();
     }
     return result;

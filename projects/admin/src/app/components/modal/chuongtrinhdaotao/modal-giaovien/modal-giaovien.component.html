@@ -13,36 +13,36 @@
             <div class="col-3">
               <div class="form-group">
                 <label for="ho">Họ</label>
-                <input type="text" name="ho" class="form-control" ngModel required>
+                <input type="text" name="ho" class="form-control" value={{ho}} ngModel required>
               </div>
               <div class="form-group">
                 <label for="ten">Tên</label>
-                <input type="text" name="ten" class="form-control" ngModel>
+                <input type="text" name="ten" class="form-control" value={{ten}} ngModel required>
               </div>
               <div class="form-group">
                 <label for="ngaySinh">Ngày sinh</label>
-                <input type="text" name="ngaySinh" class="form-control" maxlength="10" ngModel>
-              </div>
-              <div class="form-group">
-                <label for="cmnd">CMND</label>
-                <input type="text" name="cmnd" class="form-control" ngModel>
+                <input type="text" name="ngaySinh" class="form-control" value={{ngaySinh}} maxlength="10" ngModel>
               </div>
             </div>
             <div class="col-3">
               <div class="form-group">
+                <label for="cmnd">CMND</label>
+                <input type="text" name="cmnd" class="form-control" value={{cmnd}} ngModel>
+              </div>
+              <div class="form-group">
                 <label for="diaChiThuongTru">Địa chỉ thường trú</label>
-                <input type="text" name="diaChiThuongTru" class="form-control" ngModel>
+                <input type="text" name="diaChiThuongTru" class="form-control" value={{diaChiThuongTru}} ngModel>
               </div>
               <div class="form-group">
                 <label for="soDienThoai">Số điện thoại</label>
-                <input type="tel" name="soDienThoai" class="form-control" ngModel maxlength="10">
-              </div>
-              <div class="form-group">
-                <label for="email">Email</label>
-                <input type="text" name="email" class="form-control" ngModel>
+                <input type="tel" name="soDienThoai" class="form-control" value={{sdt}} ngModel maxlength="10">
               </div>
             </div>
             <div class="col-3">
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="text" name="email" class="form-control" value={{email}} ngModel>
+              </div>
               <div class="form-group">
                 <label>Bộ môn</label>
                 <select class="form-control" name="selectedMaBoMon" [(ngModel)]="selectedMaBoMon">
@@ -50,30 +50,14 @@
                   <option [value]="07">Bộ môn kế toán</option>
                 </select>
               </div>
-              <div class="form-group">
-                <label>Chức vụ</label>
-                <select class="form-control">
-                  <option>Trưởng Khoa</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label>Đơn vị</label>
-                <select class="form-control modal_chucnang__select2">
-                  <option>Khoa Công nghệ thông tin</option>
-                </select>
-              </div>
             </div>
             <div class="col-3">
               <div class="form-group">
                 <label for="maGiaoVien">Mã giáo viên</label>
                 <div class="d-flex align-items-center">
-                  <input name="maGiaoVien" class="form-control" value={{maGVMoiNhat}} readonly ngModel required>
+                  <input name="maGiaoVien" class="form-control" value={{maGV}} readonly ngModel required>
                   <!-- <div class="mdi mdi-reload mdi-24px ml-2"></div> -->
                 </div>
-              </div>
-              <div class="form-group">
-                <label for="matKhauBanDau">Mật khẩu ban đầu cho giáo viên</label>
-                <input type="password" name="matKhauBanDau" class="form-control" ngModel>
               </div>
               <div class="form-group">
                 <label>Trình độ chuyên môn</label>
@@ -87,15 +71,15 @@
             </div>
             <div class="col-auto">
               <div class="modal_chucnang__group__button">
-                <button class="modal_chucnang__button btn btn-outline-primary px-4 mx-2"><img
+                <button type="submit" class="modal_chucnang__button btn btn-outline-primary px-4 mx-2"><img
                     class="modal_chucnang__button__icon mb-1" src="assets/img/icons/add.png" alt="image icon">
                   <div>Thêm mới</div>
                 </button>
-                <button class="modal_chucnang__button btn btn-outline-success px-4 mx-2"><img
+                <button type="button" class="modal_chucnang__button btn btn-outline-success px-4 mx-2"><img
                   class="modal_chucnang__button__icon mb-2" src="assets/img/icons/upgrade.png" alt="image icon">
                   <div>Cập nhật</div>
                 </button>
-                <button class="modal_chucnang__button btn btn-outline-danger px-4 mx-2" type="reset"><img
+                <button type="button" (click)="ResetForm()"class="modal_chucnang__button btn btn-outline-danger px-4 mx-2" type="reset"><img
                     class="modal_chucnang__button__icon mb-2" src="assets/img/icons/error.png" alt="image icon">
                   <div>Huỷ</div>
                 </button>
@@ -126,23 +110,28 @@
                 <th class="text-center" scope="col"><span
                     class="modal_chucnang__button__save mdi mdi-content-save-outline mdi-24px"></span></th>
                 <th class="text-center" scope="col">Mã GV</th>
-                <th scope="col">Họ và tên</th>
+                <th scope="col">Họ</th>
+                <th scope="col">Tên</th>
                 <th scope="col">Email</th>
                 <th scope="col">Ngày sinh</th>
+                <th scope="col">CMND</th>
                 <th scope="col">Số điện thoại</th>
                 <th scope="col">Bộ môn</th>
-                <th scope="col">Chức vụ</th>
-                <th scope="col">Đơn vị</th>
+                <!-- <th scope="col">Chức vụ</th>
+                <th scope="col">Đơn vị</th> -->
                 <th scope="col">Trình độ</th>
                 <th scope="col">Địa chỉ </th>
               </thead>
               <tbody>
                 <tr *ngFor="let giaoVien of danhSachGiaoVien">
                   <td class="text-center">
-                    <!-- <span class="modal_chucnang__button__edit mdi mdi-file-document-edit-outline mdi-24px"></span> -->
+                    <span (click)="layThongTinGiaoVien(giaoVien.maGiaoVien)" class="modal_chucnang__button__edit mdi mdi-file-document-edit-outline mdi-24px"></span>
                     <span (click)="xoaGiaoVien(giaoVien.maGiaoVien)"class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px"></span>
                   </td>
                   <td class="text-muted text-center" style="min-width: 100px">{{giaoVien.maGiaoVien}}</td>
+                  <td>
+                    <input class="form-control" disabled value={{giaoVien.ho}}>
+                  </td>
                   <td>
                     <input class="form-control" disabled value={{giaoVien.ten}}>
                   </td>
@@ -153,14 +142,15 @@
                     <input class="form-control" disabled value={{giaoVien.ngaySinh}}>
                   </td>
                   <td>
+                    <input class="form-control" disabled value={{giaoVien.cmnd}}>
+                  </td>
+                  <td>
                     <input class="form-control" disabled value={{giaoVien.sdt}}>
                   </td>
                   <td>
-                    <select class="form-control modal_chucnang__select2" disabled>
-                      <option>Bộ môn tin học</option>
-                    </select>
+                    <input class="form-control" disabled value={{giaoVien.maBoMon}}>
                   </td>
-                  <td>
+                  <!-- <td>
                     <select class="form-control" disabled>
                       <option>Trưởng Khoa</option>
                     </select>
@@ -169,7 +159,7 @@
                     <select class="form-control modal_chucnang__select2" disabled>
                       <option>Khoa Công nghệ thông tin</option>
                     </select>
-                  </td>
+                  </td> -->
                   <td style="min-width: 150px">
                     <input class="form-control" disabled value="Thạc sĩ">
                   </td>
