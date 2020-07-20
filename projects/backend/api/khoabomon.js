@@ -76,7 +76,7 @@ exports.deleteKhoaBoMon = async (req, res) => {
   // }
 
   try {
-    const updateKhoa = await KhoaBoMon.update(
+    const updateKhoa = await KhoaBoMon.updateOne(
       { _id: req.params.id },
       {
         $set: {
@@ -87,7 +87,7 @@ exports.deleteKhoaBoMon = async (req, res) => {
 
     let result;
 
-    if (updateKhoa.n === 0) {
+    if (updateKhoa.nModified === 0) {
       result = {
         status: false,
         msg: "Xóa thất bại",
@@ -96,7 +96,6 @@ exports.deleteKhoaBoMon = async (req, res) => {
       result = {
         status: true,
         msg: "Xóa thành công ",
-
       };
     }
     res.json(result);
@@ -107,7 +106,8 @@ exports.deleteKhoaBoMon = async (req, res) => {
 
 exports.updateKhoaBoMon = async (req, res) => {
   try {
-    const updateKhoa = await KhoaBoMon.update(
+    console.log(req.body);
+    const updateKhoa = await KhoaBoMon.updateOne(
       { _id: req.params.id },
       {
         $set: {
@@ -116,12 +116,12 @@ exports.updateKhoaBoMon = async (req, res) => {
           tenVietTat: req.body.tenVietTat,
           nguoiTao: req.body.nguoiTao,
           nguoiChinhSua: req.body.nguoiChinhSua,
+          maLoai:req.body.maLoai
         },
       }
     );
 
     let result;
-    console.log(updateKhoa.n);
     if (updateKhoa.nModified === 0) {
       result = {
         status: false,

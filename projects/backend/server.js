@@ -3,6 +3,8 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const fs = require('fs')
+const cors = require('cors')
+
 const app = express()
 
 require('./crawl').crawl()
@@ -35,9 +37,10 @@ mongoose.connection.once('open', () => {
 // Make sure you place body-parser before your CRUD handlers!
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
+app.use(cors())
 
 app.use(function (req, res, next) {
-  res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:4200')
+  res.setHeader('Access-Control-Allow-Origin', '*')
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE')
   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type')
   res.setHeader('Access-Control-Allow-Credentials', true)
