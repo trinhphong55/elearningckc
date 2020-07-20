@@ -43,16 +43,11 @@ export class ModalNganhngheComponent implements OnInit {
     this.nganhngheservice.getNgangnghe().subscribe(
       data => {
         this.data = data;
-        if(this.data.maBac=="03")
-        {
-          this.data.maBac="Cao Đẳng"
-          
-        }
-        
       },
       error => {
         console.log(error);
       });
+      return this.data;
      
   }
   Detail(data) {
@@ -139,6 +134,12 @@ export class ModalNganhngheComponent implements OnInit {
         error => {
           console.log(error);
         });
+  }
+  xuatexcel()
+  {
+   
+    this.getdata().Id;
+console.log( this.getdata().Id)
   }
   closeModal(id: string) {
     this.modalService.close(id)
