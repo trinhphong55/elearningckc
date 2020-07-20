@@ -14,8 +14,8 @@ const MONGODB_URI = 'mongodb://elearning_team:123@103.92.26.177:27017/testAngula
 const PORT = 4100
 
 const httpsOptions = {
-  key: fs.readFileSync('./security/cert.key'),
-  cert: fs.readFileSync('./security/cert.crt')
+  key: fs.readFileSync('security/localhost.key'),
+  cert: fs.readFileSync('security/localhost.crt')
 }
 
 // Connect with MongoDB

@@ -3,8 +3,10 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {ApiService} from './services/api.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ApiService } from './services/api.service';
+import { DataTablesModule } from 'angular-datatables';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -141,7 +143,9 @@ import { ModalQuanlyloaitintuccnttComponent } from './components/modal/cntt/moda
     AppRoutingModule,
     NgxUsefulSwiperModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DataTablesModule,
+    CKEditorModule
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]

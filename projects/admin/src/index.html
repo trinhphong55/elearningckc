@@ -24,21 +24,15 @@
         xfbml: true,
         version: '7.0'
       });
-
       FB.AppEvents.logPageView();
       // Kiểm tra trạng thái người dùng
       FB.getLoginStatus(function (response) {
         statusChangeCallback(response);
       });
-
     };
-
-
   </script>
 
-
   <script>
-
     // Xử lý trạng thái đăng nhập
     function statusChangeCallback(response) {
       //User đã login facebook và login ứng dụng
@@ -54,8 +48,8 @@
         alert('Bạn chưa đăng nhập facebook');
       }
     };
-
   </script>
+
   <script>
     (function (d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0];
@@ -68,7 +62,7 @@
 
 </head>
 
-<body style="opacity: 0">
+<body>
   <app-root></app-root>
 </body>
 
