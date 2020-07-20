@@ -11,7 +11,6 @@ import { PageLienheComponent } from './pages/page-lienhe/page-lienhe.component';
 import { PageTintucComponent } from './pages/page-tintuc/page-tintuc.component';
 import { PageChitiettintucComponent } from './pages/page-chitiettintuc/page-chitiettintuc.component';
 import { PageDangkikhoahocComponent } from './pages/page-dangkikhoahoc/page-dangkikhoahoc.component';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +21,7 @@ import { PageDangkikhoahocComponent } from './pages/page-dangkikhoahoc/page-dang
     PageLienheComponent,
     PageTintucComponent,
     PageChitiettintucComponent,
-    PageDangkikhoahocComponent
+    PageDangkikhoahocComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalService } from '../../../../services/modal.service';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { Test } from '../../../../components/modal/ttth/modal-khoahoc/test';
 
 @Component({
@@ -8,6 +9,7 @@ import { Test } from '../../../../components/modal/ttth/modal-khoahoc/test';
   styleUrls: ['./modal-khoahoc.component.css']
 })
 export class ModalKhoahocComponent implements OnInit {
+  public Editor = ClassicEditor;
   test: Test[] = [
   {
     id:1,

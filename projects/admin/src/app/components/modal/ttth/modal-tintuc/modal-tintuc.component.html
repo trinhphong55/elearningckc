@@ -1,37 +1,36 @@
-<app-modal class="modal_chucnang__wrapper" id="ttth-lichkhaigiang">
-  <div (click)="closeModal('ttth-lichkhaigiang')" class="modal_chucnang__close mdi mdi-chevron-left text-white"></div>
+<app-modal class="modal_chucnang__wrapper" id="ttth-tintuc">
+  <div (click)="closeModal('ttth-tintuc')" class="modal_chucnang__close mdi mdi-chevron-left text-white"></div>
   <div class="container-fluid mt-3">
     <div class="row">
       <div class="col-12">
-        <h1 class="text-center text-white">Quản lý lịch khai giảng</h1>
+        <h1 class="text-center text-white">Quản lý tin tức</h1>
       </div>
       <div class="col-12">
         <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
           <div class="row justify-content-center align-items-center">
-            <div class="col-3">
+            <div class="col-9">
               <div class="form-group">
-                <label >Chọn khóa học</label>
+                <label>Chọn menu</label>
+                <select class="modal_chucnang__select2 form-control">
+                  <option>a</option>
+                  <option>....</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlFile1">Tải hình ảnh</label>
+                <input type="file" class="form-control-file" id="exampleFormControlFile1">
+              </div>
+              <div class="form-group">
+                <label>Tiêu đề </label>
                 <input type="text" class="form-control">
               </div>
               <div class="form-group">
-                <label >Chọn buổi học</label>
-                <input type="text" class="form-control">
-              </div>
-            </div>
-            <div class="col-3">
-              <div class="form-group">
-                <label >Chọn giờ học</label>
+                <label>Mô tả </label>
                 <input type="text" class="form-control">
               </div>
               <div class="form-group">
-                <label >Ngày khai giảng</label>
-                <input type="date" class="form-control">
-              </div>
-            </div>
-            <div class="col-3">
-              <div class="form-group">
-                <label >Học phí</label>
-                <input type="text" class="form-control">
+                <label>Nội dung</label>
+                <ckeditor [editor]="Editor" ></ckeditor>
               </div>
             </div>
             <div class="col-auto">
@@ -51,11 +50,11 @@
             <thead class="bg__caothang text-white">
               <tr>
                 <th>#</th>
-                <th scope="col">Khóa học</th>
-                <th scope="col">Buổi gọc</th>
-                <th scope="col">Giờ học</th>
-                <th scope="col">Ngày khai giảng</th>
-                <th scope="col">Học phí</th>
+                <th scope="col">Menu</th>
+                <th scope="col">Image</th>
+                <th scope="col">Tiêu đề </th>
+                <th scope="col">Mô tả</th>
+                <th scope="col">Nội dung </th>
                 <th scope="col">Hiển thị</th>
                 <th class="text-center" scope="col"><span
                     class="modal_chucnang__button__save mdi mdi-content-save-outline mdi-24px"></span></th>
@@ -64,11 +63,17 @@
             <tbody>
               <tr>
                 <td style="max-width: 50px">1</td>
-                <td>Lập trình C</td>
-                <td>Thứ 3-5-7</td>
-                <td>17h30 đến 20h</td>
-                <td>20/12/2020</td>
-                <td>1,000,000 đồng</td>
+                <td>Tin tức</td>
+                <td style="max-width: 100px">
+                  <img src="https://via.placeholder.com/50" alt="">
+                </td>
+                <td>
+                  Tiêu đề
+                </td>
+                <td>Mô tả</td>
+                <td>
+                  Nội dung
+                </td>
                 <td>
                   <div class="custom-control custom-checkbox">
                     <input class="custom-control-input" id="customCheck1" type="checkbox">

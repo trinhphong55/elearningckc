@@ -63,13 +63,13 @@ import { ModalKhoahocComponent } from './components/modal/ttth/modal-khoahoc/mod
 import { ModalLichkhaigiangComponent } from './components/modal/ttth/modal-lichkhaigiang/modal-lichkhaigiang.component';
 import { ModalLienheComponent } from './components/modal/ttth/modal-lienhe/modal-lienhe.component';
 import { ModalMenuComponent } from './components/modal/ttth/modal-menu/modal-menu.component';
-import { ModalSubmenuComponent } from './components/modal/ttth/modal-submenu/modal-submenu.component';
 import { ModalHomeChuongtrinhdaotaoComponent } from './components/modal/ttth/modal-home-chuongtrinhdaotao/modal-home-chuongtrinhdaotao.component';
 import { ModalQuanlyslideshowcnttComponent } from './components/modal/cntt/modal-quanlyslideshowcntt/modal-quanlyslideshowcntt.component';
 import { ModalQuanlytintuccnttComponent } from './components/modal/cntt/modal-quanlytintuccntt/modal-quanlytintuccntt.component';
 import { ModalThemtintuccnttComponent } from './components/modal/cntt/modal-themtintuccntt/modal-themtintuccntt.component';
 import { ModalChinhsuatintuccnttComponent } from './components/modal/cntt/modal-chinhsuatintuccntt/modal-chinhsuatintuccntt.component';
 import { ModalQuanlyloaitintuccnttComponent } from './components/modal/cntt/modal-quanlyloaitintuccntt/modal-quanlyloaitintuccntt.component';
+import { ModalTintucComponent } from './components/modal/ttth/modal-tintuc/modal-tintuc.component';
 
 @NgModule({
   declarations: [
@@ -128,14 +128,14 @@ import { ModalQuanlyloaitintuccnttComponent } from './components/modal/cntt/moda
     ModalLichkhaigiangComponent,
     ModalLienheComponent,
     ModalMenuComponent,
-    ModalSubmenuComponent,
     ModalHomeChuongtrinhdaotaoComponent,
     ModalQuanlyslideshowcnttComponent,
     ModalQuanlytintuccnttComponent,
     ModalThemtintuccnttComponent,
     ModalChinhsuatintuccnttComponent,
     ModalHomeChuongtrinhdaotaoComponent,
-    ModalQuanlyloaitintuccnttComponent
+    ModalQuanlyloaitintuccnttComponent,
+    ModalTintucComponent
   ],
   imports: [
     BrowserModule,
