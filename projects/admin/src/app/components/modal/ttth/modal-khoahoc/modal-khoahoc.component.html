@@ -11,7 +11,21 @@
             <div class="col-6" *ngIf="selectedItem">
               <div class="form-group">
                 <label>Tên khóa học</label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" [(ngModel)]="selectedItem.ten">
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlFile1">Tải hình ảnh</label>
+                <input type="file" class="form-control-file" id="exampleFormControlFile1" [(ngModel)]="selectedItem.id">
+              </div>
+              <div class="form-group">
+                <label>Nội dung</label>
+                <textarea class="form-control" [(ngModel)]="selectedItem.noidung"></textarea>
+              </div>
+            </div>
+            <div class="col-6" *ngIf="!(selectedItem)">
+              <div class="form-group">
+                <label>Tên khóa học</label>
+                <input type="text" class="form-control" >
               </div>
               <div class="form-group">
                 <label for="exampleFormControlFile1">Tải hình ảnh</label>
@@ -23,10 +37,16 @@
               </div>
             </div>
             <div class="col-auto">
-              <div class="modal_chucnang__group__button">
+              <div class="modal_chucnang__group__button " *ngIf="!(selectedItem)">
                 <button class="modal_chucnang__button btn btn-outline-primary px-4 mx-2"><img
                     class="modal_chucnang__button__icon mb-2" src="assets/img/icons/add.png" alt="image icon">
                   <div>Thêm mới</div>
+                </button>
+              </div>
+              <div class="modal_chucnang__group__button" *ngIf="selectedItem">
+                <button class="modal_chucnang__button btn btn-outline-success px-4 mx-2"><img
+                    class="modal_chucnang__button__icon mb-2" src="assets/img/icons/upgrade.png" alt="image icon">
+                  <div>Cập nhật</div>
                 </button>
               </div>
             </div>
@@ -58,29 +78,7 @@
                   class="modal_chucnang__button__save mdi mdi-content-save-outline mdi-24px"></span></th>
             </thead>
             <tbody>
-              <!-- <tr>
-                <td style="max-width: 50px">1</td>
-                <td>
-                  Lập trình C++
-                </td>
-                <td style="max-width: 100px">
-                  <img src="https://via.placeholder.com/50" alt="">
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  <div class="custom-control custom-checkbox">
-                    <input class="custom-control-input" id="customCheck1" type="checkbox">
-                    <label class="custom-control-label" for="customCheck1"></label>
-                  </div>
-                </td>
-                <td class="text-center">
-                  <span class="modal_chucnang__button__delete mdi mdi-wrench-outline mdi-24px  mr-2"></span>
-                  <span class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px"></span>
-                </td>
-              </tr> -->
-              <tr *ngFor="let item of test" (click)="onSelect(item)">
+              <tr *ngFor="let item of test">
                 <td style="max-width: 50px"> {{item.id}}</td>
                 <td>
                   {{item.ten}}
@@ -98,7 +96,7 @@
                   </div>
                 </td>
                 <td class="text-center">
-                  <span class="modal_chucnang__button__delete mdi mdi-wrench-outline mdi-24px  mr-2"></span>
+                  <span class="modal_chucnang__button__delete mdi mdi-wrench-outline mdi-24px  mr-2" (click)="onSelect(item)"></span>
                   <span class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px"></span>
                 </td>
               </tr>
