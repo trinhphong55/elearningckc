@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, OnChanges, SimpleChanges } from '@angular/core';
 import { ModalService } from '../../../../services/modal.service';
 import { MonhocService } from '../../../../services/monhoc.service';
 import * as XLSX from 'xlsx';
@@ -11,7 +11,7 @@ import { MonHoc } from '../../../../interfaces/monhoc.interface';
   styleUrls: ['./modal-import-excel-monhoc.component.css'],
   providers: [MonhocService]
 })
-export class ModalImportExcelMonhocComponent implements OnInit {
+export class ModalImportExcelMonhocComponent implements OnInit, OnChanges {
 
   spinnerEnabled = false;
   keys: string[];
@@ -69,14 +69,13 @@ export class ModalImportExcelMonhocComponent implements OnInit {
     this.monhocService.importMonHocFromExcel(this.dsMonHoc).subscribe(status => {
       if (status.success) {
         alert(status.success);
-        // this.selectedMonHoc = { maMonHoc: "", tenMonHoc: "", loaiMonHoc: "Thực hành", tenTiengAnh: "", tenVietTat: "", tenVietTatTiengAnh: "" };
-        // this.monhocService.getMonHoc().subscribe(data => {
-        //   this.dsMonHoc = data;
-        // })
       } else {
-        alert('them moi that bai')
+        if (status.error) {
+          alert('them moi that bai, ' + status.error);
+        } else {
+          alert('them moi that bai')
+        }
       }
-
     });
   }
 
@@ -84,6 +83,11 @@ export class ModalImportExcelMonhocComponent implements OnInit {
   constructor(private modalService: ModalService, private monhocService: MonhocService) { }
 
   ngOnInit(): void {
+    console.log("ngOnInit");
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log('OnChanges run', { changes });
   }
 
   closeModal(id: string) {

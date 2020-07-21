@@ -15,7 +15,7 @@ const httpOptions = {
 })
 export class MonhocService {
 
-  private monHocURL = "http://localhost:4100/api/monhoc";
+  private monHocURL = "https://localhost:4100/api/monhoc";
   constructor(
     private http: HttpClient ) {}
 
@@ -55,8 +55,7 @@ export class MonhocService {
 
   //Cap nhat 1 mon hoc
   updateMonHoc(monHoc: MonHoc): Observable<any> {
-    console.log(JSON.stringify(monHoc));
-    return this.http.put(`${this.monHocURL}/${monHoc.maMonHoc}`, monHoc, httpOptions).pipe(
+    return this.http.put<any>(`${this.monHocURL}/${monHoc.maMonHoc}`, monHoc, httpOptions).pipe(
       tap(updatedMonHoc => console.log(`updatedMonHoc = ${JSON.stringify(updatedMonHoc)}`)),
       catchError(error => of(this.monHocNull))
     )

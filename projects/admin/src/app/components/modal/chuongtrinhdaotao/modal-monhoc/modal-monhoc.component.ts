@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { ModalService } from '../../../../services/modal.service';
 import { MonhocService } from '../../../../services/monhoc.service';
 import { MonHoc } from '../../../../interfaces/monhoc.interface';
@@ -9,7 +9,7 @@ import { MonHoc } from '../../../../interfaces/monhoc.interface';
   styleUrls: ['./modal-monhoc.component.css'],
   providers: [MonhocService]
 })
-export class ModalMonhocComponent implements OnInit {
+export class ModalMonhocComponent implements OnInit OnChanges {
 
   searchMonHoc;
 
@@ -31,6 +31,7 @@ export class ModalMonhocComponent implements OnInit {
   postMonHoc() {
     // console.log(this.selectedMonHoc);
     this.monhocService.addMonHoc(this.selectedMonHoc).subscribe(status => {
+      console.log("cua post" , status);
       if (status.success) {
         alert(status.success);
         this.selectedMonHoc = { maMonHoc: "", tenMonHoc: "", loaiMonHoc: "Thực hành", tenTiengAnh: "", tenVietTat: "", tenVietTatTiengAnh: "" };
@@ -44,8 +45,9 @@ export class ModalMonhocComponent implements OnInit {
     });
   }
 
-  saveMonHoc() {
+  updateMonHoc() {
     this.monhocService.updateMonHoc(this.selectedMonHoc).subscribe(status => {
+      console.log("cua save" , status);
       if (status.success) {
         alert('Cap nhat thanh cong');
         this.monhocService.getMonHoc().subscribe(data => {
@@ -74,7 +76,9 @@ export class ModalMonhocComponent implements OnInit {
     });
   }
 
-
+  ngOnChanges(changes: SimpleChanges) {
+    console.log(changes);
+  }
 
   ngOnInit(): void {
   }
