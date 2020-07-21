@@ -47,11 +47,23 @@ export class ApiService{
         catchError(this.handleError)
       );
     }
+
     layThongTinGiaoVien(maGiaoVien:any): Observable<any>{
       const httpOptions = {
         headers: new HttpHeaders({'Content-Type': 'application/json'})
       };
       return this.http.post<any>("https://localhost:4100/api/giaovien/thong-tin-giao-vien", maGiaoVien, httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
+    }
+
+    themDSGiaoVienExcel(dsGiaoVienExcel: any): Observable<any>{
+      console.log('dsGiaoVien', dsGiaoVienExcel);
+      const httpOptions = {
+        headers: new HttpHeaders({'Content-Type': 'application/json'})
+      };
+      return this.http.post<any>("https://localhost:4100/api/giaovien/them-giao-vien-excel", dsGiaoVienExcel, httpOptions)
       .pipe(
         catchError(this.handleError)
       );

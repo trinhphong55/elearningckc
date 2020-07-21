@@ -60,7 +60,7 @@ class MongoDB {
   }
 
   async find(options) {
-    let result = null;
+    let result = false;
     try {
       await this.connectDB();
       result = await this.conDb.collection(this.collectionName).find(options).toArray();

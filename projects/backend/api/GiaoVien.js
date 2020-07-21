@@ -35,4 +35,15 @@ router.get('/lay-ma-gv-moi-nhat', async (req, res) => {
   let result = await giaoVienDAO.layMaGVMoiNhat();
   res.send(result);
 })
+
+router.post('/them-giao-vien-excel', async (req, res) => {
+  console.log('route', req.body);
+  let result = await giaoVienDAO.importExcel(req.body);
+  if(result != false){
+    res.send({'msg': 'Import thành công'});
+  }
+  else{
+    res.send({'msg': 'Dữ liệu giáo viên trong excel đã tồn tại'});
+  }
+})
 module.exports = router;

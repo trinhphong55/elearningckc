@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalService } from '../../../../services/modal.service';
 import { ApiService } from '../../../../services/api.service';
 import { GiaoVien } from '../../../../../models/giaoVien';
+import * as XLSX from 'xlsx';
 @Component({
   selector: 'app-modal-giaovien',
   templateUrl: './modal-giaovien.component.html',
@@ -12,6 +13,8 @@ export class ModalGiaovienComponent implements OnInit {
   public danhSachGiaoVien:GiaoVien[];
   trinhDoChuyenMon: string = 'Thạc sĩ';
   selectedMaBoMon: string = '';
+  file:File;
+  dsGiaoVienExcel: any;
 
   maGV:string = '';
   ho:string = '';
@@ -22,8 +25,16 @@ export class ModalGiaovienComponent implements OnInit {
   sdt:string = '';
   email:string = '';
 
-  maGVMoiNhat:string = '';
-  public giaoVienSelected: GiaoVien;
+  setDefaultValue(){
+    this.ho = '';
+    this.ten = '';
+    this.ngaySinh = '';
+    this.cmnd = '';
+    this.diaChiThuongTru = '';
+    this.email = '';
+    this.sdt = '';
+  }
+
   constructor(private modalService: ModalService, private apiService:ApiService) {
   }
 
@@ -37,8 +48,7 @@ export class ModalGiaovienComponent implements OnInit {
     this.apiService.layMaGVMoiNhat().subscribe(
       data => {
         let maGV = data.maGiaoVien;
-        this.maGVMoiNhat = this.formatMaGV(maGV);
-        this.maGV = this.maGVMoiNhat;
+        this.maGV = this.formatMaGV(maGV);
       }
     );
   }
@@ -64,6 +74,8 @@ export class ModalGiaovienComponent implements OnInit {
       (response) => console.log('response', response)
     );
 
+    this.setDefaultValue();
+
     this.layDanhSachGiaoVien();
 
     this.layMaGVMoiNhat();
@@ -81,26 +93,41 @@ export class ModalGiaovienComponent implements OnInit {
     this.apiService.layThongTinGiaoVien({maGiaoVien: maGiaoVien}).subscribe(
       (response) => {
         this.maGV = response[0].maGiaoVien;
-        // this.giaoVienSelected = response[0];
         this.ho = response[0].ho;
         this.ten = response[0].ten;
         this.ngaySinh = response[0].ngaySinh;
         this.cmnd = response[0].cmnd;
         this.diaChiThuongTru = response[0].diaChiThuongTru;
-        this.giaoVien = response[0].giaoVien;
         this.email = response[0].email;
         this.sdt = response[0].sdt;
       }
     )
   }
   ResetForm():void{
-    console.log('reset form');
-    this.maGV = this.maGVMoiNhat;
-    console.log(this.maGV);
+    this.layMaGVMoiNhat();
   }
 
-  onEdit(form:any): void{
-    console.log('on edit');
+  uploadFileExcel(event){
+    this.file = event.target.files[0];
+  }
+
+  readFileExcel(){
+    let fileReader = new FileReader();
+    fileReader.onload = (e) => {
+      this.dsGiaoVienExcel = fileReader.result;
+      var data = new Uint8Array(this.dsGiaoVienExcel);
+      var arr = new Array();
+      for(var i = 0; i != data.length; ++i) arr[i] = String.fromCharCode(data[i]);
+      var bstr = arr.join("");
+      var workbook = XLSX.read(bstr, {type:"binary"});
+      var first_sheet_name = workbook.SheetNames[0];
+      var worksheet = workbook.Sheets[first_sheet_name];
+      this.dsGiaoVienExcel = XLSX.utils.sheet_to_json(worksheet,{raw:true});
+      this.apiService.themDSGiaoVienExcel(this.dsGiaoVienExcel).subscribe(
+        (response) => alert(response.msg)
+      )
+    }
+    fileReader.readAsArrayBuffer(this.file);
   }
 
   formatMaGV(maGV: string): string{

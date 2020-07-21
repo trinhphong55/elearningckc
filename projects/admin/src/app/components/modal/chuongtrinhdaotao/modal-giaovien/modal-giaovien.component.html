@@ -13,39 +13,39 @@
             <div class="col-3">
               <div class="form-group">
                 <label for="ho">Họ</label>
-                <input type="text" name="ho" class="form-control" value={{ho}} ngModel required>
+                <input type="text" name="ho" class="form-control" [(ngModel)]="ho" required>
               </div>
               <div class="form-group">
                 <label for="ten">Tên</label>
-                <input type="text" name="ten" class="form-control" value={{ten}} ngModel required>
+                <input type="text" name="ten" class="form-control" [(ngModel)]="ten" required>
               </div>
               <div class="form-group">
                 <label for="ngaySinh">Ngày sinh</label>
-                <input type="text" name="ngaySinh" class="form-control" value={{ngaySinh}} maxlength="10" ngModel>
+                <input type="text" name="ngaySinh" class="form-control" maxlength="10" [(ngModel)]="ngaySinh">
               </div>
             </div>
             <div class="col-3">
               <div class="form-group">
                 <label for="cmnd">CMND</label>
-                <input type="text" name="cmnd" class="form-control" value={{cmnd}} ngModel>
+                <input type="text" name="cmnd" class="form-control" [(ngModel)]="cmnd" maxlength="9">
               </div>
               <div class="form-group">
                 <label for="diaChiThuongTru">Địa chỉ thường trú</label>
-                <input type="text" name="diaChiThuongTru" class="form-control" value={{diaChiThuongTru}} ngModel>
+                <input type="text" name="diaChiThuongTru" class="form-control" [(ngModel)]="diaChiThuongTru">
               </div>
               <div class="form-group">
                 <label for="soDienThoai">Số điện thoại</label>
-                <input type="tel" name="soDienThoai" class="form-control" value={{sdt}} ngModel maxlength="10">
+                <input type="tel" name="soDienThoai" class="form-control" [(ngModel)]="sdt" maxlength="10">
               </div>
             </div>
             <div class="col-3">
               <div class="form-group">
                 <label for="email">Email</label>
-                <input type="text" name="email" class="form-control" value={{email}} ngModel>
+                <input type="text" name="email" class="form-control" [(ngModel)]="email">
               </div>
               <div class="form-group">
                 <label>Bộ môn</label>
-                <select class="form-control" name="selectedMaBoMon" [(ngModel)]="selectedMaBoMon">
+                <select class="form-control" name="maBoMon" [(ngModel)]="selectedMaBoMon">
                   <option [value]="06">Bộ môn tin học</option>
                   <option [value]="07">Bộ môn kế toán</option>
                 </select>
@@ -55,7 +55,7 @@
               <div class="form-group">
                 <label for="maGiaoVien">Mã giáo viên</label>
                 <div class="d-flex align-items-center">
-                  <input name="maGiaoVien" class="form-control" value={{maGV}} readonly ngModel required>
+                  <input name="maGiaoVien" class="form-control" readonly [(ngModel)]='maGV' required>
                   <!-- <div class="mdi mdi-reload mdi-24px ml-2"></div> -->
                 </div>
               </div>
@@ -75,7 +75,7 @@
                     class="modal_chucnang__button__icon mb-1" src="assets/img/icons/add.png" alt="image icon">
                   <div>Thêm mới</div>
                 </button>
-                <button type="button" class="modal_chucnang__button btn btn-outline-success px-4 mx-2"><img
+                <button class="modal_chucnang__button btn btn-outline-success px-4 mx-2"><img
                   class="modal_chucnang__button__icon mb-2" src="assets/img/icons/upgrade.png" alt="image icon">
                   <div>Cập nhật</div>
                 </button>
@@ -83,6 +83,11 @@
                     class="modal_chucnang__button__icon mb-2" src="assets/img/icons/error.png" alt="image icon">
                   <div>Huỷ</div>
                 </button>
+                <button type="button" (click)="readFileExcel()" class="modal_chucnang__button btn btn-outline-primary px-4 mx-2"><img
+                  class="modal_chucnang__button__icon mb-2" src="assets/img/icons/excel.png" alt="image icon">
+                  <div>Import Excel</div>
+                </button>
+                <input type="file" accept=".xlsx" (change)="uploadFileExcel($event)" placeholder="Upload File">
               </div>
             </div>
           </div>
