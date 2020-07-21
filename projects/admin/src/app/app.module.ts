@@ -144,6 +144,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     AppRoutingModule,
     NgxUsefulSwiperModule,
     FormsModule,
+    ReactiveFormsModule,
     Ng2SearchPipeModule,
   ],
   providers: [ApiService],

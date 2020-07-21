@@ -81,6 +81,7 @@ export class ModalMonhocComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
+
   }
 
   closeModal(id: string) {
