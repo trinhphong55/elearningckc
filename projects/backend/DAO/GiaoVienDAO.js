@@ -1,11 +1,9 @@
 const MongoDB = require('../MongoDB');
-const Common = require('../common');
-const { filter } = require('rxjs/operators');
+const md5 = require('md5');
 class GiaoVienDAO extends MongoDB{
     constructor(){
         super();
         this.collectionName = 'GiaoVien';
-        this.common = new Common();
     }
 
     async layDanhSachGiaoVien(){
@@ -49,35 +47,24 @@ class GiaoVienDAO extends MongoDB{
         return result;
     }
 
-    async kiemTraMaGiaoVienCoTonTai(maGV){
-      let result = false;
-      try{
-        console.log('maGV', maGV);
-        result = await this.find({maGiaoVien: maGV});
-        console.log('result', result);
-        if(result != false) return true;
-      } catch (error){
-        console.log('error: ', error.message);
-        await this.closeDB();
-      }
-      return result;
-    }
-
     async importExcel(data){
       let result = false;
       try{
-        await this.connectDB();
         let filterData = []; //Mảng chứa danh sách giáo viên không bị trùng trong database
-        console.log('data', data);
-        this.common.asyncForEach(data, async element => {
-          console.log('element', element);
-          let isExist = await this.kiemTraMaGiaoVienCoTonTai(element.maGiaoVien);
-          if(!isExist){
-            filterData.push(element);
+        let length = data.length;
+        for(let i = 0; i < length; i++){
+          let isExist = await this.layThongTinGiaoVien(data[i].maGiaoVien);
+          if(isExist.length == 0){
+            data[i].trangThai = 1;
+            data[i].matKhauBanDau = md5('123456');
+            filterData.push(data[i]);
           }
-        })
-        console.log('filterData', filterData);
-        await this.closeDB();
+        }
+        if(filterData.length > 0){
+          await this.connectDB();
+          result = await this.conDb.collection(this.collectionName).insertMany(filterData);
+          await this.closeDB();
+        }
       } catch (error){
         console.log('error: ', error.message);
         await this.closeDB();

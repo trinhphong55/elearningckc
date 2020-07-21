@@ -63,7 +63,7 @@ export class ModalGiaovienComponent implements OnInit {
   }
 
   onSubmit(form: any): void{
-    console.log('you submitted value: ', form);
+    // console.log('you submitted value: ', form);
     this.giaoVien = form;
     this.giaoVien.trinhDoChuyenMon = this.trinhDoChuyenMon;
     this.giaoVien.maGiaoVien = this.maGV;
@@ -71,7 +71,26 @@ export class ModalGiaovienComponent implements OnInit {
     this.giaoVien.trangThai = 1;
 
     this.apiService.themGiaoVien(this.giaoVien).subscribe(
-      (response) => console.log('response', response)
+      (response) => alert(response.msg)
+    );
+
+    this.setDefaultValue();
+
+    this.layDanhSachGiaoVien();
+
+    this.layMaGVMoiNhat();
+  }
+
+  Update(form: any): void{
+    // console.log('you submitted value: ', form);
+    this.giaoVien = form;
+    this.giaoVien.trinhDoChuyenMon = this.trinhDoChuyenMon;
+    this.giaoVien.maGiaoVien = this.maGV;
+    this.giaoVien.matKhauBanDau = '123456';
+    this.giaoVien.trangThai = 1;
+
+    this.apiService.capNhatGiaoVien(this.giaoVien).subscribe(
+      (response) => alert(response.msg)
     );
 
     this.setDefaultValue();
@@ -83,9 +102,8 @@ export class ModalGiaovienComponent implements OnInit {
 
   xoaGiaoVien(maGiaoVien:any){
     this.apiService.xoaGiaoVien({maGiaoVien: maGiaoVien}).subscribe(
-      (response) => console.log('response', response)
+      (response) => alert(response.msg)
     )
-
     this.layDanhSachGiaoVien();
   }
 
@@ -124,7 +142,11 @@ export class ModalGiaovienComponent implements OnInit {
       var worksheet = workbook.Sheets[first_sheet_name];
       this.dsGiaoVienExcel = XLSX.utils.sheet_to_json(worksheet,{raw:true});
       this.apiService.themDSGiaoVienExcel(this.dsGiaoVienExcel).subscribe(
-        (response) => alert(response.msg)
+        (response) => {
+          alert(response.msg);
+          this.layDanhSachGiaoVien();
+          this.layMaGVMoiNhat();
+        }
       )
     }
     fileReader.readAsArrayBuffer(this.file);

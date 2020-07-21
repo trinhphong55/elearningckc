@@ -18,6 +18,16 @@ export class ApiService{
             catchError(this.handleError)
         );
     }
+
+    capNhatGiaoVien(giaoVien:any): Observable<any> {
+      const httpOptions = {
+        headers: new HttpHeaders({'Content-Type': 'application/json'})
+      };
+      return this.http.post<any>("https://localhost:4100/api/giaovien/cap-nhat-giao-vien", JSON.stringify(giaoVien), httpOptions)
+      .pipe(
+          catchError(this.handleError)
+      );
+    }
     layDanhSachGiaoVien(): Observable<GiaoVien[]> {
         const httpOptions = {
             headers: new HttpHeaders({'Content-Type': 'application/json'})
