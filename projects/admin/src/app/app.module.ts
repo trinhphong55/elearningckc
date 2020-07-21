@@ -50,6 +50,7 @@ import { ModalPagefacebookComponent } from './components/modal/facebook/modal-pa
 import { ModalComponent } from './components/modal/modal.component';
 import { ModalQuanlyheadercnttComponent } from './components/modal/cntt/modal-quanlyheadercntt/modal-quanlyheadercntt.component';
 import { ModalImportExcelMonhocComponent } from './components/modal/chuongtrinhdaotao/import-excel/modal-import-excel-monhoc/modal-import-excel-monhoc.component';
+import { ModalImportExcelNganhNgheComponent } from './components/modal/chuongtrinhdaotao/import-excel/modal-import-excel-nganhnghe/modal-import-excel-nganhnghe.component';
 
 import { PageTtthComponent } from './pages/page-ttth/page-ttth.component';
 import { SidebarTtthComponent } from './components/sidebar/sidebar-ttth/sidebar-ttth.component';
@@ -116,6 +117,7 @@ import { ModalQuanlyloaitintuccnttComponent } from './components/modal/cntt/moda
     ModalComponent,
     ModalQuanlyheadercnttComponent,
     ModalImportExcelMonhocComponent,
+    ModalImportExcelNganhNgheComponent,
     PageTtthComponent,
     SidebarTtthComponent,
     ModalLogoComponent,

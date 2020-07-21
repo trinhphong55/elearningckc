@@ -29,15 +29,14 @@ export class ModalNganhngheComponent implements OnInit {
     this.getdata();
     this.getbac();
   }
-  getbac()
-  {
+  getbac() {
     this.bacservice.getBac().subscribe(
-    bac => {
-      this.bac = bac;
-    },
-    error => {
-      console.log(error);
-    });
+      bac => {
+        this.bac = bac;
+      },
+      error => {
+        console.log(error);
+      });
   }
   getdata() {
     this.nganhngheservice.getNgangnghe().subscribe(
@@ -47,8 +46,8 @@ export class ModalNganhngheComponent implements OnInit {
       error => {
         console.log(error);
       });
-      return this.data;
-     
+    return this.data;
+
   }
   Detail(data) {
     this.nganhngheservice.getDetailNganhNghe(data._id)
@@ -73,7 +72,7 @@ export class ModalNganhngheComponent implements OnInit {
         error => {
           console.log(error);
         });
-        console.log(this.TenBac)
+    console.log(this.TenBac)
   }
   huy() {
     this.tenNganhNghe = "";
@@ -88,8 +87,8 @@ export class ModalNganhngheComponent implements OnInit {
       alert(this.tenNganhNghe)
     }
     else {
-   this.getbac();
-   console.log(this.getbac());
+      this.getbac();
+      console.log(this.getbac());
       this.arr = { maNganhNghe: this.maNganhNghe, tenNganhNghe: this.tenNganhNghe, tenVietTat: this.tenVietTat, maBac: this.maBac, maNganhCha: this.maNganhCha };
       this.nganhngheservice.addnganhnghe(this.arr).subscribe(
         data => {
@@ -104,23 +103,21 @@ export class ModalNganhngheComponent implements OnInit {
     }
   }
   update() {
-    if(this._id=="" ||this.tenNganhNghe == "" || this.tenVietTat == "" || this.maNganhNghe == "")
-    {
+    if (this._id == "" || this.tenNganhNghe == "" || this.tenVietTat == "" || this.maNganhNghe == "") {
       alert("Chưa Đủ dữ liệu")
     }
-    else
-    {
-    this.arr= {maNganhNghe:this.maNganhNghe,tenNganhNghe:this.tenNganhNghe,tenVietTat:this.tenVietTat,maBac:this.maBac,maNganhCha:this.maNganhCha} ;
-    this.nganhngheservice.updateMonHoc(this._id,this.arr).subscribe(
-      data => {
-      this.arr = data;
-      alert("Thành Công")
-      this.getdata();
-      },
-      error => {
-        console.log(error);
-      });
-    console.log(this._id)
+    else {
+      this.arr = { maNganhNghe: this.maNganhNghe, tenNganhNghe: this.tenNganhNghe, tenVietTat: this.tenVietTat, maBac: this.maBac, maNganhCha: this.maNganhCha };
+      this.nganhngheservice.updateMonHoc(this._id, this.arr).subscribe(
+        data => {
+          this.arr = data;
+          alert("Thành Công")
+          this.getdata();
+        },
+        error => {
+          console.log(error);
+        });
+      console.log(this._id)
     }
   }
 
@@ -135,12 +132,10 @@ export class ModalNganhngheComponent implements OnInit {
           console.log(error);
         });
   }
-  xuatexcel()
-  {
-   
-    this.getdata().Id;
-console.log( this.getdata().Id)
-  }
+  xuatexcel() {
+      this.modalService.close('ctdt_nganhnghe');
+      this.modalService.open('ctdt_import_excel_nganhnghe');
+    }
   closeModal(id: string) {
     this.modalService.close(id)
   }

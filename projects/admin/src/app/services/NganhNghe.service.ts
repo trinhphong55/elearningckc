@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, JsonpInterceptor } from '@angular/common/http';
 import { Observable,of } from 'rxjs';
-import {nganhnghe} from '../interface/NganhNghe.interface';
+import {nganhnghe} from '../interfaces/NganhNghe.interface';
 import { catchError, map, tap } from 'rxjs/operators';
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -11,8 +11,8 @@ const httpOptions = {
     providedIn: 'root'
 })
 export class NganhNgheService {
-    private apiUrl = "http://localhost:4100/api/nganhnghe";
-    private apiUrldelete = "http://localhost:4100/api/deletenganhnghe";
+    private apiUrl = "https://localhost:4100/api/nganhnghe";
+    private apiUrldelete = "https://localhost:4100/api/deletenganhnghe";
 
     constructor(private http: HttpClient) { }
 
@@ -59,14 +59,13 @@ export class NganhNgheService {
         }
       }
     
-      //Xoa 
-      // deleteNganhNghe(id) {
-      //     return this.http.put(`${this.apiUrldelete}/${id}`, httpOptions).pipe(
-      //       tap(deletenganhnghe => console.log(`deletenganhnghe = ${JSON.stringify(deletenganhnghe)}`)),
-      //       catchError(error => of(this.NganhNgheNull))
-      //     )
-      //   }
-  
+      //Import nganhnghe from Excel
+      importNganhNGheFromExcel(nganhnghe: nganhnghe[]): Observable<any> {
+        return this.http.post<nganhnghe[]>(this.apiUrl + "/importexcel", nganhnghe, httpOptions).pipe(
+          tap(selectedMonHoc => console.log(`importedExcel = ${JSON.stringify(selectedMonHoc)}`)),
+          catchError(error => of(this.NganhNgheNull))
+        );
+      }
 
       deledeNN(id) {
         try {
