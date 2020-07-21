@@ -58,6 +58,3 @@ https.createServer(httpsOptions, app)
   .listen(PORT, () => {
     console.log('Backend API running at port ' + PORT)
   })
-// app.listen(4100, function () {
-//   console.log('Backend API running!');
-// });
