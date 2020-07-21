@@ -44,6 +44,6 @@ const MonHocSchema = new mongoose.Schema({
   },
 });
 
-const MonHoc = mongoose.model('MonHoc', MonHocSchema);
+const MonHoc = mongoose.model('MonHoc', MonHocSchema, 'MonHoc');
 
 module.exports = MonHoc;
