@@ -45,7 +45,7 @@
                     class="modal_chucnang__button__icon mb-2" src="assets/img/icons/add.png" alt="image icon">
                   <div>Thêm mới</div>
                 </button>
-                <button (click)="saveMonHoc()" class="modal_chucnang__button btn btn-outline-success px-4 mx-2"><img
+                <button (click)="updateMonHoc()" class="modal_chucnang__button btn btn-outline-success px-4 mx-2"><img
                     class="modal_chucnang__button__icon mb-2" src="assets/img/icons/upgrade.png" alt="image icon">
                   <div>Cập nhật</div>
                 </button>
@@ -115,7 +115,7 @@
             </tfoot> -->
             <tbody *ngFor="let monHoc of dsMonHoc | filter:searchMonHoc">
               <tr>
-                <td style="max-width: 100px"  (click)="onSelect(monHoc.maMonHoc)" style="cursor: pointer;">
+                <td style="max-width: 100px">
                   <input class="form-control" disabled [value]="monHoc.maMonHoc">
                 </td>
                 <td>
@@ -134,7 +134,7 @@
                   <input class="form-control" disabled [value]="monHoc.loaiMonHoc">
                 </td>
                 <td class="text-center">
-                  <span
+                  <span (click)="onSelect(monHoc.maMonHoc)"
                     class="modal_chucnang__button__edit mdi mdi-file-document-edit-outline mdi-24px">
                   </span>
                   <span (click)="deleteMonHoc(monHoc.maMonHoc)"

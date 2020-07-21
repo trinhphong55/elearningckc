@@ -11,9 +11,12 @@ router.use('/', MonHoc);
 const router = require('express').Router()
 const LopHocPhanRoutes = require('./LopHocPhan')
 const GiaoVienRoutes = require('./GiaoVien')
+const MonHoc = require('./MonHoc');
 
 router.use('/lophocphan', LopHocPhanRoutes)
 router.use('/giaovien', GiaoVienRoutes)
+router.use('/', MonHoc);
+
 
 const khoabomonController = require("../api/khoabomon");
 const loaidonviController = require("../api/loaidonvi");

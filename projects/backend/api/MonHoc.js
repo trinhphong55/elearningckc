@@ -17,41 +17,48 @@ router.get('/monhoc', async (req, res) => {
 router.post('/monhoc/importexcel', async (req, res) => {
   console.log('BAT DAU IMPORT EXCEL');
   var items = req.body;
+  var filterItems = [];
 
   //Get next maMonHoc
   var maMonHoc = await getNextNumber();
   var numMaMonHoc = parseInt(maMonHoc);
-  var index = 0;
 
-  // Check name exist
-  items.forEach(async item => {
-    let exist = await MonHoc.findOne({ tenMonHoc: item.tenMonHoc }).exec();
-    if (exist === null) {
-      console.log("ten mon hoc chua co --> duoc chap nhan");
-      stringMaMonHoc = "000" + numMaMonHoc;
-      item.maMonHoc = stringMaMonHoc.slice(stringMaMonHoc.length - 4, stringMaMonHoc.length);
-      // MonHoc.create(item).then(() => {
-      //   // res.json({success: "them 1 thang"});
-      // }).catch((err) => {
-      //   // res.json({error: err});
-      // })
-      numMaMonHoc++;
-      console.log("xem 1 item",item);
-    } else {
-      // res.json({ error: "thang nay ton tai"});
-      items.splice(index, 1);
+  async function asyncForEach(array, callback) {
+    console.log('Xu ly excel');
+    for (let index = 0; index < array.length; index++) {
+      await callback(array[index], index);
     }
-    index++;
-  })
+  }
 
-  console.log('chay cuoi cung', items);
+  const start = async () => { // goi ham
+    await asyncForEach(items, async (mh, index) => {
+      await MonHoc.findOne({ tenMonHoc: mh.tenMonHoc }).exec().then((data) => {
+        if (data === null) {
+          let stringMaMonHoc = "000" + numMaMonHoc;
+          mh.maMonHoc = stringMaMonHoc.slice(stringMaMonHoc.length - 4, stringMaMonHoc.length);
+          numMaMonHoc++;
+          filterItems.push(mh);
+        }
+      });
+      console.log(mh.tenMonHoc, index);
+    });
+    console.log('Done');
+  }
+  await start();
 
 
-  // MonHoc.insertMany(items).then(data => {
-  //   res.json(data);
-  // }).catch((err) => {
-  //   res.json({message: err});
-  // })
+
+  console.log(filterItems);
+
+  if (filterItems.length > 0) {
+    MonHoc.insertMany(filterItems).then(() => {
+      res.json({ success: "added MonHoc from Excel" });
+    }).catch((err) => {
+      res.json( {message: err});
+    })
+  } else {
+    res.json( {error: "du lieu trong hoac da ton tai"})
+  }
 });
 
 
@@ -106,7 +113,7 @@ router.put('/monhoc/:maMonHoc', async (req, res) => {
       { maMonHoc: maMonHoc },
       { $set: { tenMonHoc, tenVietTat, loaiMonHoc, tenTiengAnh, tenVietTatTiengAnh } }
   ).then(() => {
-    res.json({ status: "success" });
+    res.json({ success: "updated MonHoc" });
   }).catch(err => {
     res.json({ message: err });
   });

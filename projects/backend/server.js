@@ -5,7 +5,7 @@ const mongoose = require('mongoose')
 const fs = require('fs')
 const app = express()
 const cors = require('cors')
-require('./crawl').crawl()
+// require('./crawl').crawl()
 
 const MONGODB_URI = 'mongodb://elearning_team:123@103.92.26.177:27017/testAngularckc' //'mongodb://localhost:27017/'
 
@@ -53,10 +53,8 @@ app.use('/api', require('./api/api'))
 app.get('/', (req, res) => {
   res.send('Back end API')
 })
-// const server = https.createServer(httpsOptions, app)
-//   .listen(PORT, () => {
-//     console.log('Backend API running at port ' + PORT)
-//   })
-app.listen(4100, function () {
-  console.log('Backend API running!')
-})
+
+https.createServer(httpsOptions, app)
+  .listen(PORT, () => {
+    console.log('Backend API running at port ' + PORT)
+  })
