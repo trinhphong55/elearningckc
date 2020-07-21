@@ -9,7 +9,7 @@ import { MonHoc } from '../../../../interfaces/monhoc.interface';
   styleUrls: ['./modal-monhoc.component.css'],
   providers: [MonhocService]
 })
-export class ModalMonhocComponent implements OnInit OnChanges {
+export class ModalMonhocComponent implements OnInit, OnChanges {
 
   searchMonHoc;
 
