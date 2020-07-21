@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild, ElementRef, OnChanges, SimpleChanges } from '@angular/core';
-import { ModalService } from '../../../../services/modal.service';
-import { MonhocService } from '../../../../services/monhoc.service';
+import { ModalService } from '../../../../../services/modal.service';
+import { MonhocService } from '../../../../../services/monhoc.service';
 import * as XLSX from 'xlsx';
 import { Subject } from 'rxjs';
-import { MonHoc } from '../../../../interfaces/monhoc.interface';
+import { MonHoc } from '../../../../../interfaces/monhoc.interface';
 
 @Component({
   selector: 'app-modal-import-excel-monhoc',
