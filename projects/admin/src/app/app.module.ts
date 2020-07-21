@@ -3,13 +3,8 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
-<<<<<<< HEAD
-import { FormsModule } from '@angular/forms';
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
-=======
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ApiService} from './services/api.service';
->>>>>>> 6f1639fbea27453ce5e4f7784cd6f68b3ae8dc79
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -53,10 +48,6 @@ import { ModalGroupfacebookComponent } from './components/modal/facebook/modal-g
 import { ModalPagefacebookComponent } from './components/modal/facebook/modal-pagefacebook/modal-pagefacebook.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { ModalQuanlyheadercnttComponent } from './components/modal/cntt/modal-quanlyheadercntt/modal-quanlyheadercntt.component';
-<<<<<<< HEAD
-import { ModalImportExcelMonhocComponent } from './components/modal/chuongtrinhdaotao/modal-import-excel-monhoc/modal-import-excel-monhoc.component';
-
-=======
 import { PageTtthComponent } from './pages/page-ttth/page-ttth.component';
 import { SidebarTtthComponent } from './components/sidebar/sidebar-ttth/sidebar-ttth.component';
 import { ModalLogoComponent } from './components/modal/ttth/modal-logo/modal-logo.component';
@@ -78,7 +69,6 @@ import { ModalThemtintuccnttComponent } from './components/modal/cntt/modal-them
 import { ModalChinhsuatintuccnttComponent } from './components/modal/cntt/modal-chinhsuatintuccntt/modal-chinhsuatintuccntt.component';
 import { ModalQuanlyloaitintuccnttComponent } from './components/modal/cntt/modal-quanlyloaitintuccntt/modal-quanlyloaitintuccntt.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
->>>>>>> 6f1639fbea27453ce5e4f7784cd6f68b3ae8dc79
 @NgModule({
   declarations: [
     AppComponent,
@@ -123,9 +113,6 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     ModalPagefacebookComponent,
     ModalComponent,
     ModalQuanlyheadercnttComponent,
-<<<<<<< HEAD
-    ModalImportExcelMonhocComponent
-=======
     PageTtthComponent,
     SidebarTtthComponent,
     ModalLogoComponent,
@@ -147,7 +134,6 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     ModalChinhsuatintuccnttComponent,
     ModalHomeChuongtrinhdaotaoComponent,
     ModalQuanlyloaitintuccnttComponent
->>>>>>> 6f1639fbea27453ce5e4f7784cd6f68b3ae8dc79
   ],
   imports: [
     BrowserModule,
@@ -155,10 +141,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     AppRoutingModule,
     NgxUsefulSwiperModule,
     FormsModule,
-<<<<<<< HEAD
-=======
     ReactiveFormsModule,
->>>>>>> 6f1639fbea27453ce5e4f7784cd6f68b3ae8dc79
     Ng2SearchPipeModule,
   ],
   providers: [ApiService],

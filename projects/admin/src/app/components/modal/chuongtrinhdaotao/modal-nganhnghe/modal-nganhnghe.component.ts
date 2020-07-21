@@ -51,14 +51,16 @@ export class ModalNganhngheComponent implements OnInit {
      
   }
   Detail(data) {
-    this.nganhngheservice.getDetailNganhNghe(data._id)
+    console.log(data)
+    this.nganhngheservice.getDetailNganhNghe(data)
       .subscribe(
         data => {
-          this.data.published = data;
+          this.data.prices = data;
         },
         error => {
           console.log(error);
         });
+    this._id = data.id
     this.tenNganhNghe = data.tenNganhNghe;
     this.tenVietTat = data.tenVietTat;
     this.maNganhNghe = data.maNganhNghe;
@@ -89,7 +91,6 @@ export class ModalNganhngheComponent implements OnInit {
     }
     else {
    this.getbac();
-   console.log(this.getbac());
       this.arr = { maNganhNghe: this.maNganhNghe, tenNganhNghe: this.tenNganhNghe, tenVietTat: this.tenVietTat, maBac: this.maBac, maNganhCha: this.maNganhCha };
       this.nganhngheservice.addnganhnghe(this.arr).subscribe(
         data => {
@@ -104,23 +105,24 @@ export class ModalNganhngheComponent implements OnInit {
     }
   }
   update() {
+    console.log(this._id)
     if(this._id=="" ||this.tenNganhNghe == "" || this.tenVietTat == "" || this.maNganhNghe == "")
     {
       alert("Chưa Đủ dữ liệu")
     }
     else
     {
-    this.arr= {maNganhNghe:this.maNganhNghe,tenNganhNghe:this.tenNganhNghe,tenVietTat:this.tenVietTat,maBac:this.maBac,maNganhCha:this.maNganhCha} ;
-    this.nganhngheservice.updateMonHoc(this._id,this.arr).subscribe(
+    this.arr= {_id:this._id,maNganhNghe:this.maNganhNghe,tenNganhNghe:this.tenNganhNghe,tenVietTat:this.tenVietTat,maBac:this.maBac,maNganhCha:this.maNganhCha} ;
+    this.nganhngheservice.updateMonHoc(this.arr).subscribe(
       data => {
       this.arr = data;
-      alert("Thành Công")
       this.getdata();
+      alert("Thành Công")
       },
       error => {
         console.log(error);
       });
-    console.log(this._id)
+
     }
   }
 
