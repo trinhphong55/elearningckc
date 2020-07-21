@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const MonHoc = require('../models/MonHoc.model');
 
-const getNextNumber = require('../utils/MonHoc.util');
+const { getNextNumber, isNameExist } = require('../utils/MonHoc.util');
 
 //GET MONHOC
 router.get('/monhoc', async (req, res) => {
@@ -64,10 +64,12 @@ router.post('/monhoc/importexcel', async (req, res) => {
 
 //POST MONHOC
 router.post('/monhoc', async (req, res) => {
-  // const item = await MonHoc.findOne({ tenMonHoc: req.body.tenMonHoc }).exec();
-  // if (item !== null) {
-  //   return res.json({ error: "tenMonHoc existed" });
-  // }
+
+  nameExist = await isNameExist(req.body.tenMonHoc);
+  if (!nameExist) {
+    return res.json( {error: "ten mon hoc da ton tai"} );
+  }
+
   maMonHoc = await getNextNumber();
   const { tenMonHoc, tenVietTat, loaiMonHoc, tenTiengAnh, tenVietTatTiengAnh } = req.body;
   const monHoc = new MonHoc({ maMonHoc, tenMonHoc, tenVietTat, loaiMonHoc, tenTiengAnh, tenVietTatTiengAnh });
