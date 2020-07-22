@@ -24,7 +24,9 @@ exports.postKhoaBoMon = async (req, res) => {
 
   try {
     const err = validationResult(req);
-    
+    if(!err.isEmpty()){
+      res.status(422).json(err.errors);
+    }
     const khoabomon = await KhoaBoMon.find();
 
     khoabomon.forEach((element) => {
@@ -38,12 +40,14 @@ exports.postKhoaBoMon = async (req, res) => {
 
     if (idIsExist > 0) {
       res.json({
-        status: false,
+        status: 200,
+        ok:false,
         msg: "Mã khoa này đã tồn tại",
       });
     } else if (nameIsExist > 0) {
       res.json({
-        status: false,
+        status: 200,
+        ok:false,
         msg: "Tên này đã tồn tại",
       });
     } else {
@@ -57,7 +61,8 @@ exports.postKhoaBoMon = async (req, res) => {
       });
       const saveKhoa = await khoaBoMon.save();
       res.json({
-        status: true,
+        status: 200,
+        ok:true,
         msg: "Thêm thành công Khoa-Bộ môn vào danh sách",
         data: saveKhoa,
       });
@@ -107,22 +112,34 @@ exports.deleteKhoaBoMon = async (req, res) => {
   }
 };
 
+//validation data from request
+
 exports.checkValidate = () => {
   return [
+    check("maKhoa", "MA KHOA is required").notEmpty(),
+    check("maKhoa", "MA KHOA is must be at least 10 chars long").isLength({ max: 50}),
 
-    check("maKhoa", "maKhoa is required").not().isEmpty(),
-    // check("tenKhoa", "maKhoa is required").notEmpty(),
-    // check("tenVietTat", "tenVietTat is required").notEmpty(),
-    // check("nguoiTao", "nguoiTao is required").notEmpty(),
-    // check("nguoiChinhSua", "nguoiChinhSua is required").notEmpty(),
-    // check("maLoai", "maLoai is required").notEmpty()
+    check("tenKhoa", "TEN KHOA is must be at most 50 chars long ").isLength({ max: 50}),
+    check("tenKhoa", "TEN KHOA is required").notEmpty(),
+
+    check("tenVietTat", "TEN VIET TAT must be at most 15 char long").isLength({ max: 15 }),
+    check("tenVietTat", "TEN VIET TAT is required").notEmpty(),
+
+    check("nguoiTao", "NGUOI TAO is required").notEmpty(),
+
+    check("nguoiChinhSua", "NGUOI CHINH SUASUA is required").notEmpty(),
+
+    check("maLoai", "MA LOAI is required").notEmpty(),
+    check("maLoai", "MA LOAI is numberic").isNumeric(),
   ];
 };
 
 exports.updateKhoaBoMon = async (req, res) => {
   try {
-
-
+    const err = validationResult(req);
+    if(!err.isEmpty()){
+      res.status(422).json(err.errors);
+    }
     const updateKhoa = await KhoaBoMon.updateOne(
       { _id: req.params.id },
       {
@@ -137,19 +154,20 @@ exports.updateKhoaBoMon = async (req, res) => {
       }
     );
 
-    let result;
+    let  result = {
+      status: 200,
+      ok: false,
+      msg: "",
+    };
     if (updateKhoa.nModified === 0) {
-      result = {
-        status: false,
-        msg: "Chưa được cập nhật",
-      };
+      result.msg = "Chưa được cập nhật";
+
     } else {
-      result = {
-        status: true,
-        msg: "Cập nhật thành công Khoa-Bộ môn",
-      };
+      result.ok = true;
+      result.msg ="Cập nhật thành công Khoa-Bộ môn";
+
     }
-    res.json(result);
+    res.status(200).json(result);
   } catch (error) {
     res.json(error);
   }

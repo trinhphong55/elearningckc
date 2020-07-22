@@ -22,13 +22,13 @@
                       Mã khoa không được để trống
                     </div>
                     <div *ngIf="maKhoa.errors.minlength">
-                     Mã khoa không được ít 2 kí tự
+                      Mã khoa không được ít 2 kí tự
                     </div>
                     <div *ngIf="maKhoa.errors.pattern">
                       Không được có ký tự đặc biệt
                     </div>
                     <div *ngIf="maKhoa.errors.maxlength">
-                      Mã khoa không được nhiều hơn 6 kí tự
+                      Mã khoa không được nhiều hơn 50 kí tự
                     </div>
                   </div>
                 </div>
@@ -39,15 +39,12 @@
                     <div *ngIf="tenKhoa.errors.required">
                       Tên Khoa không được để trống
                     </div>
-                    <div *ngIf="tenKhoa.errors.minlength">
-                      Tên viết tắt không được ít hơn 4 kí tự.
+                    <div *ngIf="tenKhoa.errors.pattern">
+                      Không được có ký tự đặc biệt
                     </div>
-                     <div *ngIf="tenKhoa.errors.pattern">
-                       Không được có ký tự đặc biệt
-                     </div>
-                     <div *ngIf="tenKhoa.errors.maxlength">
+                    <div *ngIf="tenKhoa.errors.maxlength">
                       Không được nhiều hơn 50 kí tự
-                     </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -61,14 +58,14 @@
                       Tên viết tắt không được để trống
                     </div>
                     <div *ngIf="tenVietTat.errors.minlength">
-                      Tên viết tắt không được ít hơn 2 kí tự.
+                      Tên viết tắt không được ít hơn 4 kí tự.
                     </div>
-                     <div *ngIf="tenVietTat.errors.pattern">
+                    <div *ngIf="tenVietTat.errors.pattern">
                       Không được có ký tự đặc biệt
-                     </div>
-                     <div *ngIf="tenVietTat.errors.maxlength">
-                       Không được dài hơn 6 kí tự
-                     </div>
+                    </div>
+                    <div *ngIf="tenVietTat.errors.maxlength">
+                      Không được dài hơn 15 kí tự
+                    </div>
                   </div>
                 </div>
                 <div class="form-group">
@@ -76,14 +73,12 @@
                   <select class="form-control" formControlName="loaiDonVi">
                     <option value="" disabled>Chọn...</option>
                     <option *ngFor="let loai of loais" [ngValue]=loai.maLoaiDonVi>{{ loai.tenLoaiDonVi }}</option>
-                    <div *ngIf="loaiDonVi.invalid && (loaiDonVi.dirty || loaiDonVi.touched)" class="alert alert-danger">
-
-                      <div *ngIf="loaiDonVi.errors.required">
-                        Loại đơn vị không được để trống
-                      </div>
-
-                    </div>
                   </select>
+                </div>
+                <div *ngIf="loaiDonVi.invalid && (loaiDonVi.dirty || loaiDonVi.touched)" class="alert alert-danger">
+                  <div *ngIf="loaiDonVi.errors.required">
+                    Loại đơn vị không được để trống
+                  </div>
                 </div>
               </div>
               <div class="col-auto">
