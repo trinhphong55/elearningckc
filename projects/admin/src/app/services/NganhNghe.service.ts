@@ -18,7 +18,7 @@ export class NganhNgheService {
 
     getNgangnghe(): Observable<nganhnghe[]> {
         return this.http.get<nganhnghe[]>(this.apiUrl).pipe(
-         tap(recivenganhnghe => console.log(`recivenganhnghe= ${JSON.stringify(recivenganhnghe)}`)),
+         tap(recivenganhnghe => console.log(`recivenganhnghe= thành công`)),
          catchError(error => of([]))
         );
       }
@@ -29,7 +29,7 @@ export class NganhNgheService {
       getDetailNganhNghe(_id: string): Observable<nganhnghe> {
         const url = `${this.apiUrl}/${_id}`;
         return this.http.get<nganhnghe>(this.apiUrl).pipe(
-          tap(selcetnganhnghe => console.log(`selcetnganhnghe = ${JSON.stringify(selcetnganhnghe)}`)),
+          tap(selcetnganhnghe => console.log(`selcetnganhnghe =thành công`)),
           catchError(error => of(this.NganhNgheNull))
         )
       }
@@ -37,7 +37,7 @@ export class NganhNgheService {
       //Them moi 1nganh
       addnganhnghe(nganhnghe: nganhnghe): Observable<nganhnghe> {
         return this.http.post<nganhnghe>(this.apiUrl, nganhnghe, httpOptions).pipe(
-          tap(addNganhNghe => console.log(`addNganhNghe = ${JSON.stringify(addNganhNghe)}`)),
+          tap(addNganhNghe => console.log(`addNganhNghe = thành công`)),
           catchError(error => of(this.NganhNgheNull))
         );
       }
@@ -62,7 +62,7 @@ export class NganhNgheService {
       //Import nganhnghe from Excel
       importNganhNGheFromExcel(nganhnghe: nganhnghe[]): Observable<any> {
         return this.http.post<nganhnghe[]>(this.apiUrl + "/importexcel", nganhnghe, httpOptions).pipe(
-          tap(selectedMonHoc => console.log(`importedExcel = ${JSON.stringify(selectedMonHoc)}`)),
+          tap(selectedMonHoc => console.log(`importedExcel = thành công`)),
           catchError(error => of(this.NganhNgheNull))
         );
       }

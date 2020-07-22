@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalService } from '../../../../services/modal.service';
-
 import { NganhNgheService } from '../../../../services/NganhNghe.service';
 import { BacService } from '../../../../services/Bac.service';
+import { FormControl,FormGroup,FormBuilder,Validator, Validators } from '@angular/forms';
 @Component({
   selector: 'app-modal-nganhnghe',
   templateUrl: './modal-nganhnghe.component.html',
@@ -17,14 +17,12 @@ export class ModalNganhngheComponent implements OnInit {
   tenVietTat: string = "";
   maNganhNghe: string = "";
   maNganhCha: string = "";
-  maBac: string = "";
-  TenBac: string = "";
+  maBac: string = "04";
+  TenBac: string = "Cao Đẳng Nghề";
   _id: any = "";
   constructor(private modalService: ModalService,
-    private nganhngheservice: NganhNgheService,
-    private bacservice: BacService) {
-
-  }
+    private nganhngheservice: NganhNgheService, 
+     private bacservice: BacService,) {}
   ngOnInit(): void {
     this.getdata();
     this.getbac();
@@ -46,8 +44,6 @@ export class ModalNganhngheComponent implements OnInit {
       error => {
         console.log(error);
       });
-    return this.data;
-
   }
   Detail(data) {
     this.nganhngheservice.getDetailNganhNghe(data._id)
@@ -79,16 +75,30 @@ export class ModalNganhngheComponent implements OnInit {
     this.tenVietTat = "";
     this.maNganhNghe = "";
     this.maNganhCha = "";
+    this._id="";
     // this.maBac = "";
     // this.TenBac = "Cao Đccccẳng";
   }
   add() {
     if (this.tenNganhNghe == "" || this.tenVietTat == "" || this.maNganhNghe == "") {
-      alert(this.tenNganhNghe)
+      alert("Dữ liệu không được để trống")
     }
     else {
       this.getbac();
-      console.log(this.getbac());
+      if(this.TenBac=="Cao Đẳng Nghề")
+      {
+        this.maBac="04"
+      }
+      else if(this.TenBac=="Cao Đẳng")
+      {
+        this.maBac="03"
+      }
+      else 
+      {
+        this.maBac="05"
+      }
+
+
       this.arr = { maNganhNghe: this.maNganhNghe, tenNganhNghe: this.tenNganhNghe, tenVietTat: this.tenVietTat, maBac: this.maBac, maNganhCha: this.maNganhCha };
       this.nganhngheservice.addnganhnghe(this.arr).subscribe(
         data => {
@@ -107,6 +117,18 @@ export class ModalNganhngheComponent implements OnInit {
       alert("Chưa Đủ dữ liệu")
     }
     else {
+      if(this.TenBac=="Cao Đẳng Nghề")
+      {
+        this.maBac="04"
+      }
+      else if(this.TenBac=="Cao Đẳng")
+      {
+        this.maBac="03"
+      }
+      else 
+      {
+        this.maBac="05"
+      }
       this.arr = { maNganhNghe: this.maNganhNghe, tenNganhNghe: this.tenNganhNghe, tenVietTat: this.tenVietTat, maBac: this.maBac, maNganhCha: this.maNganhCha };
       this.nganhngheservice.updateMonHoc(this._id, this.arr).subscribe(
         data => {
