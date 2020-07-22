@@ -11,6 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./modal-khoabomon.component.css'],
 })
 export class ModalKhoabomonComponent implements OnInit {
+
   khoas: any;
   currentKhoa = null;
   currentIndex = -1;
@@ -50,20 +51,18 @@ export class ModalKhoabomonComponent implements OnInit {
       loaiDonVi: new FormControl('', [Validators.required]),
       maKhoa: new FormControl('', [
         Validators.required,
-        Validators.minLength(2),
-        Validators.maxLength(6),
+        Validators.maxLength(50),
         Validators.pattern('[a-zA-Z0-9]*'),
       ]),
       tenKhoa: new FormControl('', [
         Validators.required,
-        Validators.minLength(4),
         Validators.maxLength(50),
         Validators.pattern('[a-zA-Z0-9]*'),
       ]),
       tenVietTat: new FormControl('', [
         Validators.required,
-        Validators.minLength(2),
-        Validators.maxLength(6),
+        Validators.minLength(4),
+        Validators.maxLength(15),
         Validators.pattern('[a-zA-Z0-9]*'),
       ]),
     });
@@ -90,7 +89,6 @@ export class ModalKhoabomonComponent implements OnInit {
     this.loaiDonviService.getAll().subscribe(
       (data) => {
         this.loais = data;
-
       },
       (error) => {
         console.log(error);
@@ -122,8 +120,8 @@ export class ModalKhoabomonComponent implements OnInit {
 
     this.KhoaBonmonService.create(data).subscribe(
       (response) => {
-        // this.result.msg = response.msg;
-        // this.result.status = response.status;
+        //this.result.msg = response.msg;
+        //this.result.status = response.status;
         console.log(response);
 
         this.retriveKhoaBoMon();
@@ -147,12 +145,6 @@ export class ModalKhoabomonComponent implements OnInit {
   }
   // cập nhật KhoaBoMonKhoaBoMon
   updateModal(id, khoa) {
-    // if (
-    //   this.addForm.value.tenKhoa &&
-    //   this.addForm.value.maKhoa  &&
-    //   this.addForm.value.tenVietTat &&
-    //   this.addForm.value.maLoai
-    // ) {
 
     khoa = {
       tenKhoa: this.addForm.value.tenKhoa,
@@ -163,12 +155,10 @@ export class ModalKhoabomonComponent implements OnInit {
       nguoiChinhSua: 'huy',
     };
 
-    //}
-
     this.KhoaBonmonService.update(id, khoa).subscribe(
       (response) => {
-        // this.result.msg = response.msg;
-        // this.result.status = response.status;
+       // this.result.msg = response.msg;
+        //this.result.status = response.status;
         console.log(response);
         //load lại dữ liệuliệu
         this.retriveKhoaBoMon();
@@ -182,8 +172,8 @@ export class ModalKhoabomonComponent implements OnInit {
   deleteModal(khoa_id) {
     this.KhoaBonmonService.delete(khoa_id).subscribe(
       (response) => {
-        // this.result.msg = response.msg;
-        // this.result.status = response.status;
+        //this.result.msg = response.msg;
+        //this.result.status = response.status;
         console.log(response);
         //load lại dữ liệuliệu
         this.retriveKhoaBoMon();

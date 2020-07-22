@@ -20,7 +20,7 @@
     "express-validator": "^6.6.0",
     "md5": "^2.2.1",
     "mongodb": "^3.5.9",
-    "mongoose": "^5.9.23"
+    "mongoose": "^5.9.25"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"

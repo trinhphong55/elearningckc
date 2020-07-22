@@ -11,27 +11,27 @@
             <div class="col-3">
               <div class="form-group">
                 <label>Tên môn học</label>
-                <input class="form-control">
+                <input class="form-control" [(ngModel)]="selectedMonHoc.tenMonHoc">
               </div>
               <div class="form-group">
                 <label>Tên viết tắt</label>
-                <input class="form-control">
+                <input class="form-control"  [(ngModel)]="selectedMonHoc.tenVietTat" >
               </div>
             </div>
             <div class="col-3">
               <div class="form-group">
                 <label>Tên tiếng anh</label>
-                <input class="form-control">
+                <input class="form-control" [(ngModel)]="selectedMonHoc.tenTiengAnh">
               </div>
               <div class="form-group">
                 <label>Tên tiếng anh viết tắt</label>
-                <input class="form-control">
+                <input class="form-control"  [(ngModel)]="selectedMonHoc.tenVietTatTiengAnh">
               </div>
             </div>
             <div class="col-3">
               <div class="form-group">
                 <label>Loại môn học</label>
-                <select class="form-control">
+                <select class="form-control" [(ngModel)]="selectedMonHoc.loaiMonHoc">
                   <option>Thực hành</option>
                   <option>Lý thuyết</option>
                   <option>Module</option>
@@ -41,11 +41,11 @@
             </div>
             <div class="col-auto">
               <div class="modal_chucnang__group__button">
-                <button class="modal_chucnang__button btn btn-outline-primary px-4 mx-2"><img
+                <button (click)="postMonHoc()" class="modal_chucnang__button btn btn-outline-primary px-4 mx-2"><img
                     class="modal_chucnang__button__icon mb-2" src="assets/img/icons/add.png" alt="image icon">
                   <div>Thêm mới</div>
                 </button>
-                <button class="modal_chucnang__button btn btn-outline-success px-4 mx-2"><img
+                <button (click)="updateMonHoc()" class="modal_chucnang__button btn btn-outline-success px-4 mx-2"><img
                     class="modal_chucnang__button__icon mb-2" src="assets/img/icons/upgrade.png" alt="image icon">
                   <div>Cập nhật</div>
                 </button>
@@ -53,6 +53,10 @@
                     class="modal_chucnang__button__icon mb-2" src="assets/img/icons/error.png" alt="image icon">
                   <div>Huỷ</div>
                 </button>
+                <button (click)="importExcel()" class="modal_chucnang__button btn btn-outline-danger px-4 mx-2" type="reset"><img
+                  class="modal_chucnang__button__icon mb-2" src="assets/img/icons/error.png" alt="image icon">
+                <div>Import Excel</div>
+              </button>
               </div>
             </div>
           </div>
@@ -69,7 +73,7 @@
               </select><span class="text-nowrap">&nbsp; hàng</span>
             </label>
             <label class="ml-auto mb-0 d-flex align-items-center"><span class="text-nowrap">Tìm kiếm: &nbsp;</span>
-              <input class="form-control form-control-sm" placeholder="Tìm kiếm">
+              <input class="form-control form-control-sm" placeholder="Tìm kiếm" [(ngModel)]="searchMonHoc">
             </label>
           </div>
           <table class="modal_chucnang__table table table-hover" id="danhsach_monhoc">
@@ -83,7 +87,7 @@
               <th class="text-center" scope="col"><span
                   class="modal_chucnang__button__save mdi mdi-content-save-outline mdi-24px"></span></th>
             </thead>
-            <tfoot class="d-none">
+            <!-- <tfoot class="d-none">
               <tr>
                 <td style="max-width: 100px">
                   <input class="form-control">
@@ -108,34 +112,35 @@
                   </select>
                 </td>
               </tr>
-            </tfoot>
-            <tbody>
+            </tfoot> -->
+            <tbody *ngFor="let monHoc of dsMonHoc | filter:searchMonHoc">
               <tr>
                 <td style="max-width: 100px">
-                  <input class="form-control" disabled value="0001">
+                  <input class="form-control" disabled [value]="monHoc.maMonHoc">
                 </td>
                 <td>
-                  <input class="form-control" disabled value="Công nghệ thông tin">
+                  <input class="form-control" disabled [value]="monHoc.tenMonHoc">
                 </td>
                 <td>
-                  <input class="form-control" disabled value="CNTT">
+                  <input class="form-control" disabled [value]="monHoc.tenVietTat">
                 </td>
                 <td>
-                  <input class="form-control" disabled value="Information Technology">
+                  <input class="form-control" disabled [value]="monHoc.tenTiengAnh">
                 </td>
                 <td>
-                  <input class="form-control" disabled value="IT">
+                  <input class="form-control" disabled [value]="monHoc.tenVietTatTiengAnh">
                 </td>
                 <td>
-                  <select class="form-control" disabled>
-                    <option>Thực hành</option>
-                    <option>Lý thuyết</option>
-                    <option>Module</option>
-                  </select>
+                  <input class="form-control" disabled [value]="monHoc.loaiMonHoc">
                 </td>
-                <td class="text-center"><span
-                    class="modal_chucnang__button__edit mdi mdi-file-document-edit-outline mdi-24px"></span><span
-                    class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px"></span></td>
+                <td class="text-center">
+                  <span (click)="onSelect(monHoc.maMonHoc)"
+                    class="modal_chucnang__button__edit mdi mdi-file-document-edit-outline mdi-24px">
+                  </span>
+                  <span (click)="deleteMonHoc(monHoc.maMonHoc)"
+                    class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px" >
+                  </span>
+                </td>
               </tr>
             </tbody>
           </table>
