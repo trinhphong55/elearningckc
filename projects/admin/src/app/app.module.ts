@@ -7,6 +7,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ApiService } from './services/api.service';
 import { DataTablesModule } from 'angular-datatables';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -50,6 +52,9 @@ import { ModalGroupfacebookComponent } from './components/modal/facebook/modal-g
 import { ModalPagefacebookComponent } from './components/modal/facebook/modal-pagefacebook/modal-pagefacebook.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { ModalQuanlyheadercnttComponent } from './components/modal/cntt/modal-quanlyheadercntt/modal-quanlyheadercntt.component';
+import { ModalImportExcelMonhocComponent } from './components/modal/chuongtrinhdaotao/import-excel/modal-import-excel-monhoc/modal-import-excel-monhoc.component';
+import { ModalImportExcelNganhNgheComponent } from './components/modal/chuongtrinhdaotao/import-excel/modal-import-excel-nganhnghe/modal-import-excel-nganhnghe.component';
+
 import { PageTtthComponent } from './pages/page-ttth/page-ttth.component';
 import { SidebarTtthComponent } from './components/sidebar/sidebar-ttth/sidebar-ttth.component';
 import { ModalLogoComponent } from './components/modal/ttth/modal-logo/modal-logo.component';
@@ -70,7 +75,6 @@ import { ModalQuanlytintuccnttComponent } from './components/modal/cntt/modal-qu
 import { ModalThemtintuccnttComponent } from './components/modal/cntt/modal-themtintuccntt/modal-themtintuccntt.component';
 import { ModalChinhsuatintuccnttComponent } from './components/modal/cntt/modal-chinhsuatintuccntt/modal-chinhsuatintuccntt.component';
 import { ModalQuanlyloaitintuccnttComponent } from './components/modal/cntt/modal-quanlyloaitintuccntt/modal-quanlyloaitintuccntt.component';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -115,6 +119,8 @@ import { ModalQuanlyloaitintuccnttComponent } from './components/modal/cntt/moda
     ModalPagefacebookComponent,
     ModalComponent,
     ModalQuanlyheadercnttComponent,
+    ModalImportExcelMonhocComponent,
+    ModalImportExcelNganhNgheComponent,
     PageTtthComponent,
     SidebarTtthComponent,
     ModalLogoComponent,
@@ -145,7 +151,8 @@ import { ModalQuanlyloaitintuccnttComponent } from './components/modal/cntt/moda
     FormsModule,
     ReactiveFormsModule,
     DataTablesModule,
-    CKEditorModule
+    CKEditorModule,
+    Ng2SearchPipeModule,
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]
