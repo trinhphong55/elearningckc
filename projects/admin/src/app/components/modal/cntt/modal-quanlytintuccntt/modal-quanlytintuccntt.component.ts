@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalService } from '../../../../services/modal.service';
+import { TintucCnttService } from '../../../../services/cntt/tintuc-cntt.service'
 
 @Component({
   selector: 'app-modal-quanlytintuccntt',
@@ -7,8 +8,11 @@ import { ModalService } from '../../../../services/modal.service';
   styleUrls: ['./modal-quanlytintuccntt.component.css']
 })
 export class ModalQuanlytintuccnttComponent implements OnInit {
+  TinTuc: any = [];
 
-  constructor(private modalService: ModalService) { }
+  constructor(private modalService: ModalService, private tintucCnttService: TintucCnttService) {
+    this.loadDanhSachTinTuc()
+  }
 
   ngOnInit(): void {
   }
@@ -17,5 +21,11 @@ export class ModalQuanlytintuccnttComponent implements OnInit {
   }
   openModal(id: string) {
     this.modalService.open(id)
+  }
+  
+  loadDanhSachTinTuc() {
+    this.tintucCnttService.danhSachTinTuc().subscribe((data) => {
+      this.TinTuc = data;
+    })
   }
 }

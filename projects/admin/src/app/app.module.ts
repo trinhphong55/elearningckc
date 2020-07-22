@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ApiService } from './services/api.service';
 import { DataTablesModule } from 'angular-datatables';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { TintucCnttService } from './services/cntt/tintuc-cntt.service'
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -147,7 +148,7 @@ import { ModalTintucComponent } from './components/modal/ttth/modal-tintuc/modal
     DataTablesModule,
     CKEditorModule
   ],
-  providers: [ApiService],
+  providers: [ApiService,TintucCnttService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
