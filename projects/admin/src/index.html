@@ -52,7 +52,7 @@
       }
       //User đã login facebook nhưng chưa login ứng dụng hoặc chưa login facebook
       else{
-        alert('Login fail!! Please login again');
+        ShowLoginButton();
       }
       
     };
@@ -65,11 +65,10 @@
 
     //Hàm welcome sử dụng API sau khi login
     function showWelcome() { 
-      alert('Welcome!  Fetching your information.... ');
       FB.api('/me', function(response) {
         document.getElementById('btnLoginFB').setAttribute('style', 'display:none');
-        alert(response.name + ' access granted');
-        document.getElementById('status').innerHTML ='Thanks for logging in, ' + response.name +'!';
+        console.log(response.name + ' access granted');
+        document.getElementById('status').innerHTML =response.name +' access granted ' +'!';
         document.getElementById('status').setAttribute('style', 'display:block');
       });
     }
