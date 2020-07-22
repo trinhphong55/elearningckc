@@ -70,6 +70,7 @@ import { ModalQuanlytintuccnttComponent } from './components/modal/cntt/modal-qu
 import { ModalThemtintuccnttComponent } from './components/modal/cntt/modal-themtintuccntt/modal-themtintuccntt.component';
 import { ModalChinhsuatintuccnttComponent } from './components/modal/cntt/modal-chinhsuatintuccntt/modal-chinhsuatintuccntt.component';
 import { ModalQuanlyloaitintuccnttComponent } from './components/modal/cntt/modal-quanlyloaitintuccntt/modal-quanlyloaitintuccntt.component';
+import { ModalImportExcelKhoabomonComponent } from './components/modal/chuongtrinhdaotao/modal-import-excel-khoabomon/modal-import-excel-khoabomon.component';
 
 @NgModule({
   declarations: [
@@ -135,7 +136,8 @@ import { ModalQuanlyloaitintuccnttComponent } from './components/modal/cntt/moda
     ModalThemtintuccnttComponent,
     ModalChinhsuatintuccnttComponent,
     ModalHomeChuongtrinhdaotaoComponent,
-    ModalQuanlyloaitintuccnttComponent
+    ModalQuanlyloaitintuccnttComponent,
+    ModalImportExcelKhoabomonComponent
   ],
   imports: [
     BrowserModule,

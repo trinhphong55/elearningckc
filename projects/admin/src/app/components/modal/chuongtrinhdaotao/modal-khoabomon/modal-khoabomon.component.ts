@@ -22,7 +22,11 @@ export class ModalKhoabomonComponent implements OnInit {
   //status
   editting = false;
   isDone = false;
-
+//load component excel
+  importExcel(){
+    this.modalService.close('ctdt_khoabomon');
+    this.modalService.open('ctdt_importexcelkhoabomon');
+  }
   setStatusElementList() {
     this.statusElementList = {
       'bg-primary': this.editting,
