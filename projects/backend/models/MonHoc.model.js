@@ -9,18 +9,23 @@ const MonHocSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true,
+    trim: true,
   },
   tenVietTat: {
     type: String,
+    trim: true,
   },
   loaiMonHoc: {
     type: String,
+    trim: true,
   },
   tenTiengAnh: {
     type: String,
+    trim: true,
   },
   tenVietTatTiengAnh: {
     type: String,
+    trim: true,
   },
   nguoiTao: {
     type: String,
@@ -44,6 +49,6 @@ const MonHocSchema = new mongoose.Schema({
   },
 });
 
-const MonHoc = mongoose.model('MonHoc', MonHocSchema);
+const MonHoc = mongoose.model('MonHoc', MonHocSchema, 'MonHoc');
 
 module.exports = MonHoc;
