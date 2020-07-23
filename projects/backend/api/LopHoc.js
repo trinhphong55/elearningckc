@@ -73,7 +73,7 @@ exports.insert = async (req, res) => {
   try {
     let idIsExist = 0;
     let nameIsExist = 0;
-    
+
     const err = validationResult(req);
     if (!err.isEmpty()) {
       res.status(422).json(err.errors);

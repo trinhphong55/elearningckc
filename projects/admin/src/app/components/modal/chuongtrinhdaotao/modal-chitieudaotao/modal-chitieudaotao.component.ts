@@ -14,8 +14,8 @@ import { NganhNgheService } from '../../../../services/NganhNghe.service';
 export class ModalChitieudaotaoComponent implements OnInit {
   bacList: any;
   loaiHinhList = [
-    { maLoai: 'CQ', tenLoai: 'Chính quy' },
-    { maLoai: 'LT', tenLoai: 'Liên thông' },
+    { maLoai: '1', tenLoai: 'Chính quy' },
+    { maLoai: '2', tenLoai: 'Liên thông' },
   ];
   nganhList: any;
 
@@ -23,8 +23,11 @@ export class ModalChitieudaotaoComponent implements OnInit {
   chiTieuGroup: FormGroup;
   chiTieuList = new FormArray([]);
   lops = [];
+  lopHocs: any;
 
-  setLop = (maLopHoc,tenLop, tenVietTat, linkFBLopHoc) => {
+  msg = '';
+
+  setLop = (maLopHoc, tenLop, tenVietTat, linkFBLopHoc) => {
     return {
       maLopHoc: maLopHoc,
       tenLop: tenLop,
@@ -49,16 +52,22 @@ export class ModalChitieudaotaoComponent implements OnInit {
 
   ngOnInit(): void {
     this.addForm = new FormGroup({
-      soLop: new FormControl('', [Validators.required]),
       bac: new FormControl('', [Validators.required]),
       loaiHinhDaoTao: new FormControl('', [Validators.required]),
-      khoa: new FormControl('', [Validators.required]),
-      nganh: new FormControl('', [Validators.required]),
+      khoa: new FormControl(17, [Validators.required]),
     });
     this.getNganhNghe();
     this.getbac();
+    this.getLopHoc();
   }
-
+  getLopHoc() {
+    this.lopHocService.getAll().subscribe(
+      (lop) => {
+        this.lopHocs = lop;
+      },
+      (err) => (this.msg = err)
+    );
+  }
   getbac() {
     this.bacservice.getBac().subscribe(
       (bac) => {
@@ -116,11 +125,17 @@ export class ModalChitieudaotaoComponent implements OnInit {
       (err) => console.log(err)
     );
   }
-
-
+  onClickCreate() {
+    if (!this.addForm.value.khoa || !this.addForm.value.loaiHinhDaoTao) {
+      this.msg = 'Vui lòng chọn Loại hình đào tạo và nhập khóa học';
+    } else {
+      this.createClassModal();
+      this.msg = 'Tạo thành công danh sách Lớp theo Ngành';
+    }
+  }
   createClassModal() {
     this.lopNganhs = [];
-    let index = 0;
+    let index = 1;
     this.chiTieuList.value.forEach((el) => {
       console.log(el);
 
@@ -136,17 +151,21 @@ export class ModalChitieudaotaoComponent implements OnInit {
           ' ' +
           this.addForm.value.khoa +
           String.fromCharCode(97 + i).toUpperCase();
-        console.log(index);
+        var maLop =
+          el.maBac +
+          '' +
+          el.maNganh +
+          '' +
+          this.addForm.value.loaiHinhDaoTao +
+          this.addForm.value.khoa +
+          (i + 1);
         this.lops.push(tenLop);
-        this.addLopHoc(this.setLop(index,tenLop,tenLop,'facebook.com'));
+        this.addLopHoc(this.setLop(maLop, tenLop, tenLop, 'facebook.com'));
       }
       this.lopNganh = { maNganhNghe: el.maNganh, dsLop: this.lops };
       this.lopNganhs.push(this.lopNganh);
-
       this.lops = [];
     });
-
-    console.log(this.lopNganhs);
   }
   closeModal(id: string) {
     this.modalService.close(id);
