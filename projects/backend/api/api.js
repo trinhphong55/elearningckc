@@ -14,6 +14,7 @@ router.use('/', MonHoc);
 const boMon = require("../api/bomon");
 const khoabomonController = require("../api/khoabomon");
 const loaidonviController = require("../api/loaidonvi");
+const LopHoc = require("../api/LopHoc");
 //
 const validate = khoabomonController.checkValidate();
 
@@ -45,6 +46,17 @@ router.post("/bomon", boMon.checkValidate(), boMon.postKhoaBoMon);
 router.delete("/bomon/:id", boMon.deleteKhoaBoMon);
 //Cập nhật KHoaBoMon theo :id và data truyền vào ( lư ý data ở request.body)
 router.put("/bomon/:id",boMon.checkValidate(), boMon.updateKhoaBoMon);
+
+//Routes LopHoc
+//Lấy toàn bộ dữ liệu từ KhoaBoMon
+router.get("/lophoc", LopHoc.getAll);
+router.get("/lophoc/:id", LopHoc.getOne);
+//Thêm dữ liệu vào KhoaBoMon
+router.post("/lophoc",LopHoc.checkValidate(),LopHoc.insert);
+//Xóa KhoaBoMon theo :id truyền vào
+router.delete("/lophoc/:id", LopHoc.delete);
+//Cập nhật KHoaBoMon theo :id và data truyền vào ( lư ý data ở request.body)
+router.put("/lophoc/:id",LopHoc.checkValidate(), LopHoc.update);
 
 //Routes LoaiDonVi
 router.get("/loaidonvi", loaidonviController.getLoaiDonVi);

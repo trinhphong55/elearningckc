@@ -1,3 +1,4 @@
+import { LopHocService } from './../../../../services/lop-hoc.service';
 import { nganhnghe } from './../../../../interfaces/NganhNghe.interface';
 import { BacService } from './../../../../services/Bac.service';
 import { FormControl, FormGroup, Validators, FormArray } from '@angular/forms';
@@ -11,20 +12,39 @@ import { NganhNgheService } from '../../../../services/NganhNghe.service';
   styleUrls: ['./modal-chitieudaotao.component.css'],
 })
 export class ModalChitieudaotaoComponent implements OnInit {
-  bacList:any;
+  bacList: any;
   loaiHinhList = [
     { maLoai: 'CQ', tenLoai: 'Chính quy' },
     { maLoai: 'LT', tenLoai: 'Liên thông' },
   ];
-  nganhList:any;
+  nganhList: any;
+
   addForm: FormGroup;
+  chiTieuGroup: FormGroup;
   chiTieuList = new FormArray([]);
   lops = [];
+
+  setLop = (maLopHoc,tenLop, tenVietTat, linkFBLopHoc) => {
+    return {
+      maLopHoc: maLopHoc,
+      tenLop: tenLop,
+      tenVietTat: tenVietTat,
+      linkFBLopHoc: linkFBLopHoc,
+      nguoiTao: 'TranDinhHuy',
+      nguoiChinhSua: 'TranDinhHuy',
+    };
+  };
+  lopNganh: {
+    maNganhNghe: '';
+    dsLop: any;
+  };
+  lopNganhs = [];
 
   constructor(
     private modalService: ModalService,
     private nganhngheservice: NganhNgheService,
-    private bacservice: BacService
+    private bacservice: BacService,
+    private lopHocService: LopHocService
   ) {}
 
   ngOnInit(): void {
@@ -53,9 +73,20 @@ export class ModalChitieudaotaoComponent implements OnInit {
   getNganhNghe() {
     this.nganhngheservice.getNgangnghe().subscribe(
       (data) => {
+        this.chiTieuGroup = new FormGroup({
+          maNganh: new FormControl(''),
+          soChiTieu: new FormControl(''),
+        });
         this.nganhList = data;
-        this.nganhList.forEach(element => {
-          this.chiTieuList.push(new FormControl(''));
+        this.nganhList.forEach((element) => {
+          this.chiTieuList.push(
+            new FormGroup({
+              maBac: new FormControl(element.maBac),
+              maNganh: new FormControl(element.maNganhNghe),
+              tenVietTat: new FormControl(element.tenVietTat),
+              soChiTieu: new FormControl(''),
+            })
+          );
         });
         console.log(this.nganhList);
       },
@@ -63,35 +94,59 @@ export class ModalChitieudaotaoComponent implements OnInit {
         console.log(error);
       }
     );
+  }
 
+  convertTenBac(maBac: string) {
+    let ten = 'TKT';
+    this.bacList.forEach((element) => {
+      if (element.maBac == maBac) ten = element.tenVietTat;
+    });
+    return ten;
+  }
+  convertTenNganh(maNganh: string) {
+    let ten = 'TKT';
+    this.nganhList.forEach((element) => {
+      if (element.maNganhNghe == maNganh) ten = element.tenVietTat;
+    });
+    return ten;
+  }
+  addLopHoc(data) {
+    this.lopHocService.create(data).subscribe(
+      (res) => console.log(res),
+      (err) => console.log(err)
+    );
   }
 
 
-  addChiTieu() {
-    this.chiTieuList.push(new FormControl(''));
-  }
+  createClassModal() {
+    this.lopNganhs = [];
+    let index = 0;
+    this.chiTieuList.value.forEach((el) => {
+      console.log(el);
 
-  createClassModal(nganhnghe) {
-    // console.log(this.loaiHinhList);
-    // console.log(this.bacList);
-    // console.log(this.addForm.value);
-    //console.log(this.chiTieuCtl.value);
-    // console.log(this.chiTieuList);
-    // console.log(this.chiTieuList.value);
-    console.log(nganhnghe);
-    let len = 4;
-    let convert = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+      let len = el.soChiTieu;
 
-    for (let i = 0; i < len; i++) {
-      this.lops.push(
-        this.addForm.value.bac +
+      // Bac + Nganh + Khóa  + STT
+      for (let i = 0; i < len; i++) {
+        index++;
+        var tenLop =
+          this.convertTenBac(el.maBac) +
           ' ' +
-          this.addForm.value.nganh +
+          this.convertTenNganh(el.maNganh) +
           ' ' +
           this.addForm.value.khoa +
-          convert[i]
-      );
-    }
+          String.fromCharCode(97 + i).toUpperCase();
+        console.log(index);
+        this.lops.push(tenLop);
+        this.addLopHoc(this.setLop(index,tenLop,tenLop,'facebook.com'));
+      }
+      this.lopNganh = { maNganhNghe: el.maNganh, dsLop: this.lops };
+      this.lopNganhs.push(this.lopNganh);
+
+      this.lops = [];
+    });
+
+    console.log(this.lopNganhs);
   }
   closeModal(id: string) {
     this.modalService.close(id);
