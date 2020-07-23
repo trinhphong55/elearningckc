@@ -28,6 +28,7 @@ router.use('/', BacRoutes)
 
 //Lấy toàn bộ dữ liệu từ KhoaBoMon
 router.get("/khoabomon", khoabomonController.getKhoaBonMon);
+router.get("/khoabomon/:id", khoabomonController.getOneKhoaBoMon);
 //Thêm dữ liệu vào KhoaBoMon
 router.post("/khoabomon", validate, khoabomonController.postKhoaBoMon);
 //Xóa KhoaBoMon theo :id truyền vào
@@ -37,6 +38,7 @@ router.put("/khoabomon/:id",validate, khoabomonController.updateKhoaBoMon);
 
 //Lấy toàn bộ dữ liệu từ KhoaBoMon
 router.get("/bomon", boMon.getKhoaBonMon);
+router.get("/bomon/:id", boMon.getOneKhoaBoMon);
 //Thêm dữ liệu vào KhoaBoMon
 router.post("/bomon", boMon.checkValidate(), boMon.postKhoaBoMon);
 //Xóa KhoaBoMon theo :id truyền vào
