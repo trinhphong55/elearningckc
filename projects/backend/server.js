@@ -3,9 +3,12 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const fs = require('fs')
-const app = express()
+const cors = require('cors')
 
-require('./crawl').crawl()
+
+const app = express()
+const cors = require('cors')
+// require('./crawl').crawl()
 
 const MONGODB_URI = 'mongodb://elearning_team:123@103.92.26.177:27017/testAngularckc' //'mongodb://localhost:27017/'
 
@@ -35,6 +38,7 @@ mongoose.connection.once('open', () => {
 // Make sure you place body-parser before your CRUD handlers!
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
+app.use(cors())
 
 app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*')
@@ -50,7 +54,7 @@ app.get('/', (req, res) => {
   res.send('Back end API')
 })
 
-const server = https.createServer(httpsOptions, app)
+https.createServer(httpsOptions, app)
   .listen(PORT, () => {
     console.log('Backend API running at port ' + PORT)
   })
