@@ -9,7 +9,7 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 
   <!-- SCRIPT FACEBOOK -->
-  
+
   <!-- Script để sử dụng social plugin facebook -->
   <script async defer crossorigin="anonymous"
     src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v7.0&appId=726531241502023&autoLogAppEvents=1"
@@ -34,7 +34,7 @@
       FB.getLoginStatus(function (response) {
         statusChangeCallback(response);
       });
-      
+
     };
 
      //Yêu cầu login Facebook và cấp quyền
@@ -54,9 +54,9 @@
       else{
         ShowLoginButton();
       }
-      
+
     };
-   
+
     // Hiển thị nút đăng nhập
     function ShowLoginButton() {
             document.getElementById('btnLoginFB').setAttribute('style', 'display:block');
@@ -64,16 +64,16 @@
         }
 
     //Hàm welcome sử dụng API sau khi login
-    function showWelcome() { 
+    function showWelcome() {
       FB.api('/me', function(response) {
         document.getElementById('btnLoginFB').setAttribute('style', 'display:none');
         console.log(response.name + ' access granted');
-        document.getElementById('status').innerHTML =response.name +' access granted ' +'!';
+        document.getElementById('status').innerHTML =response.name;
         document.getElementById('status').setAttribute('style', 'display:block');
       });
     }
 
-    
+
   </script>
 
   <script>

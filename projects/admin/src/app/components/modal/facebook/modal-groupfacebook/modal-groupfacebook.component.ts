@@ -8,9 +8,9 @@ import { GroupfbService } from '../../../../services/groupfb.service';
   styleUrls: ['./modal-groupfacebook.component.css']
 })
 export class ModalGroupfacebookComponent implements OnInit {
-  nganhs:any;
+  data:any;
   constructor(private modalService: ModalService,private groupFBService: GroupfbService) { }
-
+  searchGroup;
   ngOnInit(): void {
     this.getAll();
   }
@@ -18,9 +18,8 @@ export class ModalGroupfacebookComponent implements OnInit {
   getAll(){
     this.groupFBService.getAll().subscribe(
       data => {
-        this.nganhs = data;
-        console.log(this.nganhs);
-
+        this.data = data;
+        console.log(this.data);
       }
     );
   }

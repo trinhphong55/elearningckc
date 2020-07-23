@@ -3,13 +3,11 @@ const group = require('../models/group.model');
 
 
 exports.getAll = async (req, res) => {
-    try {
-        console.log("test");
-        const g = await group.find();
-        console.log(g);
-        res.json(g);
-    } catch (error) {
-        res.json(error);
-    }
+  try {
+    var data = await group.find().exec();
+    res.json(data);
+  } catch (error) {
+    res.json({ message: error });
+  }
 }
 

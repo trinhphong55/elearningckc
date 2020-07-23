@@ -11,7 +11,7 @@
             <div class="col-3">
               <div class="form-group">
                 <label> Tên Group</label>
-                <input class="form-control" placeholder="Tên Group...">
+                <input class="form-control" placeholder="Tên Group..." >
                 <label> Link Group</label>
                 <input class="form-control" placeholder="Link Group...">
                 <label> ID Group</label>
@@ -72,7 +72,7 @@
               </select><span class="text-nowrap">&nbsp; hàng</span>
             </label>
             <label class="ml-auto mb-0 d-flex align-items-center"><span class="text-nowrap">Tìm kiếm: &nbsp;</span>
-              <input class="form-control form-control-sm" placeholder="Tìm kiếm">
+              <input class="form-control form-control-sm" placeholder="Tìm kiếm" [(ngModel)]="searchGroup">
             </label>
           </div>
           <table class="modal_chucnang__table table table-hover" id="">
@@ -83,19 +83,19 @@
               <th scope="col" class="text-center">Số lượng bài viết</th>
               <th scope="col" class="text-center">Tác vụ</th>
             </thead>
-            <tbody>
+            <tbody *ngFor="let d of data |filter: searchGroup">
               <tr>
                 <td class="text-center">
-                  <label for="">123124</label>
+                  <label >{{d.id_Group}}</label>
                 </td>
                 <td class="text-center">
-                  <label for="">IT-CKC</label>
+                  <label >{{d.linkGroup}}</label>
                 </td>
                 <td class="text-center">
-                  <label for="">http:/fb.com</label>
+                  <label >{{d.tenGroup}}</label>
                 </td>
                 <td class="text-center">
-                  <label for="">54</label>
+                  <label>{{d.soLuongBaiViet}}</label>
                 </td>
                 <td class="text-center">
                   <div class="form-group">
