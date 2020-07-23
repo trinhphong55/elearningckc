@@ -2,20 +2,19 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var schema = new Schema({
-  maTT : {type : String},
-  maLTT : {type : String},
-  maLTTCha : {type : String},
-  tieuDe : {type : String},
-  noiDungNgan : {type : String},
-  noiDung : {type : String},
-  anhDaiDien : {type : String},
-  nguoiViet : {type : String},
-  ngayViet : {type : String},
-  nguoiChinhSua : {type : String},
-  ngayChinhSua : {type : String},
-  trangThai : {type : String},
-
-
+  loaiBaiViet: { type: String },
+  maDanhMuc: { type: String },
+  maBaiViet: { type: String },
+  tieuDe: { type: String },
+  moTaNgan: { type: String },
+  noiDung: { type: String },
+  anhBia: { type: String },
+  nguoiViet: { type: String },
+  thoiGianDangBai: { type: Date },
+  thongBaoKhanCap: { type: Boolean },
+  created_at: { type: Date },
+  updated_at: { type: Date },
+  trangThai: { type: Number },
 })
 
-module.exports = mongoose.model('TinTuc', schema, 'cnttTinTuc')
+module.exports = mongoose.model('TinTuc', schema, 'cnttBaiViet')

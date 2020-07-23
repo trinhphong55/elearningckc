@@ -62,7 +62,7 @@ const server = https.createServer(httpsOptions, app)
 const path = require('path'),
       cors = require('cors')
 //cntt-db
-mongoose.connect('mongodb://127.0.0.1:27017/test', { useNewUrlParser: true, useFindAndModify: false,useCreateIndex: true, useUnifiedTopology: true }, function (err, db) {
+mongoose.connect('mongodb://127.0.0.1:27017/DATNWEBKHOACKC', { useNewUrlParser: true, useFindAndModify: false,useCreateIndex: true, useUnifiedTopology: true }, function (err, db) {
     if (err) {
         console.log("fail to connect db");
     } else {

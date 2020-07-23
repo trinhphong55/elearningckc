@@ -22,7 +22,25 @@ router.get('/tintuc/:id', (req, res) => {
 })
 // add Tintuc add
 router.post('/taotintuc', (req, res) => {
+  TinTuc.save(req.body, (err, data) => {
+    if (err) {
+      return next(err)
+    }
+    res.json(data)
+  })
+})
+
+router.post('/xoatintuc/:id', (req, res, next) => {
+  TinTuc.update({ _id: req.body._id }, { $set: { trangThai: 0 } }, (err, data) => {
+    if (err) {
+      console.log(err)
+      return next(err)
+    }
+    console.log(ok)
+    res.json(data)
+  })
 
 })
+
 module.exports = router
 
