@@ -71,6 +71,7 @@ import { ModalThemtintuccnttComponent } from './components/modal/cntt/modal-them
 import { ModalChinhsuatintuccnttComponent } from './components/modal/cntt/modal-chinhsuatintuccntt/modal-chinhsuatintuccntt.component';
 import { ModalQuanlyloaitintuccnttComponent } from './components/modal/cntt/modal-quanlyloaitintuccntt/modal-quanlyloaitintuccntt.component';
 import { ModalTintucComponent } from './components/modal/ttth/modal-tintuc/modal-tintuc.component';
+import { ModalCrawlingComponent } from './components/modal/cntt/modal-crawling/modal-crawling.component';
 
 @NgModule({
   declarations: [
@@ -136,7 +137,8 @@ import { ModalTintucComponent } from './components/modal/ttth/modal-tintuc/modal
     ModalChinhsuatintuccnttComponent,
     ModalHomeChuongtrinhdaotaoComponent,
     ModalQuanlyloaitintuccnttComponent,
-    ModalTintucComponent
+    ModalTintucComponent,
+    ModalCrawlingComponent
   ],
   imports: [
     BrowserModule,
