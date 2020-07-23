@@ -7,7 +7,7 @@ const cors = require('cors')
 
 
 const app = express()
-const cors = require('cors')
+
 // require('./crawl').crawl()
 
 const MONGODB_URI = 'mongodb://elearning_team:123@103.92.26.177:27017/testAngularckc' //'mongodb://localhost:27017/'
