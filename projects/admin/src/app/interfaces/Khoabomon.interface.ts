@@ -1,6 +1,6 @@
 export interface Khoabomon{
       maKhoa: String;
-      tenKhoa: String;
+      tenKhoabm: String;
       tenVietTat: String;
       nguoiTao:String;
       nguoiChinhSua: String;
