@@ -6,10 +6,90 @@
         <h1 class="text-center text-white">Quản lý Page Facebook</h1>
       </div>
       <div class="col-12">
-        <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white"></div>
+        <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
+          <div class="row justify-content-center align-items-center">
+            <div class="col-3">
+              <div class="form-group">
+                <label for="">Tên Page</label>
+                <input type="text" class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="">Link</label>
+                <input type="text" class="form-control">
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="form-group">
+                <label for="">ID Page</label>
+                <input type="text" class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="">Access Token Page</label>
+                <input type="text" class="form-control">
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="modal_chucnang__group__button">
+                <button class="modal_chucnang__button btn btn-outline-primary px-4 mx-2"><img
+                    class="modal_chucnang__button__icon mb-2" src="assets/img/icons/add.png" alt="image icon">
+                  <div>Thêm mới</div>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="col-12">
-        <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white"></div>
+        <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
+          <div class="d-flex align-items-center mb-2">
+            <label class="mb-0 d-flex align-items-center"><span class="text-nowrap">Hiển thị &nbsp;</span>
+              <select class="custom-select custom-select-sm form-control">
+                <option>10</option>
+                <option>25</option>
+                <option>50</option>
+              </select><span class="text-nowrap">&nbsp; hàng</span>
+            </label>
+            <label class="ml-auto mb-0 d-flex align-items-center"><span class="text-nowrap">Tìm kiếm: &nbsp;</span>
+              <input class="form-control form-control-sm" placeholder="Tìm kiếm">
+            </label>
+          </div>
+          <table class="modal_chucnang__table table table-hover" id="">
+            <thead class="bg__caothang text-white">
+              <th scope="col" class="text-center">id</th>
+              <th scope="col" class="text-center">Tên Page</th>
+              <th scope="col" class="text-center">Link</th>
+              <th scope="col" class="text-center">Số Lượng Like</th>
+              <th scope="col" class="text-center">Số lượng bài viết</th>
+              <th scope="col" class="text-center">Tác vụ</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="text-center">
+                  1000
+                </td>
+                <td class="text-center">
+                  Information Technology CKC
+                </td>
+                <td class="text-center">
+                  http://facebook.com/IT-CKC
+                </td>
+                <td class="text-center">
+                  185.234
+                </td>
+                <td class="text-center">
+                  500
+                </td>
+                <td class="text-center">
+                  <div class="form-group">
+                    <span class="modal_chucnang__button__edit mdi mdi-file-document-edit-outline mdi-24px"></span>
+                    <span class="modal_chucnang__button__delete ml-2 mdi mdi-delete-outline mdi-24px"></span>
+                    <span class="modal_chucnang__button__plus ml-2 mdi mdi-plus mdi-24px"></span>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
