@@ -26,7 +26,6 @@ router.post('/xoa-giao-vien', async (req, res) =>{
 })
 
 router.get('/danh-sach-giao-vien', async (req, res) => {
-  console.log('lay danh sach giao vien');
   let result = await giaoVienDAO.layDanhSachGiaoVien();
   res.send(result);
 })

@@ -47,8 +47,13 @@ export class ModalGiaovienComponent implements OnInit {
   layMaGVMoiNhat():void {
     this.apiService.layMaGVMoiNhat().subscribe(
       data => {
-        let maGV = data.maGiaoVien;
-        this.maGV = this.formatMaGV(maGV);
+        if(data == null){
+          this.maGV = '0001';
+        }
+        else{
+          let maGV = data.maGiaoVien;
+          this.maGV = this.formatMaGV(maGV);
+        }
       }
     );
   }
