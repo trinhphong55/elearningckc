@@ -59,6 +59,7 @@ exports.postKhoaBoMon = async (req, res) => {
         nguoiChinhSua: req.body.nguoiChinhSua,
         maLoai: req.body.maLoai,
       });
+      
       const saveKhoa = await khoaBoMon.save();
       res.json({
         status: 200,

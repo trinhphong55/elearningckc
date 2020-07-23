@@ -60,19 +60,19 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let nganh of nganhList;index as i" (click) ="createClassModal(nganh)">
+                    <tr *ngFor="let nganh of nganhList;index as i">
                       <th scope="row">{{ i+ 1 }}</th>
                       <td> {{nganh.tenNganhNghe }}</td>
                       <td>
-                        <div class="col-sm-10">
-                          <input type="number" [formControl]="chiTieuList" class="form-control" />
+                        <div class="col-sm-10" [formGroup]="chiTieuList.controls[i]">
+                          <input type="number" formControlName="soChiTieu" class="form-control" />
                         </div>
                       </td>
                     </tr>
                     <tr>
 
                       <td colspan="3">
-                        <button type="button" class="btn btn-outline-primary">Tạo
+                        <button type="button" class="btn btn-outline-primary" (click)="createClassModal()">Tạo
                           lớp</button>
                       </td>
 
@@ -95,32 +95,27 @@
                     </tr>
                   </thead>
                   <tbody>
+                    <ng-container *ngFor="let item of lopNganhs">
+                      <ng-container *ngFor="let lop of item.dsLop, index as i">
+                        <tr>
+                          <th scope="row">{{ i+1 }}</th>
+                          <td>
+                            {{ lop }}
+                          </td>
+                          <td>
+                            {{ item.maNganhNghe }}
+                          </td>
+                        </tr>
+                      </ng-container>
+                    </ng-container>
                     <tr>
-                      <th scope="row">1</th>
-                      <td></td>
-                      <td>
-
-                      </td>
-
-                    </tr>
-                    <tr>
-                      <th scope="row">2</th>
-                      <td>
-
-                      </td>
-                      <td>
-
-                      </td>
-
-                    </tr>
-                    <tr>
-
-                      <td colspan="3">
-                        <button type="button" class="btn btn-outline-light">Tạo lớp học phần</button>
-                      </td>
-
                     </tr>
                   </tbody>
+                  <tfoot>
+                    <td colspan="3">
+                      <button type="button" class="btn btn-outline-light">Tạo lớp học phần</button>
+                    </td>
+                  </tfoot>
                 </table>
               </div>
             </div>
