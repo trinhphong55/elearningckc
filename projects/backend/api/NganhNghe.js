@@ -65,6 +65,15 @@ router.put('/deletenganhnghe/:id', async (req, res) => {
     res.json({ message: error });
   }
 });
+//Nguoi Tao: Tran Dinh Huy, MSSV:0306171249
+router.delete('/nganhnghe/:id', async(req, res) => {
+  try {
+    var data = await NganhNghe.findByIdAndUpdate(req.params.id, { "trangThai": 0 }, req.params.idoptions, req.params.id.callback)
+    res.json(data);
+  } catch (error) {
+    res.json({ message: error });
+  }
+})
 
 
 //importexcel

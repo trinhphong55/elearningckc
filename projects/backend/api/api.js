@@ -1,20 +1,17 @@
 const router = require("express").Router();
 const LopHocPhanRoutes = require("./LopHocPhan");
 const GiaoVienRoutes = require("./GiaoVien");
-const { check, validationResult } = require("express-validator");
+const MonHoc = require('./MonHoc');
 
 router.use("/lophocphan", LopHocPhanRoutes);
 router.use("/giaovien", GiaoVienRoutes);
-const router = require('express').Router()
-const LopHocPhanRoutes = require('./LopHocPhan')
-const GiaoVienRoutes = require('./GiaoVien')
-const MonHoc = require('./MonHoc');
+
 
 router.use('/lophocphan', LopHocPhanRoutes)
 router.use('/giaovien', GiaoVienRoutes)
 router.use('/', MonHoc);
 
-
+const boMon = require("../api/bomon");
 const khoabomonController = require("../api/khoabomon");
 const loaidonviController = require("../api/loaidonvi");
 //
@@ -28,13 +25,24 @@ router.use('/', NganhNgheRoutes)
 //bac
 router.use('/', BacRoutes)
 //Route KhoaBoMon
+
+//Lấy toàn bộ dữ liệu từ KhoaBoMon
 router.get("/khoabomon", khoabomonController.getKhoaBonMon);
-
+//Thêm dữ liệu vào KhoaBoMon
 router.post("/khoabomon", validate, khoabomonController.postKhoaBoMon);
-
+//Xóa KhoaBoMon theo :id truyền vào
 router.delete("/khoabomon/:id", khoabomonController.deleteKhoaBoMon);
-
+//Cập nhật KHoaBoMon theo :id và data truyền vào ( lư ý data ở request.body)
 router.put("/khoabomon/:id",validate, khoabomonController.updateKhoaBoMon);
+
+//Lấy toàn bộ dữ liệu từ KhoaBoMon
+router.get("/bomon", boMon.getKhoaBonMon);
+//Thêm dữ liệu vào KhoaBoMon
+router.post("/bomon", boMon.checkValidate(), boMon.postKhoaBoMon);
+//Xóa KhoaBoMon theo :id truyền vào
+router.delete("/bomon/:id", boMon.deleteKhoaBoMon);
+//Cập nhật KHoaBoMon theo :id và data truyền vào ( lư ý data ở request.body)
+router.put("/bomon/:id",boMon.checkValidate(), boMon.updateKhoaBoMon);
 
 //Routes LoaiDonVi
 router.get("/loaidonvi", loaidonviController.getLoaiDonVi);
