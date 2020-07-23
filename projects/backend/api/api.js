@@ -11,6 +11,7 @@ router.use('/lophocphan', LopHocPhanRoutes)
 router.use('/giaovien', GiaoVienRoutes)
 router.use('/', MonHoc);
 
+const groupFB=require("../api/groupFB");
 const boMon = require("../api/bomon");
 const khoabomonController = require("../api/khoabomon");
 const loaidonviController = require("../api/loaidonvi");
@@ -46,5 +47,6 @@ router.put("/bomon/:id",boMon.checkValidate(), boMon.updateKhoaBoMon);
 
 //Routes LoaiDonVi
 router.get("/loaidonvi", loaidonviController.getLoaiDonVi);
-
+//Routes groupFB
+router.get("/groupfb", groupFB.getAll);
 module.exports = router;
