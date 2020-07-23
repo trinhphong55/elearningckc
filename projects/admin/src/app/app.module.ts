@@ -3,10 +3,12 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ApiService } from './services/api.service';
 import { DataTablesModule } from 'angular-datatables';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { TintucCnttService } from './services/cntt/tintuc-cntt.service'
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -147,9 +149,10 @@ import { ModalCrawlingComponent } from './components/modal/cntt/modal-crawling/m
     FormsModule,
     ReactiveFormsModule,
     DataTablesModule,
-    CKEditorModule
+    CKEditorModule,
+    NgxSkeletonLoaderModule
   ],
-  providers: [ApiService],
+  providers: [ApiService, TintucCnttService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

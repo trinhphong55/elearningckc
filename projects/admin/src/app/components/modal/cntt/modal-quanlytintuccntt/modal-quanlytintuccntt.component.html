@@ -1,4 +1,4 @@
-<app-modal class="modal_chucnang__wrapper" id="cntt_quanlytintuc">
+<app-modal class="modal_chucnang__wrapper show" id="cntt_quanlytintuc">
     <div (click)="closeModal('cntt_quanlytintuc')" class="modal_chucnang__close mdi mdi-chevron-left text-white"></div>
     <div class="container-fluid mt-3">
         <div class="row">
@@ -9,6 +9,7 @@
                 <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
                     <div class="d-flex align-items-center mb-2">
                         <label class="mb-0 d-flex align-items-center"><span class="text-nowrap">Hiển thị &nbsp;</span>
+                            <p *ngIf="TinTuc.length <= 0" class="no-data text-center">Không có tin tức!</p>
                             <select class="custom-select custom-select-sm form-control">
                                 <option>10</option>
                                 <option>25</option>
@@ -22,12 +23,18 @@
                     </div>
                     <table class="modal_chucnang__table table table-hover" id="danhsach_monhoc">
                         <thead class="bg__caothang text-white">
-                            <th class="text-center" scope="col" style="max-width: 100px">Mã MH</th>
-                            <th scope="col">Tiêu đề tin tức</th>
-                            <th scope="col">Nội dung ngắn</th>
-                            <th scope="col">Loại Tin tức Lớn</th>
-                            <th scope="col">Loại Tin tức</th>
-                            <th scope="col">Ảnh đại diện</th>
+                            <th class="text-center" scope="col" style="max-width: 100px">Mã TT</th>
+                            <th scope="col">maLTT</th>
+                            <th scope="col">maLTTCha</th>
+                            <th scope="col">tieuDe</th>
+                            <th scope="col">noiDungNgan</th>
+                            <th scope="col">noiDung</th>
+                            <th scope="col">anhDaiDien</th>
+                            <th scope="col">nguoiViet</th>
+                            <th scope="col">ngayViet</th>
+                            <th scope="col">nguoiChinhSua</th>
+                            <th scope="col">ngayChinhSua</th>
+                            <th scope="col">trangThai</th>
                             <th class="text-center" scope="col"><span
                                     class="modal_chucnang__button__save mdi mdi-content-save-outline mdi-24px"></span>
                             </th>
@@ -59,27 +66,43 @@
                             </tr>
                         </tfoot>
                         <tbody>
-                            <tr>
+                            <tr *ngFor="let tintuc of TinTuc; let i = index">
                                 <td style="max-width: 100px">
-                                    <input class="form-control" disabled value="0001">
+                                    {{tintuc.maTT}}
                                 </td>
                                 <td>
-                                    <input class="form-control" disabled
-                                        value="[S4L] KẾT QUẢ SOLUTIONS FOR LIFE KỲ 03 TRANSLATING INTO PROTEIN">
+                                    {{tintuc.maLTT}}
                                 </td>
                                 <td>
-                                    <input class="form-control" disabled
-                                        value="CLB Tin học xin chúc mừng bạn Lê Hoàng Khang (CĐ TH 19C) và bạn Võ Bằng Kiều (CĐ TH 19D) đã có lời giải chính xác cho bài toán kỳ 03 Solutions For Life với chủ đề “Translating into Protein”. Thân mời bạn đến VP. BM. Tin học lầu 7 dãy F vào lúc 11h15 ngày thứ 4 (18.12.2019) để nhận thưởng.">
+                                    {{tintuc.maLTTCha}}
                                 </td>
                                 <td>
-                                    <input class="form-control" disabled value="Thông báo ">
+                                    {{tintuc.tieuDe}}
                                 </td>
                                 <td>
-                                    <input class="form-control" disabled value="Thông báo chung">
+                                    {{tintuc.noiDungNgan}}
                                 </td>
                                 <td>
-                                    <img class="modal_chucnang__button__icon mb-2" src="assets/img/icons/add.png"
+                                    {{tintuc.noiDung}}
+                                </td>
+                                <td>
+                                    <img class="modal_chucnang__button__icon mb-2" src="{{tintuc.anhDaiDien}}"
                                         alt="image icon">
+                                </td>
+                                <td>
+                                    {{tintuc.nguoiViet}}
+                                </td>
+                                <td>
+                                    {{tintuc.ngayViet}}
+                                </td>
+                                <td>
+                                    {{tintuc.nguoiChinhSua}}
+                                </td>
+                                <td>
+                                    {{tintuc.ngayChinhSua}}
+                                </td>
+                                <td>
+                                    {{tintuc.trangThai}}
                                 </td>
                                 <td class="text-center">
                                     <span

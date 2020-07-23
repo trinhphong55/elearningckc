@@ -40,6 +40,7 @@
     "datatables.net": "^1.10.21",
     "datatables.net-dt": "^1.10.21",
     "jquery": "^3.5.1",
+    "ngx-skeleton-loader": "^2.2.1",
     "ngx-useful-swiper": "^9.0.3",
     "rxjs": "~6.6.0",
     "select2": "^4.0.13",

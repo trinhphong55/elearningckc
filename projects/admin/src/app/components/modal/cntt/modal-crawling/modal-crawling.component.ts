@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalService } from '../../../../services/modal.service';
+import { CrawlingService } from '../../../../services/cntt/crawling.service';
 
 @Component({
   selector: 'app-modal-crawling',
@@ -8,12 +9,22 @@ import { ModalService } from '../../../../services/modal.service';
 })
 
 export class ModalCrawlingComponent implements OnInit {
+  private infoCrawling: any;
+  public resultCrawling: any;
+
+
   public donVi: any[] = [{
     name: 'Trường',
     nhomBaiViet: [{
       name: 'Lịch công tác tuần cho giáo viên',
-      url: 'https://caothang.edu.vn/bai_viet/Lich-Cong-Tac-Tuan-14',
-      selector: '.ds_bai_viet'
+      selector: {
+        url: 'https://caothang.edu.vn/bai_viet/Lich-Cong-Tac-Tuan-14',
+        wrapper: '.ds_bai_viet',
+        href: '.ten.dam',
+        title: '.ten.dam',
+        time: '.mo.nghien',
+        listUrl: true
+      }
     }]
   },
   {
@@ -21,33 +32,57 @@ export class ModalCrawlingComponent implements OnInit {
     nhomBaiViet: [
       {
         name: 'Lịch đào tạo',
-        url: 'https://daotao.caothang.edu.vn/bai-viet/2-Lich-dao-tao-938675f0e9064d27e576fa4894cf84a1.html',
-        selector: '.file_content'
+        selector: {
+          url: 'https://daotao.caothang.edu.vn/bai-viet/2-Lich-dao-tao-938675f0e9064d27e576fa4894cf84a1.html',
+          wrapper: '.file_content'
+        }
       },
       {
         name: 'Lịch thi',
-        url: 'https://daotao.caothang.edu.vn/bai-viet/18-Lich-thi-hoc-ky-1-nam-hoc-2019-2020-d018423653a651725386b5b1f8f089a4.html',
-        selector: '.file_content'
+        selector: {
+          url: 'https://daotao.caothang.edu.vn/bai-viet/18-Lich-thi-hoc-ky-1-nam-hoc-2019-2020-d018423653a651725386b5b1f8f089a4.html',
+          wrapper: '.file_content'
+        }
       },
       {
         name: 'Thời khoá biểu',
-        url: 'https://daotao.caothang.edu.vn/bai-viet/18-Thoi-khoa-bieu-hoc-ky-2-nam-hoc-2019-2020-f310ea59f54405dab4161334c67045c6.html',
-        selector: '.file_content'
+        selector: {
+          url: 'https://daotao.caothang.edu.vn/bai-viet/18-Thoi-khoa-bieu-hoc-ky-2-nam-hoc-2019-2020-f310ea59f54405dab4161334c67045c6.html',
+          wrapper: '.file_content'
+        }
       },
       {
         name: 'Thông báo sinh viên',
-        url: 'https://daotao.caothang.edu.vn/Thong-bao-sinh-vien-18',
-        selector: '.ds_bai_viet'
+        selector: {
+          url: 'https://daotao.caothang.edu.vn/Thong-bao-sinh-vien-18',
+          wrapper: '.ds_bai_viet',
+          href: '.ten.dam',
+          title: '.ten.dam',
+          time: '.mo.nghien',
+          listUrl: true
+        }
       },
       {
         name: 'Tra cứu kết quả xét học tiếp',
-        url: 'https://daotao.caothang.edu.vn/xet-dieu-kien-hoc-tiep-13',
-        selector: '.ds_bai_viet'
+        selector: {
+          url: 'https://daotao.caothang.edu.vn/xet-dieu-kien-hoc-tiep-13',
+          wrapper: '.ds_bai_viet',
+          href: '.ten.dam',
+          title: '.ten.dam',
+          time: '.mo.nghien',
+          listUrl: true
+        }
       },
       {
         name: 'Tra cứu kết quả xét tốt nghiệp',
-        url: 'https://daotao.caothang.edu.vn/xet-du-thi-tot-nghiep-65',
-        selector: '.ds_bai_viet'
+        selector: {
+          url: 'https://daotao.caothang.edu.vn/xet-du-thi-tot-nghiep-65',
+          wrapper: '.ds_bai_viet',
+          href: '.ten.dam',
+          title: '.ten.dam',
+          time: '.mo.nghien',
+          listUrl: true
+        }
       }
     ]
   },
@@ -56,23 +91,31 @@ export class ModalCrawlingComponent implements OnInit {
     nhomBaiViet: [
       {
         name: 'Kế hoạch phòng học',
-        url: 'https://ctct.caothang.edu.vn/Ke-hoach-phong-hoc/0--Ke-hoach-su-dung-phong-hoc-ly-thuyet-ce2eb8c297e70869863a0248fd614762.html',
-        selector: '.chi_tiet_bai_viet'
+        selector: {
+          url: 'https://ctct.caothang.edu.vn/Ke-hoach-phong-hoc/0--Ke-hoach-su-dung-phong-hoc-ly-thuyet-ce2eb8c297e70869863a0248fd614762.html',
+          wrapper: '.chi_tiet_bai_viet'
+        }
       },
       {
         name: 'Thông báo giáo viên chủ nhiệm',
-        url: 'https://ctct.caothang.edu.vn/Cong-tac-GVCN/0-Cong_tac_giao_vien_chu_nhiem-cdb25cb6be539f9d941eadd3cd8c6ffd.html',
-        selector: '.file_content'
+        selector: {
+          url: 'https://ctct.caothang.edu.vn/Cong-tac-GVCN/0-Cong_tac_giao_vien_chu_nhiem-cdb25cb6be539f9d941eadd3cd8c6ffd.html',
+          wrapper: '.file_content'
+        }
       },
       {
         name: 'Biểu mẫu dành cho HSSV',
-        url: 'https://ctct.caothang.edu.vn/Bieu-mau/2-Bieu-mau-dnah-cho-HSSV-ad1fe4cc5297b5fb063c47af46b629f6.html',
-        selector: '.file_content'
+        selector: {
+          url: 'https://ctct.caothang.edu.vn/Bieu-mau/2-Bieu-mau-dnah-cho-HSSV-ad1fe4cc5297b5fb063c47af46b629f6.html',
+          wrapper: '.file_content'
+        }
       },
       {
         name: 'Biểu mẫu dành cho giáo viên',
-        url: 'https://ctct.caothang.edu.vn/Bieu-mau/2-Bieu-mau-1b14d030c482990c834a597c56440685.html',
-        selector: '.file_content'
+        selector: {
+          url: 'https://ctct.caothang.edu.vn/Bieu-mau/2-Bieu-mau-1b14d030c482990c834a597c56440685.html',
+          wrapper: '.file_content'
+        }
       }
     ]
   },
@@ -81,8 +124,13 @@ export class ModalCrawlingComponent implements OnInit {
     nhomBaiViet: [
       {
         name: 'Tin mới nhất',
-        url: 'https://doanhoi.caothang.edu.vn/',
-        selector: '.tin_moi_cu:first-child a'
+        selector: {
+          url: 'https://doanhoi.caothang.edu.vn/',
+          wrapper: '.tin_moi_cu:first-child li',
+          href: 'a',
+          title: 'a',
+          listUrl: true
+        }
       }
     ]
   },
@@ -91,21 +139,33 @@ export class ModalCrawlingComponent implements OnInit {
     nhomBaiViet: [
       {
         name: 'Tin mới nhất',
-        url: 'https://gddc.caothang.edu.vn/',
-        selector: '.tin_moi_cu a'
+        selector: {
+          url: 'https://gddc.caothang.edu.vn/',
+          wrapper: '.tin_moi_cu li',
+          href: 'a',
+          title: 'a',
+          listUrl: true
+        }
       },
       {
         name: 'Thông báo',
-        url: 'https://gddc.caothang.edu.vn/Tong-quan/Thong-bao-cua-Khoa-66',
-        selector: '.ten.dam'
+        selector: {
+          url: 'https://gddc.caothang.edu.vn/Tong-quan/Thong-bao-cua-Khoa-66',
+          wrapper: '.ds_bai_viet',
+          href: '.ten.dam',
+          title: '.ten.dam',
+          time: '.mo.nghien',
+          listUrl: true
+        }
       },
     ]
   },
   ];
   public nhomDonVi: any[] = [];
-  private infoCrawling: any;
+  public showSkeleton: Boolean = false;
+  public disableButton: Boolean = false;
 
-  constructor(private modalService: ModalService) { }
+  constructor(private modalService: ModalService, private crawlingService: CrawlingService) { }
 
   ngOnInit(): void {
   }
@@ -126,7 +186,17 @@ export class ModalCrawlingComponent implements OnInit {
     this.infoCrawling = filtered[0];
   }
   onStartCrawl() {
-    console.log('startCrawl');
-    console.log(this.infoCrawling);
+    if (!this.infoCrawling) {
+      alert('Vui lòng chọn nhóm bài viết');
+      return;
+    }
+    this.showSkeleton = true;
+    this.disableButton = true;
+    this.crawlingService.getDanhSachBaiViet(this.infoCrawling.selector).subscribe(data => {
+      this.resultCrawling = data;
+      console.log(this.resultCrawling);
+      this.disableButton = false;
+      this.showSkeleton = false;
+    })
   }
 }
