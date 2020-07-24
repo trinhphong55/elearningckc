@@ -2,10 +2,14 @@ const router = require('express').Router()
 const LopHocPhanRoutes = require('./LopHocPhan')
 const GiaoVienRoutes = require('./GiaoVien')
 const MonHoc = require('./MonHoc');
+const ChuongTrinhDaoTao = require('./ChuongTrinhDaoTao');
+const KeHoachDaoTao = require('./KeHoachDaoTao');
 
 router.use('/lophocphan', LopHocPhanRoutes)
 router.use('/giaovien', GiaoVienRoutes)
-router.use('/', MonHoc);
+router.use('/monhoc', MonHoc);
+router.use('/ctdt', ChuongTrinhDaoTao);
+router.use('/khdt', KeHoachDaoTao);
 
 
 const khoabomonController = require("../api/khoabomon");
