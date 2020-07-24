@@ -79,11 +79,13 @@
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <div class="modal-body">
-                <label for="hocKi">Chọn học kì</label>
-                <select id="hocKi" class="form-control" >
-                  <option *ngFor="let loai of hocKis" [ngValue]=loai.maHK> {{loai.tenHK }}</option>
-                </select>
+              <div class="modal-body" >
+                <form [formGroup]="hocKiForm">
+                  <label for="hocKi">Chọn học kì</label>
+                  <select id="hocKi" class="form-control" formControlName = "hocKi">
+                    <option *ngFor="let loai of hocKis" [ngValue]=loai.maHK> {{loai.tenHK }}</option>
+                  </select>
+                </form>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
