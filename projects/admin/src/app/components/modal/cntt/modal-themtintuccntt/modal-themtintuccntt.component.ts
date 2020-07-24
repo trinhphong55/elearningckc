@@ -4,7 +4,10 @@ import { TintucCnttService } from '../../../../services/cntt/tintuc-cntt.service
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { Router } from '@angular/router';
+import { FileUploader } from 'ng2-file-upload';
+import { ToastrService } from 'ngx-toastr';
 
+const URL = 'https://localhost:4100/api/cnttTinTuc/upload';
 @Component({
   selector: 'app-modal-themtintuccntt',
   templateUrl: './modal-themtintuccntt.component.html',
@@ -16,18 +19,31 @@ export class ModalThemtintuccnttComponent implements OnInit {
   public Editor = ClassicEditor;
   public editorValue: string = '';
 
+  public uploader: FileUploader = new FileUploader({
+    url: URL,
+    itemAlias: 'image'
+  });
+
   submitted = false;
   tinTucForm: FormGroup;
   loaiBaiViet: any = ['Thông báo', 'Bài Viết nổi bật', 'Tài liệu', 'Việc làm', 'Bài viết'];
   maDanhMuc: any = ['Thông báo', 'Sinh Viên', 'Giới thiệu'];
   TinTuc: any = [];
 
-  constructor(private modalService: ModalService, public fb: FormBuilder, private router: Router, private ngZone: NgZone, private tintucCnttService: TintucCnttService) {
+  constructor(private modalService: ModalService, public fb: FormBuilder, private router: Router, private ngZone: NgZone, private tintucCnttService: TintucCnttService, private toastr: ToastrService) {
     this.mainForm();
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.uploader.onAfterAddingFile = (file) => {
+      file.withCredentials = false;
+    };
+    this.uploader.onCompleteItem = (item: any, status: any) => {
+      console.log('Uploaded File Details:', item);
+      this.toastr.success('File successfully uploaded!');
+    };
   }
+
   mainForm() {
     this.tinTucForm = this.fb.group({
       loaiBaiViet: ['', [Validators.required]],
@@ -75,11 +91,11 @@ export class ModalThemtintuccnttComponent implements OnInit {
       this.tintucCnttService.themTinTuc(this.tinTucForm.value).subscribe(
         (res) => {
           this.loadDanhSachTinTuc()
-          console.log(' Tin tuc duoc them thanh cong!    ', res )
+          console.log(' Tin tuc duoc them thanh cong!    ', res)
           alert(' Them moi thanh cong')
-          
+
         })
-        
+
     }
   }
   closeModal(id: string) {

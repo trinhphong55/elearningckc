@@ -8,6 +8,10 @@ import { ApiService } from './services/api.service';
 import { DataTablesModule } from 'angular-datatables';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { TintucCnttService } from './services/cntt/tintuc-cntt.service'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import { FileUploadModule } from "ng2-file-upload";
+
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -138,7 +142,7 @@ import { ModalCrawlingComponent } from './components/modal/cntt/modal-crawling/m
     ModalHomeChuongtrinhdaotaoComponent,
     ModalQuanlyloaitintuccnttComponent,
     ModalTintucComponent,
-    ModalCrawlingComponent
+    ModalCrawlingComponent,
   ],
   imports: [
     BrowserModule,
@@ -148,7 +152,10 @@ import { ModalCrawlingComponent } from './components/modal/cntt/modal-crawling/m
     FormsModule,
     ReactiveFormsModule,
     DataTablesModule,
-    CKEditorModule
+    CKEditorModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(), // ToastrModule added
+    FileUploadModule
   ],
   providers: [ApiService,TintucCnttService],
   bootstrap: [AppComponent]

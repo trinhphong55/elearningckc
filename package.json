@@ -20,7 +20,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "~10.0.3",
+    "@angular/animations": "^10.0.5",
     "@angular/common": "~10.0.3",
     "@angular/compiler": "~10.0.3",
     "@angular/core": "^10.0.4",
@@ -40,6 +40,8 @@
     "datatables.net": "^1.10.21",
     "datatables.net-dt": "^1.10.21",
     "jquery": "^3.5.1",
+    "ng2-file-upload": "^1.4.0",
+    "ngx-toastr": "^13.0.0",
     "ngx-useful-swiper": "^9.0.3",
     "rxjs": "~6.6.0",
     "select2": "^4.0.13",

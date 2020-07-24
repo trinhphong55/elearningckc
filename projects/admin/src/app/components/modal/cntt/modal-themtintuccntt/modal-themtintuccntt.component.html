@@ -36,9 +36,10 @@
                                 <div class="form-group">
                                     <label>Ảnh đại diện bài viết</label>
                                     <div class="input-group ">
-                                        <div class="custom-file">
+                                        <div class="custom-file file-upload">
                                             <input type="file" class="custom-file-input" id="" aria-describedby=""
-                                                formControlName="anhBia">
+                                                name="image" ng2FileSelect [uploader]="uploader"
+                                                accept="image/x-png,image/gif,image/jpeg">
                                             <label class="custom-file-label" for=""></label>
                                         </div>
                                     </div>
@@ -77,8 +78,9 @@
                                     </div>
                                     <div class="modal_chucnang__group__button">
                                         <button class="modal_chucnang__button btn btn-outline-primary px-4 mx-2"
-                                            type="submit"><img class="modal_chucnang__button__icon mb-2"
-                                                src="assets/img/icons/add.png" alt="image icon">
+                                            type="submit" (click)="uploader.uploadAll()"><img
+                                                class="modal_chucnang__button__icon mb-2" src="assets/img/icons/add.png"
+                                                alt="image icon">
                                             <div>Thêm mới</div>
                                         </button>
                                         <button class="modal_chucnang__button btn btn-outline-danger px-4 mx-2"
