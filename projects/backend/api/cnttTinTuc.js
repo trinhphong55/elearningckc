@@ -27,6 +27,7 @@ router.post('/taotintuc', (req, res) => {
     maDanhMuc: req.body.maDanhMuc,
     tieuDe: req.body.tieuDe,
     moTaNgan: req.body.moTaNgan,
+    noiDung: req.body.noiDung,
     trangThai: 1,
   })
   tintuc.save((err, data) => {

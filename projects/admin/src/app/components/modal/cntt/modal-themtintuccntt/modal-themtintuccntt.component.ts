@@ -14,12 +14,13 @@ export class ModalThemtintuccnttComponent implements OnInit {
 
 
   public Editor = ClassicEditor;
+  public editorValue: string = '';
 
   submitted = false;
   tinTucForm: FormGroup;
   loaiBaiViet: any = ['Thông báo', 'Bài Viết nổi bật', 'Tài liệu', 'Việc làm', 'Bài viết'];
   maDanhMuc: any = ['Thông báo', 'Sinh Viên', 'Giới thiệu'];
-
+  TinTuc: any = [];
 
   constructor(private modalService: ModalService, public fb: FormBuilder, private router: Router, private ngZone: NgZone, private tintucCnttService: TintucCnttService) {
     this.mainForm();
@@ -56,7 +57,11 @@ export class ModalThemtintuccnttComponent implements OnInit {
       onlySelf: true
     })
   }
-
+  loadDanhSachTinTuc() {
+    this.tintucCnttService.danhSachTinTuc().subscribe((data) => {
+      this.TinTuc = data;
+    })
+  }
   // Getter to access form control
   get myForm() {
     return this.tinTucForm.controls;
@@ -69,8 +74,12 @@ export class ModalThemtintuccnttComponent implements OnInit {
     } else {
       this.tintucCnttService.themTinTuc(this.tinTucForm.value).subscribe(
         (res) => {
+          this.loadDanhSachTinTuc()
           console.log(' Tin tuc duoc them thanh cong!    ', res )
+          alert(' Them moi thanh cong')
+          
         })
+        
     }
   }
   closeModal(id: string) {

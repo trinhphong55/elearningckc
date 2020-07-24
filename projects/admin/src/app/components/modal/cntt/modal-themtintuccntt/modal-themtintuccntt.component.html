@@ -96,7 +96,7 @@
                     <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
                         <div class="form-group">
                             <label>Nội dung tin tức</label>
-                            <ckeditor [editor]="Editor" data="<p>Hello, world!</p>"></ckeditor>
+                            <ckeditor [editor]="Editor" [(ngModel)]="editorValue" formControlName="noiDung"></ckeditor>
                         </div>
                     </div>
                 </div>
