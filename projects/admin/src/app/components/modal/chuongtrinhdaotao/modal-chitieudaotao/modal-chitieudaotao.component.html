@@ -80,14 +80,14 @@
                 </button>
               </div>
               <div class="modal-body">
-                <label for="loai">Chọn học kì</label>
-                <select id="loai" class="form-control " [FormControl]="hocKi">
+                <label for="hocKi">Chọn học kì</label>
+                <select id="hocKi" class="form-control" >
                   <option *ngFor="let loai of hocKis" [ngValue]=loai.maHK> {{loai.tenHK }}</option>
                 </select>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-outline-primary">Tạo
+                <button type="button" class="btn btn-outline-primary" (click) = "onClickLopHocPhan()">Tạo
                 </button>
               </div>
             </div>
