@@ -53,7 +53,7 @@ const LopHocSchema = new Schema({
     required : true,
   },
   maBac:{
-    type:String,
+    type:Number,
     require: true
   },
   khoa:{
