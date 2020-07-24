@@ -34,7 +34,7 @@ exports.getAll = async (req, res) => {
 };
 exports.getOne = async (req, res) => {
   try {
-    const khoaBoMon = await BoMon.find({ _id: req.params.id });
+    const khoaBoMon = await LopHoc.find({ _id: req.params.id });
     res.json(khoaBoMon);
   } catch (error) {
     res.json(error);

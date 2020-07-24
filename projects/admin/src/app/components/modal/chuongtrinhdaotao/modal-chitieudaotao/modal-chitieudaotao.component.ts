@@ -22,7 +22,7 @@ export class ModalChitieudaotaoComponent implements OnInit {
   addForm: FormGroup;
   chiTieuGroup: FormGroup;
   chiTieuList = new FormArray([]);
-  public hocKi = new FormControl('', [Validators.required]);
+
   public hocKis = [
     {
       maHK: 1,
@@ -50,7 +50,7 @@ export class ModalChitieudaotaoComponent implements OnInit {
   ];
   lops = [];
   lopHocs: any;
-
+  hocKi:FormControl;
   msg = '';
   msgList = [];
 
@@ -87,6 +87,7 @@ export class ModalChitieudaotaoComponent implements OnInit {
     this.getNganhNghe();
     this.getbac();
     this.getLopHoc();
+    this.hocKi = new FormControl('', [Validators.required]);
   }
   getLopHoc() {
     this.lopHocService.getAll().subscribe(
@@ -164,7 +165,7 @@ export class ModalChitieudaotaoComponent implements OnInit {
   addLopHoc(data) {
     this.lopHocService.create(data).subscribe(
       (res) => {
-        this.msgList.push(res.msg + ' : ' + data.tenLop);
+        this.msgList.push(' : ' + data.tenLop);
       },
       (err) => {
         this.msgList.push(err);
@@ -179,6 +180,9 @@ export class ModalChitieudaotaoComponent implements OnInit {
       this.createClassModal();
       this.msg = 'Tạo thành công danh sách Lớp theo Ngành';
     }
+  }
+  onClickLopHocPhan() {
+    console.log(this.hocKi);
   }
   createClassModal() {
     this.lopNganhs = [];
