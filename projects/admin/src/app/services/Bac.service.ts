@@ -18,7 +18,7 @@ export class BacService {
 
     getBac(): Observable<bac[]> {
         return this.http.get<bac[]>(this.apiUrl).pipe(
-         tap(recivenbac => console.log(`recivenbac= ${JSON.stringify(recivenbac)}`)),
+         tap(recivenbac => console.log(`recivenbac= thành công`)),
          catchError(error => of([]))
         );
       }
