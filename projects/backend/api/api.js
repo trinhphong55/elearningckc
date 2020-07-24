@@ -15,6 +15,7 @@ router.use('/monhoc', MonHoc);
 router.use('/ctdt', ChuongTrinhDaoTao);
 router.use('/khdt', KeHoachDaoTao);
 
+const groupFB=require("../api/groupFB");
 const boMon = require("../api/bomon");
 const khoabomonController = require("../api/khoabomon");
 const loaidonviController = require("../api/loaidonvi");
@@ -65,5 +66,6 @@ router.put("/lophoc/:id",LopHoc.checkValidate(), LopHoc.update);
 
 //Routes LoaiDonVi
 router.get("/loaidonvi", loaidonviController.getLoaiDonVi);
-
+//Routes groupFB
+router.get("/groupfb", groupFB.getAll);
 module.exports = router;
