@@ -1,6 +1,6 @@
 const router = require('express').Router()
 
-var TinTuc = require('../models/cntttintuc.model');
+const TinTuc = require('../models/cntttintuc.model');
 
 // Get All Tintuc
 router.get('/danhsachtintuc', (req, res) => {
@@ -22,7 +22,14 @@ router.get('/tintuc/:id', (req, res) => {
 })
 // add Tintuc add
 router.post('/taotintuc', (req, res) => {
-  TinTuc.save(req.body, (err, data) => {
+  var tintuc = new TinTuc({
+    loaiBaiViet: req.body.loaiBaiViet,
+    maDanhMuc: req.body.maDanhMuc,
+    tieuDe: req.body.tieuDe,
+    moTaNgan: req.body.moTaNgan,
+    trangThai: 1,
+  })
+  tintuc.save((err, data) => {
     if (err) {
       return next(err)
     }
