@@ -17,43 +17,48 @@ export class ModalThemtintuccnttComponent implements OnInit {
 
   submitted = false;
   tinTucForm: FormGroup;
-  loaiBaiViet: any = ['Thông báo', 'Bài Viết nổi bật', 'Tài liệu','Việc làm','Bài viết'];
-  loaiDanhMuc: any = ['Thông báo', 'Sinh Viên', 'Giới thiệu'];
+  loaiBaiViet: any = ['Thông báo', 'Bài Viết nổi bật', 'Tài liệu', 'Việc làm', 'Bài viết'];
+  maDanhMuc: any = ['Thông báo', 'Sinh Viên', 'Giới thiệu'];
 
 
-  constructor(private modalService: ModalService, public fb: FormBuilder, private router : Router, private ngZone: NgZone,private tintucCnttService: TintucCnttService) {
+  constructor(private modalService: ModalService, public fb: FormBuilder, private router: Router, private ngZone: NgZone, private tintucCnttService: TintucCnttService) {
     this.mainForm();
   }
 
   ngOnInit(): void {
   }
-  mainForm(){
+  mainForm() {
     this.tinTucForm = this.fb.group({
-      loaiBaiViet: ['',[Validators.required]],
+      loaiBaiViet: ['', [Validators.required]],
       maDanhMuc: ['',],
-      maBaiViet: ['',[Validators.required]],
-      tieuDe: ['',[Validators.required]],
-      moTaNgan: ['',[Validators.required]],
-      noiDung: ['',[Validators.required]],
-      anhBia: ['',[Validators.required]],
-      nguoiViet: ['',[Validators.required]],
-      thoiGianDangBai: ['',[Validators.required]],
-      thongBaoKhanCap: ['',[Validators.required]],
-      created_at: ['',[Validators.required]],
-      updated_at: ['',[Validators.required]],
-      trangThai: ['',[Validators.required]],
+      maBaiViet: [''],
+      tieuDe: ['', [Validators.required]],
+      moTaNgan: ['', [Validators.required]],
+      noiDung: [''],
+      anhBia: [''],
+      nguoiViet: [''],
+      thoiGianDangBai: [''],
+      thongBaoKhanCap: [''],
+      created_at: [''],
+      updated_at: [''],
+      trangThai: [''],
     })
   }
 
-  // Choose designation with select dropdown
-  updateProfile(e){
-    this.tinTucForm.get('designation').setValue(e, {
+  //  dropdown
+  chonMaDanhMuc(e) {
+    this.tinTucForm.get('maDanhMuc').setValue(e, {
+      onlySelf: true
+    })
+  }
+  chonLoaiBaiViet(e) {
+    this.tinTucForm.get('loaiBaiViet').setValue(e, {
       onlySelf: true
     })
   }
 
   // Getter to access form control
-  get myForm(){
+  get myForm() {
     return this.tinTucForm.controls;
   }
 
@@ -64,15 +69,12 @@ export class ModalThemtintuccnttComponent implements OnInit {
     } else {
       this.tintucCnttService.themTinTuc(this.tinTucForm.value).subscribe(
         (res) => {
-          console.log(' Tin tuc duoc them thanh cong!')
-          this.ngZone.run(() => this.router.navigateByUrl('/cntt'))
-        }, (error) => {
-          console.log(error);
-        });
+          console.log(' Tin tuc duoc them thanh cong!    ', res )
+        })
     }
   }
   closeModal(id: string) {
     this.modalService.close(id)
   }
-  
+
 }

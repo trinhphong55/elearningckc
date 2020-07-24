@@ -1,80 +1,106 @@
 <app-modal class="modal_chucnang__wrapper show" id="cntt_themtintuc">
     <div (click)="closeModal('cntt_themtintuc')" class="modal_chucnang__close mdi mdi-chevron-left text-white"></div>
     <div class="container-fluid mt-3">
-        <div class="row">
-            <div class="col-12">
-                <h1 class="text-center text-white">Thêm Tin tức</h1>
-            </div>
-            <div class="col-12">
-                <form [formGroup]="tinTucForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="tinTucForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="text-center text-white">Thêm Tin tức</h1>
+                </div>
+                <div class="col-12">
                     <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
                         <div class="row justify-content-center align-items-center">
-                            <div class="col-5">
+                            <div class="col-4">
                                 <div class="form-group">
-                                    <label>Tiêu đề tin tức</label>
-                                    <input class="form-control">
+                                    <label>Loại bài viết</label>
+                                    <select class="custom-select form-control"
+                                        (change)="chonLoaiBaiViet($event.target.value)" formControlName="loaiBaiViet">
+                                        <option value="">chọn Loại bài viết</option>
+                                        <option *ngFor="let LoaiBaiViet of loaiBaiViet" value="{{LoaiBaiViet}}">
+                                            {{LoaiBaiViet}}
+                                        </option>
+                                    </select>
+                                    <div class="invalid-feedback"
+                                        *ngIf="submitted && myForm.loaiBaiViet.errors?.required">
+                                        Vui lòng chọn loại bài viết.
+                                    </div>
                                 </div>
                                 <div class="form-group">
-                                    <label>Nội dung ngắn</label>
-                                    <input class="form-control">
+                                    <label>Loại danh mục</label>
+                                    <select class="custom-select form-control"
+                                        (change)="chonMaDanhMuc($event.target.value)" formControlName="maDanhMuc">
+                                        <option value="">chọn Loại danh mục</option>
+                                        <option *ngFor="let MaDanhMuc of maDanhMuc" value="{{MaDanhMuc}}">{{MaDanhMuc}}
+                                        </option>
+                                    </select>
                                 </div>
-                                <div class="input-group ">
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="" aria-describedby="">
-                                        <label class="custom-file-label" for="">Chọn ảnh đại diện cho bài viết</label>
+                                <div class="form-group">
+                                    <label>Ảnh đại diện bài viết</label>
+                                    <div class="input-group ">
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="" aria-describedby=""
+                                                formControlName="anhBia">
+                                            <label class="custom-file-label" for=""></label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-4">
                                 <div class="form-group">
-                                    <label>Loại Tin tức Lớn</label>
-                                    <select class="form-control">
-                                        <option>Thông báo</option>
-                                        <option>Tin tức</option>
-                                        <option>Tuyển dụng</option>
-                                        <option>Giới thiệu</option>
-                                        <option>Sinh Viên</option>
-                                    </select>
+                                    <label>Tiêu đề bài viết</label>
+                                    <input class="form-control" type="text" formControlName="tieuDe">
+                                    <div class="invalid-feedback" *ngIf="submitted && myForm.tieuDe.errors?.required">
+                                        Vui lòng điển tiêu đề bài viết.
+                                    </div>
                                 </div>
                                 <div class="form-group">
-                                    <label>Loại Tin tức</label>
-                                    <select class="form-control">
-                                        <option>Giới thiệu chung</option>
-                                        <option>Tầm nhìn sứ mang ng</option>
-                                        <option>Mục tiêu đào tạo</option>
-                                        <option>Ban chủ nhiệm khoa</option>
-                                        <option>Các bộ phận và hội đồng</option>
-                                        <option>Đội ngũ giáo viên</option>
-                                        <option>Liên hệ</option>
-                                    </select>
+                                    <label>Mô tả ngắn cho bài viết</label>
+                                    <input class="form-control" type="text" formControlName="moTaNgan">
+                                    <div class="invalid-feedback" *ngIf="submitted && myForm.moTaNgan.errors?.required">
+                                        Vui lòng điển mô tả ngắn.
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Chọn thời gian đăng bài</label>
+                                    <input class="form-control" disabled>
                                 </div>
                             </div>
                             <div class="col-auto">
+                                <div class="modal_chucnang__group__button mb-5">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="true" id="checkbox"
+                                            formControlName="thongBaoKhanCap">
+                                        <label class="form-check-label" for="checkbox">
+                                            Thông báo khẩn cấp ?
+                                        </label>
+                                    </div>
+                                </div>
                                 <div class="modal_chucnang__group__button">
-                                    <button class="modal_chucnang__button btn btn-outline-primary px-4 mx-2"><img
-                                            class="modal_chucnang__button__icon mb-2" src="assets/img/icons/add.png"
-                                            alt="image icon">
-                                        <div>Thêm mới</div>
-                                    </button>
-                                    <button class="modal_chucnang__button btn btn-outline-danger px-4 mx-2"
-                                        type="reset"><img class="modal_chucnang__button__icon mb-2"
-                                            src="assets/img/icons/error.png" alt="image icon">
-                                        <div>Huỷ</div>
-                                    </button>
+                                    <div class="form-group">
+                                        <button class="modal_chucnang__button btn btn-outline-primary px-4 mx-2"
+                                            type="submit"><img class="modal_chucnang__button__icon mb-2"
+                                                src="assets/img/icons/add.png" alt="image icon">
+                                            <div>Thêm mới</div>
+                                        </button>
+                                        <button class="modal_chucnang__button btn btn-outline-danger px-4 mx-2"
+                                            type="reset"><img class="modal_chucnang__button__icon mb-2"
+                                                src="assets/img/icons/error.png" alt="image icon">
+                                            <div>Huỷ</div>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </form>
-            </div>
-            <div class="col-12">
-                <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
-                    <div class="form-group">
-                        <label>Nội dung tin tức</label>
-                        <ckeditor [editor]="Editor" data="<p>Hello, world!</p>"></ckeditor>
+                </div>
+                <div class="col-12">
+                    <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
+                        <div class="form-group">
+                            <label>Nội dung tin tức</label>
+                            <ckeditor [editor]="Editor" data="<p>Hello, world!</p>"></ckeditor>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
 </app-modal>
