@@ -22,6 +22,32 @@ export class ModalChitieudaotaoComponent implements OnInit {
   addForm: FormGroup;
   chiTieuGroup: FormGroup;
   chiTieuList = new FormArray([]);
+  public hocKi = new FormControl('', [Validators.required]);
+  public hocKis = [
+    {
+      maHK: 1,
+      tenHK: 'HK1',
+    },
+    {
+      maHK: 2,
+      tenHK: 'HK2',
+    },
+    {
+      maHK: 3,
+      tenHK: 'HK3',
+    },
+    {
+      maHK: 4,
+      tenHK: 'HK4',
+    },
+    {
+      maHK: 5,
+      tenHK: 'HK5',
+    }, {
+      maHK: 6,
+      tenHK: 'HK6',
+    },
+  ];
   lops = [];
   lopHocs: any;
 
@@ -141,7 +167,7 @@ export class ModalChitieudaotaoComponent implements OnInit {
         this.msgList.push(res.msg + ' : ' + data.tenLop);
       },
       (err) => {
-        this.msgList.push(err)
+        this.msgList.push(err);
       }
     );
   }
