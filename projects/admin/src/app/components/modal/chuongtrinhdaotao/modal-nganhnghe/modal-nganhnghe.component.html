@@ -26,15 +26,18 @@
                 </div>
                 <div class="form-group col ml-2">
                   <label>Bậc</label>
-                  <select class="form-control" [(ngModel)]="TenBac">
+                  <select class="form-control" [(ngModel)]="TenBac" >
                     <option *ngFor="let b of bac">{{b.tenBac}}</option>
                   </select>
                 </div>
               </div>
               <div class="form-group">
                 <label>Ngành cha</label>
-                <select class="form-control modal_chucnang__select2">
-                  <option>Không Có Ngành Cha</option>
+                <select class="form-control "  [(ngModel)]="tenNganhcha" >
+                  <option>Không có ngành cha</option>
+                  <ng-template  *ngFor="let t of data" [ngIf]="t.maNganhCha==0">
+                    <option >{{t.tenNganhNghe}}</option>
+                  </ng-template>
                 </select>
               </div>
             </div>
@@ -55,7 +58,7 @@
                 </button>
                 <button class="modal_chucnang__button btn btn-outline-primary px-4 mx-2" type="reset"
                   (click)="xuatexcel()"><img class="modal_chucnang__button__icon mb-2"
-                    src="https://img.icons8.com/dusk/64/000000/ms-excel.png" alt="image icon">
+                    src="assets/img/icons/excel.png" alt="image icon">
                   <div>Nhập Excel</div>
                 </button>
               </div>
@@ -106,7 +109,12 @@
                   </ng-template>
                 </td>
                 <td>
-                  <input  class="form-control" readonly="true" value="Không Có Ngành Cha">
+                  <ng-template *ngFor="let f of data" [ngIf]="x.maNganhCha == f.maNganhNghe" >
+                    <input class="form-control" readonly="true" value="{{f.tenNganhNghe}}">
+                    </ng-template>
+                    <ng-template  [ngIf]="x.maNganhCha == '0'" >
+                      <input class="form-control" readonly="true" value="Không có ngành Cha">
+                      </ng-template>
                 </td>
                 <td class="text-center"><span class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px"
                     (click)="delete(x)"></span></td>
