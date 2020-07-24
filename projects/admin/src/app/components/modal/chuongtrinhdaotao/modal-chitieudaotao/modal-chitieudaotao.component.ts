@@ -43,14 +43,15 @@ export class ModalChitieudaotaoComponent implements OnInit {
     {
       maHK: 5,
       tenHK: 'HK5',
-    }, {
+    },
+    {
       maHK: 6,
       tenHK: 'HK6',
     },
   ];
   lops = [];
   lopHocs: any;
-  hocKi:FormControl;
+  hocKiForm:FormGroup;
   msg = '';
   msgList = [];
 
@@ -87,7 +88,9 @@ export class ModalChitieudaotaoComponent implements OnInit {
     this.getNganhNghe();
     this.getbac();
     this.getLopHoc();
-    this.hocKi = new FormControl('', [Validators.required]);
+    this.hocKiForm = new FormGroup({
+      hocKi:new FormControl(''),
+    });
   }
   getLopHoc() {
     this.lopHocService.getAll().subscribe(
@@ -173,7 +176,7 @@ export class ModalChitieudaotaoComponent implements OnInit {
     );
   }
   onClickCreate() {
-    console.log(this.addForm.value);
+
     if (!this.addForm.value.khoa || !this.addForm.value.loaiHinhDaoTao) {
       this.msg = 'Vui lòng chọn Loại hình đào tạo và nhập khóa học';
     } else {
@@ -182,7 +185,7 @@ export class ModalChitieudaotaoComponent implements OnInit {
     }
   }
   onClickLopHocPhan() {
-    console.log(this.hocKi);
+    console.log(this.hocKiForm.value.hocKi);
   }
   createClassModal() {
     this.lopNganhs = [];
@@ -204,8 +207,8 @@ export class ModalChitieudaotaoComponent implements OnInit {
           '' +
           el.maNganh +
           '' +
-          this.addForm.value.loaiHinhDaoTao +
           this.addForm.value.khoa +
+          this.addForm.value.loaiHinhDaoTao +
           (i + 1);
         this.lops.push(tenLop);
         this.addLopHoc(
