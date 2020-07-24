@@ -18,11 +18,10 @@ router.get('/nganhnghe', async (req, res) => {
 //lay nganh nghe theo id
 router.get('/nganhnghe/:id', async (req, res) => {
 
-  console.log(req.params.id);
   var _id = (req.params.id).toString();
   try {
     var data = await NganhNghe.findById(req.params.id).exec();
-    var data = await NganhNghe.findOne({_id:_id})
+    var data = await NganhNghe.findOne({ _id: _id })
     console.log(data)
     res.json(data);
     console.log(data);
@@ -33,22 +32,25 @@ router.get('/nganhnghe/:id', async (req, res) => {
 
 //them nganh nghe
 router.post('/nganhnghe', async (req, res) => {
-  const nganh = new  NganhNghe (req.body );
-  try {
-    var data = await nganh.save();
-    res.status(201).json({ data });
-  } catch (err) {
-    res.status(400).json({ message: err.message });
+  const nganh = new NganhNghe(req.body);
+  var ktmaNganhNghe =  await NganhNghe.find({maNganhNghe:req.body.maNganhNghe }).exec();
+ console.log(kttenNganhNghe);
+   if( ktmaNganhNghe=="" )
+   {
+      var data = await nganh.save();
+      res.status(201).json({ data });
+      // res.status(400).json({ message:"lỗi" });
+   }
+   else  {
+    res.status(500).json({ message:"lỗi trùng dữ liệu" });
   }
-  console.log(req.body);
 });
 //sua ngah nghe
 router.put('/nganhnghe/:id', async (req, res) => {
-  console.log('du lieu chua update', req.params.id);
   const { maNganhNghe, tenNganhNghe, tenVietTat, maBac, maNganhCha } = req.body;
   await NganhNghe.updateOne(
-      { _id:req.params.id },
-      { $set: { maNganhNghe, tenNganhNghe, tenVietTat, maBac, maNganhCha } }
+    { _id: req.params.id },
+    { $set: { maNganhNghe, tenNganhNghe, tenVietTat, maBac, maNganhCha } }
   ).then(() => {
     res.json({ status: "success" });
   }).catch(err => {
@@ -105,11 +107,11 @@ router.post('/nganhnghe/importexcel', async (req, res) => {
     NganhNghe.insertMany(filterItems).then(() => {
       res.json({ success: "added nganh nghe from Excel" });
     }).catch((err) => {
-      res.json( {message: err});
+      res.json({ message: err });
     })
   } else {
-    res.json( {error: "du lieu trong hoac da ton tai"})
+    res.json({ error: "du lieu trong hoac da ton tai" })
   }
 });
 
- module.exports = router;
+module.exports = router;
