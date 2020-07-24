@@ -51,11 +51,19 @@ export class ModalChitieudaotaoComponent implements OnInit {
   ];
   lops = [];
   lopHocs: any;
-  hocKiForm:FormGroup;
+  hocKiForm: FormGroup;
   msg = '';
-  msgList = [];
+  public msgList = [];
 
-  setLop = (maNganh, maLopHoc, tenLop, tenVietTat, linkFBLopHoc) => {
+  setLop = (
+    maNganh,
+    maLopHoc,
+    tenLop,
+    tenVietTat,
+    linkFBLopHoc,
+    maBac,
+    khoa
+  ) => {
     return {
       maNganh: maNganh,
       maLopHoc: maLopHoc,
@@ -64,13 +72,10 @@ export class ModalChitieudaotaoComponent implements OnInit {
       linkFBLopHoc: linkFBLopHoc,
       nguoiTao: 'TranDinhHuy',
       nguoiChinhSua: 'TranDinhHuy',
+      maBac: maBac,
+      khoa: khoa,
     };
   };
-  lopNganh: {
-    maNganhNghe: '';
-    dsLop: any;
-  };
-  lopNganhs = [];
 
   constructor(
     private modalService: ModalService,
@@ -89,7 +94,7 @@ export class ModalChitieudaotaoComponent implements OnInit {
     this.getbac();
     this.getLopHoc();
     this.hocKiForm = new FormGroup({
-      hocKi:new FormControl(''),
+      hocKi: new FormControl(''),
     });
   }
   getLopHoc() {
@@ -176,7 +181,6 @@ export class ModalChitieudaotaoComponent implements OnInit {
     );
   }
   onClickCreate() {
-
     if (!this.addForm.value.khoa || !this.addForm.value.loaiHinhDaoTao) {
       this.msg = 'Vui lòng chọn Loại hình đào tạo và nhập khóa học';
     } else {
@@ -188,7 +192,6 @@ export class ModalChitieudaotaoComponent implements OnInit {
     console.log(this.hocKiForm.value.hocKi);
   }
   createClassModal() {
-    this.lopNganhs = [];
     let index = 1;
     this.chiTieuList.value.forEach((el) => {
       let len = el.soChiTieu;
@@ -212,7 +215,15 @@ export class ModalChitieudaotaoComponent implements OnInit {
           (i + 1);
         this.lops.push(tenLop);
         this.addLopHoc(
-          this.setLop(el.maNganh, maLop, tenLop, tenLop, 'facebook.com')
+          this.setLop(
+            el.maNganh,
+            maLop,
+            tenLop,
+            tenLop,
+            'facebook.com',
+            el.maBac,
+            this.addForm.value.khoa
+          )
         );
       }
       // this.lopNganh = { maNganhNghe: el.maNganh, dsLop: this.lops };
