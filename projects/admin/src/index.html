@@ -19,7 +19,7 @@
   <!-- Script những thành phần quan trọng để sử dụng API facebook -->
   <script>
     var AppId='726531241502023';
-    var accesstoken='';
+    // var access_token='EAAKUxryRZAUcBAAVy2sXyWlvMXUlTYx3XFWlwZA1FFEvzD7aMkZA5aIOyu9W5aVAybO1T0plZCiT5cqqODcD6iBaW5ZAfdFtz62q507L03iihzENtnGtg1UkcmdZBPyymcx6dRawUr0WOKwC5QiXtv8jIR9344gNS6rAWwwZBSuP4wthwNutVDnZBziTbaBxpEcfJRPtoATpfZCMhS6KxKMPy';
     var FBLoaded = false;
     window.fbAsyncInit = function () {
       FB.init({
@@ -72,7 +72,54 @@
         document.getElementById('status').setAttribute('style', 'display:block');
       });
     }
+    //Lấy số member group
+   function getMemberCountGr() {
+      FB.api('/410650836564717',{fields: 'member_count'},function (response){
+        console.log(response);
+       
+      })
+    }
+    //Lấy số member request
+    function getMemberRequestCountGr() {
+      FB.api('/410650836564717',{fields: 'member_request_count'},function (response){
+        console.log(response);
+       
+      })
+    }
+    //Lấy privacy group
+    function getPrivacyGr() {
+      FB.api('/410650836564717',{fields: 'privacy'},function (response){
+        console.log(response);
+       
+      })
+    }
+    //Lấy các feed đã post
+    window.onload = function getFeedPostedGr() {
+      getPrivacyGr();
+      getMemberCountGr();
+      getMemberRequestCountGr();
+      getDescripsionGr();
+      getCreatedTimeGr();
 
+      FB.api('/410650836564717/feed',function (response){
+        console.log(response);
+       
+      })
+    }
+    //Lấy Descripsion Group
+    function getDescripsionGr() {
+      FB.api('/410650836564717',{fields: 'description'},function (response){
+        console.log(response);
+       
+      })
+    }
+    //Lấy ngày tạo Group
+    function getCreatedTimeGr() {
+      FB.api('/410650836564717',{fields: 'created_time'},function (response){
+        console.log(response);
+       
+      })
+    }
 
   </script>
 

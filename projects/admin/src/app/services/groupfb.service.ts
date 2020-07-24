@@ -31,4 +31,5 @@ export class GroupfbService {
   deleteAll() {
     return this.http.delete(baseUrl);
   }
+  
 }
