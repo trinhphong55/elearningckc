@@ -1,4 +1,4 @@
-<app-modal class="modal_chucnang__wrapper show" id="ctdt_chitieudaotao">
+<app-modal class="modal_chucnang__wrapper" id="ctdt_chitieudaotao">
   <div (click)="closeModal('ctdt_chitieudaotao')" class="modal_chucnang__close mdi mdi-chevron-left text-white"></div>
   <div class="container mt-3">
 
@@ -23,7 +23,7 @@
               <div class="form-group">
                 <label for="loai" class="col-sm-4 mr-sm-2 col-form-label">Loại hình đào tạo </label>
                 <div class="col-4">
-                  <select id="loai" class="form-control modal_chucnang__select2" formControlName="loaiHinhDaoTao">
+                  <select id="loai" class="form-control " formControlName="loaiHinhDaoTao">
                     <option value="">Select...</option>
                     <option *ngFor="let loai of loaiHinhList" [ngValue]=loai.maLoai> {{loai.tenLoai }}</option>
                   </select>
@@ -54,9 +54,12 @@
                 </button>
               </div>
               <div class="modal-body">
-               <h6>
-                {{ msg }}
-               </h6>
+                <h6>
+                  {{ msg }}
+                </h6>
+                <ul>
+                  <li *ngFor="let item of msgList">{{ item }}</li>
+                </ul>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -126,16 +129,16 @@
                   <tbody>
                     <!-- <ng-container *ngFor="let item of lopNganhs">
                       <ng-container *ngFor="let lop of item.dsLop, index as i"> -->
-                        <tr *ngFor="let item of lopHocs, index as i">
-                          <th scope="row">{{ i+1 }}</th>
-                          <td>
-                            {{ item.tenLop }}
-                          </td>
-                          <td>
-                            {{ item.maLopHoc }}
-                          </td>
-                        </tr>
-                      <!-- </ng-container> -->
+                    <tr *ngFor="let item of lopHocs, index as i">
+                      <th scope="row">{{ i+1 }}</th>
+                      <td>
+                        {{ item.tenLop }}
+                      </td>
+                      <td>
+                        {{ item.maLopHoc }}
+                      </td>
+                    </tr>
+                    <!-- </ng-container> -->
                     <!-- </ng-container> -->
                     <tr>
                     </tr>

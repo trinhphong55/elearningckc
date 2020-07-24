@@ -26,10 +26,11 @@ export class ModalChitieudaotaoComponent implements OnInit {
   lopHocs: any;
 
   msg = '';
+  msgList = [];
 
   setLop = (maNganh, maLopHoc, tenLop, tenVietTat, linkFBLopHoc) => {
     return {
-      maNganh:maNganh,
+      maNganh: maNganh,
       maLopHoc: maLopHoc,
       tenLop: tenLop,
       tenVietTat: tenVietTat,
@@ -106,50 +107,65 @@ export class ModalChitieudaotaoComponent implements OnInit {
     );
   }
 
-  convertTenBac(maBac: string) {
+  convertToTenBacVietTat(maBac: string) {
     let ten = 'TKT';
     this.bacList.forEach((element) => {
       if (element.maBac == maBac) ten = element.tenVietTat;
     });
     return ten;
   }
-  convertTenNganh(maNganh: string) {
+  convertTenNganhVietTat(maNganh: string) {
     let ten = 'TKT';
     this.nganhList.forEach((element) => {
       if (element.maNganhNghe == maNganh) ten = element.tenVietTat;
     });
     return ten;
   }
+  convertToTenNganh(maNganh: string) {
+    let ten = 'TKT';
+    this.nganhList.forEach((element) => {
+      if (element.maNganhNghe == maNganh) ten = element.tenNganhNghe;
+    });
+    return ten;
+  }
+  convertToTenBac(maBac: string) {
+    let ten = 'TKT';
+    this.bacList.forEach((element) => {
+      if (element.maBac == maBac) ten = element.tenVietTat;
+    });
+    return ten;
+  }
   addLopHoc(data) {
     this.lopHocService.create(data).subscribe(
-      (res) => console.log(res),
-      (err) => console.log(err)
+      (res) => {
+        this.msgList.push(res.msg + ' : ' + data.tenLop);
+      },
+      (err) => {
+        this.msgList.push(err)
+      }
     );
   }
   onClickCreate() {
+    console.log(this.addForm.value);
     if (!this.addForm.value.khoa || !this.addForm.value.loaiHinhDaoTao) {
       this.msg = 'Vui lòng chọn Loại hình đào tạo và nhập khóa học';
     } else {
       this.createClassModal();
       this.msg = 'Tạo thành công danh sách Lớp theo Ngành';
-
     }
   }
   createClassModal() {
     this.lopNganhs = [];
     let index = 1;
     this.chiTieuList.value.forEach((el) => {
-      console.log(el);
-
       let len = el.soChiTieu;
-
       // Bac + Nganh + Khóa  + STT
       for (let i = 0; i < len; i++) {
         index++;
         var tenLop =
-        this.convertTenBac(el.maBac) +
+          this.convertToTenBacVietTat(el.maBac) +
           ' ' +
-          this.convertTenNganh(el.maNganh) +
+          this.convertTenNganhVietTat(el.maNganh) +
           ' ' +
           this.addForm.value.khoa +
           String.fromCharCode(97 + i).toUpperCase();
@@ -162,13 +178,15 @@ export class ModalChitieudaotaoComponent implements OnInit {
           this.addForm.value.khoa +
           (i + 1);
         this.lops.push(tenLop);
-        console.log(maLop);
-        this.addLopHoc(this.setLop(el.maNganh,maLop, tenLop, tenLop, 'facebook.com'));
+        this.addLopHoc(
+          this.setLop(el.maNganh, maLop, tenLop, tenLop, 'facebook.com')
+        );
       }
-      this.lopNganh = { maNganhNghe: el.maNganh, dsLop: this.lops };
-      this.lopNganhs.push(this.lopNganh);
+      // this.lopNganh = { maNganhNghe: el.maNganh, dsLop: this.lops };
+      // this.lopNganhs.push(this.lopNganh);
       this.lops = [];
     });
+    this.msgList = [];
     this.getLopHoc();
   }
   closeModal(id: string) {
