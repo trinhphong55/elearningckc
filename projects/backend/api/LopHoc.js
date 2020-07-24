@@ -1,5 +1,6 @@
 const LopHoc = require("../models/LopHoc.model");
 const { check, validationResult } = require("express-validator");
+const { async } = require("rxjs");
 
 // "maLopHoc": "mã Bậc + mã Ngành Nghề + Khoá Học + mã Loại Hình Đào Tạo + Số thứ tự",
 // "tenLop": "kiểu String",
@@ -20,6 +21,7 @@ const setLopHoc = (req) => {
     nguoiTao: req.body.nguoiTao,
     nguoiChinhSua: req.body.nguoiChinhSua,
     ngayChinhSua: Date.now(),
+    maNganh:req.body.maNganh
   };
 };
 exports.getAll = async (req, res) => {
@@ -163,3 +165,14 @@ exports.checkValidate = () => {
     check("linkFBLopHoc", "linkFBLopHoc IS REQUIRE").notEmpty(),
   ];
 };
+exports.removeAll = async (req, res) => {
+   const removeKhoa = await LopHoc.remove({ trangThai: 1 });
+  if (removeKhoa.deletedCount === 0) {
+    res.json({ status: false, msg: "Id nay khong ton tai" });
+  } else {
+    res.json({
+      status: true,
+      msg: "Deleted  All successful",
+    });
+  }
+}

@@ -27,7 +27,7 @@ const LopHocSchema = new Schema({
   linkFBLopHoc: {
     type: String,
     required: true,
-   
+
   },
   nguoiTao: {
     type: String,
@@ -48,6 +48,10 @@ const LopHocSchema = new Schema({
     required: true,
     default:1
   },
+  maNganh:{
+    type:Number,
+    required : true,
+  }
 });
 
 module.exports = mongoose.model("LopHoc", LopHocSchema, "LopHoc");

@@ -13,7 +13,7 @@ import { NganhNgheService } from '../../../../services/NganhNghe.service';
 })
 export class ModalChitieudaotaoComponent implements OnInit {
   bacList: any;
-  loaiHinhList = [
+  public loaiHinhList = [
     { maLoai: '1', tenLoai: 'Chính quy' },
     { maLoai: '2', tenLoai: 'Liên thông' },
   ];
@@ -27,8 +27,9 @@ export class ModalChitieudaotaoComponent implements OnInit {
 
   msg = '';
 
-  setLop = (maLopHoc, tenLop, tenVietTat, linkFBLopHoc) => {
+  setLop = (maNganh, maLopHoc, tenLop, tenVietTat, linkFBLopHoc) => {
     return {
+      maNganh:maNganh,
       maLopHoc: maLopHoc,
       tenLop: tenLop,
       tenVietTat: tenVietTat,
@@ -131,6 +132,7 @@ export class ModalChitieudaotaoComponent implements OnInit {
     } else {
       this.createClassModal();
       this.msg = 'Tạo thành công danh sách Lớp theo Ngành';
+
     }
   }
   createClassModal() {
@@ -145,14 +147,14 @@ export class ModalChitieudaotaoComponent implements OnInit {
       for (let i = 0; i < len; i++) {
         index++;
         var tenLop =
-          this.convertTenBac(el.maBac) +
+        this.convertTenBac(el.maBac) +
           ' ' +
           this.convertTenNganh(el.maNganh) +
           ' ' +
           this.addForm.value.khoa +
           String.fromCharCode(97 + i).toUpperCase();
         var maLop =
-          el.maBac +
+          Number.parseInt(el.maBac) +
           '' +
           el.maNganh +
           '' +
@@ -160,12 +162,14 @@ export class ModalChitieudaotaoComponent implements OnInit {
           this.addForm.value.khoa +
           (i + 1);
         this.lops.push(tenLop);
-        this.addLopHoc(this.setLop(maLop, tenLop, tenLop, 'facebook.com'));
+        console.log(maLop);
+        this.addLopHoc(this.setLop(el.maNganh,maLop, tenLop, tenLop, 'facebook.com'));
       }
       this.lopNganh = { maNganhNghe: el.maNganh, dsLop: this.lops };
       this.lopNganhs.push(this.lopNganh);
       this.lops = [];
     });
+    this.getLopHoc();
   }
   closeModal(id: string) {
     this.modalService.close(id);
