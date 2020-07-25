@@ -20,6 +20,9 @@ const setLopHoc = (req) => {
     nguoiTao: req.body.nguoiTao,
     nguoiChinhSua: req.body.nguoiChinhSua,
     ngayChinhSua: Date.now(),
+    maNganh: req.body.maNganh,
+    maBac: req.body.maBac,
+    khoa: req.body.khoa,
   };
 };
 exports.getAll = async (req, res) => {
@@ -32,7 +35,7 @@ exports.getAll = async (req, res) => {
 };
 exports.getOne = async (req, res) => {
   try {
-    const khoaBoMon = await BoMon.find({ _id: req.params.id });
+    const khoaBoMon = await LopHoc.find({ _id: req.params.id });
     res.json(khoaBoMon);
   } catch (error) {
     res.json(error);
@@ -73,7 +76,7 @@ exports.insert = async (req, res) => {
   try {
     let idIsExist = 0;
     let nameIsExist = 0;
-    
+
     const err = validationResult(req);
     if (!err.isEmpty()) {
       res.status(422).json(err.errors);
@@ -162,4 +165,23 @@ exports.checkValidate = () => {
     check("tenVietTat", "tenVietTat IS REQUIRE").notEmpty(),
     check("linkFBLopHoc", "linkFBLopHoc IS REQUIRE").notEmpty(),
   ];
+};
+exports.removeAll = async (req, res) => {
+  const removeKhoa = await LopHoc.remove({ trangThai: 1 });
+  if (removeKhoa.deletedCount === 0) {
+    res.json({ status: false, msg: "Id nay khong ton tai" });
+  } else {
+    res.json({
+      status: true,
+      msg: "Deleted  All successful",
+    });
+  }
+};
+exports.search = async (req, res) => {
+  try {
+    const search = LopHoc.find({ maNganh: req.params.maBac });
+    res.json(search);
+  } catch (error) {
+    res.json(error);
+  }
 };

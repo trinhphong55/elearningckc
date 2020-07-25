@@ -1,6 +1,7 @@
-<app-modal class="modal_chucnang__wrapper " id="ctdt_chitieudaotao">
+<app-modal class="modal_chucnang__wrapper" id="ctdt_chitieudaotao">
   <div (click)="closeModal('ctdt_chitieudaotao')" class="modal_chucnang__close mdi mdi-chevron-left text-white"></div>
   <div class="container mt-3">
+
     <div class="row">
       <div class="col-12">
         <h1 class="text-center text-white">Quản lý chỉ tiêu đào tạo</h1>
@@ -13,6 +14,7 @@
                 <label for="bac" class="col-sm-2  col-form-label">Bậc </label>
                 <div class="col-4">
                   <select id="bac" class="form-control" formControlName="bac">
+                    <option value="">Select..</option>
                     <option *ngFor="let bac of bacList" [ngValue]=bac.maBac> {{bac.tenBac }}</option>
                   </select>
                 </div>
@@ -21,7 +23,8 @@
               <div class="form-group">
                 <label for="loai" class="col-sm-4 mr-sm-2 col-form-label">Loại hình đào tạo </label>
                 <div class="col-4">
-                  <select id="loai" class="form-control modal_chucnang__select2" formControlName="loaiHinhDaoTao">
+                  <select id="loai" class="form-control " formControlName="loaiHinhDaoTao">
+                    <option value="">Select...</option>
                     <option *ngFor="let loai of loaiHinhList" [ngValue]=loai.maLoai> {{loai.tenLoai }}</option>
                   </select>
                 </div>
@@ -37,11 +40,66 @@
           </div>
         </div>
       </div>
+
       <div class="container mt-3 bg-white modal_chucnang__box border rounded p-4 mt-5">
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+          aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Thông báo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <h6>
+                  {{ msg }}
+                </h6>
+                <ul>
+                  <li *ngFor="let item of msgList">{{ item }}</li>
+                </ul>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="lopHocPhan" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+          aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Thông báo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body" >
+                <form [formGroup]="hocKiForm">
+                  <label for="hocKi">Chọn học kì</label>
+                  <select id="hocKi" class="form-control" formControlName = "hocKi">
+                    <option *ngFor="let loai of hocKis" [ngValue]=loai.maHK> {{loai.tenHK }}</option>
+                  </select>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-outline-primary" (click) = "onClickLopHocPhan()">Tạo
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="row">
           <div class="col-12">
             <h1 class="text-center text-white">Quản lý chỉ tiêu đào tạo</h1>
           </div>
+
           <div class="col-sm-12 table-responsive">
             <div class="row">
               <div class="col-sm-6 table-responsive">
@@ -72,7 +130,8 @@
                     <tr>
 
                       <td colspan="3">
-                        <button type="button" class="btn btn-outline-primary" (click)="createClassModal()">Tạo
+                        <button type="button" class="btn btn-outline-primary" data-toggle="modal"
+                          data-target="#exampleModalCenter" (click)="onClickCreate()">Tạo
                           lớp</button>
                       </td>
 
@@ -95,25 +154,26 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <ng-container *ngFor="let item of lopNganhs">
-                      <ng-container *ngFor="let lop of item.dsLop, index as i">
-                        <tr>
-                          <th scope="row">{{ i+1 }}</th>
-                          <td>
-                            {{ lop }}
-                          </td>
-                          <td>
-                            {{ item.maNganhNghe }}
-                          </td>
-                        </tr>
-                      </ng-container>
-                    </ng-container>
+                    <!-- <ng-container *ngFor="let item of lopNganhs">
+                      <ng-container *ngFor="let lop of item.dsLop, index as i"> -->
+                    <tr *ngFor="let item of lopHocs, index as i">
+                      <th scope="row">{{ i+1 }}</th>
+                      <td>
+                        {{ item.tenLop }}
+                      </td>
+                      <td>
+                        {{ item.maLopHoc }}
+                      </td>
+                    </tr>
+                    <!-- </ng-container> -->
+                    <!-- </ng-container> -->
                     <tr>
                     </tr>
                   </tbody>
                   <tfoot>
                     <td colspan="3">
-                      <button type="button" class="btn btn-outline-light">Tạo lớp học phần</button>
+                      <button type="button" class="btn btn-outline-light" data-toggle="modal"
+                        data-target="#lopHocPhan">Tạo lớp học phần</button>
                     </td>
                   </tfoot>
                 </table>
