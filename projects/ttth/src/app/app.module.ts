@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -25,7 +25,8 @@ import { PageDangkikhoahocComponent } from './pages/page-dangkikhoahoc/page-dang
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgxUsefulSwiperModule
   ],
   providers: [],
   bootstrap: [AppComponent]
