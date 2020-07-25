@@ -109,6 +109,7 @@ exports.insert = async (req, res) => {
       const data = await lophoc.save();
       result = {
         status: 200,
+        ok:true,
         msg: "Thêm thành công Lớp học",
         data: data,
       };
@@ -144,12 +145,12 @@ exports.delete = async (req, res) => {
 
     if (updateKhoa.nModified === 0) {
       result = {
-        status: false,
+        status: 200,
         msg: "Xóa thất bại",
       };
     } else {
       result = {
-        status: true,
+        status: 200,
         msg: "Xóa thành công ",
       };
     }
