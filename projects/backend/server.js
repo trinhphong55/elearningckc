@@ -107,10 +107,10 @@ let Storage = multer.diskStorage({
 var upload = multer({
 	storage: Storage
 })
-app.get('/api/cnttTinTuc', function (req, res) {
+app.get('/api/cnttBaiViet', function (req, res) {
   res.send('File catcher');
 });
-app.post('/api/cnttTinTuc/upload', upload.single('image'), function (req, res) {
+app.post('/api/cnttBaiViet/upload', upload.single('image'), function (req, res) {
   if (!req.file) {
     console.log("No file is available!");
     return res.send({

@@ -3,11 +3,12 @@ import { ModalService } from '../../../../services/modal.service';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
-  selector: 'app-modal-chinhsuatintuccntt',
-  templateUrl: './modal-chinhsuatintuccntt.component.html',
-  styleUrls: ['./modal-chinhsuatintuccntt.component.css']
+  selector: 'app-modal-chinhsuabaivietcntt',
+  templateUrl: './modal-chinhsuabaivietcntt.component.html',
+  styleUrls: ['./modal-chinhsuabaivietcntt.component.css']
 })
-export class ModalChinhsuatintuccnttComponent implements OnInit {
+export class ModalChinhsuabaivietcnttComponent implements OnInit {
+
   public Editor = ClassicEditor;
   constructor(private modalService: ModalService) { }
 
@@ -16,4 +17,5 @@ export class ModalChinhsuatintuccnttComponent implements OnInit {
   closeModal(id: string) {
     this.modalService.close(id)
   }
+
 }

@@ -17,4 +17,4 @@ var schema = new Schema({
   trangThai: { type: Number },
 })
 
-module.exports = mongoose.model('TinTuc', schema, 'cnttBaiViet')
+module.exports = mongoose.model('BaiViet', schema, 'cnttBaiViet')

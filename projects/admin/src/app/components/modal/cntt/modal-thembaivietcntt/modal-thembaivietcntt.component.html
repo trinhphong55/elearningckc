@@ -1,7 +1,7 @@
-<app-modal class="modal_chucnang__wrapper show" id="cntt_themtintuc">
-    <div (click)="closeModal('cntt_themtintuc')" class="modal_chucnang__close mdi mdi-chevron-left text-white"></div>
+<app-modal class="modal_chucnang__wrapper" id="cntt_thembaiviet">
+    <div (click)="closeModal('cntt_thembaiviet')" class="modal_chucnang__close mdi mdi-chevron-left text-white"></div>
     <div class="container-fluid mt-3">
-        <form [formGroup]="tinTucForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="BaiVietForm" (ngSubmit)="onSubmit()">
             <div class="row">
                 <div class="col-12">
                     <h1 class="text-center text-white">Thêm Tin tức</h1>
@@ -37,10 +37,10 @@
                                     <label>Ảnh đại diện bài viết</label>
                                     <div class="input-group ">
                                         <div class="custom-file file-upload">
-                                            <input type="file" class="custom-file-input" id="" aria-describedby=""
+                                            <input type="file" class="custom-file-input" id="file-upload" aria-describedby="filename"
                                                 name="image" ng2FileSelect [uploader]="uploader"
                                                 accept="image/x-png,image/gif,image/jpeg">
-                                            <label class="custom-file-label" for=""></label>
+                                            <label class="custom-file-label" for="file-upload"></label>
                                         </div>
                                     </div>
                                 </div>
