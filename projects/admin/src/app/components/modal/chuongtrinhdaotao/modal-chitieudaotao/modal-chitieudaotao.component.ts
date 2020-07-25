@@ -109,7 +109,7 @@ export class ModalChitieudaotaoComponent implements OnInit {
     this.bacservice.getBac().subscribe(
       (bac) => {
         this.bacList = bac;
-        console.log(this.bacList);
+
       },
       (error) => {
         console.log(error);
@@ -134,7 +134,7 @@ export class ModalChitieudaotaoComponent implements OnInit {
             })
           );
         });
-        console.log(this.nganhList);
+       
       },
       (error) => {
         console.log(error);
@@ -173,7 +173,10 @@ export class ModalChitieudaotaoComponent implements OnInit {
   addLopHoc(data) {
     this.lopHocService.create(data).subscribe(
       (res) => {
-        this.msgList.push(' : ' + data.tenLop);
+        let index = JSON.stringify(res).indexOf(`msg":"`, 20);
+        let indexLast = JSON.stringify(res).indexOf(`"}`, 20);
+        let msg = JSON.stringify(res).slice(index + 6, indexLast - 3);
+        this.msgList.push(msg + ' : ' + data.tenLop);
       },
       (err) => {
         this.msgList.push(err);
@@ -186,10 +189,12 @@ export class ModalChitieudaotaoComponent implements OnInit {
     } else {
       this.createClassModal();
       this.msg = 'Tạo thành công danh sách Lớp theo Ngành';
+      this.getLopHoc();
     }
   }
   onClickLopHocPhan() {
     console.log(this.hocKiForm.value.hocKi);
+    console.log(this.addForm.value.bac);
   }
   createClassModal() {
     let index = 1;
@@ -231,7 +236,6 @@ export class ModalChitieudaotaoComponent implements OnInit {
       this.lops = [];
     });
     this.msgList = [];
-    this.getLopHoc();
   }
   closeModal(id: string) {
     this.modalService.close(id);
