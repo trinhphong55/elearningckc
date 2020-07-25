@@ -1,4 +1,4 @@
-export class cnttBaiViet {
+export class cnttTinTuc {
     loaiBaiViet: String
     maDanhMuc: String
     maBaiViet: String

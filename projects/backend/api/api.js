@@ -6,6 +6,7 @@ const cnttLoaiBaiVietRoutes = require('./cnttLoaiBaiViet')
 const cnttCrawlingRoutes = require('./cnttCrawling')
 
 
+
 router.use('/lophocphan', LopHocPhanRoutes)
 router.use('/giaovien', GiaoVienRoutes)
 //cnttRoute

@@ -1,10 +1,10 @@
 const router = require('express').Router()
 
-const BaiViet = require('../models/cnttBaiViet.model');
+const TinTuc = require('../models/cntttintuc.model');
 
 // Get All Tintuc
-router.get('/danhsachbaiviet', (req, res) => {
-  BaiViet.find((error, data) => {
+router.get('/danhsachtintuc', (req, res) => {
+  TinTuc.find((error, data) => {
     if (error) {
       return next(error)
     }
@@ -12,8 +12,8 @@ router.get('/danhsachbaiviet', (req, res) => {
   })
 })
 // Get Tintuc by id
-router.get('/baiviet/:id', (req, res) => {
-  BaiViet.find(req.params.id, (error, data) => {
+router.get('/tintuc/:id', (req, res) => {
+  TinTuc.find(req.params.id, (error, data) => {
     if (error) {
       return next(error)
     }
@@ -21,8 +21,8 @@ router.get('/baiviet/:id', (req, res) => {
   })
 })
 // add Tintuc add
-router.post('/taobaiviet', (req, res) => {
-  var baiViet = new BaiViet({
+router.post('/taotintuc', (req, res) => {
+  var tintuc = new TinTuc({
     loaiBaiViet: req.body.loaiBaiViet,
     maDanhMuc: req.body.maDanhMuc,
     tieuDe: req.body.tieuDe,
@@ -30,7 +30,7 @@ router.post('/taobaiviet', (req, res) => {
     noiDung: req.body.noiDung,
     trangThai: 1,
   })
-  baiViet.save((err, data) => {
+  tintuc.save((err, data) => {
     if (err) {
       return next(err)
     }
@@ -38,8 +38,8 @@ router.post('/taobaiviet', (req, res) => {
   })
 })
 
-router.post('/xoabaiviet/:id', (req, res, next) => {
-  BaiViet.update({ _id: req.body._id }, { $set: { trangThai: 0 } }, (err, data) => {
+router.post('/xoatintuc/:id', (req, res, next) => {
+  TinTuc.update({ _id: req.body._id }, { $set: { trangThai: 0 } }, (err, data) => {
     if (err) {
       console.log(err)
       return next(err)
@@ -51,3 +51,4 @@ router.post('/xoabaiviet/:id', (req, res, next) => {
 })
 
 module.exports = router
+

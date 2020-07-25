@@ -1,9 +1,9 @@
-<app-modal class="modal_chucnang__wrapper" id="cntt_quanlybaiviet">
-    <div (click)="closeModal('cntt_quanlybaiviet')" class="modal_chucnang__close mdi mdi-chevron-left text-white"></div>
+<app-modal class="modal_chucnang__wrapper" id="cntt_quanlytintuc">
+    <div (click)="closeModal('cntt_quanlytintuc')" class="modal_chucnang__close mdi mdi-chevron-left text-white"></div>
     <div class="container-fluid mt-3">
         <div class="row">
             <div class="col-12">
-                <h1 class="text-center text-white">Quản lý Bài viết</h1>
+                <h1 class="text-center text-white">Quản lý Tin tức</h1>
             </div>
             <div class="col-12">
                 <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
@@ -23,16 +23,19 @@
                     </div>
                     <table class="modal_chucnang__table table table-hover" id="danhsach_monhoc">
                         <thead class="bg__caothang text-white">
-                            <th class="text-center" scope="col" style="max-width: 100px">Mã Bài Viết</th>
-                            <th scope="col">Loại Bài Viết</th>
-                            <th scope="col">Mã Danh mục</th>
-                            <th scope="col">Tiêu đề</th>
-                            <th scope="col">Nội dung ngắn</th>
-                            <th scope="col">Nội dung</th>
-                            <th scope="col">Ảnh đại diện</th>
-                            <th scope="col">Thời gian đăng bài</th>
-                            <th scope="col">Thông báo khẩn cấp</th>
-                            <th scope="col">Trạng thái</th>
+                            <th class="text-center" scope="col" style="max-width: 100px">maBaiViet</th>
+                            <th scope="col">loaiBaiViet</th>
+                            <th scope="col">maDanhMuc</th>
+                            <th scope="col">tieuDe</th>
+                            <th scope="col">noiDungNgan</th>
+                            <th scope="col">noiDung</th>
+                            <th scope="col">anhBia</th>
+                            <th scope="col">nguoiViet</th>
+                            <th scope="col">thoiGianDangBai</th>
+                            <th scope="col">thongBaoKhanCap</th>
+                            <th scope="col">created_at</th>
+                            <th scope="col">updated_at</th>
+                            <th scope="col">trangThai</th>
                             <th class="text-center" scope="col"><span
                                     class="modal_chucnang__button__save mdi mdi-content-save-outline mdi-24px"></span>
                             </th>
@@ -55,19 +58,11 @@
                                     <input class="form-control">
                                 </td>
                                 <td>
-                                    <input class="form-control">
-                                </td>
-                                <td>
-                                    <input class="form-control">
-                                </td>
-                                <td>
-                                    <input class="form-control">
-                                </td>
-                                <td>
-                                    <input class="form-control">
-                                </td>
-                                <td>
-                                    <input class="form-control">
+                                    <select class="form-control">
+                                        <option>Thực hành</option>
+                                        <option>Lý thuyết</option>
+                                        <option>Module</option>
+                                    </select>
                                 </td>
                             </tr>
                         </tfoot>
@@ -96,10 +91,19 @@
                                         alt="image icon">
                                 </td>
                                 <td>
+                                    <input class="form-control" disabled value="{{tintuc.nguoiViet}}">
+                                </td>
+                                <td>
                                     <input class="form-control" disabled value="{{tintuc.thoiGianDangBai}} ">
                                 </td>
                                 <td>
                                     <input class="form-control" disabled value="{{tintuc.thongBaoKhanCap}} ">
+                                </td>
+                                <td>
+                                    <input class="form-control" disabled value="{{tintuc.created_at}} ">
+                                </td>
+                                <td>
+                                    <input class="form-control" disabled value="{{tintuc.updated_at}} ">
                                 </td>
                                 <td>
                                     <input class="form-control" disabled value="{{tintuc.trangThai}} ">

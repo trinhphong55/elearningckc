@@ -1,0 +1,78 @@
+<app-modal class="modal_chucnang__wrapper" id="cntt_chinhsuatintuc">
+    <div (click)="closeModal('cntt_chinhsuatintuc')" class="modal_chucnang__close mdi mdi-chevron-left text-white"></div>
+    <div class="container-fluid mt-3">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="text-center text-white">Chỉnh sửa Tin tức</h1>
+            </div>
+            <div class="col-12">
+                <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
+                    <div class="row justify-content-center align-items-center">
+                        <div class="col-5">
+                            <div class="form-group">
+                                <label>Tiêu đề tin tức</label>
+                                <input class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>Nội dung ngắn</label>
+                                <input class="form-control">
+                            </div>
+                            <div class="input-group ">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="" aria-describedby="">
+                                    <label class="custom-file-label" for="">Chọn ảnh đại diện cho bài viết</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label>Loại Tin tức Lớn</label>
+                                <select class="form-control">
+                                    <option>Thông báo</option>
+                                    <option>Tin tức</option>
+                                    <option>Tuyển dụng</option>
+                                    <option>Giới thiệu</option>
+                                    <option>Sinh Viên</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Loại Tin tức</label>
+                                <select class="form-control">
+                                    <option>Giới thiệu chung</option>
+                                    <option>Tầm nhìn sứ mang ng</option>
+                                    <option>Mục tiêu đào tạo</option>
+                                    <option>Ban chủ nhiệm khoa</option>
+                                    <option>Các bộ phận và hội đồng</option>
+                                    <option>Đội ngũ giáo viên</option>
+                                    <option>Liên hệ</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <div class="modal_chucnang__group__button">
+                                <button class="modal_chucnang__button btn btn-outline-primary px-4 mx-2"><img
+                                        class="modal_chucnang__button__icon mb-2" src="assets/img/icons/add.png"
+                                        alt="image icon">
+                                    <div>Lưu</div>
+                                </button>
+                                <button class="modal_chucnang__button btn btn-outline-danger px-4 mx-2"
+                                    type="reset"><img class="modal_chucnang__button__icon mb-2"
+                                        src="assets/img/icons/error.png" alt="image icon">
+                                    <div>Huỷ</div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
+                    <div class="form-group">
+                        <label>Nội dung tin tức</label>
+                        <ckeditor [editor]="Editor" data="<p>Hello, world!</p>"></ckeditor>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</app-modal>
