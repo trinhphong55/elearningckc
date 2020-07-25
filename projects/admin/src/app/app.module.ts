@@ -8,11 +8,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ApiService } from './services/api.service';
 import { DataTablesModule } from 'angular-datatables';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
-import { cnttBaiVietService } from './services/cntt/tintuc-cntt.service'
+import { cnttBaiVietService } from './services/cntt/tintuc-cntt.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { FileUploadModule } from "ng2-file-upload";
-
+import { FileUploadModule } from 'ng2-file-upload';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -71,12 +70,12 @@ import { ModalLienheComponent } from './components/modal/ttth/modal-lienhe/modal
 import { ModalMenuComponent } from './components/modal/ttth/modal-menu/modal-menu.component';
 import { ModalHomeChuongtrinhdaotaoComponent } from './components/modal/ttth/modal-home-chuongtrinhdaotao/modal-home-chuongtrinhdaotao.component';
 import { ModalQuanlyslideshowcnttComponent } from './components/modal/cntt/modal-quanlyslideshowcntt/modal-quanlyslideshowcntt.component';
-import { ModalQuanlyloaitintuccnttComponent } from './components/modal/cntt/modal-quanlyloaitintuccntt/modal-quanlyloaitintuccntt.component';
 import { ModalTintucComponent } from './components/modal/ttth/modal-tintuc/modal-tintuc.component';
 import { ModalCrawlingComponent } from './components/modal/cntt/modal-crawling/modal-crawling.component';
 import { ModalThembaivietcnttComponent } from './components/modal/cntt/modal-thembaivietcntt/modal-thembaivietcntt.component';
 import { ModalQuanlybaivietcnttComponent } from './components/modal/cntt/modal-quanlybaivietcntt/modal-quanlybaivietcntt.component';
 import { ModalChinhsuabaivietcnttComponent } from './components/modal/cntt/modal-chinhsuabaivietcntt/modal-chinhsuabaivietcntt.component';
+import { ModalQuanlyloaibaivietcnttComponent } from './components/modal/cntt/modal-quanlyloaibaivietcntt/modal-quanlyloaibaivietcntt.component';
 
 @NgModule({
   declarations: [
@@ -138,12 +137,12 @@ import { ModalChinhsuabaivietcnttComponent } from './components/modal/cntt/modal
     ModalHomeChuongtrinhdaotaoComponent,
     ModalQuanlyslideshowcnttComponent,
     ModalHomeChuongtrinhdaotaoComponent,
-    ModalQuanlyloaitintuccnttComponent,
     ModalTintucComponent,
     ModalCrawlingComponent,
     ModalThembaivietcnttComponent,
     ModalQuanlybaivietcnttComponent,
     ModalChinhsuabaivietcnttComponent,
+    ModalQuanlyloaibaivietcnttComponent,
   ],
   imports: [
     BrowserModule,
@@ -157,9 +156,9 @@ import { ModalChinhsuabaivietcnttComponent } from './components/modal/cntt/modal
     NgxSkeletonLoaderModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
-    FileUploadModule
+    FileUploadModule,
   ],
   providers: [ApiService, cnttBaiVietService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
