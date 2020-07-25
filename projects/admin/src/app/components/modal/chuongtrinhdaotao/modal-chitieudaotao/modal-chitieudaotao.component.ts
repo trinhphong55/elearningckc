@@ -173,11 +173,7 @@ export class ModalChitieudaotaoComponent implements OnInit {
   addLopHoc(data) {
     this.lopHocService.create(data).subscribe(
       (res) => {
-        // let index = JSON.stringify(res).indexOf(`msg":"`, 20);
-        // let indexLast = JSON.stringify(res).indexOf(`"}`, 20);
-        // let msg = JSON.stringify(res).slice(index + 6, indexLast - 3);
         let { msg, status} = res;
-
         this.msgList.push(msg + ' : ' + data.tenLop);
       },
       (err) => {
