@@ -49,12 +49,19 @@
       //User đã login facebook và login ứng dụng
       if (response.status === 'connected') {
         showWelcome();
+        getAvatarProf();
       }
       //User đã login facebook nhưng chưa login ứng dụng hoặc chưa login facebook
       else{
         ShowLoginButton();
       }
 
+    };
+    function getAvatarProf(){
+      FB.api('/me',{fields: 'picture'}, function (response){
+        console.log(response);
+        document.getElementById('avatar').innerHTML =response;
+      })
     };
 
     // Hiển thị nút đăng nhập
@@ -72,6 +79,9 @@
         document.getElementById('status').setAttribute('style', 'display:block');
       });
     }
+
+    // GROUPFB API
+
     //Lấy số member group
    function getMemberCountGr() {
       FB.api('/410650836564717',{fields: 'member_count'},function (response){
