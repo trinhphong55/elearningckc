@@ -61,16 +61,27 @@ export class ModalImportExcelKhoabomonComponent implements OnInit {
   importExcel() {
     this.dsKhoabomon.forEach( async Khoabomons=>{
       console.log(Khoabomons);
-    //  if(Khoabomons.maLoai==1){
+      if(Khoabomons.maLoai==1){
+       
       this.KhoaBonmonService.create(Khoabomons).subscribe(
         (response) => {
+       
           console.log(response);
         },
         (error) => {
           console.log(error);
         }
-      );//}
-    
+      );}
+      else{
+        this.BomonService.create(Khoabomons).subscribe(
+          (response) => {
+            console.log(response);
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+      }
     })
     
     this.modalService.close('ctdt_khoabomon');
