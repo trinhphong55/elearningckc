@@ -1,10 +1,10 @@
 $(document).ready(function() {
   //slide
-  var swiper = new Swiper('.swiper-container', {
-    pagination: {
-      el: '.swiper-pagination',
-    },
-  });
+  // var swiper = new Swiper('.swiper-container', {
+  //   pagination: {
+  //     el: '.swiper-pagination',
+  //   },
+  // });
   //giu thanh menu
   $(window).scroll(function () {
     if ($(this).scrollTop()) {

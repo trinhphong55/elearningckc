@@ -4,13 +4,16 @@ const GiaoVienRoutes = require('./GiaoVien')
 const cnttTinTucRoute = require('./cnttTinTuc')
 const cnttCrawlingRoutes = require('./cnttCrawling');
 
+
 router.use('/lophocphan', LopHocPhanRoutes)
 router.use('/giaovien', GiaoVienRoutes)
 //cnttRoute
 router.use('/cnttTinTuc', cnttTinTucRoute)
 router.use('/crawling', cnttCrawlingRoutes)
 //end cntt
+//ttthRoutes
 
+//ttth
 const khoabomonController = require("../api/khoabomon");
 const loaidonviController = require("../api/loaidonvi");
 //
