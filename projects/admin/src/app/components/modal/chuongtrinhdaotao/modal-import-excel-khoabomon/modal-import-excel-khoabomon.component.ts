@@ -5,6 +5,7 @@ import * as XLSX from 'xlsx';
 import { Subject } from 'rxjs';
 import { Khoabomon } from '../../../../interfaces/Khoabomon.interface';
 import { ModalService } from '../../../../services/modal.service';
+import {BomonService} from './../../../../services/khoa-bomons/bomon.service';
 @Component({
   selector: 'app-modal-import-excel-khoabomon',
   templateUrl: './modal-import-excel-khoabomon.component.html',
@@ -60,37 +61,38 @@ export class ModalImportExcelKhoabomonComponent implements OnInit {
   importExcel() {
     this.dsKhoabomon.forEach( async Khoabomons=>{
       console.log(Khoabomons);
+      if(Khoabomons.maLoai==1){
+       
       this.KhoaBonmonService.create(Khoabomons).subscribe(
         (response) => {
-          // this.result.msg = response.msg;
-          // this.result.status = response.status;
+       
           console.log(response);
         },
         (error) => {
           console.log(error);
         }
-      );
-      this.modalService.close('ctdt_khoabomon');
-      this.modalService.close('ctdt_importexcelkhoabomon');
-      this.modalService.open('ctdt_khoabomon');
+      );}
+      else{
+        this.BomonService.create(Khoabomons).subscribe(
+          (response) => {
+            console.log(response);
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+      }
     })
-    //this.monhocService.importMonHocFromExcel(this.dsMonHoc).subscribe(status => {
-    //  if (status.success) {
-    //    alert(status.success);
-        // this.selectedMonHoc = { maMonHoc: "", tenMonHoc: "", loaiMonHoc: "Thực hành", tenTiengAnh: "", tenVietTat: "", tenVietTatTiengAnh: "" };
-        // this.monhocService.getMonHoc().subscribe(data => {
-        //   this.dsMonHoc = data;
-        // })
-     // } else {
-     //   alert('them moi that bai')
-     // }
-
-   // });
+    
+    this.modalService.close('ctdt_khoabomon');
+    this.modalService.close('ctdt_importexcelkhoabomon');
+    this.modalService.open('ctdt_khoabomon');
   }
 
   constructor(  private loaiDonviService: LoaidonviService,
     private modalService: ModalService,
-    private KhoaBonmonService: KhoaBonmonService,) { }
+    private KhoaBonmonService: KhoaBonmonService,
+    private BomonService: BomonService) { }
 
     
     //làm trống thẻ input

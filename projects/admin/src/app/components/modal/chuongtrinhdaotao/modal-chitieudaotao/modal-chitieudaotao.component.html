@@ -13,7 +13,7 @@
               <div class="form-group">
                 <label for="bac" class="col-sm-2  col-form-label">Bậc </label>
                 <div class="col-4">
-                  <select id="bac" class="form-control" formControlName="bac">
+                  <select id="bac" class="form-control" formControlName="bac" (change)="changed($event)">
                     <option value="">Select..</option>
                     <option *ngFor="let bac of bacList" [ngValue]=bac.maBac> {{bac.tenBac }}</option>
                   </select>
@@ -118,7 +118,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let nganh of nganhList;index as i">
+                    <tr *ngFor="let nganh of nganhtamlist;index as i">
                       <th scope="row">{{ i+ 1 }}</th>
                       <td> {{nganh.tenNganhNghe }}</td>
                       <td>

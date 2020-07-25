@@ -5,6 +5,9 @@ import { FormControl, FormGroup, Validators, FormArray } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { ModalService } from '../../../../services/modal.service';
 import { NganhNgheService } from '../../../../services/NganhNghe.service';
+import { toNamespacedPath } from 'path';
+import { tmpdir } from 'os';
+import { config } from 'process';
 
 @Component({
   selector: 'app-modal-chitieudaotao',
@@ -18,7 +21,7 @@ export class ModalChitieudaotaoComponent implements OnInit {
     { maLoai: '2', tenLoai: 'Liên thông' },
   ];
   nganhList: any;
-
+  nganhtamlist: any;
   addForm: FormGroup;
   chiTieuGroup: FormGroup;
   chiTieuList = new FormArray([]);
@@ -82,7 +85,7 @@ export class ModalChitieudaotaoComponent implements OnInit {
     private nganhngheservice: NganhNgheService,
     private bacservice: BacService,
     private lopHocService: LopHocService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.addForm = new FormGroup({
@@ -124,6 +127,8 @@ export class ModalChitieudaotaoComponent implements OnInit {
           soChiTieu: new FormControl(''),
         });
         this.nganhList = data;
+        this.nganhtamlist = this.nganhList;
+        console.log(this.nganhList);
         this.nganhList.forEach((element) => {
           this.chiTieuList.push(
             new FormGroup({
@@ -170,6 +175,7 @@ export class ModalChitieudaotaoComponent implements OnInit {
     });
     return ten;
   }
+
   addLopHoc(data) {
     this.lopHocService.create(data).subscribe(
       (res) => {
@@ -234,6 +240,22 @@ export class ModalChitieudaotaoComponent implements OnInit {
       this.lops = [];
     });
     this.msgList = [];
+  }
+  //bắt sự kiện show môn theo ngành
+  changed(e) {
+    //  this.nganhList.array.forEach(element => {
+    //    this
+    //  });
+    this.nganhtamlist = [];
+    console.log(this.nganhtamlist);
+    console.log(this.addForm.value.bac);
+    console.log(this.nganhList);
+    this.nganhList.forEach(element => {
+      if (element.maBac == this.addForm.value.bac) {
+        this.nganhtamlist.push(element);
+        console.log(this.nganhtamlist);
+      }
+    });
   }
   closeModal(id: string) {
     this.modalService.close(id);
