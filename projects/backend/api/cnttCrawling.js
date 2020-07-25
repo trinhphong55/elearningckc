@@ -2,7 +2,7 @@ const router = require('express').Router()
 const axios = require('axios')
 const cheerio = require('cheerio')
 
-const BaiViet = require('../models/cntttintuc.model')
+const BaiViet = require('../models/cnttBaiViet.model')
 
 router.get('/', async (req, res) => {
   res.json('Hello from Cao Thang API crawling')

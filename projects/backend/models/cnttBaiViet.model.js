@@ -18,4 +18,4 @@ var schema = new Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("TinTuc", schema, "cnttBaiViet");
+module.exports = mongoose.model('BaiViet', schema, 'cnttBaiViet')

@@ -2,40 +2,40 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map, retry } from 'rxjs/operators';
 import { HttpClient, HttpParams, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { cnttTinTuc } from '../../../models/cnttTinTuc'
+import { cnttBaiViet } from '../../../models/cnttBaiViet'
 
 @Injectable({
   providedIn: 'root'
 })
-export class TintucCnttService {
+export class cnttBaiVietService {
 
-  baseUri: string = 'https://localhost:4100/api/cnttTinTuc';
+  baseUri: string = 'https://localhost:4100/api/cnttBaiViet';
   headers = new HttpHeaders().set('Content-Type', 'application/json')
 
   constructor(private http: HttpClient) { }
   //taoTintuc
-  taoTinTuc(tinTuc: any): Observable<any> {
+  taoTinTuc(baiViet: any): Observable<any> {
     let url = `${this.baseUri}/taoTinTuc`;
-    return this.http.post<any>(url, JSON.stringify(tinTuc))
+    return this.http.post<any>(url, JSON.stringify(baiViet))
       .pipe(
         catchError(this.errorMgmt)
       )
   }
   danhSachTinTuc() {
-    return this.http.get(`${this.baseUri}/danhsachtintuc`);
+    return this.http.get(`${this.baseUri}/danhsachbaiviet`);
   }
   //xoaTinTuc
   xoaTinTuc(id, data): Observable<any> {
     console.log("id: " + id)
     console.log("data: " + data)
-    let url = `${this.baseUri}/xoatintuc/${id}`;
+    let url = `${this.baseUri}/xoabaiviet/${id}`;
     return this.http.post(url, data, { headers: this.headers }).pipe(
       catchError(this.errorMgmt)
     )
   }
   //add tin tuc
   themTinTuc(data): Observable<any> {
-    let url = `${this.baseUri}/taotintuc`;
+    let url = `${this.baseUri}/taobaiviet`;
     return this.http.post(url, data)
       .pipe(
         catchError(this.errorMgmt)

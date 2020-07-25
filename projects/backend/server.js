@@ -49,8 +49,7 @@ const server = https.createServer(httpsOptions, app)
   })
 
 
-
-/////// cntt region //// - cac nhom khac cmt het phan nay lai nhe
+//#region cntt - cac nhom khac cmt het phan nay lai nhe
 //cntt-db
 mongoose.connect('mongodb://127.0.0.1:27017/DATNWEBKHOACKC', { useNewUrlParser: true, useFindAndModify: false, useCreateIndex: true, useUnifiedTopology: true }, function (err, db) {
   if (err) {
@@ -69,7 +68,6 @@ mongoose.connect('mongodb://127.0.0.1:27017/DATNWEBKHOACKC', { useNewUrlParser: 
 //     console.log(error)
 //     console.log(data)
 //     res.json(data);
-
 //   })
 // })
 //end cntt-route
@@ -107,10 +105,10 @@ let Storage = multer.diskStorage({
 var upload = multer({
   storage: Storage
 })
-app.get('/api/cnttTinTuc', function (req, res) {
+app.get('/api/cnttBaiViet', function (req, res) {
   res.send('File catcher');
 });
-app.post('/api/cnttTinTuc/upload', upload.single('image'), function (req, res) {
+app.post('/api/cnttBaiViet/upload', upload.single('image'), function (req, res) {
   if (!req.file) {
     console.log("No file is available!");
     return res.send({
@@ -124,4 +122,4 @@ app.post('/api/cnttTinTuc/upload', upload.single('image'), function (req, res) {
     })
   }
 });
-/////// end cntt region ////
+//#endregion

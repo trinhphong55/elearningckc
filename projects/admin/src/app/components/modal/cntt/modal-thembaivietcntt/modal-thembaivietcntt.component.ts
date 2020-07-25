@@ -1,19 +1,19 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { ModalService } from '../../../../services/modal.service';
-import { TintucCnttService } from '../../../../services/cntt/tintuc-cntt.service'
+import { cnttBaiVietService } from '../../../../services/cntt/tintuc-cntt.service'
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { Router } from '@angular/router';
 import { FileUploader } from 'ng2-file-upload';
 import { ToastrService } from 'ngx-toastr';
 
-const URL = 'https://localhost:4100/api/cnttTinTuc/upload';
+const URL = 'https://localhost:4100/api/cnttBaiViet/upload';
 @Component({
-  selector: 'app-modal-themtintuccntt',
-  templateUrl: './modal-themtintuccntt.component.html',
-  styleUrls: ['./modal-themtintuccntt.component.css']
+  selector: 'app-modal-thembaivietcntt',
+  templateUrl: './modal-thembaivietcntt.component.html',
+  styleUrls: ['./modal-thembaivietcntt.component.css']
 })
-export class ModalThemtintuccnttComponent implements OnInit {
+export class ModalThembaivietcnttComponent implements OnInit {
 
 
   public Editor = ClassicEditor;
@@ -25,12 +25,12 @@ export class ModalThemtintuccnttComponent implements OnInit {
   });
 
   submitted = false;
-  tinTucForm: FormGroup;
+  BaiVietForm: FormGroup;
   loaiBaiViet: any = ['Thông báo', 'Bài Viết nổi bật', 'Tài liệu', 'Việc làm', 'Bài viết'];
   maDanhMuc: any = ['Thông báo', 'Sinh Viên', 'Giới thiệu'];
   TinTuc: any = [];
 
-  constructor(private modalService: ModalService, public fb: FormBuilder, private router: Router, private ngZone: NgZone, private tintucCnttService: TintucCnttService, private toastr: ToastrService) {
+  constructor(private modalService: ModalService, public fb: FormBuilder, private router: Router, private ngZone: NgZone, private cnttBaiVietService: cnttBaiVietService, private toastr: ToastrService) {
     this.mainForm();
   }
 
@@ -45,7 +45,7 @@ export class ModalThemtintuccnttComponent implements OnInit {
   }
 
   mainForm() {
-    this.tinTucForm = this.fb.group({
+    this.BaiVietForm = this.fb.group({
       loaiBaiViet: ['', [Validators.required]],
       maDanhMuc: ['',],
       maBaiViet: [''],
@@ -64,31 +64,31 @@ export class ModalThemtintuccnttComponent implements OnInit {
 
   //  dropdown
   chonMaDanhMuc(e) {
-    this.tinTucForm.get('maDanhMuc').setValue(e, {
+    this.BaiVietForm.get('maDanhMuc').setValue(e, {
       onlySelf: true
     })
   }
   chonLoaiBaiViet(e) {
-    this.tinTucForm.get('loaiBaiViet').setValue(e, {
+    this.BaiVietForm.get('loaiBaiViet').setValue(e, {
       onlySelf: true
     })
   }
   loadDanhSachTinTuc() {
-    this.tintucCnttService.danhSachTinTuc().subscribe((data) => {
+    this.cnttBaiVietService.danhSachTinTuc().subscribe((data) => {
       this.TinTuc = data;
     })
   }
   // Getter to access form control
   get myForm() {
-    return this.tinTucForm.controls;
+    return this.BaiVietForm.controls;
   }
 
   onSubmit() {
     this.submitted = true;
-    if (!this.tinTucForm.valid) {
+    if (!this.BaiVietForm.valid) {
       return false;
     } else {
-      this.tintucCnttService.themTinTuc(this.tinTucForm.value).subscribe(
+      this.cnttBaiVietService.themTinTuc(this.BaiVietForm.value).subscribe(
         (res) => {
           this.loadDanhSachTinTuc()
           console.log(' Tin tuc duoc them thanh cong!    ', res)
