@@ -52,26 +52,26 @@ const server = https.createServer(httpsOptions, app)
 
 /////// cntt region //// - cac nhom khac cmt het phan nay lai nhe
 //cntt-db
-mongoose.connect('mongodb://127.0.0.1:27017/DATNWEBKHOACKC', { useNewUrlParser: true, useFindAndModify: false,useCreateIndex: true, useUnifiedTopology: true }, function (err, db) {
-    if (err) {
-        console.log("fail to connect db");
-    } else {
-        console.log("db connected by cntt");
-    }
+mongoose.connect('mongodb://127.0.0.1:27017/DATNWEBKHOACKC', { useNewUrlParser: true, useFindAndModify: false, useCreateIndex: true, useUnifiedTopology: true }, function (err, db) {
+  if (err) {
+    console.log("fail to connect db");
+  } else {
+    console.log("db connected by cntt");
+  }
 });
 //end cntt-db
 //cntt-route
-  //app.use('/api', require('./api/api'))
-  // var cnttTinTuc = require('./models/cntttintuc.model');
-  // app.get('/test', (req, res) => {
-  //   console.log('checked')
-  //   cnttTinTuc.find({},(error, data) => {
-  //     console.log(error)
-  //     console.log(data)
-  //     res.json(data);
+//app.use('/api', require('./api/api'))
+// var cnttTinTuc = require('./models/cntttintuc.model');
+// app.get('/test', (req, res) => {
+//   console.log('checked')
+//   cnttTinTuc.find({},(error, data) => {
+//     console.log(error)
+//     console.log(data)
+//     res.json(data);
 
-  //   })
-  // })
+//   })
+// })
 //end cntt-route
 //cntt upload img
 const multer = require('multer')
@@ -105,7 +105,7 @@ let Storage = multer.diskStorage({
   }
 });
 var upload = multer({
-	storage: Storage
+  storage: Storage
 })
 app.get('/api/cnttTinTuc', function (req, res) {
   res.send('File catcher');

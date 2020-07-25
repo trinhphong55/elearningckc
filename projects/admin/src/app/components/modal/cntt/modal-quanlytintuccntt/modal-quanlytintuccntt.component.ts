@@ -22,7 +22,7 @@ export class ModalQuanlytintuccnttComponent implements OnInit {
   openModal(id: string) {
     this.modalService.open(id)
   }
-  
+
   loadDanhSachTinTuc() {
     this.tintucCnttService.danhSachTinTuc().subscribe((data) => {
       this.TinTuc = data;

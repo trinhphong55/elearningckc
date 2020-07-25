@@ -51,4 +51,3 @@ router.post('/xoatintuc/:id', (req, res, next) => {
 })
 
 module.exports = router
-
