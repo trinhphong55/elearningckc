@@ -14,4 +14,4 @@ var schema = new Schema({
   updated_at: { type: Date },
 })
 
-module.exports = mongoose.model('ttth_tintuc', schema, 'ttth_tintuc')
+module.exports = mongoose.model('ttthtintuc', schema, 'ttth_tintuc')

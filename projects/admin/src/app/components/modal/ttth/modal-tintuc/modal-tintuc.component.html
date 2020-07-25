@@ -8,12 +8,13 @@
       <div class="col-12">
         <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
           <div class="row justify-content-center align-items-center">
-            <div class="col-9">
+            <div class="col-9" *ngIf="selectedItem">
               <div class="form-group">
-                <label>Chọn menu</label>
-                <select class="modal_chucnang__select2 form-control">
-                  <option>a</option>
-                  <option>....</option>
+                <label>Chọn loại tin tức</label>
+                <select class="modal_chucnang__select2 form-control" #id_loaitintuc  [(ngModel)]="selectedItem.id_loaitintuc">
+                  <option></option>
+                  <option value="Tin tức">Tin tức</option>
+                  <option value="Lịch khai giảng">Lịch khai giảng</option>
                 </select>
               </div>
               <div class="form-group">
@@ -22,22 +23,54 @@
               </div>
               <div class="form-group">
                 <label>Tiêu đề </label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" #tentintuc  [(ngModel)]="selectedItem.tentintuc">
               </div>
               <div class="form-group">
                 <label>Mô tả </label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" #description  [(ngModel)]="selectedItem.description">
               </div>
               <div class="form-group">
                 <label>Nội dung</label>
-                <ckeditor [editor]="Editor" ></ckeditor>
+                <ckeditor [editor]="Editor" data="<p>Hello, world!</p>" #noidung></ckeditor>
+              </div>
+            </div>
+            <div class="col-9" *ngIf="!(selectedItem)">
+              <div class="form-group">
+                <label>Chọn loại tin tức</label>
+                <select class="modal_chucnang__select2 form-control" #id_loaitintuc>
+                  <option></option>
+                  <option value="Tin tức">Tin tức</option>
+                  <option value="Lịch khai giảng">Lịch khai giảng</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlFile1">Tải hình ảnh</label>
+                <input type="file" class="form-control-file" id="exampleFormControlFile1">
+              </div>
+              <div class="form-group">
+                <label>Tiêu đề </label>
+                <input type="text" class="form-control" #tentintuc>
+              </div>
+              <div class="form-group">
+                <label>Mô tả </label>
+                <input type="text" class="form-control" #description>
+              </div>
+              <div class="form-group">
+                <label>Nội dung</label>
+                <ckeditor [editor]="Editor" data="<p>Hello, world!</p>" #noidung></ckeditor>
               </div>
             </div>
             <div class="col-auto">
-              <div class="modal_chucnang__group__button">
-                <button class="modal_chucnang__button btn btn-outline-primary px-4 mx-2"><img
-                    class="modal_chucnang__button__icon mb-2" src="assets/img/icons/add.png" alt="image icon">
+              <div class="modal_chucnang__group__button" *ngIf="!selectedItem">
+                <button class="modal_chucnang__button btn btn-outline-primary px-4 mx-2" (click)="addTinTuc(id_loaitintuc.value,tentintuc.value, description.value, noidung.data);id_loaitintuc.value=''; tentintuc.value=''; description.value=''; noidung.data=''"><img
+                    class="modal_chucnang__button__icon mb-2" src="assets/img/icons/add.png" alt="image icon" >
                   <div>Thêm mới</div>
+                </button>
+              </div>
+              <div class="modal_chucnang__group__button" *ngIf="selectedItem">
+                <button class="modal_chucnang__button btn btn-outline-success px-4 mx-2" (click)="saveTinTuc()"><img
+                    class="modal_chucnang__button__icon mb-2" src="assets/img/icons/upgrade.png" alt="image icon">
+                  <div>Cập nhật</div>
                 </button>
               </div>
             </div>
@@ -46,7 +79,7 @@
       </div>
       <div class="col-12">
         <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
-          <table class="modal_chucnang__table table table-hover" datatable>
+          <table class="modal_chucnang__table table table-hover" >
             <thead class="bg__caothang text-white">
               <tr>
                 <th>#</th>
@@ -61,27 +94,27 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr *ngFor="let tintuc of TinTuc; let i = index">
                 <td style="max-width: 50px">1</td>
-                <td>Tin tức</td>
+                <td>{{tintuc.id_loaitintuc}}</td>
                 <td style="max-width: 100px">
-                  <img src="https://via.placeholder.com/50" alt="">
+                  <img src="{{tintuc.image}}" alt="">
                 </td>
                 <td>
-                  Tiêu đề
+                  {{tintuc.tentintuc}}
                 </td>
-                <td>Mô tả</td>
+                <td>{{tintuc.description}}</td>
                 <td>
-                  Nội dung
+                  {{tintuc.noidung}}
                 </td>
                 <td>
                   <div class="custom-control custom-checkbox">
-                    <input class="custom-control-input" id="customCheck1" type="checkbox">
+                    <input class="custom-control-input" id="customCheck1" type="checkbox" >
                     <label class="custom-control-label" for="customCheck1"></label>
                   </div>
                 </td>
                 <td class="text-center">
-                  <span class="modal_chucnang__button__delete mdi mdi-wrench-outline mdi-24px  mr-2"></span>
+                  <span class="modal_chucnang__button__delete mdi mdi-wrench-outline mdi-24px  mr-2" (click)="onSelect(tintuc)"></span>
                   <span class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px"></span>
                 </td>
               </tr>

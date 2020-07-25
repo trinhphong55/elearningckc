@@ -2,6 +2,7 @@ const router = require('express').Router()
 const LopHocPhanRoutes = require('./LopHocPhan')
 const GiaoVienRoutes = require('./GiaoVien')
 const cnttTinTucRoute = require('./cnttTinTuc')
+const ttthTinTucRoute = require('./ttthTinTuc')
 const cnttCrawlingRoutes = require('./cnttCrawling');
 
 
@@ -12,7 +13,7 @@ router.use('/cnttTinTuc', cnttTinTucRoute)
 router.use('/crawling', cnttCrawlingRoutes)
 //end cntt
 //ttthRoutes
-
+router.use('/ttthTinTuc', ttthTinTucRoute)
 //ttth
 const khoabomonController = require("../api/khoabomon");
 const loaidonviController = require("../api/loaidonvi");

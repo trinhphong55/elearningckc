@@ -56,16 +56,22 @@ mongoose.connect('mongodb://127.0.0.1:27017/ttth', { useNewUrlParser: true, useF
     if (err) {
         console.log("fail to connect db");
     } else {
-        console.log(" connected");
+        console.log("db connected by cntt");
     }
 });
 //end cntt-db
 //cntt-route
-  app.use('/api', require('./api/api'))
-  var tintuc = require('./models/ttthtintuc.model');
-  app.get('/test', (req, res) => {
-    res.send('File catcher');
-  })
+  // app.use('/api', require('./api/api'))
+  // var ttthtintuc = require('./models/ttthtintuc.model');
+  // app.get('/test', (req, res) => {
+  //   console.log('checked')
+  //   ttthtintuc.find({},(error, data) => {
+  //     console.log(error)
+  //     console.log(data)
+  //     res.json(data);
+
+  //   })
+  // })
 //end cntt-route
 //cntt upload img
 const multer = require('multer')
@@ -103,6 +109,9 @@ var upload = multer({
 })
 app.get('/api/cnttTinTuc', function (req, res) {
   res.send('File catcher');
+});
+app.get('/api/ttthTinTuc', function (req, res) {
+  res.send('TTTH');
 });
 app.post('/api/cnttTinTuc/upload', upload.single('image'), function (req, res) {
   if (!req.file) {

@@ -42,7 +42,7 @@ export class TintucCnttService {
       )
   }
 
-  // Error handling 
+  // Error handling
   errorMgmt(error: HttpErrorResponse) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
