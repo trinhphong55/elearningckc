@@ -52,7 +52,7 @@ const server = https.createServer(httpsOptions, app)
 
 /////// cntt region //// - cac nhom khac cmt het phan nay lai nhe
 //cntt-db
-mongoose.connect('mongodb://127.0.0.1:27017/DATNWEBKHOACKC', { useNewUrlParser: true, useFindAndModify: false,useCreateIndex: true, useUnifiedTopology: true }, function (err, db) {
+mongoose.connect('mongodb://127.0.0.1:27017/ttth', { useNewUrlParser: true, useFindAndModify: false,useCreateIndex: true, useUnifiedTopology: true }, function (err, db) {
     if (err) {
         console.log("fail to connect db");
     } else {
@@ -61,11 +61,11 @@ mongoose.connect('mongodb://127.0.0.1:27017/DATNWEBKHOACKC', { useNewUrlParser: 
 });
 //end cntt-db
 //cntt-route
-  //app.use('/api', require('./api/api'))
-  // var cnttTinTuc = require('./models/cntttintuc.model');
+  // app.use('/api', require('./api/api'))
+  // var ttthtintuc = require('./models/ttthtintuc.model');
   // app.get('/test', (req, res) => {
   //   console.log('checked')
-  //   cnttTinTuc.find({},(error, data) => {
+  //   ttthtintuc.find({},(error, data) => {
   //     console.log(error)
   //     console.log(data)
   //     res.json(data);
@@ -107,10 +107,13 @@ let Storage = multer.diskStorage({
 var upload = multer({
 	storage: Storage
 })
-app.get('/api/cnttBaiViet', function (req, res) {
+app.get('/api/cnttTinTuc', function (req, res) {
   res.send('File catcher');
 });
-app.post('/api/cnttBaiViet/upload', upload.single('image'), function (req, res) {
+app.get('/api/ttthTinTuc', function (req, res) {
+  res.send('TTTH');
+});
+app.post('/api/cnttTinTuc/upload', upload.single('image'), function (req, res) {
   if (!req.file) {
     console.log("No file is available!");
     return res.send({

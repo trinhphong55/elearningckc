@@ -7,7 +7,7 @@ class MongoDB {
   }
 
   async connectDB() {
-    let dbName = 'db-caothang';
+    let dbName = 'ttth';
     try {
       if(!this.dbClose) {
         const connectRs = await MongoClient.connect(url, { useUnifiedTopology: true });
@@ -18,7 +18,7 @@ class MongoDB {
     } catch(ex) {
       console.log('connect error db', ex)
       throw ex
-    } 
+    }
   }
 
   async updateOrInsertOne(key, data, collectionName, callback) {
