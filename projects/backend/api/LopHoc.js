@@ -1,5 +1,6 @@
 const LopHoc = require("../models/LopHoc.model");
 const { check, validationResult } = require("express-validator");
+const { async } = require("rxjs");
 
 // "maLopHoc": "mã Bậc + mã Ngành Nghề + Khoá Học + mã Loại Hình Đào Tạo + Số thứ tự",
 // "tenLop": "kiểu String",
@@ -27,7 +28,10 @@ const setLopHoc = (req) => {
 };
 exports.getAll = async (req, res) => {
   try {
-    const LopHocs = await LopHoc.find({ trangThai: 1 });
+    const LopHocs = await LopHoc.find({ trangThai: 1 }).sort({
+      maNganh: "asc",
+    });
+
     res.json(LopHocs);
   } catch (error) {
     res.json(error);
@@ -35,8 +39,36 @@ exports.getAll = async (req, res) => {
 };
 exports.getOne = async (req, res) => {
   try {
-    const khoaBoMon = await LopHoc.find({ _id: req.params.id });
+    const khoaBoMon = await LopHoc.findOne({ _id: req.params.id });
     res.json(khoaBoMon);
+  } catch (error) {
+    res.json(error);
+  }
+};
+exports.getAllFor = async (req, res) => {
+  try {
+    let LopHocs = await LopHoc.find({
+      maNganh: req.params.maNganh,
+    });
+    res.json(LopHocs.length);
+  } catch (error) {
+    res.json(error);
+  }
+};
+exports.deleteMaNganh = async (req, res) => {
+  try {
+    let LopHocs = await LopHoc.remove({
+      maNganh: req.params.maNganh,
+    });
+
+    if (LopHocs.deletedCount === 0) {
+      res.json({ status: 200, ok: 1, msg: "Id nay khong ton tai" });
+    } else {
+      res.json({
+        status: true,
+        msg: "Deleted successful",
+      });
+    }
   } catch (error) {
     res.json(error);
   }
@@ -109,7 +141,7 @@ exports.insert = async (req, res) => {
       const data = await lophoc.save();
       result = {
         status: 200,
-        ok:true,
+        ok: true,
         msg: "Thêm thành công Lớp học",
         data: data,
       };
@@ -180,7 +212,7 @@ exports.removeAll = async (req, res) => {
 };
 exports.search = async (req, res) => {
   try {
-    const search = LopHoc.find({ maNganh: req.params.maBac });
+    const search = LopHoc.find({ maNganh: req.params.id });
     res.json(search);
   } catch (error) {
     res.json(error);
