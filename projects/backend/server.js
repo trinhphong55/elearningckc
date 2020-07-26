@@ -110,9 +110,6 @@ var upload = multer({
 app.get('/api/cnttTinTuc', function (req, res) {
   res.send('File catcher');
 });
-app.get('/api/ttthTinTuc', function (req, res) {
-  res.send('TTTH');
-});
 app.post('/api/cnttTinTuc/upload', upload.single('image'), function (req, res) {
   if (!req.file) {
     console.log("No file is available!");
