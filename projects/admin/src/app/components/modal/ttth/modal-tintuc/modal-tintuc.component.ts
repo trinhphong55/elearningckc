@@ -51,8 +51,6 @@ export class ModalTintucComponent implements OnInit {
     this.selectedItem= TinTuc;
     console.log(`selectedItem = ${JSON.stringify(this.selectedItem)}`);
   }
-  saveTinTuc():void {
-    this.TintucService
-  }
+
 
 }

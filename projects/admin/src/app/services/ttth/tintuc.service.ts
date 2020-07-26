@@ -26,12 +26,7 @@ export class TintucService {
       catchError(error => of(new ttthTinTuc()))
     );
   }
-  updateMovie(TinTuc: ttthTinTuc): Observable<ttthTinTuc> {
-    return this.http.put(`${this.url, TinTuc, httpOptions).pipe(
-      tap(updatedMovie => console.log(`updated movie = ${JSON.stringify(updatedMovie)}`)),
-      catchError(error => of(new Movie()))
-    );
-  }
+
   constructor(private http: HttpClient) { }
 
 

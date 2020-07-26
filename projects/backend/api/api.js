@@ -11,7 +11,7 @@ router.use('/cnttTinTuc', cnttTinTucRoute)
 router.use('/crawling', cnttCrawlingRoutes)
 //end cntt
 //ttthRoutes
-router.use('/ttthTinTuc', ttthTinTucRoute)
+//router.use('/ttthTinTuc', ttthTinTucRoute)
 //ttth
 const khoabomonController = require("../api/khoabomon");
 const loaidonviController = require("../api/loaidonvi");
