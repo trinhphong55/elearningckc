@@ -19,6 +19,7 @@
   <!-- Script những thành phần quan trọng để sử dụng API facebook -->
   <script>
     var AppId='726531241502023';
+    //var act='EAAKUxryRZAUcBAD1xrhmwuLDgZCtmcZBtnCbespDUGcQBTkaYNQJh2orUiBteIZAb62ToPYYK6P8EcMpW3IdqE1S5VXTSkXdJZB6qJkld1InNPUEea6Jp1ffzCF6mEbOvZCQpwPUfc2nFmEnvbfnz3HSASqqZBrqyNn4IYXLs8kRwp4kRP9cNGy0wbjqr5WaJ8W9mPKAW0e3gIgQwItwXFr';
     // var access_token='EAAKUxryRZAUcBAAVy2sXyWlvMXUlTYx3XFWlwZA1FFEvzD7aMkZA5aIOyu9W5aVAybO1T0plZCiT5cqqODcD6iBaW5ZAfdFtz62q507L03iihzENtnGtg1UkcmdZBPyymcx6dRawUr0WOKwC5QiXtv8jIR9344gNS6rAWwwZBSuP4wthwNutVDnZBziTbaBxpEcfJRPtoATpfZCMhS6KxKMPy';
     var FBLoaded = false;
     window.fbAsyncInit = function () {
@@ -57,10 +58,13 @@
       }
 
     };
+    //Get profile's avatar
     function getAvatarProf(){
-      FB.api('/me',{fields: 'picture'}, function (response){
-        console.log(response);
-        document.getElementById('avatar').innerHTML =response;
+      FB.api('/me',{fields: 'picture'},function (response){
+          var source=response.picture.data.url;
+          console.log(response.picture.data.url);
+          document.getElementsByTagName('avatar').innerHTML =response.picture.data.url;
+        
       })
     };
 
