@@ -31,7 +31,7 @@ router.post('/uploads', upload.single('image'), function (req, res) {
       success: false
     });
   }
-    console.log('filename:   '+req.file.filename);
+    console.log('filename:  '+req.file.filename);
     filename = req.file.filename;
     console.log('File is available!');
     res.send({
