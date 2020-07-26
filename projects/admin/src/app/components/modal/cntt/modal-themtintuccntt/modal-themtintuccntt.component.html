@@ -1,10 +1,10 @@
-<app-modal class="modal_chucnang__wrapper show" id="cntt_themtintuc">
+<app-modal class="modal_chucnang__wrapper" id="cntt_themtintuc">
     <div (click)="closeModal('cntt_themtintuc')" class="modal_chucnang__close mdi mdi-chevron-left text-white"></div>
     <div class="container-fluid mt-3">
         <form [formGroup]="tinTucForm" (ngSubmit)="onSubmit()">
             <div class="row">
                 <div class="col-12">
-                    <h1 class="text-center text-white">Thêm Tin tức</h1>
+                    <h1 class="text-center text-white">Thêm bài viết</h1>
                 </div>
                 <div class="col-12">
                     <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
@@ -61,20 +61,24 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label>Chọn thời gian đăng bài</label>
-                                    <input class="form-control" disabled>
+                                    <label>Trạng thái bài viết</label>
+                                    <select class="custom-select form-control"
+                                        (change)="chonTrangThai($event.target.value)" formControlName="trangThai">
+                                        <option value="0">Đã xóa</option>
+                                        <option value="1">Đã đăng</option>
+                                        <option value="2">Chờ phê duyệt</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-auto">
                                 <div class="form-group">
                                     <div class="modal_chucnang__group__button mb-5">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="true" id="checkbox"
-                                                formControlName="thongBaoKhanCap">
-                                            <label class="form-check-label" for="checkbox">
-                                                Thông báo khẩn cấp ?
-                                            </label>
-                                        </div>
+                                        <label>Thông báo khẩn cấp</label>
+                                        <select class="custom-select form-control"
+                                            (change)="chonThongBaoKhanCap($event.target.value)" formControlName="thongBaoKhanCap">
+                                            <option value="1">Áp dụng</option>
+                                            <option value="0">Hủy áp dụng</option>
+                                        </select>
                                     </div>
                                     <div class="modal_chucnang__group__button">
                                         <button class="modal_chucnang__button btn btn-outline-primary px-4 mx-2"

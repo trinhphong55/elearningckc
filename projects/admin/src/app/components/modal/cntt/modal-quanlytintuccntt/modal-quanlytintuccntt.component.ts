@@ -13,16 +13,14 @@ export class ModalQuanlytintuccnttComponent implements OnInit {
   constructor(private modalService: ModalService, private tintucCnttService: TintucCnttService) {
     this.loadDanhSachTinTuc()
   }
-
-  ngOnInit(): void {
-  }
   closeModal(id: string) {
     this.modalService.close(id)
   }
   openModal(id: string) {
     this.modalService.open(id)
   }
-  
+  ngOnInit(): void {
+  }
   loadDanhSachTinTuc() {
     this.tintucCnttService.danhSachTinTuc().subscribe((data) => {
       this.TinTuc = data;

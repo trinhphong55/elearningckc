@@ -52,7 +52,7 @@ const server = https.createServer(httpsOptions, app)
 
 /////// cntt region //// - cac nhom khac cmt het phan nay lai nhe
 //cntt-db
-mongoose.connect('mongodb://127.0.0.1:27017/ttth', { useNewUrlParser: true, useFindAndModify: false,useCreateIndex: true, useUnifiedTopology: true }, function (err, db) {
+mongoose.connect('mongodb://127.0.0.1:27017/DATNWEBKHOACKC', { useNewUrlParser: true, useFindAndModify: false,useCreateIndex: true, useUnifiedTopology: true }, function (err, db) {
     if (err) {
         console.log("fail to connect db");
     } else {
@@ -74,54 +74,5 @@ mongoose.connect('mongodb://127.0.0.1:27017/ttth', { useNewUrlParser: true, useF
   // })
 //end cntt-route
 //cntt upload img
-const multer = require('multer')
-const PATH = './uploads';
 
-// let storage = multer.diskStorage({
-//   destination: (req, file, cb) => {
-//     cb(null, PATH);
-//   },
-//   filename: (req, file, cb) => {
-//     cb(null, file.fieldname + '-' + Date.now())
-//   }
-// });
-
-// let upload = multer({
-//   storage: storage
-// });
-let Storage = multer.diskStorage({
-  destination: (req, file, callback) => {
-    callback(null, PATH);
-  },
-  filename: (req, file, callback) => {
-    let math = ["image/png", "image/jpeg"];
-    if (math.indexOf(file.mimetype) === -1) {
-      let errorMess = `The file <strong>${file.originalname}</strong> is invalid. Only allowed to upload image jpeg or png.`;
-      return callback(errorMess, null);
-    }
-    let filename = `${Date.now()}-viss-${file.originalname}`;
-    console.log(filename)
-    callback(null, filename);
-  }
-});
-var upload = multer({
-	storage: Storage
-})
-app.get('/api/cnttTinTuc', function (req, res) {
-  res.send('File catcher');
-});
-app.post('/api/cnttTinTuc/upload', upload.single('image'), function (req, res) {
-  if (!req.file) {
-    console.log("No file is available!");
-    return res.send({
-      success: false
-    });
-
-  } else {
-    console.log('File is available!');
-    return res.send({
-      success: true
-    })
-  }
-});
 /////// end cntt region ////

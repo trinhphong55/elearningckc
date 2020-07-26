@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 import { FileUploader } from 'ng2-file-upload';
 import { ToastrService } from 'ngx-toastr';
 
-const URL = 'https://localhost:4100/api/cnttTinTuc/upload';
+const URL = 'https://localhost:4100/api/cnttTinTuc/uploads';
 @Component({
   selector: 'app-modal-themtintuccntt',
   templateUrl: './modal-themtintuccntt.component.html',
@@ -29,7 +29,8 @@ export class ModalThemtintuccnttComponent implements OnInit {
   loaiBaiViet: any = ['Thông báo', 'Bài Viết nổi bật', 'Tài liệu', 'Việc làm', 'Bài viết'];
   maDanhMuc: any = ['Thông báo', 'Sinh Viên', 'Giới thiệu'];
   TinTuc: any = [];
-
+  trangThai: any=[0,1,2];
+  thongBaoKhanCap: any=[true, false]
   constructor(private modalService: ModalService, public fb: FormBuilder, private router: Router, private ngZone: NgZone, private tintucCnttService: TintucCnttService, private toastr: ToastrService) {
     this.mainForm();
   }
@@ -70,6 +71,16 @@ export class ModalThemtintuccnttComponent implements OnInit {
   }
   chonLoaiBaiViet(e) {
     this.tinTucForm.get('loaiBaiViet').setValue(e, {
+      onlySelf: true
+    })
+  }
+  chonTrangThai(e) {
+    this.tinTucForm.get('trangThai').setValue(e, {
+      onlySelf: true
+    })
+  }
+  chonThongBaoKhanCap(e) {
+    this.tinTucForm.get('thongBaoKhanCap').setValue(e, {
       onlySelf: true
     })
   }

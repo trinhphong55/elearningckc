@@ -21,21 +21,18 @@
                             <input class="form-control form-control-sm" placeholder="Tìm kiếm">
                         </label>
                     </div>
-                    <table class="modal_chucnang__table table table-hover" id="danhsach_monhoc">
+                    <table class="modal_chucnang__table table table-hover row-border hover" id="">
                         <thead class="bg__caothang text-white">
-                            <th class="text-center" scope="col" style="max-width: 100px">maBaiViet</th>
-                            <th scope="col">loaiBaiViet</th>
-                            <th scope="col">maDanhMuc</th>
-                            <th scope="col">tieuDe</th>
-                            <th scope="col">noiDungNgan</th>
-                            <th scope="col">noiDung</th>
-                            <th scope="col">anhBia</th>
-                            <th scope="col">nguoiViet</th>
-                            <th scope="col">thoiGianDangBai</th>
-                            <th scope="col">thongBaoKhanCap</th>
-                            <th scope="col">created_at</th>
-                            <th scope="col">updated_at</th>
-                            <th scope="col">trangThai</th>
+                            <th class="text-center" scope="col" style="max-width: 100px">Mã bài viết</th>
+                            <th scope="col">Loại bài viết</th>
+                            <th scope="col">Loại danh mục</th>
+                            <th scope="col">Tiêu đề bài viết</th>
+                            <th scope="col">Mô tả ngắn</th>
+                            <th scope="col">Nội dung</th>
+                            <th scope="col">Ảnh bìa</th>
+                            <th scope="col">Người viết</th>
+                            <th scope="col">Thông báo khẩn cấp</th>
+                            <th scope="col">Trạng thái</th>
                             <th class="text-center" scope="col"><span
                                     class="modal_chucnang__button__save mdi mdi-content-save-outline mdi-24px"></span>
                             </th>
@@ -58,11 +55,22 @@
                                     <input class="form-control">
                                 </td>
                                 <td>
-                                    <select class="form-control">
-                                        <option>Thực hành</option>
-                                        <option>Lý thuyết</option>
-                                        <option>Module</option>
-                                    </select>
+                                    <input class="form-control">
+                                </td>
+                                <td>
+                                    <input class="form-control">
+                                </td>
+                                <td>
+                                    <input class="form-control">
+                                </td>
+                                <td>
+                                    <input class="form-control">
+                                </td>
+                                <td>
+                                    <input class="form-control">
+                                </td>
+                                <td>
+                                    <input class="form-control">
                                 </td>
                             </tr>
                         </tfoot>
@@ -94,16 +102,7 @@
                                     <input class="form-control" disabled value="{{tintuc.nguoiViet}}">
                                 </td>
                                 <td>
-                                    <input class="form-control" disabled value="{{tintuc.thoiGianDangBai}} ">
-                                </td>
-                                <td>
-                                    <input class="form-control" disabled value="{{tintuc.thongBaoKhanCap}} ">
-                                </td>
-                                <td>
-                                    <input class="form-control" disabled value="{{tintuc.created_at}} ">
-                                </td>
-                                <td>
-                                    <input class="form-control" disabled value="{{tintuc.updated_at}} ">
+                                    <input class="form-control" disabled value="{{tintuc.thongBaoKhanCap}}">
                                 </td>
                                 <td>
                                     <input class="form-control" disabled value="{{tintuc.trangThai}} ">
