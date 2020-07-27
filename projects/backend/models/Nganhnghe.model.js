@@ -4,6 +4,7 @@ var Schema = mongoose.Schema;
 const NganhNgheModelSchema = new Schema({
     maNganhNghe: {
     type: String,
+    unique:true,
   },
   tenNganhNghe: {
     type: String,
@@ -16,7 +17,6 @@ const NganhNgheModelSchema = new Schema({
   },
   maNganhCha: {
     type: String,
-    default: "Không Có Ngành Cha",
   },
   nguoiTao: {
     type: String,

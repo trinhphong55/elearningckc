@@ -152,7 +152,36 @@
                     (click)="insertDateforForm(khoa)">
                   </span>
                   <span class="modal_chucnang__button__delete ml-2 mdi mdi-delete-outline mdi-24px "
-                    (click)="deleteModal(khoa._id)">
+                    (click)="deleteModal(khoa._id, khoa.maLoai)">
+                  </span>
+                </td>
+              </tr>
+              <tr *ngFor="let khoa of bomons; let i= index" [ngClass]="statusElementList"
+                (click)="insertDateforForm(khoa)">
+
+                <td style="max-width: 50px">{{ i+1  }}</td>
+                <td style="max-width: 100px">
+                  <input class="form-control" disabled value="{{ khoa.maBoMon}}">
+                </td>
+                <td>
+                  <input class="form-control" disabled value=" {{ khoa.tenBoMon }}">
+                </td>
+                <td>
+                  <input class="form-control" disabled value=" {{ khoa.tenVietTat }}">
+                </td>
+                <td>
+
+                  <div *ngFor="let loai of loais">
+                    <p *ngIf="khoa.maLoai == loai.maLoaiDonVi"> {{ loai.tenLoaiDonVi }}</p>
+                  </div>
+
+                </td>
+                <td class="text-center">
+                  <span class="modal_chucnang__button__edit mdi mdi-file-document-edit-outline mdi-24px"
+                    (click)="insertDateforForm(khoa)">
+                  </span>
+                  <span class="modal_chucnang__button__delete ml-2 mdi mdi-delete-outline mdi-24px "
+                    (click)="deleteModal(khoa._id, khoa.maLoai)">
                   </span>
                 </td>
               </tr>

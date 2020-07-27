@@ -1,16 +1,22 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { data } from 'jquery';
 
-const baseUrl = 'https://localhost:4100/api/bomon';
+const baseUrl = 'https://localhost:4100/api/lophoc';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class BomonService {
-
-  constructor(private http:HttpClient) { }
+export class LopHocService {
+  constructor(private http: HttpClient) {}
   getAll() {
     return this.http.get(baseUrl);
+  }
+  getAllFor(maNganh) {
+    return this.http.get(`${baseUrl}/${maNganh}/search`);
+  }
+  deleteMaNganh(maNganh) {
+    return this.http.delete(`${baseUrl}/${maNganh}/search`);
   }
   get(id) {
     return this.http.get(`${baseUrl}/${id}`);
@@ -31,6 +37,4 @@ export class BomonService {
   deleteAll() {
     return this.http.delete(baseUrl);
   }
-
-
 }

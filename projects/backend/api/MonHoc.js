@@ -4,7 +4,7 @@ const MonHoc = require('../models/MonHoc.model');
 const { getNextNumber, isNameExist } = require('../utils/MonHoc.util');
 
 //GET MONHOC
-router.get('/monhoc', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const dsMonHoc = await MonHoc.find();
     res.json(dsMonHoc);
@@ -14,8 +14,7 @@ router.get('/monhoc', async (req, res) => {
 })
 
 //IMPORT EXCEL
-router.post('/monhoc/importexcel', async (req, res) => {
-  console.log('BAT DAU IMPORT EXCEL');
+router.post('/importexcel', async (req, res) => {
   var items = req.body;
   var filterItems = [];
 
@@ -24,31 +23,20 @@ router.post('/monhoc/importexcel', async (req, res) => {
   var numMaMonHoc = parseInt(maMonHoc);
 
   async function asyncForEach(array, callback) {
-    console.log('Xu ly excel');
     for (let index = 0; index < array.length; index++) {
       await callback(array[index], index);
     }
   }
-
-  const start = async () => { // goi ham
-    await asyncForEach(items, async (mh, index) => {
-      await MonHoc.findOne({ tenMonHoc: mh.tenMonHoc }).exec().then((data) => {
-        if (data === null) {
-          let stringMaMonHoc = "000" + numMaMonHoc;
-          mh.maMonHoc = stringMaMonHoc.slice(stringMaMonHoc.length - 4, stringMaMonHoc.length);
-          numMaMonHoc++;
-          filterItems.push(mh);
-        }
-      });
-      console.log(mh.tenMonHoc, index);
+  await asyncForEach(items, async (mh, index) => {
+    await MonHoc.findOne({ tenMonHoc: mh.tenMonHoc }).exec().then((data) => {
+      if (data === null) {
+        let stringMaMonHoc = "000" + numMaMonHoc;
+        mh.maMonHoc = stringMaMonHoc.slice(stringMaMonHoc.length - 4, stringMaMonHoc.length);
+        numMaMonHoc++;
+        filterItems.push(mh);
+      }
     });
-    console.log('Done');
-  }
-  await start();
-
-
-
-  console.log(filterItems);
+  });
 
   if (filterItems.length > 0) {
     MonHoc.insertMany(filterItems).then(() => {
@@ -63,7 +51,7 @@ router.post('/monhoc/importexcel', async (req, res) => {
 
 
 //POST MONHOC
-router.post('/monhoc', async (req, res) => {
+router.post('/', async (req, res) => {
 
   nameExist = await isNameExist(req.body.tenMonHoc);
   if (!nameExist) {
@@ -82,7 +70,7 @@ router.post('/monhoc', async (req, res) => {
 
 
 //SPECIFIC MONHOC
-router.get('/monhoc/:maMonHoc', async (req, res) => {
+router.get('/:maMonHoc', async (req, res) => {
   try {
     const item = await MonHoc.findOne({ maMonHoc: req.params.maMonHoc });
     if (item === null) {
@@ -95,8 +83,21 @@ router.get('/monhoc/:maMonHoc', async (req, res) => {
   }
 })
 
+router.get('loaimonhoc/:maMonHoc', async (req, res) => {
+  try {
+    const item = await MonHoc.findOne({ maMonHoc: req.params.maMonHoc });
+    if (item === null) {
+      res.json({status: "null"});
+    } else {
+      res.json(item.loaiMonHoc);
+    }
+  } catch (err) {
+    res.json({message: err});
+  }
+})
+
 //DELETE MONHOC
-router.delete('/monhoc/:maMonHoc', async (req, res) => {
+router.delete('/:maMonHoc', async (req, res) => {
   try {
     console.log(req.params);
     const removedMonhoc = await MonHoc.deleteOne({ maMonHoc: req.params.maMonHoc }).exec();
@@ -107,7 +108,7 @@ router.delete('/monhoc/:maMonHoc', async (req, res) => {
 })
 
 //UPATE MONHOC
-router.put('/monhoc/:maMonHoc', async (req, res) => {
+router.put('/:maMonHoc', async (req, res) => {
   console.log('du lieu chua update', req.body);
   const { maMonHoc } = req.params;
   const { tenMonHoc, tenVietTat, loaiMonHoc, tenTiengAnh, tenVietTatTiengAnh } = req.body;
@@ -120,7 +121,7 @@ router.put('/monhoc/:maMonHoc', async (req, res) => {
     res.json({ message: err });
   });
 })
-// router.patch('/monhoc/:maMonHoc', async (req, res) => {
+// router.patch('/:maMonHoc', async (req, res) => {
 //   console.log(req.body);
 //   try {
 //     const updatedMonhoc = await MonHoc.updateOne(

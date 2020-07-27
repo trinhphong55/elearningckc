@@ -1,4 +1,4 @@
-import { nganhnghe } from './../../../../interfaces/NganhNghe.interface';
+import { LopHocService } from './../../../../services/lop-hoc.service';
 import { BacService } from './../../../../services/Bac.service';
 import { FormControl, FormGroup, Validators, FormArray } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
@@ -11,39 +11,103 @@ import { NganhNgheService } from '../../../../services/NganhNghe.service';
   styleUrls: ['./modal-chitieudaotao.component.css'],
 })
 export class ModalChitieudaotaoComponent implements OnInit {
-  bacList:any;
-  loaiHinhList = [
-    { maLoai: 'CQ', tenLoai: 'Chính quy' },
-    { maLoai: 'LT', tenLoai: 'Liên thông' },
+  bacList: any;
+  public loaiHinhList = [
+    { maLoai: '1', tenLoai: 'Chính quy' },
+    { maLoai: '2', tenLoai: 'Liên thông' },
   ];
-  nganhList:any;
+  nganhList: any;
+  nganhtamlist: any;
   addForm: FormGroup;
+  chiTieuGroup: FormGroup;
   chiTieuList = new FormArray([]);
+
+  public hocKis = [
+    {
+      maHK: 1,
+      tenHK: 'HK1',
+    },
+    {
+      maHK: 2,
+      tenHK: 'HK2',
+    },
+    {
+      maHK: 3,
+      tenHK: 'HK3',
+    },
+    {
+      maHK: 4,
+      tenHK: 'HK4',
+    },
+    {
+      maHK: 5,
+      tenHK: 'HK5',
+    },
+    {
+      maHK: 6,
+      tenHK: 'HK6',
+    },
+  ];
   lops = [];
+  lopHocs: any;
+  hocKiForm: FormGroup;
+  msg = '';
+  public msgList = [];
+  public resetResult;
+  setLop = (
+    maNganh,
+    maLopHoc,
+    tenLop,
+    tenVietTat,
+    linkFBLopHoc,
+    maBac,
+    khoa
+  ) => {
+    return {
+      maNganh: maNganh,
+      maLopHoc: maLopHoc,
+      tenLop: tenLop,
+      tenVietTat: tenVietTat,
+      linkFBLopHoc: linkFBLopHoc,
+      nguoiTao: 'TranDinhHuy',
+      nguoiChinhSua: 'TranDinhHuy',
+      maBac: maBac,
+      khoa: khoa,
+    };
+  };
 
   constructor(
     private modalService: ModalService,
     private nganhngheservice: NganhNgheService,
-    private bacservice: BacService
+    private bacservice: BacService,
+    private lopHocService: LopHocService
   ) {}
 
   ngOnInit(): void {
     this.addForm = new FormGroup({
-      soLop: new FormControl('', [Validators.required]),
       bac: new FormControl('', [Validators.required]),
       loaiHinhDaoTao: new FormControl('', [Validators.required]),
-      khoa: new FormControl('', [Validators.required]),
-      nganh: new FormControl('', [Validators.required]),
+      khoa: new FormControl(17, [Validators.required]),
     });
     this.getNganhNghe();
     this.getbac();
+    this.getLopHoc();
+    this.hocKiForm = new FormGroup({
+      hocKi: new FormControl(''),
+    });
   }
-
+  getLopHoc() {
+    this.lopHocService.getAll().subscribe(
+      (lop) => {
+        this.lopHocs = lop;
+      },
+      (err) => (this.msg = err)
+    );
+  }
   getbac() {
     this.bacservice.getBac().subscribe(
       (bac) => {
         this.bacList = bac;
-        console.log(this.bacList);
       },
       (error) => {
         console.log(error);
@@ -53,44 +117,178 @@ export class ModalChitieudaotaoComponent implements OnInit {
   getNganhNghe() {
     this.nganhngheservice.getNgangnghe().subscribe(
       (data) => {
-        this.nganhList = data;
-        this.nganhList.forEach(element => {
-          this.chiTieuList.push(new FormControl(''));
+        this.chiTieuGroup = new FormGroup({
+          maNganh: new FormControl(''),
+          soChiTieu: new FormControl(''),
         });
+        this.nganhList = data;
+        this.nganhtamlist = this.nganhList;
         console.log(this.nganhList);
+        this.nganhList.forEach((element) => {
+          this.chiTieuList.push(
+            new FormGroup({
+              maBac: new FormControl(element.maBac),
+              maNganh: new FormControl(element.maNganhNghe),
+              tenVietTat: new FormControl(element.tenVietTat),
+              soChiTieu: new FormControl(''),
+            })
+          );
+        });
       },
       (error) => {
         console.log(error);
       }
     );
-
   }
 
-
-  addChiTieu() {
-    this.chiTieuList.push(new FormControl(''));
+  convertToTenBacVietTat(maBac: string) {
+    let ten = 'TKT';
+    this.bacList.forEach((element) => {
+      if (element.maBac == maBac) ten = element.tenVietTat;
+    });
+    return ten;
+  }
+  convertTenNganhVietTat(maNganh: string) {
+    let ten = 'TKT';
+    this.nganhList.forEach((element) => {
+      if (element.maNganhNghe == maNganh) ten = element.tenVietTat;
+    });
+    return ten;
+  }
+  convertToTenNganh(maNganh: string) {
+    let ten = 'TKT';
+    this.nganhList.forEach((element) => {
+      if (element.maNganhNghe == maNganh) ten = element.tenNganhNghe;
+    });
+    return ten;
+  }
+  convertToTenBac(maBac: string) {
+    let ten = 'TKT';
+    this.bacList.forEach((element) => {
+      if (element.maBac == maBac) ten = element.tenVietTat;
+    });
+    return ten;
   }
 
-  createClassModal(nganhnghe) {
-    // console.log(this.loaiHinhList);
-    // console.log(this.bacList);
-    // console.log(this.addForm.value);
-    //console.log(this.chiTieuCtl.value);
-    // console.log(this.chiTieuList);
-    // console.log(this.chiTieuList.value);
-    console.log(nganhnghe);
-    let len = 4;
-    let convert = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+  addLopHoc(data) {
+    this.lopHocService.create(data).subscribe(
+      (res) => {
+        // let { msg, status} = res;
+        this.msgList.push(data.tenLop);
+      },
+      (err) => {
+        this.msgList.push(err);
+      }
+    );
+  }
+  onClickCreate() {
+    if (!this.addForm.value.khoa || !this.addForm.value.loaiHinhDaoTao) {
+      this.msg = 'Vui lòng chọn Loại hình đào tạo và nhập khóa học';
+    } else {
+      this.createClassModal();
+      this.msg = 'Danh sách lớp được tạo trong cơ sở dữ liệu';
+    }
+  }
+  deleteLopHoc(maNganh: string) {
+    this.lopHocService.deleteMaNganh(maNganh).subscribe(
+      (data) => {
+        console.log(data);
+      },
+      (error) => console.log(error)
+    );
+  }
 
-    for (let i = 0; i < len; i++) {
-      this.lops.push(
-        this.addForm.value.bac +
+  resetLopHoc(maNganh: string) {
+    this.lopHocService.getAllFor(maNganh).subscribe((data) => {
+      console.log(data);
+      if (data > 0) {
+        this.msgList.push({
+          msg:
+            `Ngành "${this.convertToTenNganh(maNganh)} "` +
+            ' đã tồn tại danh sách lớp, Bạn có muốn tạo danh sách mới không ? ',
+          trangThai: true,
+          maNganh: maNganh,
+        });
+      } else {
+        this.msgList.push({
+          msg:
+            `Ngành "${this.convertToTenNganh(maNganh)}"` +
+            ' đã tạo danh sách lớp thànhh công ',
+          trangThai: false,
+          maNganh: maNganh,
+        });
+      }
+    });
+  }
+  onClickLopHocPhan() {
+    console.log(this.hocKiForm.value.hocKi);
+    console.log(this.addForm.value.bac);
+  }
+  onClickResetLopHoc(maNganh: string) {
+    this.deleteLopHoc(maNganh);
+    this.createClassModal();
+    this.getLopHoc();
+    console.log(maNganh);
+  }
+  createClassModal() {
+    let index = 1;
+    this.chiTieuList.value.forEach((el) => {
+      let len = el.soChiTieu;
+      if (el.soChiTieu > 0) {
+        this.resetLopHoc(el.maNganh);
+      }
+      // Bac + Nganh + Khóa  + STT
+      for (let i = 0; i < len; i++) {
+        index++;
+        var tenLop =
+          this.convertToTenBacVietTat(el.maBac) +
           ' ' +
-          this.addForm.value.nganh +
+          this.convertTenNganhVietTat(el.maNganh) +
           ' ' +
           this.addForm.value.khoa +
-          convert[i]
-      );
+          String.fromCharCode(97 + i).toUpperCase();
+        var maLop =
+          Number.parseInt(el.maBac) +
+          '' +
+          el.maNganh +
+          '' +
+          this.addForm.value.khoa +
+          this.addForm.value.loaiHinhDaoTao +
+          (i + 1);
+        this.lops.push(tenLop);
+        this.addLopHoc(
+          this.setLop(
+            el.maNganh,
+            maLop,
+            tenLop,
+            tenLop,
+            'facebook.com',
+            el.maBac,
+            this.addForm.value.khoa
+          )
+        );
+      }
+
+      this.lops = [];
+      this.getLopHoc();
+    });
+
+    this.msgList = [];
+  }
+  //bắt sự kiện show môn theo ngành
+  changed(e) {
+    //  this.nganhList.array.forEach(element => {
+    //    this
+    //  });
+    this.nganhtamlist = [];
+    if (this.addForm.value.bac !== '') {
+      this.nganhList.forEach((element) => {
+        if (element.maBac == this.addForm.value.bac) {
+          this.nganhtamlist.push(element);
+        }
+      });
+    } else {
+      this.nganhtamlist = this.nganhList;
     }
   }
   closeModal(id: string) {

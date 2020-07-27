@@ -134,7 +134,7 @@ exports.checkValidate = () => {
 
     check("nguoiTao", "NGUOI TAO is required").notEmpty(),
 
-    check("nguoiChinhSua", "NGUOI CHINH SUASUA is required").notEmpty(),
+    check("nguoiChinhSua", "NGUOI CHINH SUA is required").notEmpty(),
 
     check("maLoai", "MA LOAI is required").notEmpty(),
     check("maLoai", "MA LOAI is numberic").isNumeric(),
