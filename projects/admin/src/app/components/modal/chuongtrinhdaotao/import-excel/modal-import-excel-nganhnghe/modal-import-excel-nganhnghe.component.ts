@@ -66,7 +66,7 @@ export class ModalImportExcelNganhNgheComponent implements OnInit, OnChanges {
     this.dsnganhnghe = undefined;
   }
   getdata() {
-    this.nganhngeservice.getNgangnghe().subscribe(
+    this.nganhngeservice.getNganhnghe().subscribe(
       data => {
         this.dsnganhnghe = data;
       },

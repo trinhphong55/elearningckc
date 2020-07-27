@@ -15,7 +15,7 @@ export class NganhNgheService {
   private apiUrldelete = "https://localhost:4100/api/deletenganhnghe";
 
   constructor(private http: HttpClient) { }
-
+  private NganhNgheNull: nganhnghe;
   getNganhnghe(): Observable<nganhnghe[]> {
     try {
       return this.http.get<nganhnghe[]>(this.apiUrl)
@@ -24,9 +24,6 @@ export class NganhNgheService {
     }
 
   }
-
-  private NganhNgheNull: nganhnghe;
-
   //Lay 1nganh
   getDetailNganhNghe(_id: string): Observable<nganhnghe> {
     try {
