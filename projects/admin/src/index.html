@@ -90,9 +90,9 @@
 
     //Lấy số member group
   //const id = "410650836564717";
-    function getMemberCountGr() {
+   function getMemberCountGr() {
       FB.api('/410650836564717',{fields: 'member_count'},function (response){
-        console.log(response);
+        console.log(response.member_count);
         memCount=response.member_count;
         document.getElementById('memCount').innerHTML =memCount;
       })
@@ -100,7 +100,7 @@
     //Lấy số member request
     function getMemberRequestCountGr() {
       FB.api('/410650836564717',{fields: 'member_request_count'},function (response){
-        console.log(response);
+        console.log(response.member_request_count);
         memRes=response.member_request_count
         document.getElementById('memRes').innerHTML =memRes;
       })
@@ -108,7 +108,7 @@
     //Lấy privacy group
     function getPrivacyGr() {
       FB.api('/410650836564717',{fields: 'privacy'},function (response){
-        console.log(response);
+        console.log(response.privacy);
         priva=response.privacy;
         document.getElementById('privacyGr').innerHTML =priva;
       })
@@ -131,9 +131,9 @@
       })
     }
     //Lấy Descripsion Group
-    function getDescripsionGr() {
+   function getDescripsionGr() {
       FB.api('/410650836564717',{fields: 'description'},function (response){
-        console.log(response);
+        console.log(response.description);
         descrip=response.description;
         document.getElementById('descriptionGr').innerHTML =descrip;
       })
@@ -141,12 +141,19 @@
     //Lấy ngày tạo Group
     function getGroupCreatedDay() {
       FB.api('/410650836564717',{fields: 'created_time'},function (response){
-        console.log(response);
+        console.log(response.created_time);
         grcreatedday=response.created_time;
         document.getElementById('groupCreatedDay').innerHTML =grcreatedday;
       })
     }
-
+    window.onload = function loadAPIGroup(){
+      getMemberCountGr();
+      getMemberRequestCountGr();
+      getPrivacyGr();
+      getFeedPostedGr();
+      getDescripsionGr();
+      getGroupCreatedDay();
+    }
   </script>
 
   <script>
