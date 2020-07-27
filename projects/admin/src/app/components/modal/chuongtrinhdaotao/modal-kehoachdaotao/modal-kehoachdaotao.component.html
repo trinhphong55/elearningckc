@@ -1,4 +1,4 @@
-<app-modal class="modal_chucnang__wrapper show" id="ctdt_kehoachdaotao">
+<app-modal class="modal_chucnang__wrapper" id="ctdt_kehoachdaotao">
   <div (click)="closeModal('ctdt_kehoachdaotao')" class="modal_chucnang__close mdi mdi-chevron-left text-white"></div>
   <div class="container-fluid mt-3">
     <div class="row">
@@ -12,16 +12,13 @@
               <div class="form-group">
                 <label>Bậc</label>
                 <select class="form-control" [(ngModel)]="ctdt.maBac" (change)="select()">
-                  <option value="04">Cao đẳng (các nghề đào tạo)</option>
-                  <option value="02">Trung cấp</option>
-                  <option value="03">Cao đẳng (các ngành đào tạo)</option>
+                  <option *ngFor="let bac of dsBac" [value]="bac.maBac">{{ bac.tenBac }}</option>
                 </select>
               </div>
               <div class="form-group">
-                <label>Ngành</label>
+                <label>Ngành nghề</label>
                 <select class="form-control" [(ngModel)]="ctdt.maNganhNghe" (change)="select()">
-                  <option value="01">Cơ khí</option>
-                  <option value="06">Ngành CNTT</option>
+                  <option *ngFor="let nganhnghe of dsNganhNghe" [value]="nganhnghe.maNganhNghe">{{ nganhnghe.tenNganhNghe }}</option>
                 </select>
               </div>
             </div>

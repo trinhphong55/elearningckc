@@ -6,10 +6,18 @@ import { Component, OnInit } from '@angular/core';
 import { ModalService } from '../../../../services/modal.service';
 import { NganhNgheService } from '../../../../services/NganhNghe.service';
 
+
+// Yasuo start
+import { LopHocPhan } from './../../../../interfaces/lophocphan.interface';
+import { LopHocPhanService } from '../../../../services/lophocphan.service';
+
+// Yasuo end
+
 @Component({
   selector: 'app-modal-chitieudaotao',
   templateUrl: './modal-chitieudaotao.component.html',
   styleUrls: ['./modal-chitieudaotao.component.css'],
+  providers: [LopHocPhanService]
 })
 export class ModalChitieudaotaoComponent implements OnInit {
   bacList: any;
@@ -76,7 +84,8 @@ export class ModalChitieudaotaoComponent implements OnInit {
     private modalService: ModalService,
     private nganhngheservice: NganhNgheService,
     private bacservice: BacService,
-    private lopHocService: LopHocService
+    private lopHocService: LopHocService,
+    private lopHocPhanSerivce: LopHocPhanService,
   ) {}
 
   ngOnInit(): void {
@@ -112,7 +121,7 @@ export class ModalChitieudaotaoComponent implements OnInit {
     );
   }
   getNganhNghe() {
-    this.nganhngheservice.getNgangnghe().subscribe(
+    this.nganhngheservice.getNganhnghe().subscribe(
       (data) => {
         this.chiTieuGroup = new FormGroup({
           maNganh: new FormControl(''),
@@ -184,9 +193,31 @@ export class ModalChitieudaotaoComponent implements OnInit {
       this.msg = 'Tạo thành công danh sách Lớp theo Ngành';
     }
   }
-  onClickLopHocPhan() {
-    console.log(this.hocKiForm.value.hocKi);
+
+  private getMaNTenLopHoc(): Object[] {
+    let arrMaNTen = [];
+    this.lopHocs.forEach(lop => {
+      let temp = { tenLop: lop.tenLop, maLopHoc: lop.maLopHoc };
+      arrMaNTen.push(temp);
+    })
+    return arrMaNTen;
   }
+
+  generateLopHocPhan(): void {
+    if (this.hocKiForm.value.hocKi === "") {
+      alert('loi');
+      return
+    }
+    let hocKi = this.hocKiForm.value.hocKi;
+    let dsMaNTen: Object[] = this.getMaNTenLopHoc();
+    this.lopHocPhanSerivce.addDSLopHocPhan(dsMaNTen, hocKi).subscribe(status => {
+      alert(status);
+    })
+  }
+
+
+
+
   createClassModal() {
     this.lopNganhs = [];
     let index = 1;
