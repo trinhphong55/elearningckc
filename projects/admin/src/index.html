@@ -75,12 +75,22 @@
     //Hàm welcome sử dụng API sau khi login
     function showWelcome() {
       FB.api('/me', function(response) {
+        console.log(response)
         document.getElementById('btnLoginFB').setAttribute('style', 'display:none');
         console.log(response.name + ' access granted');
         document.getElementById('status').innerHTML =response.name;
         document.getElementById('status').setAttribute('style', 'display:block');
       });
     }
+
+    //Get profile's avatar
+    function getAvatarProf(){
+      FB.api('/me',{fields: 'picture'},function (response){
+          source = response.picture.data.url;
+          console.log(source);
+          $('#avatar').attr("src",source);
+      })
+    };
 
     // GROUPFB API
 
@@ -92,7 +102,7 @@
         memCount=response.member_count;
         document.getElementById('memCount').innerHTML =memCount;
       })
-        }
+    }
     //Lấy số member request
     function getMemberRequestCountGr() {
       FB.api('/410650836564717',{fields: 'member_request_count'},function (response){
@@ -111,16 +121,15 @@
     }
     //Lấy các feed đã post
     // function getFeedPostedGr() {
-    //   FB.api('/410650836564717',{fields: 'feed'},function (response){
-    //     console.log(response);
+    //   FB.api('/410650836564717/',{fields: 'feed'},function (response){
     //     console.log(response.feed.data.message);
-    //     console.log(response.feed.data.story);
-    //     console.log(response.feed.data.updated_time);
-    //     console.log(response.feed.data.id);
-    //     mess=response.feed.data.message;
-    //     story=response.feed.data.story;
-    //     updatedTime=response.feed.data.updated_time;
-    //     idpost=response.feed.data.id;
+    //     console.log(response.story);
+    //     console.log(response.updated_time);
+    //     console.log(response.id);
+    //     mess=response.message;
+    //     story=response.story;
+    //     updatedTime=response.updated_time;
+    //     idpost=response.id;
     //     document.getElementById('feed/message').innerHTML =mess;
     //     document.getElementById('feed/story').innerHTML =story;
     //     document.getElementById('feed/updatedtime').innerHTML =updatedTime;
