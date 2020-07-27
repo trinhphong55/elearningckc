@@ -63,14 +63,9 @@
       FB.api('/me',{fields: 'picture'},function (response){
           source = response.picture.data.url;
           console.log(response.picture.data.url);
-<<<<<<< HEAD
-          // document.getElementsById('avatar').src = source;
-
-=======
           document.getElementsByTagName('avatar').innerHTML =response.picture.data.url;
           
         
->>>>>>> 3d1c5ede4ef1e39e5d9f82eafc63b6681f3614a3
       })
       return source;
     };
@@ -98,42 +93,29 @@
     function getMemberCountGr() {
       FB.api('/410650836564717',{fields: 'member_count'},function (response){
         console.log(response);
-<<<<<<< HEAD
-
-=======
-        document.getElementById('memCount').innerHTML =response;
->>>>>>> 3d1c5ede4ef1e39e5d9f82eafc63b6681f3614a3
+        memCount=response.member_count;
+        document.getElementById('memCount').innerHTML =memCount;
       })
         }
     //Lấy số member request
     function getMemberRequestCountGr() {
       FB.api('/410650836564717',{fields: 'member_request_count'},function (response){
         console.log(response);
-<<<<<<< HEAD
-
-=======
-        document.getElementById('memRes').innerHTML =response;
->>>>>>> 3d1c5ede4ef1e39e5d9f82eafc63b6681f3614a3
+        memRes=response.member_request_count
+        document.getElementById('memRes').innerHTML =memRes;
       })
     }
     //Lấy privacy group
     function getPrivacyGr() {
       FB.api('/410650836564717',{fields: 'privacy'},function (response){
         console.log(response);
-<<<<<<< HEAD
-
-=======
-        document.getElementById('privacyGr').innerHTML =response;
->>>>>>> 3d1c5ede4ef1e39e5d9f82eafc63b6681f3614a3
+        priva=response.privacy;
+        document.getElementById('privacyGr').innerHTML =priva;
       })
     }
     //Lấy các feed đã post
     function getFeedPostedGr() {
       FB.api('/410650836564717/feed',function (response){
-<<<<<<< HEAD
-        console.log(response);
-
-=======
         console.log(response.feed.data.message);
         console.log(response.feed.data.story);
         console.log(response.feed.data.updated_time);
@@ -141,34 +123,27 @@
         mess=response.feed.data.message;
         story=response.feed.data.story;
         updatedTime=response.feed.data.updated_time;
-        id=response.feed.data.id;
-        document.getElementById('feed.data.message').innerHTML =response.feed.data.message;
-        document.getElementById('feed.data.story').innerHTML =response.feed.data.story;
-        document.getElementById('feed.data.updatedTime').innerHTML =response.feed.data.updatedTime;
-        document.getElementById('feed.data.id').innerHTML =response.feed.data.id;
->>>>>>> 3d1c5ede4ef1e39e5d9f82eafc63b6681f3614a3
+        idpost=response.feed.data.id;
+        document.getElementById('feed/message').innerHTML =mess;
+        document.getElementById('feed/story').innerHTML =story;
+        document.getElementById('feed/updatedtime').innerHTML =updatedTime;
+        document.getElementById('feed/idpost').innerHTML =idpost;
       })
     }
     //Lấy Descripsion Group
     function getDescripsionGr() {
       FB.api('/410650836564717',{fields: 'description'},function (response){
         console.log(response);
-<<<<<<< HEAD
-
-=======
-        document.getElementById('descriptionGr').innerHTML =response;
->>>>>>> 3d1c5ede4ef1e39e5d9f82eafc63b6681f3614a3
+        descrip=response.description;
+        document.getElementById('descriptionGr').innerHTML =descrip;
       })
     }
     //Lấy ngày tạo Group
     function getGroupCreatedDay() {
       FB.api('/410650836564717',{fields: 'created_time'},function (response){
         console.log(response);
-<<<<<<< HEAD
-
-=======
-        document.getElementById('groupCreatedDay').innerHTML =response;
->>>>>>> 3d1c5ede4ef1e39e5d9f82eafc63b6681f3614a3
+        grcreatedday=response.created_time;
+        document.getElementById('groupCreatedDay').innerHTML =grcreatedday;
       })
     }
 
