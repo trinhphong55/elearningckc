@@ -103,7 +103,7 @@ export class ModalThemtintuccnttComponent implements OnInit {
         (res) => {
           this.loadDanhSachTinTuc()
           console.log(' Tin tuc duoc them thanh cong!    ', res)
-          alert(' Them moi thanh cong')
+          this.toastr.success('Thêm mới bài viết thành công!');
 
         })
 

@@ -1,4 +1,4 @@
-<app-modal class="modal_chucnang__wrapper show" id="cntt_quanlytintuc">
+<app-modal class="modal_chucnang__wrapper" id="cntt_quanlytintuc">
     <div (click)="closeModal('cntt_quanlytintuc')" class="modal_chucnang__close mdi mdi-chevron-left text-white"></div>
     <div class="container-fluid mt-3">
         <form [formGroup]="tinTucForm" (ngSubmit)="onSubmit()">
@@ -68,6 +68,18 @@
                             </div>
                             <div class="col-3">
                                 <div class="form-group">
+                                    <label>Ảnh đại diện bài viết</label>
+                                    <div class="input-group ">
+                                        <img id="previewimg" alt="" width="100" height="100" />
+                                        <input type="file"
+                                            onchange="document.getElementById('previewimg').src = window.URL.createObjectURL(this.files[0])"
+                                            name="image" ng2FileSelect [uploader]="uploader"
+                                            accept="image/x-png,image/gif,image/jpeg">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <div class="form-group">
                                     <div class="modal_chucnang__group__button mb-5">
                                         <label>Thông báo khẩn cấp</label>
                                         <select class="custom-select form-control"
@@ -79,25 +91,12 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label>Ảnh đại diện bài viết</label>
-                                    <div class="input-group ">
-                                        <div class="custom-file file-upload">
-                                            <input type="file" class="custom-file-input" id="" aria-describedby=""
-                                                name="image" ng2FileSelect [uploader]="uploader"
-                                                accept="image/x-png,image/gif,image/jpeg">
-                                            <label class="custom-file-label" for=""></label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-auto">
-                                <div class="form-group">
                                     <div class="modal_chucnang__group__button">
                                         <button class="modal_chucnang__button btn btn-outline-primary px-4 mx-2"
                                             type="submit" (click)="uploader.uploadAll()"><img
                                                 class="modal_chucnang__button__icon mb-2" src="assets/img/icons/add.png"
                                                 alt="image icon">
-                                            <div>Thêm mới</div>
+                                            <div>Lưu</div>
                                         </button>
                                         <button class="modal_chucnang__button btn btn-outline-danger px-4 mx-2"
                                             type="reset"><img class="modal_chucnang__button__icon mb-2"
@@ -126,73 +125,24 @@
             </div>
             <div class="col-12">
                 <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
-                    <div class="d-flex align-items-center mb-2">
-                        <label class="mb-0 d-flex align-items-center"><span class="text-nowrap">Hiển thị &nbsp;</span>
-                            <p *ngIf="TinTuc.length <= 0" class="no-data text-center">Không có tin tức!</p>
-                            <select class="custom-select custom-select-sm form-control">
-                                <option>10</option>
-                                <option>25</option>
-                                <option>50</option>
-                            </select><span class="text-nowrap">&nbsp; hàng</span>
-                        </label>
-                        <label class="ml-auto mb-0 d-flex align-items-center"><span class="text-nowrap">Tìm kiếm:
-                                &nbsp;</span>
-                            <input class="form-control form-control-sm" placeholder="Tìm kiếm">
-                        </label>
-                    </div>
-                    <table class="modal_chucnang__table table table-hover row-border hover" id="">
+                    <table datatable="ng" *ngIf="showContent" [dtOptions]="dtOptions"
+                        class="modal_chucnang__table row-border hover table-bordered" datatable>
                         <thead class="bg__caothang text-white">
-                            <th class="text-center" scope="col" style="max-width: 100px">Mã bài viết</th>
-                            <th scope="col">Loại bài viết</th>
-                            <th scope="col">Loại danh mục</th>
-                            <th scope="col">Tiêu đề bài viết</th>
-                            <th scope="col">Mô tả ngắn</th>
-                            <th scope="col">Nội dung</th>
-                            <th scope="col">Ảnh bìa</th>
-                            <th scope="col">Người viết</th>
-                            <th scope="col">Thông báo khẩn cấp</th>
-                            <th scope="col">Trạng thái</th>
-                            <th class="text-center" scope="col"><span
-                                    class="modal_chucnang__button__save mdi mdi-content-save-outline mdi-24px"></span>
-                            </th>
-                        </thead>
-                        <tfoot class="d-none">
                             <tr>
-                                <td style="max-width: 100px">
-                                    <input class="form-control">
-                                </td>
-                                <td>
-                                    <input class="form-control">
-                                </td>
-                                <td>
-                                    <input class="form-control">
-                                </td>
-                                <td>
-                                    <input class="form-control">
-                                </td>
-                                <td>
-                                    <input class="form-control">
-                                </td>
-                                <td>
-                                    <input class="form-control">
-                                </td>
-                                <td>
-                                    <input class="form-control">
-                                </td>
-                                <td>
-                                    <input class="form-control">
-                                </td>
-                                <td>
-                                    <input class="form-control">
-                                </td>
-                                <td>
-                                    <input class="form-control">
-                                </td>
-                                <td>
-                                    <input class="form-control">
-                                </td>
+                                <th scope="col">Mã bài viết</th>
+                                <th scope="col">Loại bài viết</th>
+                                <th scope="col">Loại danh mục</th>
+                                <th scope="col">Tiêu đề bài viết</th>
+                                <th scope="col">Mô tả ngắn</th>
+                                <th scope="col">Ảnh bìa</th>
+                                <th scope="col">Người viết</th>
+                                <th scope="col">Thông báo khẩn cấp</th>
+                                <th scope="col">Trạng thái</th>
+                                <th class="text-center" scope="col"><span
+                                        class="modal_chucnang__button__save mdi mdi-content-save-outline mdi-24px"></span>
+                                </th>
                             </tr>
-                        </tfoot>
+                        </thead>
                         <tbody>
                             <tr *ngFor="let tintuc of TinTuc; let i = index">
                                 <td style="max-width: 100px">
@@ -211,9 +161,6 @@
                                     <input class="form-control" disabled value="{{tintuc.moTaNgan}} ">
                                 </td>
                                 <td>
-                                    <input class="form-control" disabled value=" {{tintuc.noiDung}} ">
-                                </td>
-                                <td>
                                     <img class="modal_chucnang__button__icon mb-2" src="{{tintuc.anhDaiDien}}"
                                         alt="image icon">
                                 </td>
@@ -224,7 +171,7 @@
                                     <input class="form-control" disabled value="{{tintuc.thongBaoKhanCap}}">
                                 </td>
                                 <td>
-                                    <input class="form-control" disabled value="{{tintuc.trangThai}} ">
+                                    <input class="form-control" ng disabled value="{{tintuc.trangThai}} ">
                                 </td>
                                 <td class="text-center">
                                     <span

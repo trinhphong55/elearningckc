@@ -29,6 +29,8 @@ export class ModalQuanlytintuccnttComponent implements OnInit {
   maDanhMuc: any = ['Thông báo', 'Sinh Viên', 'Giới thiệu'];
   trangThai: any = [0, 1, 2];
   thongBaoKhanCap: any = [true, false]
+  showContent: any;
+  dtOptions: DataTables.Settings = {};
   //
   constructor(private modalService: ModalService, public fb: FormBuilder, private router: Router, private ngZone: NgZone, private tintucCnttService: TintucCnttService, private toastr: ToastrService) {
     this.loadDanhSachTinTuc()
@@ -53,6 +55,7 @@ export class ModalQuanlytintuccnttComponent implements OnInit {
       trangThai: [''],
     })
   }
+ 
   //  dropdown
   chonMaDanhMuc(e) {
     this.tinTucForm.get('maDanhMuc').setValue(e, {
@@ -87,7 +90,7 @@ export class ModalQuanlytintuccnttComponent implements OnInit {
         (res) => {
           this.loadDanhSachTinTuc()
           console.log(' Tin tuc duoc chinh sua thanh cong!    ', res)
-          alert(' Chinh sua thanh cong')
+          this.toastr.success('Chỉnh sửa bài viết thành công!');
         })
     }
   }
@@ -99,7 +102,7 @@ export class ModalQuanlytintuccnttComponent implements OnInit {
           maBaiViet: maBaiViet,
         })
         .subscribe((data) => {
-          alert('Xoá bài viết thành công');
+          this.toastr.success('Xóa bài viết thành công!');
           this.loadDanhSachTinTuc();
         });
     }
@@ -131,6 +134,12 @@ export class ModalQuanlytintuccnttComponent implements OnInit {
     this.uploader.onCompleteItem = (item: any, status: any) => {
       console.log('Uploaded File Details:', item);
       this.toastr.success('File successfully uploaded!');
+    };
+    setTimeout(()=>this.showContent=true, 250);
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 5,
+      processing: true
     };
   }
   loadDanhSachTinTuc() {
