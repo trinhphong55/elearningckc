@@ -1,12 +1,12 @@
-export class cnttTinTuc {
-    loaiBaiViet: String
-    maDanhMuc: String
-    maBaiViet: String
-    tieuDe: String
-    moTaNgan: String
-    noiDung: String
-    anhBia: String
-    nguoiViet: String
+export interface cnttTinTuc {
+    loaiBaiViet: string
+    maDanhMuc: string
+    maBaiViet: string
+    tieuDe: string
+    moTaNgan: string
+    noiDung: string
+    anhBia: string
+    nguoiViet: string
     thoiGianDangBai: Date
     thongBaoKhanCap: Boolean
     created_at: Date

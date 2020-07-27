@@ -9,7 +9,7 @@
                 <div class="col-12">
                     <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
                         <div class="row justify-content-center align-items-center">
-                            <div class="col-4">
+                            <div class="col-3">
                                 <div class="form-group">
                                     <label>Loại bài viết</label>
                                     <select class="custom-select form-control"
@@ -34,18 +34,14 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label>Ảnh đại diện bài viết</label>
-                                    <div class="input-group ">
-                                        <div class="custom-file file-upload">
-                                            <input type="file" class="custom-file-input" id="" aria-describedby=""
-                                                name="image" ng2FileSelect [uploader]="uploader"
-                                                accept="image/x-png,image/gif,image/jpeg">
-                                            <label class="custom-file-label" for=""></label>
-                                        </div>
+                                    <label>Mã Bài viết</label>
+                                    <input class="form-control" type="text" formControlName="maBaiViet">
+                                    <div class="invalid-feedback" *ngIf="submitted && myForm.tieuDe.errors?.required">
+                                        Vui lòng điển Mã Bài viết.
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-4">
+                            <div class="col-3">
                                 <div class="form-group">
                                     <label>Tiêu đề bài viết</label>
                                     <input class="form-control" type="text" formControlName="tieuDe">
@@ -70,16 +66,31 @@
                                     </select>
                                 </div>
                             </div>
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <label>Ảnh đại diện bài viết</label>
+                                    <div class="input-group ">
+                                        <img id="img" alt="" width="100" height="100" />
+                                        <input type="file"
+                                            onchange="document.getElementById('img').src = window.URL.createObjectURL(this.files[0])"
+                                            name="image" ng2FileSelect [uploader]="uploader"
+                                            accept="image/x-png,image/gif,image/jpeg">
+                                    </div>
+                                </div>
+                            </div>
                             <div class="col-auto">
                                 <div class="form-group">
                                     <div class="modal_chucnang__group__button mb-5">
                                         <label>Thông báo khẩn cấp</label>
                                         <select class="custom-select form-control"
-                                            (change)="chonThongBaoKhanCap($event.target.value)" formControlName="thongBaoKhanCap">
-                                            <option value="1">Áp dụng</option>
-                                            <option value="0">Hủy áp dụng</option>
+                                            (change)="chonThongBaoKhanCap($event.target.value)"
+                                            formControlName="thongBaoKhanCap">
+                                            <option value="true">Áp dụng</option>
+                                            <option value="false">Hủy áp dụng</option>
                                         </select>
                                     </div>
+                                </div>
+                                <div class="form-group">
                                     <div class="modal_chucnang__group__button">
                                         <button class="modal_chucnang__button btn btn-outline-primary px-4 mx-2"
                                             type="submit" (click)="uploader.uploadAll()"><img
