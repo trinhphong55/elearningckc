@@ -66,7 +66,7 @@ export class ModalImportExcelNganhNgheComponent implements OnInit, OnChanges {
     this.dsnganhnghe = undefined;
   }
   getdata() {
-    this.nganhngeservice.getNgangnghe().subscribe(
+    this.nganhngheservice.getNganhnghe().subscribe(
       data => {
         this.dsnganhnghe = data;
       },
@@ -77,7 +77,7 @@ export class ModalImportExcelNganhNgheComponent implements OnInit, OnChanges {
 
   }
   importExcel() {
-    this.nganhngeservice.importNganhNGheFromExcel(this.dsnganhnghe).subscribe(status => {
+    this.nganhngheservice.importNganhNGheFromExcel(this.dsnganhnghe).subscribe(status => {
       if (status.success) {
         alert(status.success);
         this.getdata();
@@ -94,7 +94,7 @@ export class ModalImportExcelNganhNgheComponent implements OnInit, OnChanges {
   }
 
 
-  constructor(private modalService: ModalService, private  nganhngeservice: NganhNgheService) { }
+  constructor(private modalService: ModalService, private  nganhngheservice: NganhNgheService) { }
 
   ngOnInit(): void {
     console.log("ngOnInit");

@@ -1,0 +1,33 @@
+.account{
+}
+.image{
+    width: 100%;
+}
+.image div{
+    width: 30%;
+    margin: 0 auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.image div img{
+    width: 100%;
+    border-radius: 50px;
+}
+.title{
+width: 100%;
+text-align: center;
+}
+.dangxuat{
+    width: 100%;
+}
+.dangxuat button{
+    display: block;
+    background-color: white;
+    padding:  5px 10px 5px 10px;
+    border: solid 0.2px #CCCCCC;
+    outline: none;
+    border-radius: 5px;
+}
+.dangxuat button:hover{
+    background: #DDDDDD;
+}

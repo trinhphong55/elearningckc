@@ -1,0 +1,23 @@
+<div class="row">
+    <div class="title-icon">
+        <div class="title">
+            <h3>Chủ đề 1</h3>
+        </div>
+        <div class="icon">
+            <button mat-button [matMenuTriggerFor]="menu"><i
+                class="fas fa-ellipsis-v"></i></button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item>Đổi tên</button>
+                <button mat-menu-item>Xóa</button>
+                <button mat-menu-item>sao chép đường liên kết</button>
+            </mat-menu>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div>
+        <h4>Chưa có bài học nào được đăng</h4>
+        <p>Bài tập và việc cần làm bạn tạo cho
+            chủ đề này sẽ xuất hiện tại đây</p>
+    </div>
+</div>

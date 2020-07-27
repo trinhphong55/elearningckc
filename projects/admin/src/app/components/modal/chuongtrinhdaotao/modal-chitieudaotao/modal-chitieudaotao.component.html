@@ -1,4 +1,4 @@
-<app-modal class="modal_chucnang__wrapper show" id="ctdt_chitieudaotao">
+<app-modal class="modal_chucnang__wrapper" id="ctdt_chitieudaotao">
   <div (click)="closeModal('ctdt_chitieudaotao')" class="modal_chucnang__close mdi mdi-chevron-left text-white"></div>
   <div class="container mt-3">
 
@@ -92,6 +92,7 @@
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-outline-primary" (click)="onClickLopHocPhan()">Tạo
+                <button type="button" class="btn btn-outline-primary" (click) = "generateLopHocPhan()">Tạo
                 </button>
               </div>
             </div>

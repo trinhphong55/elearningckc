@@ -15,7 +15,7 @@ const MonHocSchema = new mongoose.Schema({
     type: String,
     trim: true,
   },
-  loaiMonHoc: {
+  maLoaiMonHoc: {
     type: String,
     trim: true,
   },

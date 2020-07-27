@@ -17,10 +17,7 @@ export class BacService {
     constructor(private http: HttpClient) { }
 
     getBac(): Observable<bac[]> {
-        return this.http.get<bac[]>(this.apiUrl).pipe(
-         tap(recivenbac => console.log(`recivenbac= thành công`)),
-         catchError(error => of([]))
-        );
+        return this.http.get<bac[]>(this.apiUrl)
       }
   
     

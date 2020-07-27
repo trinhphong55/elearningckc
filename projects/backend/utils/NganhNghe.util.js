@@ -14,6 +14,18 @@ async function getNextNumber() {
     return maNganhNghe;
   }
 }
+async function isNameExist(maNganhNghe) {
+  maNganhNghe = maNganhNghe.trim().toLowerCase();
+  const item = await NganhNghe.findOne({ maNganhNghe: { $regex: new RegExp("^" + maNganhNghe , "i") } }).exec();
+  if (item === null) {
+    return true;
+  } else return false;
+}
+
+module.exports = {
+  getNextNumber,
+  isNameExist
+}
 
 
 module.exports = getNextNumber;

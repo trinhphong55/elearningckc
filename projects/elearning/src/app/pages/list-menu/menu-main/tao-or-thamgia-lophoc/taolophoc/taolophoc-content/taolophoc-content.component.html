@@ -1,0 +1,19 @@
+<h2 mat-dialog-title>Sử dụng Lớp học tại trường học với sinh viên?</h2>
+<mat-dialog-content>Nếu vậy, trường học của bạn phải đăng ký tài koản <a href="#" target="_blank">G Suite dành cho giáo
+        dục</a> miễn phí để bạn có thể sử dụng Lớp học. <a href="#" target="_blank">Tìm hiểu thêm</a>
+</mat-dialog-content>
+<mat-dialog-content>
+    G Suite dành cho giáo dục cho phép trường học quyết định học viên có thể sử dụng những dịch vụ nào của Google cũng
+    như cung cấp các hàng rào
+    <a href="#" target="_blank"> bảo mật và quyền riêng tư</a> bổ sung quan trọng trong cài đặt trường học. Học viên
+    không thể sử dụng Google Lớp học tại trường học bằng tài khoản cá nhân.
+</mat-dialog-content>
+<div class="checkbox">
+    <mat-checkbox [(ngModel)]="checked" ></mat-checkbox><span>  Tôi đã đọc cũng như hiểu thông báo ở trên và tôi hiện không sử dụng Lớp học tại trường học với sinh viên</span>
+    
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Quay lại</button>
+    <button [disabled]="!checked" mat-button type="submit" (click)="openDialogFTLH()">Tiếp tục</button>
+</div>
+

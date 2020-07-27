@@ -12,16 +12,13 @@
               <div class="form-group">
                 <label>Bậc</label>
                 <select class="form-control" [(ngModel)]="ctdt.maBac" (change)="select()">
-                  <option value="04">Cao đẳng (các nghề đào tạo)</option>
-                  <option value="02">Trung cấp</option>
-                  <option value="03">Cao đẳng (các ngành đào tạo)</option>
+                  <option *ngFor="let bac of dsBac" [value]="bac.maBac">{{ bac.tenBac }}</option>
                 </select>
               </div>
               <div class="form-group">
-                <label>Ngành</label>
+                <label>Ngành nghề</label>
                 <select class="form-control" [(ngModel)]="ctdt.maNganhNghe" (change)="select()">
-                  <option value="01">Cơ khí</option>
-                  <option value="06">Ngành CNTT</option>
+                  <option *ngFor="let nganhnghe of dsNganhNghe" [value]="nganhnghe.maNganhNghe">{{ nganhnghe.tenNganhNghe }}</option>
                 </select>
               </div>
             </div>
@@ -53,7 +50,7 @@
                     class="modal_chucnang__button__icon mb-2" src="assets/img/icons/print.png" alt="image icon">
                   <div>In</div>
                 </button>
-                <button class="modal_chucnang__button btn btn-outline-danger px-4 mx-2" type="reset"><img
+                <button class="modal_chucnang__button btn btn-outline-danger px-4 mx-2" type="reset" (click)="select()"><img
                     class="modal_chucnang__button__icon mb-2" src="assets/img/icons/error.png" alt="image icon">
                   <div>Huỷ</div>
                 </button>

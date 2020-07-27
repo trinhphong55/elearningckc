@@ -1,25 +1,32 @@
 import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { ModalService } from '../../../../services/modal.service';
+
+//Services
 import { MonhocService } from '../../../../services/monhoc.service';
+import { LoaimonhocService } from '../../../../services/loaimonhoc.service';
+
+//Interfaces
 import { MonHoc } from '../../../../interfaces/monhoc.interface';
+import { LoaiMonHoc } from '../../../../interfaces/loaimonhoc.interface';
 
 @Component({
   selector: 'app-modal-monhoc',
   templateUrl: './modal-monhoc.component.html',
   styleUrls: ['./modal-monhoc.component.css'],
-  providers: [MonhocService]
+  providers: [MonhocService, LoaimonhocService]
 })
 export class ModalMonhocComponent implements OnInit, OnChanges {
 
   searchMonHoc;
 
   dsMonHoc: MonHoc[];
-
-  selectedMonHoc: MonHoc = { maMonHoc: "", tenMonHoc: "", loaiMonHoc: "Thực hành", tenTiengAnh: "", tenVietTat: "", tenVietTatTiengAnh: "" };
+  dsLoaiMonHoc: LoaiMonHoc[];
+  selectedMonHoc: MonHoc = { maMonHoc: "", tenMonHoc: "", maLoaiMonHoc: "LT", tenTiengAnh: "", tenVietTat: "", tenVietTatTiengAnh: "" };
 
   onSelect(maMonHoc: string): void {
     this.monhocService.getMonHocFromMaMonHoc(maMonHoc).subscribe(selectedMonHoc => {
       this.selectedMonHoc = selectedMonHoc;
+      console.log(this.selectedMonHoc);
     });
   }
 
@@ -34,7 +41,7 @@ export class ModalMonhocComponent implements OnInit, OnChanges {
       console.log("cua post" , status);
       if (status.success) {
         alert(status.success);
-        this.selectedMonHoc = { maMonHoc: "", tenMonHoc: "", loaiMonHoc: "Thực hành", tenTiengAnh: "", tenVietTat: "", tenVietTatTiengAnh: "" };
+        this.selectedMonHoc = { maMonHoc: "", tenMonHoc: "", maLoaiMonHoc: "LT", tenTiengAnh: "", tenVietTat: "", tenVietTatTiengAnh: "" };
         this.monhocService.getMonHoc().subscribe(data => {
           this.dsMonHoc = data;
         })
@@ -61,19 +68,34 @@ export class ModalMonhocComponent implements OnInit, OnChanges {
   }
 
   deleteMonHoc(maMonHoc: string) {
-    this.monhocService.deleteMonHoc(maMonHoc).subscribe(data => {
-      console.log("deleted", data);
-      this.monhocService.getMonHoc().subscribe(data => {
-        this.dsMonHoc = data;
-      })
+    this.monhocService.deleteMonHoc(maMonHoc).subscribe(status => {
+      // console.log("deleted", status);
+      if (status.error) {
+        alert(status.error);
+      } else {
+        this.monhocService.getMonHoc().subscribe(data => {
+          this.dsMonHoc = data;
+        })
+      }
     });
   }
 
-  constructor(private modalService: ModalService, private monhocService: MonhocService) {
-    monhocService.getMonHoc().subscribe(data => {
+  reloadDSMH() {
+    this.monhocService.getMonHoc().subscribe(data => {
       this.dsMonHoc = data;
-      // console.log(data);
-    });
+    })
+  }
+
+
+
+  closeModal(id: string) {
+    this.modalService.close(id)
+  }
+
+  constructor(
+    private modalService: ModalService,
+    private monhocService: MonhocService,
+    private loaimonhocService: LoaimonhocService,) {
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -81,13 +103,12 @@ export class ModalMonhocComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-
+    this.loaimonhocService.getLoaiMonHoc().subscribe(dslmh => {
+      this.dsLoaiMonHoc = dslmh;
+    });
+    this.monhocService.getMonHoc().subscribe(data => {
+      this.dsMonHoc = data;
+    });
   }
-
-  closeModal(id: string) {
-    this.modalService.close(id)
-  }
-
-
 
 }
