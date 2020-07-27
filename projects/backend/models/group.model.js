@@ -37,7 +37,11 @@ const groupfbSchema = new Schema({
     
     },
 
-  
+    tenLop: {
+        type: String,
+        required: true,
+    
+    },
 
     soLuongBaiViet: {
         type:Number,
