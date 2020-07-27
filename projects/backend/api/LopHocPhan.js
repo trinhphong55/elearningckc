@@ -10,9 +10,8 @@ router.get('/', async(req, res) => {
 
 //POST LopHocPhan
 router.post('/', async (req, res) => {
-  //warning: chi lay danh sach lop co cung chuong trinh dao tao, vi du cac lop CDTH17
-  // let hocKi = req.body[0];
-  // let dsLopHoc = req.body[1];
+  let hocKi = req.body[0];
+  let dsLopHoc = req.body[1];
   let nextNumber = 1;
 
   await LopHocPhan.findOne({}, {}, { sort: { 'ngayTao' : -1 } }).exec()
@@ -22,14 +21,14 @@ router.post('/', async (req, res) => {
     }
   })
 
-  let dsLopHoc = [
-    { tenLop: 'CĐ TH 17B', maLopHoc: '30061712' },
-    { tenLop: 'CĐ TH 17C', maLopHoc: '30061713' },
-    { tenLop: 'CĐ TH 17A', maLopHoc: '30061711' },
-    { tenLop: 'CĐ TH 17D', maLopHoc: '30061714' },
-  ];
+  // let dsLopHoc = [
+  //   { tenLop: 'CĐ TH 17B', maLopHoc: '30061712' },
+  //   { tenLop: 'CĐ TH 17C', maLopHoc: '30061713' },
+  //   { tenLop: 'CĐ TH 17A', maLopHoc: '30061711' },
+  //   { tenLop: 'CĐ TH 17D', maLopHoc: '30061714' },
+  // ];
 
-  let hocKi = 1;
+  // let hocKi = 1;
 
   //neu dsLopHoc rong?
   if (dsLopHoc.length === 0) {
