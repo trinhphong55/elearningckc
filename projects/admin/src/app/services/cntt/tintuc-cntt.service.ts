@@ -13,25 +13,19 @@ export class TintucCnttService {
   headers = new HttpHeaders().set('Content-Type', 'application/json')
 
   constructor(private http: HttpClient) { }
-  //taoTintuc
-  taoTinTuc(tinTuc: any): Observable<any> {
-    let url = `${this.baseUri}/taoTinTuc`;
-    return this.http.post<any>(url, JSON.stringify(tinTuc))
-      .pipe(
-        catchError(this.errorMgmt)
-      )
+  danhSachTinTuc(): Observable<any> {
+    return this.http
+      .get<any>(`${this.baseUri}/danhsachtintuc`, {
+        headers: this.headers,
+      })
+      .pipe(retry(1), catchError(this.errorMgmt));
   }
-  danhSachTinTuc() {
-    return this.http.get(`${this.baseUri}/danhsachtintuc`);
-  }
-  //xoaTinTuc
-  xoaTinTuc(id, data): Observable<any> {
-    console.log("id: " + id)
-    console.log("data: " + data)
-    let url = `${this.baseUri}/xoatintuc/${id}`;
-    return this.http.post(url, data, { headers: this.headers }).pipe(
-      catchError(this.errorMgmt)
-    )
+  deleteTinTuc(body: any): Observable<any> {
+    return this.http
+      .post<any>(`${this.baseUri}/xoatintuc`, body, {
+        headers: this.headers,
+      })
+      .pipe(catchError(this.errorMgmt));
   }
   //add tin tuc
   themTinTuc(data): Observable<any> {
@@ -41,7 +35,14 @@ export class TintucCnttService {
         catchError(this.errorMgmt)
       )
   }
-
+  //edit tintuc
+  editTinTuc(data): Observable<cnttTinTuc> {
+    return this.http
+      .post<cnttTinTuc>(this.baseUri + '/chinhSuaTinTuc', data, {
+        headers: this.headers,
+      })
+      .pipe(retry(1), catchError(this.errorMgmt));
+  }
   // Error handling
   errorMgmt(error: HttpErrorResponse) {
     let errorMessage = '';

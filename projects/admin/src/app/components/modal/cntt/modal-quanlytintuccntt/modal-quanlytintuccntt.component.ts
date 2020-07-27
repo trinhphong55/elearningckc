@@ -27,81 +27,97 @@ export class ModalQuanlytintuccnttComponent implements OnInit {
   tinTucForm: FormGroup;
   loaiBaiViet: any = ['Thông báo', 'Bài Viết nổi bật', 'Tài liệu', 'Việc làm', 'Bài viết'];
   maDanhMuc: any = ['Thông báo', 'Sinh Viên', 'Giới thiệu'];
-  trangThai: any=[0,1,2];
-  thongBaoKhanCap: any=[true, false]
-//
+  trangThai: any = [0, 1, 2];
+  thongBaoKhanCap: any = [true, false]
+  //
   constructor(private modalService: ModalService, public fb: FormBuilder, private router: Router, private ngZone: NgZone, private tintucCnttService: TintucCnttService, private toastr: ToastrService) {
     this.loadDanhSachTinTuc()
     this.mainForm();
   }
-//update
-mainForm() {
-  this.tinTucForm = this.fb.group({
-    loaiBaiViet: ['', [Validators.required]],
-    maDanhMuc: ['',],
-    maBaiViet: [''],
-    tieuDe: ['', [Validators.required]],
-    moTaNgan: ['', [Validators.required]],
-    noiDung: [''],
-    anhBia: [''],
-    nguoiViet: [''],
-    thoiGianDangBai: [''],
-    thongBaoKhanCap: [''],
-    created_at: [''],
-    updated_at: [''],
-    trangThai: [''],
-  })
-}
-//  dropdown
-chonMaDanhMuc(e) {
-  this.tinTucForm.get('maDanhMuc').setValue(e, {
-    onlySelf: true
-  })
-}
-chonLoaiBaiViet(e) {
-  this.tinTucForm.get('loaiBaiViet').setValue(e, {
-    onlySelf: true
-  })
-}
-chonTrangThai(e) {
-  this.tinTucForm.get('trangThai').setValue(e, {
-    onlySelf: true
-  })
-}
-chonThongBaoKhanCap(e) {
-  this.tinTucForm.get('thongBaoKhanCap').setValue(e, {
-    onlySelf: true
-  })
-}
-// Getter to access form control
-get myForm() {
-  return this.tinTucForm.controls;
-}
-onSubmit() {
-  this.submitted = true;
-  if (!this.tinTucForm.valid) {
-    return false;
-  } else {
-    this.tintucCnttService.themTinTuc(this.tinTucForm.value).subscribe(
-      (res) => {
-        this.loadDanhSachTinTuc()
-        console.log(' Tin tuc duoc them thanh cong!    ', res)
-        alert(' Them moi thanh cong')
-      })
+  //update
+  mainForm() {
+    this.tinTucForm = this.fb.group({
+      _id: ['', [Validators.required]],
+      loaiBaiViet: ['', [Validators.required]],
+      maDanhMuc: ['',],
+      maBaiViet: [''],
+      tieuDe: ['', [Validators.required]],
+      moTaNgan: ['', [Validators.required]],
+      noiDung: [''],
+      anhBia: [''],
+      nguoiViet: [''],
+      thoiGianDangBai: [''],
+      thongBaoKhanCap: [''],
+      created_at: [''],
+      updated_at: [''],
+      trangThai: [''],
+    })
   }
-}
-editBaiViet(baiViet: any) {
-  this.tinTucForm.patchValue({
-    loaiBaiViet: baiViet.loaiBaiViet,
-    maDanhMuc: baiViet.maDanhMuc,
-    tieuDe: baiViet.tieuDe,
-    moTaNgan: baiViet.moTaNgan,
-    noiDung: baiViet.noiDung,
-    thongBaoKhanCap: baiViet.thongBaoKhanCap,
-    trangThai: baiViet.trangThai,
-  });
-}
-//
+  //  dropdown
+  chonMaDanhMuc(e) {
+    this.tinTucForm.get('maDanhMuc').setValue(e, {
+      onlySelf: true
+    })
+  }
+  chonLoaiBaiViet(e) {
+    this.tinTucForm.get('loaiBaiViet').setValue(e, {
+      onlySelf: true
+    })
+  }
+  chonTrangThai(e) {
+    this.tinTucForm.get('trangThai').setValue(e, {
+      onlySelf: true
+    })
+  }
+  chonThongBaoKhanCap(e) {
+    this.tinTucForm.get('thongBaoKhanCap').setValue(e, {
+      onlySelf: true
+    })
+  }
+  // Getter to access form control
+  get myForm() {
+    return this.tinTucForm.controls;
+  }
+  onSubmit() {
+    this.submitted = true;
+    if (!this.tinTucForm.valid) {
+      return false;
+    } else {
+      this.tintucCnttService.editTinTuc(this.tinTucForm.value).subscribe(
+        (res) => {
+          this.loadDanhSachTinTuc()
+          console.log(' Tin tuc duoc chinh sua thanh cong!    ', res)
+          alert(' Chinh sua thanh cong')
+        })
+    }
+  }
+  onXoaBaiViet(maBaiViet: string) {
+    const anwser = confirm('Nhấn OK để xoá Loại bài viết này');
+    if (anwser) {
+      this.tintucCnttService
+        .deleteTinTuc({
+          maBaiViet: maBaiViet,
+        })
+        .subscribe((data) => {
+          alert('Xoá bài viết thành công');
+          this.loadDanhSachTinTuc();
+        });
+    }
+  }
+  editBaiViet(baiViet: any) {
+    this.tinTucForm.patchValue({
+      _id: baiViet.loaiBaiViet,
+      loaiBaiViet: baiViet.loaiBaiViet,
+      maDanhMuc: baiViet.maDanhMuc,
+      maBaiViet: baiViet.maBaiViet,
+      tieuDe: baiViet.tieuDe,
+      moTaNgan: baiViet.moTaNgan,
+      noiDung: baiViet.noiDung,
+      thongBaoKhanCap: baiViet.thongBaoKhanCap,
+      trangThai: baiViet.trangThai,
+    });
+  }
+  //
   closeModal(id: string) {
     this.modalService.close(id)
   }

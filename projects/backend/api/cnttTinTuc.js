@@ -31,19 +31,20 @@ router.post('/uploads', upload.single('image'), function (req, res) {
       success: false
     });
   }
-    console.log('filename:  '+req.file.filename);
-    filename = req.file.filename;
-    console.log('File is available!');
-    res.send({
-      success: true,
-      return:  filename
-    })
+  console.log('filename:  ' + req.file.filename);
+  filename = req.file.filename;
+  console.log('File is available!');
+  res.send({
+    success: true,
+    return: filename
+  })
 });
 
 router.post('/taotintuc', (req, res) => {
   var tintuc = new TinTuc({
     loaiBaiViet: req.body.loaiBaiViet,
     maDanhMuc: req.body.maDanhMuc,
+    maBaiViet: req.body.maBaiViet,
     tieuDe: req.body.tieuDe,
     moTaNgan: req.body.moTaNgan,
     noiDung: req.body.noiDung,
@@ -59,6 +60,26 @@ router.post('/taotintuc', (req, res) => {
     res.json(data)
   })
 })
+router.post("/chinhSuaTinTuc", async (req, res) => {
+  console.log(" Chinh sua bai viet");
+  console.log(req.body.maBaiViet);
+  await TinTuc.findOneAndUpdate(
+    { maBaiViet: req.body.maBaiViet },
+    {
+      loaiBaiViet: req.body.loaiBaiViet,
+      maDanhMuc: req.body.maDanhMuc,
+      tieuDe: req.body.tieuDe,
+      moTaNgan: req.body.moTaNgan,
+      noiDung: req.body.noiDung,
+      // anhBia: './uploads/' + filename,
+      thongBaoKhanCap: req.body.thongBaoKhanCap,
+      trangThai: req.body.trangThai,
+    }
+  );
+  res.json({
+    message: "Chỉnh sửa bài viết thành công",
+  });
+});
 // Get All Tintuc
 router.get('/danhsachtintuc', (req, res) => {
   TinTuc.find((error, data) => {
@@ -78,18 +99,18 @@ router.get('/tintuc/:id', (req, res) => {
   })
 })
 // add Tintuc add
-
-
-router.post('/xoatintuc/:id', (req, res, next) => {
-  TinTuc.update({ _id: req.body._id }, { $set: { trangThai: 0 } }, (err, data) => {
-    if (err) {
-      console.log(err)
-      return next(err)
+router.post('/xoatintuc', async (req, res) => {
+  console.log(" Xoa bai viet");
+  console.log(req.body.maBaiViet);
+  await TinTuc.findOneAndUpdate(
+    { maBaiViet: req.body.maBaiViet },
+    {
+      trangThai: 0,
     }
-    console.log(ok)
-    res.json(data)
-  })
-
+  );
+  res.json({
+    message: " Xóa bài viết thành công",
+  });
 })
 
 module.exports = router
