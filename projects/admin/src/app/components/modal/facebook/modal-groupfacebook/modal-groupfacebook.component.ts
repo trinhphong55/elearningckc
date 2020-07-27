@@ -26,7 +26,7 @@ export class ModalGroupfacebookComponent implements OnInit {
     this.getbac();
   }
 
-  getAll(){
+  getAll() {
     this.groupFBService.getAll().subscribe(
       data => {
         this.data = data;
@@ -63,4 +63,8 @@ export class ModalGroupfacebookComponent implements OnInit {
     this.modalService.close(id)
   }
 
+  
+  
+
 }
+
