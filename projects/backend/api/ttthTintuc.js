@@ -15,10 +15,11 @@ router.get('/ttthdanhsachtintuc', (req, res) => {
 router.post('/ttththemtintuc', (req, res) => {
   var tintuc = new ttthtintuc({
     id_loaitintuc: req.body.id_loaitintuc,
+    image: 'link',
     tentintuc: req.body.tentintuc,
     description: req.body.description,
     noidung: req.body.noidung,
-    trangthai: true,
+    trangthai: false,
   })
   tintuc.save((err, data) => {
     if (err) {

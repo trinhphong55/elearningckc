@@ -26,21 +26,31 @@ export class ModalTintucComponent implements OnInit {
     this.tintucService.getTinTuc().subscribe(updatedTinTuc => this.TinTuc = updatedTinTuc);
   }
   // add tintuc
+  value: any;
+  onFileSelected(event) {
+    if(event.target.files.length > 0)
+     {
+      this.value = event.target.files[0].name;
+     }
+   }
   addTinTuc(id_loaitintuc: string,tentintuc: string, description:string, noidung:string): void {
+
     tentintuc = tentintuc.trim();
     if ( !tentintuc) {
       alert('Vui lòng nhập tên');
       return;
     }
-    const newMovie: ttthTinTuc = new ttthTinTuc();
-    newMovie.id_loaitintuc = id_loaitintuc;
-    newMovie.tentintuc = tentintuc;
-    newMovie.description = description;
-    newMovie.noidung = noidung;
-    newMovie.trangthai = true;
-    newMovie.nguoitao = 'hieu';
-    newMovie.nguoisua = 'loc';
-    this.tintucService.addTinTuc(newMovie)
+    const newTinTuc: ttthTinTuc = new ttthTinTuc();
+    newTinTuc.id_loaitintuc = id_loaitintuc;
+    newTinTuc.image = this.value;
+    newTinTuc.tentintuc = tentintuc;
+    newTinTuc.slug = 'slug';
+    newTinTuc.description = description;
+    newTinTuc.noidung = noidung;
+    newTinTuc.trangthai = false;
+    newTinTuc.nguoitao = 'hieu';
+    newTinTuc.nguoisua = 'loc';
+    this.tintucService.addTinTuc(newTinTuc)
       .subscribe(insertedMovie => {
         this.TinTuc.push(insertedMovie);
       });
@@ -51,6 +61,9 @@ export class ModalTintucComponent implements OnInit {
     this.selectedItem= TinTuc;
     console.log(`selectedItem = ${JSON.stringify(this.selectedItem)}`);
   }
-
+  saveTinTuc(TinTuc: ttthTinTuc):void {
+    this.selectedItem= TinTuc;
+    console.log(`selectedItem = ${JSON.stringify(this.selectedItem)}`);
+  }
 
 }

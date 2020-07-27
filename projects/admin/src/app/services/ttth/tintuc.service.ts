@@ -22,7 +22,7 @@ export class TintucService {
   }
   addTinTuc(newTinTuc: ttthTinTuc): Observable<ttthTinTuc> {
     return this.http.post<ttthTinTuc>('https://localhost:4100/api/ttthTinTuc/ttththemtintuc', newTinTuc, httpOptions).pipe(
-      tap((ttthTinTuc: ttthTinTuc) => console.log(`inserted TinTuc = ${JSON.stringify(ttthTinTuc)}`)),
+      tap((newTinTuc: ttthTinTuc) => console.log(`inserted TinTuc = ${JSON.stringify(newTinTuc)}`)),
       catchError(error => of(new ttthTinTuc()))
     );
   }

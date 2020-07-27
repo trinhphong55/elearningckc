@@ -52,7 +52,7 @@ const server = https.createServer(httpsOptions, app)
 
 /////// cntt region //// - cac nhom khac cmt het phan nay lai nhe
 //cntt-db
-mongoose.connect('mongodb://127.0.0.1:27017/DATNWEBKHOACKC', { useNewUrlParser: true, useFindAndModify: false,useCreateIndex: true, useUnifiedTopology: true }, function (err, db) {
+mongoose.connect('mongodb://127.0.0.1:27017/ttth', { useNewUrlParser: true, useFindAndModify: false,useCreateIndex: true, useUnifiedTopology: true }, function (err, db) {
     if (err) {
         console.log("fail to connect db");
     } else {

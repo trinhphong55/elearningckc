@@ -1,5 +1,6 @@
 export class ttthTinTuc {
   id_loaitintuc: String
+  image: String
   tentintuc: String
   slug: String
   description: String
