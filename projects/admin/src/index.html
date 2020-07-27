@@ -19,8 +19,6 @@
   <!-- Script những thành phần quan trọng để sử dụng API facebook -->
   <script>
     var AppId='726531241502023';
-    //var act='EAAKUxryRZAUcBAD1xrhmwuLDgZCtmcZBtnCbespDUGcQBTkaYNQJh2orUiBteIZAb62ToPYYK6P8EcMpW3IdqE1S5VXTSkXdJZB6qJkld1InNPUEea6Jp1ffzCF6mEbOvZCQpwPUfc2nFmEnvbfnz3HSASqqZBrqyNn4IYXLs8kRwp4kRP9cNGy0wbjqr5WaJ8W9mPKAW0e3gIgQwItwXFr';
-    // var access_token='EAAKUxryRZAUcBAAVy2sXyWlvMXUlTYx3XFWlwZA1FFEvzD7aMkZA5aIOyu9W5aVAybO1T0plZCiT5cqqODcD6iBaW5ZAfdFtz62q507L03iihzENtnGtg1UkcmdZBPyymcx6dRawUr0WOKwC5QiXtv8jIR9344gNS6rAWwwZBSuP4wthwNutVDnZBziTbaBxpEcfJRPtoATpfZCMhS6KxKMPy';
     var FBLoaded = false;
     window.fbAsyncInit = function () {
       FB.init({
@@ -64,8 +62,6 @@
           source = response.picture.data.url;
           console.log(response.picture.data.url);
           document.getElementsByTagName('avatar').innerHTML =response.picture.data.url;
-          
-        
       })
       return source;
     };
@@ -114,22 +110,23 @@
       })
     }
     //Lấy các feed đã post
-    function getFeedPostedGr() {
-      FB.api('/410650836564717/feed',function (response){
-        console.log(response.feed.data.message);
-        console.log(response.feed.data.story);
-        console.log(response.feed.data.updated_time);
-        console.log(response.feed.data.id);
-        mess=response.feed.data.message;
-        story=response.feed.data.story;
-        updatedTime=response.feed.data.updated_time;
-        idpost=response.feed.data.id;
-        document.getElementById('feed/message').innerHTML =mess;
-        document.getElementById('feed/story').innerHTML =story;
-        document.getElementById('feed/updatedtime').innerHTML =updatedTime;
-        document.getElementById('feed/idpost').innerHTML =idpost;
-      })
-    }
+    // function getFeedPostedGr() {
+    //   FB.api('/410650836564717',{fields: 'feed'},function (response){
+    //     console.log(response);
+    //     console.log(response.feed.data.message);
+    //     console.log(response.feed.data.story);
+    //     console.log(response.feed.data.updated_time);
+    //     console.log(response.feed.data.id);
+    //     mess=response.feed.data.message;
+    //     story=response.feed.data.story;
+    //     updatedTime=response.feed.data.updated_time;
+    //     idpost=response.feed.data.id;
+    //     document.getElementById('feed/message').innerHTML =mess;
+    //     document.getElementById('feed/story').innerHTML =story;
+    //     document.getElementById('feed/updatedtime').innerHTML =updatedTime;
+    //     document.getElementById('feed/idpost').innerHTML =idpost;
+    //   })
+    // }
     //Lấy Descripsion Group
    function getDescripsionGr() {
       FB.api('/410650836564717',{fields: 'description'},function (response){
@@ -150,7 +147,7 @@
       getMemberCountGr();
       getMemberRequestCountGr();
       getPrivacyGr();
-      getFeedPostedGr();
+      // getFeedPostedGr();
       getDescripsionGr();
       getGroupCreatedDay();
     }
