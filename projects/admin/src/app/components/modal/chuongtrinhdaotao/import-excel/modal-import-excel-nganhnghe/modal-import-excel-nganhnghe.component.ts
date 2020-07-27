@@ -65,11 +65,24 @@ export class ModalImportExcelNganhNgheComponent implements OnInit, OnChanges {
     this.keys = null;
     this.dsnganhnghe = undefined;
   }
+  getdata() {
+    this.nganhngeservice.getNgangnghe().subscribe(
+      data => {
+        this.dsnganhnghe = data;
+      },
+      error => {
+        console.log(error);
+      });
+      console.log(this.getdata);
 
+  }
   importExcel() {
     this.nganhngeservice.importNganhNGheFromExcel(this.dsnganhnghe).subscribe(status => {
       if (status.success) {
         alert(status.success);
+        this.getdata();
+        this.modalService.close('ctdt_import_excel_nganhnghe');
+        this.modalService.open('ctdt_nganhnghe');
       } else {
         if (status.error) {
           alert('them moi that bai, ' + status.error);

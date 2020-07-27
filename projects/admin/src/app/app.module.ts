@@ -76,6 +76,8 @@ import { ModalThemtintuccnttComponent } from './components/modal/cntt/modal-them
 import { ModalChinhsuatintuccnttComponent } from './components/modal/cntt/modal-chinhsuatintuccntt/modal-chinhsuatintuccntt.component';
 import { ModalQuanlyloaitintuccnttComponent } from './components/modal/cntt/modal-quanlyloaitintuccntt/modal-quanlyloaitintuccntt.component';
 import { ModalImportExcelKhoabomonComponent } from './components/modal/chuongtrinhdaotao/modal-import-excel-khoabomon/modal-import-excel-khoabomon.component';
+import { DetailGroupfacebookComponent } from './components/modal/facebook/details/detail-groupfacebook/detail-groupfacebook.component';
+import { DetailPagefacebookComponent } from './components/modal/facebook/details/detail-pagefacebook/detail-pagefacebook.component';
 
 @NgModule({
   declarations: [
@@ -144,7 +146,9 @@ import { ModalImportExcelKhoabomonComponent } from './components/modal/chuongtri
     ModalChinhsuatintuccnttComponent,
     ModalHomeChuongtrinhdaotaoComponent,
     ModalQuanlyloaitintuccnttComponent,
-    ModalImportExcelKhoabomonComponent
+    ModalImportExcelKhoabomonComponent,
+    DetailGroupfacebookComponent,
+    DetailPagefacebookComponent
   ],
   imports: [
     BrowserModule,
