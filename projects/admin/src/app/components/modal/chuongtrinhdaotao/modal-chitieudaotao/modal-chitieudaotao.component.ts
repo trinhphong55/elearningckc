@@ -127,7 +127,7 @@ export class ModalChitieudaotaoComponent implements OnInit {
     );
   }
   getNganhNghe() {
-    this.nganhngheservice.getNgangnghe().subscribe(
+    this.nganhngheservice.getNganhnghe().subscribe(
       (data) => {
         this.chiTieuGroup = new FormGroup({
           maNganh: new FormControl(''),
@@ -255,11 +255,12 @@ export class ModalChitieudaotaoComponent implements OnInit {
       if (element.maNganh === maNganh) LopTam.push(element);
     });
     this.lopTams = LopTam;
+    console.log(this.lop);
   }
 
   private getMaNTenLopHoc(): Object[] {
     let arrMaNTen = [];
-    this.lopHocs.forEach(lop => {
+    this.lopTams.forEach(lop => {
       let temp = { tenLop: lop.tenLop, maLopHoc: lop.maLopHoc };
       arrMaNTen.push(temp);
     })
@@ -273,6 +274,10 @@ export class ModalChitieudaotaoComponent implements OnInit {
     }
     let hocKi = this.hocKiForm.value.hocKi;
     let dsMaNTen: Object[] = this.getMaNTenLopHoc();
+    if (dsMaNTen.length === 0) {
+      alert('chua co lop');
+      return;
+    }
     this.lopHocPhanSerivce.addDSLopHocPhan(dsMaNTen, hocKi).subscribe(status => {
       alert(status);
     })
