@@ -119,7 +119,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let nganh of nganhtamlist;index as i">
+                    <tr *ngFor="let nganh of nganhtamlist;index as i" (click) ="onClickLopTheoNganh(nganh.maNganhNghe)" >
                       <th scope="row">{{ i+ 1 }}</th>
                       <td> {{nganh.tenNganhNghe }}</td>
                       <td>
@@ -157,7 +157,7 @@
                   <tbody>
                     <!-- <ng-container *ngFor="let item of lopNganhs">
                       <ng-container *ngFor="let lop of item.dsLop, index as i"> -->
-                    <tr *ngFor="let item of lopHocs, index as i">
+                    <tr *ngFor="let item of lopTams, index as i">
                       <th scope="row">{{ i+1 }}</th>
                       <td>
                         {{ item.tenLop }}
@@ -173,7 +173,7 @@
                   </tbody>
                   <tfoot>
                     <td colspan="3">
-                      <button type="button" class="btn btn-outline-light" data-toggle="modal"
+                      <button type="button" class="btn btn-outline-primary" data-toggle="modal"
                         data-target="#lopHocPhan">Tạo lớp học phần</button>
                     </td>
                   </tfoot>
