@@ -10,7 +10,8 @@ const khoabomonSchema = new Schema({
   },
   tenKhoa: {
     type: String,
-    required: true
+    required: true,
+    unique:true
 
   },
   tenVietTat: {

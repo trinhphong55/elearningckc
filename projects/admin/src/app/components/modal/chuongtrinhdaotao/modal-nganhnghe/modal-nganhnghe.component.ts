@@ -6,11 +6,11 @@ import { FormControl,FormGroup,FormBuilder,Validator, Validators } from '@angula
 @Component({
   selector: 'app-modal-nganhnghe',
   templateUrl: './modal-nganhnghe.component.html',
-  styleUrls: ['./modal-nganhnghe.component.css']
+  styleUrls: ['./modal-nganhnghe.component.css'],
 })
 export class ModalNganhngheComponent implements OnInit {
 
-  //khai báo dư liệu 
+  //khai báo dư liệu
   searchName: string;
   data: any;
   bac: any;
@@ -25,7 +25,7 @@ export class ModalNganhngheComponent implements OnInit {
   tenNganhcha: string ="Không có ngành cha";
   addForm: FormGroup;
   constructor(private modalService: ModalService,
-    private nganhngheservice: NganhNgheService, 
+    private nganhngheservice: NganhNgheService,
      private bacservice: BacService,) {}
   ngOnInit(): void {
     this.getdata();
@@ -40,12 +40,13 @@ export class ModalNganhngheComponent implements OnInit {
   // hiển thị danh sách bậc
   getbac() {
     this.bacservice.getBac().subscribe(
-      bac => {
+      (bac) => {
         this.bac = bac;
       },
-      error => {
+      (error) => {
         console.log(error);
-      });
+      }
+    );
   }
   // hiển thị danh sách ngành nghề
   getdata() {
@@ -53,13 +54,13 @@ export class ModalNganhngheComponent implements OnInit {
       data => {
         this.data = data;
       },
-      error => {
+      (error) => {
         console.log(error);
       });
   }
   // lấy ngành nghề theo id
   Detail(data) {
-    this.nganhngheservice.getDetailNganhNghe(data._id)   
+    this.nganhngheservice.getDetailNganhNghe(data._id)
       .subscribe(
         data => {
           this.data.published = data;
@@ -92,7 +93,7 @@ export class ModalNganhngheComponent implements OnInit {
           {
             this.tenNganhcha= x.tenNganhNghe
           }
-          
+
         });
         console.log(this.maNganhCha)
   }
@@ -148,9 +149,9 @@ export class ModalNganhngheComponent implements OnInit {
             alert("Dữ liệu đã tồn tại")
           }
           console.log(data);
-         
+
         },
-        error => {
+        (error) => {
           console.log(error);
           alert("thêm thất bại,dữ liệu đã tồn tại")
         });
@@ -182,40 +183,40 @@ export class ModalNganhngheComponent implements OnInit {
         }
 
       });
-     
+
       this.arr = { maNganhNghe: this.maNganhNghe, tenNganhNghe: this.tenNganhNghe, tenVietTat: this.tenVietTat, maBac: this.maBac, maNganhCha: this.maNganhCha };
       this.nganhngheservice.updateMonHoc(this._id, this.arr).subscribe(
-        data => {
+        (data) => {
           this.arr = data;
-          alert("Thành Công")
+          alert('Thành Công');
           this.getdata();
         },
-        error => {
+        (error) => {
           console.log(error);
         });
     }
   }
-  
+
   //xóa ngành nghề
   delete(data) {
-    this.nganhngheservice.deledeNN(data._id)
-      .subscribe(
-        data => {
-          this.data.published = data;
-          this.getdata();
-        },
-        error => {
-          console.log(error);
-        });
+    this.nganhngheservice.deledeNN(data._id).subscribe(
+      (data) => {
+        this.data.published = data;
+        this.getdata();
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
 
   //xuất excel ngành nghề
   xuatexcel() {
-      this.modalService.close('ctdt_nganhnghe');
-      this.modalService.open('ctdt_import_excel_nganhnghe');
-    }
+    this.modalService.close('ctdt_nganhnghe');
+    this.modalService.open('ctdt_import_excel_nganhnghe');
+  }
   closeModal(id: string) {
-    this.modalService.close(id)
+    this.modalService.close(id);
   }
 }

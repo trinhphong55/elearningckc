@@ -3,8 +3,11 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const fs = require('fs')
-const app = express()
 const cors = require('cors')
+
+
+const app = express()
+
 // require('./crawl').crawl()
 
 const MONGODB_URI = 'mongodb://elearning_team:123@103.92.26.177:27017/testAngularckc' //'mongodb://localhost:27017/'
@@ -12,8 +15,8 @@ const MONGODB_URI = 'mongodb://elearning_team:123@103.92.26.177:27017/testAngula
 const PORT = 4100
 
 const httpsOptions = {
-  key: fs.readFileSync('./security/cert.key'),
-  cert: fs.readFileSync('./security/cert.crt')
+  key: fs.readFileSync('security/localhost.key'),
+  cert: fs.readFileSync('security/localhost.crt')
 }
 
 // Connect with MongoDB
@@ -38,13 +41,10 @@ app.use(bodyParser.json())
 app.use(cors())
 
 app.use(function (req, res, next) {
-  // res.setHeader('Access-Control-Allow-Origin', 'https://127.0.0.1:4200')
-  // res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE')
-  // res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type')
-  // res.setHeader('Access-Control-Allow-Credentials', true)
-  res.header('Access-Control-Allow-Origin', "*");
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Access-Control-Allow-Origin', '*')
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE')
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type')
+  res.setHeader('Access-Control-Allow-Credentials', true)
   next()
 })
 

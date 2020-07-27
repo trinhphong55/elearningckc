@@ -3,9 +3,12 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ApiService } from './services/api.service';
+import { DataTablesModule } from 'angular-datatables';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {ApiService} from './services/api.service';
+
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -72,6 +75,8 @@ import { ModalQuanlytintuccnttComponent } from './components/modal/cntt/modal-qu
 import { ModalThemtintuccnttComponent } from './components/modal/cntt/modal-themtintuccntt/modal-themtintuccntt.component';
 import { ModalChinhsuatintuccnttComponent } from './components/modal/cntt/modal-chinhsuatintuccntt/modal-chinhsuatintuccntt.component';
 import { ModalQuanlyloaitintuccnttComponent } from './components/modal/cntt/modal-quanlyloaitintuccntt/modal-quanlyloaitintuccntt.component';
+import { ModalImportExcelKhoabomonComponent } from './components/modal/chuongtrinhdaotao/modal-import-excel-khoabomon/modal-import-excel-khoabomon.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -138,7 +143,8 @@ import { ModalQuanlyloaitintuccnttComponent } from './components/modal/cntt/moda
     ModalThemtintuccnttComponent,
     ModalChinhsuatintuccnttComponent,
     ModalHomeChuongtrinhdaotaoComponent,
-    ModalQuanlyloaitintuccnttComponent
+    ModalQuanlyloaitintuccnttComponent,
+    ModalImportExcelKhoabomonComponent
   ],
   imports: [
     BrowserModule,
@@ -147,6 +153,8 @@ import { ModalQuanlyloaitintuccnttComponent } from './components/modal/cntt/moda
     NgxUsefulSwiperModule,
     FormsModule,
     ReactiveFormsModule,
+    DataTablesModule,
+    CKEditorModule,
     Ng2SearchPipeModule,
   ],
   providers: [ApiService],
