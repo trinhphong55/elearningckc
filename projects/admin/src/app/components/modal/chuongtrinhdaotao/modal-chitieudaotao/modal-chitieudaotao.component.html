@@ -59,7 +59,8 @@
                 </h6>
                 <ul>
                   <li *ngFor="let item of msgList">{{ item.msg }} <button *ngIf="item.trangThai"
-                      (click)="onClickResetLopHoc(item.maNganh)" type="button" class="btn btn-outline-danger">Đồng ý</button></li>
+                      (click)="onClickResetLopHoc(item.maNganh)" type="button" class="btn btn-outline-danger">Đồng
+                      ý</button></li>
                 </ul>
               </div>
               <div class="modal-footer">
@@ -119,7 +120,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let nganh of nganhtamlist;index as i" (click) ="onClickLopTheoNganh(nganh.maNganhNghe)" >
+                    <tr *ngFor="let nganh of nganhtamlist;index as i" (click)="onClickLopTheoNganh(nganh.maNganhNghe)">
                       <th scope="row">{{ i+ 1 }}</th>
                       <td> {{nganh.tenNganhNghe }}</td>
                       <td>
@@ -142,12 +143,12 @@
               </div>
               <div class="col-sm-6 table-responsive">
                 <table class="modal_chucnang__table table table-hover table table-bordered">
-                  <thead class="bg__caothang text-white">
+                  <thead >
                     <tr>
                       <th colspan="3">Danh sách lớp theo ngành/nghề</th>
                     </tr>
                   </thead>
-                  <thead>
+                  <thead class="bg__caothang text-white">
                     <tr>
                       <th scope="col">STT</th>
                       <th scope="col">Tên lớp</th>

@@ -50,7 +50,7 @@ export class ModalChitieudaotaoComponent implements OnInit {
   ];
   public lops = [];
   public lopHocs: any;
-  lopTams:any;
+  lopTams: any;
 
   hocKiForm: FormGroup;
   msg = '';
@@ -97,14 +97,12 @@ export class ModalChitieudaotaoComponent implements OnInit {
     this.hocKiForm = new FormGroup({
       hocKi: new FormControl(''),
     });
-
-
   }
   getLopHoc() {
     this.lopHocService.getAll().subscribe(
       (lop) => {
         this.lopHocs = lop;
-        //this.lopTams = this.lopHocs;
+        this.lopTams = this.lopHocs;
       },
       (err) => (this.msg = err)
     );
@@ -128,7 +126,6 @@ export class ModalChitieudaotaoComponent implements OnInit {
         });
         this.nganhList = data;
         this.nganhtamlist = this.nganhList;
-        console.log(this.nganhList);
         this.nganhList.forEach((element) => {
           this.chiTieuList.push(
             new FormGroup({
@@ -197,7 +194,7 @@ export class ModalChitieudaotaoComponent implements OnInit {
   deleteLopHoc(maNganh: string) {
     this.lopHocService.deleteMaNganh(maNganh).subscribe(
       (data) => {
-        console.log(data);
+
       },
       (error) => console.log(error)
     );
@@ -205,7 +202,7 @@ export class ModalChitieudaotaoComponent implements OnInit {
 
   resetLopHoc(maNganh: string) {
     this.lopHocService.getAllFor(maNganh).subscribe((data) => {
-      console.log(data);
+
       if (data > 0) {
         this.msgList.push({
           msg:
@@ -233,28 +230,22 @@ export class ModalChitieudaotaoComponent implements OnInit {
     this.deleteLopHoc(maNganh);
     this.createClassModal();
     this.getLopHoc();
-
   }
   /**
    * XepLopTheoMaNganh
    */
-  public onClickLopTheoNganh(maNganh:string){
-    console.log(this.lopHocs);
-    this.getLopHoc();
+  public onClickLopTheoNganh(maNganh: string) {
+
+    //this.getLopHoc();
     this.xepLoptheoMaNganh(maNganh);
-    console.log(this.lopHocs);
 
   }
-  public xepLoptheoMaNganh(maNganh:string) {
-
+  public xepLoptheoMaNganh(maNganh: string) {
     let LopTam = [];
-    this.lopHocs.forEach(element => {
-      console.log(maNganh);
-      if(element.maNganh === maNganh)
-        LopTam.push(element);
+    this.lopHocs.forEach((element) => {
+      if (element.maNganh === maNganh) LopTam.push(element);
     });
     this.lopTams = LopTam;
-
   }
 
   public createClassModal() {
@@ -295,9 +286,8 @@ export class ModalChitieudaotaoComponent implements OnInit {
           )
         );
       }
-
+      this.getLopHoc();
       this.lops = [];
-
     });
 
     this.msgList = [];
