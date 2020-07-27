@@ -95,7 +95,6 @@ export class ModalNganhngheComponent implements OnInit {
           }
 
         });
-        console.log(this.maNganhCha)
   }
   // hủy xóa dữ liệu trong form
   huy() {
@@ -148,8 +147,6 @@ export class ModalNganhngheComponent implements OnInit {
           {
             alert("Dữ liệu đã tồn tại")
           }
-          console.log(data);
-
         },
         (error) => {
           console.log(error);
