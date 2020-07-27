@@ -13,16 +13,26 @@ export class ApiService{
         const httpOptions = {
             headers: new HttpHeaders({'Content-Type': 'application/json'})
         };
-        return this.http.post<any>("http://localhost:4100/api/giaovien/them-giao-vien", JSON.stringify(giaoVien), httpOptions)
+        return this.http.post<any>("https://localhost:4100/api/giaovien/them-giao-vien", JSON.stringify(giaoVien), httpOptions)
         .pipe(
             catchError(this.handleError)
         );
+    }
+
+    capNhatGiaoVien(giaoVien:any): Observable<any> {
+      const httpOptions = {
+        headers: new HttpHeaders({'Content-Type': 'application/json'})
+      };
+      return this.http.post<any>("https://localhost:4100/api/giaovien/cap-nhat-giao-vien", JSON.stringify(giaoVien), httpOptions)
+      .pipe(
+          catchError(this.handleError)
+      );
     }
     layDanhSachGiaoVien(): Observable<GiaoVien[]> {
         const httpOptions = {
             headers: new HttpHeaders({'Content-Type': 'application/json'})
         };
-        return this.http.get<GiaoVien[]>("http://localhost:4100/api/giaovien/danh-sach-giao-vien", httpOptions)
+        return this.http.get<GiaoVien[]>("https://localhost:4100/api/giaovien/danh-sach-giao-vien", httpOptions)
         .pipe(
             catchError(this.handleError)
         );
@@ -32,18 +42,38 @@ export class ApiService{
       const httpOptions = {
         headers: new HttpHeaders({'Content-Type': 'application/json'})
       };
-      return this.http.get<any>("http://localhost:4100/api/giaovien/lay-ma-gv-moi-nhat", httpOptions)
+      return this.http.get<any>("https://localhost:4100/api/giaovien/lay-ma-gv-moi-nhat", httpOptions)
       .pipe(
         catchError(this.handleError)
       );
     }
 
     xoaGiaoVien(maGiaoVien:any):Observable<any>{
-      console.log('xoaGiaoVien', maGiaoVien);
       const httpOptions = {
         headers: new HttpHeaders({'Content-Type': 'application/json'})
       };
-      return this.http.post<any>("http://localhost:4100/api/giaovien/xoa-giao-vien", maGiaoVien, httpOptions)
+      return this.http.post<any>("https://localhost:4100/api/giaovien/xoa-giao-vien", maGiaoVien, httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
+    }
+
+    layThongTinGiaoVien(maGiaoVien:any): Observable<any>{
+      const httpOptions = {
+        headers: new HttpHeaders({'Content-Type': 'application/json'})
+      };
+      return this.http.post<any>("https://localhost:4100/api/giaovien/thong-tin-giao-vien", maGiaoVien, httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
+    }
+
+    themDSGiaoVienExcel(dsGiaoVienExcel: any): Observable<any>{
+      console.log('dsGiaoVien', dsGiaoVienExcel);
+      const httpOptions = {
+        headers: new HttpHeaders({'Content-Type': 'application/json'})
+      };
+      return this.http.post<any>("https://localhost:4100/api/giaovien/them-giao-vien-excel", dsGiaoVienExcel, httpOptions)
       .pipe(
         catchError(this.handleError)
       );

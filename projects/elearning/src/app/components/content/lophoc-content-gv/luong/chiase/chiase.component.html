@@ -1,0 +1,71 @@
+<p>Dành cho</p>
+<div class="example-container">
+    <mat-form-field appearance="fill">
+        <mat-label>Tên lớp</mat-label>
+        <mat-select>
+            <mat-option value="option">
+                <mat-checkbox>Lớp 1</mat-checkbox>
+            </mat-option>
+            <mat-option value="option">
+                <mat-checkbox>Lớp 2</mat-checkbox>
+            </mat-option>
+            <mat-option value="option">
+                <mat-checkbox>Lớp 3</mat-checkbox>
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="form-mgl">
+        <mat-label>Tất cả học viên</mat-label>
+        <mat-select>
+            <mat-option value="option">
+                <section class="example-section">
+                    <span class="example-list-section">
+                        <mat-checkbox class="example-margin" [checked]="allComplete" [indeterminate]="someComplete()"
+                            (change)="setAll($event.checked)">
+                            {{task.name}}
+                        </mat-checkbox>
+                    </span>
+                    <span class="example-list-section">
+                        <ul>
+                            <li *ngFor="let subtask of task.subtasks">
+                                <mat-checkbox [(ngModel)]="subtask.completed" [color]="subtask.color"
+                                    (ngModelChange)="updateAllComplete()">
+                                    {{subtask.name}}
+                                </mat-checkbox>
+                            </li>
+                        </ul>
+                    </span>
+                </section>
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>
+<div class="example-container">
+    <mat-dialog-content>
+        <mat-form-field appearance="legacy" class="style-100">
+            <input matInput placeholder="Chia sẻ với lớp học của bạn" [(ngModel)]="checked">
+        </mat-form-field>
+    </mat-dialog-content>
+    <div mat-dialog-actions class="content">
+        <div class="left">
+            <button mat-button [matMenuTriggerFor]="menuthem">Thêm</button>
+            <mat-menu #menuthem="matMenu">
+                <button mat-menu-item> GG drive </button>
+                <button mat-menu-item>Liên kết</button>
+                <button mat-menu-item>Tệp</button>
+                <button mat-menu-item>Youtobe</button>
+            </mat-menu>   
+        </div>
+        <div class="right">
+            <button mat-button (click)="onNoClick()">Hủy</button>
+            <button mat-button [disabled]="!checked">Tạo</button>
+            <button mat-button [matMenuTriggerFor]="menu"  [disabled]="!checked"><i class="fas fa-sort-down"></i></button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item>Đăng </button>
+                <button mat-menu-item>Lên lịch</button>
+                <button mat-menu-item>Lưu bản nháp</button>
+            </mat-menu>    
+        </div>
+
+    </div>
+</div>
