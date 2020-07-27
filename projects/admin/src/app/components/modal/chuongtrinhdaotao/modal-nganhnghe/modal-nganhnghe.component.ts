@@ -19,8 +19,8 @@ export class ModalNganhngheComponent implements OnInit {
   tenVietTat: string ="";
   maNganhNghe: string ="";
   maNganhCha: string ="0";
-  maBac: string ="04";
-  TenBac: string = "Cao Đẳng Nghề";
+  maBac: string ="4";
+  TenBac: string = "Cao Đẳng (các ngành đào tạo)";
   _id: any ="";
   tenNganhcha: string ="Không có ngành cha";
   addForm: FormGroup;
@@ -50,8 +50,8 @@ export class ModalNganhngheComponent implements OnInit {
   }
   // hiển thị danh sách ngành nghề
   getdata() {
-    this.nganhngheservice.getNgangnghe().subscribe(
-      (data) => {
+    this.nganhngheservice.getNganhnghe().subscribe(
+      data => {
         this.data = data;
       },
       (error) => {
@@ -85,7 +85,7 @@ export class ModalNganhngheComponent implements OnInit {
         });
         //gán mã ngành cha
     this.data.forEach(x => {
-           if(this.maNganhCha=='0')
+           if(this.maNganhCha=='0' || this.maNganhCha=="" || this.maNganhCha==null )
            {
             this.tenNganhcha='Không có ngành cha';
            }
@@ -104,15 +104,15 @@ export class ModalNganhngheComponent implements OnInit {
     this.maNganhNghe = "";
     this.maNganhCha = "0";
     this._id="";
-    this.maBac = "04";
-    this.TenBac ="Cao Đẳng Nghề";
+    this.maBac = "4";
+    this.TenBac ="Cao Đẳng (các ngành đào tạo)";
     this.tenNganhcha ="Không có ngành cha";
   }
 
   // thêm một ngành nghề mới
   add() {
-    if (this.tenNganhNghe == "" || this.tenVietTat == "" || this.maNganhNghe == "") {
-      alert("Dữ liệu không được để trống")
+    if (this.tenNganhNghe == "" || this.tenVietTat == "" || this.maNganhNghe == "" || this.maNganhNghe== '0') {
+      alert("Dữ liệu không được để trống và mã ngành nghề phải khác '0'")
     }
     else {
       //lấy ma bac theo ten bac hiên thi
@@ -153,7 +153,7 @@ export class ModalNganhngheComponent implements OnInit {
         },
         (error) => {
           console.log(error);
-          alert("thêm thất bại")
+          alert("thêm thất bại,dữ liệu đã tồn tại")
         });
       this.huy();
     }
@@ -193,9 +193,7 @@ export class ModalNganhngheComponent implements OnInit {
         },
         (error) => {
           console.log(error);
-        }
-      );
-      console.log(this._id);
+        });
     }
   }
 

@@ -4,7 +4,6 @@ var Schema = mongoose.Schema;
 const NganhNgheModelSchema = new Schema({
     maNganhNghe: {
     type: String,
-    unique:true,
   },
   tenNganhNghe: {
     type: String,
