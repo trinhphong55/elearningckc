@@ -24,7 +24,6 @@ router.get('/nganhnghe/:id', async (req, res) => {
     var data = await NganhNghe.findOne({ _id: _id })
     console.log(data)
     res.json(data);
-    console.log(data);
   } catch (error) {
     res.json({ message: error });
   }
@@ -32,11 +31,11 @@ router.get('/nganhnghe/:id', async (req, res) => {
 
 //them nganh nghe
 router.post('/nganhnghe', async (req, res) => {
-  const nganh = new NganhNghe(req.body);
-  var ktmaNganhNghe =  await NganhNghe.find({maNganhNghe:req.body.maNganhNghe }).exec();
- console.log(kttenNganhNghe);
+  try {
+  var ktmaNganhNghe =  await NganhNghe.find({maNganhNghe:req.body.maNganhNghe}).exec();
    if( ktmaNganhNghe=="" )
    {
+    const nganh = new NganhNghe(req.body);
       var data = await nganh.save();
       res.status(201).json({ data });
       // res.status(400).json({ message:"lỗi" });
@@ -44,9 +43,16 @@ router.post('/nganhnghe', async (req, res) => {
    else  {
     res.status(500).json({ message:"lỗi trùng dữ liệu" });
   }
+  } catch (error) {
+    return error;
+  }
+  console.log(ktmaNganhNghe)
 });
-//sua ngah nghe
+//sua nganh nghe
 router.put('/nganhnghe/:id', async (req, res) => {
+console.log(NganhNghe.maNganhNghe);
+console.log(req.body.maNganhNghe);
+  var ktmaNganhNghe =  await NganhNghe.find({maNganhNghe:req.body.maNganhNghe }).exec();
   const { maNganhNghe, tenNganhNghe, tenVietTat, maBac, maNganhCha } = req.body;
   await NganhNghe.updateOne(
     { _id: req.params.id },
@@ -62,7 +68,6 @@ router.put('/deletenganhnghe/:id', async (req, res) => {
   try {
     var data = await NganhNghe.findByIdAndUpdate(req.params.id, { "trangThai": 0 }, req.params.idoptions, req.params.id.callback)
     res.json(data);
-    console.log(data);
   } catch (error) {
     res.json({ message: error });
   }
@@ -76,8 +81,6 @@ router.post('/nganhnghe/importexcel', async (req, res) => {
   var filterItems = [];
 
   //Get next ma nganh nghe
-  var MaNganhNghe = await getNextNumber();
-  var numMaNganhNghe = parseInt(MaNganhNghe);
 
   async function asyncForEach(array, callback) {
     console.log('Xu ly excel');
@@ -88,14 +91,8 @@ router.post('/nganhnghe/importexcel', async (req, res) => {
   const start = async () => { // goi ham
     await asyncForEach(items, async (nn, index) => {
       await NganhNghe.findOne({ tenNganhNghe: nn.tenNganhNghe }).exec().then((data) => {
-        if (data === null) {
-          let stringMaNganhNghe = "00" + numMaNganhNghe;
-          nn.maNganhNghe = stringMaNganhNghe.slice(stringMaNganhNghe.length - 4, stringMaNganhNghe.length);
-          numMaNganhNghe++;
           filterItems.push(nn);
-        }
-      });
-      console.log(nn.tenNganhNghe, index);
+        })
     });
     console.log('Done');
   }
