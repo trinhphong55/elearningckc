@@ -19,8 +19,7 @@
   <!-- Script những thành phần quan trọng để sử dụng API facebook -->
   <script>
     var AppId='726531241502023';
-    //var act='EAAKUxryRZAUcBAD1xrhmwuLDgZCtmcZBtnCbespDUGcQBTkaYNQJh2orUiBteIZAb62ToPYYK6P8EcMpW3IdqE1S5VXTSkXdJZB6qJkld1InNPUEea6Jp1ffzCF6mEbOvZCQpwPUfc2nFmEnvbfnz3HSASqqZBrqyNn4IYXLs8kRwp4kRP9cNGy0wbjqr5WaJ8W9mPKAW0e3gIgQwItwXFr';
-    // var access_token='EAAKUxryRZAUcBAAVy2sXyWlvMXUlTYx3XFWlwZA1FFEvzD7aMkZA5aIOyu9W5aVAybO1T0plZCiT5cqqODcD6iBaW5ZAfdFtz62q507L03iihzENtnGtg1UkcmdZBPyymcx6dRawUr0WOKwC5QiXtv8jIR9344gNS6rAWwwZBSuP4wthwNutVDnZBziTbaBxpEcfJRPtoATpfZCMhS6KxKMPy';
+
     var FBLoaded = false;
     window.fbAsyncInit = function () {
       FB.init({
@@ -58,17 +57,6 @@
       }
 
     };
-    //Get profile's avatar
-    function getAvatarProf(source){
-      FB.api('/me',{fields: 'picture'},function (response){
-          source = response.picture.data.url;
-          console.log(source);
-          document.getElementsByTagName('avatar').innerHTML =response.picture.data.url;
-
-
-      })
-      return source;
-    };
 
     // Hiển thị nút đăng nhập
     function ShowLoginButton() {
@@ -79,6 +67,7 @@
     //Hàm welcome sử dụng API sau khi login
     function showWelcome() {
       FB.api('/me', function(response) {
+        console.log(response)
         document.getElementById('btnLoginFB').setAttribute('style', 'display:none');
         console.log(response.name + ' access granted');
         document.getElementById('status').innerHTML =response.name;
@@ -86,63 +75,83 @@
       });
     }
 
+    //Get profile's avatar
+    function getAvatarProf(){
+      FB.api('/me',{fields: 'picture'},function (response){
+          source = response.picture.data.url;
+          console.log(source);
+          $('#avatar').attr("src",source);
+      })
+    };
+
     // GROUPFB API
 
     //Lấy số member group
   //const id = "410650836564717";
-    function getMemberCountGr() {
-      FB.api('/410650836564717',function (response){
-        document.getElementById('memCount').innerHTML =response.name;
-        console.log(response.name);
+   function getMemberCountGr() {
+      FB.api('/410650836564717',{fields: 'member_count'},function (response){
+        console.log(response.member_count);
+        memCount=response.member_count;
+        document.getElementById('memCount').innerHTML =memCount;
       })
     }
-    window.onload =
     //Lấy số member request
     function getMemberRequestCountGr() {
       FB.api('/410650836564717',{fields: 'member_request_count'},function (response){
-        console.log(response);
-        document.getElementById('memRes').innerHTML =response.member_request_count;
+        console.log(response.member_request_count);
+        memRes=response.member_request_count
+        document.getElementById('memRes').innerHTML =memRes;
       })
     }
     //Lấy privacy group
     function getPrivacyGr() {
       FB.api('/410650836564717',{fields: 'privacy'},function (response){
-        console.log(response);
-        document.getElementById('privacyGr').innerHTML =response;
+        console.log(response.privacy);
+        priva=response.privacy;
+        document.getElementById('privacyGr').innerHTML =priva;
       })
     }
     //Lấy các feed đã post
-    function getFeedPostedGr() {
-      FB.api('/410650836564717/feed',function (response){
-        console.log(response.feed.data.message);
-        console.log(response.feed.data.story);
-        console.log(response.feed.data.updated_time);
-        console.log(response.feed.data.id);
-        mess=response.feed.data.message;
-        story=response.feed.data.story;
-        updatedTime=response.feed.data.updated_time;
-        id=response.feed.data.id;
-        document.getElementById('feed.data.message').innerHTML =response.feed.data.message;
-        document.getElementById('feed.data.story').innerHTML =response.feed.data.story;
-        document.getElementById('feed.data.updatedTime').innerHTML =response.feed.data.updatedTime;
-        document.getElementById('feed.data.id').innerHTML =response.feed.data.id;
-      })
-    }
+    // function getFeedPostedGr() {
+    //   FB.api('/410650836564717/',{fields: 'feed'},function (response){
+    //     console.log(response.feed.data.message);
+    //     console.log(response.story);
+    //     console.log(response.updated_time);
+    //     console.log(response.id);
+    //     mess=response.message;
+    //     story=response.story;
+    //     updatedTime=response.updated_time;
+    //     idpost=response.id;
+    //     document.getElementById('feed/message').innerHTML =mess;
+    //     document.getElementById('feed/story').innerHTML =story;
+    //     document.getElementById('feed/updatedtime').innerHTML =updatedTime;
+    //     document.getElementById('feed/idpost').innerHTML =idpost;
+    //   })
+    // }
     //Lấy Descripsion Group
-    function getDescripsionGr() {
+   function getDescripsionGr() {
       FB.api('/410650836564717',{fields: 'description'},function (response){
-        console.log(response);
-        document.getElementById('descriptionGr').innerHTML =response;
+        console.log(response.description);
+        descrip=response.description;
+        document.getElementById('descriptionGr').innerHTML =descrip;
       })
     }
     //Lấy ngày tạo Group
     function getGroupCreatedDay() {
       FB.api('/410650836564717',{fields: 'created_time'},function (response){
-        console.log(response);
-        document.getElementById('groupCreatedDay').innerHTML =response;
+        console.log(response.created_time);
+        grcreatedday=response.created_time;
+        document.getElementById('groupCreatedDay').innerHTML =grcreatedday;
       })
     }
-
+    window.onload = function loadAPIGroup(){
+      getMemberCountGr();
+      getMemberRequestCountGr();
+      getPrivacyGr();
+      // getFeedPostedGr();
+      getDescripsionGr();
+      getGroupCreatedDay();
+    }
   </script>
 
   <script>
