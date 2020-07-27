@@ -1,16 +1,9 @@
-<app-modal class="modal_chucnang__wrapper show" id="fb_quanlygroupfacebook">
+<app-modal class="modal_chucnang__wrapper " id="fb_quanlygroupfacebook">
   <div (click)="closeModal('fb_quanlygroupfacebook')" class="modal_chucnang__close mdi mdi-chevron-left text-white"></div>
   <div class="container-fluid mt-3">
     <div class="row">
       <div class="col-12">
         <h1 class="text-center text-white">Quản lý Group Facebook</h1>
-        <!-- <label window.onload="getMemberCountGr()" >asadasdasdad</label>
-        <label window.onload="getMemberCountGr()" >asadasdasdad</label>
-        <label window.onload="getPrivacyGr()" >asadasdasdad</label>
-        <label window.onload="getFeedPostedGr()" >asadasdasdad</label>
-        <label window.onload="getDescripsionGr()" >asadasdasdad</label> -->
-        <!-- <label window.onload="getCreatedTimeGr()" >asadasdasdad</label> -->
-        
       </div>
       <div class="col-12">
         <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
@@ -19,23 +12,21 @@
               <div class="form-group">
                 <label> Tên Group</label>
                 <input class="form-control" placeholder="Tên Group..." >
+              </div>
+              <div class="form-group">
                 <label> Link Group</label>
                 <input class="form-control" placeholder="Link Group...">
-                <label> ID Group</label>
-                <input class="form-control" placeholder="ID Group...">
               </div>
             </div>
             <div class="col-3">
               <div class="form-group">
+                <label> ID Group</label>
+                <input class="form-control" placeholder="ID Group...">
+              </div>
+              <div class="form-group">
                 <label>Bậc</label>
                 <select class="form-control">
                   <option *ngFor="let b of bac">{{b.tenBac}}</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label>Ngành</label>
-                <select class="form-control">
-                  <option *ngFor="let n of nganhs">{{n.tenNganhNghe}}</option>
                 </select>
               </div>
             </div>
@@ -53,12 +44,30 @@
               </div>
             </div>
             <div class="col-3">
+              <div class="form-group">
+                <label>Ngành</label>
+                <select class="form-control">
+                  <option *ngFor="let n of nganhs">{{n.tenNganhNghe}}</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Lớp</label>
+                <select class="form-control">
+                  <option *ngFor="let l of lop">{{l.tenLop}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="">
               <div class="col-auto">
                 <div class="modal_chucnang__group__button">
                   <button class="modal_chucnang__button btn btn-outline-primary px-4 mx-2"><img
                       class="modal_chucnang__button__icon mb-2" src="assets/img/icons/add.png" alt="image icon">
                     <div>Thêm mới</div>
                   </button>
+                  <button class="modal_chucnang__button btn btn-outline-success px-4 mx-2"><img
+                    class="modal_chucnang__button__icon mb-2" src="assets/img/icons/upgrade.png" alt="image icon">
+                  <div>Cập nhật</div>
+                </button>
                 </div>
               </div>
             </div>
@@ -93,19 +102,18 @@
                   <label >{{d.id_Group}}</label>
                 </td>
                 <td class="text-center">
-                  <label >{{d.linkGroup}}</label>
+                  <label >{{d.tenGroup}}</label>
                 </td>
                 <td class="text-center">
-                  <label >{{d.tenGroup}}</label>
+                  <label >{{d.linkGroup}}</label>
                 </td>
                 <td class="text-center">
                   <label>{{d.soLuongBaiViet}}</label>
                 </td>
                 <td class="text-center">
                   <div class="form-group">
-                    <span class="modal_chucnang__button__edit mdi mdi-file-document-edit-outline mdi-24px"></span>
                     <span class="modal_chucnang__button__delete ml-2 mdi mdi-delete-outline mdi-24px"></span>
-                    <span class="modal_chucnang__button__plus ml-2 mdi mdi-plus mdi-24px" (click)="openDetail()"></span>
+                    <button class="modal_chucnang__button btn btn-outline-success px-4 mx-2" (click)="openDetail()">View</button>
                   </div>
                 </td>
               </tr>
@@ -115,12 +123,4 @@
       </div>
     </div>
   </div>
-  <!-- Api group facebook -->
-  <script>
-    // function getMemberCountGr() {
-    //   FB.api('/me',{fields: 'last_name'},function (response){
-    //     console.log(response);
-    //   })
-    // }
-  </script>
 </app-modal>
