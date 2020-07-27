@@ -1,31 +1,15 @@
 const mongoose = require('mongoose');
 
-const MonHocSchema = new mongoose.Schema({
-  maMonHoc: {
+const LoaiMonHocSchema = new mongoose.Schema({
+  maLoaiMonHoc: {
     type: String,
+    unique: true,
     required: true
   },
-  tenMonHoc: {
+  tenLoaiMonHoc: {
     type: String,
     required: true,
     unique: true,
-    trim: true,
-  },
-  tenVietTat: {
-    type: String,
-    trim: true,
-  },
-  maLoaiMonHoc: {
-    type: String,
-    trim: true,
-  },
-  tenTiengAnh: {
-    type: String,
-    trim: true,
-  },
-  tenVietTatTiengAnh: {
-    type: String,
-    trim: true,
   },
   nguoiTao: {
     type: String,
@@ -43,12 +27,12 @@ const MonHocSchema = new mongoose.Schema({
     type: Number,
     default: 1,
   },
-  created_at: {
+  ngayTao: {
     type: Date,
     default: Date.now,
   },
 });
 
-const MonHoc = mongoose.model('MonHoc', MonHocSchema, 'MonHoc');
+const LoaiMonHoc = mongoose.model('LoaiMonHoc', LoaiMonHocSchema, 'LoaiMonHoc');
 
-module.exports = MonHoc;
+module.exports = LoaiMonHoc;

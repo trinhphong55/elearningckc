@@ -31,11 +31,8 @@
             <div class="col-3">
               <div class="form-group">
                 <label>Loại môn học</label>
-                <select class="form-control" [(ngModel)]="selectedMonHoc.loaiMonHoc">
-                  <option>Thực hành</option>
-                  <option>Lý thuyết</option>
-                  <option>Module</option>
-                  <option>Tốt nghiệp</option>
+                <select class="form-control" [(ngModel)]="selectedMonHoc.maLoaiMonHoc">
+                  <option *ngFor="let lmh of dsLoaiMonHoc" [value]="lmh.maLoaiMonHoc" >{{ lmh.tenLoaiMonHoc }}</option>
                 </select>
               </div>
             </div>
@@ -118,8 +115,9 @@
                 </td>
               </tr>
             </tfoot> -->
-            <tbody *ngFor="let monHoc of dsMonHoc | filter:searchMonHoc">
-              <tr>
+            <tbody>
+              <tr *ngFor="let monHoc of dsMonHoc | filter:searchMonHoc">
+                <!-- [class.selected]="monHoc.maMonHoc === selectedMonHoc.maMonHoc" -->
                 <td style="max-width: 100px">
                   <input class="form-control" disabled [value]="monHoc.maMonHoc">
                 </td>
@@ -136,7 +134,7 @@
                   <input class="form-control" disabled [value]="monHoc.tenVietTatTiengAnh">
                 </td>
                 <td>
-                  <input class="form-control" disabled [value]="monHoc.loaiMonHoc">
+                  <input class="form-control" disabled [value]="monHoc.maLoaiMonHoc">
                 </td>
                 <td class="text-center">
                   <span (click)="onSelect(monHoc.maMonHoc)"

@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { LHDT } from '../interfaces/loaihinhdaotao.interface';
 
 //Get data asynchronously with Observable
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'

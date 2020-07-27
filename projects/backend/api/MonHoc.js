@@ -57,8 +57,8 @@ router.post('/', async (req, res) => {
   }
 
   maMonHoc = await getNextNumber();
-  const { tenMonHoc, tenVietTat, loaiMonHoc, tenTiengAnh, tenVietTatTiengAnh } = req.body;
-  const monHoc = new MonHoc({ maMonHoc, tenMonHoc, tenVietTat, loaiMonHoc, tenTiengAnh, tenVietTatTiengAnh });
+  const { tenMonHoc, tenVietTat, maLoaiMonHoc, tenTiengAnh, tenVietTatTiengAnh } = req.body;
+  const monHoc = new MonHoc({ maMonHoc, tenMonHoc, tenVietTat, maLoaiMonHoc, tenTiengAnh, tenVietTatTiengAnh });
   monHoc.save().then(() => {
     return res.json({ success: "added MonHoc" });
   }).catch(err => {
@@ -81,13 +81,13 @@ router.get('/:maMonHoc', async (req, res) => {
   }
 })
 
-router.get('loaimonhoc/:maMonHoc', async (req, res) => {
+router.get('maLoaiMonHoc/:maMonHoc', async (req, res) => {
   try {
     const item = await MonHoc.findOne({ maMonHoc: req.params.maMonHoc });
     if (item === null) {
       return res.json({status: "null"});
     } else {
-      return res.json(item.loaiMonHoc);
+      return res.json(item.maLoaiMonHoc);
     }
   } catch (err) {
     return res.json({message: err});
@@ -117,10 +117,10 @@ router.delete('/:maMonHoc', async (req, res) => {
 router.put('/:maMonHoc', async (req, res) => {
   console.log('du lieu chua update', req.body);
   const { maMonHoc } = req.params;
-  const { tenMonHoc, tenVietTat, loaiMonHoc, tenTiengAnh, tenVietTatTiengAnh } = req.body;
+  const { tenMonHoc, tenVietTat, maLoaiMonHoc, tenTiengAnh, tenVietTatTiengAnh } = req.body;
   await MonHoc.updateOne(
       { maMonHoc: maMonHoc },
-      { $set: { tenMonHoc, tenVietTat, loaiMonHoc, tenTiengAnh, tenVietTatTiengAnh } }
+      { $set: { tenMonHoc, tenVietTat, maLoaiMonHoc, tenTiengAnh, tenVietTatTiengAnh } }
   ).then(() => {
     return res.json({ success: "updated MonHoc" });
   }).catch(err => {

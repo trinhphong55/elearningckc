@@ -6,9 +6,11 @@ const ChuongTrinhDaoTao = require('./ChuongTrinhDaoTao');
 const KeHoachDaoTao = require('./KeHoachDaoTao');
 const LoaiHinhDaoTao = require('./LoaiHinhDaoTao');
 const LopHocPhan = require('./LopHocPhan');
+const LoaiMonHoc = require('./LoaiMonHoc');
 
 router.use("/lophocphan", LopHocPhanRoutes);
 router.use("/giaovien", GiaoVienRoutes);
+router.use("/loaimonhoc", LoaiMonHoc);
 
 
 router.use('/lophocphan', LopHocPhanRoutes)

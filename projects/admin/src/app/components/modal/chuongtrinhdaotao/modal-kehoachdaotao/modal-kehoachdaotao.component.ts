@@ -52,13 +52,13 @@ export class ModalKehoachdaotaoComponent implements OnInit {
     if (this.isChanged) {
       let a = confirm("may da thay doi, co muon luu khong?");
       if (a) {
-        this.isChanged = false;
         this.saveKHDT();
       }
     }
     this.maChuongTrinhDaoTao = this.convertToMaChuongTrinhDaoTao(this.ctdt);
     this.khdtService.getKHDTByHocKiNMaCTDT(this.maChuongTrinhDaoTao, this.hocKi)
     .subscribe(dskhdt => this.dsKHDT = dskhdt);
+    this.isChanged = false;
   }
 
   addNewKHDT() {
@@ -76,6 +76,7 @@ export class ModalKehoachdaotaoComponent implements OnInit {
   removeKHDT(index: number) {
     if (this.dsKHDT !== []){
       this.dsKHDT.splice(index,1);
+      this.isChanged = true;
     }
   }
 
@@ -99,8 +100,6 @@ export class ModalKehoachdaotaoComponent implements OnInit {
       }
     })
   }
-
-
 
   ngOnInit(): void {
     this.bacService.getBac().subscribe(dsbac => this.dsBac = dsbac);
