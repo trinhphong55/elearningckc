@@ -1,4 +1,4 @@
-<app-modal class="modal_chucnang__wrapper" id="fb_quanlygroupfacebook">
+<app-modal class="modal_chucnang__wrapper show" id="fb_quanlygroupfacebook">
   <div (click)="closeModal('fb_quanlygroupfacebook')" class="modal_chucnang__close mdi mdi-chevron-left text-white"></div>
   <div class="container-fluid mt-3">
     <div class="row">
@@ -22,16 +22,13 @@
               <div class="form-group">
                 <label>Bậc</label>
                 <select class="form-control">
-                  <option>Trung cấp</option>
-                  <option>Cao đẳng</option>
-                  <option>Đại học</option>
+                  <option *ngFor="let b of bac">{{b.tenBac}}</option>
                 </select>
               </div>
               <div class="form-group">
                 <label>Ngành</label>
-                <select class="modal_chucnang__select2 form-control">
-                  <option>Ngành CNTT</option>
-                  <option>Cơ khí</option>
+                <select class="form-control">
+                  <option *ngFor="let n of nganhs">{{n.tenNganhNghe}}</option>
                 </select>
               </div>
             </div>
@@ -101,7 +98,7 @@
                   <div class="form-group">
                     <span class="modal_chucnang__button__edit mdi mdi-file-document-edit-outline mdi-24px"></span>
                     <span class="modal_chucnang__button__delete ml-2 mdi mdi-delete-outline mdi-24px"></span>
-                    <span class="modal_chucnang__button__plus ml-2 mdi mdi-plus mdi-24px"></span>
+                    <span class="modal_chucnang__button__plus ml-2 mdi mdi-plus mdi-24px" (click)="openDetail()"></span>
                   </div>
                 </td>
               </tr>

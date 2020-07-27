@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalService } from '../../../../services/modal.service';
 import { GroupfbService } from '../../../../services/groupfb.service';
+import { NganhNgheService } from '../../../../services/NganhNghe.service';
+import { BacService } from '../../../../services/Bac.service';
 
 @Component({
   selector: 'app-modal-groupfacebook',
@@ -9,10 +11,19 @@ import { GroupfbService } from '../../../../services/groupfb.service';
 })
 export class ModalGroupfacebookComponent implements OnInit {
   data:any;
-  constructor(private modalService: ModalService,private groupFBService: GroupfbService) { }
+  bac:any;
+  nganhs:any;
+  constructor(
+    private modalService: ModalService,
+    private groupFBService: GroupfbService,
+    private nganhngheservice: NganhNgheService,
+    private bacservice: BacService
+    ) { }
   searchGroup;
   ngOnInit(): void {
     this.getAll();
+    this.getNganh();
+    this.getbac();
   }
 
   getAll(){
@@ -23,6 +34,31 @@ export class ModalGroupfacebookComponent implements OnInit {
       }
     );
   }
+  getbac() {
+    this.bacservice.getBac().subscribe(
+      (bac) => {
+        this.bac = bac;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+  getNganh() {
+    this.nganhngheservice.getNgangnghe().subscribe(
+      (nganhs) => {
+        this.nganhs = nganhs;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+    return this.data;
+  }
+  openDetail() {
+    this.modalService.open('detail-groupfb');
+  }
+
   closeModal(id: string) {
     this.modalService.close(id)
   }
