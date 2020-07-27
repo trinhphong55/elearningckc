@@ -37,6 +37,8 @@ const groupfbSchema = new Schema({
     
     },
 
+  
+
     soLuongBaiViet: {
         type:Number,
         require: true
