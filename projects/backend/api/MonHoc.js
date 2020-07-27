@@ -1,15 +1,18 @@
 const router = require('express').Router();
 const MonHoc = require('../models/MonHoc.model');
 
-const { getNextNumber, isNameExist } = require('../utils/MonHoc.util');
+const {
+  getNextNumber, isNameExist,
+  asyncForEach, isExistedInKHDT
+} = require('../utils/MonHoc.util');
 
 //GET MONHOC
 router.get('/', async (req, res) => {
   try {
-    const dsMonHoc = await MonHoc.find();
-    res.json(dsMonHoc);
+    const dsMonHoc = await MonHoc.find( {trangThai: { $ne: 0 }} );
+    return res.json(dsMonHoc);
   } catch (err) {
-    res.json({message: err});
+    return res.json({message: err});
   }
 })
 
@@ -22,11 +25,6 @@ router.post('/importexcel', async (req, res) => {
   var maMonHoc = await getNextNumber();
   var numMaMonHoc = parseInt(maMonHoc);
 
-  async function asyncForEach(array, callback) {
-    for (let index = 0; index < array.length; index++) {
-      await callback(array[index], index);
-    }
-  }
   await asyncForEach(items, async (mh, index) => {
     await MonHoc.findOne({ tenMonHoc: mh.tenMonHoc }).exec().then((data) => {
       if (data === null) {
@@ -40,12 +38,12 @@ router.post('/importexcel', async (req, res) => {
 
   if (filterItems.length > 0) {
     MonHoc.insertMany(filterItems).then(() => {
-      res.json({ success: "added MonHoc from Excel" });
+      return res.json({ success: "added MonHoc from Excel" });
     }).catch((err) => {
-      res.json( {message: err});
+      return res.json( {message: err});
     })
   } else {
-    res.json( {error: "du lieu trong hoac da ton tai"})
+    return res.json( {error: "du lieu trong hoac da ton tai"})
   }
 });
 
@@ -62,9 +60,9 @@ router.post('/', async (req, res) => {
   const { tenMonHoc, tenVietTat, loaiMonHoc, tenTiengAnh, tenVietTatTiengAnh } = req.body;
   const monHoc = new MonHoc({ maMonHoc, tenMonHoc, tenVietTat, loaiMonHoc, tenTiengAnh, tenVietTatTiengAnh });
   monHoc.save().then(() => {
-    res.json({ success: "added MonHoc" });
+    return res.json({ success: "added MonHoc" });
   }).catch(err => {
-    res.json( {message: err});
+    return res.json( {message: err});
   });
 });
 
@@ -74,12 +72,12 @@ router.get('/:maMonHoc', async (req, res) => {
   try {
     const item = await MonHoc.findOne({ maMonHoc: req.params.maMonHoc });
     if (item === null) {
-      res.json({status: "null"});
+      return res.json({status: "null"});
     } else {
-      res.json(item);
+      return res.json(item);
     }
   } catch (err) {
-    res.json({message: err});
+    return res.json({message: err});
   }
 })
 
@@ -87,27 +85,35 @@ router.get('loaimonhoc/:maMonHoc', async (req, res) => {
   try {
     const item = await MonHoc.findOne({ maMonHoc: req.params.maMonHoc });
     if (item === null) {
-      res.json({status: "null"});
+      return res.json({status: "null"});
     } else {
-      res.json(item.loaiMonHoc);
+      return res.json(item.loaiMonHoc);
     }
   } catch (err) {
-    res.json({message: err});
+    return res.json({message: err});
   }
 })
 
 //DELETE MONHOC
 router.delete('/:maMonHoc', async (req, res) => {
-  try {
-    console.log(req.params);
-    const removedMonhoc = await MonHoc.deleteOne({ maMonHoc: req.params.maMonHoc }).exec();
-    res.json(removedMonhoc);
-  } catch (error) {
-    res.json({ message: error});
+  isExisted = await isExistedInKHDT(req.params.maMonHoc);
+  if (isExisted) {
+    return res.json({ error: 'Mon hoc nay da ton tai rong KHDT'});
   }
+  await MonHoc.updateOne(
+      { maMonHoc: req.params.maMonHoc },
+      { $set: { trangThai: 0 } })
+    .then(removedMonhoc => {
+      console.log(removedMonhoc);
+      return res.json(removedMonhoc);
+    })
+    .catch(err => {
+      return res.json( {message: err} );
+    })
+
 })
 
-//UPATE MONHOC
+//UPDATE MONHOC
 router.put('/:maMonHoc', async (req, res) => {
   console.log('du lieu chua update', req.body);
   const { maMonHoc } = req.params;
@@ -116,9 +122,9 @@ router.put('/:maMonHoc', async (req, res) => {
       { maMonHoc: maMonHoc },
       { $set: { tenMonHoc, tenVietTat, loaiMonHoc, tenTiengAnh, tenVietTatTiengAnh } }
   ).then(() => {
-    res.json({ success: "updated MonHoc" });
+    return res.json({ success: "updated MonHoc" });
   }).catch(err => {
-    res.json({ message: err });
+    return res.json({ message: err });
   });
 })
 // router.patch('/:maMonHoc', async (req, res) => {

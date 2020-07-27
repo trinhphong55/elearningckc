@@ -4,6 +4,8 @@ const GiaoVienRoutes = require("./GiaoVien");
 const MonHoc = require('./MonHoc');
 const ChuongTrinhDaoTao = require('./ChuongTrinhDaoTao');
 const KeHoachDaoTao = require('./KeHoachDaoTao');
+const LoaiHinhDaoTao = require('./LoaiHinhDaoTao');
+const LopHocPhan = require('./LopHocPhan');
 
 router.use("/lophocphan", LopHocPhanRoutes);
 router.use("/giaovien", GiaoVienRoutes);
@@ -14,6 +16,8 @@ router.use('/giaovien', GiaoVienRoutes)
 router.use('/monhoc', MonHoc);
 router.use('/ctdt', ChuongTrinhDaoTao);
 router.use('/khdt', KeHoachDaoTao);
+router.use('/lhdt', LoaiHinhDaoTao);
+router.use('./lophocphan', LopHocPhan);
 
 const groupFB=require("../api/groupFB");
 const boMon = require("../api/bomon");

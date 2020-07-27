@@ -2,6 +2,8 @@ const router = require('express').Router();
 const KHDT = require('../models/KeHoachDaoTao.model');
 const CTDT = require('../models/ChuongTrinhDaoTao.model');
 
+const { asyncForEach } = require('../utils/KeHoachDaoTao.util');
+
 
 //GET KHDT by maChuongTrinhDaoTao and hocKi
 router.get('/ctdt/:maChuongTrinhDaoTao/hocki/:hocKi', async(req, res) => {
@@ -23,9 +25,9 @@ router.post('/', async (req, res) => {
   const maChuongTrinhDaoTao = maBac + maNganhNghe + khoaHoc + maLoaiHinhDaoTao;
   var hocKi;
 
-  if (maChuongTrinhDaoTao.length !== 7) {
-    return res.json({ error: "Loi CTDT" });
-  }
+  // if (maChuongTrinhDaoTao.length !== 7) {
+  //   return res.json({ error: "Loi CTDT" });
+  // }
 
   await CTDT.findOne({ maChuongTrinhDaoTao })
     .then(item => {
@@ -59,11 +61,6 @@ router.post('/', async (req, res) => {
           .catch(err => {
             return res.json( {message: err});
           })
-        async function asyncForEach(array, callback) {
-          for (let index = 0; index < array.length; index++) {
-            await callback(array[index], index);
-          }
-        }
         await asyncForEach(dskhdt, async (khdt, index) => {
           await KHDT.findOne({ maDaoTao: khdt.maDaoTao }).exec().then((data) => {
             if (data === null) {
