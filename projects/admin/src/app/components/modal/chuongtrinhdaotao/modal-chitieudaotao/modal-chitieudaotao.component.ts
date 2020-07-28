@@ -1,9 +1,13 @@
+import { SinhVienService } from './../../../../services/sinh-vien.service';
+import { SinhVien } from './../../../../interfaces/SinhVien.interface';
+import { Subject } from 'rxjs';
 import { LopHocService } from './../../../../services/lop-hoc.service';
 import { BacService } from './../../../../services/Bac.service';
 import { FormControl, FormGroup, Validators, FormArray } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ModalService } from '../../../../services/modal.service';
 import { NganhNgheService } from '../../../../services/NganhNghe.service';
+import * as XLSX from 'xlsx';
 
 // Yasuo start
 import { LopHocPhan } from './../../../../interfaces/lophocphan.interface';
@@ -100,7 +104,8 @@ export class ModalChitieudaotaoComponent implements OnInit {
     private nganhngheservice: NganhNgheService,
     private bacservice: BacService,
     private lopHocService: LopHocService,
-    private lopHocPhanSerivce: LopHocPhanService
+    private lopHocPhanSerivce: LopHocPhanService,
+    private SinhVienService: SinhVienService
   ) {}
 
   ngOnInit(): void {
@@ -122,7 +127,6 @@ export class ModalChitieudaotaoComponent implements OnInit {
       (lop) => {
         this.lopHocs = lop;
         this.lopTams = this.lopHocs;
-
       },
       (err) => (this.msg = err)
     );
@@ -367,5 +371,80 @@ export class ModalChitieudaotaoComponent implements OnInit {
   }
   closeModal(id: string) {
     this.modalService.close(id);
+  }
+
+  ///Import Excel SinhVien
+  spinnerEnabled = false;
+  keys: string[];
+  dsSinhVien: SinhVien[];
+  dataSheet = new Subject();
+  @ViewChild('inputFile') inputFile: ElementRef;
+  isExcelFile: boolean;
+  maLopThem: string;
+
+  onClickThemDSSV(maLop:string){
+    this.maLopThem = maLop;
+
+  }
+  onChangeSinhVien(evt) {
+    let data;
+    const target: DataTransfer = <DataTransfer>evt.target;
+    this.isExcelFile = !!target.files[0].name.match(/(.xls|.xlsx)/);
+    if (target.files.length > 1) {
+      this.inputFile.nativeElement.value = '';
+    }
+    if (this.isExcelFile) {
+      this.spinnerEnabled = true;
+      const reader: FileReader = new FileReader();
+
+      reader.onload = (e: any) => {
+        /* read workbook */
+        const bstr: string = e.target.result;
+        const wb: XLSX.WorkBook = XLSX.read(bstr, { type: 'binary' });
+
+        /* grab first sheet */
+        const wsname: string = wb.SheetNames[0];
+        const ws: XLSX.WorkSheet = wb.Sheets[wsname];
+
+        /* save data */
+        data = XLSX.utils.sheet_to_json(ws);
+        console.log(data);
+        this.dsSinhVien = data;
+
+      };
+
+      reader.readAsBinaryString(target.files[0]);
+
+      reader.onloadend = (e) => {
+        this.spinnerEnabled = false;
+        this.keys = Object.keys(data[0]);
+        // console.log(this.dsMonHoc);
+        this.dataSheet.next(data);
+      };
+    } else {
+      this.inputFile.nativeElement.value = '';
+    }
+
+  }
+  private importExcel() {
+    let index = 0;
+    this.dsSinhVien.forEach((sv) => {
+      index++;
+
+      sv.maLopHoc =  this.maLopThem;
+      sv.maSinhVien = 0 + sv.maLopHoc.slice(0,sv.maLopHoc.length - 1) + (index);
+      this.SinhVienService.themSinhVien(sv).subscribe(
+        (response) => {
+          console.log(response);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    });
+  }
+
+  public onClickImportExeclSinhVien() {
+    this.importExcel();
   }
 }

@@ -51,7 +51,6 @@ const SinhVienSchema = new Schema({
   },
   ngaySinh:{
     type:Date,
-    default:Date.now(),
     required:true
   },
   diaChiThuongTru:{
@@ -99,8 +98,9 @@ const SinhVienSchema = new Schema({
     required:true
   },
   trangThai:{
-    type:String,
-    required:true
+    type:Number,
+    required:true,
+    default:1
   },
   nguoiTao:{
     type:String,
@@ -117,4 +117,4 @@ const SinhVienSchema = new Schema({
   }
 });
 
-module.exports = mongoose.model('SinhVien',SinhVienSchema,'SinhVien');
+module.exports = mongoose.model("SinhVien",SinhVienSchema,"SinhVien");

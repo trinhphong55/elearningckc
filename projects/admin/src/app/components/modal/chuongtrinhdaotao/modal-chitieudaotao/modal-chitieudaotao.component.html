@@ -152,10 +152,13 @@
               <div class="modal-body">
                 <div class="form-group">
                   <label for="excelSV">Nhập File Excel</label>
-                  <input type="file" class="form-control-file" id="excelSV">
+                  <input type="file" class="form-control-file" id="excelSV" (change)="onChangeSinhVien($event)" #inputFile>
                 </div>
-                <button type="button" class="modal_chucnang__button btn btn-outline-success px-4 mx-2"><img
-                    class="modal_chucnang__button__icon mb-2" src="assets/img/icons/excel.png" alt="image icon">
+                <div class="alert alert-info" *ngIf="isExcelFile === false">
+                  This is not an Excel file
+                </div>
+                <button type="button" class="modal_chucnang__button btn btn-outline-success px-4 mx-2" (click)="onClickImportExeclSinhVien()"><img
+                    class="modal_chucnang__button__icon mb-2" src="assets/img/icons/excel.png" alt="image icon" >
                   <div>Import Excel</div>
                 </button>
               </div>
@@ -254,7 +257,7 @@
                       </td>
                       <td>
                         <button type="button" class="btn btn-outline-primary" data-toggle="modal"
-                          data-target="#dsSV">Thêm </button>
+                          data-target="#dsSV" (click) ="onClickThemDSSV(item.maLopHoc)">Thêm </button>
                       </td>
                     </tr>
                     <!-- </ng-container> -->

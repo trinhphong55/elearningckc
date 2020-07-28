@@ -75,7 +75,15 @@ router.put("/lophoc/:id", LopHoc.checkValidate(), LopHoc.update);
 router.get("/loaidonvi", loaidonviController.getLoaiDonVi);
 //-----------------------------Routes groupFB
 router.get("/groupfb", groupFB.getAll);
+
 //----------------------------Routes SinhVien------------
 router.get("/sinhvien", sinhVien.layTatCaSinhVien);
+router.post("/sinhvien", sinhVien.themSinhVien);
+router.get("/sinhvien/:maSV", sinhVien.layThongtinSinhVien);
+router.put("/sinhvien/:maSV", sinhVien.capNhatSinhVien);
+router.delete('/sinhvien',sinhVien.removeAll);
+
+
+
 
 module.exports = router;
