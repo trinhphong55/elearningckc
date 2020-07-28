@@ -20,6 +20,7 @@ router.post('/', async (req, res) => {
 
   const dskhdt = req.body[1];
   const ctdt = req.body[0];
+  // return res.json(dskhdt);
 
   const { maBac, maNganhNghe, khoaHoc, maLoaiHinhDaoTao } = ctdt;
   const maChuongTrinhDaoTao = maBac + maNganhNghe + khoaHoc + maLoaiHinhDaoTao;
@@ -105,15 +106,8 @@ router.post('/', async (req, res) => {
 // })
 
 //DELETE KHDT
-router.delete('/:maDaoTao', async (req, res) => {
-  // try {
-  //   console.log(req.params);
-  //   const removedMonhoc = await MonHoc.deleteOne({ maKeHoachDaoTao: req.params.maKeHoachDaoTao }).exec();
-  //   res.json(removedMonhoc);
-  // } catch (error) {
-  //   res.json({ message: error});
-  // }
-  res.json('oke');
+router.delete('/', async (req, res) => {
+  KHDT.deleteMany().then(res.json('Done'));
 })
 
 //UPATE KHDT
