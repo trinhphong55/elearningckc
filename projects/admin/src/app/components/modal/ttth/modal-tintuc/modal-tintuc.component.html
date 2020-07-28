@@ -81,6 +81,13 @@
                 <label>Nội dung</label>
                 <ckeditor [editor]="Editor" [(ngModel)]="selectedItem.noidung" ></ckeditor>
               </div>
+              <div class="form-group">
+                <label>Hiển thị</label>
+                  <div class="form-check">
+                    <input class="form-check-input" *ngIf="selectedItem.hienthi == true" type="checkbox" checked>
+                    <input class="form-check-input" *ngIf="selectedItem.hienthi == false" type="checkbox">
+                  </div>
+              </div>
             </div>
             <div class="col-auto">
               <div class="modal_chucnang__group__button">
@@ -132,7 +139,7 @@
                 <td class="text-center">
                   <span class="modal_chucnang__button__delete mdi mdi-wrench-outline mdi-24px  mr-2"
                     (click)="onSelect(tintuc)"></span>
-                  <span class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px"></span>
+                  <span class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px" (click)="xoaTinTuc(tintuc)"></span>
                 </td>
               </tr>
             </tbody>

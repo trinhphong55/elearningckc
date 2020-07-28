@@ -32,6 +32,10 @@ export class TintucService {
       // catchError(error => of(new ttthTinTuc()))
     );
   }
+  xoaTinTuc(newTinTuc: ttthTinTuc): Observable<ttthTinTuc> {
+    return this.http.post<ttthTinTuc>('https://localhost:4100/api/ttthTinTuc/ttthxoatintuc', newTinTuc, httpOptions).pipe(
+    );
+  }
   constructor(private http: HttpClient) { }
 
 

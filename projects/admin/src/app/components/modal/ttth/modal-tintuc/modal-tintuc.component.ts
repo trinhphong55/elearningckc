@@ -41,9 +41,9 @@ export class ModalTintucComponent implements OnInit {
     this.tintucService.getTinTuc().subscribe(updatedTinTuc => this.TinTuc = updatedTinTuc);
   }
   // filter ngFOr
-  filterItemsOfType(type){
-    return this.TinTuc.filter(x => x.trangthai == type);
-  }
+  // filterItemsOfType(type){
+  //   return this.TinTuc.filter(x => x.trangthai == type);
+  // }
   // add tintuc
   CK: any;
   public onChange( event: ClassicEditor.EventInfo ) {
@@ -100,5 +100,13 @@ export class ModalTintucComponent implements OnInit {
     });
     this.toastr.success('Sửa thành công');
   }
-
+  //delete
+  xoaTinTuc(TinTuc: ttthTinTuc):void {
+    this.tintucService.xoaTinTuc(TinTuc)
+    .subscribe(xoaTinTuc => {
+      this.TinTuc.push(xoaTinTuc);
+    });
+    this.toastr.success('Xóa thành công');
+    window.location.reload();
+  }
 }

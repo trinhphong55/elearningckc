@@ -58,13 +58,13 @@ var upload = multer({
 router.post('/uploads', upload.single('image'), function (req, res) {
 
   if (!req.file) {
-    console.log("No file is available!");
+    // console.log("No file is available!");
     return res.send({
       success: false
     });
   }
-  console.log('filename:  ' + req.file.filename);
-  console.log('File is available!');
+  // console.log('filename:  ' + req.file.filename);
+  // console.log('File is available!');
   res.send({
     success: true,
   })
@@ -85,6 +85,15 @@ router.post('/ttthsuatintuc', async (req, res) => {
       nguoitao: req.body.nguoitao,
       nguoisua: req.body.nguoisua,
       updated_at: req.body.updated_at,
+    }
+  );
+})
+// xoa tin tuc
+router.post('/ttthxoatintuc', async (req, res) => {
+  await ttthtintuc.findOneAndUpdate(
+    { _id: req.body._id },
+    {
+      trangthai: false
     }
   );
 })
