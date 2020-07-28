@@ -5,7 +5,6 @@ import { Component, OnInit } from '@angular/core';
 import { ModalService } from '../../../../services/modal.service';
 import { NganhNgheService } from '../../../../services/NganhNghe.service';
 
-
 // Yasuo start
 import { LopHocPhan } from './../../../../interfaces/lophocphan.interface';
 import { LopHocPhanService } from '../../../../services/lophocphan.service';
@@ -16,20 +15,13 @@ import { LopHocPhanService } from '../../../../services/lophocphan.service';
   selector: 'app-modal-chitieudaotao',
   templateUrl: './modal-chitieudaotao.component.html',
   styleUrls: ['./modal-chitieudaotao.component.css'],
-  providers: [LopHocPhanService]
+  providers: [LopHocPhanService],
 })
 export class ModalChitieudaotaoComponent implements OnInit {
-  bacList: any;
   public loaiHinhList = [
     { maLoai: '1', tenLoai: 'Chính quy' },
     { maLoai: '2', tenLoai: 'Liên thông' },
   ];
-  public nganhList: any;
-  nganhtamlist: any;
-  addForm: FormGroup;
-  chiTieuGroup: FormGroup;
-  chiTieuList = new FormArray([]);
-
   public hocKis = [
     {
       maHK: 1,
@@ -56,14 +48,31 @@ export class ModalChitieudaotaoComponent implements OnInit {
       tenHK: 'HK6',
     },
   ];
+  //Khai bao list
+  public nganhList: any;
+  public bacList: any;
+  public nganhtamlist: any;
+  //Khai bao Form
+  addForm: FormGroup;
+  chiTieuGroup: FormGroup;
+  chiTieuList = new FormArray([]);
+  hocKiForm: FormGroup;
+
+  //khai bao trang thai
+  public isBtnHocPhanDisplay = false;
+
+  //Khai bao Array
   public lops = [];
   public lopHocs: any;
-  lopTams: any;
+  public lopTams: any;
+  public lopHocPhans: LopHocPhan[];
 
-  hocKiForm: FormGroup;
+  //Khai bao thong bao
   msg = '';
   public msgList = [];
   public resetResult;
+
+  //Gan gia tri cho Objsect Lop
   setLop = (
     maNganh,
     maLopHoc,
@@ -91,7 +100,7 @@ export class ModalChitieudaotaoComponent implements OnInit {
     private nganhngheservice: NganhNgheService,
     private bacservice: BacService,
     private lopHocService: LopHocService,
-    private lopHocPhanSerivce: LopHocPhanService,
+    private lopHocPhanSerivce: LopHocPhanService
   ) {}
 
   ngOnInit(): void {
@@ -107,14 +116,17 @@ export class ModalChitieudaotaoComponent implements OnInit {
       hocKi: new FormControl(''),
     });
   }
+  //Lay tat ca tu DB LOP HOC
   getLopHoc() {
     this.lopHocService.getAll().subscribe(
       (lop) => {
         this.lopHocs = lop;
         this.lopTams = this.lopHocs;
+
       },
       (err) => (this.msg = err)
     );
+    this.isBtnHocPhanDisplay = false;
   }
   getbac() {
     this.bacservice.getBac().subscribe(
@@ -152,6 +164,7 @@ export class ModalChitieudaotaoComponent implements OnInit {
     );
   }
 
+  //Lay ten BAC tu ma BAC
   convertToTenBacVietTat(maBac: string) {
     let ten = 'TKT';
     this.bacList.forEach((element) => {
@@ -192,26 +205,39 @@ export class ModalChitieudaotaoComponent implements OnInit {
       }
     );
   }
+  //Khai bao su kien click
+
   onClickCreate() {
     if (!this.addForm.value.khoa || !this.addForm.value.loaiHinhDaoTao) {
       this.msg = 'Vui lòng chọn Loại hình đào tạo và nhập khóa học';
     } else {
-      this.createClassModal();
+      this.taoLopHoc();
       this.msg = 'Danh sách lớp được tạo trong cơ sở dữ liệu';
     }
   }
+  onClickResetLopHoc(maNganh: string) {
+    this.deleteLopHoc(maNganh);
+    this.taoLopHoc();
+    this.getLopHoc();
+  }
+  /**
+   * XepLopTheoMaNganh
+   */
+  public onClickLopTheoNganh(maNganh: string) {
+    //this.getLopHoc();
+    this.xepLoptheoMaNganh(maNganh);
+    this.isBtnHocPhanDisplay = true;
+  }
+
   deleteLopHoc(maNganh: string) {
     this.lopHocService.deleteMaNganh(maNganh).subscribe(
-      (data) => {
-
-      },
+      (data) => {},
       (error) => console.log(error)
     );
   }
 
   resetLopHoc(maNganh: string) {
     this.lopHocService.getAllFor(maNganh).subscribe((data) => {
-
       if (data > 0) {
         this.msgList.push({
           msg:
@@ -231,46 +257,28 @@ export class ModalChitieudaotaoComponent implements OnInit {
       }
     });
   }
-  onClickLopHocPhan() {
-    console.log(this.hocKiForm.value.hocKi);
-    console.log(this.addForm.value.bac);
-  }
-  onClickResetLopHoc(maNganh: string) {
-    this.deleteLopHoc(maNganh);
-    this.createClassModal();
-    this.getLopHoc();
-  }
-  /**
-   * XepLopTheoMaNganh
-   */
-  public onClickLopTheoNganh(maNganh: string) {
 
-    //this.getLopHoc();
-    this.xepLoptheoMaNganh(maNganh);
-
-  }
   public xepLoptheoMaNganh(maNganh: string) {
     let LopTam = [];
     this.lopHocs.forEach((element) => {
       if (element.maNganh === maNganh) LopTam.push(element);
     });
     this.lopTams = LopTam;
-    console.log(this.lop);
   }
 
   private getMaNTenLopHoc(): Object[] {
     let arrMaNTen = [];
-    this.lopTams.forEach(lop => {
+    this.lopTams.forEach((lop) => {
       let temp = { tenLop: lop.tenLop, maLopHoc: lop.maLopHoc };
       arrMaNTen.push(temp);
-    })
+    });
     return arrMaNTen;
   }
 
   generateLopHocPhan(): void {
-    if (this.hocKiForm.value.hocKi === "") {
+    if (this.hocKiForm.value.hocKi === '') {
       alert('loi');
-      return
+      return;
     }
     let hocKi = this.hocKiForm.value.hocKi;
     let dsMaNTen: Object[] = this.getMaNTenLopHoc();
@@ -278,15 +286,27 @@ export class ModalChitieudaotaoComponent implements OnInit {
       alert('chua co lop');
       return;
     }
-    this.lopHocPhanSerivce.addDSLopHocPhan(dsMaNTen, hocKi).subscribe(status => {
-      alert(status);
-    })
+    this.lopHocPhanSerivce
+      .addDSLopHocPhan(dsMaNTen, hocKi)
+      .subscribe((status) => {
+        if (status.success) {
+          alert(status.success);
+        } else if (status.error) {
+          alert(status.error);
+        } else alert(status.message);
+      });
   }
 
+  public layLopHocPhan(maLop: string) {
+    this.lopHocPhanSerivce.layLopHocPhantheoMaLop(maLop).subscribe(
+      (res) => {
+        this.lopHocPhans = res;
+      },
+      (err) => console.log(err)
+    );
+  }
 
-
-
-  createClassModal() {
+  public taoLopHoc() {
     let index = 1;
     this.chiTieuList.value.forEach((el) => {
       let len = el.soChiTieu;
@@ -327,7 +347,6 @@ export class ModalChitieudaotaoComponent implements OnInit {
       this.getLopHoc();
       this.lops = [];
     });
-
     this.msgList = [];
   }
   //bắt sự kiện show môn theo ngành
