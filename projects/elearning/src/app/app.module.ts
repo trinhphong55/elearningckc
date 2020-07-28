@@ -64,6 +64,16 @@ import { BaitapgvComponent } from './components/content/lophoc-content-gv/baitap
 import { MatNativeDateModule } from '@angular/material/core';
 import { MoigvComponent } from './components/content/lophoc-content-gv/moinguoi/moigv/moigv.component';
 import { MoisvComponent } from './components/content/lophoc-content-gv/moinguoi/moisv/moisv.component';
+import { ThoikhoabieuctComponent } from './components/content/thoikhoabieuct/thoikhoabieuct.component';
+import { ThoikhoabieuchitietComponent } from './components/content/thoikhoabieuct/thoikhoabieuchitiet/thoikhoabieuchitiet.component';
+import { NoidungbaitapComponent } from './components/content/lophoc-content-gv/luong/noidungbaitap/noidungbaitap.component';
+import { NoidungtaileuComponent } from './components/content/lophoc-content-gv/luong/noidungtaileu/noidungtaileu.component';
+import { XembaitapgvComponent } from './components/content/lophoc-content-gv/baitaptrenlop/allchude/xembaitapgv/xembaitapgv.component';
+import { XemtailieugvComponent } from './components/content/lophoc-content-gv/baitaptrenlop/allchude/xemtailieugv/xemtailieugv.component';
+import { NoidungbaitapsvComponent } from './components/content/lophoc-content-gv/luong/noidungbaitapsv/noidungbaitapsv.component';
+import { NoidungtailieusvComponent } from './components/content/lophoc-content-gv/luong/noidungtailieusv/noidungtailieusv.component';
+import { XembaitapsvComponent } from './components/content/lophoc-content-gv/baitaptrenlop/allchude/xembaitapsv/xembaitapsv.component';
+import { XemtailieusvComponent } from './components/content/lophoc-content-gv/baitaptrenlop/allchude/xemtailieusv/xemtailieusv.component';
 
 @NgModule({
   declarations: [
@@ -106,7 +116,17 @@ import { MoisvComponent } from './components/content/lophoc-content-gv/moinguoi/
     HuongdanComponent,
     BaitapgvComponent,
     MoigvComponent,
-    MoisvComponent
+    MoisvComponent,
+    ThoikhoabieuctComponent,
+    ThoikhoabieuchitietComponent,
+    NoidungbaitapComponent,
+    NoidungtaileuComponent,
+    XembaitapgvComponent,
+    XemtailieugvComponent,
+    NoidungbaitapsvComponent,
+    NoidungtailieusvComponent,
+    XembaitapsvComponent,
+    XemtailieusvComponent
    ],
   imports: [
     BrowserModule,

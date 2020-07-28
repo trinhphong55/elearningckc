@@ -9,15 +9,6 @@ import { map, shareReplay } from 'rxjs/operators';
   styleUrls: ['./menu-main.component.css']
 })
 export class MenuMainComponent {
-  opened=false;
-  toggleSidebar(){
-    this.opened=!this.opened;
-  }
-  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
-    .pipe(
-      map(result => result.matches),
-      shareReplay()
-    );
 
   constructor(private breakpointObserver: BreakpointObserver) {}
 

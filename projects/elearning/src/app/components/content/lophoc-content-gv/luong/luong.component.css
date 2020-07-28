@@ -35,7 +35,7 @@
 .right-chude{
     position: relative;
 }
-.mat-card-content p {
+.mat-card-content-gv p {
     padding: 20px 0 0 20px;
     color: #777777;
 }
@@ -64,24 +64,24 @@
   .chiasetext{
       padding-left: 60px;
   }
-  .content-header{
+  .content-gv-header{
       width: 100%;
       display: flex;
   }
-  .content-header .content-header-left{
+  .content-gv-header .content-gv-header-left{
       width: 50%;
     display: flex;
     flex-wrap: wrap;
   }
-  .content-header .content-header-left .text{
+  .content-gv-header .content-gv-header-left .text{
       width: 50%;
       margin-left: 20px;
   }
-  .content-header .content-header-right{
+  .content-gv-header .content-gv-header-right{
     width: 50%;
 
 }
-.content-header .content-header-right button{
+.content-gv-header .content-gv-header-right button{
     float: right;
 }
 form.ng-untouched.ng-pristine.ng-valid {
@@ -113,15 +113,15 @@ form.ng-untouched.ng-pristine.ng-valid {
 .text-noidung{
     font-size: 0.875rem;
 }
-.content-main{
+.content-gv-main{
     width: 100%;
     display: flex;
     flex-wrap: wrap;
 }
-.content-main .example-header-image{
+.content-gv-main .example-header-image{
    width: 7%;
 }
-.content-main .content-main-from{
+.content-gv-main .content-gv-main-from{
     width: 90%;
     margin-left: 10px;
 }
@@ -156,13 +156,16 @@ form.ng-untouched.ng-pristine.ng-valid {
     margin-left: 85px;
    padding-top: 20px;
 }
-.content{
+
+
+.content-gv{
     width: 96%;
     border: solid 1px #e0e0e0;
     border-radius: 7px;
     margin: 0 auto;
+    margin-bottom: 20px;
 }
-.content .thongtin{
+.content-gv .thongtin{
     width: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -170,7 +173,7 @@ form.ng-untouched.ng-pristine.ng-valid {
     cursor: pointer;
     padding-bottom: 10px;
 }
-.content .thongtin:hover{
+.content-gv .thongtin:hover{
     background-color: #CCFFCC;
 }
 .thongtin .tt-icon{
@@ -273,7 +276,7 @@ form.ng-untouched.ng-pristine.ng-valid {
     font-size: 2rem;
   
 }
-.content .nhanxet{
+.content-gv .nhanxet{
     border-bottom: solid 1px #e0e0e0;
 }
 
@@ -353,6 +356,222 @@ form.ng-untouched.ng-pristine.ng-valid {
     padding: 0;
 }
 .comment .input-container .btn:hover{
+    background: #99FFCC;
+}
+  .input-field {
+    width: 100%;
+    padding: 10px;
+    outline: #006666;
+    border-radius: 20px;
+    border: 1px solid #e0e0e0;
+
+  }
+  .input-field:focus {
+    border: 2px solid #006666;
+   
+  }
+
+
+
+  .content-sv{
+    width: 96%;
+    border: solid 1px #FF0099;
+    border-radius: 7px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+.content-sv .thongtin{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    border-bottom: solid 1px #FF0099;
+    cursor: pointer;
+    padding-bottom: 10px;
+}
+.content-sv .thongtin:hover{
+    background-color: #FF6699;
+    opacity: 0.5;
+}
+.content-sv .thongtin .tt-icon{
+    width: 10%;
+}
+.content-sv .thongtin .tt-icon div{
+    width: 50%;
+    background: #FF0099;
+    height: 35px;
+    margin: 0 auto;
+    border-radius: 20px;
+    text-align: center;
+    justify-content: center;
+    position: relative;
+    margin-top: 10px;
+}
+.content-sv  .thongtin .tt-icon div i{
+   font-size: 1.3rem;
+   color: white;
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%,-50%);
+}
+.content-sv .thongtin .tt-client{
+    width: 55%;
+}
+.content-sv .thongtin .tt-client div{
+    padding-top: 20px;
+    font-size: 1rem;
+    font-weight: 500;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap; 
+    width: 400px; 
+}
+.content-sv .thongtin .tt-dealine{
+    width: 25%;
+    color: #555555;
+}
+.content-sv .thongtin .tt-dealine div{
+    font-size: 0.785rem;
+    padding-top: 20px;
+}
+.content-sv .thongtin .tt-menu{
+    width: 5%;
+}
+.content-sv .thongtin .tt-menu button{
+    outline: none;
+    margin-top: 10px;
+}
+
+.content-sv .songuoinop{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    border-bottom: solid 1px #FF0099;
+}
+.content-sv .songuoinop .left{
+    width: 70%;
+}
+.content-sv .songuoinop .left div{
+    padding-top: 20px;
+    padding-left: 20px;
+}
+.content-sv .songuoinop .left div p{
+    padding: 0;
+    margin: 0;
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: #666666;
+}
+.content-sv .songuoinop .right{
+    width: 30%;
+}
+.content-sv .danop_dagiao{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.content-sv .danop_dagiao .danop{
+    width: 40%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.content-sv .danop_dagiao .dagiao{
+    width: 40%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.content-sv .danop_dagiao button{
+    border-left: 0.5px solid #e0e0e0;
+    border-radius: 0;
+    padding: 0;
+    width: 100%;
+    outline: none;
+    color: #666666;
+}
+.content-sv .danop_dagiao button p{
+    font-size: 2rem;
+  
+}
+.content-sv .content-gv .nhanxet{
+    border-bottom: solid 1px #e0e0e0;
+}
+
+.content-sv .nhanxet .nx-main{
+    padding-top: 10px;
+    padding-left: 5px;
+}
+.content-sv .nhanxet .nx-main .nx-number{
+    margin-bottom: 10px;
+}
+.content-sv .nhanxet .nx-show{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.content-sv .nhanxet .nx-show .nx-showimg{
+    width: 10%;
+}
+.content-sv .nhanxet .nx-show .nx-showimg div{
+    width: 40%;
+    margin: 0 auto;
+   
+}
+.content-sv .nhanxet .nx-show .nx-showimg div img{
+    width: 100%;
+    border-radius: 50px;
+}
+.content-sv .nhanxet .nx-show .nx-showname{
+    width: 80%;
+}
+.content-sv .nhanxet .nx-show .nx-menu{
+    width: 10%;
+}
+
+.content-sv .comment .cm-main{
+    padding-top: 10px;
+    padding-left: 5px;
+}
+
+.content-sv .comment .cm-show{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.content-sv .comment .cm-show .cm-showimg{
+    width: 10%;
+}
+.content-sv .comment .cm-show .cm-showimg div{
+    width: 40%;
+    margin: 0 auto;
+   
+}
+.content-sv .comment .cm-show .cm-showimg div img{
+    width: 100%;
+    border-radius: 50px;
+}
+.content-sv .comment .cm-show .cm-showcomment{
+    width: 85%;
+}
+
+
+.content-sv .comment .input-container {
+    display:  -ms-flexbox;
+    display: flex;
+    width: 100%;
+    margin-bottom: 15px;
+    position: relative;
+} 
+.content-sv .comment .input-container .btn{
+    position: absolute;
+    right: 0;
+    top:5px;
+    border-radius: 50px;
+    outline: none;
+}
+.content-sv .comment .input-container .btn i{
+    padding: 0;
+}
+.content-sv .comment .input-container .btn:hover{
     background: #99FFCC;
 }
   .input-field {

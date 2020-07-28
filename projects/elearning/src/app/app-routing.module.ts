@@ -19,6 +19,7 @@ import { Chude4Component } from './components/content/lophoc-content-gv/baitaptr
 import { ThoikhoabieuComponent } from './pages/list-menu/menu-main/thoikhoabieu/thoikhoabieu.component';
 import { HuongdanComponent } from './components/content/lophoc-content-gv/huongdan/huongdan.component';
 import { BaitapgvComponent } from './components/content/lophoc-content-gv/baitapgv/baitapgv.component';
+import { ThoikhoabieuchitietComponent } from './components/content/thoikhoabieuct/thoikhoabieuchitiet/thoikhoabieuchitiet.component';
 const routes: Routes = [
   {
     path:'',
@@ -46,7 +47,11 @@ const routes: Routes = [
   },
   {
     path:'thoikhoabieu',
-    component:ThoikhoabieuComponent
+    component:ThoikhoabieuComponent,
+    children:[
+      {path:'lop/:id',component:ThoikhoabieuchitietComponent},
+      {path:'',component:ThoikhoabieuchitietComponent}
+    ]
   },
   {
     path:'caidat',

@@ -84,6 +84,12 @@
     width: 100%;
     flex-wrap: wrap;
     margin-top: 10px;
+    cursor: pointer;
+    padding: 7px 0 0  0;
+}
+.list-sv:hover{
+    background: #66CCCC	;
+    border-radius: 5px;
 }
 .list-sv .nx-showimg{
     width: 10%;
@@ -97,3 +103,21 @@
     width: 100%;
     border-radius: 50px;
 }
+.list-sv .nx-showname{
+    width: 80%;
+}
+.list-sv .nx-showicon{
+    width: 10%;
+}
+.example-section {
+    margin: 12px 0;
+  }
+  
+  .example-margin {
+    margin: 0 12px;
+  }
+  
+  ul {
+    list-style-type: none;
+    margin-top: 4px;
+  }

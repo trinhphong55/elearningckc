@@ -2,7 +2,8 @@ header{
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    margin-top: 5px;
+    padding: 0;
+    margin-top: 0px;
 }
 header .title-lophoc{
     width: 30%;
@@ -23,7 +24,7 @@ header .option .mat-form-field{
 
 header .title-lophoc div{
     padding-left: 25px;
-    margin-top: 7px;
+    margin-top: 0px;
     margin-left: 60px;
 }
 header .title-lophoc h4 p{

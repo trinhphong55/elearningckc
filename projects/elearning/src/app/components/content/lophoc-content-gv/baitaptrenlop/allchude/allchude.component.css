@@ -105,14 +105,51 @@ button{
     margin-left: 85px;
    padding-top: 20px;
 }
-.mat-card-header .content{
+
+
+
+
+.mat-card-header .content-gv{
     width: 100%;
     display: flex;
     flex-wrap: wrap;
 }
-.mat-card-header .content .left{
+.mat-card-header .content-gv .left{
     width: 92%;
 }
-.mat-card-header .content .right{
+.mat-card-header .content-gv .right{
     width: 5%;
+}
+.bieumau a{
+    -webkit-box-flex: 1;
+    box-flex: 1;
+    -webkit-flex-grow: 1;
+    flex-grow: 1;
+    overflow: hidden;
+    text-decoration: none;
+    outline: none;
+  }
+  .po4Aib .mAeA1, .H5nYcc .mAeA1, .FGTZvd .mAeA1, .PRmYNe>* {
+    margin-right: 1rem;
+  }
+  .mAeA1 {
+    height: 4.375rem;
+    overflow: hidden;
+    width: 6.5625rem;
+  }
+
+
+
+  .mat-card-header .content-sv{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.mat-card-header .content-sv .left{
+    width: 92%;
+    color:#CC0066 ;
+}
+.mat-card-header .content-sv .right{
+    width: 5%;
+    color: #CC0066;
 }
