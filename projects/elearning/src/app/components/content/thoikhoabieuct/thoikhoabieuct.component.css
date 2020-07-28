@@ -29,3 +29,38 @@ header .title-lophoc div{
 header .title-lophoc h4 p{
     display: inline-block;
 }
+@media only screen and (max-width: 600px) {
+    
+    header{
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 5px;
+    }
+    header .title-lophoc{
+        width: 40%;
+        padding-top: 8px;
+    }
+    header .title-lophoc{
+        width: 50%;
+        padding-top: 0px;
+        margin-bottom: 5px;
+        
+    }
+    
+    header .title-lophoc h4{
+        font-size: 1rem;
+    }
+    header .title-lophoc p{
+        font-size: 1.2rem;
+    }
+    header .option{
+        width: 30%;
+        margin-left: 10px;
+    }
+    header .option .mat-form-field{
+        width: 100%;
+
+    }
+    
+  }
