@@ -47,7 +47,7 @@ export class ModalKhoahocComponent implements OnInit {
     console.log(`selectedItem = ${JSON.stringify(this.selectedItem)}`);
   }
   // filter ngFOr
-  // filterItemsOfType(type){
-  //   return this.test.filter(x => x.id == type);
-  // }
+  filterItemsOfType(type){
+    return this.test.filter(x => x.id == type);
+  }
 }

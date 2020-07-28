@@ -5,6 +5,7 @@ export class ttthTinTuc {
   slug: String
   description: String
   noidung: String
+  hienthi: Boolean
   trangthai: Boolean
   nguoitao: String
   nguoisua: String
