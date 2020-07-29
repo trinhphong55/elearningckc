@@ -3,13 +3,15 @@ const LopHocPhanRoutes = require('./LopHocPhan')
 const GiaoVienRoutes = require('./GiaoVien')
 const cnttTinTucRoute = require('./cnttTinTuc')
 const cnttCrawlingRoutes = require('./cnttCrawling');
-const ttthTinTucRoute = require('./ttthTintuc')
+const ttthTinTucRoute = require('./ttthTintuc');
+const cnttLoaiBaiVietRoutes = require("./cnttLoaiBaiViet");
 
 router.use('/lophocphan', LopHocPhanRoutes)
 router.use('/giaovien', GiaoVienRoutes)
 //cnttRoute
 router.use('/cnttTinTuc', cnttTinTucRoute)
 router.use('/crawling', cnttCrawlingRoutes)
+router.use("/loaibaiviet", cnttLoaiBaiVietRoutes);
 //end cntt
 //ttthRoutes
 router.use('/ttthTinTuc', ttthTinTucRoute)

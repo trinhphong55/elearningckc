@@ -23,7 +23,6 @@ var upload = multer({
 // router.get('/', function (req, res) {
 //   res.send('File catcher');
 // });
-var filename
 router.post('/uploads', upload.single('image'), function (req, res) {
   if (!req.file) {
     console.log("No file is available!");
@@ -32,15 +31,15 @@ router.post('/uploads', upload.single('image'), function (req, res) {
     });
   }
   console.log('filename:  ' + req.file.filename);
-  filename = req.file.filename;
   console.log('File is available!');
   res.send({
     success: true,
-    return: filename
   })
 });
 
 router.post('/taotintuc', (req, res) => {
+  console.log("req.body.anhBia  "+ req.body.anhBia)
+  var imgName =req.body.anhBia.slice(12);
   var tintuc = new TinTuc({
     loaiBaiViet: req.body.loaiBaiViet,
     maDanhMuc: req.body.maDanhMuc,
@@ -48,7 +47,7 @@ router.post('/taotintuc', (req, res) => {
     tieuDe: req.body.tieuDe,
     moTaNgan: req.body.moTaNgan,
     noiDung: req.body.noiDung,
-    anhBia: './uploads/' + filename,
+    anhBia: imgName,
     thongBaoKhanCap: req.body.thongBaoKhanCap,
     trangThai: req.body.trangThai,
   })
@@ -60,6 +59,11 @@ router.post('/taotintuc', (req, res) => {
     res.json(data)
   })
 })
+//#endregion
+
+
+
+
 router.post("/chinhSuaTinTuc", async (req, res) => {
   console.log(" Chinh sua bai viet");
   console.log(req.body.maBaiViet);

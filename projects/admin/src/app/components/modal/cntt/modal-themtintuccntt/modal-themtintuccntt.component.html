@@ -1,7 +1,7 @@
 <app-modal class="modal_chucnang__wrapper" id="cntt_themtintuc">
     <div (click)="closeModal('cntt_themtintuc')" class="modal_chucnang__close mdi mdi-chevron-left text-white"></div>
     <div class="container-fluid mt-3">
-        <form [formGroup]="tinTucForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="tinTucForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-12">
                     <h1 class="text-center text-white">Thêm bài viết</h1>
@@ -73,8 +73,10 @@
                                         <img id="img" alt="" width="100" height="100" />
                                         <input type="file"
                                             onchange="document.getElementById('img').src = window.URL.createObjectURL(this.files[0])"
+                                            (change)="onFileSelected($event)"
                                             name="image" ng2FileSelect [uploader]="uploader"
-                                            accept="image/x-png,image/gif,image/jpeg">
+                                            accept="image/x-png,image/gif,image/jpeg"
+                                            formControlName="anhBia">
                                     </div>
                                 </div>
                             </div>
