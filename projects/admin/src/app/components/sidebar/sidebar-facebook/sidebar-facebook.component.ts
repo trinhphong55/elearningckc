@@ -11,10 +11,16 @@ export class SidebarFacebookComponent implements OnInit {
   constructor(private modalService: ModalService) { }
 
   ngOnInit(): void {
+    // this.fbLibrary();
   }
 
   openModal(id: string) {
     this.modalService.open(id)
   }
 
+
 }
+
+ 
+
+

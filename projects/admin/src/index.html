@@ -56,15 +56,7 @@
       }
 
     };
-    //Get profile's avatar
-    function getAvatarProf(source){
-      FB.api('/me',{fields: 'picture'},function (response){
-          source = response.picture.data.url;
-          console.log(response.picture.data.url);
-          document.getElementsByTagName('avatar').innerHTML =response.picture.data.url;
-      })
-      return source;
-    };
+    
 
     // Hiển thị nút đăng nhập
     function ShowLoginButton() {
@@ -92,74 +84,6 @@
       })
     };
 
-    // GROUPFB API
-
-    //Lấy số member group
-  //const id = "410650836564717";
-   function getMemberCountGr() {
-      FB.api('/410650836564717',{fields: 'member_count'},function (response){
-        console.log(response.member_count);
-        memCount=response.member_count;
-        document.getElementById('memCount').innerHTML =memCount;
-      })
-    }
-    //Lấy số member request
-    function getMemberRequestCountGr() {
-      FB.api('/410650836564717',{fields: 'member_request_count'},function (response){
-        console.log(response.member_request_count);
-        memRes=response.member_request_count
-        document.getElementById('memRes').innerHTML =memRes;
-      })
-    }
-    //Lấy privacy group
-    function getPrivacyGr() {
-      FB.api('/410650836564717',{fields: 'privacy'},function (response){
-        console.log(response.privacy);
-        priva=response.privacy;
-        document.getElementById('privacyGr').innerHTML =priva;
-      })
-    }
-    //Lấy các feed đã post
-    // function getFeedPostedGr() {
-    //   FB.api('/410650836564717/',{fields: 'feed'},function (response){
-    //     console.log(response.feed.data.message);
-    //     console.log(response.story);
-    //     console.log(response.updated_time);
-    //     console.log(response.id);
-    //     mess=response.message;
-    //     story=response.story;
-    //     updatedTime=response.updated_time;
-    //     idpost=response.id;
-    //     document.getElementById('feed/message').innerHTML =mess;
-    //     document.getElementById('feed/story').innerHTML =story;
-    //     document.getElementById('feed/updatedtime').innerHTML =updatedTime;
-    //     document.getElementById('feed/idpost').innerHTML =idpost;
-    //   })
-    // }
-    //Lấy Descripsion Group
-   function getDescripsionGr() {
-      FB.api('/410650836564717',{fields: 'description'},function (response){
-        console.log(response.description);
-        descrip=response.description;
-        document.getElementById('descriptionGr').innerHTML =descrip;
-      })
-    }
-    //Lấy ngày tạo Group
-    function getGroupCreatedDay() {
-      FB.api('/410650836564717',{fields: 'created_time'},function (response){
-        console.log(response.created_time);
-        grcreatedday=response.created_time;
-        document.getElementById('groupCreatedDay').innerHTML =grcreatedday;
-      })
-    }
-    window.onload = function loadAPIGroup(){
-      getMemberCountGr();
-      getMemberRequestCountGr();
-      getPrivacyGr();
-      // getFeedPostedGr();
-      getDescripsionGr();
-      getGroupCreatedDay();
-    }
   </script>
 
   <script>
