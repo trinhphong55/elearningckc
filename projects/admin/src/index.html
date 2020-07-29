@@ -19,7 +19,7 @@
   <!-- Script những thành phần quan trọng để sử dụng API facebook -->
   <script>
     var AppId='726531241502023';
-    var FBLoaded = false;
+    var FBLoaded=false;
     window.fbAsyncInit = function () {
       FB.init({
         appId: AppId,
@@ -49,6 +49,7 @@
       if (response.status === 'connected') {
         showWelcome();
         getAvatarProf();
+        loadAPIGr();
       }
       //User đã login facebook nhưng chưa login ứng dụng hoặc chưa login facebook
       else{
@@ -84,9 +85,80 @@
       })
     };
 
+    // GROUPFB API
+
+    //Lấy số member group
+    function getMemberCountGr() {
+      FB.api('/410650836564717',{fields: 'member_count'},function (response){
+        var memCount=response.member_count;
+        $('memCount').val(memCount);
+        console.log(memCount);
+      })
+    }
+    //Lấy số member request
+    function getMemberRequestCountGr() {
+      FB.api('/410650836564717',{fields: 'member_request_count'},function (response){
+        console.log(response.member_request_count);
+        var memRes=response.member_request_count
+        document.getElementById('memRes').innerHTML =memRes;
+      })
+    }
+    //Lấy privacy group
+    function getPrivacyGr() {
+      FB.api('/410650836564717',{fields: 'privacy'},function (response){
+        console.log(response.privacy);
+        var priva=response.privacy;
+        document.getElementById('privacyGr').innerHTML =priva;
+      })
+    }
+    //Lấy các feed đã post
+    // function getFeedPostedGr() {
+    //   FB.api('/410650836564717/',{fields: 'feed'},function (response){
+    //     console.log(response.feed.data.message);
+    //     console.log(response.story);
+    //     console.log(response.updated_time);
+    //     console.log(response.id);
+    //     mess=response.message;
+    //     story=response.story;
+    //     updatedTime=response.updated_time;
+    //     idpost=response.id;
+    //     document.getElementById('feed/message').innerHTML =mess;
+    //     document.getElementById('feed/story').innerHTML =story;
+    //     document.getElementById('feed/updatedtime').innerHTML =updatedTime;
+    //     document.getElementById('feed/idpost').innerHTML =idpost;
+    //   })
+    // }
+    //Lấy Descripsion Group
+    function getDescripsionGr() {
+      FB.api('/410650836564717',{fields: 'description'},function (response){
+        var descrip=response.description;
+        document.getElementById('descriptionGr').innerHTML =descrip;
+      })
+    }
+    //Lấy ngày tạo Group
+    function getGroupCreatedDay() {
+      window['FB'].api('/410650836564717',{fields: 'created_time'},function (response){
+        console.log(response.created_time);
+        var grcreatedday=response.created_time;
+        document.getElementById('groupCreatedDay').innerHTML =grcreatedday;
+      })
+    }
+    function loadAPIGr(){
+      
+        this.getMemberCountGr();
+        this.getMemberRequestCountGr();
+        this.getPrivacyGr();
+        // getFeedPostedGr();
+        this.getDescripsionGr();
+        this.getGroupCreatedDay();
+       
+
+    }
+    
+
   </script>
 
-  <!-- <script>
+  <script>
     (function (d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0];
       if (d.getElementById(id)) { return; }
@@ -94,7 +166,7 @@
       js.src = "https://connect.facebook.net/en_US/sdk.js";
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
-  </script> -->
+  </script>
 
 
 </head>
