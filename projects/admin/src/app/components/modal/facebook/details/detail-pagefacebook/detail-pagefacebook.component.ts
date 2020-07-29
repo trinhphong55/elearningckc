@@ -1,3 +1,4 @@
+import { ModalService } from './../../../../../services/modal.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetailPagefacebookComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private modalService: ModalService
+  ) { }
 
   ngOnInit(): void {
+  }
+  closeModal(id: string) {
+    this.modalService.close(id)
   }
 
 }
