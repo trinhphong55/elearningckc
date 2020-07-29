@@ -9,8 +9,8 @@ const morgan = require("morgan");
 const path = require("path");
 //e-learningdb
 
-// const MONGODB_URI =
-//   "mongodb://elearning_team:123@103.92.26.177:27017/testAngularckc?retryWrites=true&w=majority?authSource=admin";
+const MONGODB_URI =
+  "mongodb://elearning_team:123@103.92.26.177:27017/testAngularckc?retryWrites=true&w=majority?authSource=admin";
 
 const PORT = 4100;
 
@@ -58,7 +58,7 @@ const server = https.createServer(httpsOptions, app).listen(PORT, () => {
 
 // cntt
 mongoose.connect(
-  "mongodb://127.0.0.1:27017/ttth",
+  MONGODB_URI,
   {
     useNewUrlParser: true,
     useFindAndModify: false,
