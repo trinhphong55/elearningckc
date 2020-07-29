@@ -22,11 +22,20 @@ export class TintucService {
   }
   addTinTuc(newTinTuc: ttthTinTuc): Observable<ttthTinTuc> {
     return this.http.post<ttthTinTuc>('https://localhost:4100/api/ttthTinTuc/ttththemtintuc', newTinTuc, httpOptions).pipe(
-      tap((ttthTinTuc: ttthTinTuc) => console.log(`inserted TinTuc = ${JSON.stringify(ttthTinTuc)}`)),
-      catchError(error => of(new ttthTinTuc()))
+      // tap((newTinTuc: ttthTinTuc) => console.log(`inserted TinTuc = ${JSON.stringify(newTinTuc)}`)),
+      // catchError(error => of(new ttthTinTuc()))
     );
   }
-
+  suaTinTuc(newTinTuc: ttthTinTuc): Observable<ttthTinTuc> {
+    return this.http.post<ttthTinTuc>('https://localhost:4100/api/ttthTinTuc/ttthsuatintuc', newTinTuc, httpOptions).pipe(
+      // tap((newTinTuc: ttthTinTuc) => console.log(`inserted TinTuc = ${JSON.stringify(newTinTuc)}`)),
+      // catchError(error => of(new ttthTinTuc()))
+    );
+  }
+  xoaTinTuc(newTinTuc: ttthTinTuc): Observable<ttthTinTuc> {
+    return this.http.post<ttthTinTuc>('https://localhost:4100/api/ttthTinTuc/ttthxoatintuc', newTinTuc, httpOptions).pipe(
+    );
+  }
   constructor(private http: HttpClient) { }
 
 

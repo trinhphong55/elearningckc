@@ -5,10 +5,12 @@ const cnttTinTucRoute = require('./cnttTinTuc')
 const cnttCrawlingRoutes = require('./cnttCrawling');
 const ttthTinTucRoute = require('./ttthTintuc');
 const cnttLoaiBaiVietRoutes = require("./cnttLoaiBaiViet");
+const cnttSlideShowRoutes = require('./cnttSlideShow')
 
 router.use('/lophocphan', LopHocPhanRoutes)
 router.use('/giaovien', GiaoVienRoutes)
 //cnttRoute
+router.use('/slideshow', cnttSlideShowRoutes)
 router.use('/cnttTinTuc', cnttTinTucRoute)
 router.use('/crawling', cnttCrawlingRoutes)
 router.use("/loaibaiviet", cnttLoaiBaiVietRoutes);

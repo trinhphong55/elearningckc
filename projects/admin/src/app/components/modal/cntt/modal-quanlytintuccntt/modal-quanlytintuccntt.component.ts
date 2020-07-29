@@ -55,7 +55,7 @@ export class ModalQuanlytintuccnttComponent implements OnInit {
       trangThai: [''],
     })
   }
- 
+
   //  dropdown
   chonMaDanhMuc(e) {
     this.tinTucForm.get('maDanhMuc').setValue(e, {
