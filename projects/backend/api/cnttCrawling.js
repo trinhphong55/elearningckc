@@ -5,7 +5,11 @@ const cheerio = require("cheerio");
 const BaiViet = require("../models/cntttintuc.model");
 
 router.get("/", async (req, res) => {
-  res.json("Hello from Cao Thang API crawling");
+  const data = await BaiViet.find({ crawling: true });
+  res.json({
+    message: "Lấy danh sách bài viết crawling thành công",
+    data: data,
+  });
 });
 
 router.post("/", async (req, res) => {
@@ -42,12 +46,14 @@ router.post("/save", async (req, res) => {
       tieuDe: data.title,
       noiDung: data.data,
       trangThai: 2,
+      crawling: true,
+      crawlURL: url,
     });
     await baiViet.save();
     console.log("Crawling: Luu bai viet thanh cong.");
-    res.status(201).json("Crawling: Lưu bài viết thành công.");
+    res.status(201).json({ message: "Crawling: Lưu bài viết thành công." });
   } catch (error) {
-    res.json(error);
+    res.json({ message: "Crawling: Lưu bài viết thất bại.", error: error });
   }
 });
 

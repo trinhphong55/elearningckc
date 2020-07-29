@@ -76,19 +76,26 @@ async function saveInformationsSlideShowToDatabase(req, res) {
       data: slideShow,
     });
   } catch (error) {
-    res.json({ message: "Thêm slide thất bại" });
+    res.json({ message: "Thêm slide thất bại", error: error });
   }
 }
 
 router.post("/save", uploadPhotos, saveInformationsSlideShowToDatabase);
 
 router.get("/", async (req, res) => {
-  console.log("Slideshow: Lay danh sach slideshow");
-  const danhSachSlideShow = await SlideShow.find({});
-  res.json({
-    message: "Lấy danh sách slideshow thành công",
-    data: danhSachSlideShow,
-  });
+  try {
+    console.log("Slideshow: Lay danh sach slideshow");
+    const danhSachSlideShow = await SlideShow.find({});
+    res.json({
+      message: "Lấy danh sách slideshow thành công",
+      data: danhSachSlideShow,
+    });
+  } catch (error) {
+    res.json({
+      message: "Lấy danh sách slideshow thất bại",
+      data: [],
+    });
+  }
 });
 
 module.exports = router;

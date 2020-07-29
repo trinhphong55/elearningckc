@@ -2,12 +2,20 @@ const router = require("express").Router();
 const LoaiBaiViet = require("../models/cnttLoaiBaiViet.model");
 
 router.get("/", async (req, res) => {
-  const danhSachLoaiBaiViet = await LoaiBaiViet.find({});
-  console.log("LoaiBaiViet: Danh sach loai bai viet");
-  res.json({
-    message: "Lấy danh sách Loại bài viết thành công",
-    data: danhSachLoaiBaiViet,
-  });
+  try {
+    const danhSachLoaiBaiViet = await LoaiBaiViet.find({});
+    console.log("LoaiBaiViet: Danh sach loai bai viet");
+    res.json({
+      message: "Lấy danh sách Loại bài viết thành công",
+      data: danhSachLoaiBaiViet,
+    });
+  } catch (error) {
+    res.json({
+      message: "Lấy danh sách Loại bài viết thất bại",
+      data: [],
+      error: error,
+    });
+  }
 });
 
 router.post("/", async (req, res) => {
