@@ -17,6 +17,14 @@ export class CrawlingService {
 
   constructor(private http: HttpClient) {}
 
+  getDanhSachBaiVietDaCrawled(): Observable<any> {
+    return this.http
+      .get<any>(this.API_URL, {
+        headers: this.httpOptions.headers,
+      })
+      .pipe(retry(1), catchError(this.errorHandler));
+  }
+
   getDanhSachBaiViet(selector: object): Observable<any> {
     return this.http
       .post<any>(this.API_URL, selector, {

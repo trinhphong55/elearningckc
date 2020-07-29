@@ -61,7 +61,7 @@ export class ModalQuanlyslideshowcnttComponent
   getDanhSachSlideShow() {
     this.slideShowService.getDanhSachSlideShow().subscribe((data) => {
       this.danhSachSlideShow = data.data;
-      console.log(this.danhSachSlideShow);
+      // console.log(this.danhSachSlideShow);
       this.getMaSlideShowCuoiCung();
     });
   }

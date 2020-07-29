@@ -11,7 +11,8 @@ export class ModalCrawlingComponent implements OnInit {
   private infoCrawling: any;
   private resultCrawling: any;
 
-  public danhSachBaiViet: any[] = [];
+  public danhSachBaiVietDaLuu: any = [];
+  public danhSachBaiViet: any = [];
   public donVi: any[] = [
     {
       name: 'Trường',
@@ -186,7 +187,9 @@ export class ModalCrawlingComponent implements OnInit {
     private crawlingService: CrawlingService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getDanhSachBaiVietDaCrawled();
+  }
 
   closeModal(id: string) {
     this.modalService.close(id);
@@ -205,6 +208,12 @@ export class ModalCrawlingComponent implements OnInit {
     this.infoCrawling = filtered[0];
   }
 
+  getDanhSachBaiVietDaCrawled(): void {
+    this.crawlingService.getDanhSachBaiVietDaCrawled().subscribe((data) => {
+      this.danhSachBaiVietDaLuu = data;
+    });
+  }
+
   onStartCrawl() {
     if (!this.infoCrawling) {
       alert('Vui lòng chọn nhóm bài viết');
@@ -217,9 +226,19 @@ export class ModalCrawlingComponent implements OnInit {
       .subscribe((data) => {
         this.resultCrawling = data;
         this.danhSachBaiViet = data.danhSachBaiViet;
+        // console.log('=========== crawling thành công ===========');
+        // console.log(this.danhSachBaiViet);
+        // console.log('=========== crawling đã lưu ===========');
+        // console.log(this.danhSachBaiVietDaLuu);
+        for (const item of this.danhSachBaiViet) {
+          for (const subItem of this.danhSachBaiVietDaLuu.data) {
+            if (item.href === subItem.crawlURL) {
+              item.daLuu = true;
+            }
+          }
+        }
         console.log('=========== crawling thành công ===========');
         console.log(this.danhSachBaiViet);
-
         this.disableButton = false;
         this.showSkeleton = false;
       });
@@ -232,8 +251,8 @@ export class ModalCrawlingComponent implements OnInit {
         wrapperContent: this.resultCrawling.wrapperContent,
       })
       .subscribe((data) => {
-        console.log('=========== save ===========');
-        console.log(data);
+        // console.log('=========== save ===========');
+        // console.log(data);
         this.danhSachBaiViet = this.danhSachBaiViet.filter(
           (x) => x.href !== url
         );

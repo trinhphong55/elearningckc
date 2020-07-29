@@ -5,7 +5,7 @@ const SlideShow = require("../models/cnttSlideShow");
 
 //#region MULTER UPLOAD IMAGE
 // upload file path
-const FILE_PATH = "uploads/cntt/slideshow/";
+const FILE_PATH = "uploads/cntt/";
 
 // define multer storage configuration
 const storage = multer.diskStorage({

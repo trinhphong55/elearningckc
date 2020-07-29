@@ -8,7 +8,9 @@ const app = express();
 const morgan = require("morgan");
 const path = require("path");
 //e-learningdb
-// const MONGODB_URI = 'mongodb://elearning_team:123@103.92.26.177:27017/testAngularckc' //'mongodb://localhost:27017/'
+
+// const MONGODB_URI =
+//   "mongodb://elearning_team:123@103.92.26.177:27017/testAngularckc?retryWrites=true&w=majority?authSource=admin";
 
 const PORT = 4100;
 
@@ -42,10 +44,7 @@ app.use(bodyParser.json());
 app.use(morgan("dev"));
 
 // public images
-app.use(
-  "/uploads/cntt",
-  express.static(path.join(__dirname, "uploads/cntt"))
-);
+app.use("/uploads/cntt", express.static(path.join(__dirname, "uploads/cntt")));
 
 app.use("/api", require("./api/api"));
 
