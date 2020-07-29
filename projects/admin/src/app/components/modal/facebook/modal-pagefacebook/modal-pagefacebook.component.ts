@@ -12,7 +12,9 @@ export class ModalPagefacebookComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  openDetailpage() {
+    this.modalService.open('detail-pagefb');
+  }
   closeModal(id: string) {
     this.modalService.close(id)
   }

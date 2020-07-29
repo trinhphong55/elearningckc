@@ -78,7 +78,7 @@
         console.log(response)
         document.getElementById('btnLoginFB').setAttribute('style', 'display:none');
         console.log(response.name + ' access granted');
-        document.getElementById('status').innerHTML =response.name;
+        document.getElementById('username').innerHTML =response.name;
         document.getElementById('status').setAttribute('style', 'display:block');
       });
     }
