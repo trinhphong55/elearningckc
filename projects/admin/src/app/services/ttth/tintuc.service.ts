@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, throwError, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, map, tap, retry } from 'rxjs/operators';
 import { HttpClient, HttpParams, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { ttthTinTuc } from '../../../models/ttthTinTuc';
 import { Thumbs } from 'swiper';
@@ -14,9 +14,10 @@ export class TintucService {
 
   private url='https://localhost:4100/api/ttthTinTuc/ttthdanhsachtintuc';
 
-  getTinTuc(): Observable<ttthTinTuc[]>{
-    return this.http.get<ttthTinTuc[]>(this.url).pipe(
+  getTinTuc(): Observable<ttthTinTuc[]  >{
+    return this.http.get<ttthTinTuc[] >(this.url).pipe(
       // tap(receivedTinTuc => console.log(`receivedTinTuc = ${JSON.stringify(receivedTinTuc)}`)),
+      retry(1),
       catchError(error => of([]))
     );
   }

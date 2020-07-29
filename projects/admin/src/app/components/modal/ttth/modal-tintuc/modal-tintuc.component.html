@@ -3,7 +3,7 @@
   <div class="container-fluid mt-3">
     <div class="row">
       <div class="col-12">
-        <h1 class="text-center text-white">Quản lý tin tức</h1>
+        <h1 class="text-center text-white">Quản lý tin tức </h1>
       </div>
       <div class="col-12">
         <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
@@ -66,8 +66,7 @@
                 <label for="exampleFormControlFile1">Tải hình ảnh</label>
                 <input type="file" class="form-control-file" id="exampleFormControlFile1"
                   (change)="onFileSelected($event)">
-                <img style="width:180px;height:180px" id="blah" [src]="imageSrc || selectedItem.image"
-                  alt="your image" />
+                <!-- <img style="width:180px;height:180px" id="blah" [src]="imageSrc || selectedItem.image" alt="your image" /> -->
               </div>
               <div class="form-group">
                 <label>Tiêu đề </label>
@@ -84,8 +83,8 @@
               <div class="form-group">
                 <label>Hiển thị</label>
                   <div class="form-check">
-                    <input class="form-check-input" *ngIf="selectedItem.hienthi == true" type="checkbox" checked>
-                    <input class="form-check-input" *ngIf="selectedItem.hienthi == false" type="checkbox">
+                    <input class="form-check-input" (change)="getValueCheckBox($event)"  *ngIf="selectedItem.hienthi == true" type="checkbox" checked>
+                    <input class="form-check-input" (change)="getValueCheckBox($event)"  *ngIf="selectedItem.hienthi == false" type="checkbox">
                   </div>
               </div>
             </div>
@@ -103,7 +102,7 @@
       </div>
       <div class="col-12">
         <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
-          <table class="modal_chucnang__table table table-hover">
+          <table class="modal_chucnang__table table table-hover" *ngIf="TinTuc" datatable="ng">
             <thead class="bg__caothang text-white">
               <tr>
                 <th>#</th>
@@ -120,10 +119,10 @@
             </thead>
             <tbody>
               <tr *ngFor="let tintuc of TinTuc; let i = index">
-                <td style="max-width: 50px">{{i}}</td>
+                <td style="max-width: 50px">{{i + 1}}</td>
                 <td>{{tintuc.id_loaitintuc}}</td>
                 <td style="max-width: 100px">
-                  <img style="width: 60px;height: 60px;" [src]="'https://localhost:4100/'" alt="">
+                  <!-- <img style="width: 60px;height: 60px;" src="'https://localhost:4100/{{tintuc.image}}'" alt=""> -->
                 </td>
                 <td>{{tintuc.tentintuc}}</td>
                 <td>{{tintuc.description}}</td>
@@ -137,7 +136,7 @@
                 <td>{{tintuc.nguoitao}}</td>
                 <td>{{tintuc.nguoisua}}</td>
                 <td class="text-center">
-                  <span class="modal_chucnang__button__delete mdi mdi-wrench-outline mdi-24px  mr-2"
+                  <span class="modal_chucnang__button__delete mdi mdi-pencil mdi-24px  mr-2"
                     (click)="onSelect(tintuc)"></span>
                   <span class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px" (click)="xoaTinTuc(tintuc)"></span>
                 </td>
