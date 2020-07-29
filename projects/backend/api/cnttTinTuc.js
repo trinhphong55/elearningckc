@@ -1,7 +1,7 @@
-const router = require('express').Router()
-const TinTuc = require('../models/cntttintuc.model');
-const multer = require('multer')
-const PATH = './uploads';
+const router = require("express").Router();
+const TinTuc = require("../models/cntttintuc.model");
+const multer = require("multer");
+const PATH = "./uploads/cntt";
 
 let Storage = multer.diskStorage({
   destination: (req, file, callback) => {
@@ -15,30 +15,28 @@ let Storage = multer.diskStorage({
     }
     let filename = `${file.originalname}`;
     callback(null, filename);
-  }
+  },
 });
 var upload = multer({
-  storage: Storage
-})
-// router.get('/', function (req, res) {
-//   res.send('File catcher');
-// });
-router.post('/uploads', upload.single('image'), function (req, res) {
+  storage: Storage,
+});
+
+router.post("/uploads", upload.single("image"), function (req, res) {
   if (!req.file) {
     console.log("No file is available!");
     return res.send({
-      success: false
+      success: false,
     });
   }
-  console.log('filename:  ' + req.file.filename);
-  console.log('File is available!');
+  console.log("filename:  " + req.file.filename);
+  console.log("File is available!");
   res.send({
     success: true,
-  })
+  });
 });
 
-router.post('/taotintuc', (req, res) => {
-  console.log("req.body.anhBia  " + req.body.anhBia)
+router.post("/taotintuc", (req, res) => {
+  console.log("req.body.anhBia  " + req.body.anhBia);
   var imgName = req.body.anhBia.slice(12);
   var tintuc = new TinTuc({
     loaiBaiViet: req.body.loaiBaiViet,
@@ -47,37 +45,33 @@ router.post('/taotintuc', (req, res) => {
     tieuDe: req.body.tieuDe,
     moTaNgan: req.body.moTaNgan,
     noiDung: req.body.noiDung,
-    anhBia: imgName,
+    anhBia: "uploads/cntt/" + imgName,
     thongBaoKhanCap: req.body.thongBaoKhanCap,
-    trangThai: req.body.trangThai,
-  })
-  console.log(tintuc)
+  });
+  console.log(tintuc);
   tintuc.save((err, data) => {
     if (err) {
-      return next(err)
+      return next(err);
     }
-    res.json(data)
-  })
-})
+    res.json(data);
+  });
+});
 //#endregion
-
-
-
 
 router.post("/chinhSuaTinTuc", async (req, res) => {
   console.log(" Chinh sua bai viet");
-  console.log("req.body.anhBia  " + req.body.anhBia)
+  console.log("req.body.anhBia  " + req.body.anhBia);
   var imgName = req.body.anhBia.slice(12);
   console.log(req.body.maBaiViet);
   await TinTuc.findOneAndUpdate(
-    { maBaiViet: req.body.maBaiViet },
+    { _id: req.body._id },
     {
       loaiBaiViet: req.body.loaiBaiViet,
       maDanhMuc: req.body.maDanhMuc,
       tieuDe: req.body.tieuDe,
       moTaNgan: req.body.moTaNgan,
       noiDung: req.body.noiDung,
-      anhBia: imgName,
+      anhBia: "uploads/cntt/" + imgName,
       thongBaoKhanCap: req.body.thongBaoKhanCap,
       trangThai: req.body.trangThai,
     }
@@ -87,25 +81,29 @@ router.post("/chinhSuaTinTuc", async (req, res) => {
   });
 });
 // Get All Tintuc
-router.get('/danhsachtintuc', (req, res) => {
+router.get("/danhsachtintuc", (req, res) => {
   TinTuc.find((error, data) => {
     if (error) {
-      return next(error)
+      return res.json({
+        message: "Lấy danh sách bài viết thành công.",
+        data: [],
+        error: error,
+      });
     }
-    res.json(data)
-  })
-})
+    res.json({ message: "Lấy danh sách bài viết thành công.", data: data });
+  });
+});
 // Get Tintuc by id
-router.get('/tintuc/:id', (req, res) => {
+router.get("/tintuc/:id", (req, res) => {
   TinTuc.find(req.params.id, (error, data) => {
     if (error) {
-      return next(error)
+      return next(error);
     }
-    res.json(data)
-  })
-})
+    res.json(data);
+  });
+});
 // add Tintuc add
-router.post('/xoatintuc', async (req, res) => {
+router.post("/xoatintuc", async (req, res) => {
   console.log(" Xoa bai viet");
   console.log(req.body.maBaiViet);
   await TinTuc.findOneAndUpdate(
@@ -117,7 +115,6 @@ router.post('/xoatintuc', async (req, res) => {
   res.json({
     message: " Xóa bài viết thành công",
   });
-})
+});
 
-module.exports = router
-
+module.exports = router;

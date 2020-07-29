@@ -6,7 +6,7 @@
   <div class="container-fluid mt-3">
     <div class="row">
       <div class="col-12">
-        <h1 class="text-center text-white">Crawling Bài viết</h1>
+        <h1 class="text-center text-white">Thu thập bài viết</h1>
       </div>
       <div class="col-12">
         <div
@@ -55,10 +55,9 @@
                   />
                   <div>Crawl</div>
                 </button>
-                <button
+                <!-- <button
                   [disabled]="disableButton"
                   class="modal_chucnang__button btn btn-outline-dark px-4 mx-2"
-                  type="reset"
                 >
                   <img
                     class="modal_chucnang__button__icon mb-2"
@@ -66,7 +65,7 @@
                     alt="image icon"
                   />
                   <div>Cài đặt</div>
-                </button>
+                </button> -->
               </div>
             </div>
             <div
@@ -102,7 +101,7 @@
               <thead class="bg__caothang text-white">
                 <th scope="col">Tiêu đề bài viết</th>
                 <th scope="col">Thời gian</th>
-                <th scope="col">Tuỳ chọn</th>
+                <th scope="col" class="text-center">Tuỳ chọn</th>
               </thead>
               <tbody>
                 <tr *ngFor="let item of danhSachBaiViet">
@@ -111,11 +110,19 @@
                   </td>
                   <td>{{ item.time }}</td>
                   <td class="text-center">
-                    <div
+                    <span
+                      *ngIf="item.daLuu === true"
+                      title="Đã được lưu"
+                      class="mdi mdi-check-circle text-success"
+                    ></span>
+                    <button
+                      *ngIf="!item.daLuu"
                       (click)="onSaveBaiViet(item.href)"
                       title="Lưu vào danh sách bài viết chờ phê duyệt"
-                      class="modal_chucnang__button__save mdi mdi-content-save mdi-24px"
-                    ></div>
+                      class="btn btn-outline-warning btn-sm"
+                    >
+                      <span class="mdi mdi-content-save mdi-24px"></span>
+                    </button>
                   </td>
                 </tr>
               </tbody>

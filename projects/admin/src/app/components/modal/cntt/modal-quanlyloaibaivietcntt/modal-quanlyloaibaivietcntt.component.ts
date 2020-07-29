@@ -78,7 +78,7 @@ export class ModalQuanlyloaibaivietcnttComponent implements OnInit {
       .saveNewLoaiBaiViet(this.loaiBaiVietForm.value)
       .subscribe((data) => {
         this._logResult = data;
-        console.log(this._logResult);
+        // console.log(this._logResult);
         alert('Thêm loại bài viết mới thành công');
         this.getDanhSachLoaiBaiViet();
       });
@@ -93,7 +93,7 @@ export class ModalQuanlyloaibaivietcnttComponent implements OnInit {
       .saveEditLoaiBaiViet(this.loaiBaiVietForm.value)
       .subscribe((data) => {
         this._logResult = data;
-        console.log(this._logResult);
+        // console.log(this._logResult);
         alert('Chỉnh sửa loại bài viết thành công');
         this.onResetFormValue();
         this.getDanhSachLoaiBaiViet();
@@ -109,7 +109,7 @@ export class ModalQuanlyloaibaivietcnttComponent implements OnInit {
         })
         .subscribe((data) => {
           this._logResult = data;
-          console.log(this._logResult);
+          // console.log(this._logResult);
           alert('Xoá loại bài viết thành công');
           this.getDanhSachLoaiBaiViet();
         });

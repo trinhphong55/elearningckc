@@ -42,8 +42,6 @@ export class ModalQuanlytintuccnttComponent implements OnInit {
   constructor(
     private modalService: ModalService,
     public fb: FormBuilder,
-    private router: Router,
-    private ngZone: NgZone,
     private tintucCnttService: TintucCnttService,
     private toastr: ToastrService
   ) {
@@ -68,10 +66,7 @@ export class ModalQuanlytintuccnttComponent implements OnInit {
       noiDung: [''],
       anhBia: this.imgValue,
       nguoiViet: [''],
-      thoiGianDangBai: [''],
       thongBaoKhanCap: [''],
-      created_at: [''],
-      updated_at: [''],
       trangThai: [''],
     });
   }
@@ -129,8 +124,9 @@ export class ModalQuanlytintuccnttComponent implements OnInit {
     }
   }
   editBaiViet(baiViet: any) {
+    console.log(this.tinTucForm.value);
     this.tinTucForm.patchValue({
-      _id: baiViet.loaiBaiViet,
+      _id: baiViet._id,
       loaiBaiViet: baiViet.loaiBaiViet,
       maDanhMuc: baiViet.maDanhMuc,
       maBaiViet: baiViet.maBaiViet,
@@ -165,7 +161,7 @@ export class ModalQuanlytintuccnttComponent implements OnInit {
   }
   loadDanhSachTinTuc() {
     this.tintucCnttService.danhSachTinTuc().subscribe((data) => {
-      this.TinTuc = data;
+      this.TinTuc = data.data;
     });
   }
 }
