@@ -1,82 +1,121 @@
 <app-modal class="modal_chucnang__wrapper" id="cntt_crawling">
-  <div (click)="closeModal('cntt_crawling')" class="modal_chucnang__close mdi mdi-chevron-left text-white"></div>
+  <div
+    (click)="closeModal('cntt_crawling')"
+    class="modal_chucnang__close mdi mdi-chevron-left text-white"
+  ></div>
   <div class="container-fluid mt-3">
     <div class="row">
       <div class="col-12">
         <h1 class="text-center text-white">Crawling Bài viết</h1>
       </div>
       <div class="col-12">
-        <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white crawl_controller">
+        <div
+          class="modal_chucnang__box border rounded p-4 mt-5 bg-white crawl_controller"
+        >
           <div class="row justify-content-center align-items-center">
             <div class="col-3">
               <div class="form-group">
                 <label>Loại đơn vị</label>
-                <select (change)="onChangeSelectLoaiDonVi($event.target.value)" class="form-control">
+                <select
+                  (change)="onChangeSelectLoaiDonVi($event.target.value)"
+                  class="form-control"
+                >
                   <option class="d-none" selected>-- Loại đơn vị --</option>
-                  <option *ngFor="let item of donVi" [value]="item.name">{{item.name}}</option>
+                  <option *ngFor="let item of donVi" [value]="item.name">{{
+                    item.name
+                  }}</option>
                 </select>
               </div>
             </div>
             <div class="col-4">
               <div class="form-group">
                 <label>Nhóm bài viết</label>
-                <select (change)="getValueNhomBaiViet($event.target.value)" class="form-control">
+                <select
+                  (change)="getValueNhomBaiViet($event.target.value)"
+                  class="form-control"
+                >
                   <option class="d-none" selected>-- Nhóm bài viết --</option>
-                  <option *ngFor="let item of nhomDonVi" [value]="item.name">{{item.name}}</option>
+                  <option *ngFor="let item of nhomDonVi" [value]="item.name">{{
+                    item.name
+                  }}</option>
                 </select>
               </div>
             </div>
             <div class="col-auto">
               <div class="modal_chucnang__group__button">
-                <button (click)="onStartCrawl()" [disabled]="disableButton"
-                  class="modal_chucnang__button btn btn-outline-primary px-4 mx-2">
-                  <img class="modal_chucnang__button__icon mb-2" src="assets/img/icons/upgrade.png" alt="image icon">
+                <button
+                  (click)="onStartCrawl()"
+                  [disabled]="disableButton"
+                  class="modal_chucnang__button btn btn-outline-primary px-4 mx-2"
+                >
+                  <img
+                    class="modal_chucnang__button__icon mb-2"
+                    src="assets/img/icons/upgrade.png"
+                    alt="image icon"
+                  />
                   <div>Crawl</div>
                 </button>
-                <button [disabled]="disableButton" class="modal_chucnang__button btn btn-outline-dark px-4 mx-2"
-                  type="reset">
-                  <img class="modal_chucnang__button__icon mb-2" src="assets/img/icons/gear.png" alt="image icon">
+                <button
+                  [disabled]="disableButton"
+                  class="modal_chucnang__button btn btn-outline-dark px-4 mx-2"
+                  type="reset"
+                >
+                  <img
+                    class="modal_chucnang__button__icon mb-2"
+                    src="assets/img/icons/gear.png"
+                    alt="image icon"
+                  />
                   <div>Cài đặt</div>
                 </button>
               </div>
             </div>
-            <div class="d-none col-12 text-center" [ngClass]="{'d-block': disableButton}">
+            <div
+              class="d-none col-12 text-center"
+              [ngClass]="{ 'd-block': disableButton }"
+            >
               <h5>Vui lòng chờ kết quả...</h5>
               <div class="small mt-2">
                 Thời gian crawling phụ thuộc vào tốc độ đường truyền của bạn
               </div>
             </div>
           </div>
-
         </div>
       </div>
       <div class="col-12">
         <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
           <div class="p-4">
             <section *ngIf="showSkeleton">
-              <ngx-skeleton-loader count="5" [theme]="{ 
+              <ngx-skeleton-loader
+                count="5"
+                [theme]="{
                   'border-radius': '.25rem',
-                  'height': '20px',
+                  height: '20px',
                   'background-color': '#eee'
-              }">
+                }"
+              >
               </ngx-skeleton-loader>
             </section>
-            <table *ngIf="!showSkeleton && resultCrawling" class="modal_chucnang__table table table-hover">
+            <table
+              *ngIf="!showSkeleton && danhSachBaiViet.length > 0"
+              class="modal_chucnang__table table table-hover"
+            >
               <thead class="bg__caothang text-white">
                 <th scope="col">Tiêu đề bài viết</th>
                 <th scope="col">Thời gian</th>
-                <th scope="col">Trạng thái</th>
+                <th scope="col">Tuỳ chọn</th>
               </thead>
               <tbody>
-                <tr *ngFor="let item of resultCrawling">
+                <tr *ngFor="let item of danhSachBaiViet">
                   <td>
-                    <a [href]="item.href" target="_blank">{{item.title}}</a>
+                    <a [href]="item.href" target="_blank">{{ item.title }}</a>
                   </td>
-                  <td>
-                    {{item.time}}
-                  </td>
-                  <td>
-                    <strong class="text-danger">Đang xử lý</strong>
+                  <td>{{ item.time }}</td>
+                  <td class="text-center">
+                    <div
+                      (click)="onSaveBaiViet(item.href)"
+                      title="Lưu vào danh sách bài viết chờ phê duyệt"
+                      class="modal_chucnang__button__save mdi mdi-content-save mdi-24px"
+                    ></div>
                   </td>
                 </tr>
               </tbody>

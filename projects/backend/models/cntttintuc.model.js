@@ -1,4 +1,4 @@
-var mongoose = require('mongoose');
+var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var schema = new Schema(
@@ -13,9 +13,9 @@ var schema = new Schema(
     nguoiViet: { type: String, default: null },
     thoiGianDangBai: { type: Date, default: Date.now() },
     thongBaoKhanCap: { type: Boolean },
-    trangThai: { type: Number,default: 1 },
+    trangThai: { type: Number, default: 1 },
   },
   { timestamps: true }
 );
 
-module.exports = mongoose.model('TinTuc', schema, 'cnttBaiViet')
+module.exports = mongoose.model("TinTuc", schema, "cnttBaiViet");

@@ -41,7 +41,6 @@ export class ModalQuanlyloaibaivietcnttComponent implements OnInit {
     this.loaiBaiVietService.getDanhSachLoaiBaiViet().subscribe((data) => {
       this._danhSachLoaiBaiViet = data;
       this.danhSachLoaiBaiViet = this._danhSachLoaiBaiViet.data;
-      console.log(this.danhSachLoaiBaiViet);
       this.getMaLoaiBaiVietCuoiCung();
     });
   }
