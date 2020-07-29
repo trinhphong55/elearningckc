@@ -152,15 +152,20 @@
               <div class="modal-body">
                 <div class="form-group">
                   <label for="excelSV">Nhập File Excel</label>
-                  <input type="file" class="form-control-file" id="excelSV" (change)="onChangeSinhVien($event)" #inputFile>
+                  <input type="file" class="form-control-file" id="excelSV" (change)="onChangeSinhVien($event)"
+                    #inputFile>
                 </div>
                 <div class="alert alert-info" *ngIf="isExcelFile === false">
                   This is not an Excel file
                 </div>
-                <button type="button" class="modal_chucnang__button btn btn-outline-success px-4 mx-2" (click)="onClickImportExeclSinhVien()"><img
-                    class="modal_chucnang__button__icon mb-2" src="assets/img/icons/excel.png" alt="image icon" >
-                  <div>Import Excel</div>
-                </button>
+                <div>
+                  <button type="button" (click)="onClickImportExeclSinhVien()" class="btn btn-outline-success">
+                    Import Excel
+                  </button>
+                </div>
+                <div>
+                  <button class="btn btn-danger" (click)="removeData()">Remove Data</button>  
+                </div>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
@@ -256,8 +261,13 @@
                           (click)="layLopHocPhan(item.maLopHoc)">Xem</button>
                       </td>
                       <td>
-                        <button type="button" class="btn btn-outline-primary" data-toggle="modal"
-                          data-target="#dsSV" (click) ="onClickThemDSSV(item.maLopHoc)">Thêm </button>
+                        <button type="button" class="modal_chucnang__button btn btn-outline-success" data-toggle="modal"
+                          data-target="#dsSV" (click)="onClickThemDSSV(item.maLopHoc)"><img
+                            class=" modal_chucnang__button__icon mb-2" src="assets/img/icons/excel.png"
+                            alt="image icon">
+                          <div>Import Excel</div>
+                        </button>
+
                       </td>
                     </tr>
                     <!-- </ng-container> -->

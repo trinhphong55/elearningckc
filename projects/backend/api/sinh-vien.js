@@ -70,7 +70,7 @@ exports.layThongtinSinhVien = async (req, res) => {
     if (sinhViens === null) {
       res.status(404).json({ message: "Không tìm thấy" });
     } else {
-      res.status(200).json({ data: sinhViens, message: "Lấy thành công" });
+      res.status(200).json({ data: sinhViens, message: "Lấy thành công" ,status:200});
     }
   } catch (error) {
     res.status(500).json({ message: "Máy chủ không sữ lý được", error: error, status:500 });
