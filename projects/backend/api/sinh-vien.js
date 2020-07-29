@@ -1,5 +1,4 @@
 const SinhVienModel = require("../models/sinh-vien.model");
-const sinhVienModel = require("../models/sinh-vien.model");
 
 setSinhVien = (req) => {
   return {
@@ -25,13 +24,31 @@ setSinhVien = (req) => {
     ngayChinhSua: Date.now(),
   };
 };
-
+setSinhVienUpdate = (req) => {
+  return {
+    CMND: req.CMND,
+    ho: req.ho,
+    ten: req.ten,
+    gioiTinh: req.gioiTinh,
+    ngaySinh: new Date(req.ngaySinh),
+    diaChiThuongTru: req.diaChiThuongTru,
+    diaChiTamTru: req.diaChiTamTru,
+    sdt: req.sdt,
+    email: req.email,
+    hoTenCha: req.hoTenCha,
+    hoTenMe: req.hoTenMe,
+    sdtCha: req.sdtCha,
+    sdtMe: req.sdtMe,
+    nguoiChinhSua: req.nguoiChinhSua,
+    ngayChinhSua: Date.now(),
+  };
+};
 exports.layTatCaSinhVien = async (req, res) => {
   try {
     const sinhViens = await SinhVienModel.find();
     res.json(sinhViens);
   } catch (error) {
-    res.status(500).json({ msg: "Máy chủ không sữ lý được", err: error });
+    res.status(500).json({ message: "Máy chủ không sữ lý được", error: error , status:500});
   }
 };
 
@@ -40,7 +57,7 @@ exports.themSinhVien = async (req, res) => {
     const sinhViens = await SinhVienModel.create(setSinhVien(req));
     res.json(sinhViens);
   } catch (error) {
-    res.status(500).json({ msg: "Máy chủ không sữ lý được", err: error });
+    res.status(500).json({ message: "Máy chủ không sữ lý được", error: error , status:500});
   }
 };
 
@@ -51,49 +68,55 @@ exports.layThongtinSinhVien = async (req, res) => {
       maSinhVien: req.params.maSV,
     });
     if (sinhViens === null) {
-      res.status(404).json({ msg: "Không tìm thấy" });
+      res.status(404).json({ message: "Không tìm thấy" });
     } else {
-      res.status(200).json({data: sinhViens, message:'Lấy thành công'});
+      res.status(200).json({ data: sinhViens, message: "Lấy thành công" });
     }
   } catch (error) {
-    res.status(500).json({ msg: "Máy chủ không sữ lý được", err: error });
+    res.status(500).json({ message: "Máy chủ không sữ lý được", error: error, status:500 });
   }
 };
 
 exports.capNhatSinhVien = async (req, res) => {
   try {
-    const findSinhVien = await SinhVienModel.find({ maSinhVien: req.params.maSV}).count();
-    if(findSinhVien == 0){
-      res.status(404).json('Không tìm thấy');
+    const findSinhVien = await SinhVienModel.find({
+      maSinhVien: req.body.maSinhVien,
+    }).count();
+    const updateSV = await SinhVienModel.findOne({
+      maSinhVien: req.body.maSinhVien,
+    });
+    if (findSinhVien == 0) {
+      res.status(404).json({ message: "Không tìm thấy", status: 400 });
     }
+
     const sinhViens = await SinhVienModel.updateOne(
-      { maSinhVien: req.params.maSV },
-      { $set: setSinhVien(req) }
+      { maSinhVien: req.body.maSinhVien },
+      { $set: setSinhVienUpdate(req.body.data) }
     );
     console.log(sinhViens);
-    if(sinhViens.nModified > 0){
+    if (sinhViens.nModified > 0) {
       res.status(200).json({
-        mssv: req.params.maSV,
-        token:'chua co',
-        data:req.body,
-        msg:'Cập nhật thành công',
+        data: setSinhVienUpdate(updateSV),
+        message: "Cập nhật thành công",
+        status: 200,
       });
-    }
-    else{
+    } else {
       res.status(200).json("Cập nhật thành công, không có gì thay đổi");
     }
   } catch (error) {
-    res.status(500).json({ msg: "Máy chủ không sữ lý được", errors: error });
+    res
+      .status(500)
+      .json({ message: "Máy chủ không xữ lý được", errors: error, status:500 });
   }
 };
 exports.removeAll = async (req, res) => {
-  const removeKhoa = await sinhVienModel.remove({ trangThai: 1 });
+  const removeKhoa = await SinhVienModel.remove({ trangThai: 1 });
   if (removeKhoa.deletedCount === 0) {
-    res.json({ status: false, msg: "Id nay khong ton tai" });
+    res.json({ status: false, message: "Id nay khong ton tai" });
   } else {
     res.json({
       status: true,
-      msg: "Deleted  All successful",
+      message: "Deleted  All successful",
     });
   }
 };

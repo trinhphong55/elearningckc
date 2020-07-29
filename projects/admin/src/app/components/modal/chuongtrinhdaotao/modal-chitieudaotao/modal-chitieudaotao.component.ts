@@ -430,7 +430,8 @@ export class ModalChitieudaotaoComponent implements OnInit {
     let index = 0;
     this.dsSinhVien.forEach((sv) => {
       index++;
-
+      let date = new Date(sv.ngaySinh.toString());
+      console.log(date.toString());
       sv.maLopHoc =  this.maLopThem;
       sv.maSinhVien = 0 + sv.maLopHoc.slice(0,sv.maLopHoc.length - 1) + (index);
       this.SinhVienService.themSinhVien(sv).subscribe(

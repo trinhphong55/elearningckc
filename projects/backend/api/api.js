@@ -80,7 +80,7 @@ router.get("/groupfb", groupFB.getAll);
 router.get("/sinhvien", sinhVien.layTatCaSinhVien);
 router.post("/sinhvien", sinhVien.themSinhVien);
 router.get("/sinhvien/:maSV", sinhVien.layThongtinSinhVien);
-router.put("/sinhvien/:maSV", sinhVien.capNhatSinhVien);
+router.put("/sinhvien", sinhVien.capNhatSinhVien);
 router.delete('/sinhvien',sinhVien.removeAll);
 
 

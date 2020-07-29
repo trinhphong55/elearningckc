@@ -31,7 +31,8 @@ const Schema = mongoose.Schema;
 const SinhVienSchema = new Schema({
   maSinhVien:{
     type:String,
-    required:true
+    required:true,
+    unique:true
   },
   CMND:{
     type:String,
