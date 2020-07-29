@@ -12,10 +12,10 @@ export class GroupfbService {
   getAll() {
     return this.http.get(baseUrl);
   }
+  
   get(id) {
     return this.http.get(`${baseUrl}/${id}`);
   }
-
   create(data) {
     return this.http.post(baseUrl, data);
   }

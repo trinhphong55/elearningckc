@@ -97,7 +97,7 @@
               <th scope="col" class="text-center">Số lượng bài viết</th>
               <th scope="col" class="text-center">Tác vụ</th>
             </thead>
-            <tbody *ngFor="let d of data |filter: searchGroup">
+            <tbody *ngFor=" let d of data |filter: searchGroup">
               <tr>
                 <td class="text-center">
                   <label >{{d.id_Group}}</label>
@@ -117,7 +117,7 @@
                 <td class="text-center">
                   <div class="form-group">
                     <span class="modal_chucnang__button__delete ml-2 mdi mdi-delete-outline mdi-24px"></span>
-                    <button class="modal_chucnang__button btn btn-outline-success px-4 mx-2" (click)="openDetail()">View</button>
+                    <button class="modal_chucnang__button btn btn-outline-success px-4 mx-2" (click)="openDetail(data)">View</button>
                   </div>
                 </td>
               </tr>

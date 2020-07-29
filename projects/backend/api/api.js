@@ -68,5 +68,6 @@ router.put("/lophoc/:id", LopHoc.checkValidate(), LopHoc.update);
 //Routes LoaiDonVi
 router.get("/loaidonvi", loaidonviController.getLoaiDonVi);
 //Routes groupFB
+//Lấy tất cả thông tin trong groupFB
 router.get("/groupfb", groupFB.getAll);
 module.exports = router;

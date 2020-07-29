@@ -8,36 +8,38 @@ import { BacService } from '../../../../services/Bac.service';
 @Component({
   selector: 'app-modal-groupfacebook',
   templateUrl: './modal-groupfacebook.component.html',
-  styleUrls: ['./modal-groupfacebook.component.css']
+  styleUrls: ['./modal-groupfacebook.component.css'],
 })
 export class ModalGroupfacebookComponent implements OnInit {
-  data:any;
-  bac:any;
-  nganhs:any;
-  lop:any;
+  data: any;
+  bac: any;
+  nganhs: any;
+  lop: any;
   constructor(
     private modalService: ModalService,
     private groupFBService: GroupfbService,
     private nganhngheservice: NganhNgheService,
     private bacservice: BacService,
     private lopService: LopHocService
-    ) { }
+  ) {}
   searchGroup;
   ngOnInit(): void {
     this.getAll();
     this.getNganh();
     this.getbac();
     this.getLop();
+    this.openDetail();
+
   }
 
   getAll() {
-    this.groupFBService.getAll().subscribe(
-      data => {
-        this.data = data;
-        console.log(this.data);
-      }
-    );
+    this.groupFBService.getAll().subscribe( 
+      data=> {
+      this.data = data;
+      console.log(this.data);
+    });
   }
+
   getbac() {
     this.bacservice.getBac().subscribe(
       (bac) => {
@@ -60,13 +62,11 @@ export class ModalGroupfacebookComponent implements OnInit {
     return this.data;
   }
 
-  getLop(){
-    this.lopService.getAll().subscribe(
-      lop => {
-        this.lop = lop;
-        console.log(lop);
-      }
-    );
+  getLop() {
+    this.lopService.getAll().subscribe((lop) => {
+      this.lop = lop;
+      console.log(lop);
+    });
   }
 
   openDetail() {
@@ -74,11 +74,6 @@ export class ModalGroupfacebookComponent implements OnInit {
   }
 
   closeModal(id: string) {
-    this.modalService.close(id)
+    this.modalService.close(id);
   }
-
-
-
-
 }
-
