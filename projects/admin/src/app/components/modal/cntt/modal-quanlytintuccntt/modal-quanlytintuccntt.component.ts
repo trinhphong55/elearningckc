@@ -34,7 +34,6 @@ export class ModalQuanlytintuccnttComponent implements OnInit {
   ];
   maDanhMuc: any = ['Thông báo', 'Sinh Viên', 'Giới thiệu'];
   trangThai: any = [0, 1, 2];
-  thongBaoKhanCap: any = [true, false];
   showContent: any;
   dtOptions: DataTables.Settings = {};
   imgValue: any;
@@ -66,7 +65,7 @@ export class ModalQuanlytintuccnttComponent implements OnInit {
       noiDung: [''],
       anhBia: this.imgValue,
       nguoiViet: [''],
-      thongBaoKhanCap: [''],
+      viTriHienThi: [''],
       trangThai: [''],
     });
   }
@@ -87,8 +86,8 @@ export class ModalQuanlytintuccnttComponent implements OnInit {
       onlySelf: true,
     });
   }
-  chonThongBaoKhanCap(e) {
-    this.tinTucForm.get('thongBaoKhanCap').setValue(e, {
+  chonViTriHienTai(e) {
+    this.tinTucForm.get('viTriHienThi').setValue(e, {
       onlySelf: true,
     });
   }
@@ -133,7 +132,7 @@ export class ModalQuanlytintuccnttComponent implements OnInit {
       tieuDe: baiViet.tieuDe,
       moTaNgan: baiViet.moTaNgan,
       noiDung: baiViet.noiDung,
-      thongBaoKhanCap: baiViet.thongBaoKhanCap,
+      viTriHienThi: baiViet.viTriHienThi,
       trangThai: baiViet.trangThai,
     });
   }

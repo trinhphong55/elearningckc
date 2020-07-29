@@ -34,7 +34,7 @@ export class ModalThemtintuccnttComponent implements OnInit {
   maDanhMuc: any = ['Thông báo', 'Sinh Viên', 'Giới thiệu'];
   TinTuc: any = [];
   trangThai: any = [0, 1, 2];
-  thongBaoKhanCap: any = [true, false];
+  viTriHienThi: any = [true, false];
   imgValue: any;
   constructor(
     private modalService: ModalService,
@@ -73,9 +73,7 @@ export class ModalThemtintuccnttComponent implements OnInit {
       anhBia: this.imgValue,
       nguoiViet: [''],
       thoiGianDangBai: [''],
-      thongBaoKhanCap: [''],
-      created_at: [''],
-      updated_at: [''],
+      viTriHienThi: [''],
       trangThai: [''],
     });
   }
@@ -96,8 +94,8 @@ export class ModalThemtintuccnttComponent implements OnInit {
       onlySelf: true,
     });
   }
-  chonThongBaoKhanCap(e) {
-    this.tinTucForm.get('thongBaoKhanCap').setValue(e, {
+  chonViTriHienThi(e) {
+    this.tinTucForm.get('viTriHienThi').setValue(e, {
       onlySelf: true,
     });
   }

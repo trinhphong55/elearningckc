@@ -57,12 +57,15 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                        <label id="image">Thông báo khẩn cấp</label>
+                                        <label id="image">Vị trí hiển thị</label>
                                         <select class="custom-select form-control"
-                                            (change)="chonThongBaoKhanCap($event.target.value)"
-                                            formControlName="thongBaoKhanCap">
-                                            <option value="true">Áp dụng</option>
-                                            <option value="false">Hủy áp dụng</option>
+                                            (change)="chonViTriHienThi($event.target.value)"
+                                            formControlName="viTriHienThi">
+                                            <option value="0">Bài viết quan trọng</option>
+                                            <option value="1">Cơ hội việc làm</option>
+                                            <option value="2">Giới thiệu ngắn</option>
+                                            <option value="3">Bài viết nổi bật</option>
+                                            <option value="4">Bài viết mới nhất</option>
                                         </select>
                                 </div>
                             </div>

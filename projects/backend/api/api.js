@@ -1,24 +1,26 @@
-const router = require('express').Router()
-const LopHocPhanRoutes = require('./LopHocPhan')
-const GiaoVienRoutes = require('./GiaoVien')
-const cnttTinTucRoute = require('./cnttTinTuc')
-const cnttCrawlingRoutes = require('./cnttCrawling');
-const ttthTinTucRoute = require('./ttthTintuc');
-const ttthBannerRoute = require('./ttthBanner');
+const router = require("express").Router();
+const LopHocPhanRoutes = require("./LopHocPhan");
+const GiaoVienRoutes = require("./GiaoVien");
+const cnttTinTucRoute = require("./cnttTinTuc");
+const cnttCrawlingRoutes = require("./cnttCrawling");
+const ttthTinTucRoute = require("./ttthTintuc");
+const ttthBannerRoute = require("./ttthBanner");
 const cnttLoaiBaiVietRoutes = require("./cnttLoaiBaiViet");
-const cnttSlideShowRoutes = require('./cnttSlideShow')
+const cnttSlideShowRoutes = require("./cnttSlideShow");
+const cnttTrangChu = require("./cnttTrangChu");
 
-router.use('/lophocphan', LopHocPhanRoutes)
-router.use('/giaovien', GiaoVienRoutes)
+router.use("/lophocphan", LopHocPhanRoutes);
+router.use("/giaovien", GiaoVienRoutes);
 //cnttRoute
-router.use('/slideshow', cnttSlideShowRoutes)
-router.use('/cnttTinTuc', cnttTinTucRoute)
-router.use('/crawling', cnttCrawlingRoutes)
+router.use("/slideshow", cnttSlideShowRoutes);
+router.use("/cnttTinTuc", cnttTinTucRoute);
+router.use("/crawling", cnttCrawlingRoutes);
 router.use("/loaibaiviet", cnttLoaiBaiVietRoutes);
+router.use("/cntt", cnttTrangChu);
 //end cntt
 //ttthRoutes
-router.use('/ttthTinTuc', ttthTinTucRoute)
-router.use('/ttthBanner', ttthBannerRoute)
+router.use("/ttthTinTuc", ttthTinTucRoute);
+router.use("/ttthBanner", ttthBannerRoute);
 //ttth
 const khoabomonController = require("../api/khoabomon");
 const loaidonviController = require("../api/loaidonvi");
@@ -35,7 +37,5 @@ router.put("/khoabomon/:id", khoabomonController.updateKhoaBoMon);
 
 //Routes LoaiDonVi
 router.get("/loaidonvi", loaidonviController.getLoaiDonVi);
-
-
 
 module.exports = router;

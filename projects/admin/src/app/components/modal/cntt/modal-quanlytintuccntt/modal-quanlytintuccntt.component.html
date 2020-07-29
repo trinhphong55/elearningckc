@@ -83,12 +83,15 @@
                             <div class="col-auto">
                                 <div class="form-group">
                                     <div class="modal_chucnang__group__button mb-5">
-                                        <label>Thông báo khẩn cấp</label>
+                                        <label>Vị trí hiển thị</label>
                                         <select class="custom-select form-control"
-                                            (change)="chonThongBaoKhanCap($event.target.value)"
-                                            formControlName="thongBaoKhanCap">
-                                            <option value="true">Áp dụng</option>
-                                            <option value="false">Hủy áp dụng</option>
+                                            (change)="chonViTriHienTai($event.target.value)"
+                                            formControlName="viTriHienThi">
+                                            <option value="0">Bài viết quan trọng</option>
+                                            <option value="1">Cơ hội việc làm</option>
+                                            <option value="2">Giới thiệu ngắn</option>
+                                            <option value="3">Bài viết nổi bật</option>
+                                            <option value="4">Bài viết mới nhất</option>
                                         </select>
                                     </div>
                                 </div>
@@ -138,7 +141,7 @@
                                 <th scope="col">Mô tả ngắn</th>
                                 <th scope="col">Ảnh bìa</th>
                                 <th scope="col">Người viết</th>
-                                <th scope="col">Thông báo khẩn cấp</th>
+                                <th scope="col">Vị trí hiện thị</th>
                                 <th scope="col">Trạng thái</th>
                                 <th class="text-center" scope="col"><span
                                         class="modal_chucnang__button__save mdi mdi-content-save-outline mdi-24px"></span>
@@ -169,7 +172,7 @@
                                     <input class="form-control" disabled value="{{tintuc.nguoiViet}}">
                                 </td>
                                 <td>
-                                    <input class="form-control" disabled value="{{tintuc.thongBaoKhanCap}}">
+                                    <input class="form-control" disabled value="{{tintuc.viTriHienThi}}">
                                 </td>
                                 <td>
                                     <input class="form-control" ng disabled value="{{tintuc.trangThai}} ">
