@@ -18,7 +18,7 @@ export class TintucCnttService {
       .get<any>(`${this.baseUri}/danhsachtintuc`, {
         headers: this.headers,
       })
-      .pipe(retry(1), catchError(this.errorMgmt));
+      .pipe(catchError(this.errorMgmt));
   }
   deleteTinTuc(body: any): Observable<any> {
     return this.http
@@ -41,7 +41,7 @@ export class TintucCnttService {
       .post<cnttTinTuc>(this.baseUri + '/chinhSuaTinTuc', data, {
         headers: this.headers,
       })
-      .pipe(retry(1), catchError(this.errorMgmt));
+      .pipe(catchError(this.errorMgmt));
   }
   // Error handling
   errorMgmt(error: HttpErrorResponse) {

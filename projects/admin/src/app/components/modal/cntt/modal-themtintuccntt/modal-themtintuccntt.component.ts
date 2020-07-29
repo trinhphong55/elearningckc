@@ -29,12 +29,18 @@ export class ModalThemtintuccnttComponent implements OnInit {
   loaiBaiViet: any = ['Thông báo', 'Bài Viết nổi bật', 'Tài liệu', 'Việc làm', 'Bài viết'];
   maDanhMuc: any = ['Thông báo', 'Sinh Viên', 'Giới thiệu'];
   TinTuc: any = [];
-  trangThai: any=[0,1,2];
-  thongBaoKhanCap: any=[true, false]
+  trangThai: any = [0, 1, 2];
+  thongBaoKhanCap: any = [true, false];
+  imgValue: any;
   constructor(private modalService: ModalService, public fb: FormBuilder, private router: Router, private ngZone: NgZone, private tintucCnttService: TintucCnttService, private toastr: ToastrService) {
     this.mainForm();
   }
-
+  onFileSelected(event) {
+    if (event.target.files.length > 0) {
+      this.imgValue = event.target.files[0].name;
+      console.log("imgValue " + this.imgValue)
+    }
+  }
   ngOnInit() {
     this.uploader.onAfterAddingFile = (file) => {
       file.withCredentials = false;
@@ -53,7 +59,7 @@ export class ModalThemtintuccnttComponent implements OnInit {
       tieuDe: ['', [Validators.required]],
       moTaNgan: ['', [Validators.required]],
       noiDung: [''],
-      anhBia: [''],
+      anhBia: this.imgValue,
       nguoiViet: [''],
       thoiGianDangBai: [''],
       thongBaoKhanCap: [''],
@@ -99,6 +105,7 @@ export class ModalThemtintuccnttComponent implements OnInit {
     if (!this.tinTucForm.valid) {
       return false;
     } else {
+      console.log("this.tinTucForm.value)" + this.tinTucForm.value)
       this.tintucCnttService.themTinTuc(this.tinTucForm.value).subscribe(
         (res) => {
           this.loadDanhSachTinTuc()
