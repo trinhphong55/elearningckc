@@ -29,8 +29,9 @@ export class ModalGroupfacebookComponent implements OnInit {
     this.getNganh();
     this.getbac();
     this.getLop();
-    this.openDetail();
-    this.loadAPIGroup();
+    this.getMemberCountGr();
+    this.fbLibrary();
+    
   }
 
   getAll() {
@@ -77,15 +78,34 @@ export class ModalGroupfacebookComponent implements OnInit {
   closeModal(id: string) {
     this.modalService.close(id);
   }
-
+  //FB
+  fbLibrary(){
+    var AppId='726531241502023';
+    (window as any).fbAsyncInit = function () {
+      window['FB'].init({
+        appId: AppId,
+        cookie: true,
+        xfbml: true,
+        version: 'v7.0'
+      });
+      window['FB'].AppEvents.logPageView();
+    };
+    (function (d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) { return; }
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  }
  // GROUPFB API
 
     //Lấy số member group
     getMemberCountGr() {
       window['FB'].api('/410650836564717',{fields: 'member_count'},function (response){
-        console.log(response.member_count);
         var memCount=response.member_count;
-        document.getElementById('memCount').innerHTML =memCount;
+        $('memCount').val(memCount);
+        console.log(memCount);
       })
     }
     //Lấy số member request
@@ -124,7 +144,6 @@ export class ModalGroupfacebookComponent implements OnInit {
     //Lấy Descripsion Group
     getDescripsionGr() {
       window['FB'].api('/410650836564717',{fields: 'description'},function (response){
-        console.log(response.description);
         var descrip=response.description;
         document.getElementById('descriptionGr').innerHTML =descrip;
       })
@@ -144,5 +163,6 @@ export class ModalGroupfacebookComponent implements OnInit {
       // getFeedPostedGr();
       this.getDescripsionGr();
       this.getGroupCreatedDay();
-    } 
+    }
+    
 }
