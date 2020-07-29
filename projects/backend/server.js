@@ -43,8 +43,8 @@ app.use(morgan("dev"));
 
 // public images
 app.use(
-  "/uploads/cntt/slideshow",
-  express.static(path.join(__dirname, "uploads/cntt/slideshow"))
+  "/uploads/cntt",
+  express.static(path.join(__dirname, "uploads/cntt"))
 );
 
 app.use("/api", require("./api/api"));
