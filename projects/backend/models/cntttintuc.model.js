@@ -13,7 +13,7 @@ var schema = new Schema(
     nguoiViet: { type: String, default: null },
     thoiGianDangBai: { type: Date, default: Date.now() },
     thongBaoKhanCap: { type: Boolean },
-    trangThai: { type: Number },
+    trangThai: { type: Number,default: 1 },
   },
   { timestamps: true }
 );

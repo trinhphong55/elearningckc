@@ -31,10 +31,17 @@ export class ModalQuanlytintuccnttComponent implements OnInit {
   thongBaoKhanCap: any = [true, false]
   showContent: any;
   dtOptions: DataTables.Settings = {};
+  imgValue: any;
   //
   constructor(private modalService: ModalService, public fb: FormBuilder, private router: Router, private ngZone: NgZone, private tintucCnttService: TintucCnttService, private toastr: ToastrService) {
     this.loadDanhSachTinTuc()
     this.mainForm();
+  }
+  onFileSelected(event) {
+    if (event.target.files.length > 0) {
+      this.imgValue = event.target.files[0].name;
+      console.log("imgValue " + this.imgValue)
+    }
   }
   //update
   mainForm() {
@@ -46,7 +53,7 @@ export class ModalQuanlytintuccnttComponent implements OnInit {
       tieuDe: ['', [Validators.required]],
       moTaNgan: ['', [Validators.required]],
       noiDung: [''],
-      anhBia: [''],
+      anhBia: this.imgValue,
       nguoiViet: [''],
       thoiGianDangBai: [''],
       thongBaoKhanCap: [''],

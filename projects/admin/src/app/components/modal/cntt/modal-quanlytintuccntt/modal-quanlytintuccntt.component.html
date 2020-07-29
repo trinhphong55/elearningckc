@@ -9,7 +9,22 @@
                 <div class="col-12">
                     <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
                         <div class="row justify-content-center align-items-center">
-                            <div class="col-3">
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label>Ảnh đại diện bài viết</label>
+                                    <div class="input-group ">
+                                        <div class="box-img">
+                                            <img id="img" />
+                                        </div>
+                                        <input type="file"
+                                            onchange="document.getElementById('img').src = window.URL.createObjectURL(this.files[0])"
+                                            (change)="onFileSelected($event)" name="image" ng2FileSelect
+                                            [uploader]="uploader" accept="image/x-png,image/gif,image/jpeg"
+                                            formControlName="anhBia">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
                                 <div class="form-group">
                                     <label>Loại bài viết</label>
                                     <select class="custom-select form-control"
@@ -41,7 +56,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-3">
+                            <div class="col-4">
                                 <div class="form-group">
                                     <label>Tiêu đề bài viết</label>
                                     <input class="form-control" type="text" formControlName="tieuDe">
@@ -60,22 +75,9 @@
                                     <label>Trạng thái bài viết</label>
                                     <select class="custom-select form-control"
                                         (change)="chonTrangThai($event.target.value)" formControlName="trangThai">
-                                        <option value="0">Đã xóa</option>
                                         <option value="1">Đã đăng</option>
                                         <option value="2">Chờ phê duyệt</option>
                                     </select>
-                                </div>
-                            </div>
-                            <div class="col-3">
-                                <div class="form-group">
-                                    <label>Ảnh đại diện bài viết</label>
-                                    <div class="input-group ">
-                                        <img id="previewimg" alt="" width="100" height="100" />
-                                        <input type="file"
-                                            onchange="document.getElementById('previewimg').src = window.URL.createObjectURL(this.files[0])"
-                                            name="image" ng2FileSelect [uploader]="uploader"
-                                            accept="image/x-png,image/gif,image/jpeg">
-                                    </div>
                                 </div>
                             </div>
                             <div class="col-auto">
@@ -161,8 +163,7 @@
                                     <input class="form-control" disabled value="{{tintuc.moTaNgan}} ">
                                 </td>
                                 <td>
-                                    <img class="modal_chucnang__button__icon mb-2" src="{{tintuc.anhDaiDien}}"
-                                        alt="image icon">
+                                    <input class="form-control" disabled value="{{tintuc.anhBia}} ">
                                 </td>
                                 <td>
                                     <input class="form-control" disabled value="{{tintuc.nguoiViet}}">

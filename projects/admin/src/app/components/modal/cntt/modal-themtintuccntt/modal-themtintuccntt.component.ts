@@ -111,9 +111,7 @@ export class ModalThemtintuccnttComponent implements OnInit {
           this.loadDanhSachTinTuc()
           console.log(' Tin tuc duoc them thanh cong!    ', res)
           this.toastr.success('Thêm mới bài viết thành công!');
-
         })
-
     }
   }
   closeModal(id: string) {

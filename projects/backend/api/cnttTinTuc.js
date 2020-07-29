@@ -38,8 +38,8 @@ router.post('/uploads', upload.single('image'), function (req, res) {
 });
 
 router.post('/taotintuc', (req, res) => {
-  console.log("req.body.anhBia  "+ req.body.anhBia)
-  var imgName =req.body.anhBia.slice(12);
+  console.log("req.body.anhBia  " + req.body.anhBia)
+  var imgName = req.body.anhBia.slice(12);
   var tintuc = new TinTuc({
     loaiBaiViet: req.body.loaiBaiViet,
     maDanhMuc: req.body.maDanhMuc,
@@ -66,6 +66,8 @@ router.post('/taotintuc', (req, res) => {
 
 router.post("/chinhSuaTinTuc", async (req, res) => {
   console.log(" Chinh sua bai viet");
+  console.log("req.body.anhBia  " + req.body.anhBia)
+  var imgName = req.body.anhBia.slice(12);
   console.log(req.body.maBaiViet);
   await TinTuc.findOneAndUpdate(
     { maBaiViet: req.body.maBaiViet },
@@ -75,7 +77,7 @@ router.post("/chinhSuaTinTuc", async (req, res) => {
       tieuDe: req.body.tieuDe,
       moTaNgan: req.body.moTaNgan,
       noiDung: req.body.noiDung,
-      // anhBia: './uploads/' + filename,
+      anhBia: imgName,
       thongBaoKhanCap: req.body.thongBaoKhanCap,
       trangThai: req.body.trangThai,
     }
