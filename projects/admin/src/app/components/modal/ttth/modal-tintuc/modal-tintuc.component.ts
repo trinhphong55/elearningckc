@@ -13,7 +13,7 @@ declare var $: any;
   templateUrl: './modal-tintuc.component.html',
   styleUrls: ['./modal-tintuc.component.css']
 })
-export class ModalTintucComponent implements OnInit, AfterViewInit, OnDestroy {
+export class ModalTintucComponent implements OnInit {
   constructor(private modalService: ModalService,private tintucService: TintucService ,private toastr: ToastrService) { }
   TinTuc: ttthTinTuc[];
 
@@ -27,21 +27,6 @@ export class ModalTintucComponent implements OnInit, AfterViewInit, OnDestroy {
     };
 
   }
-
-  //datatable
-  ngAfterViewInit(): void {
-    // $(document).ready(function () {
-    //   $('.datatable').DataTable();
-    // });
-    setTimeout(function () {
-      $(function () {
-        $('.datatable').DataTable();
-      });
-    }, 3000);
-  }
-  ngOnDestroy(): void {
-    $('.datatable').off();
-  }
   //ckEditor
   public Editor = ClassicEditor;
 
@@ -51,9 +36,6 @@ export class ModalTintucComponent implements OnInit, AfterViewInit, OnDestroy {
     itemAlias: 'image'
   });
 
-  openModal(id: string) {
-    this.modalService.open(id)
-  }
   closeModal(id: string) {
     this.modalService.close(id)
   }
@@ -93,7 +75,7 @@ export class ModalTintucComponent implements OnInit, AfterViewInit, OnDestroy {
     else{
       const newTinTuc: ttthTinTuc = new ttthTinTuc();
       newTinTuc.id_loaitintuc = id_loaitintuc;
-      newTinTuc.image = 'uploads/ttth/tintuc/' + this.nameImage;
+      newTinTuc.image = 'uploads/cntt/' + this.nameImage;
       newTinTuc.tentintuc = tentintuc;
       newTinTuc.slug = 'slug';
       newTinTuc.description = description;
@@ -120,6 +102,7 @@ export class ModalTintucComponent implements OnInit, AfterViewInit, OnDestroy {
   onSelect(TinTuc: ttthTinTuc):void {
     this.selectedItem= TinTuc;
     // console.log(`selectedItem = ${JSON.stringify(this.selectedItem)}`);
+    this.selectedItem.image = 'https://localhost:4100/' + this.selectedItem.image
   }
   saveTinTuc(TinTuc: ttthTinTuc):void {
     TinTuc.updated_at= new Date;

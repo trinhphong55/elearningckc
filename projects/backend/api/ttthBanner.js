@@ -1,20 +1,10 @@
 const router = require('express').Router()
-const ttthtintuc = require('../models/ttthtintuc.model');
+const ttthBanner = require('../models/ttthbanner.model');
 const multer = require('multer')
 
 // get tin tuc
-router.get('/ttthdanhsachtintuc', async (req, res) => {
-  // try {
-  //   const data = await ttthtintuc.find({})
-  //   console.log(data);
-  //   res.json(data)
-  // } catch (error) {
-  //   res.json({
-  //     message: "Lay danh sach tin tuc ttth that bai.",
-  //     error: error
-  //   })
-  // }
-  ttthtintuc.find((error, data) => {
+router.get('/ttthdanhsachbanner', async (req, res) => {
+  ttthBanner.find((error, data) => {
     if (error) {
       return next(error)
     }
@@ -23,7 +13,7 @@ router.get('/ttthdanhsachtintuc', async (req, res) => {
 })
 // add tin tuc
 router.post('/ttththemtintuc', (req, res) => {
-  var tintuc = new ttthtintuc({
+  var tintuc = new ttthBanner({
     id_loaitintuc: req.body.id_loaitintuc,
     image: req.body.image,
     tentintuc: req.body.tentintuc,
@@ -81,7 +71,7 @@ router.post('/uploads', upload.single('image'), function (req, res) {
 });
 // sua tin tuc
 router.post('/ttthsuatintuc', async (req, res) => {
-  await ttthtintuc.findOneAndUpdate({
+  await ttthBanner.findOneAndUpdate({
     _id: req.body._id
   }, {
     id_loaitintuc: req.body.id_loaitintuc,
@@ -99,7 +89,7 @@ router.post('/ttthsuatintuc', async (req, res) => {
 })
 // xoa tin tuc
 router.post('/ttthxoatintuc', async (req, res) => {
-  await ttthtintuc.findOneAndUpdate({
+  await ttthBanner.findOneAndUpdate({
     _id: req.body._id
   }, {
     trangthai: false
