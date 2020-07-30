@@ -1,0 +1,18 @@
+<div class="nav">
+  <div class="nav-left">
+    <button mat-button [matMenuTriggerFor]="menutlh"><i class="fa fa-plus" aria-hidden="true"></i></button>
+<mat-menu #menutlh="matMenu">
+        <button mat-menu-item><app-thamgialophoc></app-thamgialophoc></button>
+        <button mat-menu-item><app-taolophoc></app-taolophoc></button>
+</mat-menu>
+  </div>
+  <div class="nav-right">
+    <button mat-button (click)="openAccount()"><i class="fas fa-user-circle"></i><span>Huy nguyen</span></button>
+  </div>
+</div>
+
+
+
+
+
+

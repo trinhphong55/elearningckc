@@ -4,48 +4,45 @@ import { Component, OnInit } from '@angular/core';
 import { ModalService } from '../../../../services/modal.service';
 import { KHDTService } from '../../../../services/khdt.service';
 import { MonhocService } from '../../../../services/monhoc.service';
-import { CTDTService } from '../../../../services/ctdt.service';
+import { LHDTService } from '../../../../services/loaihinhdaotao.service'
+import { BacService } from '../../../../services/Bac.service'
+import { NganhNgheService } from '../../../../services/NganhNghe.service'
+
+
 //interfaces
 import { KHDT } from '../../../../interfaces/khdt.interface';
 import { MonHoc } from '../../../../interfaces/monhoc.interface';
 import { CTDT } from '../../../../interfaces/ctdt.interface';
+import { LHDT } from '../../../../interfaces/loaihinhdaotao.interface';
+import { bac } from '../../../../interfaces/Bac.interface';
+import { nganhnghe } from '../../../../interfaces/NganhNghe.interface';
+
+
 
 @Component({
   selector: 'app-modal-kehoachdaotao',
   templateUrl: './modal-kehoachdaotao.component.html',
   styleUrls: ['./modal-kehoachdaotao.component.css'],
-  providers: [KHDTService, MonhocService]
+  providers: [KHDTService, MonhocService, LHDTService, BacService, NganhNgheService]
 })
 export class ModalKehoachdaotaoComponent implements OnInit {
 
+  private maChuongTrinhDaoTao: string;
   dsKHDT: KHDT[];
   dsMonHoc: MonHoc[];
   hocKi = "1";
-  isChanged = false;
-  private maChuongTrinhDaoTao: string;
-
-  dsBac = [
-    { maBac: "03", tenBac: "Cao đẳng" },
-    { maBac: "02", tenBac: "Cao đẳng nghề" },
-    { maBac: "05", tenBac: "Đại học" },
-  ];
-
-  dsLoaiHinhDaoTao = [
-    { maLoaiHinhDaoTao: "1", tenLoaiHinhDaoTao: "Chính quy" },
-    { maLoaiHinhDaoTao: "2", tenLoaiHinhDaoTao: "Liên thông" },
-  ];
-
-  dsNganhNghe = [
-    { maNganhNghe: "01", tenNganhNghe: "Cơ khí" },
-    { maNganhNghe: "06", tenNganhNghe: "Công nghệ thông tin" },
-  ];
+  dsLoaiHinhDaoTao: LHDT[];
+  dsNganhNghe: nganhnghe[];
+  dsBac: bac[];
 
   ctdt: CTDT = {
-    maBac: this.dsBac[0].maBac,
-    maNganhNghe: this.dsNganhNghe[0].maNganhNghe,
+    maBac: "3",
+    maNganhNghe: "006",
     khoaHoc: "20",
-    maLoaiHinhDaoTao: this.dsLoaiHinhDaoTao[0].maLoaiHinhDaoTao,
+    maLoaiHinhDaoTao: "1",
   };
+
+  isChanged = false;
 
   private convertToMaChuongTrinhDaoTao(item: CTDT): string {
     return item.maBac + item.maNganhNghe + item.khoaHoc + item.maLoaiHinhDaoTao;
@@ -55,13 +52,13 @@ export class ModalKehoachdaotaoComponent implements OnInit {
     if (this.isChanged) {
       let a = confirm("may da thay doi, co muon luu khong?");
       if (a) {
-        this.isChanged = false;
         this.saveKHDT();
       }
     }
     this.maChuongTrinhDaoTao = this.convertToMaChuongTrinhDaoTao(this.ctdt);
     this.khdtService.getKHDTByHocKiNMaCTDT(this.maChuongTrinhDaoTao, this.hocKi)
     .subscribe(dskhdt => this.dsKHDT = dskhdt);
+    this.isChanged = false;
   }
 
   addNewKHDT() {
@@ -70,7 +67,7 @@ export class ModalKehoachdaotaoComponent implements OnInit {
       hocKi: parseInt(this.hocKi), maChuongTrinhDaoTao: this.maChuongTrinhDaoTao,
       maBoMon: "001", maDaoTao: this.maChuongTrinhDaoTao + this.dsMonHoc[0].maMonHoc,
       donViHocTrinh: 15, soTietHoc: 45, soTuan: 15, maMonHoc: this.dsMonHoc[0].maMonHoc,
-      loaiTienThu: 'Module', tinh: false, xet: false,
+      loaiTienThu: 'Lý thuyết', tinh: false, xet: false,
     };
     this.dsKHDT.push(newKHDT);
     console.log(this.dsKHDT);
@@ -79,6 +76,7 @@ export class ModalKehoachdaotaoComponent implements OnInit {
   removeKHDT(index: number) {
     if (this.dsKHDT !== []){
       this.dsKHDT.splice(index,1);
+      this.isChanged = true;
     }
   }
 
@@ -92,6 +90,7 @@ export class ModalKehoachdaotaoComponent implements OnInit {
       console.log(status);
       if (status.success) {
         alert(status.success);
+        this.isChanged = false;
       }
       else if (status.error) {
         alert(status.error);
@@ -102,9 +101,10 @@ export class ModalKehoachdaotaoComponent implements OnInit {
     })
   }
 
-
-
   ngOnInit(): void {
+    this.bacService.getBac().subscribe(dsbac => this.dsBac = dsbac);
+    this.lhdtService.getLHDT().subscribe(dslhdt => this.dsLoaiHinhDaoTao = dslhdt);
+    this.nganhNgheService.getNganhnghe().subscribe(dsnn => this.dsNganhNghe = dsnn);
     this.maChuongTrinhDaoTao = this.convertToMaChuongTrinhDaoTao(this.ctdt);
     this.monhocService.getMonHoc().subscribe(dsmonhoc => this.dsMonHoc = dsmonhoc);
     this.khdtService.getKHDTByHocKiNMaCTDT(this.maChuongTrinhDaoTao,"1").subscribe(dskhdt => this.dsKHDT = dskhdt);
@@ -114,7 +114,11 @@ export class ModalKehoachdaotaoComponent implements OnInit {
     private modalService: ModalService,
     private khdtService: KHDTService,
     private monhocService: MonhocService,
-    private ctdtService: CTDTService,) {}
+    private lhdtService: LHDTService,
+    private bacService: BacService,
+    private nganhNgheService: NganhNgheService) {
+
+    }
 
   closeModal(id: string) {
     this.modalService.close(id)
