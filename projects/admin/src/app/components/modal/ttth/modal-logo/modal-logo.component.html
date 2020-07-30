@@ -1,19 +1,4 @@
-<app-modal class="modal_chucnang__wrapper show" id="ttth-logo">
-  <script>
-    $(document).on('click', '.add', function (event) {
-      event.preventDefault();
-      var count = parseInt($('#parent').attr('edu-card')) + 1;
-      var html = '<div class="row" id="edu-card-list-' + count +
-        '">  <div class="image-button remove mt-14">Xóa</div>';
-      $('#parent').append(html);
-      $('#parent').attr('edu-card', count);
-    });
-    $(document).on('click', '.remove', function (event) {
-      event.preventDefault();
-      $(this).parent().remove();
-    });
-
-  </script>
+<app-modal class="modal_chucnang__wrapper" id="ttth-logo">
   <div (click)="closeModal('ttth-logo')" class="modal_chucnang__close mdi mdi-chevron-left text-white"></div>
   <div class="container-fluid mt-3">
     <div class="row">

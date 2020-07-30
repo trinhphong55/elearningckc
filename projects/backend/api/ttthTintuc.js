@@ -4,22 +4,13 @@ const multer = require('multer')
 
 // get tin tuc
 router.get('/ttthdanhsachtintuc', async (req, res) => {
-  // try {
-  //   const data = await ttthtintuc.find({})
-  //   console.log(data);
-  //   res.json(data)
-  // } catch (error) {
-  //   res.json({
-  //     message: "Lay danh sach tin tuc ttth that bai.",
-  //     error: error
-  //   })
-  // }
-  ttthtintuc.find((error, data) => {
-    if (error) {
-      return next(error)
-    }
-    res.json(data)
-  })
+
+  try {
+    const danhSachTinTuc = await ttthtintuc.find({ trangthai: true });
+    res.json(danhSachTinTuc);
+  } catch (error) {
+    res.json([]);
+  }
 })
 // add tin tuc
 router.post('/ttththemtintuc', (req, res) => {

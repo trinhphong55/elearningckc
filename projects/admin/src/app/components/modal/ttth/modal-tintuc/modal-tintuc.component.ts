@@ -41,13 +41,10 @@ export class ModalTintucComponent implements OnInit {
   }
 
   getTinTucfromServices(): void {
-    this.tintucService.getTinTuc().subscribe(data => this.TinTuc = data);
+    this.tintucService.getTinTuc().subscribe((data) => {this.TinTuc = data;
+    });
   }
 
-  // filter ngFOr
-  // filterItemsOfType(){
-  //   return this.TinTuc.filter((item) => item.trangthai === true);
-  // }
   // add tintuc
   CK: any;
   public onChange( event: ClassicEditor.EventInfo ) {
@@ -87,8 +84,8 @@ export class ModalTintucComponent implements OnInit {
       newTinTuc.created_at = (new Date);
       newTinTuc.updated_at = null;
       this.tintucService.addTinTuc(newTinTuc)
-        .subscribe(addTinTuc => {
-          this.TinTuc.push(addTinTuc);
+        .subscribe(data => {
+          this.TinTuc.push(data);
         });
       this.toastr.success('Thêm thành công');
     }
@@ -111,18 +108,18 @@ export class ModalTintucComponent implements OnInit {
     TinTuc.updated_at= new Date;
     TinTuc.hienthi= this.capnhatHienThi;
     this.tintucService.suaTinTuc(TinTuc)
-    .subscribe(suaTinTuc => {
-      this.TinTuc.push(suaTinTuc);
+    .subscribe(data => {
+      this.TinTuc.push(data);
     });
     this.toastr.success('Sửa thành công');
   }
   //delete
   xoaTinTuc(TinTuc: ttthTinTuc):void {
     this.tintucService.xoaTinTuc(TinTuc)
-    .subscribe(xoaTinTuc => {
-      this.TinTuc.push(xoaTinTuc);
+    .subscribe(data => {
+      this.TinTuc.push(data);
     });
-    this.toastr.success('Xóa thành công');
     window.location.reload();
+    this.toastr.success('Xóa thành công');
   }
 }

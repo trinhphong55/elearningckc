@@ -5,7 +5,7 @@
       <div class="col-12">
         <h1 class="text-center text-white">Quản lý tin tức </h1>
       </div>
-      <div class="col-12">
+      <div class="col-12" [ngClass]="{ 'd-none': selectedItem }">
         <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
           <div class="row justify-content-center align-items-center">
             <div class="col-9">
@@ -39,7 +39,7 @@
             </div>
             <div class="col-auto">
               <div class="modal_chucnang__group__button">
-                <button class="modal_chucnang__button btn btn-outline-primary px-4 mx-2"
+                <button class="modal_chucnang__button btn btn-outline-primary px-4 mx-2" [disabled]="!id_loaitintuc.value || !tentintuc.value|| !description.value || !imageSrc"
                   (click)="addTinTuc(id_loaitintuc.value,tentintuc.value, description.value);id_loaitintuc.value=''; tentintuc.value=''; description.value='';uploader.uploadAll()"><img
                     class="modal_chucnang__button__icon mb-2" src="assets/img/icons/add.png" alt="image icon">
                   <div>Thêm mới</div>
@@ -55,7 +55,7 @@
             <div class="col-9">
               <div class="form-group">
                 <label>Chọn loại tin tức</label>
-                <select class="modal_chucnang__select2 form-control" #id_loaitintuc
+                <select class="modal_chucnang__select2 form-control"
                   [(ngModel)]="selectedItem.id_loaitintuc">
                   <option></option>
                   <option value="Tin tức">Tin tức</option>
@@ -71,11 +71,11 @@
               </div>
               <div class="form-group">
                 <label>Tiêu đề </label>
-                <input type="text" class="form-control" #tentintuc [(ngModel)]="selectedItem.tentintuc">
+                <input type="text" class="form-control"  [(ngModel)]="selectedItem.tentintuc">
               </div>
               <div class="form-group">
                 <label>Mô tả </label>
-                <input type="text" class="form-control" #description [(ngModel)]="selectedItem.description">
+                <input type="text" class="form-control"  [(ngModel)]="selectedItem.description">
               </div>
               <div class="form-group">
                 <label>Nội dung</label>

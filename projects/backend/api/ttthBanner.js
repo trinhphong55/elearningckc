@@ -4,12 +4,12 @@ const multer = require('multer')
 
 // get tin tuc
 router.get('/ttthdanhsachbanner', async (req, res) => {
-  ttthBanner.find((error, data) => {
-    if (error) {
-      return next(error)
-    }
-    res.json(data)
-  })
+  try {
+    const danhsach = await ttthBanner.find({ trangthai: true });
+    res.json(danhsach);
+  } catch (error) {
+    res.json([]);
+  }
 })
 // add
 router.post('/ttththembanner', (req, res) => {

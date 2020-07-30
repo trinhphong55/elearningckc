@@ -5,7 +5,7 @@
       <div class="col-12">
         <h1 class="text-center text-white">Quản lý banner</h1>
       </div>
-      <div class="col-12">
+      <div class="col-12" [ngClass]="{ 'd-none': selectedItem }">
         <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
           <div class="row justify-content-center align-items-center">
             <div class="col-3">
@@ -27,7 +27,8 @@
             </div>
             <div class="col-auto">
               <div class="modal_chucnang__group__button">
-                <button class="modal_chucnang__button btn btn-outline-primary px-4 mx-2" (click)="addBanner(link.value,vitri.value);link.value=''; vitri.value='';uploader.uploadAll()"><img
+                <button class="modal_chucnang__button btn btn-outline-primary px-4 mx-2" [disabled]="!link.value || !vitri.value|| !imageSrc"
+                (click)="addBanner(link.value,vitri.value);link.value=''; vitri.value='';uploader.uploadAll()"><img
                     class="modal_chucnang__button__icon mb-2" src="assets/img/icons/add.png" alt="image icon">
                   <div>Thêm mới</div>
                 </button>

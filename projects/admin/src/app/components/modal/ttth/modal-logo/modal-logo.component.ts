@@ -52,7 +52,6 @@ export class ModalLogoComponent implements OnInit {
    }
   ///edit
   saveThongTinWeb(ThongTinWeb: ttthThongTinWeb):void {
-    console.log(ThongTinWeb);
     if (this.nameImage) {
       ThongTinWeb.logo='https://localhost:4100/uploads/cntt/' + this.nameImage;
     }
