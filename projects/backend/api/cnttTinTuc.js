@@ -66,6 +66,7 @@ router.post("/chinhSuaTinTuc", async (req, res) => {
   await TinTuc.findOneAndUpdate(
     { _id: req.body._id },
     {
+      maBaiViet: req.body.maBaiViet,
       loaiBaiViet: req.body.loaiBaiViet,
       maDanhMuc: req.body.maDanhMuc,
       tieuDe: req.body.tieuDe,

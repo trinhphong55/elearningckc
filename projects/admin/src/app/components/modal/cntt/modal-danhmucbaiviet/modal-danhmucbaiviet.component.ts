@@ -39,7 +39,7 @@ export class ModalDanhmucbaivietComponent implements OnInit {
     this.danhMucService.getDanhSachDanhMuc().subscribe((data) => {
       this._danhSachDanhMuc = data;
       this.danhSachDanhMuc = this._danhSachDanhMuc.data;
-      console.log(this._danhSachDanhMuc);
+      // console.log(this._danhSachDanhMuc);
       this.getMaDanhMucCuoiCung();
     });
   }
