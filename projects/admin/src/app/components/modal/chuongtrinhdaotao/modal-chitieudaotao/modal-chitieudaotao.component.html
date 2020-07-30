@@ -35,7 +35,7 @@
         <!-- Modal -->
         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
           aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-dialog modal-dialog-scrollable" role="document">
             <div class="modal-content">
               <div class="modal-header alert alert-warning">
                 <h5 class="modal-title" id="exampleModalLongTitle">Thông báo</h5>
@@ -61,7 +61,7 @@
         <!-- Modal -->
         <div class="modal fade" id="sinhVienThongBao" tabindex="-1" role="dialog"
           aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
             <div class="modal-content">
               <div class="modal-header alert alert-info">
                 <h5 class="modal-title" id="exampleModalLongTitle">Thông báo trạng thái thêm</h5>
@@ -74,8 +74,7 @@
                   {{ msg }}
                 </h6>
                 <ul class="list-group" *ngFor="let item of msgList">
-                  <li
-                    [ngClass]="{'list-group-item alert alert-success': item.status === true, 'alert alert-danger':item.status === false }">
+                  <li class="list-group-item">
                     {{ item.msg }}
                   </li>
                 </ul>
@@ -194,7 +193,8 @@
                 <div>
                   <p class="h6">Danh sách sinh viên từ EXCEL </p>
                   <ul class="list-group">
-                    <li class="list-group-item" *ngFor="let item of dsSinhVien">{{ item.ten }}</li>
+                    <li class="list-group-item" *ngFor="let item of dsSinhVien">{{ item.ten }} {{ item.maSinhVien }}
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -235,7 +235,7 @@
                       <th scope="col">STT</th>
                       <th scope="col">Tên Ngành</th>
                       <th scope="col">Chỉ tiêu</th>
-
+                      <th scope="col">Tạo lại lớp</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -248,13 +248,17 @@
                           <input type="number" formControlName="soChiTieu" class="form-control" />
                         </div>
                       </td>
+                      <td>
+                        <button type="button" class="btn btn-outline-danger" data-toggle="modal"
+                          data-target="#exampleModalCenter" (click)="onClickResetLopHoc(nganh.maNganhNghe)">Xóa</button>
+                      </td>
                     </tr>
 
                     <tr>
 
                       <td colspan="3">
                         <button type="button" class="btn btn-outline-primary" data-toggle="modal"
-                          data-target="#exampleModalCenter" (click)="onClickCreate()">Tạo
+                          data-target="#exampleModalCenter" (click)="onClickCreate()">Tạo thêm
                           lớp</button>
                       </td>
 
@@ -282,13 +286,16 @@
                     <!-- <ng-container *ngFor="let item of lopNganhs">
                       <ng-container *ngFor="let lop of item.dsLop, index as i"> -->
                     <tr *ngFor="let item of lopTams, index as i">
+
                       <th scope="row">{{ i+1 }}</th>
                       <td>
                         {{ item.tenLop }}
                       </td>
-                      <td>
-                        {{ item.maLopHoc }}
-                      </td>
+                      <ng-container *ngFor="let sv of tongSoSinhVien">
+                        <td *ngIf="item.maLopHoc == sv.maLopHoc">
+                          {{ sv.siSo }}
+                        </td>
+                      </ng-container>
                       <td>
                         <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#chiTiet"
                           (click)="layLopHocPhan(item.maLopHoc)">Xem</button>
@@ -296,9 +303,8 @@
                       <td>
                         <button type="button" class="modal_chucnang__button btn btn-outline-success" data-toggle="modal"
                           data-target="#dsSV" (click)="onClickThemDSSV(item.maLopHoc)"><img
-                            class=" modal_chucnang__button__icon mb-2" src="assets/img/icons/excel.png"
+                            class=" modal_chucnang__button__icon " src="assets/img/icons/excel.png"
                             alt="image icon">
-                          <div>Import Excel</div>
                         </button>
 
                       </td>

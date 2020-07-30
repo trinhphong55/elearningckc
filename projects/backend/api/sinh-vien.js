@@ -1,24 +1,16 @@
 const SinhVienModel = require("../models/sinh-vien.model");
 const { async } = require("rxjs");
+const LopHocModel = require("../models/LopHoc.model");
 
 setSinhVien = (req) => {
   return {
     maSinhVien: req.body.maSinhVien,
-    CMND: req.body.CMND,
     ho: req.body.ho,
     ten: req.body.ten,
     gioiTinh: req.body.gioiTinh,
     ngaySinh: req.body.ngaySinh,
-    diaChiThuongTru: req.body.diaChiThuongTru,
-    diaChiTamTru: req.body.diaChiTamTru,
     sdt: req.body.sdt,
     email: req.body.email,
-    matKhau: req.body.matKhau,
-    tokens: req.body.tokens,
-    hoTenCha: req.body.hoTenCha,
-    hoTenMe: req.body.hoTenMe,
-    sdtCha: req.body.sdtCha,
-    sdtMe: req.body.sdtMe,
     maLopHoc: req.body.maLopHoc,
     nguoiTao: req.body.nguoiTao,
     nguoiChinhSua: req.body.nguoiChinhSua,
@@ -134,8 +126,11 @@ exports.removeAll = async (req, res) => {
 exports.tinhTongSinhVien = async (req, res) => {
   try {
     const total = await SinhVienModel.count({ maLopHoc: req.params.maLopHoc });
-    res.json({maLopHoc: req.params.maLopHoc, total: total});
+    // const lopHoc = await LopHocModel.findOne({ maLopHoc: req.params.maLopHoc });
+    res.json({ maLopHoc: req.params.maLopHoc , siSo: total });
   } catch (error) {
     res.json(error);
   }
+
 };
+

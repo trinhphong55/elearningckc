@@ -13,8 +13,9 @@ export class SinhVienService {
   public themSinhVien(data) {
     return this.http.post(this.baseUrl, data);
   }
-  public tinhTongSinhVien(maLop: string) {
-    return this.http.get(`${this.baseUrl}/maLop/siso`).pipe(map((res:Response) => res.json()));
+
+  public tinhTongSinhVien(maLop: String) {
+    return this.http.get<any>(`${this.baseUrl}/${maLop}/siso`);
   }
 
 }

@@ -36,7 +36,9 @@ const SinhVienSchema = new Schema({
   },
   CMND:{
     type:String,
-    required:true
+    required:true,
+    default:'baomat',
+
   },
   ho:{
     type:String,
@@ -56,43 +58,53 @@ const SinhVienSchema = new Schema({
   },
   diaChiThuongTru:{
     type:String,
-    required:true
+    required:true,
+    default:'baomat',
   },
   diaChiTamTru:{
     type:String,
-    required:true
+    required:true,
+    default:'baomat',
   },
   sdt:{
     type:String,
-    required:true
+    required:true,
+    default:'baomat',
   },
   email:{
     type:String,
-    required:true
+    required:true,
+    default:'baomat',
   },
   matKhau:{
     type:String,
-   
+    default:'baomat',
+
   },
   tokens:{
     type:String,
-    required:true
+    required:true,
+    default:'baomat'
   },
   hoTenCha:{
     type:String,
-    required:true
+    required:true,
+    default:'baomat'
   },
   hoTenMe:{
     type:String,
-    required:true
+    required:true,
+    default:'baomat',
   },
   sdtCha:{
     type:String,
-    required:true
+    required:true,
+    default:'baomat',
   },
   sdtMe:{
     type:String,
-    required:true
+    required:true,
+    default:'baomat',
   },
   maLopHoc:{
     type:String,
