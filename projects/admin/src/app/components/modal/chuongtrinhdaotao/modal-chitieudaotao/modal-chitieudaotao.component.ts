@@ -205,7 +205,7 @@ export class ModalChitieudaotaoComponent implements OnInit {
     this.soChiTieu.forEach((el) => {
       if (el.maNganh == maNganh) {
         chiTieu = el.chiTieu;
-        console.log(chiTieu);
+       
       }
     });
 
@@ -258,7 +258,7 @@ export class ModalChitieudaotaoComponent implements OnInit {
       let tam = { chiTieu: data, maNganh: maNganh };
       this.soChiTieu.push(tam);
     });
-    console.log(this.soChiTieu);
+
   }
 
   resetLopHoc(maNganh: string) {
@@ -429,7 +429,7 @@ export class ModalChitieudaotaoComponent implements OnInit {
 
         /* save data */
         data = XLSX.utils.sheet_to_json(ws);
-        console.log(data);
+
         this.dsSinhVien = data;
       };
 
@@ -453,7 +453,7 @@ export class ModalChitieudaotaoComponent implements OnInit {
       sv.maSinhVien = 0 + sv.maLopHoc.slice(0, sv.maLopHoc.length - 1) + index;
       this.SinhVienService.themSinhVien(sv).subscribe(
         (response) => {
-          console.log(response);
+
           this.msgList.push({
             msg: `Thêm thành công "${sv.ten}" có mã <${sv.maSinhVien}>`,
             status: true,
@@ -482,7 +482,7 @@ export class ModalChitieudaotaoComponent implements OnInit {
     } else {
       this.msg = 'Danh sách sinh viên trống, không có sinh viên nào được thêm vào';
     }
-    console.log(this.msgList);
+
   }
   public tongSoSinhVien = [];
   public tinhTongSinhVien(maLop:string){

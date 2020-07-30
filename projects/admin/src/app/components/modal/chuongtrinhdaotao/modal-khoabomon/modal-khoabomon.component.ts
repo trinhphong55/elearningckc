@@ -196,7 +196,7 @@ export class ModalKhoabomonComponent implements OnInit {
           //this.result.status = response.status;
           console.log(response);
           //load lại dữ liệuliệu
-          this.retriveKhoaBoMon();
+          this.getBoMon();
         },
         (error) => {
           console.log(error);
@@ -208,6 +208,7 @@ export class ModalKhoabomonComponent implements OnInit {
   }
   //Xoa KhoaBoMonKhoaBoMon
   deleteModal(khoa_id, khoa_maloai) {
+    console.log(khoa_maloai);
     if(khoa_maloai == 1){
       this.KhoaBonmonService.delete(khoa_id).subscribe(
         (response) => {
@@ -223,7 +224,6 @@ export class ModalKhoabomonComponent implements OnInit {
         }
       );
     }else{
-
       this.BomonService.delete(khoa_id).subscribe(
         (response) => {
           //this.result.msg = response.msg;
