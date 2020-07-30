@@ -31,7 +31,7 @@ const khoabomonSchema = new Schema({
   },
   ngayChinhSua: {
     type: Date,
-    default: Date.now,
+    default: Date.now(),
   },
   trangThai: {
     type: Number,

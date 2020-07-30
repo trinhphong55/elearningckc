@@ -134,8 +134,9 @@ export class ModalKhoabomonComponent implements OnInit {
   }
   // thêm KhoaBoMon
   addModal() {
+    console.log(this.setData());
     if (this.addForm.value.loaiDonVi == 1) {
-      this.KhoaBonmonService.create(this.setData).subscribe(
+      this.KhoaBonmonService.create(this.setData()).subscribe(
         (response) => {
           //this.result.msg = response.msg;
           //this.result.status = response.status;
@@ -147,7 +148,7 @@ export class ModalKhoabomonComponent implements OnInit {
         }
       );
     } else {
-      this.BomonService.create(this.setData).subscribe(
+      this.BomonService.create(this.setData()).subscribe(
         (response) => {
           //this.result.msg = response.msg;
           //this.result.status = response.status;
@@ -173,9 +174,10 @@ export class ModalKhoabomonComponent implements OnInit {
   }
   // cập nhật KhoaBoMonKhoaBoMon
   updateModal(id, khoa) {
+    let maLoai = this.addForm.value.loaiDonVi;
 
-    if (this.addForm.value.maLoai == 1) {
-      this.KhoaBonmonService.update(id, this.setData).subscribe(
+    if (maLoai == 1) {
+      this.KhoaBonmonService.update(id, this.setData()).subscribe(
         (response) => {
           // this.result.msg = response.msg;
           //this.result.status = response.status;
@@ -187,8 +189,8 @@ export class ModalKhoabomonComponent implements OnInit {
           console.log(error);
         }
       );
-    } else {
-      this.BomonService.update(id, this.setData).subscribe(
+    } else if(maLoai == 2) {
+      this.BomonService.update(id, this.setData()).subscribe(
         (response) => {
           // this.result.msg = response.msg;
           //this.result.status = response.status;
@@ -200,6 +202,8 @@ export class ModalKhoabomonComponent implements OnInit {
           console.log(error);
         }
       );
+    }else{
+      console.log('Khoong tim thay maLoai');
     }
   }
   //Xoa KhoaBoMonKhoaBoMon
@@ -219,7 +223,7 @@ export class ModalKhoabomonComponent implements OnInit {
         }
       );
     }else{
-     
+
       this.BomonService.delete(khoa_id).subscribe(
         (response) => {
           //this.result.msg = response.msg;

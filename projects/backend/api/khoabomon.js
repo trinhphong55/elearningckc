@@ -59,7 +59,7 @@ exports.postKhoaBoMon = async (req, res) => {
         nguoiChinhSua: req.body.nguoiChinhSua,
         maLoai: req.body.maLoai,
       });
-      
+
       const saveKhoa = await khoaBoMon.save();
       res.json({
         status: 200,
@@ -137,11 +137,14 @@ exports.checkValidate = () => {
 
 exports.updateKhoaBoMon = async (req, res) => {
   try {
+
     const err = validationResult(req);
     if(!err.isEmpty()){
       res.status(422).json(err.errors);
     }
-    const updateKhoa = await KhoaBoMon.updateOne(
+    console.log(req.body);
+
+    const updateKhoa = await KhoaBoMon.update(
       { _id: req.params.id },
       {
         $set: {
@@ -160,6 +163,7 @@ exports.updateKhoaBoMon = async (req, res) => {
       ok: false,
       msg: "",
     };
+
     if (updateKhoa.nModified === 0) {
       result.msg = "Chưa được cập nhật";
 
