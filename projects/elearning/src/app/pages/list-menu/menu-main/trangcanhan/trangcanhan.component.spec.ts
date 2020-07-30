@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LichComponent } from './lich.component';
+import { TrangcanhanComponent } from './trangcanhan.component';
 
-describe('LichComponent', () => {
-  let component: LichComponent;
-  let fixture: ComponentFixture<LichComponent>;
+describe('TrangcanhanComponent', () => {
+  let component: TrangcanhanComponent;
+  let fixture: ComponentFixture<TrangcanhanComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LichComponent ]
+      declarations: [ TrangcanhanComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LichComponent);
+    fixture = TestBed.createComponent(TrangcanhanComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

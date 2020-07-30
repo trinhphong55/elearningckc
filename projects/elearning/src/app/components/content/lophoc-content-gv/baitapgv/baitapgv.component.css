@@ -66,3 +66,9 @@
   overflow: hidden;
   width: 6.5625rem;
 }
+
+@media only screen and (max-width: 600px){
+  .container-fluid{
+    margin-top: 90px;
+}
+}

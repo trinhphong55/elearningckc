@@ -1,48 +1,39 @@
 <header>
-    <div class="title-lophoc">
+    <div class="title-lophoc pt-2">
         <div class="tt-image">
-            <!--<h4><p style="color: cornflowerblue;">E</p><p style="color: darkred;">L</p><p style="color: darkslateblue;">A</p><p style="color: gold;">R</p><p style="color: lawngreen;">N</p><p style="color: lightseagreen;">i</p><p style="color: orangered;">N</p><p style="color: coral;">G</p> Cao Thắng</h4>-->
             <img src="assets/img/Style2_E-learning Blue.png" alt="">
         </div>
     </div>
-    <div class="option">
-        <mat-form-field appearance="fill">
-            <mat-label>Chọn học kì</mat-label>
-            <mat-select [formControl]="toppings" multiple>
-              <mat-select-trigger>
-                {{toppings.value ? toppings.value[0] : ''}}
-                <span *ngIf="toppings.value?.length > 1" class="example-additional-selection">
-                  (+{{toppings.value.length - 1}} {{toppings.value?.length === 2 ? 'other' : 'others'}})
-                </span>
-              </mat-select-trigger>
-              <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
-            </mat-select>
-          </mat-form-field>
+    <div class="d-flex justify-content-center w-50 pt-2">
+        <div class="form-group pr-3 pt-1">
+            <select class="form-control" id="exampleFormControlSelect1">
+              <option>Chọn khóa</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+          </div>
+          <div class="form-group pr-3 pt-1">
+            <select class="form-control" id="exampleFormControlSelect1">
+              <option>Chọn bậc</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+          </div>
+          <div class="form-group pr-3 pt-1">
+            <select class="form-control" id="exampleFormControlSelect1">
+              <option>Chọn học kì</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+          </div>
     </div>
-    <div class="option">
-        <mat-form-field appearance="fill">
-            <mat-label>Chọn bậc</mat-label>
-            <mat-select disableRipple>
-              <mat-option value="1">Cao đẳng</mat-option>
-              <mat-option value="2">Trung cấp</mat-option>
-              <mat-option value="3">Cao đẳng nghề</mat-option>
-            </mat-select>
-          </mat-form-field>
-    </div>
-    <div class="option">
-        <mat-form-field appearance="fill">
-            <mat-label>Khóa</mat-label>
-            <mat-select [formControl]="khoahocs" multiple>
-              <mat-select-trigger>
-                {{khoahocs.value ? khoahocs.value[0] : ''}}
-                <span *ngIf="khoahocs.value?.length > 1" class="example-additional-selection">
-                  (+{{khoahocs.value.length - 1}} {{khoahocs.value?.length === 2 ? 'other' : 'others'}})
-                </span>
-              </mat-select-trigger>
-              <mat-option *ngFor="let khoa of khoahocList" [value]="khoa">{{khoa}}</mat-option>
-            </mat-select>
-          </mat-form-field>
-    </div>
+   
 </header>
 <div class="lophoc-container">
     <div class="list-lophoc">
@@ -58,7 +49,7 @@
                         </div>
                         <div>
                             <span>
-                                ĐVHP:9
+                                ĐVHP  :  9
                             </span>
                         </div>
                         <div>
@@ -116,7 +107,7 @@
                         </div>
                         <div>
                             <span>
-                                ĐVHP:9
+                                ĐVHP  :  9
                             </span>
                         </div>
                         <div>
@@ -182,7 +173,7 @@
                         </div>
                         <div>
                             <span>
-                                ĐVHP:9
+                                ĐVHP  :  9
                             </span>
                         </div>
                         <div>
@@ -240,7 +231,7 @@
                         </div>
                         <div>
                             <span>
-                                ĐVHP:9
+                                ĐVHP  :  9
                             </span>
                         </div>
                         <div>
@@ -298,7 +289,7 @@
                         </div>
                         <div>
                             <span>
-                                ĐVHP:9
+                                ĐVHP  :  9
                             </span>
                         </div>
                         <div>
@@ -356,7 +347,7 @@
                         </div>
                         <div>
                             <span>
-                                ĐVHP:9
+                                ĐVHP  :  9
                             </span>
                         </div>
                         <div>
@@ -414,7 +405,7 @@
                         </div>
                         <div>
                             <span>
-                                ĐVHP:9
+                                ĐVHP  :  9
                             </span>
                         </div>
                         <div>
@@ -480,7 +471,7 @@
                         </div>
                         <div>
                             <span>
-                                ĐVHP:9
+                                ĐVHP  :  9
                             </span>
                         </div>
                         <div>
@@ -538,7 +529,7 @@
                         </div>
                         <div>
                             <span>
-                                ĐVHP:9
+                                ĐVHP  :  9
                             </span>
                         </div>
                         <div>

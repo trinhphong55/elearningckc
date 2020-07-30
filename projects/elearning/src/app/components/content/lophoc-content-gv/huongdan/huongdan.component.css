@@ -242,3 +242,22 @@
     border: 2px solid #006666;
    
   }
+  @media only screen and (max-width: 600px){
+    .comtainer{
+        margin-top: 90px;
+    }
+    .title-icon{
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap; 
+        color: #007b83;
+        border-bottom: 1.5px solid #007b83;
+    }
+    .title-icon .title{
+        width: 60%;
+    
+    }
+    .tt-dealine div{
+        display: none;
+    }
+  }

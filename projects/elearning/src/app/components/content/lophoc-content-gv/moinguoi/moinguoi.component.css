@@ -1,5 +1,8 @@
 
-.row .col-6{
+.contaier{
+    margin-top: 60px;
+}
+.row .col-md-6{
     margin:  0 auto;
 }
 .row{
@@ -120,4 +123,10 @@
   ul {
     list-style-type: none;
     margin-top: 4px;
+  }
+  @media only screen and (max-width: 600px){
+
+    .container{
+        margin-top: 50px;
+    }
   }

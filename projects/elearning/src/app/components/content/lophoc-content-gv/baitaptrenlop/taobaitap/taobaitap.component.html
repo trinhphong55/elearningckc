@@ -1,16 +1,16 @@
 <div class="container-fluid">
     <div class="row" style="border-bottom:solid 0.5px black;padding-bottom: 20px;">
-        <div class="col-2">
+        <div class="col-md-2">
             <div mat-dialog-actions>
                 <button mat-button mat-dialog-close><i class="fas fa-times"></i></button>
                 <span style="margin-left: 5px;">Bài tập</span>
             </div>
 
         </div>
-        <div class="col-8">
+        <div class="col-md-8">
 
         </div>
-        <div class="col-2">
+        <div class="col-md-2">
             <div>
                 <button mat-button>Giao bài</button>
                 <button mat-button [matMenuTriggerFor]="menu"><i class="fas fa-angle-down"></i></button>
@@ -24,9 +24,9 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-8">
+        <div class="col-md-8">
             <div class="row">
-                <div class="col-12" style="padding-top:10px">
+                <div class="col-md-12" style="padding-top:10px">
                     <form class="example-form">
                         <mat-form-field class="example-full-width" style="width:100%">
                             <mat-label>Tiêu đề</mat-label>
@@ -34,7 +34,7 @@
                         </mat-form-field>
                     </form>
                 </div>
-                <div class="col-12">
+                <div class="col-md-12">
                     <form class="example-form">
                         <mat-form-field class="example-full-width" style="width:100%">
                             <mat-label>Hướng dẫn (không bắt buộc)</mat-label>
@@ -42,7 +42,7 @@
                         </mat-form-field>
                     </form>
                 </div>
-                <div class="col-4">
+                <div class="col-md-4">
                     <button mat-button [matMenuTriggerFor]="menuthem">Thêm</button>
                     <mat-menu #menuthem="matMenu">
                         <button mat-menu-item>Google Drive</button>
@@ -61,7 +61,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-4">
+        <div class="col-md-4">
             <mat-label>Dành cho</mat-label>
             <form class="example-form">
                 <mat-form-field class="example-full-width">

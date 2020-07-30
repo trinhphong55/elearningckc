@@ -64,3 +64,10 @@ padding-bottom: 5px;
 .image-name .name{
     width: 80%;
 }
+
+@media only screen and (max-width: 600px){
+    table span{
+        font-size: 0.5px;
+    }
+}
+
