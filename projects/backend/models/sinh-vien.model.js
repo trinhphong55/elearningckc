@@ -31,11 +31,14 @@ const Schema = mongoose.Schema;
 const SinhVienSchema = new Schema({
   maSinhVien:{
     type:String,
-    required:true
+    required:true,
+    unique:true
   },
   CMND:{
     type:String,
-    required:true
+    required:true,
+    default:'baomat',
+
   },
   ho:{
     type:String,
@@ -50,57 +53,67 @@ const SinhVienSchema = new Schema({
     required:true
   },
   ngaySinh:{
-    type:Date,
-    default:Date.now(),
+    type:String,
     required:true
   },
   diaChiThuongTru:{
     type:String,
-    required:true
+    required:true,
+    default:'baomat',
   },
   diaChiTamTru:{
     type:String,
-    required:true
+    required:true,
+    default:'baomat',
   },
   sdt:{
     type:String,
-    required:true
+    required:true,
+    default:'baomat',
   },
   email:{
     type:String,
-    required:true
+    required:true,
+    default:'baomat',
   },
   matKhau:{
     type:String,
-    required:true
+    default:'baomat',
+
   },
   tokens:{
     type:String,
-    required:true
+    required:true,
+    default:'baomat'
   },
   hoTenCha:{
     type:String,
-    required:true
+    required:true,
+    default:'baomat'
   },
   hoTenMe:{
     type:String,
-    required:true
+    required:true,
+    default:'baomat',
   },
   sdtCha:{
     type:String,
-    required:true
+    required:true,
+    default:'baomat',
   },
   sdtMe:{
     type:String,
-    required:true
+    required:true,
+    default:'baomat',
   },
   maLopHoc:{
     type:String,
     required:true
   },
   trangThai:{
-    type:String,
-    required:true
+    type:Number,
+    required:true,
+    default:1
   },
   nguoiTao:{
     type:String,
@@ -117,4 +130,4 @@ const SinhVienSchema = new Schema({
   }
 });
 
-module.exports = mongoose.model('SinhVien',SinhVienSchema,'SinhVien');
+module.exports = mongoose.model("SinhVien",SinhVienSchema,"SinhVien");

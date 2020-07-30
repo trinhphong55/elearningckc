@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalService } from '../../../../services/modal.service';
 import { NganhNgheService } from '../../../../services/NganhNghe.service';
 import  {DiemSinhVienService } from '../../../../services/diem-sinh-vien.service';
-import {SinhVienService } from '../../../../services/sinhvien.service';
+import {SinhVienService } from '../../../../services/sinh-vien.service';
 import {Diemsv} from '../../../../interfaces/diemsv.interface';
 import { bac } from '../../../../interfaces/Bac.interface';
 import { LHDTService } from '../../../../services/loaihinhdaotao.service';
@@ -30,7 +30,8 @@ export class ModalDiemchinhthucComponent implements OnInit {
   dsBac: bac[];
   dsLophoc: any;
   dsSinhvien: any;
-  
+  sinhvien: any;
+  lophoc:any;
   diemsv : Diemsv = {
     maBac: "3",
     maNganhNghe: "006",
@@ -70,6 +71,21 @@ export class ModalDiemchinhthucComponent implements OnInit {
     console.log(this.diemsv.maNganhNghe);
     this.lopHocService.getAllFormanghanh(this.diemsv.maNganhNghe).subscribe(lop=> this.dsLophoc=lop);
     console.log(this.dsLophoc);
+  }
+  selectlop(e){
+    this.Sinhvienservice.laysinhvien(this.diemsv.maLophoc).subscribe(sv=>this.dsSinhvien=sv);
+    
+  }
+  selectmasinhvien(e){
+    this.Sinhvienservice.getonesv(this.diemsv.maSinhVien).subscribe(sv=>this.sinhvien=sv);
+    this.diemsv.maLophoc=this.sinhvien.maLophoc;
+    this.dsLophoc.forEach(element => {
+      if(element.maLophoc==this.diemsv.maLophoc)
+      {
+        this.lophoc=element;
+      }
+    });
+
   }
   closeModal(id: string) {
     this.modalService.close(id)

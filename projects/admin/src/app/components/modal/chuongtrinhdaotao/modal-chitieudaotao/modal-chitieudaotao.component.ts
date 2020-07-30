@@ -1,13 +1,19 @@
+import { LopHoc } from './../../../../interfaces/LopHoc.interface';
+import { SinhVienService } from './../../../../services/sinh-vien.service';
+import { SinhVien } from './../../../../interfaces/SinhVien.interface';
+import { Subject } from 'rxjs';
 import { LopHocService } from './../../../../services/lop-hoc.service';
 import { BacService } from './../../../../services/Bac.service';
 import { FormControl, FormGroup, Validators, FormArray } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ModalService } from '../../../../services/modal.service';
 import { NganhNgheService } from '../../../../services/NganhNghe.service';
+import * as XLSX from 'xlsx';
 
 // Yasuo start
 import { LopHocPhan } from './../../../../interfaces/lophocphan.interface';
 import { LopHocPhanService } from '../../../../services/lophocphan.service';
+import { tinhTongSinhVien } from '../../../../../../../backend/api/sinh-vien';
 
 // Yasuo end
 
@@ -54,7 +60,7 @@ export class ModalChitieudaotaoComponent implements OnInit {
   public nganhtamlist: any;
   //Khai bao Form
   addForm: FormGroup;
-  chiTieuGroup: FormGroup;
+
   chiTieuList = new FormArray([]);
   hocKiForm: FormGroup;
 
@@ -64,13 +70,14 @@ export class ModalChitieudaotaoComponent implements OnInit {
   //Khai bao Array
   public lops = [];
   public lopHocs: any;
-  public lopTams: any;
+  public lopTams: LopHoc[];
   public lopHocPhans: LopHocPhan[];
 
   //Khai bao thong bao
   msg = '';
   public msgList = [];
   public resetResult;
+  public soChiTieu = [];
 
   //Gan gia tri cho Objsect Lop
   setLop = (
@@ -100,8 +107,9 @@ export class ModalChitieudaotaoComponent implements OnInit {
     private nganhngheservice: NganhNgheService,
     private bacservice: BacService,
     private lopHocService: LopHocService,
-    private lopHocPhanSerivce: LopHocPhanService
-  ) {}
+    private lopHocPhanSerivce: LopHocPhanService,
+    private SinhVienService: SinhVienService
+  ) { }
 
   ngOnInit(): void {
     this.addForm = new FormGroup({
@@ -112,9 +120,12 @@ export class ModalChitieudaotaoComponent implements OnInit {
     this.getNganhNghe();
     this.getbac();
     this.getLopHoc();
+    this.getSiSo();
+    this.tongSoSinhVien;
     this.hocKiForm = new FormGroup({
       hocKi: new FormControl(''),
     });
+
   }
   //Lay tat ca tu DB LOP HOC
   getLopHoc() {
@@ -122,7 +133,6 @@ export class ModalChitieudaotaoComponent implements OnInit {
       (lop) => {
         this.lopHocs = lop;
         this.lopTams = this.lopHocs;
-
       },
       (err) => (this.msg = err)
     );
@@ -141,13 +151,14 @@ export class ModalChitieudaotaoComponent implements OnInit {
   getNganhNghe() {
     this.nganhngheservice.getNganhnghe().subscribe(
       (data) => {
-        this.chiTieuGroup = new FormGroup({
-          maNganh: new FormControl(''),
-          soChiTieu: new FormControl(''),
-        });
         this.nganhList = data;
         this.nganhtamlist = this.nganhList;
+
         this.nganhList.forEach((element) => {
+          this.tinhSoChiTieu(element.maNganhNghe);
+
+          this.convertToChiTieu(element.maNganhNghe);
+
           this.chiTieuList.push(
             new FormGroup({
               maBac: new FormControl(element.maBac),
@@ -193,7 +204,17 @@ export class ModalChitieudaotaoComponent implements OnInit {
     });
     return ten;
   }
+  convertToChiTieu(maNganh: string) {
+    let chiTieu = 1;
 
+    this.soChiTieu.forEach((el) => {
+      if (el.maNganh == maNganh) {
+        chiTieu = el.chiTieu;
+      }
+    });
+
+    return chiTieu;
+  }
   addLopHoc(data) {
     this.lopHocService.create(data).subscribe(
       (res) => {
@@ -208,6 +229,7 @@ export class ModalChitieudaotaoComponent implements OnInit {
   //Khai bao su kien click
 
   onClickCreate() {
+    this.msgList = [];
     if (!this.addForm.value.khoa || !this.addForm.value.loaiHinhDaoTao) {
       this.msg = 'Vui lòng chọn Loại hình đào tạo và nhập khóa học';
     } else {
@@ -216,8 +238,9 @@ export class ModalChitieudaotaoComponent implements OnInit {
     }
   }
   onClickResetLopHoc(maNganh: string) {
+    this.msgList = [];
     this.deleteLopHoc(maNganh);
-    this.taoLopHoc();
+    //this.taoLopHoc();
     this.getLopHoc();
   }
   /**
@@ -231,18 +254,28 @@ export class ModalChitieudaotaoComponent implements OnInit {
 
   deleteLopHoc(maNganh: string) {
     this.lopHocService.deleteMaNganh(maNganh).subscribe(
-      (data) => {},
+      (data) => {
+        console.log(data);
+        this.msgList.push({ msg: `Xóa thành công lớp học của ${maNganh}` });
+      },
       (error) => console.log(error)
     );
   }
 
-  resetLopHoc(maNganh: string) {
+  public tinhSoChiTieu(maNganh: string) {
+    this.lopHocService.getAllFor(maNganh).subscribe((data: number) => {
+      let tam = { chiTieu: data, maNganh: maNganh };
+      this.soChiTieu.push(tam);
+    });
+  }
+
+  kiemtraTonTaiLopHoc(maNganh: string) {
     this.lopHocService.getAllFor(maNganh).subscribe((data) => {
       if (data > 0) {
         this.msgList.push({
           msg:
             `Ngành "${this.convertToTenNganh(maNganh)} "` +
-            ' đã tồn tại danh sách lớp, Bạn có muốn tạo danh sách mới không ? ',
+            ' đã tồn tại danh sách lớp, Bạn có muốn xóa để tạo danh sách mới không ? ',
           trangThai: true,
           maNganh: maNganh,
         });
@@ -307,15 +340,14 @@ export class ModalChitieudaotaoComponent implements OnInit {
   }
 
   public taoLopHoc() {
-    let index = 1;
     this.chiTieuList.value.forEach((el) => {
       let len = el.soChiTieu;
+      console.log(len);
       if (el.soChiTieu > 0) {
-        this.resetLopHoc(el.maNganh);
+        this.kiemtraTonTaiLopHoc(el.maNganh);
       }
       // Bac + Nganh + Khóa  + STT
       for (let i = 0; i < len; i++) {
-        index++;
         var tenLop =
           this.convertToTenBacVietTat(el.maBac) +
           ' ' +
@@ -347,7 +379,6 @@ export class ModalChitieudaotaoComponent implements OnInit {
       this.getLopHoc();
       this.lops = [];
     });
-    this.msgList = [];
   }
   //bắt sự kiện show môn theo ngành
   changed(e) {
@@ -367,5 +398,129 @@ export class ModalChitieudaotaoComponent implements OnInit {
   }
   closeModal(id: string) {
     this.modalService.close(id);
+  }
+
+  ///Import Excel SinhVien
+  spinnerEnabled = false;
+  keys: string[];
+  dsSinhVien: SinhVien[];
+  dataSheet = new Subject();
+  @ViewChild('inputFile') inputFile: ElementRef;
+  isExcelFile: boolean;
+  maLopThem: string;
+
+  onClickThemDSSV(maLop: string) {
+    this.maLopThem = maLop;
+  }
+  onChangeSinhVien(evt) {
+    let data;
+    const target: DataTransfer = <DataTransfer>evt.target;
+    this.isExcelFile = !!target.files[0].name.match(/(.xls|.xlsx)/);
+    if (target.files.length > 1) {
+      this.inputFile.nativeElement.value = '';
+    }
+    if (this.isExcelFile) {
+      this.spinnerEnabled = true;
+      const reader: FileReader = new FileReader();
+
+      reader.onload = (e: any) => {
+        /* read workbook */
+        const bstr: string = e.target.result;
+        const wb: XLSX.WorkBook = XLSX.read(bstr, { type: 'binary' });
+
+        /* grab first sheet */
+        const wsname: string = wb.SheetNames[0];
+        const ws: XLSX.WorkSheet = wb.Sheets[wsname];
+
+        /* save data */
+        data = XLSX.utils.sheet_to_json(ws);
+
+        this.dsSinhVien = data;
+      };
+
+      reader.readAsBinaryString(target.files[0]);
+
+      reader.onloadend = (e) => {
+        this.spinnerEnabled = false;
+        this.keys = Object.keys(data[0]);
+        // console.log(this.dsMonHoc);
+        this.dataSheet.next(data);
+      };
+    } else {
+      this.inputFile.nativeElement.value = '';
+    }
+  }
+  convertToMaLopHopLe(sv:String){
+    //030061711 => 0306171
+    return (0 + sv.slice(0, 1) + sv.slice(2, 7));
+  }
+  private importExcel() {
+    this.dsSinhVien.forEach((sv) => {
+      sv.nguoiChinhSua = 'macdinh';
+      sv.nguoiTao = 'macdinh';
+      sv.maLopHoc = this.maLopThem;
+      let maHopLe = this.convertToMaLopHopLe(sv.maLopHoc);
+      let maSv = sv.maSinhVien.slice(0, 7);
+      if (maSv === maHopLe) {
+        this.SinhVienService.themSinhVien(sv).subscribe(
+          (response) => {
+            this.msgList.push({
+              msg: `Thêm thành công "${sv.ten}" có mã số [${sv.maSinhVien}]`,
+              status: true,
+            });
+            console.log(response);
+          },
+          (error) => {
+            this.msgList.push({
+              msg: `Thêm thất bại "${sv.ten}" có mã số [${sv.maSinhVien}]`,
+              status: false,
+            });
+            console.log(error);
+          }
+        );
+      }else{
+          this.msgList.push({
+          msg: `Thêm thất bại "${sv.ten}" có mã số [${sv.maSinhVien}] không hợp lệ !`,
+          status: false,
+        });
+      }
+
+
+    });
+  }
+  removeData() {
+    this.inputFile.nativeElement.value = '';
+    this.dataSheet.next(null);
+    this.keys = null;
+    this.dsSinhVien = undefined;
+  }
+  public onClickImportExeclSinhVien() {
+    this.msgList = [];
+    if (this.dsSinhVien) {
+      this.msg = 'Danh sách sinh viên';
+      this.importExcel();
+    } else {
+      this.msg =
+        'Danh sách sinh viên trống, không có sinh viên nào được thêm vào';
+    }
+  }
+  public tongSoSinhVien = [];
+
+  public getSiSo(){
+    this.lopHocService.getAll().subscribe(
+      (lop) => {
+        this.lopHocs = lop;
+        this.lopTams = this.lopHocs;
+        this.lopTams.forEach(el => {
+          this.tinhTongSinhVien(el.maLopHoc);
+        })
+      },
+      (err) => (this.msg = err)
+    );
+  }
+  public tinhTongSinhVien(maLop: String) {
+    this.SinhVienService.tinhTongSinhVien(maLop).subscribe((res) => {
+      this.tongSoSinhVien.push(res);
+    });
   }
 }

@@ -1,6 +1,7 @@
 const LopHoc = require("../models/LopHoc.model");
 const { check, validationResult } = require("express-validator");
-const { async } = require("rxjs");
+const sinhVienModel = require("../models/sinh-vien.model");
+
 
 // "maLopHoc": "mã Bậc + mã Ngành Nghề + Khoá Học + mã Loại Hình Đào Tạo + Số thứ tự",
 // "tenLop": "kiểu String",
@@ -31,6 +32,7 @@ exports.getAll = async (req, res) => {
     const LopHocs = await LopHoc.find({ trangThai: 1 }).sort({
       maNganh: "asc",
     });
+
 
     res.json(LopHocs);
   } catch (error) {
@@ -65,9 +67,19 @@ exports.getAllForManghanh = async (req, res) => {
     res.json(error);
   }
 };
+exports.getAllForkhoa = async (req, res) => {
+  try {
+    let LopHocs = await LopHoc.find({
+      maNganh: req.params.khoa,
+    });
+    res.json(LopHocs);
+  } catch (error) {
+    res.json(error);
+  }
+};
 exports.deleteMaNganh = async (req, res) => {
   try {
-    let LopHocs = await LopHoc.remove({
+    let LopHocs = await LopHoc.deleteMany({
       maNganh: req.params.maNganh,
     });
 
@@ -222,9 +234,17 @@ exports.removeAll = async (req, res) => {
 };
 exports.search = async (req, res) => {
   try {
-    const search = LopHoc.find({ maNganh: req.params.id });
+    const search = LopHoc.find({ maNganh: req.params.maNganh });
     res.json(search);
   } catch (error) {
     res.json(error);
   }
 };
+exports.timLopTheoTienTo = async (req, res) => {
+  try {
+    const lop = await LopHoc.find({maNganh :req.params.maNganh, maBac: req.body.maBac, khoa: req.body.khoa});
+    res.json(lop);
+  } catch (error) {
+    res.json(error)
+  }
+}

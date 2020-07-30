@@ -25,20 +25,20 @@
               </div>
               <div class="form-group" >
                 <label>Khoá</label>
-                <input class="form-control" [(ngModel)]="diemsv.khoaHoc" id="khoa"  type="number" min="15" value="15">
+                <input class="form-control" [(ngModel)]="diemsv.khoaHoc" id="khoa"  type="number" min="15" value="15" >
               </div>
               
             </div>
             <div class="col-3">
               <div class="form-group">
                 <label>Lớp</label>
-                <select id="lophoc" [(ngModel)]="diemsv.maLophoc" class="form-control modal_chucnang__select"  >
+                <select id="lophoc" [(ngModel)]="diemsv.maLophoc" class="form-control modal_chucnang__select" (change)="selectlop($event)"  >
                   <option *ngFor="let lophoc of dsLophoc" [value]="lophoc.maLopHoc">{{lophoc.tenLop}}</option>
                 </select>
               </div>
               <div class="form-group">
                 <label>Họ tên</label>
-                <select id="masv" class="form-control modal_chucnang__select" [(ngModel)]="diemsv.maSinhVien">
+                <select id="masv" class="form-control modal_chucnang__select2" [(ngModel)]="diemsv.maSinhVien" (change)="selectmasinhvien($event)">
                   <option *ngFor="let sv of dsSinhvien" [value]="sv.maSinhVien" >{{sv.maSinhVien}}- {{sv.ho}} {{sv.ten}} </option>
                 </select>
               </div>
