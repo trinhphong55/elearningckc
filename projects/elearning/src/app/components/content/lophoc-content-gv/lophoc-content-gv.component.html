@@ -1,23 +1,26 @@
-<div class="row style-menu">
-    <div class="col-2">
-        <p>{{data}}</p>
-    </div>
-    <div class="col-8">
-        <div class="example-button-row">
-            <button mat-button (click)="showLuong()">Luồng</button>
-            <button mat-button (click)="showBaitaptrenlop()">Bài tập trên lớp</button>
-            <button mat-button (click)="showmoinguoi()">Mọi người </button>
-            <button mat-button (click)="showsodiem()">Số điểm</button>
-            <button mat-button (click)="showhuongdan()">Hướng dẫn</button>
-            <button mat-button (click)="showbaitapgv()">Bài tập của giáo viên</button>
+
+<div class="container-fluid">
+    <div class="row style-menu">
+        <div class="col-md-2">
+            <p>{{data}}</p>
+        </div>
+        <div class="col-md-8">
+            <div class="example-button-row">
+                <button mat-button (click)="showLuong()">Luồng</button>
+                <button mat-button (click)="showBaitaptrenlop()">Bài giảng</button>
+                <button mat-button (click)="showmoinguoi()">Mọi người </button>
+                <button mat-button (click)="showsodiem()">Số điểm</button>
+                <button mat-button (click)="showhuongdan()">Hướng dẫn</button>
+                <button mat-button (click)="showbaitapgv()">Bài tập của giáo viên</button>
+            </div>
+        </div>
+        <div class="col-md-2">
+            
         </div>
     </div>
-    <div class="col-2">
-        
-    </div>
-</div>
-<div class="row style-mgt" style="margin-top: 50px;">
-    <div class="col-12">
-        <router-outlet></router-outlet>
+    <div class="row style-mgt" style="margin-top: 50px;">
+        <div class="col-md-12">
+            <router-outlet></router-outlet>
+        </div>
     </div>
 </div>

@@ -1,10 +1,10 @@
 .container-fluid{
     margin-top: 30px;
 }
-.col-8{
+.col-md-8{
     margin: 0 auto;
 }
-.col-8 .row{
+.col-md-8 .row{
     margin-bottom: 20px;
 }
 .style-list{
@@ -18,7 +18,7 @@
 .style-list .list-chude button{
     color: #777777;
 }
-.col-8 .row .col-4 button{
+.col-md-8 .row .col-md-4 button{
     background: #007b83;
     padding-left: 25px;
     padding-right: 25px;
@@ -29,20 +29,20 @@
     padding-bottom: 5px;
     
 }
-.col-8 .row .col-4 button i{
+.col-md-8 .row .col-md-4 button i{
     padding-right: 10px;
 }
-.col-8 .row .col-4 button:hover{
+.col-md-8 .row .col-md-4 button:hover{
     
     box-shadow: 4px 4px 4px 4px rgba(66, 120, 129, 0.8);
     
 }
-.col-8 .row .col-8 a{
+.col-md-8 .row .col-md-8 a{
     padding: 20px;
     color: #007b83;
     font-weight: 500;
 }
-.col-8 .row .col-8 a i{
+.col-md-8 .row .col-md-8 a i{
     padding-right: 10px;
     font-size: 20px;
     color: #555555;
@@ -63,38 +63,16 @@ button{
 .mat-expansion-panel-header-title i{
     padding: 5px;
 }
-.col-12{
+.col-md-12{
     margin-bottom: 30px;
 }
-
-.songuoinop{
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-}
-.songuoinop .left{
-    width: 50%;
-}
-.songuoinop .right{
-    width: 50%;
-}
-.danop_dagiao{
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-}
-.danop_dagiao .danop{
-    width: 30%;
-}
-.danop_dagiao .dagiao{
-    width: 30%;
-}
-.danop_dagiao button{
-    border-left: 0.5px solid #444444;
-    border-radius: 0;
-    padding: 0;
-    width: 100%;
-}
-.danop_dagiao button p{
-    font-size: 3rem;
+@media only screen and (max-width: 600px){
+    .container-fluid{
+        margin-top: 100px;
+    }
+    .style-list{
+        margin-top: 0px; 
+        margin-left: 0px;
+        margin-bottom: 20px;
+    }
 }

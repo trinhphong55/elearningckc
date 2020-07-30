@@ -13,10 +13,6 @@ import {MatListModule} from '@angular/material/list';
 import { HeaderMainComponent } from './components/header/header-main/header-main/header-main.component';
 import { MenuMainComponent } from './pages/list-menu/menu-main/menu-main.component';
 import { LophocComponent } from './pages/list-menu/menu-main/lophoc/lophoc.component';
-import { LichComponent } from './pages/list-menu/menu-main/lich/lich.component';
-import { GiangdayComponent } from './pages/list-menu/menu-main/giangday/giangday.component';
-import { DadangkyComponent } from './pages/list-menu/menu-main/dadangky/dadangky.component';
-import { LophocdaluutruComponent } from './pages/list-menu/menu-main/lophocdaluutru/lophocdaluutru.component';
 import { CaidatComponent } from './pages/list-menu/menu-main/caidat/caidat.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { TaoOrThamgiaLophocComponent } from './pages/list-menu/menu-main/tao-or-thamgia-lophoc/tao-or-thamgia-lophoc.component';
@@ -53,7 +49,6 @@ import { Chude1Component } from './components/content/lophoc-content-gv/baitaptr
 import { Chude2Component } from './components/content/lophoc-content-gv/baitaptrenlop/list-chude/chude2/chude2.component';
 import { Chude3Component } from './components/content/lophoc-content-gv/baitaptrenlop/list-chude/chude3/chude3.component';
 import { Chude4Component } from './components/content/lophoc-content-gv/baitaptrenlop/list-chude/chude4/chude4.component';
-import { ThoikhoabieuComponent } from './pages/list-menu/menu-main/thoikhoabieu/thoikhoabieu.component';
 import { TaobaiktraComponent } from './components/content/lophoc-content-gv/baitaptrenlop/taobaiktra/taobaiktra.component';
 import { TaocauhoiComponent } from './components/content/lophoc-content-gv/baitaptrenlop/taocauhoi/taocauhoi.component';
 import { TaotailieuComponent } from './components/content/lophoc-content-gv/baitaptrenlop/taotailieu/taotailieu.component';
@@ -64,8 +59,6 @@ import { BaitapgvComponent } from './components/content/lophoc-content-gv/baitap
 import { MatNativeDateModule } from '@angular/material/core';
 import { MoigvComponent } from './components/content/lophoc-content-gv/moinguoi/moigv/moigv.component';
 import { MoisvComponent } from './components/content/lophoc-content-gv/moinguoi/moisv/moisv.component';
-import { ThoikhoabieuctComponent } from './components/content/thoikhoabieuct/thoikhoabieuct.component';
-import { ThoikhoabieuchitietComponent } from './components/content/thoikhoabieuct/thoikhoabieuchitiet/thoikhoabieuchitiet.component';
 import { NoidungbaitapComponent } from './components/content/lophoc-content-gv/luong/noidungbaitap/noidungbaitap.component';
 import { NoidungtaileuComponent } from './components/content/lophoc-content-gv/luong/noidungtaileu/noidungtaileu.component';
 import { XembaitapgvComponent } from './components/content/lophoc-content-gv/baitaptrenlop/allchude/xembaitapgv/xembaitapgv.component';
@@ -74,6 +67,11 @@ import { NoidungbaitapsvComponent } from './components/content/lophoc-content-gv
 import { NoidungtailieusvComponent } from './components/content/lophoc-content-gv/luong/noidungtailieusv/noidungtailieusv.component';
 import { XembaitapsvComponent } from './components/content/lophoc-content-gv/baitaptrenlop/allchude/xembaitapsv/xembaitapsv.component';
 import { XemtailieusvComponent } from './components/content/lophoc-content-gv/baitaptrenlop/allchude/xemtailieusv/xemtailieusv.component';
+import { TrangcanhanComponent } from './pages/list-menu/menu-main/trangcanhan/trangcanhan.component';
+import { TrangcanhanContentComponent } from './components/content/trangcanhan-content/trangcanhan-content.component';
+import { ThongtinsvComponent } from './components/content/trangcanhan-content/thongtinsv/thongtinsv.component';
+import { ThoikhoabieusvComponent } from './components/content/trangcanhan-content/thoikhoabieusv/thoikhoabieusv.component';
+import { DiemsosvComponent } from './components/content/trangcanhan-content/diemsosv/diemsosv.component';
 
 @NgModule({
   declarations: [
@@ -81,10 +79,6 @@ import { XemtailieusvComponent } from './components/content/lophoc-content-gv/ba
     HeaderMainComponent,
     MenuMainComponent,
     LophocComponent,
-    LichComponent,
-    GiangdayComponent,
-    DadangkyComponent,
-    LophocdaluutruComponent,
     CaidatComponent,
     FooterComponent,
     TaoOrThamgiaLophocComponent,
@@ -108,7 +102,6 @@ import { XemtailieusvComponent } from './components/content/lophoc-content-gv/ba
     Chude2Component,
     Chude3Component,
     Chude4Component,
-    ThoikhoabieuComponent,
     TaobaiktraComponent,
     TaocauhoiComponent,
     TaotailieuComponent,
@@ -117,8 +110,6 @@ import { XemtailieusvComponent } from './components/content/lophoc-content-gv/ba
     BaitapgvComponent,
     MoigvComponent,
     MoisvComponent,
-    ThoikhoabieuctComponent,
-    ThoikhoabieuchitietComponent,
     NoidungbaitapComponent,
     NoidungtaileuComponent,
     XembaitapgvComponent,
@@ -126,7 +117,12 @@ import { XemtailieusvComponent } from './components/content/lophoc-content-gv/ba
     NoidungbaitapsvComponent,
     NoidungtailieusvComponent,
     XembaitapsvComponent,
-    XemtailieusvComponent
+    XemtailieusvComponent,
+    TrangcanhanComponent,
+    TrangcanhanContentComponent,
+    ThongtinsvComponent,
+    ThoikhoabieusvComponent,
+    DiemsosvComponent
    ],
   imports: [
     BrowserModule,

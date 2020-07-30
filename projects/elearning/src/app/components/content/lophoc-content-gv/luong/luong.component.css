@@ -586,3 +586,53 @@ form.ng-untouched.ng-pristine.ng-valid {
     border: 2px solid #006666;
    
   }
+
+
+  @media only screen and (max-width: 600px){
+    .container-fluid{
+        margin-top: 100px;
+    }
+    .row {
+        width: 110%;
+    }
+    .chise{
+        margin: 0;
+        width: 100%;
+        padding: 0;
+        margin-top: 10px;
+        margin-bottom: 5px;
+    }
+    .thongtin .tt-icon{
+        width: 10%;
+    }
+    .thongtin .tt-icon div{
+        width: 60%;
+    }
+    .thongtin .tt-client{
+        width: 55%;
+    }
+    .thongtin .tt-client div{
+        padding-top: 20px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap; 
+        width: 300px; 
+    }
+    .thongtin .tt-dealine{
+       display: none;
+    }
+    .thongtin .tt-dealine div{
+        font-size: 0.785rem;
+        padding-top: 20px;
+    }
+    .thongtin .tt-menu{
+        width: 5%;
+    }
+    .thongtin .tt-menu button{
+        outline: none;
+        margin-top: 10px;margin-left: 50px;
+    }
+    
+}
