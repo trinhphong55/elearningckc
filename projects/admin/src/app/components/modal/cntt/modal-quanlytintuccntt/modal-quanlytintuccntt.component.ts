@@ -3,9 +3,11 @@ import { ModalService } from '../../../../services/modal.service';
 import { TintucCnttService } from '../../../../services/cntt/tintuc-cntt.service';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { FileUploader } from 'ng2-file-upload';
 import { ToastrService } from 'ngx-toastr';
+import { DanhmucService } from '../../../../services/cntt/danhmuc.service';
+import { LoaibaivietService } from '../../../../services/cntt/loaibaiviet.service';
+
 const URL = 'https://localhost:4100/api/cnttTinTuc/uploads';
 
 @Component({
@@ -25,25 +27,39 @@ export class ModalQuanlytintuccnttComponent implements OnInit {
   });
   submitted = false;
   tinTucForm: FormGroup;
-  loaiBaiViet: any = [
-    'Thông báo',
-    'Bài Viết nổi bật',
-    'Tài liệu',
-    'Việc làm',
-    'Bài viết',
-  ];
-  maDanhMuc: any = ['Thông báo', 'Sinh Viên', 'Giới thiệu'];
+  loaiBaiViet: any = [];
+
+  maDanhMuc: any = [];
   trangThai: any = [0, 1, 2];
-  thongBaoKhanCap: any = [true, false];
   showContent: any;
   dtOptions: DataTables.Settings = {};
   imgValue: any;
-  //
+  viTriHienThi: any = [
+    {
+      maViTri: 0,
+      tenViTri: 'Bài viết quan trọng',
+    },
+    {
+      maViTri: 1,
+      tenViTri: 'Cơ hội việc làm',
+    },
+    {
+      maViTri: 2,
+      tenViTri: 'Giới thiệu ngắn',
+    },
+    {
+      maViTri: 3,
+      tenViTri: 'Tin tức nổi bật',
+    },
+  ];
+
   constructor(
     private modalService: ModalService,
     public fb: FormBuilder,
     private tintucCnttService: TintucCnttService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private danhMucService: DanhmucService,
+    private loaiBaiVietService: LoaibaivietService
   ) {
     this.loadDanhSachTinTuc();
     this.mainForm();
@@ -58,15 +74,16 @@ export class ModalQuanlytintuccnttComponent implements OnInit {
   mainForm() {
     this.tinTucForm = this.fb.group({
       _id: [''],
-      loaiBaiViet: ['', [Validators.required]],
-      maDanhMuc: [''],
+      loaiBaiViet: ['-1'],
+      maDanhMuc: ['-1'],
       maBaiViet: [''],
-      tieuDe: ['', [Validators.required]],
-      moTaNgan: ['', [Validators.required]],
+      tieuDe: [''],
+      moTaNgan: [''],
       noiDung: [''],
       anhBia: this.imgValue,
       nguoiViet: [''],
-      thongBaoKhanCap: [''],
+      thoiGianDangBai: [''],
+      viTriHienThi: ['-1'],
       trangThai: [''],
     });
   }
@@ -87,8 +104,8 @@ export class ModalQuanlytintuccnttComponent implements OnInit {
       onlySelf: true,
     });
   }
-  chonThongBaoKhanCap(e) {
-    this.tinTucForm.get('thongBaoKhanCap').setValue(e, {
+  chonViTriHienThi(e) {
+    this.tinTucForm.get('viTriHienThi').setValue(e, {
       onlySelf: true,
     });
   }
@@ -124,7 +141,6 @@ export class ModalQuanlytintuccnttComponent implements OnInit {
     }
   }
   editBaiViet(baiViet: any) {
-    console.log(this.tinTucForm.value);
     this.tinTucForm.patchValue({
       _id: baiViet._id,
       loaiBaiViet: baiViet.loaiBaiViet,
@@ -133,11 +149,12 @@ export class ModalQuanlytintuccnttComponent implements OnInit {
       tieuDe: baiViet.tieuDe,
       moTaNgan: baiViet.moTaNgan,
       noiDung: baiViet.noiDung,
-      thongBaoKhanCap: baiViet.thongBaoKhanCap,
+      viTriHienThi: baiViet.viTriHienThi,
       trangThai: baiViet.trangThai,
     });
+    console.log(this.tinTucForm.value);
   }
-  //
+
   closeModal(id: string) {
     this.modalService.close(id);
   }
@@ -148,20 +165,30 @@ export class ModalQuanlytintuccnttComponent implements OnInit {
     this.uploader.onAfterAddingFile = (file) => {
       file.withCredentials = false;
     };
-    this.uploader.onCompleteItem = (item: any, status: any) => {
-      console.log('Uploaded File Details:', item);
-      // this.toastr.success('File successfully uploaded!');
-    };
     setTimeout(() => (this.showContent = true), 250);
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 5,
       processing: true,
     };
+    this.getDanhSachDanhMuc();
+    this.getDanhSachLoaiBaiViet();
   }
   loadDanhSachTinTuc() {
     this.tintucCnttService.danhSachTinTuc().subscribe((data) => {
       this.TinTuc = data.data;
+    });
+  }
+
+  getDanhSachDanhMuc(): void {
+    this.danhMucService.getDanhSachDanhMuc().subscribe((data) => {
+      this.maDanhMuc = data.data;
+    });
+  }
+
+  getDanhSachLoaiBaiViet(): void {
+    this.loaiBaiVietService.getDanhSachLoaiBaiViet().subscribe((data) => {
+      this.loaiBaiViet = data.data;
     });
   }
 }

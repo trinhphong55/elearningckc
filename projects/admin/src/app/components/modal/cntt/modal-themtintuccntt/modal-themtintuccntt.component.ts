@@ -3,9 +3,10 @@ import { ModalService } from '../../../../services/modal.service';
 import { TintucCnttService } from '../../../../services/cntt/tintuc-cntt.service';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { FileUploader } from 'ng2-file-upload';
 import { ToastrService } from 'ngx-toastr';
+import { DanhmucService } from '../../../../services/cntt/danhmuc.service';
+import { LoaibaivietService } from '../../../../services/cntt/loaibaiviet.service';
 
 const URL = 'https://localhost:4100/api/cnttTinTuc/uploads';
 @Component({
@@ -14,98 +15,138 @@ const URL = 'https://localhost:4100/api/cnttTinTuc/uploads';
   styleUrls: ['./modal-themtintuccntt.component.css'],
 })
 export class ModalThemtintuccnttComponent implements OnInit {
+  constructor(
+    private modalService: ModalService,
+    public fb: FormBuilder,
+    private tintucCnttService: TintucCnttService,
+    private toastr: ToastrService,
+    private danhMucService: DanhmucService,
+    private loaiBaiVietService: LoaibaivietService
+  ) {
+    this.mainForm();
+  }
+
   public Editor = ClassicEditor;
   public editorValue: string = '';
-
   public uploader: FileUploader = new FileUploader({
     url: URL,
     itemAlias: 'image',
   });
-
   submitted = false;
   tinTucForm: FormGroup;
-  loaiBaiViet: any = [
-    'Thông báo',
-    'Bài Viết nổi bật',
-    'Tài liệu',
-    'Việc làm',
-    'Bài viết',
-  ];
-  maDanhMuc: any = ['Thông báo', 'Sinh Viên', 'Giới thiệu'];
+  loaiBaiViet: any = [];
+  maDanhMuc: any = [];
   TinTuc: any = [];
   trangThai: any = [0, 1, 2];
-  thongBaoKhanCap: any = [true, false];
+  viTriHienThi: any = [
+    {
+      maViTri: 0,
+      tenViTri: 'Bài viết quan trọng',
+    },
+    {
+      maViTri: 1,
+      tenViTri: 'Cơ hội việc làm',
+    },
+    {
+      maViTri: 2,
+      tenViTri: 'Giới thiệu ngắn',
+    },
+    {
+      maViTri: 3,
+      tenViTri: 'Tin tức nổi bật',
+    },
+  ];
   imgValue: any;
-  constructor(
-    private modalService: ModalService,
-    public fb: FormBuilder,
-    private router: Router,
-    private ngZone: NgZone,
-    private tintucCnttService: TintucCnttService,
-    private toastr: ToastrService
-  ) {
-    this.mainForm();
+
+  ngOnInit() {
+    this.uploader.onAfterAddingFile = (file) => {
+      file.withCredentials = false;
+    };
+    this.getDanhSachDanhMuc();
+    this.getDanhSachLoaiBaiViet();
   }
+
+  closeModal(id: string) {
+    this.modalService.close(id);
+  }
+
+  logData(): void {
+    // console.log('danh muc');
+    // console.log(this.maDanhMuc);
+    // console.log('loai bai viet');
+    // console.log(this.loaiBaiViet);
+    // console.log(this.tinTucForm.value);
+    console.log(this.viTriHienThi);
+  }
+
+  // getDanhSachViTriHienThi(): void {
+  //   this.viTriHienThi = this.viTriHienThiService.getDanhSachViTri();
+  // }
+
+  getDanhSachDanhMuc(): void {
+    this.danhMucService.getDanhSachDanhMuc().subscribe((data) => {
+      this.maDanhMuc = data.data;
+    });
+  }
+
+  getDanhSachLoaiBaiViet(): void {
+    this.loaiBaiVietService.getDanhSachLoaiBaiViet().subscribe((data) => {
+      this.loaiBaiViet = data.data;
+    });
+  }
+
   onFileSelected(event) {
     if (event.target.files.length > 0) {
       this.imgValue = event.target.files[0].name;
       console.log('imgValue ' + this.imgValue);
     }
   }
-  ngOnInit() {
-    this.uploader.onAfterAddingFile = (file) => {
-      file.withCredentials = false;
-    };
-    this.uploader.onCompleteItem = (item: any, status: any) => {
-      // console.log('Uploaded File Details:', item);
-      // this.toastr.success('File successfully uploaded!');
-    };
-  }
 
   mainForm() {
     this.tinTucForm = this.fb.group({
-      loaiBaiViet: ['', [Validators.required]],
-      maDanhMuc: [''],
+      loaiBaiViet: ['-1'],
+      maDanhMuc: ['-1'],
       maBaiViet: [''],
-      tieuDe: ['', [Validators.required]],
-      moTaNgan: ['', [Validators.required]],
+      tieuDe: [''],
+      moTaNgan: [''],
       noiDung: [''],
       anhBia: this.imgValue,
       nguoiViet: [''],
       thoiGianDangBai: [''],
-      thongBaoKhanCap: [''],
-      created_at: [''],
-      updated_at: [''],
-      trangThai: [''],
+      viTriHienThi: ['-1'],
     });
   }
 
-  //  dropdown
   chonMaDanhMuc(e) {
     this.tinTucForm.get('maDanhMuc').setValue(e, {
       onlySelf: true,
     });
   }
+
   chonLoaiBaiViet(e) {
     this.tinTucForm.get('loaiBaiViet').setValue(e, {
       onlySelf: true,
     });
   }
+
   chonTrangThai(e) {
     this.tinTucForm.get('trangThai').setValue(e, {
       onlySelf: true,
     });
   }
-  chonThongBaoKhanCap(e) {
-    this.tinTucForm.get('thongBaoKhanCap').setValue(e, {
+
+  chonViTriHienThi(e) {
+    this.tinTucForm.get('viTriHienThi').setValue(e, {
       onlySelf: true,
     });
   }
+
   loadDanhSachTinTuc() {
     this.tintucCnttService.danhSachTinTuc().subscribe((data) => {
       this.TinTuc = data.data;
     });
   }
+
   // Getter to access form control
   get myForm() {
     return this.tinTucForm.controls;
@@ -125,8 +166,5 @@ export class ModalThemtintuccnttComponent implements OnInit {
           this.toastr.success('Thêm mới bài viết thành công!');
         });
     }
-  }
-  closeModal(id: string) {
-    this.modalService.close(id);
   }
 }

@@ -46,7 +46,7 @@ router.post("/taotintuc", (req, res) => {
     moTaNgan: req.body.moTaNgan,
     noiDung: req.body.noiDung,
     anhBia: "uploads/cntt/" + imgName,
-    thongBaoKhanCap: req.body.thongBaoKhanCap,
+    viTriHienThi: req.body.viTriHienThi,
   });
   console.log(tintuc);
   tintuc.save((err, data) => {
@@ -66,13 +66,14 @@ router.post("/chinhSuaTinTuc", async (req, res) => {
   await TinTuc.findOneAndUpdate(
     { _id: req.body._id },
     {
+      maBaiViet: req.body.maBaiViet,
       loaiBaiViet: req.body.loaiBaiViet,
       maDanhMuc: req.body.maDanhMuc,
       tieuDe: req.body.tieuDe,
       moTaNgan: req.body.moTaNgan,
       noiDung: req.body.noiDung,
       anhBia: "uploads/cntt/" + imgName,
-      thongBaoKhanCap: req.body.thongBaoKhanCap,
+      viTriHienThi: req.body.viTriHienThi,
       trangThai: req.body.trangThai,
     }
   );

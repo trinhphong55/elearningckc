@@ -13,7 +13,7 @@ declare var $: any;
   templateUrl: './modal-tintuc.component.html',
   styleUrls: ['./modal-tintuc.component.css']
 })
-export class ModalTintucComponent implements OnInit, AfterViewInit, OnDestroy {
+export class ModalTintucComponent implements OnInit {
   constructor(private modalService: ModalService,private tintucService: TintucService ,private toastr: ToastrService) { }
   TinTuc: ttthTinTuc[];
 
@@ -27,21 +27,6 @@ export class ModalTintucComponent implements OnInit, AfterViewInit, OnDestroy {
     };
 
   }
-
-  //datatable
-  ngAfterViewInit(): void {
-    // $(document).ready(function () {
-    //   $('.datatable').DataTable();
-    // });
-    setTimeout(function () {
-      $(function () {
-        $('.datatable').DataTable();
-      });
-    }, 3000);
-  }
-  ngOnDestroy(): void {
-    $('.datatable').off();
-  }
   //ckEditor
   public Editor = ClassicEditor;
 
@@ -51,9 +36,6 @@ export class ModalTintucComponent implements OnInit, AfterViewInit, OnDestroy {
     itemAlias: 'image'
   });
 
-  openModal(id: string) {
-    this.modalService.open(id)
-  }
   closeModal(id: string) {
     this.modalService.close(id)
   }
@@ -93,7 +75,7 @@ export class ModalTintucComponent implements OnInit, AfterViewInit, OnDestroy {
     else{
       const newTinTuc: ttthTinTuc = new ttthTinTuc();
       newTinTuc.id_loaitintuc = id_loaitintuc;
-      newTinTuc.image = 'uploads/ttth/tintuc/' + this.nameImage;
+      newTinTuc.image = 'https://localhost:4100/uploads/cntt/' + this.nameImage;
       newTinTuc.tentintuc = tentintuc;
       newTinTuc.slug = 'slug';
       newTinTuc.description = description;
@@ -112,16 +94,20 @@ export class ModalTintucComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
   ///edit
-  capnhatHienThi = false;
-  getValueCheckBox(e){
-    this.capnhatHienThi= e.target.checked;
-  }
   selectedItem: ttthTinTuc;
   onSelect(TinTuc: ttthTinTuc):void {
     this.selectedItem= TinTuc;
     // console.log(`selectedItem = ${JSON.stringify(this.selectedItem)}`);
+    this.capnhatHienThi=this.selectedItem.hienthi;
+  }
+  capnhatHienThi: any;
+  getValueCheckBox(e){
+    this.capnhatHienThi= e.target.checked;
   }
   saveTinTuc(TinTuc: ttthTinTuc):void {
+    if (this.nameImage) {
+      TinTuc.image='https://localhost:4100/uploads/cntt/' + this.nameImage;
+    }
     TinTuc.updated_at= new Date;
     TinTuc.hienthi= this.capnhatHienThi;
     this.tintucService.suaTinTuc(TinTuc)

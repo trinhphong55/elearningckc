@@ -1,4 +1,4 @@
-<app-modal class="modal_chucnang__wrapper" id="ttth-banner">
+<app-modal class="modal_chucnang__wrapper " id="ttth-banner">
   <div (click)="closeModal('ttth-banner')" class="modal_chucnang__close mdi mdi-chevron-left text-white"></div>
   <div class="container-fluid mt-3">
     <div class="row">
@@ -9,27 +9,25 @@
         <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
           <div class="row justify-content-center align-items-center">
             <div class="col-3">
+              <label for="exampleFormControlFile1">Tải hình ảnh</label>
+              <input type="file" name="image" class="form-control-file" (change)="onFileSelected($event)"
+                ng2FileSelect [uploader]="uploader" accept="image/x-png,image/gif,image/jpeg">
+                <img style="width:180px;height:180px" id="blah" [src]="imageSrc || 'http://placehold.it/180'"
+                alt="image" />
+            </div>
+            <div class="col-3">
               <div class="form-group">
-                <label for="exampleFormControlFile1">Tải hình ảnh</label>
-                <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                <label>Link</label>
+                <input type="text" class="form-control" #link >
               </div>
               <div class="form-group">
                 <label>Vị trí</label>
-                <input type="number" class="form-control">
+                <input type="number" class="form-control" #vitri>
               </div>
-              <!-- <div class="form-group">
-                <label>Trạng thái</label>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" checked>
-                  <label class="form-check-label" for="defaultCheck1">
-                    Hiển thị
-                  </label>
-                </div>
-              </div> -->
             </div>
             <div class="col-auto">
               <div class="modal_chucnang__group__button">
-                <button class="modal_chucnang__button btn btn-outline-primary px-4 mx-2"><img
+                <button class="modal_chucnang__button btn btn-outline-primary px-4 mx-2" (click)="addBanner(link.value,vitri.value);link.value=''; vitri.value='';uploader.uploadAll()"><img
                     class="modal_chucnang__button__icon mb-2" src="assets/img/icons/add.png" alt="image icon">
                   <div>Thêm mới</div>
                 </button>
@@ -38,56 +36,81 @@
           </div>
         </div>
       </div>
+      <div class="col-12" *ngIf="selectedItem">
+        <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
+          <div class="row justify-content-center align-items-center">
+            <div class="col-3">
+              <label for="exampleFormControlFile1">Tải hình ảnh</label>
+              <input type="file" name="image" class="form-control-file" (change)="onFileSelected($event)"
+                ng2FileSelect [uploader]="uploader" accept="image/x-png,image/gif,image/jpeg">
+                <img style="width:180px;height:180px" id="blah" [src]="imageSrc || selectedItem.image"
+                alt="image" />
+            </div>
+            <div class="col-3">
+              <div class="form-group">
+                <label>Link</label>
+                <input type="text" class="form-control" [(ngModel)]="selectedItem.link" >
+              </div>
+              <div class="form-group">
+                <label>Vị trí</label>
+                <input type="number" class="form-control" [(ngModel)]="selectedItem.vitri">
+              </div>
+              <div class="form-group">
+                <label>Hiển thị</label>
+                  <div class="form-check">
+                    <input class="form-check-input" (change)="getValueCheckBox($event)"  *ngIf="selectedItem.hienthi == true" type="checkbox" checked>
+                    <input class="form-check-input" (change)="getValueCheckBox($event)"  *ngIf="selectedItem.hienthi == false" type="checkbox">
+                  </div>
+              </div>
+            </div>
+            <div class="col-auto">
+              <div class="modal_chucnang__group__button">
+                <button class="modal_chucnang__button btn btn-outline-success px-4 mx-2"
+                  (click)="saveBanner(selectedItem);uploader.uploadAll()"><img class="modal_chucnang__button__icon mb-2"
+                    src="assets/img/icons/upgrade.png" alt="image icon">
+                  <div>Cập nhật</div>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="col-12">
         <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
-          <table class="modal_chucnang__table table table-hover" datatable>
+          <table class="modal_chucnang__table table table-hover datatable" *ngIf="Banner" datatable="ng">
             <thead class="bg__caothang text-white">
               <tr>
                 <th>#</th>
                 <th scope="col">Image</th>
+                <th scope="col">Link</th>
                 <th scope="col">Vị trí</th>
                 <th scope="col">Hiển thị</th>
+                <th scope="col">Người tạo</th>
+                <th scope="col">Người sửa</th>
                 <th class="text-center" scope="col"><span
                     class="modal_chucnang__button__save mdi mdi-content-save-outline mdi-24px"></span></th>
                   </tr>
               </thead>
             <tbody>
-              <tr>
-                <td style="max-width: 50px">1</td>
+              <tr *ngFor="let item of Banner; let i = index">
+                <td style="max-width: 50px">{{i + 1}}</td>
                 <td style="max-width: 100px">
-                  <img src="https://via.placeholder.com/50" alt="">
+                  <img style="width: 60px;height: 60px;" src="{{item.image}}" alt="">
                 </td>
-                <td>
-                  1
-                </td>
+                <td>{{item.link}}</td>
+                <td>{{item.vitri}}</td>
                 <td>
                   <div class="custom-control custom-checkbox">
-                    <input class="custom-control-input" id="customCheck1" type="checkbox">
-                    <label class="custom-control-label" for="customCheck1"></label>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" [checked]="item.hienthi">
+                    </div>
                   </div>
                 </td>
+                <td>{{item.nguoitao}}</td>
+                <td>{{item.nguoisua}}</td>
                 <td class="text-center">
-                  <span class="modal_chucnang__button__delete mdi mdi-wrench-outline mdi-24px  mr-2"></span>
-                  <span class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px"></span>
-                </td>
-              </tr>
-              <tr>
-                <td style="max-width: 50px">1</td>
-                <td style="max-width: 100px">
-                  <img src="https://via.placeholder.com/50" alt="">
-                </td>
-                <td>
-                  2
-                </td>
-                <td>
-                  <div class="custom-control custom-checkbox">
-                    <input class="custom-control-input" id="customCheck1" type="checkbox">
-                    <label class="custom-control-label" for="customCheck1"></label>
-                  </div>
-                </td>
-                <td class="text-center">
-                  <span class="modal_chucnang__button__delete mdi mdi-wrench-outline mdi-24px  mr-2"></span>
-                  <span class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px"></span>
+                  <span class="modal_chucnang__button__delete mdi mdi-wrench-outline mdi-24px  mr-2" (click)="onSelect(item)"></span>
+                  <span class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px" (click)="xoaBanner(item)"></span>
                 </td>
               </tr>
             </tbody>
