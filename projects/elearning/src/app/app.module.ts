@@ -64,7 +64,7 @@ import { BaitapgvComponent } from './components/content/lophoc-content-gv/baitap
 import { MatNativeDateModule } from '@angular/material/core';
 import { MoigvComponent } from './components/content/lophoc-content-gv/moinguoi/moigv/moigv.component';
 import { MoisvComponent } from './components/content/lophoc-content-gv/moinguoi/moisv/moisv.component';
-import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -132,8 +132,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatExpansionModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatTableModule,
-    HttpClientModule,
+    MatTableModule
+   
   ],
   entryComponents:[TaolophocContentComponent,
                     ThamgialophocContentComponent,TaobaitapComponent

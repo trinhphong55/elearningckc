@@ -1,123 +1,595 @@
 <header>
     <div class="title-lophoc">
         <div>
-            <h4>
-                <p style="color: cornflowerblue;">E</p>
-                <p style="color: darkred;">L</p>
-                <p style="color: darkslateblue;">A</p>
-                <p style="color: gold;">R</p>
-                <p style="color: lawngreen;">N</p>
-                <p style="color: lightseagreen;">i</p>
-                <p style="color: orangered;">N</p>
-                <p style="color: coral;">G</p> Cao Thắng
-            </h4>
+            <h4><p style="color: cornflowerblue;">E</p><p style="color: darkred;">L</p><p style="color: darkslateblue;">A</p><p style="color: gold;">R</p><p style="color: lawngreen;">N</p><p style="color: lightseagreen;">i</p><p style="color: orangered;">N</p><p style="color: coral;">G</p> Cao Thắng</h4>
         </div>
     </div>
     <div class="option">
         <mat-form-field appearance="fill">
             <mat-label>Chọn học kì</mat-label>
             <mat-select [formControl]="toppings" multiple>
-                <mat-select-trigger>
-                    {{toppings.value ? toppings.value[0] : ''}}
-                    <span *ngIf="toppings.value?.length > 1" class="example-additional-selection">
-                        (+{{toppings.value.length - 1}} {{toppings.value?.length === 2 ? 'other' : 'others'}})
-                    </span>
-                </mat-select-trigger>
-                <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+              <mat-select-trigger>
+                {{toppings.value ? toppings.value[0] : ''}}
+                <span *ngIf="toppings.value?.length > 1" class="example-additional-selection">
+                  (+{{toppings.value.length - 1}} {{toppings.value?.length === 2 ? 'other' : 'others'}})
+                </span>
+              </mat-select-trigger>
+              <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
             </mat-select>
-        </mat-form-field>
+          </mat-form-field>
     </div>
     <div class="option">
         <mat-form-field appearance="fill">
             <mat-label>Chọn bậc</mat-label>
-            <mat-select disableRipple [(ngModel)]="maBac">
-                <mat-option *ngFor="let b of bac" value="{{b.maBac}}">{{b.tenBac}}</mat-option>
+            <mat-select disableRipple>
+              <mat-option value="1">Cao đẳng</mat-option>
+              <mat-option value="2">Trung cấp</mat-option>
+              <mat-option value="3">Cao đẳng nghề</mat-option>
             </mat-select>
-        </mat-form-field>
+          </mat-form-field>
     </div>
     <div class="option">
         <mat-form-field appearance="fill">
             <mat-label>Khóa</mat-label>
             <mat-select [formControl]="khoahocs" multiple>
-                <mat-option *ngFor="let khoa of khoahocList" [value]="">{{khoa.tenKhoa}}</mat-option>
+              <mat-select-trigger>
+                {{khoahocs.value ? khoahocs.value[0] : ''}}
+                <span *ngIf="khoahocs.value?.length > 1" class="example-additional-selection">
+                  (+{{khoahocs.value.length - 1}} {{khoahocs.value?.length === 2 ? 'other' : 'others'}})
+                </span>
+              </mat-select-trigger>
+              <mat-option *ngFor="let khoa of khoahocList" [value]="khoa">{{khoa}}</mat-option>
             </mat-select>
-        </mat-form-field>
+          </mat-form-field>
     </div>
 </header>
 <div class="lophoc-container">
     <div class="list-lophoc">
-        <div *ngFor="let l of lopHocPhan"  class="list-lophoc-item">    
-            <ng-template *ngFor="let lop of lopHoc" [ngIf]=" l.maLopHoc==lop.maLopHoc">
-                <div class="list-title bg1">
-                    <div class="name--menu">
-                        <div class="name-class">
-                            <div>
-                                <a routerLink="/gv/ctdltt">{{lop.tenLop}}</a>
-                            </div>
-                            <div>
-                                <ng-template ngif>
-                                <span>10 sinh viên</span>
-                               </ng-template>
-                            </div>
-                            <div>
-                                <span>
-                                    ĐVHP:9
-                                </span>
-                            </div>
-                            <div>
-                                <ng-template [ngIf]=" l.trangThai==1">
-                                    <span>Trạng thái: Đang học</span>
-                                </ng-template>
-                                <ng-template [ngIf]=" l.trangThai!=1">
-                                    <span>Trạng thái: Đã hoàn thành</span>
-                                </ng-template>
-
-                            </div>
+        <div class="list-lophoc-item">
+            <div class="list-title bg1">
+                <div class="name--menu">
+                    <div class="name-class">
+                        <div>
+                            <a routerLink="/gv/ctdltt">Cấu trúc dữ liệu thuật toán</a>
                         </div>
-                        <div class="menu">
-                            <button mat-button [matMenuTriggerFor]="menu"><i class="fa fa-ellipsis-v"
-                                    aria-hidden="true"></i></button>
+                        <div>
+                            <span>10 sinh viên</span>
+                        </div>
+                        <div>
+                            <span>
+                                ĐVHP:9
+                            </span>
+                        </div>
+                        <div>
+                            <span>Trạng thái :đang học</span>
+                        </div>
+                    </div>
+                    <div class="menu">
+                        <button mat-button [matMenuTriggerFor]="menu"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></button>
                             <mat-menu #menu="matMenu">
                                 <button mat-menu-item>Di chuyển</button>
                                 <button mat-menu-item>Chỉnh sửa</button>
                                 <button mat-menu-item>Lưu trữ</button>
                                 <button mat-menu-item>Sao chép</button>
                             </mat-menu>
+                    </div>
+                </div>
+            </div>
+            <div class="list-main">
+                <div class="list-main-pd">
+                    <div class="list-bdb">
+                        <div class="lm-denhang">
+                            <span>Đến hạng thứ 2</span>
+                        </div>
+                        <div class="lm-gio-ten">
+                            <a href="#">12:59 - Bài tập số 1</a>
                         </div>
                     </div>
                 </div>
-                <div class="list-main">
-                    <div class="list-main-pd">
-                        <div class="list-bdb">
-                            <div class="lm-denhang">
-                                <span>Đến hạng thứ 2</span>
-                            </div>
-                            <div class="lm-gio-ten">
-                                <a href="#">12:59 - Bài tập số 1</a>
-                            </div>
+            </div>
+            <div class="list-bottom">
+                <div class="list-bt">
+                    <div class="name-teacher">
+                        <div>
+                            <span> GV : Lữ Cao Tiến</span>
+                        </div>
+                    </div>
+                    <div class="icon-go">
+                        <button mat-button><i class="fas fa-angle-double-right"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="list-image">
+                <img class="gb_Ka gbii" src="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo" srcset="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo 1x, https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s64-c-mo 2x " alt="" aria-hidden="true" data-noaft="">
+            </div>
+        </div>
+        <div class="list-lophoc-item">
+            <div class="list-title bg2">
+                <div class="name--menu">
+                    <div class="name-class">
+                        <div>
+                            <a routerLink="/gv/csdl">Cơ sở dữ liệu</a>
+                        </div>
+                        <div>
+                            <span>10 sinh viên</span>
+                        </div>
+                        <div>
+                            <span>
+                                ĐVHP:9
+                            </span>
+                        </div>
+                        <div>
+                            <span>Trạng thái :đang học</span>
+                        </div>
+                    </div>
+                    <div class="menu">
+                        <button mat-button [matMenuTriggerFor]="menu"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></button>
+                            <mat-menu #menu="matMenu">
+                                <button mat-menu-item>Di chuyển</button>
+                                <button mat-menu-item>Chỉnh sửa</button>
+                                <button mat-menu-item>Lưu trữ</button>
+                                <button mat-menu-item>Sao chép</button>
+                            </mat-menu>
+                    </div>
+                </div>
+            </div>
+            <div class="list-main">
+                <div class="list-main-pd">
+                    <div class="list-bdb">
+                        <div class="lm-denhang">
+                            <span>Đến hạng thứ 2</span>
+                        </div>
+                        <div class="lm-gio-ten">
+                            <a href="#">12:59 - Bài tập số 1</a>
+                        </div>
+                    </div>
+                    <div class="list-bdb">
+                        <div class="lm-denhang">
+                            <span>Đến hạng thứ 3</span>
+                        </div>
+                        <div class="lm-gio-ten">
+                            <a href="#">12:59 - Bài tập số 2</a>
                         </div>
                     </div>
                 </div>
-                <div class="list-bottom">
-                    <div class="list-bt">
-                        <div class="name-teacher">
-                            <div>
-                                <span> GV : Lữ Cao Tiến</span>
-                            </div>
+            </div>
+            <div class="list-bottom">
+                <div class="list-bt">
+                    <div class="name-teacher">
+                        <div>
+                            <span> GV : Lữ Cao Tiến</span>
                         </div>
-                        <div class="icon-go">
-                            <button mat-button (click)="test()"><i class="fas fa-angle-double-right"></i></button>
+                    </div>
+                    <div class="icon-go">
+                        <button mat-button><i class="fas fa-angle-double-right"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="list-image">
+                <img class="gb_Ka gbii" src="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo" srcset="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo 1x, https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s64-c-mo 2x " alt="" aria-hidden="true" data-noaft="">
+            </div>
+        </div>
+        <div class="list-lophoc-item">
+            <div class="list-title bg3">
+                <div class="name--menu">
+                    <div class="name-class">
+                        <div>
+                            <a routerLink="/gv/lthdt">Lập trình hướng đối tượng</a>
+                        </div>
+                        <div>
+                            <span>10 sinh viên</span>
+                        </div>
+                        <div>
+                            <span>
+                                ĐVHP:9
+                            </span>
+                        </div>
+                        <div>
+                            <span>Trạng thái :đang học</span>
+                        </div>
+                    </div>
+                    <div class="menu">
+                        <button mat-button [matMenuTriggerFor]="menu"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></button>
+                            <mat-menu #menu="matMenu">
+                                <button mat-menu-item>Di chuyển</button>
+                                <button mat-menu-item>Chỉnh sửa</button>
+                                <button mat-menu-item>Lưu trữ</button>
+                                <button mat-menu-item>Sao chép</button>
+                            </mat-menu>
+                    </div>
+                </div>
+            </div>
+            <div class="list-main">
+                <div class="list-main-pd">
+                    <div class="list-bdb">
+                        <div class="lm-denhang">
+                            <span>Đến hạng thứ 2</span>
+                        </div>
+                        <div class="lm-gio-ten">
+                            <a href="#">12:59 - Bài tập số 1</a>
                         </div>
                     </div>
                 </div>
-                <div class="list-image">
-                    <img class="gb_Ka gbii"
-                        src="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo"
-                        srcset="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo 1x, https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s64-c-mo 2x "
-                        alt="" aria-hidden="true" data-noaft="">
+            </div>
+            <div class="list-bottom">
+                <div class="list-bt">
+                    <div class="name-teacher">
+                        <div>
+                            <span> GV : Lữ Cao Tiến</span>
+                        </div>
+                    </div>
+                    <div class="icon-go">
+                        <button mat-button><i class="fas fa-angle-double-right"></i></button>
+                    </div>
                 </div>
-            </ng-template>
+            </div>
+            <div class="list-image">
+                <img class="gb_Ka gbii" src="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo" srcset="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo 1x, https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s64-c-mo 2x " alt="" aria-hidden="true" data-noaft="">
+            </div>
+        </div>
+        <div class="list-lophoc-item">
+            <div class="list-title bg4">
+                <div class="name--menu">
+                    <div class="name-class">
+                        <div>
+                            <a routerLink="/gv/ltlrv">Lập trình Laravel</a>
+                        </div>
+                        <div>
+                            <span>10 sinh viên</span>
+                        </div>
+                        <div>
+                            <span>
+                                ĐVHP:9
+                            </span>
+                        </div>
+                        <div>
+                            <span>Trạng thái :đang học</span>
+                        </div>
+                    </div>
+                    <div class="menu">
+                        <button mat-button [matMenuTriggerFor]="menu"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></button>
+                            <mat-menu #menu="matMenu">
+                                <button mat-menu-item>Di chuyển</button>
+                                <button mat-menu-item>Chỉnh sửa</button>
+                                <button mat-menu-item>Lưu trữ</button>
+                                <button mat-menu-item>Sao chép</button>
+                            </mat-menu>
+                    </div>
+                </div>
+            </div>
+            <div class="list-main">
+                <div class="list-main-pd">
+                    <div class="list-bdb">
+                        <div class="lm-denhang">
+                            <span>Đến hạng thứ 2</span>
+                        </div>
+                        <div class="lm-gio-ten">
+                            <a href="#">12:59 - Bài tập số 1</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="list-bottom">
+                <div class="list-bt">
+                    <div class="name-teacher">
+                        <div>
+                            <span> GV : Lữ Cao Tiến</span>
+                        </div>
+                    </div>
+                    <div class="icon-go">
+                        <button mat-button><i class="fas fa-angle-double-right"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="list-image">
+                <img class="gb_Ka gbii" src="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo" srcset="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo 1x, https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s64-c-mo 2x " alt="" aria-hidden="true" data-noaft="">
+            </div>
+        </div>
+        <div class="list-lophoc-item">
+            <div class="list-title bg5">
+                <div class="name--menu">
+                    <div class="name-class">
+                        <div>
+                            <a routerLink="/gv/tkw">Thiết kế web</a>
+                        </div>
+                        <div>
+                            <span>10 sinh viên</span>
+                        </div>
+                        <div>
+                            <span>
+                                ĐVHP:9
+                            </span>
+                        </div>
+                        <div>
+                            <span>Trạng thái :đang học</span>
+                        </div>
+                    </div>
+                    <div class="menu">
+                        <button mat-button [matMenuTriggerFor]="menu"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></button>
+                            <mat-menu #menu="matMenu">
+                                <button mat-menu-item>Di chuyển</button>
+                                <button mat-menu-item>Chỉnh sửa</button>
+                                <button mat-menu-item>Lưu trữ</button>
+                                <button mat-menu-item>Sao chép</button>
+                            </mat-menu>
+                    </div>
+                </div>
+            </div>
+            <div class="list-main">
+                <div class="list-main-pd">
+                    <div class="list-bdb">
+                        <div class="lm-denhang">
+                            <span>Đến hạng thứ 2</span>
+                        </div>
+                        <div class="lm-gio-ten">
+                            <a href="#">12:59 - Bài tập số 1</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="list-bottom">
+                <div class="list-bt">
+                    <div class="name-teacher">
+                        <div>
+                            <span> GV : Lữ Cao Tiến</span>
+                        </div>
+                    </div>
+                    <div class="icon-go">
+                        <button mat-button><i class="fas fa-angle-double-right"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="list-image">
+                <img class="gb_Ka gbii" src="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo" srcset="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo 1x, https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s64-c-mo 2x " alt="" aria-hidden="true" data-noaft="">
+            </div>
+        </div>
+        <div class="list-lophoc-item">
+            <div class="list-title bg6">
+                <div class="name--menu">
+                    <div class="name-class">
+                        <div>
+                            <a routerLink="/gv/av3">Anh văn A3</a>
+                        </div>
+                        <div>
+                            <span>10 sinh viên</span>
+                        </div>
+                        <div>
+                            <span>
+                                ĐVHP:9
+                            </span>
+                        </div>
+                        <div>
+                            <span>Trạng thái :đang học</span>
+                        </div>
+                    </div>
+                    <div class="menu">
+                        <button mat-button [matMenuTriggerFor]="menu"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></button>
+                            <mat-menu #menu="matMenu">
+                                <button mat-menu-item>Di chuyển</button>
+                                <button mat-menu-item>Chỉnh sửa</button>
+                                <button mat-menu-item>Lưu trữ</button>
+                                <button mat-menu-item>Sao chép</button>
+                            </mat-menu>
+                    </div>
+                </div>
+            </div>
+            <div class="list-main">
+                <div class="list-main-pd">
+                    <div class="list-bdb">
+                        <div class="lm-denhang">
+                            <span>Đến hạng thứ 2</span>
+                        </div>
+                        <div class="lm-gio-ten">
+                            <a href="#">12:59 - Bài tập số 1</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="list-bottom">
+                <div class="list-bt">
+                    <div class="name-teacher">
+                        <div>
+                            <span> GV : Lữ Cao Tiến</span>
+                        </div>
+                    </div>
+                    <div class="icon-go">
+                        <button mat-button><i class="fas fa-angle-double-right"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="list-image">
+                <img class="gb_Ka gbii" src="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo" srcset="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo 1x, https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s64-c-mo 2x " alt="" aria-hidden="true" data-noaft="">
+            </div>
+        </div>
+        <div class="list-lophoc-item">
+            <div class="list-title bg7">
+                <div class="name--menu">
+                    <div class="name-class">
+                        <div>
+                            <a routerLink="/gv/av1">Anh văn A1</a>
+                        </div>
+                        <div>
+                            <span>10 sinh viên</span>
+                        </div>
+                        <div>
+                            <span>
+                                ĐVHP:9
+                            </span>
+                        </div>
+                        <div>
+                            <span>Trạng thái :đang học</span>
+                        </div>
+                    </div>
+                    <div class="menu">
+                        <button mat-button [matMenuTriggerFor]="menu"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></button>
+                            <mat-menu #menu="matMenu">
+                                <button mat-menu-item>Di chuyển</button>
+                                <button mat-menu-item>Chỉnh sửa</button>
+                                <button mat-menu-item>Lưu trữ</button>
+                                <button mat-menu-item>Sao chép</button>
+                            </mat-menu>
+                    </div>
+                </div>
+            </div>
+            <div class="list-main">
+                <div class="list-main-pd">
+                    <div class="list-bdb">
+                        <div class="lm-denhang">
+                            <span>Đến hạng thứ 2</span>
+                        </div>
+                        <div class="lm-gio-ten">
+                            <a href="#">12:59 - Bài tập số 1</a>
+                        </div>
+                    </div>
+                    <div class="list-bdb">
+                        <div class="lm-denhang">
+                            <span>Đến hạng thứ 3</span>
+                        </div>
+                        <div class="lm-gio-ten">
+                            <a href="#">12:59 - Bài tập số 2</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="list-bottom">
+                <div class="list-bt">
+                    <div class="name-teacher">
+                        <div>
+                            <span> GV : Lữ Cao Tiến</span>
+                        </div>
+                    </div>
+                    <div class="icon-go">
+                        <button mat-button><i class="fas fa-angle-double-right"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="list-image">
+                <img class="gb_Ka gbii" src="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo" srcset="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo 1x, https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s64-c-mo 2x " alt="" aria-hidden="true" data-noaft="">
+            </div>
+        </div>
+        <div class="list-lophoc-item">
+            <div class="list-title bg8">
+                <div class="name--menu">
+                    <div class="name-class">
+                        <div>
+                            <a routerLink="/gv/av2">Anh văn A2</a>
+                        </div>
+                        <div>
+                            <span>10 sinh viên</span>
+                        </div>
+                        <div>
+                            <span>
+                                ĐVHP:9
+                            </span>
+                        </div>
+                        <div>
+                            <span>Trạng thái :đang học</span>
+                        </div>
+                    </div>
+                    <div class="menu">
+                        <button mat-button [matMenuTriggerFor]="menu"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></button>
+                            <mat-menu #menu="matMenu">
+                                <button mat-menu-item>Di chuyển</button>
+                                <button mat-menu-item>Chỉnh sửa</button>
+                                <button mat-menu-item>Lưu trữ</button>
+                                <button mat-menu-item>Sao chép</button>
+                            </mat-menu>
+                    </div>
+                </div>
+            </div>
+            <div class="list-main">
+                <div class="list-main-pd">
+                    <div class="list-bdb">
+                        <div class="lm-denhang">
+                            <span>Đến hạng thứ 2</span>
+                        </div>
+                        <div class="lm-gio-ten">
+                            <a href="#">12:59 - Bài tập số 1</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="list-bottom">
+                <div class="list-bt">
+                    <div class="name-teacher">
+                        <div>
+                            <span> GV : Lữ Cao Tiến</span>
+                        </div>
+                    </div>
+                    <div class="icon-go">
+                        <button mat-button><i class="fas fa-angle-double-right"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="list-image">
+                <img class="gb_Ka gbii" src="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo" srcset="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo 1x, https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s64-c-mo 2x " alt="" aria-hidden="true" data-noaft="">
+            </div>
+        </div>
+        <div class="list-lophoc-item">
+            <div class="list-title bg9">
+                <div class="name--menu">
+                    <div class="name-class">
+                        <div>
+                            <a routerLink="/gv/trr">Toán rời rạc</a>
+                        </div>
+                        <div>
+                            <span>10 sinh viên</span>
+                        </div>
+                        <div>
+                            <span>
+                                ĐVHP:9
+                            </span>
+                        </div>
+                        <div>
+                            <span>Trạng thái :đang học</span>
+                        </div>
+                    </div>
+                    <div class="menu">
+                        <button mat-button [matMenuTriggerFor]="menu"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></button>
+                            <mat-menu #menu="matMenu">
+                                <button mat-menu-item>Di chuyển</button>
+                                <button mat-menu-item>Chỉnh sửa</button>
+                                <button mat-menu-item>Lưu trữ</button>
+                                <button mat-menu-item>Sao chép</button>
+                            </mat-menu>
+                    </div>
+                </div>
+            </div>
+            <div class="list-main">
+                <div class="list-main-pd">
+                    <div class="list-bdb">
+                        <div class="lm-denhang">
+                            <span>Đến hạng thứ 2</span>
+                        </div>
+                        <div class="lm-gio-ten">
+                            <a href="#">12:59 - Bài tập số 1</a>
+                        </div>
+                    </div>
+                    <div class="list-bdb">
+                        <div class="lm-denhang">
+                            <span>Đến hạng thứ 3</span>
+                        </div>
+                        <div class="lm-gio-ten">
+                            <a href="#">12:59 - Bài tập số 2</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="list-bottom">
+                <div class="list-bt">
+                    <div class="name-teacher">
+                        <div>
+                            <span> GV : Lữ Cao Tiến</span>
+                        </div>
+                    </div>
+                    <div class="icon-go">
+                        <button mat-button><i class="fas fa-angle-double-right"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="list-image">
+                <img class="gb_Ka gbii" src="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo" srcset="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo 1x, https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s64-c-mo 2x " alt="" aria-hidden="true" data-noaft="">
+            </div>
         </div>
     </div>
-
 </div>
