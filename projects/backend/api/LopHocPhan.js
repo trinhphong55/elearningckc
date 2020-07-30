@@ -3,9 +3,33 @@ const LopHocPhan = require("../models/LopHocPhan.model");
 const KHDT = require("../models/KeHoachDaoTao.model");
 
 //GET LHP
-router.get("/", async (req, res) => {
-  return res.send("haha");
-});
+// router.get("/", async (req, res) => {
+//   return res.send("haha");
+// });
+//GET LHP by hocKi
+router.get('/:hocKi', async(req, res) => {
+  const hocKi = req.params.hocKi;
+  await LopHocPhan.find({ trangThai: { $ne: 0 }, hocKi })
+    .then(dslhp => res.json(dslhp))
+    .catch(err => res.json({ message: err }));
+})
+
+//GET LHP by hocKi
+router.get('/chuaphancong/:hocKi', async(req, res) => {
+  const hocKi = req.params.hocKi;
+  await LopHocPhan.find({ trangThai: { $e: 1 }, hocKi })
+    .then(dslhp => res.json(dslhp))
+    .catch(err => res.json({ message: err }));
+})
+
+// router.get('/daphancong/:hocKi/giaovien/:maGiaoVien/loai/:loai', async(req, res) => {
+//   const hocKi = req.params.hocKi;
+//   const loai = req.params.loai;
+//   const maGiaoVien = req.params.maGiaoVien;
+//   await LopHocPhan.find({ trangThai: { $e: 2 }, hocKi })
+//     .then(dslhp => res.json(dslhp))
+//     .catch(err => res.json({ message: err }));
+// })
 
 //POST LopHocPhan
 router.post("/", async (req, res) => {

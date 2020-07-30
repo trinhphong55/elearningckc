@@ -21,12 +21,23 @@ export class ModalMonhocComponent implements OnInit, OnChanges {
 
   dsMonHoc: MonHoc[];
   dsLoaiMonHoc: LoaiMonHoc[];
-  selectedMonHoc: MonHoc = { maMonHoc: "", tenMonHoc: "", maLoaiMonHoc: "LT", tenTiengAnh: "", tenVietTat: "", tenVietTatTiengAnh: "" };
+  selectedMonHoc: MonHoc;
+
+  getMonHoc() {
+    this.monhocService.getMonHoc().subscribe(data => {
+      this.dsMonHoc = data;
+    });
+  }
+
+  getLoaiMonHoc() {
+    this.loaimonhocService.getLoaiMonHoc().subscribe(dslmh => {
+      this.dsLoaiMonHoc = dslmh;
+    });
+  }
 
   onSelect(maMonHoc: string): void {
     this.monhocService.getMonHocFromMaMonHoc(maMonHoc).subscribe(selectedMonHoc => {
       this.selectedMonHoc = selectedMonHoc;
-      console.log(this.selectedMonHoc);
     });
   }
 
@@ -36,57 +47,48 @@ export class ModalMonhocComponent implements OnInit, OnChanges {
   }
 
   postMonHoc() {
-    // console.log(this.selectedMonHoc);
     this.monhocService.addMonHoc(this.selectedMonHoc).subscribe(status => {
-      console.log("cua post" , status);
       if (status.success) {
         alert(status.success);
-        this.selectedMonHoc = { maMonHoc: "", tenMonHoc: "", maLoaiMonHoc: "LT", tenTiengAnh: "", tenVietTat: "", tenVietTatTiengAnh: "" };
-        this.monhocService.getMonHoc().subscribe(data => {
-          this.dsMonHoc = data;
-        })
+        this.renewMonHoc();
+        this.getMonHoc();
       } else {
-        alert('them moi that bai')
+        alert('them moi that bai');
+        this.renewMonHoc();
       }
 
     });
   }
 
   updateMonHoc() {
+    if (this.selectedMonHoc.maMonHoc === "") {
+      alert('Chua chon mon hoc');
+      return;
+    }
     this.monhocService.updateMonHoc(this.selectedMonHoc).subscribe(status => {
-      console.log("cua save" , status);
       if (status.success) {
         alert('Cap nhat thanh cong');
-        this.monhocService.getMonHoc().subscribe(data => {
-          this.dsMonHoc = data;
-        })
+        this.getMonHoc();
       } else {
         alert('Cap nhat that bai');
+        this.renewMonHoc();
       }
-
     });
   }
 
   deleteMonHoc(maMonHoc: string) {
     this.monhocService.deleteMonHoc(maMonHoc).subscribe(status => {
-      // console.log("deleted", status);
       if (status.error) {
         alert(status.error);
       } else {
-        this.monhocService.getMonHoc().subscribe(data => {
-          this.dsMonHoc = data;
-        })
+        this.getMonHoc();
       }
     });
   }
 
-  reloadDSMH() {
-    this.monhocService.getMonHoc().subscribe(data => {
-      this.dsMonHoc = data;
-    })
+  renewMonHoc() {
+    this.selectedMonHoc = { maMonHoc: "", tenMonHoc: "", maLoaiMonHoc: "LT", tenTiengAnh: "", tenVietTat: "", tenVietTatTiengAnh: "" };
   }
-
-
 
   closeModal(id: string) {
     this.modalService.close(id)
@@ -103,12 +105,9 @@ export class ModalMonhocComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    this.loaimonhocService.getLoaiMonHoc().subscribe(dslmh => {
-      this.dsLoaiMonHoc = dslmh;
-    });
-    this.monhocService.getMonHoc().subscribe(data => {
-      this.dsMonHoc = data;
-    });
+    this.getLoaiMonHoc();
+    this.getMonHoc();
+    this.renewMonHoc();
   }
 
 }

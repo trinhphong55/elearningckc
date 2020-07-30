@@ -51,7 +51,7 @@ export class ModalGroupfacebookComponent implements OnInit {
     );
   }
   getNganh() {
-    this.nganhngheservice.getNgangnghe().subscribe(
+    this.nganhngheservice.getNganhnghe().subscribe(
       (nganhs) => {
         this.nganhs = nganhs;
       },

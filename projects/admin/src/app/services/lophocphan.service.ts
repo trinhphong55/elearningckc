@@ -21,6 +21,20 @@ export class LopHocPhanService {
     return this.http.get<LopHocPhan[]>(this.lophocphanURL);
   }
 
+  getLopHocPhanChuaPhanCong(hocKi: number): Observable<LopHocPhan[]> {
+    const url = `${this.lophocphanURL}/chuaphancong/${hocKi}`
+    return this.http.get<LopHocPhan[]>(url);
+  }
+
+  getLopHocPhanbyHocKi(hocKi: number): Observable<LopHocPhan[]> {
+    return this.http.get<LopHocPhan[]>(this.lophocphanURL+`/${hocKi}`);
+  }
+
+  getLHPDaPhanCongbyGiaoVienGiangDay(maGiaoVien: string, hocKi: number) {
+    const url = `https://localhost:4100/api/gvlhp/gvdd/${maGiaoVien}/hocKi/${hocKi}`;
+    return this.http.get<LopHocPhan[]>(url);
+  }
+
   addDSLopHocPhan(maNTenLopHoc: Object[], hocKi: string): Observable<any> {
     return this.http.post<any>(this.lophocphanURL, [hocKi, maNTenLopHoc], httpOptions);
   }
