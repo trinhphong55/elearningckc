@@ -17,7 +17,27 @@ export class ModalNoidungtrangchuComponent
 
   rawData: any = [];
   listBaiVietQuanTrong: any = [];
-
+  listCoHoiViecLam: any = [];
+  listGioiThieuNgan: any = [];
+  listTinTucNoiBat: any = [];
+  viTriHienThi: any = [
+    {
+      maViTri: 0,
+      tenViTri: 'Bài viết quan trọng',
+    },
+    {
+      maViTri: 1,
+      tenViTri: 'Cơ hội việc làm',
+    },
+    {
+      maViTri: 2,
+      tenViTri: 'Giới thiệu ngắn',
+    },
+    {
+      maViTri: 3,
+      tenViTri: 'Tin tức nổi bật',
+    },
+  ];
   ngOnInit(): void {
     this.getRawData();
   }
@@ -50,6 +70,15 @@ export class ModalNoidungtrangchuComponent
     this.listBaiVietQuanTrong = this.rawData.data.filter(
       (x) => x.viTriHienThi === 0
     );
+    this.listCoHoiViecLam = this.rawData.data.filter(
+      (x) => x.viTriHienThi === 1
+    );
+    this.listGioiThieuNgan = this.rawData.data.filter(
+      (x) => x.viTriHienThi === 2
+    );
+    this.listTinTucNoiBat = this.rawData.data.filter(
+      (x) => x.viTriHienThi === 3
+    );
   }
 
   onClickLogData(): void {
@@ -57,5 +86,11 @@ export class ModalNoidungtrangchuComponent
     console.log(this.rawData.data);
     console.log('log listBaiVietQuanTrong');
     console.log(this.listBaiVietQuanTrong);
+    console.log('log listCoHoiViecLam');
+    console.log(this.listCoHoiViecLam);
+    console.log('log listGioiThieuNgan');
+    console.log(this.listGioiThieuNgan);
+    console.log('log listTinTucNoiBat');
+    console.log(this.listTinTucNoiBat);
   }
 }
