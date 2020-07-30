@@ -25,8 +25,8 @@
               </div>
               <div class="form-group">
                 <label>Bậc</label>
-                <select class="form-control">
-                  <option *ngFor="let b of bac">{{b.tenBac}}</option>
+                <select class="form-control" [formControl]="maBac">
+                  <option *ngFor="let b of data">{{b.maBac}}</option>
                 </select>
               </div>
             </div>
@@ -38,21 +38,21 @@
                   <option>Liên thông</option>
                 </select>
               </div>
-              <div class="form-group">
+              <div class="form-group" >
                 <label>Khoá</label>
-                <input class="form-control" type="number" min="15" value="15">
+                <input class="form-control" type="number" min="15" value="15" [formControl]="khoa">
               </div>
             </div>
             <div class="col-3">
               <div class="form-group">
                 <label>Ngành</label>
-                <select class="form-control">
-                  <option *ngFor="let n of nganhs">{{n.tenNganhNghe}}</option>
+                <select class="form-control"  [formControl]="maNganh">
+                  <option [value]="n.maNganh" *ngFor="let n of data" >{{n.maNganh}}</option>
                 </select>
               </div>
               <div class="form-group">
                 <label>Lớp</label>
-                <select class="form-control">
+                <select class="form-control" [formControl]="tenLop">
                   <option *ngFor="let l of lop">{{l.tenLop}}</option>
                 </select>
               </div>
@@ -97,22 +97,22 @@
               <th scope="col" class="text-center">Số lượng bài viết</th>
               <th scope="col" class="text-center">Tác vụ</th>
             </thead>
-            <tbody *ngFor=" let d of data |filter: searchGroup">
-              <tr>
+            <tbody >
+              <tr *ngFor=" let d of data |filter: searchGroup" (click)="insertDateforForm(d)">
                 <td class="text-center">
-                  <label >{{d.id_Group}}</label>
+                  <label >{{d.maLophoc}}</label>
                 </td>
                 <td class="text-center">
-                  <label >{{d.tenGroup}}</label>
+                  <label >{{d.tenLop}}</label>
                 </td>
                 <td class="text-center">
-                  <label >{{d.linkGroup}}</label>
+                  <label >{{d.linkFBLopHoc}}</label>
                 </td>
                 <td class="text-center">
-                  <label >{{d.soLuongBaiViet}}</label>
+                  <label >{{d.nguoiTao}}</label>
                 </td>
                 <td class="text-center">
-                  <label>{{d.soLuongBaiViet}}</label>
+                  <label>{{d.khoa}}</label>
                 </td>
                 <td class="text-center">
                   <div class="form-group">
@@ -128,6 +128,4 @@
     </div>
   </div>
   
-
-<!-- Script những thành phần quan trọng để sử dụng API facebook -->
 </app-modal>

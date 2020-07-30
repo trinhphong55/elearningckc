@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalService } from '../../../../services/modal.service';
 import { GroupfbService } from '../../../../services/groupfb.service';
 import { NganhNgheService } from '../../../../services/NganhNghe.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BacService } from '../../../../services/Bac.service';
 
 @Component({
@@ -15,7 +16,12 @@ export class ModalGroupfacebookComponent implements OnInit {
   bac: any;
   nganhs: any;
   lop: any;
-  
+  editting= false;
+  currentIndex=-1;
+  currentLop=null;
+  addForm: FormGroup;
+  statusElementList = {};
+  isDone = false;
   constructor(
     private modalService: ModalService,
     private groupFBService: GroupfbService,
@@ -29,11 +35,32 @@ export class ModalGroupfacebookComponent implements OnInit {
     this.getNganh();
     this.getbac();
     this.getLop();
-    
+    this.addForm = new FormGroup({
+      maBac: new FormControl(),
+      maNganh: new FormControl(),
+      khoa: new FormControl(),
+      tenLop: new FormControl(),
+    });
+  
+  }
+  //Validator
+  get maBac() {
+    return this.addForm.get('maBac');
+  }
+  get maNganh() {
+    return this.addForm.get('maNganh');
+  }
+  get khoa() {
+    return this.addForm.get('khoa');
+  }
+  get tenLop() {
+    return this.addForm.get('tenLop');
   }
 
+
+
   getAll() {
-    this.groupFBService.getAll().subscribe( 
+    this.lopService.getAll().subscribe(
       data=> {
       this.data = data;
       console.log(this.data);
@@ -68,6 +95,19 @@ export class ModalGroupfacebookComponent implements OnInit {
       console.log(lop);
     });
   }
+  
+
+  insertDateforForm(data) {
+    this.editting = true;
+    this.currentIndex = data._id;
+    this.currentLop = data;
+    
+    this.maBac.setValue(data.maBac);
+    this.maNganh.setValue(data.maNganh);
+    this.khoa.setValue(data.khoa);
+    this.tenLop.setValue(data.tenLop);
+    console.log(data)
+  }
 
   openDetail(id_fb: number) {
     this.modalService.open('detail-groupfb');
@@ -79,91 +119,5 @@ export class ModalGroupfacebookComponent implements OnInit {
   closeModal(id: string) {
     this.modalService.close(id);
   }
-  //FB
-//   fbLibrary(){
-//     var AppId='726531241502023';
-//     (window as any).fbAsyncInit = function () {
-//       window['FB'].init({
-//         appId: AppId,
-//         cookie: true,
-//         xfbml: true,
-//         version: 'v7.0'
-//       });
-//       window['FB'].AppEvents.logPageView();
-//     };
-//     (function (d, s, id) {
-//       var js, fjs = d.getElementsByTagName(s)[0];
-//       if (d.getElementById(id)) { return; }
-//       js = d.createElement(s); js.id = id;
-//       js.src = "https://connect.facebook.net/en_US/sdk.js";
-//       fjs.parentNode.insertBefore(js, fjs);
-//     }(document, 'script', 'facebook-jssdk'));
-//   }
-//  // GROUPFB API
 
-//     //Lấy số member group
-//     getMemberCountGr() {
-//       window['FB'].api('/410650836564717',{fields: 'member_count'},function (response){
-//         var memCount=response.member_count;
-//         $('memCount').val(memCount);
-//         console.log(memCount);
-//       })
-//     }
-//     //Lấy số member request
-//      getMemberRequestCountGr() {
-//       window['FB'].api('/410650836564717',{fields: 'member_request_count'},function (response){
-//         console.log(response.member_request_count);
-//         var memRes=response.member_request_count
-//         document.getElementById('memRes').innerHTML =memRes;
-//       })
-//     }
-//     //Lấy privacy group
-//      getPrivacyGr() {
-//       window['FB'].api('/410650836564717',{fields: 'privacy'},function (response){
-//         console.log(response.privacy);
-//         var priva=response.privacy;
-//         document.getElementById('privacyGr').innerHTML =priva;
-//       })
-//     }
-//     //Lấy các feed đã post
-//     // function getFeedPostedGr() {
-//     //   FB.api('/410650836564717/',{fields: 'feed'},function (response){
-//     //     console.log(response.feed.data.message);
-//     //     console.log(response.story);
-//     //     console.log(response.updated_time);
-//     //     console.log(response.id);
-//     //     mess=response.message;
-//     //     story=response.story;
-//     //     updatedTime=response.updated_time;
-//     //     idpost=response.id;
-//     //     document.getElementById('feed/message').innerHTML =mess;
-//     //     document.getElementById('feed/story').innerHTML =story;
-//     //     document.getElementById('feed/updatedtime').innerHTML =updatedTime;
-//     //     document.getElementById('feed/idpost').innerHTML =idpost;
-//     //   })
-//     // }
-//     //Lấy Descripsion Group
-//     getDescripsionGr() {
-//       window['FB'].api('/410650836564717',{fields: 'description'},function (response){
-//         var descrip=response.description;
-//         document.getElementById('descriptionGr').innerHTML =descrip;
-//       })
-//     }
-//     //Lấy ngày tạo Group
-//      getGroupCreatedDay() {
-//       window['FB'].api('/410650836564717',{fields: 'created_time'},function (response){
-//         console.log(response.created_time);
-//         var grcreatedday=response.created_time;
-//         document.getElementById('groupCreatedDay').innerHTML =grcreatedday;
-//       })
-//     }
-//      loadAPIGroup(){
-//       this.getMemberCountGr();
-//       this.getMemberRequestCountGr();
-//       this.getPrivacyGr();
-//       // getFeedPostedGr();
-//       this.getDescripsionGr();
-//       this.getGroupCreatedDay();
-//     }
-    
 }
