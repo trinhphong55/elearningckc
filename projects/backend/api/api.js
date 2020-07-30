@@ -82,6 +82,7 @@ router.post("/sinhvien", sinhVien.themSinhVien);
 router.get("/sinhvien/:maSV", sinhVien.layThongtinSinhVien);
 router.put("/sinhvien", sinhVien.capNhatSinhVien);
 router.delete('/sinhvien',sinhVien.removeAll);
+router.get("/sinhvien/:maLopHoc/siso",sinhVien.tinhTongSinhVien);
 
 
 

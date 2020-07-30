@@ -51,7 +51,7 @@ const SinhVienSchema = new Schema({
     required:true
   },
   ngaySinh:{
-    type:Date,
+    type:String,
     required:true
   },
   diaChiThuongTru:{
@@ -72,7 +72,7 @@ const SinhVienSchema = new Schema({
   },
   matKhau:{
     type:String,
-    required:true
+   
   },
   tokens:{
     type:String,
