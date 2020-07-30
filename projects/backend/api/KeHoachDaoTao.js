@@ -5,6 +5,11 @@ const CTDT = require('../models/ChuongTrinhDaoTao.model');
 const { asyncForEach } = require('../utils/KeHoachDaoTao.util');
 
 
+router.get('/', async(req, res) => {
+  res.json('KHDT API GET');
+})
+
+
 //GET KHDT by maChuongTrinhDaoTao and hocKi
 router.get('/ctdt/:maChuongTrinhDaoTao/hocki/:hocKi', async(req, res) => {
   let maCTDT = req.params.maChuongTrinhDaoTao;
