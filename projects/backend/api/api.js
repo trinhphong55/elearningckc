@@ -9,6 +9,7 @@ const cnttLoaiBaiVietRoutes = require("./cnttLoaiBaiViet");
 const cnttSlideShowRoutes = require("./cnttSlideShow");
 const cnttTrangChu = require("./cnttTrangChu");
 const cnttTienIchSinhVien = require("./cnttTienIchSinhVien")
+const cnttDanhMuc = require("./cnttDanhMuc");
 
 router.use("/lophocphan", LopHocPhanRoutes);
 router.use("/giaovien", GiaoVienRoutes);
@@ -19,6 +20,7 @@ router.use("/crawling", cnttCrawlingRoutes);
 router.use("/loaibaiviet", cnttLoaiBaiVietRoutes);
 router.use("/cntt", cnttTrangChu);
 router.use("/cnttTienIchSinhVien", cnttTienIchSinhVien);
+router.use("/danhmuc", cnttDanhMuc);
 //end cntt
 //ttthRoutes
 router.use("/ttthTinTuc", ttthTinTucRoute);
