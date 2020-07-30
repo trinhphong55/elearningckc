@@ -1,8 +1,8 @@
 const SinhVienModel = require('../models/sinh-vien.model');
 
-exports.layTatCaSinhVien = (req,res) => {
+exports.layTatCaSinhVien = async (req,res) => {
   try {
-    const sinhViens = SinhVienModel.find();
+    const sinhViens = await SinhVienModel.find({ trangThai: "1"});
     res.json(sinhViens);
   } catch (error) {
     res.json(error);

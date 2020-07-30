@@ -15,6 +15,9 @@ export class LopHocService {
   getAllFor(maNganh) {
     return this.http.get(`${baseUrl}/${maNganh}/search`);
   }
+  getAllFormanghanh(maNganh) {
+    return this.http.get(`${baseUrl}/${maNganh}/searchnganh`);
+  }
   deleteMaNganh(maNganh) {
     return this.http.delete(`${baseUrl}/${maNganh}/search`);
   }

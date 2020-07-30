@@ -9,6 +9,8 @@ const LopHocPhan = require("./LopHocPhan");
 const LoaiMonHoc = require("./LoaiMonHoc");
 const groupFB = require("../api/groupFB");
 const sinhVien = require("./sinh-vien");
+const Diemsinhvien= require("./diemsinhvien");
+const SinhVien = require("./sinh-vien");
 
 router.use("/lophocphan", LopHocPhanRoutes);
 router.use("/giaovien", GiaoVienRoutes);
@@ -31,6 +33,7 @@ const validate = khoabomonController.checkValidate();
 //nganhnghe bac
 const NganhNgheRoutes = require("./NganhNghe");
 const BacRoutes = require("./Bac");
+const diemsinhvienModel = require("../models/diemsinhvien.model");
 //nganhnghe
 router.use("/", NganhNgheRoutes);
 //bac
@@ -47,6 +50,10 @@ router.delete("/khoabomon/:id", khoabomonController.deleteKhoaBoMon);
 //Cập nhật KHoaBoMon theo :id và data truyền vào ( lư ý data ở request.body)
 router.put("/khoabomon/:id", validate, khoabomonController.updateKhoaBoMon);
 
+//lấy danh sách môn học phần của sinh viên theo môn truyền vào
+router.get("/diemsinhvien/:maSinhVien/search",Diemsinhvien.getDiemsinhvien);
+
+
 //Lấy toàn bộ dữ liệu từ KhoaBoMon
 router.get("/bomon", boMon.getKhoaBonMon);
 router.get("/bomon/:id", boMon.getOneKhoaBoMon);
@@ -62,6 +69,7 @@ router.put("/bomon/:id", boMon.checkValidate(), boMon.updateKhoaBoMon);
 router.get("/lophoc", LopHoc.getAll);
 router.get("/lophoc/:id", LopHoc.getOne);
 router.get("/lophoc/:maNganh/search", LopHoc.getAllFor);
+router.get("/lophoc/:maNganh/searchnganh",LopHoc.getAllForManghanh);
 //Thêm dữ liệu vào KhoaBoMon
 router.post("/lophoc", LopHoc.checkValidate(), LopHoc.insert);
 //Xóa KhoaBoMon theo :id truyền vào
