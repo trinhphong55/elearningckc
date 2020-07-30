@@ -64,9 +64,10 @@
               </div>
               <div class="form-group">
                 <label for="exampleFormControlFile1">Tải hình ảnh</label>
-                <input type="file" class="form-control-file" id="exampleFormControlFile1"
-                  (change)="onFileSelected($event)">
-                <img style="width:180px;height:180px" id="blah" [src]="imageSrc || selectedItem.image" alt="your image" />
+                <input type="file" name="image" class="form-control-file" (change)="onFileSelected($event)"
+                ng2FileSelect [uploader]="uploader" accept="image/x-png,image/gif,image/jpeg">
+                <img style="width:180px;height:180px" id="blah" [src]="imageSrc || selectedItem.image"
+                alt="your image" />
               </div>
               <div class="form-group">
                 <label>Tiêu đề </label>
@@ -91,7 +92,7 @@
             <div class="col-auto">
               <div class="modal_chucnang__group__button">
                 <button class="modal_chucnang__button btn btn-outline-success px-4 mx-2"
-                  (click)="saveTinTuc(selectedItem)"><img class="modal_chucnang__button__icon mb-2"
+                  (click)="saveTinTuc(selectedItem);uploader.uploadAll()"><img class="modal_chucnang__button__icon mb-2"
                     src="assets/img/icons/upgrade.png" alt="image icon">
                   <div>Cập nhật</div>
                 </button>
@@ -122,7 +123,7 @@
                 <td style="max-width: 50px">{{i + 1}}</td>
                 <td>{{tintuc.id_loaitintuc}}</td>
                 <td style="max-width: 100px">
-                  <img style="width: 60px;height: 60px;" src="https://localhost:4100/{{tintuc.image}}" alt="">
+                  <img style="width: 60px;height: 60px;" src="{{tintuc.image}}" alt="">
                 </td>
                 <td>{{tintuc.tentintuc}}</td>
                 <td>{{tintuc.description}}</td>

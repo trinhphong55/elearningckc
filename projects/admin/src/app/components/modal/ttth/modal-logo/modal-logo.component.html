@@ -1,4 +1,4 @@
-<app-modal class="modal_chucnang__wrapper" id="ttth-logo">
+<app-modal class="modal_chucnang__wrapper show" id="ttth-logo">
   <script>
     $(document).on('click', '.add', function (event) {
       event.preventDefault();
@@ -20,62 +20,65 @@
       <div class="col-12">
         <h1 class="text-center text-white">Quản lý thông tin website</h1>
       </div>
-      <div class="col-12">
+      <div class="col-12" *ngFor="let item of ThongTinWeb">
         <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
           <div class="row justify-content-left align-items-center">
             <div class="col-3">
               <div class="form-group">
                 <label>Logo</label>
-                <div class="input-group mb-3">
-                  <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="inputGroupFile01">
-                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                  </div>
-                </div>
+                <input type="file" name="image" class="form-control-file" (change)="onFileSelected($event)"
+                  ng2FileSelect [uploader]="uploader" accept="image/x-png,image/gif,image/jpeg">
+                  <img style="width:180px;height:180px" id="blah" [src]="imageSrc || item.logo"
+                  alt="image" />
               </div>
             </div>
             <div class="col-3">
               <div class="form-group">
                 <label>Địa chỉ</label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" [(ngModel)]="item.diachi">
               </div>
               <div class="form-group">
-                <label>Giờ làm việc</label>
-                <input type="text" class="form-control">
+                <label>Email</label>
+                <input type="text" class="form-control" [(ngModel)]="item.email">
               </div>
             </div>
             <div class="col-3">
               <div class="form-group">
                 <label>Hotline</label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" [(ngModel)]="item.hotline">
               </div>
               <div class="form-group">
                 <label>Copyright</label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" [(ngModel)]="item.copyright">
               </div>
             </div>
-            <div class="col-3 text-center">
+            <div class="col-3">
+              <div class="form-group">
+                <label>Giờ làm việc</label>
+                <textarea class="form-control" [(ngModel)]="item.giolamviec"></textarea>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="row">
+                <div class="col-12">
+                  <label>Liên kết mạng xã hội(tối đa 4)</label>
+                </div>
+                <div class="col-3"*ngFor="let mxh of item.mxh">
+                  <div class="form-group" >
+                    <input type="text" class="form-control" [(ngModel)]="mxh.icon">
+                    <small class="form-text text-muted">Icon</small>
+                    <input type="text" class="form-control" [(ngModel)]="mxh.link">
+                    <small class="form-text text-muted">Link</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-auto text-center">
               <div class="modal_chucnang__group__button">
-                <button class="modal_chucnang__button btn btn-outline-success px-4 mx-2"><img
+                <button class="modal_chucnang__button btn btn-outline-success px-4 mx-2" (click)="saveThongTinWeb(item);uploader.uploadAll()"><img
                     class="modal_chucnang__button__icon mb-2" src="assets/img/icons/upgrade.png" alt="image icon">
                   <div>Cập nhật</div>
                 </button>
-              </div>
-            </div>
-            <div edu-card="0" class="col-12">
-              <div class="row" id="parent">
-                <div class="col-3">
-                  <div class="form-group">
-                    <label>Liên kết mạng xã hội(tối đa 6)</label>
-                    <input type="text" class="form-control">
-                    <small class="form-text text-muted">Icon</small>
-                    <input type="text" class="form-control">
-                    <small class="form-text text-muted">Link</small>
-                  </div>
-                  <div class="form-group">
-                    <div class="btn btn-primary add">Thêm</div>
-                  </div>
-                </div>
               </div>
             </div>
           </div>

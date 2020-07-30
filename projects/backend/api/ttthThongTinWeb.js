@@ -1,32 +1,12 @@
 const router = require('express').Router()
-const ttthBanner = require('../models/ttthbanner.model');
+const ttthThongTinWeb = require('../models/ttththongtinweb.model');
 const multer = require('multer')
 
-// get tin tuc
-router.get('/ttthdanhsachbanner', async (req, res) => {
-  ttthBanner.find((error, data) => {
+// get
+router.get('/ttthdanhsachthongtinweb', async (req, res) => {
+  ttthThongTinWeb.find((error, data) => {
     if (error) {
       return next(error)
-    }
-    res.json(data)
-  })
-})
-// add
-router.post('/ttththembanner', (req, res) => {
-  var banner = new ttthBanner({
-    image: req.body.image,
-    link: req.body.link,
-    vitri: req.body.vitri,
-    hienthi: req.body.hienthi,
-    trangthai: req.body.trangthai,
-    nguoitao: req.body.nguoitao,
-    nguoisua: req.body.nguoisua,
-    created_at: req.body.created_at,
-    updated_at: req.body.updated_at,
-  })
-  banner.save((err, data) => {
-    if (err) {
-      return next(err)
     }
     res.json(data)
   })
@@ -64,26 +44,20 @@ router.post('/uploads', upload.single('image'), function (req, res) {
   })
 });
 // sua
-router.post('/ttthsuabanner', async (req, res) => {
-  await ttthBanner.findOneAndUpdate({
+router.post('/ttthsuathongtinweb', async (req, res) => {
+  await ttthThongTinWeb.findOneAndUpdate({
     _id: req.body._id
   }, {
-    image: req.body.image,
-    link: req.body.link,
-    vitri: req.body.vitri,
-    hienthi: req.body.hienthi,
-    trangthai: req.body.trangthai,
-    nguoitao: req.body.nguoitao,
+    logo: req.body.logo,
+    diachi: req.body.diachi,
+    giolamviec: req.body.giolamviec,
+    hotline: req.body.hotline,
+    email: req.body.email,
+    copyright: req.body.copyright,
+    mxh: req.body.mxh,
     nguoisua: req.body.nguoisua,
     updated_at: req.body.updated_at,
   });
 })
-// xoa
-router.post('/ttthxoabanner', async (req, res) => {
-  await ttthBanner.findOneAndUpdate({
-    _id: req.body._id
-  }, {
-    trangthai: false
-  });
-})
+
 module.exports = router

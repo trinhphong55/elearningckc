@@ -16,4 +16,18 @@ export class BannerService {
     return this.http.get<ttthBanner[] >('https://localhost:4100/api/ttthbanner/ttthdanhsachbanner').pipe(
     );
   }
+  addBanner(newBanner: ttthBanner): Observable<ttthBanner> {
+    return this.http.post<ttthBanner>('https://localhost:4100/api/ttthBanner/ttththemBanner', newBanner, httpOptions).pipe(
+    );
+  }
+  suaBanner(newBanner: ttthBanner): Observable<ttthBanner> {
+    return this.http.post<ttthBanner>('https://localhost:4100/api/ttthBanner/ttthsuabanner', newBanner, httpOptions).pipe(
+      // tap((newBanner: ttthBanner) => console.log(`inserted TinTuc = ${JSON.stringify(newBanner)}`)),
+      // catchError(error => of(new ttthBanner()))
+    );
+  }
+  xoaBanner(newBanner: ttthBanner): Observable<ttthBanner> {
+    return this.http.post<ttthBanner>('https://localhost:4100/api/ttthBanner/ttthxoabanner', newBanner, httpOptions).pipe(
+    );
+  }
 }

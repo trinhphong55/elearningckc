@@ -75,7 +75,7 @@ export class ModalTintucComponent implements OnInit {
     else{
       const newTinTuc: ttthTinTuc = new ttthTinTuc();
       newTinTuc.id_loaitintuc = id_loaitintuc;
-      newTinTuc.image = 'uploads/cntt/' + this.nameImage;
+      newTinTuc.image = 'https://localhost:4100/uploads/cntt/' + this.nameImage;
       newTinTuc.tentintuc = tentintuc;
       newTinTuc.slug = 'slug';
       newTinTuc.description = description;
@@ -94,17 +94,20 @@ export class ModalTintucComponent implements OnInit {
     }
   }
   ///edit
-  capnhatHienThi = false;
-  getValueCheckBox(e){
-    this.capnhatHienThi= e.target.checked;
-  }
   selectedItem: ttthTinTuc;
   onSelect(TinTuc: ttthTinTuc):void {
     this.selectedItem= TinTuc;
     // console.log(`selectedItem = ${JSON.stringify(this.selectedItem)}`);
-    this.selectedItem.image = 'https://localhost:4100/' + this.selectedItem.image
+    this.capnhatHienThi=this.selectedItem.hienthi;
+  }
+  capnhatHienThi: any;
+  getValueCheckBox(e){
+    this.capnhatHienThi= e.target.checked;
   }
   saveTinTuc(TinTuc: ttthTinTuc):void {
+    if (this.nameImage) {
+      TinTuc.image='https://localhost:4100/uploads/cntt/' + this.nameImage;
+    }
     TinTuc.updated_at= new Date;
     TinTuc.hienthi= this.capnhatHienThi;
     this.tintucService.suaTinTuc(TinTuc)
