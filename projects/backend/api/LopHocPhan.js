@@ -5,7 +5,8 @@ const KHDT = require('../models/KeHoachDaoTao.model');
 
 //GET LHP
 router.get('/', async(req, res) => {
-  return res.send('haha');
+  var data =await LopHocPhan.find().exec()
+  return res.json(data);
 })
 
 //POST LopHocPhan
