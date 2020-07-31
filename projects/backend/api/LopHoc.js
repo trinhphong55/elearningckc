@@ -57,6 +57,26 @@ exports.getAllFor = async (req, res) => {
     res.json(error);
   }
 };
+exports.getAllForManghanh = async (req, res) => {
+  try {
+    let LopHocs = await LopHoc.find({
+      maNganh: req.params.maNganh,
+    });
+    res.json(LopHocs);
+  } catch (error) {
+    res.json(error);
+  }
+};
+exports.getAllForkhoa = async (req, res) => {
+  try {
+    let LopHocs = await LopHoc.find({
+      maNganh: req.params.khoa,
+    });
+    res.json(LopHocs);
+  } catch (error) {
+    res.json(error);
+  }
+};
 exports.deleteMaNganh = async (req, res) => {
   try {
     let LopHocs = await LopHoc.deleteMany({

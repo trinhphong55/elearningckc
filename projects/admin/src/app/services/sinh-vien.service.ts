@@ -17,5 +17,14 @@ export class SinhVienService {
   public tinhTongSinhVien(maLop: String) {
     return this.http.get<any>(`${this.baseUrl}/${maLop}/siso`);
   }
+  public laysinhvien(maLop: String){
+    return this.http.get(`${this.baseUrl}/${maLop}`);
+  }
+  public getAll(){
+    return this.http.get(this.baseUrl);
+  }
+  public getonesv(masv){
+    return this.http.get(`${this.baseUrl}/${masv}`);
+  }
 
-}
+  }

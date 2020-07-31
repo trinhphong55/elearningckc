@@ -2,43 +2,9 @@ const SinhVienModel = require("../models/sinh-vien.model");
 const { async } = require("rxjs");
 const LopHocModel = require("../models/LopHoc.model");
 
-setSinhVien = (req) => {
-  return {
-    maSinhVien: req.body.maSinhVien,
-    ho: req.body.ho,
-    ten: req.body.ten,
-    gioiTinh: req.body.gioiTinh,
-    ngaySinh: req.body.ngaySinh,
-    sdt: req.body.sdt,
-    email: req.body.email,
-    maLopHoc: req.body.maLopHoc,
-    nguoiTao: req.body.nguoiTao,
-    nguoiChinhSua: req.body.nguoiChinhSua,
-    ngayChinhSua: Date.now(),
-  };
-};
-setSinhVienUpdate = (req) => {
-  return {
-    CMND: req.CMND,
-    ho: req.ho,
-    ten: req.ten,
-    gioiTinh: req.gioiTinh,
-    ngaySinh: new Date(req.ngaySinh).toISOString(),
-    diaChiThuongTru: req.diaChiThuongTru,
-    diaChiTamTru: req.diaChiTamTru,
-    sdt: req.sdt,
-    email: req.email,
-    hoTenCha: req.hoTenCha,
-    hoTenMe: req.hoTenMe,
-    sdtCha: req.sdtCha,
-    sdtMe: req.sdtMe,
-    nguoiChinhSua: req.nguoiChinhSua,
-    ngayChinhSua: req.ngayChinhSua ? req.ngayChinhSua : Date.now(),
-  };
-};
-exports.layTatCaSinhVien = async (req, res) => {
+exports.layTatCaSinhVien = async (req,res) => {
   try {
-    const sinhViens = await SinhVienModel.find();
+    const sinhViens = await SinhVienModel.find({ trangThai: "1"});
     res.json(sinhViens);
   } catch (error) {
     res
@@ -46,7 +12,17 @@ exports.layTatCaSinhVien = async (req, res) => {
       .json({ message: "Máy chủ không sữ lý được", error: error, status: 500 });
   }
 };
-
+exports.Laysinhvientheomalop= async(req,res)=>
+{
+  try {
+    const sinhViens = await SinhVienModel.find({ maLopHoc: req.body.maLopHoc});
+    res.json(sinhViens);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Máy chủ không sữ lý được", error: error, status: 500 });
+  }
+};
 exports.themSinhVien = async (req, res) => {
   try {
     const sinhViens = await SinhVienModel.create(setSinhVien(req));

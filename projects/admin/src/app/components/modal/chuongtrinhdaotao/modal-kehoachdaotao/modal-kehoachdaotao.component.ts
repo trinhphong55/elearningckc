@@ -4,9 +4,9 @@ import { Component, OnInit } from '@angular/core';
 import { ModalService } from '../../../../services/modal.service';
 import { KHDTService } from '../../../../services/khdt.service';
 import { MonhocService } from '../../../../services/monhoc.service';
-import { LHDTService } from '../../../../services/loaihinhdaotao.service'
-import { BacService } from '../../../../services/Bac.service'
-import { NganhNgheService } from '../../../../services/NganhNghe.service'
+import { LHDTService } from '../../../../services/loaihinhdaotao.service';
+import { BacService } from '../../../../services/Bac.service';
+import { NganhNgheService } from '../../../../services/NganhNghe.service';
 
 
 //interfaces
