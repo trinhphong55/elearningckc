@@ -3,7 +3,7 @@ var NganhNghe = require("../models/NganhNghe.model");
 var Bac = require("../models/Bac.model");
 const { json } = require('body-parser');
 const router = require('express').Router();
-const getNextNumber = require('../utils/NganhNghe.util');
+const isNameExist = require('../utils/NganhNghe.util');
 
 //get nganh nghe
 router.get('/nganhnghe', async (req, res) => {
@@ -33,7 +33,8 @@ router.get('/nganhnghe/:id', async (req, res) => {
 router.post('/nganhnghe', async (req, res) => {
   try {
   var ktmaNganhNghe =  await NganhNghe.find({maNganhNghe:req.body.maNganhNghe}).exec();
-   if( ktmaNganhNghe=="" )
+  var kttenNganhNghe = await isNameExist(req.body.tenNganhNghe);
+   if( ktmaNganhNghe==""  || ! kttenNganhNghe  )
    {
     const nganh = new NganhNghe(req.body);
       var data = await nganh.save();
