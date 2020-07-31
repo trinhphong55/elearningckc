@@ -83,9 +83,9 @@
             </thead>
             <tbody >
               <tr *ngFor=" let d of data |filter: searchGroup; index as stt" (click)="insertDateforForm(d)">
-                <td class="text-center">{{d.stt}}</td>
+                <td class="text-center">{{stt+1}}</td>
                 <td class="text-center">
-                  <label >{{d.maLophoc}}</label>
+                  <label >{{d.maLopHoc}}</label>
                 </td>
                 <td class="text-center">
                   <label >{{d.tenLop}}</label>
