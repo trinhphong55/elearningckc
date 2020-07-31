@@ -24,30 +24,25 @@
                 <input class="form-control" placeholder="ID Group...">
               </div>
               <div class="form-group">
-                <label>Bậc</label>
-                <select class="form-control" [formControl]="maBac">
-                  <option *ngFor="let b of data">{{b.maBac}}</option>
-                </select>
+                <label>Lớp</label>
+                <input class="form-control" [formControl]="tenLop" >
               </div>
+
             </div>
-            <div class="col-3">
-              <div class="form-group" >
-                <label>Khoá</label>
-                <input class="form-control" type="number" min="15" value="15" [formControl]="khoa">
+            <div class="col-6">
+              <div class="row no-gutters">
+                <div class="form-group col-6 " >
+                  <label>Khoá</label>
+                  <input class="form-control" type="number" [formControl]="khoa" >
+                </div>
+                <div class="form-group col-5 ml-4">
+                  <label>Bậc</label>
+                  <input class="form-control" [formControl]="maBac" >
+                </div>
               </div>
-            </div>
-            <div class="col-3">
               <div class="form-group">
                 <label>Ngành</label>
-                <select class="form-control"  [formControl]="maNganh">
-                  <option [value]="n.maNganh" *ngFor="let n of data" >{{n.maNganh}}</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label>Lớp</label>
-                <select class="form-control" [formControl]="tenLop">
-                  <option *ngFor="let l of lop">{{l.tenLop}}</option>
-                </select>
+                <input type="text" class="form-control" [formControl]="maNganh" >
               </div>
             </div>
             <div class="">
@@ -77,14 +72,14 @@
             <div class="form-group">
               <label for="bac" class="col-sm-2  col-form-label">Bậc </label>
               <div class="col-sm-4">
-                <select (change)="changedBac($event)" id="bac" class="form-control" formControlName="maBac" >
+                <select  id="bac" class="form-control" formControlName="maBac" >
                   <option value="">Select...</option>
-                  <option *ngFor="let b of bacList" [ngValue]=b.maBac> {{b.tenBac }}</option>
+                  <option *ngFor="let b of bac" [ngValue]=b.maBac> {{b.tenBac }}</option>
                 </select>
               </div>
             </div>
             </form>
-            <form [formGroup]="addForm" class="form-inline">
+            <!-- <form [formGroup]="addForm" class="form-inline">
               <div class="form-group">
                 <label for="nganh" class="col-sm-2  col-form-label">Ngành </label>
                 <div class="col-sm-4">
@@ -94,13 +89,14 @@
                   </select>
                 </div>
               </div>
-              </form>
+              </form> -->
             <label class="ml-auto mb-0 d-flex align-items-center"><span class="text-nowrap">Tìm kiếm: &nbsp;</span>
               <input class="form-control form-control-sm" placeholder="Tìm kiếm" [(ngModel)]="searchGroup">
             </label>
           </div>
           <table class="modal_chucnang__table table table-hover" id="">
             <thead class="bg__caothang text-white">
+              <th scope="col" class="text-center">STT</th>
               <th scope="col" class="text-center">ID</th>
               <th scope="col" class="text-center">Tên Lớp</th>
               <th scope="col" class="text-center">Link</th>
@@ -109,7 +105,7 @@
               <th scope="col" class="text-center">Tác vụ</th>
             </thead>
             <tbody >
-              <tr *ngFor=" let d of lopTam |filter: searchGroup" (click)="insertDateforForm(d)">
+              <tr *ngFor=" let d of data |filter: searchGroup;" (click)="insertDateforForm(d)">
                 <td class="text-center">
                   <label >{{d.maLopHoc}}</label>
                 </td>
@@ -138,5 +134,5 @@
       </div>
     </div>
   </div>
-  
+
 </app-modal>
