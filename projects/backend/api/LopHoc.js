@@ -1,6 +1,7 @@
 const LopHoc = require("../models/LopHoc.model");
 const { check, validationResult } = require("express-validator");
-const { async } = require("rxjs");
+const sinhVienModel = require("../models/sinh-vien.model");
+
 
 // "maLopHoc": "mã Bậc + mã Ngành Nghề + Khoá Học + mã Loại Hình Đào Tạo + Số thứ tự",
 // "tenLop": "kiểu String",
@@ -21,12 +22,18 @@ const setLopHoc = (req) => {
     nguoiTao: req.body.nguoiTao,
     nguoiChinhSua: req.body.nguoiChinhSua,
     ngayChinhSua: Date.now(),
-    maNganh:req.body.maNganh
+    maNganh: req.body.maNganh,
+    maBac: req.body.maBac,
+    khoa: req.body.khoa,
   };
 };
 exports.getAll = async (req, res) => {
   try {
-    const LopHocs = await LopHoc.find({ trangThai: 1 });
+    const LopHocs = await LopHoc.find({ trangThai: 1 }).sort({
+      maNganh: "asc",
+    });
+
+
     res.json(LopHocs);
   } catch (error) {
     res.json(error);
@@ -34,8 +41,56 @@ exports.getAll = async (req, res) => {
 };
 exports.getOne = async (req, res) => {
   try {
-    const khoaBoMon = await LopHoc.find({ _id: req.params.id });
+    const khoaBoMon = await LopHoc.findOne({ _id: req.params.id });
     res.json(khoaBoMon);
+  } catch (error) {
+    res.json(error);
+  }
+};
+exports.getAllFor = async (req, res) => {
+  try {
+    let LopHocs = await LopHoc.find({
+      maNganh: req.params.maNganh,
+    });
+    res.json(LopHocs.length);
+  } catch (error) {
+    res.json(error);
+  }
+};
+exports.getAllForManghanh = async (req, res) => {
+  try {
+    let LopHocs = await LopHoc.find({
+      maNganh: req.params.maNganh,
+    });
+    res.json(LopHocs);
+  } catch (error) {
+    res.json(error);
+  }
+};
+exports.getAllForkhoa = async (req, res) => {
+  try {
+    let LopHocs = await LopHoc.find({
+      maNganh: req.params.khoa,
+    });
+    res.json(LopHocs);
+  } catch (error) {
+    res.json(error);
+  }
+};
+exports.deleteMaNganh = async (req, res) => {
+  try {
+    let LopHocs = await LopHoc.deleteMany({
+      maNganh: req.params.maNganh,
+    });
+
+    if (LopHocs.deletedCount === 0) {
+      res.json({ status: 200, ok: 1, msg: "Id nay khong ton tai" });
+    } else {
+      res.json({
+        status: true,
+        msg: "Deleted successful",
+      });
+    }
   } catch (error) {
     res.json(error);
   }
@@ -108,6 +163,7 @@ exports.insert = async (req, res) => {
       const data = await lophoc.save();
       result = {
         status: 200,
+        ok: true,
         msg: "Thêm thành công Lớp học",
         data: data,
       };
@@ -143,12 +199,12 @@ exports.delete = async (req, res) => {
 
     if (updateKhoa.nModified === 0) {
       result = {
-        status: false,
+        status: 200,
         msg: "Xóa thất bại",
       };
     } else {
       result = {
-        status: true,
+        status: 200,
         msg: "Xóa thành công ",
       };
     }
@@ -166,7 +222,7 @@ exports.checkValidate = () => {
   ];
 };
 exports.removeAll = async (req, res) => {
-   const removeKhoa = await LopHoc.remove({ trangThai: 1 });
+  const removeKhoa = await LopHoc.remove({ trangThai: 1 });
   if (removeKhoa.deletedCount === 0) {
     res.json({ status: false, msg: "Id nay khong ton tai" });
   } else {
@@ -174,5 +230,33 @@ exports.removeAll = async (req, res) => {
       status: true,
       msg: "Deleted  All successful",
     });
+  }
+};
+exports.search = async (req, res) => {
+  try {
+    const search = LopHoc.find({ maNganh: req.params.maNganh });
+    res.json(search);
+  } catch (error) {
+    res.json(error);
+  }
+};
+exports.timLopTheoTienTo = async (req, res) => {
+  try {
+    const lop = await LopHoc.find({maNganh :req.params.maNganh, maBac: req.body.maBac, khoa: req.body.khoa});
+    res.json(lop);
+  } catch (error) {
+    res.json(error)
+  }
+}
+
+//trinhphong
+exports.timLopTheoMaBac=  async (req, res) => {
+
+  var bac = parseInt(req.params.maBac);
+  try {
+    var data = await LopHoc.find({maBac:bac}).exec();
+    res.json(data);
+  } catch (error) {
+    res.json({ message: error });
   }
 }

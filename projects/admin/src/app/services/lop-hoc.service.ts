@@ -1,14 +1,28 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
+import { data } from 'jquery';
+import { LopHoc } from '../interfaces/LopHoc.interface'
 const baseUrl = 'https://localhost:4100/api/lophoc';
+
 @Injectable({
   providedIn: 'root',
 })
 export class LopHocService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
   getAll() {
     return this.http.get(baseUrl);
+  }
+  getAllFor(maNganh) {
+    return this.http.get(`${baseUrl}/${maNganh}/search`);
+  }
+  getAllFormanghanh(maNganh) {
+    return this.http.get(`${baseUrl}/${maNganh}/searchnganh`);
+  }
+  getAllForkhoa(khoa) {
+    return this.http.get(`${baseUrl}/${khoa}/searchkhoa`);
+  }
+  deleteMaNganh(maNganh) {
+    return this.http.delete(`${baseUrl}/${maNganh}/search`);
   }
   get(id) {
     return this.http.get(`${baseUrl}/${id}`);
@@ -28,5 +42,10 @@ export class LopHocService {
 
   deleteAll() {
     return this.http.delete(baseUrl);
+  }
+  //trinhphong
+  getMaBac(maBac) {
+
+    return this.http.get<LopHoc>(`${baseUrl}/${maBac}`);
   }
 }
