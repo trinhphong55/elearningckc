@@ -6,7 +6,6 @@ import { ttthTinTuc } from '../../../../../models/ttthTinTuc';
 import { FileUploader } from 'ng2-file-upload';
 import { ToastrService } from 'ngx-toastr';
 const URL = 'https://localhost:4100/api/ttthTintuc/uploads';
-declare var $: any;
 
 @Component({
   selector: 'app-modal-tintuc',
@@ -87,6 +86,7 @@ export class ModalTintucComponent implements OnInit {
         .subscribe(data => {
           this.TinTuc.push(data);
         });
+      this.getTinTucfromServices();
       this.toastr.success('Thêm thành công');
     }
   }
@@ -119,6 +119,7 @@ export class ModalTintucComponent implements OnInit {
     .subscribe(data => {
       this.TinTuc.push(data);
     });
+    this.getTinTucfromServices();
     window.location.reload();
     this.toastr.success('Xóa thành công');
   }

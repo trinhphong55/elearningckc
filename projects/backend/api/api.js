@@ -6,6 +6,8 @@ const cnttCrawlingRoutes = require("./cnttCrawling");
 const ttthTinTucRoute = require("./ttthTintuc");
 const ttthBannerRoute = require("./ttthBanner");
 const ttthTTWRoute = require("./ttthThongTinWeb");
+const ttthCamOnRoute = require("./ttthCamOn");
+const ttthTienIchRoute = require("./ttthTienIch");
 const cnttLoaiBaiVietRoutes = require("./cnttLoaiBaiViet");
 const cnttSlideShowRoutes = require("./cnttSlideShow");
 const cnttTrangChu = require("./cnttTrangChu");
@@ -27,6 +29,8 @@ router.use("/danhmuc", cnttDanhMuc);
 router.use("/ttthTinTuc", ttthTinTucRoute);
 router.use("/ttthBanner", ttthBannerRoute);
 router.use("/ttthThongTinWeb", ttthTTWRoute);
+router.use("/ttthCamOn", ttthCamOnRoute);
+router.use("/ttthTienIch", ttthTienIchRoute);
 //ttth
 const khoabomonController = require("../api/khoabomon");
 const loaidonviController = require("../api/loaidonvi");

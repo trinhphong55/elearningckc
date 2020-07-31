@@ -1,19 +1,69 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { ModalService } from '../../../../services/modal.service';
-
+import { ToastrService } from 'ngx-toastr';
+import { CamonService } from '../../../../services/ttth/camon.service';
+import { ttthCamOn } from '../../../../../models/ttthCamOn';
+const URL = 'https://localhost:4100/api/ttthCamOn/uploads';
+declare var $: any;
 @Component({
   selector: 'app-modal-home-camon',
   templateUrl: './modal-home-camon.component.html',
   styleUrls: ['./modal-home-camon.component.css']
 })
 export class ModalHomeCamonComponent implements OnInit {
-
-  constructor(private modalService: ModalService) { }
+  CamOn: ttthCamOn[];
+  constructor(private modalService: ModalService,private camonService: CamonService,private toastr: ToastrService) { }
 
   ngOnInit(): void {
+    this.getdanhsach();
   }
 
   closeModal(id: string) {
     this.modalService.close(id)
+  }
+  getdanhsach(): void {
+    this.camonService.get().subscribe(data => this.CamOn = data);
+  }
+   addCamOn(tieudechinh: string,tieudephu: string,icon: string): void {
+      tieudechinh = tieudechinh.trim();
+      tieudephu = tieudephu.trim();
+      icon = icon.trim();
+       const newItem: ttthCamOn = new ttthCamOn();
+       newItem.icon = icon;
+       newItem.tieudechinh = tieudechinh;
+       newItem.tieudephu = tieudephu;
+       newItem.trangthai = true;
+       newItem.nguoitao = 'hieu';
+       newItem.nguoisua = 'loc';
+       newItem.created_at = (new Date);
+       newItem.updated_at = null;
+       this.camonService.add(newItem)
+         .subscribe(data => {
+           this.CamOn.push(data);
+         });
+        this.getdanhsach();
+       this.toastr.success('Thêm thành công');
+   }
+  ///edit
+  selectedItem: ttthCamOn;
+  onSelect(CamOn: ttthCamOn):void {
+    this.selectedItem= CamOn;
+  }
+  saveCamOn(CamOn: ttthCamOn):void {
+    CamOn.updated_at= new Date;
+    this.camonService.update(CamOn)
+    .subscribe(data => {
+      this.CamOn.push(data);
+    });
+    this.toastr.success('Sửa thành công');
+  }
+  //delete
+  xoaCamOn(CamOn: ttthCamOn):void {
+    this.camonService.delete(CamOn)
+    .subscribe(data => {
+      this.CamOn.push(data);
+    });
+    this.toastr.success('Xóa thành công');
+    window.location.reload();
   }
 }

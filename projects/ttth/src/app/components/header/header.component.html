@@ -2,24 +2,29 @@
 <header>
   <div class="header-top ">
       <div class="container ">
-          <div class="row flex-ic">
-              <div class="logo col-lg-5 col-md-6 col-sm-12 col-12 flex-ic">
-                  <img src="assets/img/logo.png" alt="logo">
-                  <div class="logo-title">
-                      <h3>Trung tâm tin học</h3>
-                      <p>Trường cao đẳng kỹ thuật Cao Thắng</p>
-                  </div>
+          <div class="d-flex justify-content-between">
+              <div class="flex align-items-center">
+                <div class="header-icon">
+                  <i class="far fa-clock text-7"></i>
+                </div>
+                <div class="header-info">
+                  <ng-container  *ngFor="let item of ThongTinWeb" >
+                    <p [innerHTML]="item.giolamviec"></p>
+                  </ng-container>
+                </div>
               </div>
-              <div class="search-header desk col-lg-7 col-md-6 col-sm-12 col-12 flex">
-                  <form class="">
-                      <div class="search">
-                          <input type="search" class="search-box" />
-                          <span class="search-button">
-                            <span class="search-icon"></span>
-                          </span>
-                        </div>
-                  </form>
+              <div class="logo">
+                <img style="max-width: 220px;" *ngFor="let item of ThongTinWeb" [src]="item.logo" alt="logo">
               </div>
+              <div class="flex align-items-center">
+                <div class="header-icon">
+                  <i class="fab fa-whatsapp"></i>
+                </div>
+                <div class="header-info">
+                  <p *ngFor="let item of ThongTinWeb">{{item.hotline}}</p>
+                </div>
+              </div>
+
           </div>
       </div>
   </div>
@@ -33,8 +38,8 @@
                   <div class="spinner diagonal part-2"></div>
               </label>
           </div>
-          <nav id="menu" class="menu">
-              <ul >
+          <nav id="menu" class="menu ">
+              <ul class="d-flex justify-content-center">
                   <li class="search-header flex">
                       <form class="">
                           <div class="search">
@@ -46,7 +51,7 @@
                       </form>
                   </li>
                   <li><a routerLink=""><i class="fas fa-home mr-2"></i>Trang chủ</a></li>
-                  <li class="dropdown"><a href="#"  data-toggle="dropdown">Khóa học</a>
+                  <!-- <li class="dropdown"><a href="#"  data-toggle="dropdown">Khóa học</a>
                       <ul class="dropdown-menu">
                           <li class="dropdown-item"><a href="#">AutoCad 2D</a></li>
                           <li class="dropdown-item"><a href="#">AutoCad 3D</a></li>
@@ -56,10 +61,22 @@
                           <li class="dropdown-item"><a href="#">Quản trị mạng</a></li>
                           <li class="dropdown-item"><a href="#">Tin học trình độ A</a></li>
                           <li class="dropdown-item"><a href="#">Thiết kế web</a></li>
-                      </ul></li>
+                      </ul>
+                    </li> -->
                   <li><a href="#">Lịch khai giảng</a></li>
+                  <li><a routerLink="/dangkikhoahoc">Đăng kí học</a></li>
                   <li><a href="#">Kết quả thi</a></li>
                   <li><a routerLink="/lienhe">Liên hệ</a></li>
+                  <div class="search-header desk flex">
+                    <form class="">
+                        <div class="search">
+                            <input type="search" class="search-box" />
+                            <span class="search-button">
+                              <span class="search-icon"></span>
+                            </span>
+                          </div>
+                    </form>
+                </div>
               </ul>
           </nav>
       </div>

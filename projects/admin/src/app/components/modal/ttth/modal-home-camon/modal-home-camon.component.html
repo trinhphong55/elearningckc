@@ -5,26 +5,27 @@
       <div class="col-12">
         <h1 class="text-center text-white">Quản lý mục cảm ơn ở trang chủ</h1>
       </div>
-      <div class="col-12">
+      <div class="col-12" [ngClass]="{ 'd-none': selectedItem }">
         <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
           <div class="row justify-content-center align-items-center">
             <div class="col-3">
               <div class="form-group">
-                <label for="exampleFormControlFile1">Tải hình ảnh</label>
-                <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                <label>Icon (FontAweSome)</label>
+                <input type="text" class="form-control" #icon>
               </div>
               <div class="form-group">
                 <label>Tiêu đề chính</label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" #tieudechinh>
               </div>
               <div class="form-group">
                 <label>Tiêu đề phụ</label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" #tieudephu>
               </div>
             </div>
             <div class="col-auto">
               <div class="modal_chucnang__group__button">
-                <button class="modal_chucnang__button btn btn-outline-primary px-4 mx-2"><img
+                <button class="modal_chucnang__button btn btn-outline-primary px-4 mx-2" [disabled]="!tieudechinh.value || !tieudephu.value|| !icon.value"
+                (click)="addCamOn(tieudechinh.value,tieudephu.value,icon.value);tieudechinh.value=''; tieudephu.value=''; icon.value=''"><img
                     class="modal_chucnang__button__icon mb-2" src="assets/img/icons/add.png" alt="image icon">
                   <div>Thêm mới</div>
                 </button>
@@ -33,41 +34,63 @@
           </div>
         </div>
       </div>
-      <div class="col-12">
+      <div class="col-12" *ngIf="selectedItem">
         <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
-          <table class="modal_chucnang__table table table-hover" datatable>
+          <div class="row justify-content-center align-items-center">
+            <div class="col-3">
+              <div class="form-group">
+                <label>Icon</label>
+                <input type="text" class="form-control" [(ngModel)]="selectedItem.icon" >
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="form-group">
+                <label>Tiêu đề chính</label>
+                <input type="text" class="form-control" [(ngModel)]="selectedItem.tieudechinh" >
+              </div>
+              <div class="form-group">
+                <label>Tiêu đề phụ</label>
+                <input type="text" class="form-control" [(ngModel)]="selectedItem.tieudephu">
+              </div>
+            </div>
+            <div class="col-auto">
+              <div class="modal_chucnang__group__button">
+                <button class="modal_chucnang__button btn btn-outline-success px-4 mx-2"
+                  (click)="saveCamOn(selectedItem)"><img class="modal_chucnang__button__icon mb-2"
+                    src="assets/img/icons/upgrade.png" alt="image icon">
+                  <div>Cập nhật</div>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12" >
+        <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
+          <table class="modal_chucnang__table table table-hover"  *ngIf="CamOn" datatable="ng">
             <thead class="bg__caothang text-white">
               <tr>
                 <th>#</th>
-                <th scope="col">Image</th>
+                <th scope="col">Icon</th>
                 <th scope="col">Tiêu đề chính</th>
                 <th scope="col">Tiêu đề phụ</th>
-                <th scope="col">Hiển thị</th>
+                <th scope="col">Người tạo</th>
+                <th scope="col">Người sửa</th>
                 <th class="text-center" scope="col"><span
                     class="modal_chucnang__button__save mdi mdi-content-save-outline mdi-24px"></span></th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td style="max-width: 50px">1</td>
-                <td style="max-width: 100px">
-                  <img src="https://via.placeholder.com/50" alt="">
-                </td>
-                <td>
-                  Tiêu đề chính
-                </td>
-                <td>
-                  Tiêu đề phụ
-                </td>
-                <td>
-                  <div class="custom-control custom-checkbox">
-                    <input class="custom-control-input" id="customCheck1" type="checkbox">
-                    <label class="custom-control-label" for="customCheck1"></label>
-                  </div>
-                </td>
+              <tr *ngFor="let item of CamOn; let i = index">
+                <td style="max-width: 50px">{{i + 1}}</td>
+                <td>{{item.icon}}</td>
+                <td>{{item.tieudechinh}}</td>
+                <td>{{item.tieudephu}}</td>
+                <td>{{item.nguoitao}}</td>
+                <td>{{item.nguoisua}}</td>
                 <td class="text-center">
-                  <span class="modal_chucnang__button__delete mdi mdi-wrench-outline mdi-24px  mr-2"></span>
-                  <span class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px"></span>
+                  <span class="modal_chucnang__button__delete mdi mdi-wrench-outline mdi-24px  mr-2" (click)="onSelect(item)"></span>
+                  <span class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px" (click)="xoaCamOn(item)"></span>
                 </td>
               </tr>
             </tbody>

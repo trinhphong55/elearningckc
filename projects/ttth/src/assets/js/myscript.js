@@ -82,10 +82,11 @@ $(document).ready(function() {
   function myFunction(x) {
     if (x.matches) { // If media query matches
       $(".footer-locat").removeClass("container");
+      $("#menu>ul").removeClass("d-flex justify-content-center");
 
     } else {
       $(".footer-locat").addClass("container");
-
+      $("#menu>ul").addClass("d-flex justify-content-center");
     }
   }
 

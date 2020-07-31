@@ -1,30 +1,30 @@
 const router = require('express').Router()
-const ttthBanner = require('../models/ttthbanner.model');
+const ttthTienIch = require('../models/ttthtienich.model');
 const multer = require('multer')
 
-// get tin tuc
-router.get('/ttthdanhsachbanner', async (req, res) => {
+// get
+router.get('/', async (req, res) => {
   try {
-    const danhsach = await ttthBanner.find({ trangthai: true }).sort({vitri : 1});
+    const danhsach = await ttthTienIch.find({ trangthai: true }).sort({vitri : 1});
     res.json(danhsach);
   } catch (error) {
     res.json([]);
   }
 })
 // add
-router.post('/ttththembanner', (req, res) => {
-  var banner = new ttthBanner({
+router.post('/add', (req, res) => {
+  var item = new ttthTienIch({
+    ten: req.body.ten,
+    mota: req.body.mota,
     image: req.body.image,
     link: req.body.link,
-    vitri: req.body.vitri,
-    hienthi: req.body.hienthi,
     trangthai: req.body.trangthai,
     nguoitao: req.body.nguoitao,
     nguoisua: req.body.nguoisua,
     created_at: req.body.created_at,
     updated_at: req.body.updated_at,
   })
-  banner.save((err, data) => {
+  item.save((err, data) => {
     if (err) {
       return next(err)
     }
@@ -64,23 +64,24 @@ router.post('/uploads', upload.single('image'), function (req, res) {
   })
 });
 // sua
-router.post('/ttthsuabanner', async (req, res) => {
-  await ttthBanner.findOneAndUpdate({
+router.post('/update', async (req, res) => {
+  await ttthTienIch.findOneAndUpdate({
     _id: req.body._id
   }, {
+    ten: req.body.ten,
+    mota: req.body.mota,
     image: req.body.image,
     link: req.body.link,
-    vitri: req.body.vitri,
-    hienthi: req.body.hienthi,
     trangthai: req.body.trangthai,
     nguoitao: req.body.nguoitao,
     nguoisua: req.body.nguoisua,
+    created_at: req.body.created_at,
     updated_at: req.body.updated_at,
   });
 })
 // xoa
-router.post('/ttthxoabanner', async (req, res) => {
-  await ttthBanner.findOneAndUpdate({
+router.post('/delete', async (req, res) => {
+  await ttthTienIch.findOneAndUpdate({
     _id: req.body._id
   }, {
     trangthai: false
