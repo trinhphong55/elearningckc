@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
@@ -16,6 +17,7 @@ import { PageJobComponent } from './pages/page-job/page-job.component';
 import { PageJobDetailComponent } from './pages/page-job-detail/page-job-detail.component';
 import { SocialmediaComponent } from './components/socialmedia/socialmedia.component';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
+import { TienichsvComponent } from './components/tienichsv/tienichsv.component';
 
 
 @NgModule({
@@ -33,13 +35,15 @@ import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.componen
     PageJobDetailComponent,
     SocialmediaComponent,
     BreadcrumbComponent,
+    TienichsvComponent,
 
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgxUsefulSwiperModule
+    NgxUsefulSwiperModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
