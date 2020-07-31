@@ -12,8 +12,15 @@ export class LopHocService {
   getAll() {
     return this.http.get(baseUrl);
   }
-  getAllFor(maNganh) {
-    return this.http.get(`${baseUrl}/${maNganh}/search`);
+  //vd tienTo: 03006171
+  filterLopTheoTienTo(tienTo: String) {
+    return this.http.get(`${baseUrl}/${tienTo}/tiento`);
+  }
+  getAllFormanghanh(maNganh) {
+    return this.http.get(`${baseUrl}/${maNganh}/searchnganh`);
+  }
+  getAllForkhoa(khoa) {
+    return this.http.get(`${baseUrl}/${khoa}/searchkhoa`);
   }
   deleteMaNganh(maNganh) {
     return this.http.delete(`${baseUrl}/${maNganh}/search`);

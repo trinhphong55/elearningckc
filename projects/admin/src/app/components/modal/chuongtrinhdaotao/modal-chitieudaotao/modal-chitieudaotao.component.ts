@@ -1,3 +1,4 @@
+import { LopHoc } from './../../../../interfaces/LopHoc.interface';
 import { SinhVienService } from './../../../../services/sinh-vien.service';
 import { SinhVien } from './../../../../interfaces/SinhVien.interface';
 import { Subject } from 'rxjs';
@@ -12,6 +13,7 @@ import * as XLSX from 'xlsx';
 // Yasuo start
 import { LopHocPhan } from './../../../../interfaces/lophocphan.interface';
 import { LopHocPhanService } from '../../../../services/lophocphan.service';
+import { tinhTongSinhVien } from '../../../../../../../backend/api/sinh-vien';
 
 // Yasuo end
 
@@ -58,7 +60,7 @@ export class ModalChitieudaotaoComponent implements OnInit {
   public nganhtamlist: any;
   //Khai bao Form
   addForm: FormGroup;
-  chiTieuGroup: FormGroup;
+
   chiTieuList = new FormArray([]);
   hocKiForm: FormGroup;
 
@@ -68,13 +70,14 @@ export class ModalChitieudaotaoComponent implements OnInit {
   //Khai bao Array
   public lops = [];
   public lopHocs: any;
-  public lopTams: any;
+  public lopTams: LopHoc[];
   public lopHocPhans: LopHocPhan[];
 
   //Khai bao thong bao
   msg = '';
   public msgList = [];
   public resetResult;
+  public soChiTieu = [];
 
   //Gan gia tri cho Objsect Lop
   setLop = (
@@ -117,6 +120,8 @@ export class ModalChitieudaotaoComponent implements OnInit {
     this.getNganhNghe();
     this.getbac();
     this.getLopHoc();
+    this.getSiSo();
+    this.tongSoSinhVien;
     this.hocKiForm = new FormGroup({
       hocKi: new FormControl(''),
     });
@@ -145,12 +150,9 @@ export class ModalChitieudaotaoComponent implements OnInit {
   getNganhNghe() {
     this.nganhngheservice.getNganhnghe().subscribe(
       (data) => {
-        this.chiTieuGroup = new FormGroup({
-          maNganh: new FormControl(''),
-          soChiTieu: new FormControl(''),
-        });
         this.nganhList = data;
         this.nganhtamlist = this.nganhList;
+
         this.nganhList.forEach((element) => {
           this.chiTieuList.push(
             new FormGroup({
@@ -212,6 +214,7 @@ export class ModalChitieudaotaoComponent implements OnInit {
   //Khai bao su kien click
 
   onClickCreate() {
+    this.msgList = [];
     if (!this.addForm.value.khoa || !this.addForm.value.loaiHinhDaoTao) {
       this.msg = 'Vui lòng chọn Loại hình đào tạo và nhập khóa học';
     } else {
@@ -220,8 +223,9 @@ export class ModalChitieudaotaoComponent implements OnInit {
     }
   }
   onClickResetLopHoc(maNganh: string) {
+    this.msgList = [];
     this.deleteLopHoc(maNganh);
-    this.taoLopHoc();
+    //this.taoLopHoc();
     this.getLopHoc();
   }
   /**
@@ -235,18 +239,26 @@ export class ModalChitieudaotaoComponent implements OnInit {
 
   deleteLopHoc(maNganh: string) {
     this.lopHocService.deleteMaNganh(maNganh).subscribe(
-      (data) => {},
+      (data) => {
+        this.msgList.push({ msg: `Xóa thành công lớp học của ${maNganh}` });
+      },
       (error) => console.log(error)
     );
   }
 
-  resetLopHoc(maNganh: string) {
-    this.lopHocService.getAllFor(maNganh).subscribe((data) => {
+  kiemtraTonTaiLopHoc(maNganh: string, maBac: string) {
+    let ma = this.taoTienTo(
+      maNganh,
+      maBac,
+      this.addForm.value.khoa,
+      this.addForm.value.loaiHinhDaoTao
+    );
+    this.lopHocService.filterLopTheoTienTo(ma).subscribe((data) => {
       if (data > 0) {
         this.msgList.push({
           msg:
             `Ngành "${this.convertToTenNganh(maNganh)} "` +
-            ' đã tồn tại danh sách lớp, Bạn có muốn tạo danh sách mới không ? ',
+            ' đã tồn tại danh sách lớp, Bạn có muốn xóa để tạo danh sách mới không ? ',
           trangThai: true,
           maNganh: maNganh,
         });
@@ -310,16 +322,18 @@ export class ModalChitieudaotaoComponent implements OnInit {
     );
   }
 
+  public taoTienTo(maNganh, maBac, khoa, loaiHinhDaoTao) {
+    return Number.parseInt(maBac) + '' + maNganh + '' + khoa + loaiHinhDaoTao;
+  }
   public taoLopHoc() {
-    let index = 1;
     this.chiTieuList.value.forEach((el) => {
       let len = el.soChiTieu;
+
       if (el.soChiTieu > 0) {
-        this.resetLopHoc(el.maNganh);
+        this.kiemtraTonTaiLopHoc(el.maNganh, el.maBac);
       }
       // Bac + Nganh + Khóa  + STT
       for (let i = 0; i < len; i++) {
-        index++;
         var tenLop =
           this.convertToTenBacVietTat(el.maBac) +
           ' ' +
@@ -351,7 +365,6 @@ export class ModalChitieudaotaoComponent implements OnInit {
       this.getLopHoc();
       this.lops = [];
     });
-    this.msgList = [];
   }
   //bắt sự kiện show môn theo ngành
   changed(e) {
@@ -382,9 +395,8 @@ export class ModalChitieudaotaoComponent implements OnInit {
   isExcelFile: boolean;
   maLopThem: string;
 
-  onClickThemDSSV(maLop:string){
+  onClickThemDSSV(maLop: string) {
     this.maLopThem = maLop;
-
   }
   onChangeSinhVien(evt) {
     let data;
@@ -408,9 +420,8 @@ export class ModalChitieudaotaoComponent implements OnInit {
 
         /* save data */
         data = XLSX.utils.sheet_to_json(ws);
-        console.log(data);
-        this.dsSinhVien = data;
 
+        this.dsSinhVien = data;
       };
 
       reader.readAsBinaryString(target.files[0]);
@@ -424,19 +435,30 @@ export class ModalChitieudaotaoComponent implements OnInit {
     } else {
       this.inputFile.nativeElement.value = '';
     }
-
+  }
+  convertToMaLopHopLe(sv: String) {
+    //030061711 => 0306171
+    return 0 + sv.slice(0, 1) + sv.slice(2, 7);
   }
   private importExcel() {
-    let index = 0;
     this.dsSinhVien.forEach((sv) => {
-      index++;
-      sv.maLopHoc =  this.maLopThem;
-      sv.maSinhVien = 0 + sv.maLopHoc.slice(0,sv.maLopHoc.length - 1) + (index);
+      sv.nguoiChinhSua = 'macdinh';
+      sv.nguoiTao = 'macdinh';
+      sv.maLopHoc = this.maLopThem;
+      // let maHopLe = this.convertToMaLopHopLe(sv.maLopHoc);
+      // let maSv = sv.maSinhVien.slice(0, 7);
       this.SinhVienService.themSinhVien(sv).subscribe(
         (response) => {
-          console.log(response);
+          this.msgList.push({
+            msg: `Thêm thành công "${sv.ten}" có mã số [${sv.maSinhVien}]`,
+            status: true,
+          });
         },
         (error) => {
+          this.msgList.push({
+            msg: `Thêm thất bại "${sv.ten}" có mã số [${sv.maSinhVien}]`,
+            status: false,
+          });
           console.log(error);
         }
       );
@@ -449,6 +471,32 @@ export class ModalChitieudaotaoComponent implements OnInit {
     this.dsSinhVien = undefined;
   }
   public onClickImportExeclSinhVien() {
-    this.importExcel();
+    this.msgList = [];
+    if (this.dsSinhVien) {
+      this.msg = 'Danh sách sinh viên';
+      this.importExcel();
+    } else {
+      this.msg =
+        'Danh sách sinh viên trống, không có sinh viên nào được thêm vào';
+    }
+  }
+  public tongSoSinhVien = [];
+
+  public getSiSo() {
+    this.lopHocService.getAll().subscribe(
+      (lop) => {
+        this.lopHocs = lop;
+        this.lopTams = this.lopHocs;
+        this.lopTams.forEach((el) => {
+          this.tinhTongSinhVien(el.maLopHoc);
+        });
+      },
+      (err) => (this.msg = err)
+    );
+  }
+  public tinhTongSinhVien(maLop: String) {
+    this.SinhVienService.tinhTongSinhVien(maLop).subscribe((res) => {
+      this.tongSoSinhVien.push(res);
+    });
   }
 }

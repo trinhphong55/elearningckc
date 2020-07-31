@@ -1,6 +1,6 @@
 const LopHoc = require("../models/LopHoc.model");
 const { check, validationResult } = require("express-validator");
-const { async } = require("rxjs");
+const sinhVienModel = require("../models/sinh-vien.model");
 
 // "maLopHoc": "mã Bậc + mã Ngành Nghề + Khoá Học + mã Loại Hình Đào Tạo + Số thứ tự",
 // "tenLop": "kiểu String",
@@ -45,19 +45,29 @@ exports.getOne = async (req, res) => {
     res.json(error);
   }
 };
-exports.getAllFor = async (req, res) => {
+exports.getAllForManghanh = async (req, res) => {
   try {
     let LopHocs = await LopHoc.find({
       maNganh: req.params.maNganh,
     });
-    res.json(LopHocs.length);
+    res.json(LopHocs);
+  } catch (error) {
+    res.json(error);
+  }
+};
+exports.getAllForkhoa = async (req, res) => {
+  try {
+    let LopHocs = await LopHoc.find({
+      maNganh: req.params.khoa,
+    });
+    res.json(LopHocs);
   } catch (error) {
     res.json(error);
   }
 };
 exports.deleteMaNganh = async (req, res) => {
   try {
-    let LopHocs = await LopHoc.remove({
+    let LopHocs = await LopHoc.deleteMany({
       maNganh: req.params.maNganh,
     });
 
@@ -106,9 +116,6 @@ exports.update = async (req, res) => {
 
 exports.insert = async (req, res) => {
   try {
-    let idIsExist = 0;
-    let nameIsExist = 0;
-
     const err = validationResult(req);
     if (!err.isEmpty()) {
       res.status(422).json(err.errors);
@@ -117,36 +124,30 @@ exports.insert = async (req, res) => {
 
     LopHocs.forEach((element) => {
       if (req.body.maLopHoc == element.maLopHoc) {
-        idIsExist++;
+        return res.json({
+          status: 200,
+          ok: false,
+          msg: "Mã này đã tồn tại",
+        });
       }
       if (req.body.tenLop == element.tenLop) {
-        nameIsExist++;
+        res.json({
+          status: 200,
+          ok: false,
+          msg: "Tên này đã tồn tại",
+        });
       }
     });
 
-    if (idIsExist > 0) {
-      res.json({
-        status: 200,
-        ok: false,
-        msg: "Mã này đã tồn tại",
-      });
-    } else if (nameIsExist > 0) {
-      res.json({
-        status: 200,
-        ok: false,
-        msg: "Tên này đã tồn tại",
-      });
-    } else {
-      const lophoc = new LopHoc(setLopHoc(req));
-      const data = await lophoc.save();
-      result = {
-        status: 200,
-        ok: true,
-        msg: "Thêm thành công Lớp học",
-        data: data,
-      };
-      res.json(result);
-    }
+    const lophoc = new LopHoc(setLopHoc(req));
+    const data = await lophoc.save();
+    result = {
+      status: 200,
+      ok: true,
+      msg: "Thêm thành công Lớp học",
+      data: data,
+    };
+    res.json(result);
   } catch (error) {
     res.json(error);
   }
@@ -212,8 +213,52 @@ exports.removeAll = async (req, res) => {
 };
 exports.search = async (req, res) => {
   try {
-    const search = LopHoc.find({ maNganh: req.params.id });
+    const search = LopHoc.find({ maNganh: req.params.maNganh });
     res.json(search);
+  } catch (error) {
+    res.json(error);
+  }
+};
+//vd tiento: 3006171
+exports.timLopTheoTienTo = async (req, res) => {
+  try {
+    let TienTo = req.params.tienTo;
+    TienTo = TienTo.slice(0, 7);
+    const lop = await LopHoc.find({
+      maLopHoc: { $regex: ".*" + TienTo + ".*" },
+    });
+    res.json({ data: lop, count: lop.length });
+  } catch (error) {
+    res.json(error);
+  }
+};
+exports.capNhatThongTinFaceBook = async (req, res) => {
+  try {
+    const updateKhoa = await LopHoc.updateOne(
+      { maLopHoc: req.params.maLop },
+      {
+        $set: {
+          tenGroupFB: req.body.tenGroupFB,
+          IDGroupFB: req.body.IDGroupFB,
+          linkGroupFB: req.body.linkGroupFB,
+        },
+      }
+    );
+    const findLopHoc = await LopHoc.findOne({ maLopHoc: req.params.maLop });
+    result = {
+      status: 200,
+      ok: false,
+      msg: "",
+      data:findLopHoc
+    };
+    if (updateKhoa.nModified === 0) {
+      result.msg = "Cập nhật thành công, không có gì thay đổi";
+    } else {
+      result.ok = true;
+      result.msg = "Cập nhật thành công Lớp học";
+    }
+
+    res.status(200).json(result);
   } catch (error) {
     res.json(error);
   }

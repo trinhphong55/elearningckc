@@ -1,27 +1,17 @@
 const SinhVienModel = require("../models/sinh-vien.model");
+const { async } = require("rxjs");
+const LopHocModel = require("../models/LopHoc.model");
 
 setSinhVien = (req) => {
   return {
-    maSinhVien: req.body.maSinhVien,
-    CMND: req.body.CMND,
-    ho: req.body.ho,
-    ten: req.body.ten,
-    gioiTinh: req.body.gioiTinh,
-    ngaySinh: new Date(req.body.ngaySinh),
-    diaChiThuongTru: req.body.diaChiThuongTru,
-    diaChiTamTru: req.body.diaChiTamTru,
-    sdt: req.body.sdt,
-    email: req.body.email,
-    matKhau: req.body.matKhau,
-    tokens: req.body.tokens,
-    hoTenCha: req.body.hoTenCha,
-    hoTenMe: req.body.hoTenMe,
-    sdtCha: req.body.sdtCha,
-    sdtMe: req.body.sdtMe,
-    maLopHoc: req.body.maLopHoc,
-    nguoiTao: req.body.nguoiTao,
-    nguoiChinhSua: req.body.nguoiChinhSua,
-    ngayChinhSua: Date.now(),
+    maSinhVien: req.maSinhVien,
+    ho: req.ho,
+    ten: req.ten,
+    gioiTinh: req.gioiTinh,
+    ngaySinh: req.ngaySinh,
+    maLopHoc: req.maLopHoc,
+    nguoiTao: req.nguoiTao,
+    nguoiChinhSua: req.nguoiChinhSua,
   };
 };
 setSinhVienUpdate = (req) => {
@@ -30,7 +20,8 @@ setSinhVienUpdate = (req) => {
     ho: req.ho,
     ten: req.ten,
     gioiTinh: req.gioiTinh,
-    ngaySinh: new Date(req.ngaySinh),
+    ngaySinh: req.ngaySinh,
+    nguoiChinhSua: req.nguoiChinhSua,
     diaChiThuongTru: req.diaChiThuongTru,
     diaChiTamTru: req.diaChiTamTru,
     sdt: req.sdt,
@@ -39,25 +30,38 @@ setSinhVienUpdate = (req) => {
     hoTenMe: req.hoTenMe,
     sdtCha: req.sdtCha,
     sdtMe: req.sdtMe,
-    nguoiChinhSua: req.nguoiChinhSua,
-    ngayChinhSua: Date.now(),
   };
 };
 exports.layTatCaSinhVien = async (req, res) => {
   try {
-    const sinhViens = await SinhVienModel.find();
+    const sinhViens = await SinhVienModel.find({ trangThai: "1" });
     res.json(sinhViens);
   } catch (error) {
-    res.status(500).json({ message: "Máy chủ không sữ lý được", error: error , status:500});
+    res
+      .status(500)
+      .json({ message: "Máy chủ không sữ lý được", error: error, status: 500 });
   }
 };
-
-exports.themSinhVien = async (req, res) => {
+exports.Laysinhvientheomalop = async (req, res) => {
   try {
-    const sinhViens = await SinhVienModel.create(setSinhVien(req));
+    const sinhViens = await SinhVienModel.find({
+      maLopHoc: req.params.maLopHoc,
+    });
     res.json(sinhViens);
   } catch (error) {
-    res.status(500).json({ message: "Máy chủ không sữ lý được", error: error , status:500});
+    res
+      .status(500)
+      .json({ message: "Máy chủ không sữ lý được", error: error, status: 500 });
+  }
+};
+exports.themSinhVien = async (req, res) => {
+  try {
+    const sinhViens = await SinhVienModel.create(setSinhVien(req.body));
+    res.json(sinhViens);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Máy chủ không sữ lý được", error: error, status: 500 });
   }
 };
 
@@ -70,10 +74,14 @@ exports.layThongtinSinhVien = async (req, res) => {
     if (sinhViens === null) {
       res.status(404).json({ message: "Không tìm thấy" });
     } else {
-      res.status(200).json({ data: sinhViens, message: "Lấy thành công" ,status:200});
+      res
+        .status(200)
+        .json({ data: sinhViens, message: "Lấy thành công", status: 200 });
     }
   } catch (error) {
-    res.status(500).json({ message: "Máy chủ không sữ lý được", error: error, status:500 });
+    res
+      .status(500)
+      .json({ message: "Máy chủ không sữ lý được", error: error, status: 500 });
   }
 };
 
@@ -82,9 +90,7 @@ exports.capNhatSinhVien = async (req, res) => {
     const findSinhVien = await SinhVienModel.find({
       maSinhVien: req.body.maSinhVien,
     }).count();
-    const updateSV = await SinhVienModel.findOne({
-      maSinhVien: req.body.maSinhVien,
-    });
+
     if (findSinhVien == 0) {
       res.status(404).json({ message: "Không tìm thấy", status: 400 });
     }
@@ -93,6 +99,9 @@ exports.capNhatSinhVien = async (req, res) => {
       { maSinhVien: req.body.maSinhVien },
       { $set: setSinhVienUpdate(req.body.data) }
     );
+    const updateSV = await SinhVienModel.findOne({
+      maSinhVien: req.body.maSinhVien,
+    });
     console.log(sinhViens);
     if (sinhViens.nModified > 0) {
       res.status(200).json({
@@ -101,12 +110,19 @@ exports.capNhatSinhVien = async (req, res) => {
         status: 200,
       });
     } else {
-      res.status(200).json("Cập nhật thành công, không có gì thay đổi");
+      res.status(200).json({
+        message: "Cập nhật thành công, không có gì thay đổi",
+        status: 200,
+        data: setSinhVienUpdate(updateSV),
+      });
     }
   } catch (error) {
-    res
-      .status(500)
-      .json({ message: "Máy chủ không xữ lý được", errors: error, status:500 });
+    res.status(500).json({
+      message: "Máy chủ không xữ lý được",
+      errors: error,
+      status: 500,
+      data: null,
+    });
   }
 };
 exports.removeAll = async (req, res) => {
@@ -118,5 +134,14 @@ exports.removeAll = async (req, res) => {
       status: true,
       message: "Deleted  All successful",
     });
+  }
+};
+exports.tinhTongSinhVien = async (req, res) => {
+  try {
+    const total = await SinhVienModel.count({ maLopHoc: req.params.maLopHoc });
+    // const lopHoc = await LopHocModel.findOne({ maLopHoc: req.params.maLopHoc });
+    res.json({ maLopHoc: req.params.maLopHoc, siSo: total });
+  } catch (error) {
+    res.json(error);
   }
 };

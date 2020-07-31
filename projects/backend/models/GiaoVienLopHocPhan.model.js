@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const GiaoVienLopHocPhanSchema = new mongoose.Schema({
   maLopHocPhan: {
-    type: String,
+    type: Number,
     required: true
   },
   maGiaoVien: {
@@ -11,7 +11,7 @@ const GiaoVienLopHocPhanSchema = new mongoose.Schema({
   },
   loai: {
     type: String,
-    required: true,
+    default: "Giảng dạy",
   },
   ghiChu: {
     type: String,
