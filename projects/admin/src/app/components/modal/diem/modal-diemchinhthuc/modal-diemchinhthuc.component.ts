@@ -12,9 +12,7 @@ import { bac } from '../../../../interfaces/Bac.interface';
 import { LHDTService } from '../../../../services/loaihinhdaotao.service';
 import { LHDT } from '../../../../interfaces/loaihinhdaotao.interface';
 
-
-import { from } from 'rxjs';
-import { data } from 'jquery';
+declare var $: any
 
 @Component({
   selector: 'app-modal-diemchinhthuc',
@@ -22,7 +20,7 @@ import { data } from 'jquery';
   styleUrls: ['./modal-diemchinhthuc.component.css']
 })
 export class ModalDiemchinhthucComponent implements OnInit {
- 
+
   hocKi = "1";
   dsLoaiHinhDaoTao: LHDT[];
   dsNganhNghe: nganhnghe[];
@@ -49,7 +47,7 @@ export class ModalDiemchinhthucComponent implements OnInit {
     private Sinhvienservice :SinhVienService,
     private lhdtservice : LHDTService) { }
 
- 
+
   ngOnInit(): void {
     this.bacservice.getBac().subscribe(dsbac => this.dsBac = dsbac);
     this.lhdtservice.getLHDT().subscribe(dslhdt => this.dsLoaiHinhDaoTao = dslhdt);
@@ -74,7 +72,7 @@ export class ModalDiemchinhthucComponent implements OnInit {
   }
   selectlop(e){
     this.Sinhvienservice.laysinhvien(this.diemsv.maLophoc).subscribe(sv=>this.dsSinhvien=sv);
-    
+
   }
   selectmasinhvien(e){
     this.Sinhvienservice.getonesv(this.diemsv.maSinhVien).subscribe(sv=>this.sinhvien=sv);
@@ -90,5 +88,6 @@ export class ModalDiemchinhthucComponent implements OnInit {
   closeModal(id: string) {
     this.modalService.close(id)
   }
+
 
 }

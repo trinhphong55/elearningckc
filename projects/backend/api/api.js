@@ -1,28 +1,25 @@
 const router = require("express").Router();
-const LopHocPhanRoutes = require("./LopHocPhan");
 const GiaoVienRoutes = require("./GiaoVien");
-const MonHoc = require("./MonHoc");
-const ChuongTrinhDaoTao = require("./ChuongTrinhDaoTao");
 const KeHoachDaoTao = require("./KeHoachDaoTao");
 const LoaiHinhDaoTao = require("./LoaiHinhDaoTao");
 const LopHocPhan = require("./LopHocPhan");
 const LoaiMonHoc = require("./LoaiMonHoc");
-const groupFB = require("../api/groupFB");
 const sinhVien = require("./sinh-vien");
 const Diemsinhvien= require("./diemsinhvien");
-const SinhVien = require("./sinh-vien");
+const MonHoc = require('./MonHoc');
+const ChuongTrinhDaoTao = require('./ChuongTrinhDaoTao');
+const GiaoVienLopHocPhan = require('./GiaoVienLopHocPhan');
 
-router.use("/lophocphan", LopHocPhanRoutes);
-router.use("/giaovien", GiaoVienRoutes);
 router.use("/loaimonhoc", LoaiMonHoc);
-router.use("/lophocphan", LopHocPhanRoutes);
 router.use("/giaovien", GiaoVienRoutes);
 router.use("/monhoc", MonHoc);
 router.use("/ctdt", ChuongTrinhDaoTao);
 router.use("/khdt", KeHoachDaoTao);
 router.use("/lhdt", LoaiHinhDaoTao);
 router.use("./lophocphan", LopHocPhan);
+router.use('/gvlhp', GiaoVienLopHocPhan);
 
+const groupFB=require("../api/groupFB");
 const boMon = require("../api/bomon");
 const khoabomonController = require("../api/khoabomon");
 const loaidonviController = require("../api/loaidonvi");
@@ -33,7 +30,6 @@ const validate = khoabomonController.checkValidate();
 //nganhnghe bac
 const NganhNgheRoutes = require("./NganhNghe");
 const BacRoutes = require("./Bac");
-const diemsinhvienModel = require("../models/diemsinhvien.model");
 //nganhnghe
 router.use("/", NganhNgheRoutes);
 //bac

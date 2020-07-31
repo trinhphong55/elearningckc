@@ -70,7 +70,7 @@ export class ModalKehoachdaotaoComponent implements OnInit {
       loaiTienThu: 'Lý thuyết', tinh: false, xet: false,
     };
     this.dsKHDT.push(newKHDT);
-    console.log(this.dsKHDT);
+    // console.log(this.dsKHDT);
   }
 
   removeKHDT(index: number) {
@@ -87,7 +87,7 @@ export class ModalKehoachdaotaoComponent implements OnInit {
 
   saveKHDT() {
     this.khdtService.addDSKHDT(this.ctdt, this.dsKHDT).subscribe(status => {
-      console.log(status);
+      // console.log(status);
       if (status.success) {
         alert(status.success);
         this.isChanged = false;
