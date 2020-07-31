@@ -90,11 +90,9 @@ export class ModalGroupfacebookComponent implements OnInit {
     this.currentLop = data;
     let Bac;
     this.bac.filter(item => {
-      console.log(this.bac);
       if (data.maBac == item.maBac) {
         Bac = item.tenBac;
       }
-      console.log(Bac);
     })
     this.maBac.setValue(Bac);
 
@@ -108,14 +106,10 @@ export class ModalGroupfacebookComponent implements OnInit {
 
     this.khoa.setValue(data.khoa);
     this.tenLop.setValue(data.tenLop);
-    console.log(data)
   }
 
   openDetail(id_fb: number) {
     this.modalService.open('detail-groupfb');
-
-      console.log(id_fb);
-
   }
 
   closeModal(id: string) {

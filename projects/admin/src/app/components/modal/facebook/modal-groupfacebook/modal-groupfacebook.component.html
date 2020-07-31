@@ -31,11 +31,11 @@
             </div>
             <div class="col-6">
               <div class="row no-gutters">
-                <div class="form-group col-6 " >
+                <div class="form-group col-2 " >
                   <label>Khoá</label>
                   <input class="form-control" type="number" [formControl]="khoa" >
                 </div>
-                <div class="form-group col-5 ml-4">
+                <div class="form-group col-9 ml-5">
                   <label>Bậc</label>
                   <input class="form-control" [formControl]="maBac" >
                 </div>
@@ -97,7 +97,7 @@
             </thead>
             <tbody >
               <tr *ngFor=" let d of data |filter: searchGroup; index as stt" (click)="insertDateforForm(d)">
-                <td>{{stt+1}}</td>
+                <td class="text-center">{{stt+1}}</td>
                 <td class="text-center">
                   <label >{{d.maLopHoc}}</label>
                 </td>
