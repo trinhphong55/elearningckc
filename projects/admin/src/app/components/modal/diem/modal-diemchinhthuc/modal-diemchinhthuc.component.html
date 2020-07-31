@@ -1,3 +1,4 @@
+
 <app-modal class="modal_chucnang__wrapper" id="diem_diemsinhvien">
   <div (click)="closeModal('diem_diemsinhvien')" class="modal_chucnang__close mdi mdi-chevron-left text-white"></div>
   <div class="container-fluid mt-3">
@@ -11,6 +12,10 @@
             <div class="row justify-content-center align-items-center">
               <div class="col-3">
                 <div class="form-group">
+                  <label>Khoá</label>
+                  <input class="form-control" formControlName="khoa" type="number" min="15">
+                </div>
+                <div class="form-group">
                   <label>Họ tên</label>
                   <select id="abcdef" class="form-control modal_chucnang__select2">
                     <option value="loc">0306161311 - Nguyễn Thành Lộc</option>
@@ -18,34 +23,12 @@
                     <option value="hieu2">0306161311 - Lê Minh Hiếu</option>
                   </select>
                 </div>
-                <div class="form-group">
-                  <label>Tình trạng</label>
-                  <select formControlName="trangThai" class="form-control">
-                    <option>Đang học</option>
-                    <option>Thôi học</option>
-                    <option>Tạm ngưng</option>
-                    <option>Đã tốt nghiệp</option>
-                  </select>
-                </div>
               </div>
               <div class="col-3">
-                <div class="form-group">
-                  <label>Khoá</label>
-                  <input class="form-control" formControlName="khoa" type="number" min="15">
-                </div>
                 <div class="form-group">
                   <label>Bậc</label>
                   <select class="form-control">
-                    <option>Cao đẳng</option>
-                    <option>Cao đẳng nghề</option>
-                  </select>
-                </div>
-              </div>
-              <div class="col-3">
-                <div class="form-group">
-                  <label>Lớp</label>
-                  <select class="form-control modal_chucnang__select2">
-                    <option>CĐ TH 16C</option>
+                    <option *ngFor="let b of bac">{{b.tenBac}}</option>
                   </select>
                 </div>
                 <div class="form-group">
@@ -62,11 +45,26 @@
                   </div>
                 </div>
               </div>
+              <div class="col-3">
+                <div class="form-group">
+                  <label>Lớp</label>
+                  <select class="form-control modal_chucnang__select2">
+                    <option *ngFor="let lop of lop">{{lop.tenLop}}</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Tình trạng</label>
+                  <select formControlName="trangThai" class="form-control">
+                    <option>Đang học</option>
+                    <option>Thôi học</option>
+                    <option>Tạm ngưng</option>
+                    <option>Đã tốt nghiệp</option>
+                  </select>
+                </div>
+              </div>
               <div class="col-auto">
                 <div class="modal_chucnang__group__button">
-                  <button
-                  (click)="onSubmitSave()"
-                  class="modal_chucnang__button btn btn-outline-primary px-4 mx-2"><img
+                  <button (click)="onSubmitSave()" class="modal_chucnang__button btn btn-outline-primary px-4 mx-2"><img
                       class="modal_chucnang__button__icon mb-1" src="assets/img/icons/search.png" alt="image icon">
                     <div>Tìm kiếm</div>
                   </button>

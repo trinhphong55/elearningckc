@@ -14,9 +14,9 @@ async function getNextNumber() {
     return maNganhNghe;
   }
 }
-async function isNameExist(maNganhNghe) {
-  maNganhNghe = maNganhNghe.trim().toLowerCase();
-  const item = await NganhNghe.findOne({ maNganhNghe: { $regex: new RegExp("^" + maNganhNghe , "i") } }).exec();
+async function isNameExist(teNganhNghe) {
+  teNganhNghe = teNganhNghe.trim().toLowerCase();
+  const item = await NganhNghe.findOne({ teNganhNghe: { $regex: new RegExp("^" + teNganhNghe , "i") } }).exec();
   if (item === null) {
     return true;
   } else return false;
