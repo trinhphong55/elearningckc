@@ -222,7 +222,9 @@ exports.search = async (req, res) => {
 };
 exports.timLopTheoTienTo = async (req, res) => {
   try {
-    const lop = await LopHoc.find({maNganh :req.params.maNganh, maBac: req.body.maBac, khoa: req.body.khoa});
+    let TienTo = req.params.tienTo;
+    TienTo = TienTo.slice(0, TienTo.length-1);
+    const lop = await LopHoc.find({ maLopHoc: {$regex: '.*' + TienTo + '.*'}});
     res.json(lop);
   } catch (error) {
     res.json(error)

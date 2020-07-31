@@ -255,7 +255,7 @@ export class ModalChitieudaotaoComponent implements OnInit {
   deleteLopHoc(maNganh: string) {
     this.lopHocService.deleteMaNganh(maNganh).subscribe(
       (data) => {
-        console.log(data);
+        ;
         this.msgList.push({ msg: `Xóa thành công lớp học của ${maNganh}` });
       },
       (error) => console.log(error)
@@ -342,7 +342,7 @@ export class ModalChitieudaotaoComponent implements OnInit {
   public taoLopHoc() {
     this.chiTieuList.value.forEach((el) => {
       let len = el.soChiTieu;
-      console.log(len);
+
       if (el.soChiTieu > 0) {
         this.kiemtraTonTaiLopHoc(el.maNganh);
       }
@@ -468,7 +468,7 @@ export class ModalChitieudaotaoComponent implements OnInit {
               msg: `Thêm thành công "${sv.ten}" có mã số [${sv.maSinhVien}]`,
               status: true,
             });
-            console.log(response);
+
           },
           (error) => {
             this.msgList.push({

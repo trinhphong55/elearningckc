@@ -36,7 +36,7 @@ export class AppComponent implements OnInit {
       this.account.email === this.loginForm.get('email').value &&
       this.account.password === this.loginForm.get('password').value
     ) {
-      this.isLogged = true;
+      this.isLogged = false;
       alert('Đăng nhập thành công');
     }
   }
