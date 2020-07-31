@@ -75,6 +75,7 @@ router.delete("/lophoc", LopHoc.removeAll);
 router.delete("/lophoc/:maNganh/search", LopHoc.deleteMaNganh);
 //Cập nhật KHoaBoMon theo :id và data truyền vào ( lư ý data ở request.body)
 router.put("/lophoc/:id", LopHoc.checkValidate(), LopHoc.update);
+router.put("/lophoc/:maLop/facebook", LopHoc.capNhatThongTinFaceBook);
 
 router.get("/lophoc/:tienTo/tiento", LopHoc.timLopTheoTienTo);
 

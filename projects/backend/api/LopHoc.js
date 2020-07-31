@@ -227,32 +227,29 @@ exports.timLopTheoTienTo = async (req, res) => {
     const lop = await LopHoc.find({
       maLopHoc: { $regex: ".*" + TienTo + ".*" },
     });
-    res.json({data: lop, count: lop.length});
+    res.json({ data: lop, count: lop.length });
   } catch (error) {
     res.json(error);
   }
 };
 exports.capNhatThongTinFaceBook = async (req, res) => {
   try {
-    const err = validationResult(req);
-    if (!err.isEmpty()) {
-      res.status(422).json(err.errors);
-    }
     const updateKhoa = await LopHoc.updateOne(
-      { _id: req.params.id },
+      { maLopHoc: req.params.maLop },
       {
         $set: {
           tenGroupFB: req.body.tenGroupFB,
           IDGroupFB: req.body.IDGroupFB,
-          linkGroupFB: req.body.linkFBLopHoc,
+          linkGroupFB: req.body.linkGroupFB,
         },
       }
     );
-
+    const findLopHoc = await LopHoc.findOne({ maLopHoc: req.params.maLop });
     result = {
       status: 200,
       ok: false,
       msg: "",
+      data:findLopHoc
     };
     if (updateKhoa.nModified === 0) {
       result.msg = "Cập nhật thành công, không có gì thay đổi";

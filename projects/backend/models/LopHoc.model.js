@@ -13,16 +13,19 @@ const LopHocSchema = new Schema({
   maLopHoc: {
     type: String,
     required: true,
+    unique:true
 
   },
   tenLop: {
     type: String,
     required: true,
 
+
   },
   tenVietTat: {
     type: String,
     required: true,
+    unique:true,
   },
   linkFBLopHoc: {
     type: String,
@@ -61,7 +64,7 @@ const LopHocSchema = new Schema({
     required: true,
 
   },
-  
+
   tenGroupFB:{
     type:String,
     default:'facebook',
