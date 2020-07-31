@@ -15,7 +15,7 @@ exports.layTatCaSinhVien = async (req,res) => {
 exports.Laysinhvientheomalop= async(req,res)=>
 {
   try {
-    const sinhViens = await SinhVienModel.find({ maLopHoc: req.body.maLopHoc});
+    const sinhViens = await SinhVienModel.find({ maLopHoc: req.params.maLopHoc});
     res.json(sinhViens);
   } catch (error) {
     res
