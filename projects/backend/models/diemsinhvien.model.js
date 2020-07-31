@@ -2,22 +2,26 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
-const khoabomonSchema = new Schema({
-  maKhoa: {
+const diemsinhvienSchema = new Schema({
+  maSinhVien: {
     type: String,
     reqired: true,
-    unique:true
   },
-  tenKhoa: {
+  maDaoTao: {
     type: String,
     required: true,
-    unique:true
 
   },
-  tenVietTat: {
-    type: String,
-    required: true
+  diem: {
+    type: Number,
 
+  },
+  maLopHocPhan: {
+    type: String,
+    required: true,
+  },
+  ghiChu: {
+    type:String,
   },
   nguoiTao: {
     type: String,
@@ -31,16 +35,12 @@ const khoabomonSchema = new Schema({
   },
   ngayChinhSua: {
     type: Date,
-    default: Date.now(),
+    default: Date.now,
   },
   trangThai: {
     type: Number,
     default: 1,
   },
-  maLoai:{
-    type: Number,
-    required: true
-  }
 });
 
-module.exports = mongoose.model("Khoa", khoabomonSchema,"Khoa");
+module.exports = mongoose.model("DiemSinhVien", diemsinhvienSchema,"DiemSinhVien");

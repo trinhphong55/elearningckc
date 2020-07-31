@@ -13,16 +13,19 @@ const LopHocSchema = new Schema({
   maLopHoc: {
     type: String,
     required: true,
+    unique:true
 
   },
   tenLop: {
     type: String,
     required: true,
 
+
   },
   tenVietTat: {
     type: String,
     required: true,
+    unique:true,
   },
   linkFBLopHoc: {
     type: String,
@@ -60,7 +63,20 @@ const LopHocSchema = new Schema({
     type:String,
     required: true,
 
-  }
+  },
+
+  tenGroupFB:{
+    type:String,
+    default:'facebook',
+  },
+  IDGroupFB:{
+    type:String,
+    default:'facebook',
+  },
+  linkGroupFB:{
+    type:String,
+    default:'facebook',
+  },
 });
 
 module.exports = mongoose.model("LopHoc", LopHocSchema, "LopHoc");

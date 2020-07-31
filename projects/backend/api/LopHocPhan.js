@@ -1,35 +1,66 @@
 const router = require("express").Router();
 const LopHocPhan = require("../models/LopHocPhan.model");
 const KHDT = require("../models/KeHoachDaoTao.model");
+const MonHoc = require("../models/MonHoc.model");
+const GVLHP = require("../models/GiaoVienLopHocPhan.model");
 
-//GET LHP
-// router.get("/", async (req, res) => {
-//   return res.send("haha");
-// });
-//GET LHP by hocKi
-router.get('/:hocKi', async(req, res) => {
-  const hocKi = req.params.hocKi;
-  await LopHocPhan.find({ trangThai: { $ne: 0 }, hocKi })
-    .then(dslhp => res.json(dslhp))
-    .catch(err => res.json({ message: err }));
-})
+//GET LHP, loaimonhoc, giaovienlhp by maCTDT and hocKi with loaiMonHoc
+router.get("/ctdt/:maCTDT/hocKi/:hocKi", async (req, res) => {
+  const maChuongTrinhDaoTao = req.params.maCTDT;
+  const hocKi = parseInt(req.params.hocKi);
 
-//GET LHP by hocKi
-router.get('/chuaphancong/:hocKi', async(req, res) => {
-  const hocKi = req.params.hocKi;
-  await LopHocPhan.find({ trangThai: { $e: 1 }, hocKi })
-    .then(dslhp => res.json(dslhp))
-    .catch(err => res.json({ message: err }));
-})
+  let dsMaLoaiMonHoc = [];
+  let dsGVLHP = [];
+  //danh sach lop hoc phan
+  let dsLHP = await LopHocPhan.find({
+    trangThai: { $ne: 0 },
+    maLopHoc: { $regex: maChuongTrinhDaoTao },
+    hocKi,
+  }).catch((err) => {
+    return res.json({ message: err });
+  });
 
-// router.get('/daphancong/:hocKi/giaovien/:maGiaoVien/loai/:loai', async(req, res) => {
-//   const hocKi = req.params.hocKi;
-//   const loai = req.params.loai;
-//   const maGiaoVien = req.params.maGiaoVien;
-//   await LopHocPhan.find({ trangThai: { $e: 2 }, hocKi })
-//     .then(dslhp => res.json(dslhp))
-//     .catch(err => res.json({ message: err }));
-// })
+  async function asyncForEach(array, callback) {
+    for (let index = 0; index < array.length; index++) {
+      await callback(array[index], index);
+    }
+  }
+
+  //danh sach loai mon hoc kem theo lhp
+  await asyncForEach(dsLHP, async (lhp, index) => {
+    let maMonHoc = lhp.maDaoTao.slice(lhp.maDaoTao.length - 4);
+    await MonHoc.findOne({ maMonHoc })
+      .then((mh) => {
+        if (mh !== null) {
+          dsMaLoaiMonHoc.push(mh.maLoaiMonHoc);
+        } else {
+          dsMaLoaiMonHoc.push("null mh");
+        }
+      })
+      .catch((err) => {
+        return res.json({ message: err });
+      });
+  });
+
+  //danh sach giao vien lhp kem theo lhp
+  await asyncForEach(dsLHP, async (lhp, index) => {
+    await GVLHP.findOne({ maLopHocPhan: lhp.maLopHocPhan }).then((gvlhp) => {
+      if (gvlhp === null) {
+        let a = { maGiaoVien: "null", ghiChu: "" };
+        dsGVLHP.push(a);
+      } else {
+        let a = { maGiaoVien: gvlhp.maGiaoVien, ghiChu: gvlhp.ghiChu };
+        dsGVLHP.push(a);
+      }
+    });
+  });
+
+  return res.json({ dsLHP, dsMaLoaiMonHoc, dsGVLHP });
+});
+
+router.get("/", async (req, res) => {
+  return res.json("haha");
+});
 
 //POST LopHocPhan
 router.post("/", async (req, res) => {
@@ -37,6 +68,7 @@ router.post("/", async (req, res) => {
   let dsLopHoc = req.body[1];
   let nextNumber = 1;
 
+  //get NextNumber
   await LopHocPhan.findOne({}, {}, { sort: { ngayTao: -1 } })
     .exec()
     .then((lastLHP) => {
@@ -45,25 +77,14 @@ router.post("/", async (req, res) => {
       }
     });
 
-  // let dsLopHoc = [
-  //   { tenLop: 'CĐ TH 17B', maLopHoc: '30061712' },
-  //   { tenLop: 'CĐ TH 17C', maLopHoc: '30061713' },
-  //   { tenLop: 'CĐ TH 17A', maLopHoc: '30061711' },
-  //   { tenLop: 'CĐ TH 17D', maLopHoc: '30061714' },
-  // ];
-
-  // let hocKi = 1;
-
-  //neu dsLopHoc rong?
-  if (dsLopHoc.length === 0) {
+  //Tra ve thong bao chua co lop hoc
+  if (dsLopHoc === undefined || hocKi === undefined) {
     return res.json({ error: "Chua co Lop hoc" });
   }
 
+  //Cat maChuongTrinhDaoTao tu ma lop hoc
   const maChuongTrinhDaoTao = dsLopHoc[0].maLopHoc.slice(0, 7);
-  // let dsKHDT = [
-  //   { maDaoTao: "30061710003" },
-  //   { maDaoTao: "30061710001" },
-  // ];
+
   await KHDT.find({ maChuongTrinhDaoTao, hocKi, trangThai: { $ne: 0 } })
     .then((ds) => (dsKHDT = ds))
     .catch((err) => {
@@ -93,40 +114,46 @@ router.post("/", async (req, res) => {
     });
   });
 
-  //kiem tra da ton tai trong database
+  // return res.json(dsLHP);
+
   async function asyncForEach(array, callback) {
     for (let index = 0; index < array.length; index++) {
       await callback(array[index], index);
     }
   }
+
+  //kiem tra da ton tai trong database
   await asyncForEach(dsLHP, async (lhp, index) => {
-    await LopHocPhan.findOne({ maDaoTao: lhp.maDaoTao, maLopHoc: lhp.maLopHoc })
-      .exec()
-      .then((data) => {
-        if (data === null) {
-          lhp.tenLopHocPhan = lhp.tenLopHocPhan + " " + nextNumber.toString();
-          lhp.maLopHocPhan = nextNumber;
-          nextNumber++;
-          console.log(lhp);
+    await LopHocPhan.findOne({
+      maDaoTao: lhp.maDaoTao,
+      maLopHoc: lhp.maLopHoc,
+    }).then((data) => {
+      if (data === null) {
+        lhp.maLopHocPhan = nextNumber;
+        nextNumber++;
+        let maMonHoc = lhp.maDaoTao.slice(lhp.maDaoTao.length - 4);
+        MonHoc.findOne({ maMonHoc }).then((mh) => {
+          lhp.tenLopHocPhan = lhp.tenLopHocPhan + " - " + mh.tenMonHoc;
           LopHocPhan.create(lhp)
             .then(console.log("added " + lhp.maDaoTao))
             .catch((err) => {
               return res.json({ message: err });
             });
-        } else {
-          soLopHocPhan--;
-          // Future Features
-          // LopHocPhan.updateOne({ maDaoTao: LopHocPhan.maDaoTao },
-          //   {$set: {trangThai: 1, hocKi, maBoMon: LopHocPhan.maBoMon,
-          //     loaiTienThu: LopHocPhan.loaiTienThu, donViHocTrinh: LopHocPhan.donViHocTrinh,
-          //     soTietHoc: LopHocPhan.soTietHoc, soTuan: LopHocPhan.soTuan,
-          //     tinh: LopHocPhan.tinh, xet: LopHocPhan.xet } } )
-          // .then(console.log("updated " + LopHocPhan.maDaoTao))
-          // .catch(err => {
-          //   return res.json( {message: err});
-          // });
-        }
-      });
+        });
+      } else {
+        soLopHocPhan--;
+        // Future Features -- Truong hop neu tao it hon so lan tao lan truoc
+        // LopHocPhan.updateOne({ maDaoTao: LopHocPhan.maDaoTao },
+        //   {$set: {trangThai: 1, hocKi, maBoMon: LopHocPhan.maBoMon,
+        //     loaiTienThu: LopHocPhan.loaiTienThu, donViHocTrinh: LopHocPhan.donViHocTrinh,
+        //     soTietHoc: LopHocPhan.soTietHoc, soTuan: LopHocPhan.soTuan,
+        //     tinh: LopHocPhan.tinh, xet: LopHocPhan.xet } } )
+        // .then(console.log("updated " + LopHocPhan.maDaoTao))
+        // .catch(err => {
+        //   return res.json( {message: err});
+        // });
+      }
+    });
   });
   if (soLopHocPhan === dsLHP.length) {
     return res.json({
