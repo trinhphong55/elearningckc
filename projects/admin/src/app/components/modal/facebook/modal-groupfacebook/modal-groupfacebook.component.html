@@ -30,17 +30,16 @@
                 </select>
               </div>
             </div>
-            <div class="col-3">
-              <div class="form-group">
-                <label>Loại hình đào tạo</label>
-                <select class="form-control">
-                  <option>Chính quy</option>
-                  <option>Liên thông</option>
-                </select>
-              </div>
-              <div class="form-group" >
-                <label>Khoá</label>
-                <input class="form-control" type="number" min="15" value="15" [formControl]="khoa">
+            <div class="col-6">
+              <div class="row no-gutters">
+                <div class="form-group col-2 " >
+                  <label>Khoá</label>
+                  <input class="form-control" type="number" [formControl]="khoa" >
+                </div>
+                <div class="form-group col-9 ml-4">
+                  <label>Bậc</label>
+                  <input class="form-control" [formControl]="maBac" >
+                </div>
               </div>
             </div>
             <div class="col-3">
@@ -117,7 +116,7 @@
                 <td class="text-center">
                   <div class="form-group">
                     <span class="modal_chucnang__button__delete ml-2 mdi mdi-delete-outline mdi-24px"></span>
-                    <button class="modal_chucnang__button btn btn-outline-success px-4 mx-2" (click)="openDetail(d.id_Group)">View</button>
+                    <button class="modal_chucnang__button btn btn-outline-success px-4 mx-2" (click)="openDetail()">View</button>
                   </div>
                 </td>
               </tr>

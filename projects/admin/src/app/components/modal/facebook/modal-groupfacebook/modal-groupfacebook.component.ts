@@ -116,39 +116,7 @@ export class ModalGroupfacebookComponent implements OnInit {
     this.tenLop.setValue(data.tenLop);
   }
 
-  // public changedBac(e) {
-   
-  //   this.lopTam = [];
-  //   if (this.addForm.value.maBac !== '') {
-  //     this.lop.forEach((element) => {
-  //       console.log(this.addForm.value.maBac);  
-  //       console.log(element.maBac);
-  //       if (element.maBac == this.addForm.value.maBac) {
-  //         this.lopTam.push(element);
-  //       }
-  //     });
-  //   } else {
-  //     this.lopTam = this.lop;
-  //   }
-  // }
-  // public changedNganh(e) {
-   
-  //   this.nganhTam = [];
-  //   if (this.addForm.value.maNganh !== '') {
-  //     this.lop.forEach((element) => {
-  //       console.log(this.addForm.value.maNganh);  
-  //       console.log(element.maNganh);
-  //       if (element.maBac == this.addForm.value.maNganh) {
-  //         this.lopTam.push(element);
-  //       }
-  //     });
-  //   } else {
-  //     this.lopTam = this.lop;
-  //   }
-  // }
-  
-
-  openDetail(id_fb: number) {
+  openDetail() {
     this.modalService.open('detail-groupfb');
   }
 
