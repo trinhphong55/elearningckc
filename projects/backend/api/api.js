@@ -64,7 +64,6 @@ router.put("/bomon/:id", boMon.checkValidate(), boMon.updateKhoaBoMon);
 //Lấy toàn bộ dữ liệu từ KhoaBoMon
 router.get("/lophoc", LopHoc.getAll);
 router.get("/lophoc/:id", LopHoc.getOne);
-router.get("/lophoc/:maNganh/search", LopHoc.getAllFor);
 router.get("/lophoc/:khoa/searchkhoa",LopHoc.getAllForkhoa);
 router.get("/lophoc/:maNganh/searchnganh",LopHoc.getAllForManghanh);
 
@@ -76,7 +75,7 @@ router.delete("/lophoc", LopHoc.removeAll);
 router.delete("/lophoc/:maNganh/search", LopHoc.deleteMaNganh);
 //Cập nhật KHoaBoMon theo :id và data truyền vào ( lư ý data ở request.body)
 router.put("/lophoc/:id", LopHoc.checkValidate(), LopHoc.update);
-router.post("/lophoc/:maNganh/xoa", LopHoc.timLopTheoTienTo);
+
 router.get("/lophoc/:tienTo/tiento", LopHoc.timLopTheoTienTo);
 
 

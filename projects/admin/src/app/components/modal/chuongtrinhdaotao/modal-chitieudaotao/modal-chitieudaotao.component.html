@@ -11,6 +11,15 @@
           <div class="row justify-content-center align-items-center">
             <form [formGroup]="addForm" class="form-inline">
               <div class="form-group">
+                <label for="bac" class="col-sm-2  col-form-label">Bậc </label>
+                <div class="col-sm-4">
+                  <select id="bac" class="form-control" formControlName="bac" (change)="changed($event)">
+                    <option value="">Select..</option>
+                    <option *ngFor="let bac of bacList" [ngValue]=bac.maBac> {{bac.tenBac }}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
                 <label for="loai" class="col-sm-4 mr-sm-2 col-form-label">Loại hình đào tạo </label>
                 <div class="col-sm-4">
                   <select id="loai" class="form-control " formControlName="loaiHinhDaoTao">
@@ -206,17 +215,6 @@
           </div>
         </div>
         <div class="row">
-          <form [formGroup]="addForm" class="form-inline">
-            <div class="form-group">
-              <label for="bac" class="col-sm-2  col-form-label">Bậc </label>
-              <div class="col-sm-4">
-                <select id="bac" class="form-control" formControlName="bac" (change)="changed($event)">
-                  <option value="">Select..</option>
-                  <option *ngFor="let bac of bacList" [ngValue]=bac.maBac> {{bac.tenBac }}</option>
-                </select>
-              </div>
-            </div>
-          </form>
           <div class="col-12">
             <h1 class="text-center text-white">Quản lý chỉ tiêu đào tạo</h1>
           </div>

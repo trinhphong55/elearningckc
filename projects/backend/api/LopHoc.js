@@ -45,16 +45,6 @@ exports.getOne = async (req, res) => {
     res.json(error);
   }
 };
-exports.getAllFor = async (req, res) => {
-  try {
-    let LopHocs = await LopHoc.find({
-      maNganh: req.params.maNganh,
-    });
-    res.json(LopHocs.length);
-  } catch (error) {
-    res.json(error);
-  }
-};
 exports.getAllForManghanh = async (req, res) => {
   try {
     let LopHocs = await LopHoc.find({
@@ -229,14 +219,15 @@ exports.search = async (req, res) => {
     res.json(error);
   }
 };
+//vd tiento: 3006171
 exports.timLopTheoTienTo = async (req, res) => {
   try {
     let TienTo = req.params.tienTo;
-    TienTo = TienTo.slice(0, TienTo.length - 1);
+    TienTo = TienTo.slice(0, 7);
     const lop = await LopHoc.find({
       maLopHoc: { $regex: ".*" + TienTo + ".*" },
     });
-    res.json(lop);
+    res.json({data: lop, count: lop.length});
   } catch (error) {
     res.json(error);
   }

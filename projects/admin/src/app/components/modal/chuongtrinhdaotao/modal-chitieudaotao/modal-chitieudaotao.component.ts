@@ -154,10 +154,6 @@ export class ModalChitieudaotaoComponent implements OnInit {
         this.nganhtamlist = this.nganhList;
 
         this.nganhList.forEach((element) => {
-          this.tinhSoChiTieu(element.maNganhNghe);
-
-          this.convertToChiTieu(element.maNganhNghe);
-
           this.chiTieuList.push(
             new FormGroup({
               maBac: new FormControl(element.maBac),
@@ -203,17 +199,7 @@ export class ModalChitieudaotaoComponent implements OnInit {
     });
     return ten;
   }
-  convertToChiTieu(maNganh: string) {
-    let chiTieu = 1;
 
-    this.soChiTieu.forEach((el) => {
-      if (el.maNganh == maNganh) {
-        chiTieu = el.chiTieu;
-      }
-    });
-
-    return chiTieu;
-  }
   addLopHoc(data) {
     this.lopHocService.create(data).subscribe(
       (res) => {
@@ -260,15 +246,14 @@ export class ModalChitieudaotaoComponent implements OnInit {
     );
   }
 
-  public tinhSoChiTieu(maNganh: string) {
-    this.lopHocService.getAllFor(maNganh).subscribe((data: number) => {
-      let tam = { chiTieu: data, maNganh: maNganh };
-      this.soChiTieu.push(tam);
-    });
-  }
-
-  kiemtraTonTaiLopHoc(maNganh: string) {
-    this.lopHocService.getAllFor(maNganh).subscribe((data) => {
+  kiemtraTonTaiLopHoc(maNganh: string, maBac: string) {
+    let ma = this.taoTienTo(
+      maNganh,
+      maBac,
+      this.addForm.value.khoa,
+      this.addForm.value.loaiHinhDaoTao
+    );
+    this.lopHocService.filterLopTheoTienTo(ma).subscribe((data) => {
       if (data > 0) {
         this.msgList.push({
           msg:
@@ -337,12 +322,15 @@ export class ModalChitieudaotaoComponent implements OnInit {
     );
   }
 
+  public taoTienTo(maNganh, maBac, khoa, loaiHinhDaoTao) {
+    return Number.parseInt(maBac) + '' + maNganh + '' + khoa + loaiHinhDaoTao;
+  }
   public taoLopHoc() {
     this.chiTieuList.value.forEach((el) => {
       let len = el.soChiTieu;
 
       if (el.soChiTieu > 0) {
-        this.kiemtraTonTaiLopHoc(el.maNganh);
+        this.kiemtraTonTaiLopHoc(el.maNganh, el.maBac);
       }
       // Bac + Nganh + Khóa  + STT
       for (let i = 0; i < len; i++) {
