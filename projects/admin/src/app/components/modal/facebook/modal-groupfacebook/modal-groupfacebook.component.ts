@@ -108,7 +108,7 @@ export class ModalGroupfacebookComponent implements OnInit {
     this.tenLop.setValue(data.tenLop);
   }
 
-  openDetail(id_fb: number) {
+  openDetail() {
     this.modalService.open('detail-groupfb');
   }
 
