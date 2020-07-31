@@ -35,7 +35,7 @@
                   <label>Khoá</label>
                   <input class="form-control" type="number" [formControl]="khoa" >
                 </div>
-                <div class="form-group col-9 ml-5">
+                <div class="form-group col-9 ml-4">
                   <label>Bậc</label>
                   <input class="form-control" [formControl]="maBac" >
                 </div>
@@ -68,19 +68,28 @@
                 <option>50</option>
               </select><span class="text-nowrap">&nbsp; hàng</span>
             </label>
-            <form [formGroup]="addForm" class="form-inline">
+            <!-- <form [formGroup]="addForm" class="form-inline">
             <div class="form-group">
               <label for="bac" class="col-sm-2  col-form-label">Bậc </label>
               <div class="col-sm-4">
-                <select id="bac" class="form-control" [formControl]="maBac" >
+                <select  id="bac" class="form-control" formControlName="maBac" >
                   <option value="">Select...</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
+                  <option *ngFor="let b of bac" [ngValue]=b.maBac> {{b.tenBac }}</option>
                 </select>
               </div>
             </div>
-            </form>
+            </form> -->
+            <!-- <form [formGroup]="addForm" class="form-inline">
+              <div class="form-group">
+                <label for="nganh" class="col-sm-2  col-form-label">Ngành </label>
+                <div class="col-sm-4">
+                  <select (change)="changedNganh($event)" id="nganh" class="form-control" formControlName="maNganh" >
+                    <option value="">Select...</option>
+                    <option *ngFor="let n of nganhList" [ngValue]=n.maNganhNghe> {{n.tenNganhNghe }}</option>
+                  </select>
+                </div>
+              </div>
+              </form> -->
             <label class="ml-auto mb-0 d-flex align-items-center"><span class="text-nowrap">Tìm kiếm: &nbsp;</span>
               <input class="form-control form-control-sm" placeholder="Tìm kiếm" [(ngModel)]="searchGroup">
             </label>
@@ -96,8 +105,7 @@
               <th scope="col" class="text-center">Tác vụ</th>
             </thead>
             <tbody >
-              <tr *ngFor=" let d of data |filter: searchGroup; index as stt" (click)="insertDateforForm(d)">
-                <td class="text-center">{{stt+1}}</td>
+              <tr *ngFor=" let d of data |filter: searchGroup;" (click)="insertDateforForm(d)">
                 <td class="text-center">
                   <label >{{d.maLopHoc}}</label>
                 </td>

@@ -21,6 +21,13 @@ export class ModalGroupfacebookComponent implements OnInit {
   addForm: FormGroup;
   statusElementList = {};
   isDone = false;
+  //Khai báo list
+  public bactamlist = [];
+  public bacList: any;
+  public lopTam = [];
+  public nganhtamlist={};
+  public nganhList={};
+  public nganhTam=[];
   constructor(
     private modalService: ModalService,
     private nganhngheservice: NganhNgheService,
@@ -80,6 +87,7 @@ export class ModalGroupfacebookComponent implements OnInit {
   getLop() {
     this.lopService.getAll().subscribe((lop) => {
       this.lop = lop;
+      this.lopTam  = this.lop;
     });
   }
 
