@@ -1,6 +1,10 @@
-.container-fluid{
-  margin-top: 30px;
+/.mat-dialog-container{
+  margin-top: 50px;
 }
+.container-fluid{
+  margin-top: 50px;
+}
+
 .example-section {
   margin: 12px 0;
 }

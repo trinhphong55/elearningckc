@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CaidatComponent } from './pages/list-menu/menu-main/caidat/caidat.component';
+
 import { Chude1Component } from './components/content/chudelophocphan/list-chude/chude1/chude1.component';
 import { Chude2Component } from './components/content/chudelophocphan/list-chude/chude2/chude2.component';
 import { Chude3Component } from './components/content/chudelophocphan/list-chude/chude3/chude3.component';
 import { Chude4Component } from './components/content/chudelophocphan/list-chude/chude4/chude4.component';
-import { TrangcanhanComponent } from './pages/list-menu/menu-main/trangcanhan/trangcanhan.component';
+import { TrangcanhanContentComponent } from './components/content/trangcanhan-content/trangcanhan-content.component';
 import { PageTrangchuComponent } from './pages/page-trangchu/page-trangchu.component';
 import { NavbarTrangchuComponent } from './components/navbar/navbar-trangchu/navbar-trangchu.component';
 import { NavbarHocphanComponent } from './components/navbar/navbar-hocphan/navbar-hocphan.component';
@@ -17,6 +17,7 @@ import { PageChudelophocphanComponent } from './pages/page-chudelophocphan/page-
 import { PageSodiemComponent } from './pages/page-sodiem/page-sodiem.component';
 import { PageHuongdanComponent } from './pages/page-huongdan/page-huongdan.component';
 import { PageBaitapgiaovienComponent } from './pages/page-baitapgiaovien/page-baitapgiaovien.component';
+import { PageCaidatComponent } from './pages/page-caidat/page-caidat.component';
 
 const routes: Routes = [
   {
@@ -25,11 +26,11 @@ const routes: Routes = [
   },
   {
     path: 'hoso',
-    component: TrangcanhanComponent,
+    component: TrangcanhanContentComponent,
   },
   {
     path: 'caidat',
-    component: CaidatComponent,
+    component: PageCaidatComponent,
   },
   {
     path: 'lophocphan',

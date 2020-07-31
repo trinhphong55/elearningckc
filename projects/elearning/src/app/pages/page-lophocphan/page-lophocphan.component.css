@@ -593,7 +593,8 @@ form.ng-untouched.ng-pristine.ng-valid {
         margin-top: 100px;
     }
     .row {
-        width: 110%;
+        width: 100%;
+        margin: 0 auto;
     }
     .chise{
         margin: 0;

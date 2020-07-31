@@ -23,15 +23,15 @@ export class PageLophocphanComponent implements OnInit {
     this.data=this.router.snapshot.paramMap.get('id');
   }
   openNDBT():void{
-    const dialogRef=this.dialog.open(NoidungbaitapComponent,{width:'100%',height:'100vh'})
+    const dialogRef=this.dialog.open(NoidungbaitapComponent,{width:'100%',height:'100vh',maxWidth:'90vw'})
   }
   openNDTL():void{
-    const dialogRef=this.dialog.open(NoidungtaileuComponent,{width:'100%',height:'100vh'})
+    const dialogRef=this.dialog.open(NoidungtaileuComponent,{width:'100%',height:'100vh',maxWidth:'90vw'})
   }
   openNDBTSV():void{
-    const dialogRef=this.dialog.open(NoidungbaitapsvComponent,{width:'100%',height:'100vh'})
+    const dialogRef=this.dialog.open(NoidungbaitapsvComponent,{width:'100%',height:'100vh',maxWidth:'90vw'})
   }
   openNDTLSV():void{
-    const dialogRef=this.dialog.open(NoidungtailieusvComponent,{width:'100%',height:'100vh'})
+    const dialogRef=this.dialog.open(NoidungtailieusvComponent,{width:'100%',height:'100vh',maxWidth:'90vw'})
   }
 }

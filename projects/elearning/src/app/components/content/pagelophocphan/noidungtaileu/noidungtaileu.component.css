@@ -1,5 +1,6 @@
 .row{
     margin-bottom: 20px;
+    margin-top: 50px;
 }
 .mat-button{
     outline: none;
@@ -23,8 +24,9 @@
     width: 20%;
 }
 .title-icon .icon button{
-    margin-left: 85px;
-   padding-top: 20px;
+    margin-left: 118px;
+    margin-top: 26px;
+    padding-top: 0px;
 }
 .content{
     width: 100%;

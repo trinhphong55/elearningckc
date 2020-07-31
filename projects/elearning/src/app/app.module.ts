@@ -10,26 +10,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { HeaderMainComponent } from './components/header/header-main/header-main/header-main.component';
-import { MenuMainComponent } from './pages/list-menu/menu-main/menu-main.component';
-import { LophocComponent } from './pages/list-menu/menu-main/lophoc/lophoc.component';
-import { CaidatComponent } from './pages/list-menu/menu-main/caidat/caidat.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { TaoOrThamgiaLophocComponent } from './pages/list-menu/menu-main/tao-or-thamgia-lophoc/tao-or-thamgia-lophoc.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { ThamgialophocComponent } from './pages/list-menu/menu-main/tao-or-thamgia-lophoc/thamgialophoc/thamgialophoc.component';
-import { TaolophocComponent } from './pages/list-menu/menu-main/tao-or-thamgia-lophoc/taolophoc/taolophoc.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { TaolophocContentComponent } from './pages/list-menu/menu-main/tao-or-thamgia-lophoc/taolophoc/taolophoc-content/taolophoc-content.component';
-import { ThamgialophocContentComponent } from './pages/list-menu/menu-main/tao-or-thamgia-lophoc/thamgialophoc/thamgialophoc-content/thamgialophoc-content.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { FormTaolophocContentComponent } from './pages/list-menu/menu-main/tao-or-thamgia-lophoc/taolophoc/taolophoc-content/form-taolophoc-content/form-taolophoc-content.component';
-import { SidebarModule } from 'ng-sidebar';
 import { LophocContentComponent } from './components/content/lophoc-content/lophoc-content.component';
 import { MatCardModule } from '@angular/material/card';
 import { ChiaseComponent } from './components/content/pagelophocphan/chiase/chiase.component';
@@ -45,7 +34,6 @@ import { TaobaiktraComponent } from './components/content/chudelophocphan/taobai
 import { TaocauhoiComponent } from './components/content/chudelophocphan/taocauhoi/taocauhoi.component';
 import { TaotailieuComponent } from './components/content/chudelophocphan/taotailieu/taotailieu.component';
 import { MatTableModule } from '@angular/material/table';
-import { AccountComponent } from './pages/list-menu/menu-main/tao-or-thamgia-lophoc/account/account.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MoigvComponent } from './components/content/pageMoinguoi/moigv/moigv.component';
 import { MoisvComponent } from './components/content/pageMoinguoi/moisv/moisv.component';
@@ -57,11 +45,7 @@ import { NoidungbaitapsvComponent } from './components/content/pagelophocphan/no
 import { NoidungtailieusvComponent } from './components/content/pagelophocphan/noidungtailieusv/noidungtailieusv.component';
 import { XembaitapsvComponent } from './components/content/chudelophocphan/allchude/xembaitapsv/xembaitapsv.component';
 import { XemtailieusvComponent } from './components/content/chudelophocphan/allchude/xemtailieusv/xemtailieusv.component';
-import { TrangcanhanComponent } from './pages/list-menu/menu-main/trangcanhan/trangcanhan.component';
 import { TrangcanhanContentComponent } from './components/content/trangcanhan-content/trangcanhan-content.component';
-import { ThongtinsvComponent } from './components/content/trangcanhan-content/thongtinsv/thongtinsv.component';
-import { ThoikhoabieusvComponent } from './components/content/trangcanhan-content/thoikhoabieusv/thoikhoabieusv.component';
-import { DiemsosvComponent } from './components/content/trangcanhan-content/diemsosv/diemsosv.component';
 import { NavbarTrangchuComponent } from './components/navbar/navbar-trangchu/navbar-trangchu.component';
 import { NavbarHocphanComponent } from './components/navbar/navbar-hocphan/navbar-hocphan.component';
 import { PageTrangchuComponent } from './pages/page-trangchu/page-trangchu.component';
@@ -74,28 +58,16 @@ import { TaobaitapComponent } from './components/content/chudelophocphan/taobait
 import { PageSodiemComponent } from './pages/page-sodiem/page-sodiem.component';
 import { PageHuongdanComponent } from './pages/page-huongdan/page-huongdan.component';
 import { PageBaitapgiaovienComponent } from './pages/page-baitapgiaovien/page-baitapgiaovien.component';
+import { PageCaidatComponent } from './pages/page-caidat/page-caidat.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderMainComponent,
-    MenuMainComponent,
-    LophocComponent,
-    CaidatComponent,
     FooterComponent,
-    TaoOrThamgiaLophocComponent,
-    ThamgialophocComponent,
-    TaolophocComponent,
-    TaolophocContentComponent,
-    ThamgialophocContentComponent,
-    FormTaolophocContentComponent,
     LophocContentComponent,
-
     ChiaseComponent,
-
     TaobaitapComponent,
     TaochudeComponent,
-
     Chude1Component,
     Chude2Component,
     Chude3Component,
@@ -103,7 +75,6 @@ import { PageBaitapgiaovienComponent } from './pages/page-baitapgiaovien/page-ba
     TaobaiktraComponent,
     TaocauhoiComponent,
     TaotailieuComponent,
-    AccountComponent,
     MoigvComponent,
     MoisvComponent,
     NoidungbaitapComponent,
@@ -114,11 +85,7 @@ import { PageBaitapgiaovienComponent } from './pages/page-baitapgiaovien/page-ba
     NoidungtailieusvComponent,
     XembaitapsvComponent,
     XemtailieusvComponent,
-    TrangcanhanComponent,
     TrangcanhanContentComponent,
-    ThongtinsvComponent,
-    ThoikhoabieusvComponent,
-    DiemsosvComponent,
     NavbarTrangchuComponent,
     NavbarHocphanComponent,
     PageTrangchuComponent,
@@ -130,6 +97,7 @@ import { PageBaitapgiaovienComponent } from './pages/page-baitapgiaovien/page-ba
     PageSodiemComponent,
     PageHuongdanComponent,
     PageBaitapgiaovienComponent,
+    PageCaidatComponent,
   ],
   imports: [
     BrowserModule,
@@ -149,7 +117,6 @@ import { PageBaitapgiaovienComponent } from './pages/page-baitapgiaovien/page-ba
     FormsModule,
     ReactiveFormsModule,
     MatCheckboxModule,
-    SidebarModule.forRoot(),
     MatCardModule,
     MatSelectModule,
     MatExpansionModule,
@@ -158,9 +125,6 @@ import { PageBaitapgiaovienComponent } from './pages/page-baitapgiaovien/page-ba
     MatTableModule,
   ],
   entryComponents: [
-    TaolophocContentComponent,
-    ThamgialophocContentComponent,
-    TaobaitapComponent,
   ],
   providers: [
     {
@@ -168,6 +132,6 @@ import { PageBaitapgiaovienComponent } from './pages/page-baitapgiaovien/page-ba
       useValue: { appearance: 'fill' },
     },
   ],
-  bootstrap: [AppComponent, TaobaitapComponent],
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -8,8 +8,8 @@
     width: 100%;
     display: flex;
     flex-wrap: wrap; 
-    color: #FF0099;
-    border-bottom: 1.5px solid #FF0099;
+    color: #007b83;
+    border-bottom: 1.5px solid #007b83;
 }
 .title-icon .title{
     width: 80%;
@@ -23,8 +23,9 @@
     width: 20%;
 }
 .title-icon .icon button{
-    margin-left: 85px;
-   padding-top: 20px;
+    margin-left: 73px;
+    margin-top: 26px;
+    padding-top: 0px;
 }
 .content{
     width: 100%;
@@ -47,7 +48,7 @@
 }
 .thongtin .tt-icon div{
     width: 50%;
-    background: #FF0099;
+    background: #007b83;
     height: 35px;
     margin: 0 auto;
     border-radius: 20px;
@@ -257,7 +258,7 @@
       width: 100%
   }
   .col-md-10.style-element .el-danhau button.danhdau{
-      background: #CC0066;
+      background: #007b83;
       color: white;
       padding: 5px;
       width: 100%;
@@ -355,4 +356,7 @@
 }
 .comment-tow .input-container .btn:hover{
     background: #99FFCC;
+}
+@media only screen and (max-width: 600px){
+
 }

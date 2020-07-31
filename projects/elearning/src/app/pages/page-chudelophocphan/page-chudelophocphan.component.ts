@@ -23,30 +23,30 @@ export class PageChudelophocphanComponent implements OnInit {
   ngOnInit(): void {
   }
   openTaobaitap() {
-    this.dialog.open(TaobaitapComponent,{width:'100%',height:'100vh'});
+    this.dialog.open(TaobaitapComponent,{width:'100%',height:'100vh',maxWidth:'90vw'});
   }
   opentaochude(){
     this.dialog.open(TaochudeComponent,{width:'250px'});
   }
   openTaobaiktra(){
-    this.dialog.open(TaobaiktraComponent,{width:'100%',height:'100vh'});
+    this.dialog.open(TaobaiktraComponent,{width:'100%',height:'100vh',maxWidth:'90vw'});
   }
   openTaocauhoi(){
-    this.dialog.open(TaocauhoiComponent,{width:'100%',height:'100vh'});
+    this.dialog.open(TaocauhoiComponent,{width:'100%',height:'100vh',maxWidth:'90vw'});
   }
   openTaotailieu(){
-    this.dialog.open(TaotailieuComponent,{width:'100%',height:'100vh'});
+    this.dialog.open(TaotailieuComponent,{width:'100%',height:'100vh',maxWidth:'90vw'});
   }
   openXBTGV(){
-    this.dialog.open(XembaitapgvComponent,{width:'100%',height:'100vh'});
+    this.dialog.open(XembaitapgvComponent,{width:'100%',height:'100vh',maxWidth:'90vw'});
   }
   openXTLGV(){
-    this.dialog.open(XemtailieugvComponent,{width:'100%',height:'100vh'});
+    this.dialog.open(XemtailieugvComponent,{width:'100%',height:'100vh',maxWidth:'90vw'});
   }
   openXTLSV(){
-    this.dialog.open(XemtailieusvComponent,{width:'100%',height:'100vh'});
+    this.dialog.open(XemtailieusvComponent,{width:'100%',height:'100vh',maxWidth:'90vw'});
   }
   openXBTSV(){
-    this.dialog.open(XembaitapsvComponent,{width:'100%',height:'100vh'});
+    this.dialog.open(XembaitapsvComponent,{width:'100%',height:'100vh',maxWidth:'90vw'});
   }
 }

@@ -154,7 +154,7 @@ body {
 
 .offcanvas {
   visibility: hidden;
-  z-index: 1000;
+  z-index: 10000000;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -324,4 +324,26 @@ body {
 .offcanvas_button__open {
   color: inherit;
   font-size: 24px;
+}
+
+
+@media only screen and (max-width: 600px){
+  .navbar-content{
+      background: #0077b6;
+      position: absolute;
+      top: 57px;
+      left: 0;
+      z-index: 0;
+  }
+  .navbar-content span{
+    font-size: 15px;
+  }
+  .navbar-content .bg__caothang{
+    font-size: 15px;
+  }
+  .header_navbar {
+    height: 50%;
+    display: flex;
+    flex-wrap: wrap;
+  }
 }
