@@ -26,6 +26,14 @@ const LopHocPhanSchema = new mongoose.Schema({
     type: Number,
     default: 120,
   },
+  soLuongSV: {
+    type: Number,
+    default: 0,
+  },
+  soLuongSVHocGhep: {
+    type: Number,
+    default: 0,
+  },
   loaiLopHocPhan: {
     type: String,
     default: "Lớp Bình thường"

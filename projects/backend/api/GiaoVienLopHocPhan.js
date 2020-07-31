@@ -1,42 +1,37 @@
 const router = require("express").Router();
-const LopHocPhan = require("../models/LopHocPhan.model");
+// const LopHocPhan = require("../models/LopHocPhan.model");
 const GVLHP = require("../models/GiaoVienLopHocPhan.model");
 
 router.get("/", async (req, res) => {
   res.json("Get GVLHP");
 });
 
-router.get("/gvdd/:maGiaoVien/hocki/:hocKi", async (req, res) => {
-  const maGiaoVien = req.params.maGiaoVien;
-  const hocKi = parseInt(req.params.hocKi);
-  let dsmaLHPbyGiaoVien = [];
-  let dsGVLHP;
-
-  await GVLHP.find({ trangThai: { $ne: 0 }, loai: "Giảng dạy", maGiaoVien, hocKi })
-    .then((ds) => {
-      if (ds.length === 0) {
-        return res.json({ data: [] });
-      }
-      else {
-        dsGVLHP = ds;
-      }
-    })
-    .catch((err) => res.json({ message: err }));
-
-  dsGVLHP.forEach(item => {
-    dsmaLHPbyGiaoVien.push(item.maLopHocPhan);
-  })
-
-  await LopHocPhan.find({ maLopHocPhan: dsmaLHPbyGiaoVien })
-    .then(dslhp => {
-      if (dslhp.length === 0) {
-        return res.json({ data: [] });
-      }
-      else {
-        return res.json({ data: dslhp });
+router.post("/", async (req, res) => {
+  const maGiaoVien = req.body[0];
+  const maLopHocPhan = parseInt(req.body[1]);
+  await GVLHP.findOneAndUpdate({ maLopHocPhan }, { $set: { maGiaoVien } })
+    .then((result) => {
+      if (result !== null) {
+        console.log('Cap nhat');
+        return res.json({
+          status: 200,
+          data: [],
+          message: "Cap nhat thanh cong",
+        });
+      } else {
+        console.log('Them moi');
+        let newGVLHP = new GVLHP({ maGiaoVien, maLopHocPhan });
+        newGVLHP.save().catch((err) => {
+          return res.json({ status: 401, data: [], message: err });
+        });
+        return res.json({
+          status: 200,
+          data: [],
+          message: "Them moi thanh cong",
+        });
       }
     })
-    .catch((err) => res.json({ message: err }));
+    .catch((err) => console.log(err));
 });
 
 module.exports = router;

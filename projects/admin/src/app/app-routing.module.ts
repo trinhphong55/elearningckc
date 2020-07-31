@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
 import { PageFacebookComponent } from './pages/page-facebook/page-facebook.component';
 import { PageBaocaoquyetdinhComponent } from './pages/page-baocaoquyetdinh/page-baocaoquyetdinh.component';
 import { PageElearningComponent } from './pages/page-elearning/page-elearning.component';
@@ -12,36 +11,46 @@ import { PageTtthComponent } from './pages/page-ttth/page-ttth.component';
 
 const routes: Routes = [
   {
-    path: '', component: PageDashboardComponent, pathMatch: 'full'
+    path: '',
+    component: PageDashboardComponent,
+    pathMatch: 'full',
   },
   {
-    path: 'chuongtrinhdaotao', component: PageChuongtrinhdaotaoComponent
+    path: 'chuongtrinhdaotao',
+    component: PageChuongtrinhdaotaoComponent,
   },
   {
-    path: 'diem', component: PageDiemComponent
+    path: 'diem',
+    component: PageDiemComponent,
   },
   {
-    path: 'baocaoquyetdinh', component: PageBaocaoquyetdinhComponent
+    path: 'baocaoquyetdinh',
+    component: PageBaocaoquyetdinhComponent,
   },
   {
-    path: 'elearning', component: PageElearningComponent
+    path: 'elearning',
+    component: PageElearningComponent,
   },
   {
-    path: 'cntt', component: PageCnttComponent
+    path: 'cntt',
+    component: PageCnttComponent,
   },
   {
-    path: 'ttth', component: PageTtthComponent
+    path: 'ttth',
+    component: PageTtthComponent,
   },
   {
-    path: 'facebook', component: PageFacebookComponent
+    path: 'facebook',
+    component: PageFacebookComponent,
   },
   {
-    path: '**', component: PageFacebookComponent
+    path: '**',
+    component: PageFacebookComponent,
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
