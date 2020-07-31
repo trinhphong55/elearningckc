@@ -14,7 +14,10 @@ exports.layTatCaSinhVien = async (req,res) => {
 };
 exports.Laysinhvientheomalop= async(req,res)=>
 {
+<<<<<<< HEAD
   console.log(req.params)
+=======
+>>>>>>> 48e1195e2d5a2376092bcac7947d3ffed6ea278e
   try {
     const sinhViens = await SinhVienModel.find({ maLopHoc: req.params.maLopHoc});
     res.json(sinhViens);

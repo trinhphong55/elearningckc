@@ -11,18 +11,8 @@
           <div class="row justify-content-center align-items-center">
             <form [formGroup]="addForm" class="form-inline">
               <div class="form-group">
-                <label for="bac" class="col-sm-2  col-form-label">Bậc </label>
-                <div class="col-4">
-                  <select id="bac" class="form-control" formControlName="bac">
-                    <option value="">Select..</option>
-                    <option *ngFor="let bac of bacList" [ngValue]=bac.maBac> {{bac.tenBac }}</option>
-                  </select>
-                </div>
-
-              </div>
-              <div class="form-group">
                 <label for="loai" class="col-sm-4 mr-sm-2 col-form-label">Loại hình đào tạo </label>
-                <div class="col-4">
+                <div class="col-sm-4">
                   <select id="loai" class="form-control " formControlName="loaiHinhDaoTao">
                     <option value="">Select...</option>
                     <option *ngFor="let loai of loaiHinhList" [ngValue]=loai.maLoai> {{loai.tenLoai }}</option>
@@ -32,7 +22,7 @@
               </div>
               <div class="form-group">
                 <label for="khoa" class="col-sm-2 mr-sm-2 col-form-label">Khoá </label>
-                <div class="col-4">
+                <div class="col-sm-4">
                   <input class="form-control" id="khoa" formControlName="khoa" type="number" min="14" value="15">
                 </div>
               </div>
@@ -45,9 +35,9 @@
         <!-- Modal -->
         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
           aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-dialog modal-dialog-scrollable" role="document">
             <div class="modal-content">
-              <div class="modal-header">
+              <div class="modal-header alert alert-warning">
                 <h5 class="modal-title" id="exampleModalLongTitle">Thông báo</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
@@ -57,8 +47,8 @@
                 <h6>
                   {{ msg }}
                 </h6>
-                <ul>
-                  <li *ngFor="let item of msgList">{{ item }}</li>
+                <ul class="list-group">
+                  <li class="list-group-item" *ngFor="let item of msgList">{{ item.msg }} </li>
                 </ul>
               </div>
               <div class="modal-footer">
@@ -69,33 +59,164 @@
           </div>
         </div>
         <!-- Modal -->
+        <div class="modal fade" id="sinhVienThongBao" tabindex="-1" role="dialog"
+          aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+              <div class="modal-header alert alert-info">
+                <h5 class="modal-title" id="exampleModalLongTitle">Thông báo trạng thái thêm</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <h6>
+                  {{ msg }}
+                </h6>
+                <ul class="list-group" *ngFor="let item of msgList">
+                  <li class="list-group-item">
+                    {{ item.msg }}
+                  </li>
+                </ul>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Modal -->
+
+        <!--Chi tiet LopHocPhan-->
+        <div class="modal fade" id="chiTiet" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+          aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header alert alert-success">
+                <h5 class="modal-title" id="exampleModalLongTitle">Danh sách lớp học phần</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <table class="modal_chucnang__table table table-hover table table-bordered">
+                  <thead class="bg__caothang text-white">
+                    <tr>
+                      <th scope="col">STT</th>
+                      <th scope="col">Tên lớp học phần</th>
+                      <th scope="col">Mã lớp</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- <ng-container *ngFor="let item of lopNganhs">
+                      <ng-container *ngFor="let lop of item.dsLop, index as i"> -->
+                    <tr *ngFor="let item of lopHocPhans, index as i">
+                      <th scope="row">{{ i+1 }}</th>
+                      <td>
+                        {{  item.tenLopHocPhan }}
+                      </td>
+                      <td>
+                        {{ item.maLopHoc }}
+                      </td>
+                    </tr>
+                    <!-- </ng-container> -->
+                    <!-- </ng-container> -->
+                  </tbody>
+                </table>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Modal -->
         <div class="modal fade" id="lopHocPhan" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
           aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-              <div class="modal-header">
+              <div class="modal-header alert alert-primary">
                 <h5 class="modal-title" id="exampleModalLongTitle">Thông báo</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <div class="modal-body" >
+              <div class="modal-body">
                 <form [formGroup]="hocKiForm">
                   <label for="hocKi">Chọn học kì</label>
-                  <select id="hocKi" class="form-control" formControlName = "hocKi">
+                  <select id="hocKi" class="form-control" formControlName="hocKi">
                     <option *ngFor="let loai of hocKis" [ngValue]=loai.maHK> {{loai.tenHK }}</option>
                   </select>
                 </form>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-outline-primary" (click) = "generateLopHocPhan()">Tạo
+                <button type="button" class="btn btn-outline-primary" (click)="generateLopHocPhan()">Tạo </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal Execl Danh sách sinh viên-->
+        <div class="modal fade" id="dsSV" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+          aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header alert alert-warning">
+                <h5 class="modal-title" id="exampleModalLongTitle">Form nhập danh sách sinh viên</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
                 </button>
+              </div>
+              <div class="modal-body">
+                <div class="form-group">
+                  <label for="excelSV">Nhập File Excel</label>
+                  <input type="file" class="form-control-file" id="excelSV" (change)="onChangeSinhVien($event)"
+                    #inputFile>
+                </div>
+                <div class="alert alert-info" *ngIf="isExcelFile === false">
+                  This is not an Excel file
+                </div>
+                <div>
+                  <button type="button" data-toggle="modal" data-target="#sinhVienThongBao"
+                    (click)="onClickImportExeclSinhVien()" data-dismiss="modal" class="btn btn-outline-success">
+                    Import Excel
+                  </button>
+                </div>
+                <hr>
+                <div>
+                  <button class="btn btn-danger" (click)="removeData()">Remove Data</button>
+                </div>
+                <hr>
+                <div>
+                  <p class="h6">Danh sách sinh viên từ EXCEL </p>
+                  <ul class="list-group">
+                    <li class="list-group-item" *ngFor="let item of dsSinhVien">{{ item.ten }} {{ item.maSinhVien }}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+
               </div>
             </div>
           </div>
         </div>
         <div class="row">
+          <form [formGroup]="addForm" class="form-inline">
+            <div class="form-group">
+              <label for="bac" class="col-sm-2  col-form-label">Bậc </label>
+              <div class="col-sm-4">
+                <select id="bac" class="form-control" formControlName="bac" (change)="changed($event)">
+                  <option value="">Select..</option>
+                  <option *ngFor="let bac of bacList" [ngValue]=bac.maBac> {{bac.tenBac }}</option>
+                </select>
+              </div>
+            </div>
+          </form>
           <div class="col-12">
             <h1 class="text-center text-white">Quản lý chỉ tiêu đào tạo</h1>
           </div>
@@ -114,24 +235,30 @@
                       <th scope="col">STT</th>
                       <th scope="col">Tên Ngành</th>
                       <th scope="col">Chỉ tiêu</th>
-
+                      <th scope="col">Tạo lại lớp</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let nganh of nganhList;index as i">
+                    <tr *ngFor="let nganh of nganhtamlist;index as i" (click)="onClickLopTheoNganh(nganh.maNganhNghe)">
                       <th scope="row">{{ i+ 1 }}</th>
                       <td> {{nganh.tenNganhNghe }}</td>
                       <td>
                         <div class="col-sm-10" [formGroup]="chiTieuList.controls[i]">
+                          <!-- <p> Đã tạo: {{soChiTieu[i].chiTieu }} lớp</p> -->
                           <input type="number" formControlName="soChiTieu" class="form-control" />
                         </div>
                       </td>
+                      <td>
+                        <button type="button" class="btn btn-outline-danger" data-toggle="modal"
+                          data-target="#exampleModalCenter" (click)="onClickResetLopHoc(nganh.maNganhNghe)">Xóa</button>
+                      </td>
                     </tr>
+
                     <tr>
 
                       <td colspan="3">
                         <button type="button" class="btn btn-outline-primary" data-toggle="modal"
-                          data-target="#exampleModalCenter" (click)="onClickCreate()">Tạo
+                          data-target="#exampleModalCenter" (click)="onClickCreate()">Tạo thêm
                           lớp</button>
                       </td>
 
@@ -140,29 +267,46 @@
                 </table>
               </div>
               <div class="col-sm-6 table-responsive">
-                <table class="table table-bordered table-dark table-hover">
+                <table class="modal_chucnang__table table table-hover table table-bordered">
                   <thead>
                     <tr>
-                      <th colspan="3">Danh sách lớp theo ngành/nghề</th>
+                      <th colspan="5">Danh sách lớp theo Ngành/Nghề</th>
                     </tr>
                   </thead>
-                  <thead>
+                  <thead class="bg__caothang text-white">
                     <tr>
                       <th scope="col">STT</th>
                       <th scope="col">Tên lớp</th>
                       <th scope="col">Sỉ số</th>
+                      <th scope="col">Lớp học phần</th>
+                      <th scope="col">Danh sách sinh viên</th>
                     </tr>
                   </thead>
                   <tbody>
                     <!-- <ng-container *ngFor="let item of lopNganhs">
                       <ng-container *ngFor="let lop of item.dsLop, index as i"> -->
-                    <tr *ngFor="let item of lopHocs, index as i">
+                    <tr *ngFor="let item of lopTams, index as i">
+
                       <th scope="row">{{ i+1 }}</th>
                       <td>
                         {{ item.tenLop }}
                       </td>
+                      <ng-container *ngFor="let sv of tongSoSinhVien">
+                        <td *ngIf="item.maLopHoc == sv.maLopHoc">
+                          {{ sv.siSo }}
+                        </td>
+                      </ng-container>
                       <td>
-                        {{ item.maLopHoc }}
+                        <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#chiTiet"
+                          (click)="layLopHocPhan(item.maLopHoc)">Xem</button>
+                      </td>
+                      <td>
+                        <button type="button" class="modal_chucnang__button btn btn-outline-success" data-toggle="modal"
+                          data-target="#dsSV" (click)="onClickThemDSSV(item.maLopHoc)"><img
+                            class=" modal_chucnang__button__icon " src="assets/img/icons/excel.png"
+                            alt="image icon">
+                        </button>
+
                       </td>
                     </tr>
                     <!-- </ng-container> -->
@@ -172,8 +316,8 @@
                   </tbody>
                   <tfoot>
                     <td colspan="3">
-                      <button type="button" class="btn btn-outline-light" data-toggle="modal"
-                        data-target="#lopHocPhan">Tạo lớp học phần</button>
+                      <button type="button" class="btn btn-outline-primary" data-toggle="modal"
+                        data-target="#lopHocPhan" *ngIf="isBtnHocPhanDisplay">Tạo lớp học phần</button>
                     </td>
                   </tfoot>
                 </table>

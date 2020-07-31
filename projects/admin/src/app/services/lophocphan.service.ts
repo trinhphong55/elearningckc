@@ -42,7 +42,9 @@ export class LopHocPhanService {
   addDSLopHocPhan(maNTenLopHoc: Object[], hocKi: string): Observable<any> {
     return this.http.post<any>(this.lophocphanURL, [hocKi, maNTenLopHoc], httpOptions);
   }
-
+  layLopHocPhantheoMaLop(maLopHoc:string):Observable<LopHocPhan[]>{
+    return this.http.get<any>(`${this.lophocphanURL}/${maLopHoc}/search`);
+  }
   constructor(
     private http: HttpClient,
   ) { }

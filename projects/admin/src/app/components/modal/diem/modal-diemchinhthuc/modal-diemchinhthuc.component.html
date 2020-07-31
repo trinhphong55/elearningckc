@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+<!--
+>>>>>>> 48e1195e2d5a2376092bcac7947d3ffed6ea278e
 <app-modal class="modal_chucnang__wrapper" id="diem_diemsinhvien">
   <div (click)="closeModal('diem_diemsinhvien')" class="modal_chucnang__close mdi mdi-chevron-left text-white"></div>
   <div class="container-fluid mt-3">
@@ -6,6 +10,7 @@
         <h1 class="text-center text-white">Điểm sinh viên chính thức</h1>
       </div>
       <div class="col-12">
+<<<<<<< HEAD
         <form [formGroup]="formDiemChinhThuc">
           <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
             <div class="row justify-content-center align-items-center">
@@ -41,12 +46,55 @@
                     </div>
                   </div>
                 </div>
+=======
+        <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
+          <form>
+          <div class="row justify-content-center align-items-center">
+            <div class="col-3">
+              <div class="form-group">
+                <label>Bậc</label>
+                <select  class="form-control" [(ngModel)]="diemsv.maBac" (change)="selectbac($event)" >
+                  <option *ngFor="let bac of dsBac" [value]=bac.maBac>{{bac.tenBac }}</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="form-group">
+                <label>Ngành Nghề</label>
+                <select id="nganhnghe" class="form-control" [(ngModel)]="diemsv.maNganhNghe" (change)="selectnganh($event)" >
+                  <option *ngFor="let nganh of dsNganhNghetmp" [value]="nganh.maNganhNghe">{{nganh.tenNganhNghe}}</option>
+                </select>
+              </div>
+              <div class="form-group" >
+                <label>Khoá</label>
+                <input class="form-control" [(ngModel)]="diemsv.khoaHoc" id="khoa"  type="number" min="15" value="15" >
+              </div>
+
+            </div>
+            <div class="col-3">
+              <div class="form-group">
+                <label>Lớp</label>
+                <select id="lophoc" [(ngModel)]="diemsv.maLophoc" class="form-control modal_chucnang__select" (change)="selectlop($event)"  >
+                  <option *ngFor="let lophoc of dsLophoc" [value]="lophoc.maLopHoc">{{lophoc.tenLop}}</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Họ tên</label>
+                <select id="masv" class="form-control modal_chucnang__select2" [(ngModel)]="diemsv.maSinhVien" (change)="selectmasinhvien($event)">
+                  <option *ngFor="let sv of dsSinhvien" [value]="sv.maSinhVien" >{{sv.maSinhVien}}- {{sv.ho}} {{sv.ten}} </option>
+                </select>
+>>>>>>> 48e1195e2d5a2376092bcac7947d3ffed6ea278e
               </div>
               <div class="col-3">
                 <div class="form-group">
                   <label>Lớp</label>
+<<<<<<< HEAD
                   <select class="form-control" formControlName="maLopHoc">
                     <option value="" *ngFor="let l of lop |filter:maBac"> {{l.tenLop}}</option>
+=======
+                  <select class="form-control modal_chucnang__select2">
+                    <option *ngFor="let lop of dsLop">{{lop.tenLop}}</option>
+>>>>>>> 48e1195e2d5a2376092bcac7947d3ffed6ea278e
                   </select>
                 </div>
                 <div class="form-group">
@@ -70,6 +118,7 @@
             </div>
           </div>
         </form>
+      </div>
       </div>
       <div class="col-12">
         <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
@@ -130,4 +179,4 @@
       </div>
     </div>
   </div>
-</app-modal>
+</app-modal> -->
