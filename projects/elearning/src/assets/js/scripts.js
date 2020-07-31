@@ -20,7 +20,7 @@ function navbarOffCanvas() {
     }
     item.addEventListener("click", function (e) {
       // console.log(this.nextSibling) // https://www.w3schools.com/jsref/prop_node_nextsibling.asp
-      console.log(this.nextElementSibling)
+      // console.log(this.nextElementSibling);
       if (this.nextElementSibling !== null) {
         e.preventDefault();
         this.classList.toggle("show");
@@ -34,12 +34,12 @@ function navbarOffCanvas() {
       e.preventDefault();
       OpenOffCanvas();
     });
-  document
-    .querySelector(".offcanvas_button__close")
-    .addEventListener("click", function (e) {
-      e.preventDefault();
-      CloseOffCanvas();
-    });
+  // document
+  //   .querySelector(".offcanvas_button__close")
+  //   .addEventListener("click", function (e) {
+  //     e.preventDefault();
+  //     CloseOffCanvas();
+  //   });
 
   function OpenOffCanvas() {
     document.querySelector(".offcanvas").classList.add("open");
@@ -50,4 +50,5 @@ function navbarOffCanvas() {
     document.querySelector(".offcanvas").classList.remove("open");
     document.querySelector("body").classList.remove("offcanvas_container");
   }
-} //#endre
+}
+//#endregion

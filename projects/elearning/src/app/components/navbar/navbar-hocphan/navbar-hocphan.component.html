@@ -1,20 +1,44 @@
-<ul class="nav nav-tabs">
-    <li class="nav-item">
-      <a class="nav-link"  routerLink="/lophocphan"  routerLinkActive="active" >Luồng</a>
-    </li>
-    <li class="nav-item" >
-      <a class="nav-link "  routerLink="/baigiang"  routerLinkActive="active"  >Bài giảng</a>
-    </li>
-    <li class="nav-item" >
-      <a class="nav-link"  routerLink="/moinguoi"  routerLinkActive="active">Mọi người</a>
-    </li>
-    <li class="nav-item" >
-      <a class="nav-link"  routerLink="/sodiem"  routerLinkActive="active" >Sổ điểm</a>
-    </li>
-    <li class="nav-item" >
-        <a class="nav-link"  routerLink="/huongdan"  routerLinkActive="active" >Hướng dẫn</a>
-      </li>
-      <li class="nav-item" >
-        <a class="nav-link"  routerLink="/baitapgv"  routerLinkActive="active" >Bài tâp giáo viên</a>
-      </li>
-  </ul>
+<nav class="header_navbar">
+  <a
+    class="header_navbar__item flex-column"
+    [routerLink]="'/lophocphan'"
+    routerLinkActive="active"
+  >
+    <span>Luồng</span>
+  </a>
+  <a
+    class="header_navbar__item flex-column"
+    [routerLink]="'/baigiang'"
+    routerLinkActive="active"
+  >
+    <span>Bài giảng</span>
+  </a>
+  <a
+    class="header_navbar__item flex-column"
+    [routerLink]="'/moinguoi'"
+    routerLinkActive="active"
+  >
+    <span>Mọi người</span>
+  </a>
+  <a
+    class="header_navbar__item flex-column"
+    [routerLink]="'/sodiem'"
+    routerLinkActive="active"
+  >
+    <span>Sổ điểm</span>
+  </a>
+  <a
+    class="header_navbar__item flex-column"
+    [routerLink]="'/huongdan'"
+    routerLinkActive="active"
+  >
+    <span>Hướng dẫn</span>
+  </a>
+  <a
+    class="header_navbar__item flex-column"
+    [routerLink]="'/baitapgv'"
+    routerLinkActive="active"
+  >
+    <span>Bài tâp giáo viên</span>
+  </a>
+</nav>

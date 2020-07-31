@@ -27,7 +27,7 @@ const routes: Routes = [
     path: 'hoso',
     component: TrangcanhanComponent,
   },
-    {
+  {
     path: 'caidat',
     component: CaidatComponent,
   },
@@ -38,35 +38,30 @@ const routes: Routes = [
   {
     path: 'baigiang',
     component: PageBaigiangComponent,
-    children:[
-      {path:'',
-      component:PageChudelophocphanComponent
-      },
-      {path:'all',
-      component:PageChudelophocphanComponent
-      },
+    children: [
+      { path: '', component: PageChudelophocphanComponent },
+      { path: 'all', component: PageChudelophocphanComponent },
       {
-        path:'chude1',
-        component:Chude1Component
+        path: 'chude1',
+        component: Chude1Component,
       },
       {
-        path:'chude1',
-        component:Chude1Component
+        path: 'chude1',
+        component: Chude1Component,
       },
       {
-        path:'chude2',
-        component:Chude2Component
+        path: 'chude2',
+        component: Chude2Component,
       },
       {
-        path:'chude3',
-        component:Chude3Component
-      }
-      ,
+        path: 'chude3',
+        component: Chude3Component,
+      },
       {
-        path:'chude4',
-        component:Chude4Component
-      }
-    ]
+        path: 'chude4',
+        component: Chude4Component,
+      },
+    ],
   },
   {
     path: 'moinguoi',
@@ -86,7 +81,6 @@ const routes: Routes = [
   },
   {
     path: '',
-    pathMatch:'full',
     component: NavbarTrangchuComponent,
     outlet: 'navbar',
   },
@@ -96,70 +90,19 @@ const routes: Routes = [
     outlet: 'navbar',
   },
   {
+    path: 'hoso',
+    component: NavbarNoneComponent,
+    outlet: 'navbar',
+  },
+  {
     path: '**',
     component: NavbarNoneComponent,
     outlet: 'navbar',
   },
-
 ];
-
-// const routes: Routes = [
-//   {
-//     path: '',
-//     component: LophocComponent
-//   },
-//   {
-//     path: 'lophoc',
-//     component: LophocComponent
-//   },
-//   {
-//     path: 'trangcanhan',
-//     component: TrangcanhanComponent,
-//     children: [
-//       { path: '', component: ThongtinsvComponent },
-//       { path: 'thongtinsv', component: ThongtinsvComponent },
-//       { path: 'thoikhoabieusv', component: ThoikhoabieusvComponent },
-//       { path: 'diemsosv', component: DiemsosvComponent }
-//     ]
-//   },
-//   {
-//     path: 'caidat',
-//     component: CaidatComponent
-//   }
-//   , {
-//     path: 'gv/:id',
-//     component: LophocContentGvComponent,
-//     children: [
-//       { path: 'luong', component: LuongComponent },
-//       {
-//         path: 'baitaptrenlop', component: BaitaptrenlopComponent,
-//         children: [
-//           { path: 'all', component: AllchudeComponent },
-//           { path: 'chude1', component: Chude1Component },
-//           { path: 'chude2', component: Chude2Component },
-//           { path: 'chude3', component: Chude3Component },
-//           { path: 'chude4', component: Chude4Component },
-//           {
-//             path: '',
-//             component: AllchudeComponent
-//           }
-//         ]
-//       },
-//       { path: 'moinguoi', component: MoinguoiComponent },
-//       { path: 'huongdan', component: HuongdanComponent },
-//       { path: 'baitapgv', component: BaitapgvComponent },
-//       { path: 'sodiem', component: SodiemComponent },
-//       {
-//         path: '',
-//         component: LuongComponent
-//       }
-//     ]
-//   }
-
-// ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
