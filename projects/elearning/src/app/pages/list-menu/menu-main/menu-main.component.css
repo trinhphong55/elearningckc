@@ -67,7 +67,7 @@ label #btn{
   left: 20px;
   top: 10px;
   font-size: 20px;
-  color: #666666;
+  color: #007b83;
   padding: 6px 12px;
   background: none;
   transition: all .5s;
@@ -78,7 +78,7 @@ label #cancel{
   left: -195px;
   top: 17px;
   font-size: 20px;
-  color: #0a5275;
+  color: #007b83;
   padding: 4px 9px;
   transition: all .5s ease;
 }
@@ -102,7 +102,7 @@ label #cancel{
 
 
 .sidebar-right{
-  width: 180px;
+  width: 200px;
   position: fixed;
   top: 0;
   right: 0;

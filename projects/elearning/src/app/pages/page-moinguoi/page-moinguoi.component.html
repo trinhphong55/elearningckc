@@ -1,0 +1,140 @@
+<div class="contaier">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="content-people">
+                <div class="row">
+                    <div class="title-icon">
+                        <div class="title">
+                            <h3>Giáo Viên</h3>
+                        </div>
+                        <div class="add">
+                            <button mat-button (click)="openMoigv()"><i class="fas fa-user-plus"></i></button>
+                        </div>
+                    </div>
+                    <div class="list-gv">
+                        <div class="nx-showimg">
+                            <div>
+                                <img class="gb_Ka gbii"
+                                    src="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo"
+                                    srcset="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo 1x, https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s64-c-mo 2x "
+                                    alt="" aria-hidden="true" data-noaft="">
+                            </div>
+                        </div>
+                        <div class="nx-showname">
+                            <h6>Huy Nguyễn</h6>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="title-icon-sv">
+                        <div class="title-sv">
+                            <h3>Sinh viên</h3>
+                        </div>
+                        <div class="sl-sv">
+                            <span>3 sinh viên</span>
+                        </div>
+                        <div class="add-sv">
+                            <button mat-button (click)="openMoisv()"><i class="fas fa-user-plus"></i></button>
+                        </div>
+                    </div>
+                    <div class="list-sv">
+                        <div class="checkbox">
+                            <input type="checkbox" name="" id="">
+                        </div>
+                        <div class="nx-showimg">
+                            
+                        </div>
+                        <div class="nx-showname">
+                            <div class="form-group pr-3 pt-1 w-50">
+                                <select class="form-control" id="exampleFormControlSelect1">
+                                  <option>Tác vụ</option>
+                                  
+                                  <option>Gửi mail</option>
+                                  <option>Ẩn</option>
+                                  <option>Xóa</option>
+                                </select>
+                              </div>
+                        </div>
+                        <div class="nx-showicon">
+                            <button mat-button [matMenuTriggerFor]="sapxeptheoten"><i class="fas fa-text-height"></i></button>
+                            <mat-menu #sapxeptheoten="matMenu">
+                                <button mat-menu-item>Sắp xếp theo họ</button>
+                                <button mat-menu-item>Sắp xếp theo tên</button>
+                            </mat-menu>
+                        </div>
+                    </div>
+                    <div class="list-sv">
+                        <div class="checkbox">
+                            <input type="checkbox" name="" id="">
+                        </div>
+                        
+                        <div class="nx-showimg">
+                            <div>
+                                <img class="gb_Ka gbii"
+                                    src="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo"
+                                    srcset="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo 1x, https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s64-c-mo 2x "
+                                    alt="" aria-hidden="true" data-noaft="">
+                            </div>
+                        </div>
+                        <div class="nx-showname">
+                            <h6>Huy Nguyễn</h6>
+                        </div>
+                        <div class="nx-showicon">
+                            <button mat-button [matMenuTriggerFor]="menu"><i class="fas fa-ellipsis-v"></i></button>
+                            <mat-menu #menu="matMenu">
+                                <button mat-menu-item>Gửi mail cho học viên</button>
+                            </mat-menu>
+                        </div>
+                    </div>
+                   
+                    <div class="list-sv">
+                        <div class="checkbox">
+                            <input type="checkbox" name="" id="">
+                        </div>
+                        <div class="nx-showimg">
+                            <div>
+                                <img class="gb_Ka gbii"
+                                    src="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo"
+                                    srcset="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo 1x, https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s64-c-mo 2x "
+                                    alt="" aria-hidden="true" data-noaft="">
+                            </div>
+                        </div>
+                        <div class="nx-showname">
+                            <h6>Huy Nguyễn</h6>
+                        </div>
+                        <div class="nx-showicon">
+                            <button mat-button [matMenuTriggerFor]="menu"><i class="fas fa-ellipsis-v"></i></button>
+                            <mat-menu #menu="matMenu">
+                                <button mat-menu-item>Gửi mail cho học viên</button>
+                            </mat-menu>
+                        </div>
+                    </div>
+                    <div class="list-sv">
+                        <div class="checkbox">
+                            <input type="checkbox" name="" id="">
+                        </div>
+                        <div class="nx-showimg">
+                            <div>
+                                <img class="gb_Ka gbii"
+                                    src="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo"
+                                    srcset="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo 1x, https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s64-c-mo 2x "
+                                    alt="" aria-hidden="true" data-noaft="">
+                            </div>
+                        </div>
+                        <div class="nx-showname">
+                            <h6>Huy Nguyễn</h6>
+                        </div>
+                        <div class="nx-showicon">
+                            <button mat-button [matMenuTriggerFor]="menu"><i class="fas fa-ellipsis-v"></i></button>
+                            <mat-menu #menu="matMenu">
+                                <button mat-menu-item>Gửi mail cho học viên</button>
+                            </mat-menu>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
