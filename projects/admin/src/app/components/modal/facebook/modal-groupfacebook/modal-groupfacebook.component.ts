@@ -22,6 +22,13 @@ export class ModalGroupfacebookComponent implements OnInit {
   addForm: FormGroup;
   statusElementList = {};
   isDone = false;
+  //Khai báo list
+  public bactamlist = [];
+  public bacList: any;
+  public lopTam = [];
+  public nganhtamlist={};
+  public nganhList={};
+  public nganhTam=[];
   constructor(
     private modalService: ModalService,
     private groupFBService: GroupfbService,
@@ -70,7 +77,8 @@ export class ModalGroupfacebookComponent implements OnInit {
   getbac() {
     this.bacservice.getBac().subscribe(
       (bac) => {
-        this.bac = bac;
+        this.bacList = bac;
+        this.bactamlist = this.bacList;
       },
       (error) => {
         console.log(error);
@@ -80,7 +88,8 @@ export class ModalGroupfacebookComponent implements OnInit {
   getNganh() {
     this.nganhngheservice.getNganhnghe().subscribe(
       (nganhs) => {
-        this.nganhs = nganhs;
+        this.nganhList = nganhs;
+        this.nganhtamlist=this.nganhList;
       },
       (error) => {
         console.log(error);
@@ -92,7 +101,7 @@ export class ModalGroupfacebookComponent implements OnInit {
   getLop() {
     this.lopService.getAll().subscribe((lop) => {
       this.lop = lop;
-      console.log(lop);
+      this.lopTam  = this.lop;
     });
   }
   
@@ -108,6 +117,38 @@ export class ModalGroupfacebookComponent implements OnInit {
     this.tenLop.setValue(data.tenLop);
     console.log(data)
   }
+
+  public changedBac(e) {
+   
+    this.lopTam = [];
+    if (this.addForm.value.maBac !== '') {
+      this.lop.forEach((element) => {
+        console.log(this.addForm.value.maBac);  
+        console.log(element.maBac);
+        if (element.maBac == this.addForm.value.maBac) {
+          this.lopTam.push(element);
+        }
+      });
+    } else {
+      this.lopTam = this.lop;
+    }
+  }
+  public changedNganh(e) {
+   
+    this.nganhTam = [];
+    if (this.addForm.value.maNganh !== '') {
+      this.lop.forEach((element) => {
+        console.log(this.addForm.value.maNganh);  
+        console.log(element.maNganh);
+        if (element.maBac == this.addForm.value.maNganh) {
+          this.lopTam.push(element);
+        }
+      });
+    } else {
+      this.lopTam = this.lop;
+    }
+  }
+  
 
   openDetail(id_fb: number) {
     this.modalService.open('detail-groupfb');
