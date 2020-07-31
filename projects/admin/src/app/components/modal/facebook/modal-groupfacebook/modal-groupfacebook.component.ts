@@ -15,6 +15,7 @@ export class ModalGroupfacebookComponent implements OnInit {
   bac: any;
   nganhs: any;
   lop: any;
+  lopTam: [];
   editting= false;
   currentIndex=-1;
   currentLop=null;
@@ -24,7 +25,7 @@ export class ModalGroupfacebookComponent implements OnInit {
   //Khai báo list
   public bactamlist = [];
   public bacList: any;
-  public lopTam = [];
+  public lopTams: any;
   public nganhtamlist={};
   public nganhList={};
   public nganhTam=[];
@@ -45,6 +46,7 @@ export class ModalGroupfacebookComponent implements OnInit {
       maNganh: new FormControl({value: '', disabled: true}, Validators.required),
       khoa: new FormControl({value: '', disabled: true}, Validators.required),
       tenLop: new FormControl({value: '', disabled: true}, Validators.required),
+      TenB: new FormControl(),
     });
 
   }
@@ -61,6 +63,9 @@ export class ModalGroupfacebookComponent implements OnInit {
   get tenLop() {
     return this.addForm.get('tenLop');
   }
+  get TenB(){
+    return this.addForm.get('maBac');
+  }
   getAll() {
     this.lopService.getAll().subscribe(
       data=> {
@@ -72,6 +77,7 @@ export class ModalGroupfacebookComponent implements OnInit {
     this.bacservice.getBac().subscribe(
       (bac) => {
         this.bac = bac;
+        this.bactamlist=this.bac;
       },
     );
   }
@@ -79,6 +85,7 @@ export class ModalGroupfacebookComponent implements OnInit {
     this.nganhngheservice.getNganhnghe().subscribe(
       (nganhs) => {
         this.nganhs = nganhs;
+        this.nganhtamlist=this.nganhs;
       },
     );
     return this.data;
@@ -87,9 +94,23 @@ export class ModalGroupfacebookComponent implements OnInit {
   getLop() {
     this.lopService.getAll().subscribe((lop) => {
       this.lop = lop;
+      this.lopTams = this.lop;
     });
   }
-
+ //bắt sự kiện show lop theo bac
+ changed(e) {
+  
+   this.lopTams = [];
+  if (this.addForm.value.maBac !== '') {
+    this.lop.forEach((element) => {
+      if (element.maBac == this.addForm.value.TenB) {
+        this.lopTams.push(element);
+      }
+    });
+  } else {
+    this.lopTams = this.lop;
+  }
+}
 
   insertDateforForm(data) {
     this.editting = true;
@@ -102,7 +123,7 @@ export class ModalGroupfacebookComponent implements OnInit {
       }
     })
     this.maBac.setValue(Bac);
-
+    this.TenB.setValue(Bac);
     let tenNganh;
     this.nganhs.filter(item => {
       if (data.maNganh === item.maNganhNghe) {

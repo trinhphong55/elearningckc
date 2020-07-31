@@ -67,6 +67,21 @@
                 <option>50</option>
               </select><span class="text-nowrap">&nbsp; hàng</span>
             </label>
+            <form [formGroup]="addForm" class="form-inline">
+              <div class="form-group">
+                <label for="bac" class="col-sm-2  col-form-label">Bậc </label>
+                <div class="col-sm-4">
+                  <select id="bac" class="form-control" formControlName="TenB" (change)="changed($event)" >
+                    <option *ngFor="let b of bactamlist" [ngValue]=b.maBac > {{b.tenBac }}</option>
+                  </select>
+                </div>
+              </div>
+            </form>
+            <!-- <label class="mb-0 ml-4 d-flex align-items-center"><span class="text-nowrap">Bậc &nbsp;</span>
+              <select class="custom-select custom-select-sm form-control" (change)="changed($event)">
+                <option *ngFor="let b of bac">{{b.tenBac}}</option>
+              </select><span class="text-nowrap">&nbsp; hàng</span>
+            </label> -->
             <label class="ml-auto mb-0 d-flex align-items-center"><span class="text-nowrap">Tìm kiếm: &nbsp;</span>
               <input class="form-control form-control-sm" placeholder="Tìm kiếm" [(ngModel)]="searchGroup">
             </label>
@@ -82,7 +97,7 @@
               <th scope="col" class="text-center">Tác vụ</th>
             </thead>
             <tbody >
-              <tr *ngFor=" let d of data |filter: searchGroup; index as stt" (click)="insertDateforForm(d)">
+              <tr *ngFor=" let d of lopTams |filter: searchGroup; index as stt" (click)="insertDateforForm(d)">
                 <td class="text-center">{{stt+1}}</td>
                 <td class="text-center">
                   <label >{{d.maLopHoc}}</label>
