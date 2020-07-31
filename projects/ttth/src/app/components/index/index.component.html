@@ -50,51 +50,11 @@
               <h2 class="title">Tiện ích hỗ trợ</h2><img src="assets/img/line.png" alt="line">
           </div>
           <div class="row" data-aos="fade-right" data-aos-duration="2000">
-              <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                  <div class="item"><img src="assets/img/icon-rating.png" alt="icon-student">
+              <div class="col-lg-4 col-md-6 col-sm-6 col-12" *ngFor="let item of TienIch">
+                  <div class="item"><img [src]="item.image" alt="{{item.image}}">
                       <div class="item-content">
-                          <a href="#" class="sub-title">Ứng dụng CNTT CB và NC</a>
-                          <p>Kho đề thi mẫu và video hướng dẫn giải đề giúp học viên ôn tập cho kì thi chứng chỉ Ứng Dụng CNTT.</p>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                  <div class="item"><img src="assets/img/icon-resume.png" alt="icon-student">
-                      <div class="item-content">
-                          <a href="#" class="sub-title">Tra cứu điểm thi</a>
-                          <p>Hỗ trợ học viên tra cứu kết quả thi được Trung Tâm thông báo sau ngày thi 2 tuần.</p>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                  <div class="item"><img src="assets/img/icon-student.png" alt="icon-student">
-                      <div class="item-content">
-                          <a href="#" class="sub-title">Tài liệu học tập</a>
-                          <p>Chia sẻ kho tài liệu học tập miễn phí, hữu ích với nhiều lĩnh vực phong phú.</p>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                  <div class="item"><img src="assets/img/icon-professor.png" alt="icon-student">
-                      <div class="item-content">
-                          <a href="#" class="sub-title">Lớp học trực tuyến</a>
-                          <p>Các lớp học bổ sung kiến thức CNTT, học trực tiếp với giáo viên qua mạng Internet.</p>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                  <div class="item"><img src="assets/img/icon-order.png" alt="icon-student">
-                      <div class="item-content">
-                          <a href="#" class="sub-title">Tra cứu chứng chỉ</a>
-                          <p>Hỗ trợ học viên tra cứu chứng chỉ được Trung Tâm cấp sau ngày thi 1,5 tháng.</p>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                  <div class="item"><img src="assets/img/icon-internship.png" alt="icon-student">
-                      <div class="item-content">
-                          <a href="#" class="sub-title">Giới thiệu việc làm</a>
-                          <p>Cầu nối giúp học viên tiếp cận các cơ hội việc làm từ những doanh nghiệp hàng đầu.</p>
+                          <a href="{{item.link}}" class="sub-title">{{item.ten}}</a>
+                          <p>{{item.mota}}</p>
                       </div>
                   </div>
               </div>

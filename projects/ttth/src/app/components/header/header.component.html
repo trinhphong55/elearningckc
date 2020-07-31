@@ -2,8 +2,8 @@
 <header>
   <div class="header-top ">
       <div class="container ">
-          <div class="d-flex justify-content-between">
-              <div class="flex align-items-center">
+          <div class="header-top-content d-flex">
+              <div class="flex align-items-center header-infor">
                 <div class="header-icon">
                   <i class="far fa-clock text-7"></i>
                 </div>
@@ -16,7 +16,7 @@
               <div class="logo">
                 <img style="max-width: 220px;" *ngFor="let item of ThongTinWeb" [src]="item.logo" alt="logo">
               </div>
-              <div class="flex align-items-center">
+              <div class="flex align-items-center header-infor">
                 <div class="header-icon">
                   <i class="fab fa-whatsapp"></i>
                 </div>
@@ -24,7 +24,6 @@
                   <p *ngFor="let item of ThongTinWeb">{{item.hotline}}</p>
                 </div>
               </div>
-
           </div>
       </div>
   </div>

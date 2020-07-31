@@ -58,7 +58,7 @@ const server = https.createServer(httpsOptions, app).listen(PORT, () => {
 
 // cntt
 mongoose.connect(
-  "mongodb://127.0.0.1:27017/DATNWEBKHOACKC",
+  "mongodb://127.0.0.1:27017/ttth",
   {
     useNewUrlParser: true,
     useFindAndModify: false,
