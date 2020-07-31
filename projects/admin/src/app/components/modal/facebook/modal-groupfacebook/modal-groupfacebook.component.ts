@@ -2,7 +2,7 @@ import { LopHocService } from './../../../../services/lop-hoc.service';
 import { Component, OnInit } from '@angular/core';
 import { ModalService } from '../../../../services/modal.service';
 import { NganhNgheService } from '../../../../services/NganhNghe.service';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators, FormControlName } from '@angular/forms';
 import { BacService } from '../../../../services/Bac.service';
 
 @Component({
@@ -46,7 +46,8 @@ export class ModalGroupfacebookComponent implements OnInit {
       maNganh: new FormControl({value: '', disabled: true}, Validators.required),
       khoa: new FormControl({value: '', disabled: true}, Validators.required),
       tenLop: new FormControl({value: '', disabled: true}, Validators.required),
-      TenB: new FormControl(),
+      TenB: new FormControl(''),
+      TenN:new FormControl(''),
     });
 
   }
@@ -65,6 +66,9 @@ export class ModalGroupfacebookComponent implements OnInit {
   }
   get TenB(){
     return this.addForm.get('maBac');
+  }
+  get TenN() {
+    return this.addForm.get('maNganh');
   }
   getAll() {
     this.lopService.getAll().subscribe(
@@ -98,11 +102,13 @@ export class ModalGroupfacebookComponent implements OnInit {
     });
   }
  //bắt sự kiện show lop theo bac
- changed(e) {
+ changedBac(e) {
   
    this.lopTams = [];
   if (this.addForm.value.maBac !== '') {
     this.lop.forEach((element) => {
+      console.log(element);
+      console.log(this.addForm.value);
       if (element.maBac == this.addForm.value.TenB) {
         this.lopTams.push(element);
       }
@@ -110,6 +116,22 @@ export class ModalGroupfacebookComponent implements OnInit {
   } else {
     this.lopTams = this.lop;
   }
+}
+//bắt sự kiện show lop theo nganh
+changedNganh(e) {
+  
+  this.lopTams = [];
+ if (this.addForm.value.maNganh !== '') {
+   this.lop.forEach((element) => {
+    console.log(element);
+    console.log(this.addForm.value);
+     if (element.maNganh == this.addForm.value.TenN) {
+       this.lopTams.push(element);
+     }
+   });
+ } else {
+   this.lopTams = this.lop;
+ }
 }
 
   insertDateforForm(data) {
@@ -124,6 +146,7 @@ export class ModalGroupfacebookComponent implements OnInit {
     })
     this.maBac.setValue(Bac);
     this.TenB.setValue(Bac);
+    
     let tenNganh;
     this.nganhs.filter(item => {
       if (data.maNganh === item.maNganhNghe) {
@@ -131,7 +154,7 @@ export class ModalGroupfacebookComponent implements OnInit {
       }
     })
     this.maNganh.setValue(tenNganh);
-
+    this.TenN.setValue(tenNganh);
     this.khoa.setValue(data.khoa);
     this.tenLop.setValue(data.tenLop);
   }

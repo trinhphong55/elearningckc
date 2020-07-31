@@ -71,8 +71,20 @@
               <div class="form-group">
                 <label for="bac" class="col-sm-2  col-form-label">Bậc </label>
                 <div class="col-sm-4">
-                  <select id="bac" class="form-control" formControlName="TenB" (change)="changed($event)" >
+                  <select id="bac" class="form-control" formControlName="TenB" (change)="changedBac($event)" >
+                    <option value="">Select...</option>
                     <option *ngFor="let b of bactamlist" [ngValue]=b.maBac > {{b.tenBac }}</option>
+                  </select>
+                </div>
+              </div>
+            </form>
+            <form [formGroup]="addForm" class="form-inline">
+              <div class="form-group">
+                <label for="nganh" class="col-sm-2  col-form-label">Ngành </label>
+                <div class="col-sm-4">
+                  <select id="nganh" class="form-control" formControlName="TenN" (change)="changedNganh($event)" >
+                    <option value="">Select..</option>
+                    <option *ngFor="let n of nganhtamlist" [ngValue]=n.maNganhNghe > {{n.tenNganhNghe }}</option>
                   </select>
                 </div>
               </div>
