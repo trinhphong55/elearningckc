@@ -11,6 +11,7 @@ const app = express()
 // require('./crawl').crawl()
 
 const MONGODB_URI = 'mongodb://elearning_team:123@103.92.26.177:27017/testAngularckc?retryWrites=true&w=majority?authSource=admin' //'mongodb://localhost:27017/'
+// const MONGODB_URI = 'mongodb://localhost:27017/testAngularckc?retryWrites=true&w=majority?authSource=admin' //'mongodb://localhost:27017/'
 
 const PORT = 4100
 

@@ -60,7 +60,20 @@ const LopHocSchema = new Schema({
     type:String,
     required: true,
 
-  }
+  },
+  
+  tenGroupFB:{
+    type:String,
+    default:'facebook',
+  },
+  IDGroupFB:{
+    type:String,
+    default:'facebook',
+  },
+  linkGroupFB:{
+    type:String,
+    default:'facebook',
+  },
 });
 
 module.exports = mongoose.model("LopHoc", LopHocSchema, "LopHoc");

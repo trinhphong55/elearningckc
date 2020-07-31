@@ -109,7 +109,7 @@ export class ModalChitieudaotaoComponent implements OnInit {
     private lopHocService: LopHocService,
     private lopHocPhanSerivce: LopHocPhanService,
     private SinhVienService: SinhVienService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.addForm = new FormGroup({
@@ -125,7 +125,6 @@ export class ModalChitieudaotaoComponent implements OnInit {
     this.hocKiForm = new FormGroup({
       hocKi: new FormControl(''),
     });
-
   }
   //Lay tat ca tu DB LOP HOC
   getLopHoc() {
@@ -255,7 +254,6 @@ export class ModalChitieudaotaoComponent implements OnInit {
   deleteLopHoc(maNganh: string) {
     this.lopHocService.deleteMaNganh(maNganh).subscribe(
       (data) => {
-        ;
         this.msgList.push({ msg: `Xóa thành công lớp học của ${maNganh}` });
       },
       (error) => console.log(error)
@@ -450,42 +448,32 @@ export class ModalChitieudaotaoComponent implements OnInit {
       this.inputFile.nativeElement.value = '';
     }
   }
-  convertToMaLopHopLe(sv:String){
+  convertToMaLopHopLe(sv: String) {
     //030061711 => 0306171
-    return (0 + sv.slice(0, 1) + sv.slice(2, 7));
+    return 0 + sv.slice(0, 1) + sv.slice(2, 7);
   }
   private importExcel() {
     this.dsSinhVien.forEach((sv) => {
       sv.nguoiChinhSua = 'macdinh';
       sv.nguoiTao = 'macdinh';
       sv.maLopHoc = this.maLopThem;
-      let maHopLe = this.convertToMaLopHopLe(sv.maLopHoc);
-      let maSv = sv.maSinhVien.slice(0, 7);
-      if (maSv === maHopLe) {
-        this.SinhVienService.themSinhVien(sv).subscribe(
-          (response) => {
-            this.msgList.push({
-              msg: `Thêm thành công "${sv.ten}" có mã số [${sv.maSinhVien}]`,
-              status: true,
-            });
-
-          },
-          (error) => {
-            this.msgList.push({
-              msg: `Thêm thất bại "${sv.ten}" có mã số [${sv.maSinhVien}]`,
-              status: false,
-            });
-            console.log(error);
-          }
-        );
-      }else{
+      // let maHopLe = this.convertToMaLopHopLe(sv.maLopHoc);
+      // let maSv = sv.maSinhVien.slice(0, 7);
+      this.SinhVienService.themSinhVien(sv).subscribe(
+        (response) => {
           this.msgList.push({
-          msg: `Thêm thất bại "${sv.ten}" có mã số [${sv.maSinhVien}] không hợp lệ !`,
-          status: false,
-        });
-      }
-
-
+            msg: `Thêm thành công "${sv.ten}" có mã số [${sv.maSinhVien}]`,
+            status: true,
+          });
+        },
+        (error) => {
+          this.msgList.push({
+            msg: `Thêm thất bại "${sv.ten}" có mã số [${sv.maSinhVien}]`,
+            status: false,
+          });
+          console.log(error);
+        }
+      );
     });
   }
   removeData() {
@@ -506,14 +494,14 @@ export class ModalChitieudaotaoComponent implements OnInit {
   }
   public tongSoSinhVien = [];
 
-  public getSiSo(){
+  public getSiSo() {
     this.lopHocService.getAll().subscribe(
       (lop) => {
         this.lopHocs = lop;
         this.lopTams = this.lopHocs;
-        this.lopTams.forEach(el => {
+        this.lopTams.forEach((el) => {
           this.tinhTongSinhVien(el.maLopHoc);
-        })
+        });
       },
       (err) => (this.msg = err)
     );

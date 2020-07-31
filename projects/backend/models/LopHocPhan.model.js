@@ -62,6 +62,8 @@ const LopHocPhanSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+
+
 });
 
 const LopHocPhan = mongoose.model('LopHocPhan', LopHocPhanSchema, 'LopHocPhan');

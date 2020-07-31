@@ -2,7 +2,6 @@ const LopHoc = require("../models/LopHoc.model");
 const { check, validationResult } = require("express-validator");
 const sinhVienModel = require("../models/sinh-vien.model");
 
-
 // "maLopHoc": "mã Bậc + mã Ngành Nghề + Khoá Học + mã Loại Hình Đào Tạo + Số thứ tự",
 // "tenLop": "kiểu String",
 // "tenVietTat": "kiểu String",
@@ -32,7 +31,6 @@ exports.getAll = async (req, res) => {
     const LopHocs = await LopHoc.find({ trangThai: 1 }).sort({
       maNganh: "asc",
     });
-
 
     res.json(LopHocs);
   } catch (error) {
@@ -128,9 +126,6 @@ exports.update = async (req, res) => {
 
 exports.insert = async (req, res) => {
   try {
-    let idIsExist = 0;
-    let nameIsExist = 0;
-
     const err = validationResult(req);
     if (!err.isEmpty()) {
       res.status(422).json(err.errors);
@@ -139,36 +134,30 @@ exports.insert = async (req, res) => {
 
     LopHocs.forEach((element) => {
       if (req.body.maLopHoc == element.maLopHoc) {
-        idIsExist++;
+        return res.json({
+          status: 200,
+          ok: false,
+          msg: "Mã này đã tồn tại",
+        });
       }
       if (req.body.tenLop == element.tenLop) {
-        nameIsExist++;
+        res.json({
+          status: 200,
+          ok: false,
+          msg: "Tên này đã tồn tại",
+        });
       }
     });
 
-    if (idIsExist > 0) {
-      res.json({
-        status: 200,
-        ok: false,
-        msg: "Mã này đã tồn tại",
-      });
-    } else if (nameIsExist > 0) {
-      res.json({
-        status: 200,
-        ok: false,
-        msg: "Tên này đã tồn tại",
-      });
-    } else {
-      const lophoc = new LopHoc(setLopHoc(req));
-      const data = await lophoc.save();
-      result = {
-        status: 200,
-        ok: true,
-        msg: "Thêm thành công Lớp học",
-        data: data,
-      };
-      res.json(result);
-    }
+    const lophoc = new LopHoc(setLopHoc(req));
+    const data = await lophoc.save();
+    result = {
+      status: 200,
+      ok: true,
+      msg: "Thêm thành công Lớp học",
+      data: data,
+    };
+    res.json(result);
   } catch (error) {
     res.json(error);
   }
@@ -243,10 +232,46 @@ exports.search = async (req, res) => {
 exports.timLopTheoTienTo = async (req, res) => {
   try {
     let TienTo = req.params.tienTo;
-    TienTo = TienTo.slice(0, TienTo.length-1);
-    const lop = await LopHoc.find({ maLopHoc: {$regex: '.*' + TienTo + '.*'}});
+    TienTo = TienTo.slice(0, TienTo.length - 1);
+    const lop = await LopHoc.find({
+      maLopHoc: { $regex: ".*" + TienTo + ".*" },
+    });
     res.json(lop);
   } catch (error) {
-    res.json(error)
+    res.json(error);
   }
-}
+};
+exports.capNhatThongTinFaceBook = async (req, res) => {
+  try {
+    const err = validationResult(req);
+    if (!err.isEmpty()) {
+      res.status(422).json(err.errors);
+    }
+    const updateKhoa = await LopHoc.updateOne(
+      { _id: req.params.id },
+      {
+        $set: {
+          tenGroupFB: req.body.tenGroupFB,
+          IDGroupFB: req.body.IDGroupFB,
+          linkGroupFB: req.body.linkFBLopHoc,
+        },
+      }
+    );
+
+    result = {
+      status: 200,
+      ok: false,
+      msg: "",
+    };
+    if (updateKhoa.nModified === 0) {
+      result.msg = "Cập nhật thành công, không có gì thay đổi";
+    } else {
+      result.ok = true;
+      result.msg = "Cập nhật thành công Lớp học";
+    }
+
+    res.status(200).json(result);
+  } catch (error) {
+    res.json(error);
+  }
+};

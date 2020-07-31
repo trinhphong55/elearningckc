@@ -2,9 +2,39 @@ const SinhVienModel = require("../models/sinh-vien.model");
 const { async } = require("rxjs");
 const LopHocModel = require("../models/LopHoc.model");
 
-exports.layTatCaSinhVien = async (req,res) => {
+setSinhVien = (req) => {
+  return {
+    maSinhVien: req.maSinhVien,
+    ho: req.ho,
+    ten: req.ten,
+    gioiTinh: req.gioiTinh,
+    ngaySinh: req.ngaySinh,
+    maLopHoc: req.maLopHoc,
+    nguoiTao: req.nguoiTao,
+    nguoiChinhSua: req.nguoiChinhSua,
+  };
+};
+setSinhVienUpdate = (req) => {
+  return {
+    CMND: req.CMND,
+    ho: req.ho,
+    ten: req.ten,
+    gioiTinh: req.gioiTinh,
+    ngaySinh: req.ngaySinh,
+    nguoiChinhSua: req.nguoiChinhSua,
+    diaChiThuongTru: req.diaChiThuongTru,
+    diaChiTamTru: req.diaChiTamTru,
+    sdt: req.sdt,
+    email: req.email,
+    hoTenCha: req.hoTenCha,
+    hoTenMe: req.hoTenMe,
+    sdtCha: req.sdtCha,
+    sdtMe: req.sdtMe,
+  };
+};
+exports.layTatCaSinhVien = async (req, res) => {
   try {
-    const sinhViens = await SinhVienModel.find({ trangThai: "1"});
+    const sinhViens = await SinhVienModel.find({ trangThai: "1" });
     res.json(sinhViens);
   } catch (error) {
     res
@@ -12,10 +42,11 @@ exports.layTatCaSinhVien = async (req,res) => {
       .json({ message: "Máy chủ không sữ lý được", error: error, status: 500 });
   }
 };
-exports.Laysinhvientheomalop= async(req,res)=>
-{
+exports.Laysinhvientheomalop = async (req, res) => {
   try {
-    const sinhViens = await SinhVienModel.find({ maLopHoc: req.params.maLopHoc});
+    const sinhViens = await SinhVienModel.find({
+      maLopHoc: req.params.maLopHoc,
+    });
     res.json(sinhViens);
   } catch (error) {
     res
@@ -25,7 +56,7 @@ exports.Laysinhvientheomalop= async(req,res)=>
 };
 exports.themSinhVien = async (req, res) => {
   try {
-    const sinhViens = await SinhVienModel.create(setSinhVien(req));
+    const sinhViens = await SinhVienModel.create(setSinhVien(req.body));
     res.json(sinhViens);
   } catch (error) {
     res
@@ -59,9 +90,7 @@ exports.capNhatSinhVien = async (req, res) => {
     const findSinhVien = await SinhVienModel.find({
       maSinhVien: req.body.maSinhVien,
     }).count();
-    const updateSV = await SinhVienModel.findOne({
-      maSinhVien: req.body.maSinhVien,
-    });
+
     if (findSinhVien == 0) {
       res.status(404).json({ message: "Không tìm thấy", status: 400 });
     }
@@ -70,6 +99,9 @@ exports.capNhatSinhVien = async (req, res) => {
       { maSinhVien: req.body.maSinhVien },
       { $set: setSinhVienUpdate(req.body.data) }
     );
+    const updateSV = await SinhVienModel.findOne({
+      maSinhVien: req.body.maSinhVien,
+    });
     console.log(sinhViens);
     if (sinhViens.nModified > 0) {
       res.status(200).json({
@@ -78,13 +110,18 @@ exports.capNhatSinhVien = async (req, res) => {
         status: 200,
       });
     } else {
-      res.status(200).json("Cập nhật thành công, không có gì thay đổi");
+      res.status(200).json({
+        message: "Cập nhật thành công, không có gì thay đổi",
+        status: 200,
+        data: setSinhVienUpdate(updateSV),
+      });
     }
   } catch (error) {
     res.status(500).json({
       message: "Máy chủ không xữ lý được",
       errors: error,
       status: 500,
+      data: null,
     });
   }
 };
@@ -103,10 +140,8 @@ exports.tinhTongSinhVien = async (req, res) => {
   try {
     const total = await SinhVienModel.count({ maLopHoc: req.params.maLopHoc });
     // const lopHoc = await LopHocModel.findOne({ maLopHoc: req.params.maLopHoc });
-    res.json({ maLopHoc: req.params.maLopHoc , siSo: total });
+    res.json({ maLopHoc: req.params.maLopHoc, siSo: total });
   } catch (error) {
     res.json(error);
   }
-
 };
-

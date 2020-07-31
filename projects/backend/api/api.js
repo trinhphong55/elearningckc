@@ -16,7 +16,7 @@ router.use("/monhoc", MonHoc);
 router.use("/ctdt", ChuongTrinhDaoTao);
 router.use("/khdt", KeHoachDaoTao);
 router.use("/lhdt", LoaiHinhDaoTao);
-router.use("./lophocphan", LopHocPhan);
+router.use("/lophocphan", LopHocPhan);
 router.use('/gvlhp', GiaoVienLopHocPhan);
 
 const groupFB=require("../api/groupFB");
