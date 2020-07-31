@@ -1,7 +1,6 @@
 import { LopHocService } from './../../../../services/lop-hoc.service';
 import { Component, OnInit } from '@angular/core';
 import { ModalService } from '../../../../services/modal.service';
-import { GroupfbService } from '../../../../services/groupfb.service';
 import { NganhNgheService } from '../../../../services/NganhNghe.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BacService } from '../../../../services/Bac.service';
@@ -24,7 +23,6 @@ export class ModalGroupfacebookComponent implements OnInit {
   isDone = false;
   constructor(
     private modalService: ModalService,
-    private groupFBService: GroupfbService,
     private nganhngheservice: NganhNgheService,
     private bacservice: BacService,
     private lopService: LopHocService
@@ -36,12 +34,12 @@ export class ModalGroupfacebookComponent implements OnInit {
     this.getbac();
     this.getLop();
     this.addForm = new FormGroup({
-      maBac: new FormControl(),
-      maNganh: new FormControl(),
-      khoa: new FormControl(),
-      tenLop: new FormControl(),
+      maBac: new FormControl({value: '', disabled: true}, Validators.required),
+      maNganh: new FormControl({value: '', disabled: true}, Validators.required),
+      khoa: new FormControl({value: '', disabled: true}, Validators.required),
+      tenLop: new FormControl({value: '', disabled: true}, Validators.required),
     });
-  
+
   }
   //Validator
   get maBac() {
@@ -56,14 +54,10 @@ export class ModalGroupfacebookComponent implements OnInit {
   get tenLop() {
     return this.addForm.get('tenLop');
   }
-
-
-
   getAll() {
     this.lopService.getAll().subscribe(
       data=> {
       this.data = data;
-      console.log(this.data);
     });
   }
 
@@ -72,9 +66,6 @@ export class ModalGroupfacebookComponent implements OnInit {
       (bac) => {
         this.bac = bac;
       },
-      (error) => {
-        console.log(error);
-      }
     );
   }
   getNganh() {
@@ -82,9 +73,6 @@ export class ModalGroupfacebookComponent implements OnInit {
       (nganhs) => {
         this.nganhs = nganhs;
       },
-      (error) => {
-        console.log(error);
-      }
     );
     return this.data;
   }
@@ -92,18 +80,32 @@ export class ModalGroupfacebookComponent implements OnInit {
   getLop() {
     this.lopService.getAll().subscribe((lop) => {
       this.lop = lop;
-      console.log(lop);
     });
   }
-  
+
 
   insertDateforForm(data) {
     this.editting = true;
     this.currentIndex = data._id;
     this.currentLop = data;
-    
-    this.maBac.setValue(data.maBac);
-    this.maNganh.setValue(data.maNganh);
+    let Bac;
+    this.bac.filter(item => {
+      console.log(this.bac);
+      if (data.maBac == item.maBac) {
+        Bac = item.tenBac;
+      }
+      console.log(Bac);
+    })
+    this.maBac.setValue(Bac);
+
+    let tenNganh;
+    this.nganhs.filter(item => {
+      if (data.maNganh === item.maNganhNghe) {
+        tenNganh = item.tenNganhNghe;
+      }
+    })
+    this.maNganh.setValue(tenNganh);
+
     this.khoa.setValue(data.khoa);
     this.tenLop.setValue(data.tenLop);
     console.log(data)
@@ -111,9 +113,9 @@ export class ModalGroupfacebookComponent implements OnInit {
 
   openDetail(id_fb: number) {
     this.modalService.open('detail-groupfb');
-    
+
       console.log(id_fb);
-    
+
   }
 
   closeModal(id: string) {
