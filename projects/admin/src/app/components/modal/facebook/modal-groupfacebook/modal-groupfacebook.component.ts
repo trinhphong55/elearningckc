@@ -87,7 +87,6 @@ export class ModalGroupfacebookComponent implements OnInit {
   getLop() {
     this.lopService.getAll().subscribe((lop) => {
       this.lop = lop;
-      this.lopTam  = this.lop;
     });
   }
 
