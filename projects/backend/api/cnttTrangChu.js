@@ -1,6 +1,32 @@
 const router = require("express").Router();
 const TinTuc = require("../models/cntttintuc.model");
 
+router.get("/all", async (req, res) => {
+  try {
+    const data = await TinTuc.find({
+      $or: [
+        { viTriHienThi: 0 },
+        { viTriHienThi: 1 },
+        { viTriHienThi: 2 },
+        { viTriHienThi: 3 },
+        { viTriHienThi: 4 },
+      ],
+    });
+    res.json({
+      message: "Lấy bài viết cần hiển thị lên Trang chủ thành công.",
+      code: 200,
+      data: data,
+    });
+  } catch (error) {
+    res.json({
+      message: "Lấy bài viết cần hiển thị lên Trang chủ thất bại.",
+      code: 400,
+      data: [],
+      error: error,
+    });
+  }
+});
+
 // 0
 router.get("/baivietquantrong", async (req, res) => {
   try {

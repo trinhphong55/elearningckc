@@ -145,7 +145,7 @@
           </div>
         </div>
       </div>
-      <!-- <div class="col-12">
+      <div class="col-12">
         <div class="modal_chucnang__box card mt-5 bg-white">
           <h5 class="card-header py-3 text-center">
             Giới thiệu ngắn (2 - gioithieungan)
@@ -172,7 +172,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let item of listBaiVietQuanTrong; let i = index">
+                <tr *ngFor="let item of listGioiThieuNgan; let i = index">
                   <td style="width: 50px;" class="text-center">{{ i }}</td>
                   <td style="width: 80px;">
                     <a
@@ -212,7 +212,75 @@
             </table>
           </div>
         </div>
-      </div> -->
+      </div>
+      <div class="col-12">
+        <div class="modal_chucnang__box card mt-5 bg-white">
+          <h5 class="card-header py-3 text-center">
+            Tin tức nổi bật (3 - tintucnoibat)
+          </h5>
+          <div class="card-body p-0">
+            <table class="table table-sm table-hover">
+              <thead>
+                <tr>
+                  <th class="text-center">#</th>
+                  <th class="text-center">Ảnh bìa</th>
+                  <th>Tiêu đề</th>
+                  <th>Thời gian đăng</th>
+                  <th>Người đăng</th>
+                  <th class="text-center">
+                    <button
+                      title="Thêm bài viết quan trọng mới"
+                      class="bg-transparent border-0 p-0"
+                    >
+                      <span
+                        class="modal_chucnang__button__plus mdi mdi-plus mdi-24px"
+                      ></span>
+                    </button>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of listTinTucNoiBat; let i = index">
+                  <td style="width: 50px;" class="text-center">{{ i }}</td>
+                  <td style="width: 80px;">
+                    <a
+                      data-fancybox
+                      class="box-img"
+                      href="https://localhost:4100/{{ item.anhBia }}"
+                    >
+                      <img
+                        src="https://localhost:4100/{{ item.anhBia }}"
+                        alt=""
+                      />
+                    </a>
+                  </td>
+                  <td>{{ item.tieuDe }}</td>
+                  <td style="width: 200px;">{{ item.thoiGianDangBai }}</td>
+                  <td style="width: 180px;">
+                    <div
+                      class="text-truncate"
+                      style="width: 180px;"
+                      title="{{ item.nguoiViet || 'Nguyễn Thành Lộc' }}"
+                    >
+                      {{ item.nguoiViet || "Chưa có giá trị" }}
+                    </div>
+                  </td>
+                  <td style="width: 60px;" class="text-center">
+                    <button
+                      title="Ẩn bài viết khỏi mục này"
+                      class="bg-transparent border-0 p-0"
+                    >
+                      <span
+                        class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px"
+                      ></span>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </app-modal>

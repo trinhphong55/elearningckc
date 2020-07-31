@@ -25,7 +25,9 @@
                     (change)="chonLoaiBaiViet($event.target.value)"
                     formControlName="loaiBaiViet"
                   >
-                    <option value="-1">Chọn Loại bài viết</option>
+                    <option value="-1" class="d-none"
+                      >Chọn Loại bài viết</option
+                    >
                     <option
                       *ngFor="let itemLoaiBaiViet of loaiBaiViet"
                       [value]="itemLoaiBaiViet.maLoaiBaiViet"
@@ -33,12 +35,6 @@
                       {{ itemLoaiBaiViet.tenLoaiBaiViet }}
                     </option>
                   </select>
-                  <div
-                    class="invalid-feedback"
-                    *ngIf="submitted && myForm.loaiBaiViet.errors?.required"
-                  >
-                    Vui lòng chọn loại bài viết.
-                  </div>
                 </div>
                 <div class="form-group">
                   <label>Loại danh mục</label>
@@ -64,12 +60,6 @@
                     type="text"
                     formControlName="maBaiViet"
                   />
-                  <div
-                    class="invalid-feedback"
-                    *ngIf="submitted && myForm.tieuDe.errors?.required"
-                  >
-                    Vui lòng điển Mã Bài viết.
-                  </div>
                 </div>
               </div>
               <div class="col-3">
@@ -80,12 +70,6 @@
                     type="text"
                     formControlName="tieuDe"
                   />
-                  <div
-                    class="invalid-feedback"
-                    *ngIf="submitted && myForm.tieuDe.errors?.required"
-                  >
-                    Vui lòng điển tiêu đề bài viết.
-                  </div>
                 </div>
                 <div class="form-group">
                   <label>Mô tả ngắn cho bài viết</label>
@@ -94,12 +78,6 @@
                     type="text"
                     formControlName="moTaNgan"
                   />
-                  <div
-                    class="invalid-feedback"
-                    *ngIf="submitted && myForm.moTaNgan.errors?.required"
-                  >
-                    Vui lòng điển mô tả ngắn.
-                  </div>
                 </div>
                 <div class="form-group">
                   <label id="image">Vị trí hiển thị</label>
@@ -172,7 +150,7 @@
         <div class="col-12">
           <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
             <div class="form-group">
-              <label>Nội dung tin tức</label>
+              <label>Nội dung bài viết</label>
               <ckeditor
                 [editor]="Editor"
                 [(ngModel)]="editorValue"
