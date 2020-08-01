@@ -14,6 +14,7 @@ export class LophocContentComponent implements OnInit {
     {id:5,name:'Lập trình laravel',status:true},
     {id:6,name:'lập trình HDT',status:true}
   ];
+  image1:string=""
   constructor() { }
 
   ngOnInit(): void {

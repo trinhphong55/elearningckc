@@ -1,0 +1,72 @@
+/.mat-dialog-container{
+  margin-top: 50px;
+}
+.container-fluid{
+  margin-top: 50px;
+}
+
+.example-section {
+  margin: 12px 0;
+}
+
+.example-margin {
+  margin: 0 12px;
+}
+
+ul {
+  list-style-type: none;
+  margin-top: 4px;
+}
+.row{
+border-bottom: 1px solid #CCCCCC;
+}
+.row .col-md-4{
+border-right: 1px solid #CCCCCC;
+border-left: 1px solid #CCCCCC;
+}
+.danop-dagiao{
+width: 100%;
+display: flex;
+flex-wrap: wrap;
+padding-top: 20px;
+padding-bottom: 20px;
+}
+.danop-dagiao .danop{
+width: 20%;
+cursor: pointer;
+border-right: 1px solid #CCCCCC;
+}
+.danop-dagiao .dagiao{
+width: 20%;
+cursor: pointer;
+}
+.danop-dagiao .danop h5,.danop-dagiao .dagiao h5{
+padding: 20px;
+}
+.danop-dagiao .danop:hover,.danop-dagiao .dagiao:hover{
+color: #00CC99;
+}
+.bieumau{
+background-color: #fff;
+border: .0625rem solid #dadce0;
+-webkit-border-radius: 0.5rem;
+border-radius: 0.5rem;
+overflow: hidden;
+}
+.bieumau a{
+-webkit-box-flex: 1;
+box-flex: 1;
+-webkit-flex-grow: 1;
+flex-grow: 1;
+overflow: hidden;
+text-decoration: none;
+outline: none;
+}
+.po4Aib .mAeA1, .H5nYcc .mAeA1, .FGTZvd .mAeA1, .PRmYNe>* {
+margin-right: 1rem;
+}
+.mAeA1 {
+height: 4.375rem;
+overflow: hidden;
+width: 6.5625rem;
+}
