@@ -467,6 +467,10 @@ main {
   background: none;
 }
 
+.modal_chucnang__button {
+  font-weight: inherit;
+}
+
 .modal_chucnang__button__icon {
   width: 48px;
   height: 48px;

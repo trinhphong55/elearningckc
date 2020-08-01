@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const multer = require("multer");
 const path = require("path");
-const SlideShow = require("../models/cnttSlideShow");
+const ThongTinChung = require("../models/cnttThongTinChung");
 
 //#region MULTER UPLOAD IMAGE
 // upload file path
@@ -15,7 +15,7 @@ const storage = multer.diskStorage({
   filename: (req, file, cb) => {
     const filename =
       file.fieldname + "_" + Date.now() + path.extname(file.originalname);
-    cb(null, filename);
+    cb(null, file.originalname);
   },
 });
 
@@ -35,7 +35,6 @@ const upload = multer({
 });
 
 function uploadPhotos(req, res, next) {
-  console.log("run uploadPhotos");
   upload.array("photos")(req, res, function (error) {
     try {
       const photos = req.files;
@@ -62,37 +61,57 @@ function uploadPhotos(req, res, next) {
 }
 //#endregion
 
-async function saveInformationsSlideShowToDatabase(req, res) {
+async function saveInformationsToDatabase(req, res) {
   try {
-    console.log("run save infomartion");
-    console.log(req.body);
-    const slideShow = new SlideShow();
-    slideShow.maSlide = req.body.maSlide;
-    slideShow.tenSlide = req.body.tenSlide;
-    slideShow.danhSachHinhAnh = req.body.uploads;
-    await slideShow.save();
-    res.json({
-      message: "Thêm slideshow thành công",
-      data: slideShow,
-    });
+    if (req.body._id === "undefined") {
+      const thongTinChungMoi = new ThongTinChung();
+      thongTinChungMoi.diaChi = req.body.diaChi;
+      thongTinChungMoi.email = req.body.email;
+      thongTinChungMoi.copyRight = req.body.copyRight;
+      thongTinChungMoi.soDienThoai = req.body.soDienThoai;
+      thongTinChungMoi.urlFacebook = req.body.urlFacebook;
+      thongTinChungMoi.urlYoutube = req.body.urlYoutube;
+      thongTinChungMoi.logo = req.body.uploads[0].src;
+      thongTinChungMoi.logoMenuMobile = req.body.uploads[1].src;
+      await thongTinChungMoi.save();
+      res.json({
+        message: "Tạo mới thông tin thành công",
+      });
+    } else {
+      await ThongTinChung.findOneAndUpdate(
+        { _id: req.body._id },
+        {
+          diaChi: req.body.diaChi,
+          email: req.body.email,
+          copyRight: req.body.copyRight,
+          soDienThoai: req.body.soDienThoai,
+          urlFacebook: req.body.urlFacebook,
+          urlYoutube: req.body.urlYoutube,
+          logo: req.body.uploads[0].src,
+          logoMenuMobile: req.body.uploads[1].src,
+        }
+      );
+      res.json({
+        message: "Cập nhật thông tin thành công",
+      });
+    }
   } catch (error) {
-    res.json({ message: "Thêm slide thất bại", error: error });
+    res.json({ message: "Cập nhật thông tin thất bại", error: error });
   }
 }
 
-router.post("/save", uploadPhotos, saveInformationsSlideShowToDatabase);
+router.post("/save", uploadPhotos, saveInformationsToDatabase);
 
 router.get("/", async (req, res) => {
   try {
-    console.log("Slideshow: Lay danh sach slideshow");
-    const danhSachSlideShow = await SlideShow.find({});
+    const data = await ThongTinChung.find({});
     res.json({
-      message: "Lấy danh sách slideshow thành công",
-      data: danhSachSlideShow,
+      message: "Lấy thông tin chung thành công",
+      data: data,
     });
   } catch (error) {
     res.json({
-      message: "Lấy danh sách slideshow thất bại",
+      message: "Lấy thông tin chung thất bại",
       data: [],
     });
   }

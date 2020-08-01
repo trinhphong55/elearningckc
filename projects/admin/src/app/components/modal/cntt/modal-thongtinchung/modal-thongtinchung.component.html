@@ -1,10 +1,10 @@
-<app-modal class="modal_chucnang__wrapper show" id="cntt_thongtinchung">
+<app-modal class="modal_chucnang__wrapper" id="cntt_thongtinchung">
   <div
     (click)="closeModal('cntt_thongtinchung')"
     class="modal_chucnang__close mdi mdi-chevron-left text-white"
   ></div>
   <div class="container-fluid mt-3">
-    <form>
+    <form [formGroup]="formThongTinChung">
       <div class="row">
         <div class="col-12">
           <h1 class="text-center text-white">
@@ -18,11 +18,12 @@
               <div class="upload-btn-wrapper text-center">
                 <div>Logo</div>
                 <div class="box-img">
-                  <img id="preview_logo_thongtinchung_2" />
+                  <img [src]="logo" id="preview_logo_thongtinchung_2" />
                 </div>
                 <input
-                  id="input_image_thongtinchung_2"
                   type="file"
+                  id="input_image_thongtinchung_2"
+                  (change)="selectLogo($event)"
                   onchange="document.getElementById('preview_logo_thongtinchung_2').src = window.URL.createObjectURL(this.files[0])"
                   accept="image/x-png,image/jpeg"
                 />
@@ -35,12 +36,13 @@
               </div>
               <div class="upload-btn-wrapper text-center ml-4">
                 <div>Menu mobile</div>
-                <div class="box-img">
-                  <img id="preview_logo_thongtinchung_1" />
+                <div class="box-img" style="background: #283790;">
+                  <img [src]="logoMenu" id="preview_logo_thongtinchung_1" />
                 </div>
                 <input
-                  id="input_image_thongtinchung_1"
                   type="file"
+                  id="input_image_thongtinchung_1"
+                  (change)="selectLogoMenu($event)"
                   onchange="document.getElementById('preview_logo_thongtinchung_1').src = window.URL.createObjectURL(this.files[0])"
                   accept="image/x-png,image/jpeg"
                 />
@@ -55,6 +57,7 @@
                 <div class="form-group">
                   <label class="mb-0">Địa chỉ</label>
                   <input
+                    formControlName="diaChi"
                     type="text"
                     class="form-control"
                     placeholder="Địa chỉ trường / khoa"
@@ -63,6 +66,7 @@
                 <div class="form-group">
                   <label class="mb-0">Số điện thoại</label>
                   <input
+                    formControlName="soDienThoai"
                     type="text"
                     class="form-control"
                     placeholder="Số điện thoại của khoa"
@@ -73,6 +77,7 @@
                 <div class="form-group">
                   <label class="mb-0">URL Facebook</label>
                   <input
+                    formControlName="urlFacebook"
                     type="text"
                     class="form-control"
                     placeholder="URL Facebook chính thức của khoa"
@@ -81,6 +86,7 @@
                 <div class="form-group">
                   <label class="mb-0">URL YouTube</label>
                   <input
+                    formControlName="urlYoutube"
                     type="text"
                     class="form-control"
                     placeholder="URL YouTube chính thức của khoa"
@@ -91,6 +97,7 @@
                 <div class="form-group">
                   <label class="mb-0">Email</label>
                   <input
+                    formControlName="email"
                     type="text"
                     class="form-control"
                     placeholder="Email của khoa"
@@ -99,6 +106,7 @@
                 <div class="form-group">
                   <label class="mb-0">Copyright</label>
                   <input
+                    formControlName="copyRight"
                     type="text"
                     class="form-control"
                     placeholder="Copyright của website"
@@ -107,6 +115,7 @@
               </div>
               <div class="ml-4">
                 <button
+                  (click)="onSave()"
                   class="modal_chucnang__button btn btn-outline-primary px-4 mx-2"
                   type="submit"
                 >
