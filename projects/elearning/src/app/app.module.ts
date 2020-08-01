@@ -122,7 +122,7 @@ import { PageCaidatComponent } from './pages/page-caidat/page-caidat.component';
     MatExpansionModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatTableModule,
+    MatTableModule
   ],
   entryComponents: [
   ],

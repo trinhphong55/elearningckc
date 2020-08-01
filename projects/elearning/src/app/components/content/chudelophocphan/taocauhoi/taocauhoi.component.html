@@ -35,28 +35,20 @@
                     </form>
                 </div>
                 <div class="col-md-12">
-                    <form class="example-form">
-                        <mat-form-field class="example-full-width" style="width:100%">
-                            <mat-label>Hướng dẫn (không bắt buộc)</mat-label>
-                            <input matInput placeholder="Hướng dẫn (không bắt buộc)" style="padding-top:50px">
-                        </mat-form-field>
+                    <form>
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Hướng dẫn (không bắt buộc)</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                          </div>
                     </form>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 ">
                     <button mat-button [matMenuTriggerFor]="menuthem">Thêm</button>
                     <mat-menu #menuthem="matMenu">
-                        <button mat-menu-item>Google Drive</button>
-                        <button mat-menu-item>Liên kết</button>
-                        <button mat-menu-item>Tệp</button>
-                        <button mat-menu-item>Youtube</button>
-                    </mat-menu>
-                    <button mat-button [matMenuTriggerFor]="menutao"><i class="fas fa-plus"></i> Tạo</button>
-                    <mat-menu #menutao="matMenu">
-                        <button mat-menu-item>Tài liệu</button>
-                        <button mat-menu-item>Trang trình bày</button>
-                        <button mat-menu-item>Trang tính</button>
-                        <button mat-menu-item>Bảng vẽ</button>
-                        <button mat-menu-item>Biểu mẫu</button>
+                        <button mat-menu-item><i class="fab fa-google-drive style-icon"></i>Google Drive</button>
+                        <button mat-menu-item><i class="fas fa-link style-icon"></i>Liên kết</button>
+                        <button mat-menu-item><i class="fas fa-folder-open style-icon"></i>Tệp</button>
+                        <button mat-menu-item><i class="fab fa-youtube style-icon"></i>Youtube</button>
                     </mat-menu>
                 </div>
             </div>
