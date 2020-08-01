@@ -1,80 +1,109 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LophocComponent } from './pages/list-menu/menu-main/lophoc/lophoc.component';
-import { CaidatComponent } from './pages/list-menu/menu-main/caidat/caidat.component';
-import { LophocContentGvComponent } from './components/content/lophoc-content-gv/lophoc-content-gv.component';
-import { LuongComponent } from './components/content/lophoc-content-gv/luong/luong.component';
-import { BaitaptrenlopComponent } from './components/content/lophoc-content-gv/baitaptrenlop/baitaptrenlop.component';
-import { MoinguoiComponent } from './components/content/lophoc-content-gv/moinguoi/moinguoi.component';
-import { SodiemComponent } from './components/content/lophoc-content-gv/sodiem/sodiem.component';
-import { AllchudeComponent } from './components/content/lophoc-content-gv/baitaptrenlop/allchude/allchude.component';
-import { Chude1Component } from './components/content/lophoc-content-gv/baitaptrenlop/list-chude/chude1/chude1.component';
-import { Chude2Component } from './components/content/lophoc-content-gv/baitaptrenlop/list-chude/chude2/chude2.component';
-import { Chude3Component } from './components/content/lophoc-content-gv/baitaptrenlop/list-chude/chude3/chude3.component';
-import { Chude4Component } from './components/content/lophoc-content-gv/baitaptrenlop/list-chude/chude4/chude4.component';
-import { HuongdanComponent } from './components/content/lophoc-content-gv/huongdan/huongdan.component';
-import { BaitapgvComponent } from './components/content/lophoc-content-gv/baitapgv/baitapgv.component';
-import { TrangcanhanComponent } from './pages/list-menu/menu-main/trangcanhan/trangcanhan.component';
-import { ThongtinsvComponent } from './components/content/trangcanhan-content/thongtinsv/thongtinsv.component';
-import { ThoikhoabieusvComponent } from './components/content/trangcanhan-content/thoikhoabieusv/thoikhoabieusv.component';
-import { DiemsosvComponent } from './components/content/trangcanhan-content/diemsosv/diemsosv.component';
+
+import { Chude1Component } from './components/content/chudelophocphan/list-chude/chude1/chude1.component';
+import { Chude2Component } from './components/content/chudelophocphan/list-chude/chude2/chude2.component';
+import { Chude3Component } from './components/content/chudelophocphan/list-chude/chude3/chude3.component';
+import { Chude4Component } from './components/content/chudelophocphan/list-chude/chude4/chude4.component';
+import { TrangcanhanContentComponent } from './components/content/trangcanhan-content/trangcanhan-content.component';
+import { PageTrangchuComponent } from './pages/page-trangchu/page-trangchu.component';
+import { NavbarTrangchuComponent } from './components/navbar/navbar-trangchu/navbar-trangchu.component';
+import { NavbarHocphanComponent } from './components/navbar/navbar-hocphan/navbar-hocphan.component';
+import { PageLophocphanComponent } from './pages/page-lophocphan/page-lophocphan.component';
+import { NavbarNoneComponent } from './components/navbar/navbar-none/navbar-none.component';
+import { PageBaigiangComponent } from './pages/page-baigiang/page-baigiang.component';
+import { PageMoinguoiComponent } from './pages/page-moinguoi/page-moinguoi.component';
+import { PageChudelophocphanComponent } from './pages/page-chudelophocphan/page-chudelophocphan.component';
+import { PageSodiemComponent } from './pages/page-sodiem/page-sodiem.component';
+import { PageHuongdanComponent } from './pages/page-huongdan/page-huongdan.component';
+import { PageBaitapgiaovienComponent } from './pages/page-baitapgiaovien/page-baitapgiaovien.component';
+import { PageCaidatComponent } from './pages/page-caidat/page-caidat.component';
+
 const routes: Routes = [
   {
     path: '',
-    component: LophocComponent
+    component: PageTrangchuComponent,
   },
   {
-    path: 'lophoc',
-    component: LophocComponent
-  },
-  {
-    path: 'trangcanhan',
-    component: TrangcanhanComponent,
-    children: [
-      { path: '', component: ThongtinsvComponent },
-      { path: 'thongtinsv', component: ThongtinsvComponent },
-      { path: 'thoikhoabieusv', component: ThoikhoabieusvComponent },
-      { path: 'diemsosv', component: DiemsosvComponent }
-    ]
+    path: 'hoso',
+    component: TrangcanhanContentComponent,
   },
   {
     path: 'caidat',
-    component: CaidatComponent
-  }
-  , {
-    path: 'gv/:id',
-    component: LophocContentGvComponent,
+    component: PageCaidatComponent,
+  },
+  {
+    path: 'lophocphan',
+    component: PageLophocphanComponent,
+  },
+  {
+    path: 'baigiang',
+    component: PageBaigiangComponent,
     children: [
-      { path: 'luong', component: LuongComponent },
+      { path: '', component: PageChudelophocphanComponent },
+      { path: 'all', component: PageChudelophocphanComponent },
       {
-        path: 'baitaptrenlop', component: BaitaptrenlopComponent,
-        children: [
-          { path: 'all', component: AllchudeComponent },
-          { path: 'chude1', component: Chude1Component },
-          { path: 'chude2', component: Chude2Component },
-          { path: 'chude3', component: Chude3Component },
-          { path: 'chude4', component: Chude4Component },
-          {
-            path: '',
-            component: AllchudeComponent
-          }
-        ]
+        path: 'chude1',
+        component: Chude1Component,
       },
-      { path: 'moinguoi', component: MoinguoiComponent },
-      { path: 'huongdan', component: HuongdanComponent },
-      { path: 'baitapgv', component: BaitapgvComponent },
-      { path: 'sodiem', component: SodiemComponent },
       {
-        path: '',
-        component: LuongComponent
-      }
-    ]
-  }
-
+        path: 'chude1',
+        component: Chude1Component,
+      },
+      {
+        path: 'chude2',
+        component: Chude2Component,
+      },
+      {
+        path: 'chude3',
+        component: Chude3Component,
+      },
+      {
+        path: 'chude4',
+        component: Chude4Component,
+      },
+    ],
+  },
+  {
+    path: 'moinguoi',
+    component: PageMoinguoiComponent,
+  },
+  {
+    path: 'sodiem',
+    component: PageSodiemComponent,
+  },
+  {
+    path: 'huongdan',
+    component: PageHuongdanComponent,
+  },
+  {
+    path: 'baitapgv',
+    component: PageBaitapgiaovienComponent,
+  },
+  {
+    path: '',
+    component: NavbarTrangchuComponent,
+    outlet: 'navbar',
+  },
+  {
+    path: 'lophocphan',
+    component: NavbarHocphanComponent,
+    outlet: 'navbar',
+  },
+  {
+    path: 'hoso',
+    component: NavbarNoneComponent,
+    outlet: 'navbar',
+  },
+  {
+    path: '**',
+    component: NavbarNoneComponent,
+    outlet: 'navbar',
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
