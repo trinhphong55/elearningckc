@@ -1,0 +1,61 @@
+[{
+  "_id": {
+    "$oid": "5f244cdde2c86b0b40cfa696"
+  },
+  "icon": "far fa-calendar",
+  "tieudechinh": "30+",
+  "tieudephu": "năm",
+  "trangthai": true,
+  "nguoitao": "hieu",
+  "nguoisua": "loc",
+  "created_at": {
+    "$date": "2020-07-31T16:54:52.988Z"
+  },
+  "updated_at": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f244cf0e2c86b0b40cfa697"
+  },
+  "icon": "fas fa-graduation-cap",
+  "tieudechinh": "1.000.000 +",
+  "tieudephu": "học viên",
+  "trangthai": true,
+  "nguoitao": "hieu",
+  "nguoisua": "loc",
+  "created_at": {
+    "$date": "2020-07-31T16:55:12.894Z"
+  },
+  "updated_at": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f244d06e2c86b0b40cfa698"
+  },
+  "icon": "fas fa-globe-asia",
+  "tieudechinh": "20 +",
+  "tieudephu": "cơ sở",
+  "trangthai": true,
+  "nguoitao": "hieu",
+  "nguoisua": "loc",
+  "created_at": {
+    "$date": "2020-07-31T16:55:34.340Z"
+  },
+  "updated_at": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f244d20e2c86b0b40cfa699"
+  },
+  "icon": "far fa-image",
+  "tieudechinh": "100 +",
+  "tieudephu": "chương trình đào tạo",
+  "trangthai": true,
+  "nguoitao": "hieu",
+  "nguoisua": "loc",
+  "created_at": {
+    "$date": "2020-07-31T16:56:00.745Z"
+  },
+  "updated_at": null,
+  "__v": 0
+}]

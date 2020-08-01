@@ -31,35 +31,38 @@ export class PageTrangchuComponent implements OnInit {
     },
   ];
 
-  listBaiVietQuanTrong: any = [];
-  listCoHoiViecLam: any = [];
-  listGioiThieuNgan: any = [];
-  listTinTucNoiBat: any = [];
-
-  baiBietQuanTrongDauTien: any;
+  public listBaiVietQuanTrong: any = [];
+  public listCoHoiViecLam: any = [];
+  public listGioiThieuNgan: any = [];
+  public listTinTucNoiBat: any = [];
+  public gioiThieuNganDauTien: any = {};
+  public baiVietQuanTrongDauTien: any = {};
 
   ngOnInit(): void {
     this.getDataCanHienThiLenTrangChu();
   }
 
   logData(): void {
-    console.log(this._rawData);
-    console.log('filter data theo tung vi tri');
-    console.log('log listBaiVietQuanTrong');
-    console.log(this.listBaiVietQuanTrong);
-    console.log('log listCoHoiViecLam');
-    console.log(this.listCoHoiViecLam);
-    console.log('log listGioiThieuNgan');
-    console.log(this.listGioiThieuNgan);
-    console.log('log listTinTucNoiBat');
-    console.log(this.listTinTucNoiBat);
+    // console.log(this._rawData);
+    // console.log('filter data theo tung vi tri');
+    // console.log('log listBaiVietQuanTrong');
+    // console.log(this.listBaiVietQuanTrong);
+    // console.log('log listCoHoiViecLam');
+    // console.log(this.listCoHoiViecLam);
+    // console.log('log listGioiThieuNgan');
+    // console.log(this.listGioiThieuNgan);
+    // console.log('log listTinTucNoiBat');
+    // console.log(this.listTinTucNoiBat);
+    console.log(this.baiVietQuanTrongDauTien);
+    console.log(this.gioiThieuNganDauTien);
   }
 
   getDataCanHienThiLenTrangChu(): void {
     this.trangChuService.getDataCanHienThiLenTrangChu().subscribe((data) => {
       this._rawData = data;
       this.filterDataTheoTungViTri();
-      this.baiBietQuanTrongDauTien = this.listBaiVietQuanTrong[0];
+      this.baiVietQuanTrongDauTien = this.listBaiVietQuanTrong[0];
+      this.gioiThieuNganDauTien = this.listGioiThieuNgan[0];
     });
   }
 

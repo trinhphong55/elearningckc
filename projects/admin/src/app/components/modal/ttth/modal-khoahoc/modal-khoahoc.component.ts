@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { ModalService } from '../../../../services/modal.service';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { Test } from '../../../../components/modal/ttth/modal-khoahoc/test';
+import { KhoahocService } from '../../../../services/ttth/khoahoc.service';
+import { ttthKhoaHoc } from '../../../../../models/ttthKhoaHoc';
+import { FileUploader } from 'ng2-file-upload';
+import { ToastrService } from 'ngx-toastr';
+const URL = 'https://localhost:4100/api/ttthKhoaHoc/uploads';
 
 @Component({
   selector: 'app-modal-khoahoc',
@@ -9,45 +13,100 @@ import { Test } from '../../../../components/modal/ttth/modal-khoahoc/test';
   styleUrls: ['./modal-khoahoc.component.css']
 })
 export class ModalKhoahocComponent implements OnInit {
-  public Editor = ClassicEditor;
-  test: Test[] = [
-  {
-    id:1,
-    ten:"Ten 1",
-    noidung:"Noi dung 1"
-  },
-  {
-    id:2,
-    ten:"Ten 2",
-    noidung:"Noi dung 2"
-  },
-  {
-    id:3,
-    ten:"Ten 3",
-    noidung:"Noi dung 3"
-  },
-  {
-    id:4,
-    ten:"Ten 4",
-    noidung:"Noi dung 4"
-  }
-  ]
-  constructor(private modalService: ModalService) { }
+  constructor(private modalService: ModalService,private khoahocService: KhoahocService ,private toastr: ToastrService) { }
+  KhoaHoc: ttthKhoaHoc[];
 
   ngOnInit(): void {
+    this.getdanhsach();
+    this.uploader.onAfterAddingFile = (file) => {
+      file.withCredentials = false;
+    };
+    this.uploader.onCompleteItem = (item: any, status: any) => {
+      this.toastr.success('Tải hình ảnh thành công');
+    };
+
   }
+
+  //file upload
+  public uploader: FileUploader = new FileUploader({
+    url: URL,
+    itemAlias: 'image'
+  });
 
   closeModal(id: string) {
     this.modalService.close(id)
   }
-  ///
-  selectedItem: Test;
-  onSelect(test: Test):void {
-    this.selectedItem= test;
-    console.log(`selectedItem = ${JSON.stringify(this.selectedItem)}`);
+
+  getdanhsach(): void {
+    this.khoahocService.get().subscribe((data) => this.KhoaHoc = data);
   }
-  // filter ngFOr
-  filterItemsOfType(type){
-    return this.test.filter(x => x.id == type);
+
+  // add
+  //ckEditor
+  public Editor = ClassicEditor;
+
+  CK: any;
+  public onChange( event: ClassicEditor.EventInfo ) {
+    this.CK = event.editor.getData()
+  }
+  nameImage: any;
+  imageSrc: any;
+  onFileSelected(event) {
+    if(event.target.files.length > 0)
+     {
+      this.nameImage = event.target.files[0].name;
+     }
+    if (event.target.files && event.target.files[0]) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = e => this.imageSrc = reader.result;
+    reader.readAsDataURL(file);
+    }
+  }
+  add(tenkhoahoc: string,makhoahoc: string): void {
+    tenkhoahoc = tenkhoahoc.trim();
+    makhoahoc = makhoahoc.trim();
+    const newItem: ttthKhoaHoc = new ttthKhoaHoc();
+    newItem.tenkhoahoc = tenkhoahoc;
+    newItem.image = 'https://localhost:4100/uploads/cntt/' + this.nameImage;
+    newItem.makhoahoc = makhoahoc;
+    newItem.noidung = this.CK;
+    newItem.trangthai = true;
+    newItem.nguoitao = 'hieu';
+    newItem.nguoisua = 'loc';
+    newItem.created_at = (new Date);
+    newItem.updated_at = null;
+    this.khoahocService.add(newItem)
+      .subscribe(data => {
+        this.KhoaHoc.push(data);
+      });
+    this.getdanhsach();
+    this.toastr.success('Thêm thành công');
+  }
+  ///edit
+  selectedItem: ttthKhoaHoc;
+  onSelect(KhoaHoc: ttthKhoaHoc):void {
+    this.selectedItem= KhoaHoc;
+  }
+  update(KhoaHoc: ttthKhoaHoc):void {
+    if (this.nameImage) {
+      KhoaHoc.image='https://localhost:4100/uploads/cntt/' + this.nameImage;
+    }
+    KhoaHoc.updated_at= new Date;
+    this.khoahocService.update(KhoaHoc)
+    .subscribe(data => {
+      this.KhoaHoc.push(data);
+    });
+    this.toastr.success('Sửa thành công');
+  }
+  //delete
+  delete(KhoaHoc: ttthKhoaHoc):void {
+    this.khoahocService.delete(KhoaHoc)
+    .subscribe(data => {
+      this.KhoaHoc.push(data);
+    });
+    this.getdanhsach();
+    // window.location.reload();
+    this.toastr.success('Xóa thành công');
   }
 }
