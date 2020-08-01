@@ -1,5 +1,6 @@
 const MongoClient = require('mongodb').MongoClient;
-const url = 'mongodb://localhost:27017/?readPreference=primary&authSource=GosuReport&appname=MongoDB%20Compass&ssl=false';
+// const url = 'mongodb://localhost:27017/?readPreference=primary&authSource=GosuReport&appname=MongoDB%20Compass&ssl=false';
+const url = 'mongodb://elearning_team:123@103.92.26.177:27017/testAngularckc';
 class MongoDB {
   constructor() {
     this.conDb = null;
