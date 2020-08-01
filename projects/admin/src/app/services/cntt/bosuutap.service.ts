@@ -13,35 +13,35 @@ export class CnttBoSuuTapService {
   headers = new HttpHeaders().set('Content-Type', 'application/json')
 
   constructor(private http: HttpClient) { }
-  danhSachBST(): Observable<any> {
+  danhSachItemBST(): Observable<any> {
     return this.http
       .get<any>(`${this.baseUri}/danhsachbst`, {
         headers: this.headers,
       })
       .pipe(catchError(this.errorMgmt));
   }
-//   deleteTienIch(body: any): Observable<any> {
-//     return this.http
-//       .post<any>(`${this.baseUri}/xoatienich`, body, {
-//         headers: this.headers,
-//       })
-//       .pipe(catchError(this.errorMgmt));
-//   }
-//   themTienIch(data): Observable<any> {
-//     let url = `${this.baseUri}/taotienich`;
-//     return this.http.post(url, data)
-//       .pipe(
-//         catchError(this.errorMgmt)
-//       )
-//   }
-//   //edit tintuc
-//   editTienIch(data): Observable<cnttTienIchSinhVien> {
-//     return this.http
-//       .post<cnttTienIchSinhVien>(this.baseUri + '/chinhSuaTienIch', data, {
-//         headers: this.headers,
-//       })
-//       .pipe(catchError(this.errorMgmt));
-//   }
+  deleteItemBST(body: any): Observable<any> {
+    return this.http
+      .post<any>(`${this.baseUri}/xoabst`, body, {
+        headers: this.headers,
+      })
+      .pipe(catchError(this.errorMgmt));
+  }
+  themItemBST(data): Observable<any> {
+    let url = `${this.baseUri}/taobst`;
+    return this.http.post(url, data)
+      .pipe(
+        catchError(this.errorMgmt)
+      )
+  }
+  //   //edit tintuc
+  editItemTienIch(data): Observable<cnttBoSuuTap> {
+    return this.http
+      .post<cnttBoSuuTap>(this.baseUri + '/chinhsuabst', data, {
+        headers: this.headers,
+      })
+      .pipe(catchError(this.errorMgmt));
+  }
   // Error handling
   errorMgmt(error: HttpErrorResponse) {
     let errorMessage = '';

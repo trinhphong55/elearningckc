@@ -36,13 +36,13 @@ router.post("/uploads", upload.single("image"), function (req, res) {
 });
 
 router.post("/taobst", (req, res) => {
-    //console.log("req.body.anhBia  " + req.body.anhBia);
-    //var imgName = req.body.anhBia.slice(12);
+    console.log("req.body.src  " + req.body.anhBia);
+    var imgName = req.body.src.slice(12);
     var boSuuTap = new BoSuuTap({
         maBST: req.body.maBST,
         url: req.body.url,
         alt: req.body.alt,
-        //src: "uploads/cntt/" + imgName,
+        src: "uploads/cntt/" + imgName,
         trangThai : 1
     });
     console.log(boSuuTap);
@@ -57,16 +57,17 @@ router.post("/taobst", (req, res) => {
 
 router.post("/chinhsuabst", async (req, res) => {
     console.log(" Chinh sua BST");
-    //console.log("req.body.anhBia  " + req.body.anhBia);
-    //var imgName = req.body.anhBia.slice(12);
-    //console.log(req.body.maBaiViet);
+    console.log("req.body.src  " + req.body.src);
+    var imgName = req.body.src.slice(12);
+    console.log(req.body.maBaiViet);
     await BoSuuTap.findOneAndUpdate(
         { _id: req.body._id },
         {
             maBST: req.body.maBST,
             url: req.body.url,
             alt: req.body.alt,
-            //src: "uploads/cntt/" + imgName,
+            src: "uploads/cntt/" + imgName,
+            trangThai: 1
         }
     );
     res.json({
@@ -88,7 +89,7 @@ router.get("/danhsachbst", (req, res) => {
 });
 // add Tintuc add
 router.post("/xoabst", async (req, res) => {
-    console.log(" Xoa bai viet");
+    console.log(" Xoa item bst");
     console.log(req.body._id);
     await BoSuuTap.findOneAndUpdate(
         { _id: req.body._id },
