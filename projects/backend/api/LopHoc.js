@@ -65,22 +65,39 @@ exports.getAllForkhoa = async (req, res) => {
     res.json(error);
   }
 };
-exports.deleteMaNganh = async (req, res) => {
+exports.deleteTheoTienTo = async (req, res) => {
   try {
-    let LopHocs = await LopHoc.deleteMany({
-      maNganh: req.params.maNganh,
-    });
+    let TienTo = req.params.tienTo;
+    TienTo = TienTo.slice(0, 7);
+    if (TienTo.length >= 7) {
+      let LopHocs = await LopHoc.deleteMany({
+        maLopHoc: { $regex: TienTo + ".*" },
+      });
 
-    if (LopHocs.deletedCount === 0) {
-      res.json({ status: 200, ok: 1, msg: "Id nay khong ton tai" });
+      if (LopHocs.deletedCount === 0) {
+        res.status(200).json({
+          status: 200,
+          msg: "Xóa thất bại",
+          tienTo: TienTo,
+          xoa: LopHocs.deletedCount,
+        });
+      } else {
+        res.status(200).json({
+          status: 200,
+          msg: "Xóa thành công",
+          tienTo: TienTo,
+          xoa: LopHocs.deletedCount,
+        });
+      }
     } else {
-      res.json({
-        status: true,
-        msg: "Deleted successful",
+      res.status(200).json({
+        status: 200,
+        msg: "Tiền tố truyền vào thiếu thông tin",
+        tienTo: TienTo,
       });
     }
   } catch (error) {
-    res.json(error);
+    res.status(500).json(error);
   }
 };
 exports.update = async (req, res) => {
@@ -231,10 +248,14 @@ exports.timLopTheoTienTo = async (req, res) => {
   try {
     let TienTo = req.params.tienTo;
     TienTo = TienTo.slice(0, 7);
-    const lop = await LopHoc.find({
-      maLopHoc: { $regex: ".*" + TienTo + ".*" },
-    });
-    res.json({ count: lop.length, tienTo: TienTo, data: lop });
+    if (TienTo.length >= 7) {
+      const lop = await LopHoc.find({
+        maLopHoc: { $regex: +TienTo + ".*" },
+      });
+      res.json({ count: lop.length, tienTo: TienTo, data: lop });
+    } else {
+      res.json({ count: 0, tienTo: TienTo, data: null });
+    }
   } catch (error) {
     res.json(error);
   }

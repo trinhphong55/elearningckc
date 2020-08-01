@@ -25,8 +25,8 @@ export class LopHocService {
   getAllForkhoa(khoa) {
     return this.http.get(`${baseUrl}/${khoa}/searchkhoa`);
   }
-  deleteMaNganh(maNganh) {
-    return this.http.delete(`${baseUrl}/${maNganh}/search`);
+  xoaTheoTienTo(tiento:string) {
+    return this.http.delete(`${baseUrl}/${tiento}/tiento`);
   }
   get(id) {
     return this.http.get(`${baseUrl}/${id}`);
@@ -39,6 +39,8 @@ export class LopHocService {
   update(id, data) {
     return this.http.put(`${baseUrl}/${id}`, data);
   }
+  
+
 
   delete(id) {
     return this.http.delete(`${baseUrl}/${id}`);

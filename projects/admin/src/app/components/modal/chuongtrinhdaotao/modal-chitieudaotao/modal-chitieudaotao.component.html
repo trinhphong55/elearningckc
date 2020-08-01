@@ -37,6 +37,7 @@
                     min="14" value="15">
                 </div>
               </div>
+              <button type="button" class="btn btn-success" (click)="onChangeKhoaHoc()">Lọc</button>
             </form>
           </div>
         </div>
@@ -253,7 +254,7 @@
                       </td>
                       <td>
                         <button type="button" class="btn btn-outline-danger" data-toggle="modal"
-                          data-target="#exampleModalCenter" (click)="onClickResetLopHoc(nganh.maNganhNghe)">Xóa</button>
+                          data-target="#exampleModalCenter" (click)="onClickResetLopHoc(nganh.maNganhNghe, nganh.maBac)">Xóa</button>
                       </td>
                     </tr>
 
