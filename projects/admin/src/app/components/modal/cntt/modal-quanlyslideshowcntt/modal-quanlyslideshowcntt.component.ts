@@ -27,10 +27,10 @@ export class ModalQuanlyslideshowcnttComponent
 
   ngAfterViewInit(): void {
     $(document).ready(function () {
-      $('.fancybox').fancybox({
-        openEffect: 'elastic',
-        closeEffect: 'none',
-      });
+      // $('.fancybox').fancybox({
+      //   openEffect: 'elastic',
+      //   closeEffect: 'none',
+      // });
       // $('.datatable__slideshow').DataTable({
       //   responsive: {
       //     details: {
@@ -50,8 +50,8 @@ export class ModalQuanlyslideshowcnttComponent
   }
 
   ngOnDestroy(): void {
-    $('.fancybox').off();
-    $('.datatable__slideshow').off();
+    // $('.fancybox').off();
+    // $('.datatable__slideshow').off();
   }
 
   closeModal(id: string) {

@@ -44,15 +44,15 @@ export class ModalNoidungtrangchuComponent
 
   ngAfterViewInit(): void {
     $(document).ready(function () {
-      $('.box-img').fancybox({
-        openEffect: 'elastic',
-        closeEffect: 'none',
-      });
+      // $('.box-img').fancybox({
+      //   openEffect: 'elastic',
+      //   closeEffect: 'none',
+      // });
     });
   }
 
   ngOnDestroy(): void {
-    $('.box-img').off();
+    // $('.box-img').off();
   }
 
   closeModal(id: string) {
