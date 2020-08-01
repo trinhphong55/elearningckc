@@ -68,60 +68,26 @@
               <h2 class="title-bg">Tin tức sự kiện</h2>
           </div>
           <div class="row">
-              <div class="col-lg-6 col-md-6 col-12 p-1">
+              <div class="col-lg-6 col-md-6 col-12 p-1" *ngFor="let item of TinTucChinh">
                   <div class="main-news">
                       <a href="#">
                           <span class="overlay"></span>
-                          <img src="assets/img/tintuc.png" alt="tintuc">
+                          <img [src]="item.image" [alt]="item.image">
                           <div class="name-new p-3">
-                              Tên tin tức
+                              {{item.tentintuc}}
                           </div>
-
                       </a>
                   </div>
               </div>
-              <div class="col-lg-6 col-md-6 col-12 p-0">
+              <div class="col-lg-6 col-md-6 col-12 p-0" >
                   <div class="row m-0 p-0">
-                      <div class="col-md-6 p-1">
+                      <div class="col-md-6 p-1"*ngFor="let item of TinTucPhu">
                           <div class="sub-news">
                               <a href="#">
                                   <span class="overlay"></span>
-                                  <img src="assets/img/tintuc.png" alt="tintuc">
+                                  <img [src]="item.image" [alt]="item.image">
                                   <div class="name-new p-3">
-                                      Tên tin tức
-                                  </div>
-                              </a>
-                          </div>
-                      </div>
-                      <div class="col-md-6 p-1">
-                          <div class="sub-news">
-                              <a href="#">
-                                  <span class="overlay"></span>
-                                  <img src="assets/img/tintuc.png" alt="tintuc">
-                                  <div class="name-new p-3">
-                                      Tên tin tức
-                                  </div>
-                              </a>
-                          </div>
-                      </div>
-                      <div class="col-md-6 p-1">
-                          <div class="sub-news">
-                              <a href="#">
-                                  <span class="overlay"></span>
-                                  <img src="assets/img/tintuc.png" alt="tintuc">
-                                  <div class="name-new p-3">
-                                      Tên tin tức
-                                  </div>
-                              </a>
-                          </div>
-                      </div>
-                      <div class="col-md-6 p-1">
-                          <div class="sub-news">
-                              <a href="#">
-                                  <span class="overlay"></span>
-                                  <img src="assets/img/tintuc.png" alt="tintuc">
-                                  <div class="name-new p-3">
-                                      Tên tin tức
+                                    {{item.tentintuc}}
                                   </div>
                               </a>
                           </div>

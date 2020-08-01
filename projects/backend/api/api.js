@@ -8,6 +8,7 @@ const ttthBannerRoute = require("./ttthBanner");
 const ttthTTWRoute = require("./ttthThongTinWeb");
 const ttthCamOnRoute = require("./ttthCamOn");
 const ttthTienIchRoute = require("./ttthTienIch");
+const ttthKhoaHocRoute = require("./ttthKhoaHoc");
 const cnttLoaiBaiVietRoutes = require("./cnttLoaiBaiViet");
 const cnttSlideShowRoutes = require("./cnttSlideShow");
 const cnttTrangChu = require("./cnttTrangChu");
@@ -31,6 +32,7 @@ router.use("/ttthBanner", ttthBannerRoute);
 router.use("/ttthThongTinWeb", ttthTTWRoute);
 router.use("/ttthCamOn", ttthCamOnRoute);
 router.use("/ttthTienIch", ttthTienIchRoute);
+router.use("/ttthKhoaHoc", ttthKhoaHocRoute);
 //ttth
 const khoabomonController = require("../api/khoabomon");
 const loaidonviController = require("../api/loaidonvi");

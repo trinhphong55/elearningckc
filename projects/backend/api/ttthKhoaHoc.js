@@ -1,50 +1,31 @@
 const router = require('express').Router()
-const ttthtintuc = require('../models/ttthtintuc.model');
+const ttthkhoahoc = require('../models/ttthkhoahoc.model');
 const multer = require('multer')
 
-// get tin tuc
-router.get('/ttthdanhsachtintuc', async (req, res) => {
+// get
+router.get('/', async (req, res) => {
 
   try {
-    const danhSachTinTuc = await ttthtintuc.find({ trangthai: true });
-    res.json(danhSachTinTuc);
-  } catch (error) {
-    res.json([]);
-  }
-})
-router.get('/tintucchinh', async (req,res) =>{
-  try {
-    const tintucChinh = await ttthtintuc.find({trangthai: true}).sort({created_at: -1}).limit(1);
-    res.json(tintucChinh);
-  } catch (error) {
-    res.json([]);
-  }
-})
-router.get('/tintucphu', async (req,res) =>{
-  try {
-    const tintucPhu = await ttthtintuc.find({trangthai: true}).sort({created_at: -1}).limit(4).skip(1);
-    res.json(tintucPhu);
+    const danhsach = await ttthkhoahoc.find({ trangthai: true });
+    res.json(danhsach);
   } catch (error) {
     res.json([]);
   }
 })
 // add tin tuc
-router.post('/ttththemtintuc', (req, res) => {
-  var tintuc = new ttthtintuc({
-    id_loaitintuc: req.body.id_loaitintuc,
+router.post('/add', (req, res) => {
+  var add = new ttthkhoahoc({
+    tenkhoahoc: req.body.tenkhoahoc,
     image: req.body.image,
-    tentintuc: req.body.tentintuc,
-    slug: req.body.slug,
-    description: req.body.description,
+    makhoahoc: req.body.makhoahoc,
     noidung: req.body.noidung,
-    hienthi: req.body.hienthi,
     trangthai: req.body.trangthai,
     nguoitao: req.body.nguoitao,
     nguoisua: req.body.nguoisua,
     created_at: req.body.created_at,
     updated_at: req.body.updated_at,
   })
-  tintuc.save((err, data) => {
+  add.save((err, data) => {
     if (err) {
       return next(err)
     }
@@ -87,26 +68,24 @@ router.post('/uploads', upload.single('image'), function (req, res) {
   })
 });
 // sua tin tuc
-router.post('/ttthsuatintuc', async (req, res) => {
-  await ttthtintuc.findOneAndUpdate({
+router.post('/update', async (req, res) => {
+  await ttthkhoahoc.findOneAndUpdate({
     _id: req.body._id
   }, {
-    id_loaitintuc: req.body.id_loaitintuc,
+    tenkhoahoc: req.body.tenkhoahoc,
     image: req.body.image,
-    tentintuc: req.body.tentintuc,
-    slug: req.body.slug,
-    description: req.body.description,
+    makhoahoc: req.body.makhoahoc,
     noidung: req.body.noidung,
-    hienthi: req.body.hienthi,
     trangthai: req.body.trangthai,
     nguoitao: req.body.nguoitao,
     nguoisua: req.body.nguoisua,
+    created_at: req.body.created_at,
     updated_at: req.body.updated_at,
   });
 })
 // xoa tin tuc
-router.post('/ttthxoatintuc', async (req, res) => {
-  await ttthtintuc.findOneAndUpdate({
+router.post('/delete', async (req, res) => {
+  await ttthkhoahoc.findOneAndUpdate({
     _id: req.body._id
   }, {
     trangthai: false
