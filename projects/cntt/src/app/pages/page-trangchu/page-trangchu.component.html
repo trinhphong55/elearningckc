@@ -7,14 +7,15 @@
           <a
             class="text-reset text-decoration-none text-uppercase"
             [routerLink]="['/']"
-            >{{ baiBietQuanTrongDauTien.tieuDe }}</a
+          >
+            {{ baiVietQuanTrongDauTien.tieuDe }}</a
           >
         </div>
-        <small class="highlight_home__postedtime text-muted">{{
-          baiBietQuanTrongDauTien.thoiGianDangBai
-        }}</small>
+        <small class="highlight_home__postedtime text-muted">
+          {{ baiVietQuanTrongDauTien.thoiGianDangBai }}
+        </small>
         <div class="highlight_home__desc mb-2 mb-lg-3">
-          {{ baiBietQuanTrongDauTien.moTaNgan }}
+          {{ baiVietQuanTrongDauTien.moTaNgan }}
         </div>
         <a
           class="m-0 py-2 px-4 highlight_home__read btn text-white bg__caothang"
@@ -23,7 +24,7 @@
         >
       </div>
       <div class="col-lg-9" style="z-index: 1;">
-        <div class="highlight_home__slider swiper-container">
+        <swiper class="highlight_home__slider swiper-container">
           <div class="swiper-wrapper">
             <div
               class="swiper-slide"
@@ -55,7 +56,7 @@
             </div>
           </div>
           <div class="swiper-pagination d-lg-none position-static"></div>
-        </div>
+        </swiper>
         <div
           class="highlight_home__slider__thumbnail swiper-container d-none d-lg-block"
         >
@@ -214,9 +215,10 @@
               >khoa Công nghệ Thông tin</cite
             >
           </footer> -->
-          <div class="h2 mb-3 text-white text-justify text-md-center">
-            {{ listGioiThieuNgan[0].noiDung }}
-          </div>
+          <div
+            class="h2 mb-3 text-white text-justify text-md-center"
+            [innerHTML]="gioiThieuNganDauTien.noiDung"
+          ></div>
         </blockquote>
       </div>
     </div>
@@ -476,7 +478,7 @@
             href="https://caothang.edu.vn/"
             ><img
               class="swiper-lazy"
-              data-src="https://scontent-hkt1-1.xx.fbcdn.net/v/t1.0-9/18118509_1855268601400040_1557862388781110452_n.png?_nc_cat=104&amp;_nc_sid=09cbfe&amp;_nc_ohc=UHXgYDxN8JQAX8pE5Rd&amp;_nc_ht=scontent-hkt1-1.xx&amp;oh=d24ad199177ce6c42ebfeff8543d5dcd&amp;oe=5F16A928"
+              data-src="https://via.placeholder.com/128"
               alt="Cao Đẳng Kỹ Thuật Cao Thắng"
             />
             <div class="partner_home__desc">Cao Đẳng Kỹ Thuật Cao Thắng</div>
@@ -488,7 +490,7 @@
             href="https://www.hcmus.edu.vn/"
             ><img
               class="swiper-lazy"
-              data-src="https://scontent.fvca1-1.fna.fbcdn.net/v/t1.0-9/35189853_2076230709311065_3947220011839389696_o.png?_nc_cat=102&amp;_nc_sid=09cbfe&amp;_nc_ohc=qr4Z5-G8HNMAX9LGfvC&amp;_nc_ht=scontent.fvca1-1.fna&amp;oh=876295f2dfb94af7b4ae990087e0fdcb&amp;oe=5F182AA6"
+              data-src="https://via.placeholder.com/128"
               alt="Đại Học Khoa Học Tự Nhiên"
             />
             <div class="partner_home__desc">Đại Học Khoa Học Tự Nhiên</div>
@@ -500,7 +502,7 @@
             href="https://www.hcmut.edu.vn/vi"
             ><img
               class="swiper-lazy"
-              data-src="https://scontent.fvca1-2.fna.fbcdn.net/v/t1.0-9/68725418_110355766994876_4813099381651668992_n.jpg?_nc_cat=101&amp;_nc_sid=09cbfe&amp;_nc_ohc=RHcM1FOW6BsAX9gKOnY&amp;_nc_ht=scontent.fvca1-2.fna&amp;oh=d95fe87a8e75c25ee4fa456c969f1872&amp;oe=5F1811F3"
+              data-src="https://via.placeholder.com/128"
               alt="Đại Học Bách Khoa"
             />
             <div class="partner_home__desc">Đại Học Bách Khoa</div>
@@ -512,7 +514,7 @@
             href="http://hcmute.edu.vn/"
             ><img
               class="swiper-lazy"
-              data-src="https://scontent-hkt1-1.xx.fbcdn.net/v/t1.0-9/29511446_1740233352681929_3480930632528658771_n.jpg?_nc_cat=109&amp;_nc_sid=09cbfe&amp;_nc_ohc=Lhpo-r5JB8MAX_6IWtl&amp;_nc_ht=scontent-hkt1-1.xx&amp;oh=b048d9191e67147dcb45b9c45d33f44a&amp;oe=5F158995"
+              data-src="https://via.placeholder.com/128"
               alt="Đại Học Sư Phạm Kỹ Thuật"
             />
             <div class="partner_home__desc">Đại Học Sư Phạm Kỹ Thuật</div>
@@ -524,7 +526,7 @@
             href="https://www.uit.edu.vn/"
             ><img
               class="swiper-lazy"
-              data-src="https://scontent-hkt1-1.xx.fbcdn.net/v/t1.0-9/399245_381779535247926_46616087_n.jpg?_nc_cat=106&amp;_nc_sid=09cbfe&amp;_nc_ohc=0PQ3lUiwKOoAX_A4dRv&amp;_nc_ht=scontent-hkt1-1.xx&amp;oh=c9493d83bdb3a40f4c249f7f547c7129&amp;oe=5F18969C"
+              data-src="https://via.placeholder.com/128"
               alt="Đại Học Công Nghệ Thông Tin"
             />
             <div class="partner_home__desc">Đại Học Công Nghệ Thông Tin</div>
