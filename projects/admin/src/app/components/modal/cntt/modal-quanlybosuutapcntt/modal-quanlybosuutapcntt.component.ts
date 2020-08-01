@@ -19,7 +19,7 @@ export class ModalQuanlybosuutapcnttComponent implements OnInit {
   });
   submitted = false;
   boSuuTapForm: FormGroup;
-  MaBST: any = [1, 2];
+  MaBST: any = ["BST01", "BST02"];
   imgValue: any;
   showContent: any;
   dtOptions: DataTables.Settings = {};
@@ -55,10 +55,48 @@ export class ModalQuanlybosuutapcnttComponent implements OnInit {
     return this.boSuuTapForm.controls;
   }
   onSubmit() {
+    this.submitted = true;
+    if (this.boSuuTapForm.value._id.length > 0) {
+      if (!this.boSuuTapForm.valid) {
+        return false;
+      } else {
+        this.cnttBoSuuTapService
+          .editItemTienIch(this.boSuuTapForm.value)
+          .subscribe((res) => {
+            this.loadDanhSachBST();
+            console.log(' Tin tuc duoc chinh sua thanh cong!', res);
+            this.toastr.success('Chỉnh sửa bài viết thành công!');
+          });
+      }
+    } else {
+      if (!this.boSuuTapForm.valid) {
+        return false;
+      } else {
+        this.cnttBoSuuTapService
+          .themItemBST(this.boSuuTapForm.value)
+          .subscribe((res) => {
+            this.loadDanhSachBST();
+            console.log(' Tien ich duoc them thanh cong!', res);
+            this.toastr.success('Thêm tiện ích thành công !');
+          });
+      }
+    }
+
   }
-  onXoaBaiViet(maBST: string) {
+  onXoaItem(_id: string) {
+    const anwser = confirm('Nhấn OK để xoá Item này');
+    if (anwser) {
+      this.cnttBoSuuTapService
+        .deleteItemBST({
+          _id: _id,
+        })
+        .subscribe((data) => {
+          this.toastr.success('Xóa bài viết thành công!');
+          this.loadDanhSachBST();
+        });
+    }
   }
-  editBaiViet(boSuuTap: any) {
+  editBoSuuTap(boSuuTap: any) {
     this.boSuuTapForm.patchValue({
       _id: boSuuTap._id,
       maBST: boSuuTap.maBST,
@@ -84,7 +122,7 @@ export class ModalQuanlybosuutapcnttComponent implements OnInit {
     };
   }
   loadDanhSachBST() {
-    this.cnttBoSuuTapService.danhSachBST().subscribe((data) => {
+    this.cnttBoSuuTapService.danhSachItemBST().subscribe((data) => {
       this.BoSuuTap = data.data;
     });
   }
