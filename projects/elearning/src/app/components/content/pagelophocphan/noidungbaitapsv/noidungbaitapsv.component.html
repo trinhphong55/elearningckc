@@ -1,0 +1,167 @@
+<div class="container-fluid mt-5">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="row">
+                <div class="title-icon">
+                    <div class="title">
+                        <h3>Bài tập số 1</h3>
+                    </div>
+                    <div class="icon">
+                        <button mat-button [matMenuTriggerFor]="menu"><i class="fas fa-ellipsis-v"></i></button>
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item>Đổi tên</button>
+                            <button mat-menu-item>Xóa</button>
+                            <button mat-menu-item>sao chép đường liên kết</button>
+                        </mat-menu>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="content">
+                    <div class="thongtin">
+                        <div class="tt-icon">
+                            <div>
+                                <i class="far fa-calendar-minus"></i>
+                            </div>
+
+                        </div>
+                        <div class="tt-client">
+                            <div>
+                                Huy Nguyễn đã đăng 1 bài tập mới : Bài tập 1
+                            </div>
+                        </div>
+                        <div class="tt-dealine">
+                            <div>
+                                đến hạn:23:59, 27 thg 7 2020
+                            </div>
+                        </div>
+                        <div class="tt-menu">
+                            <button mat-button [matMenuTriggerFor]="menu"><i class="fas fa-ellipsis-v"></i></button>
+                            <mat-menu #menu="matMenu">
+                                <button mat-menu-item>Item 1</button>
+                                <button mat-menu-item>Item 2</button>
+                            </mat-menu>
+                        </div>
+                    </div>
+                    <div class="nopbai">
+                        <div class="songuoinop">
+                            <div class="left">
+                                <div>
+                                    <p>Đã đăng vào 13:05</p>
+                                    <p>Đại diện các nhóm nộp 1 file word duy nhất.
+                                        Đặt tên: MSSV1-MSSV2-MSSV3-MSSV4.docx </p>
+                                </div>
+                            </div>
+                            <div class="right">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="nhanxet">
+                        <div class="nx-main">
+                            <div class="nx-number">
+                                <button mat-button>3 nhận xét về lớp học</button>
+                            </div>
+                            <div class="nx-show">
+                                <div class="nx-showimg">
+                                    <div>
+                                        <img class="gb_Ka gbii"
+                                            src="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo"
+                                            srcset="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo 1x, https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s64-c-mo 2x "
+                                            alt="" aria-hidden="true" data-noaft="">
+                                    </div>
+                                </div>
+                                <div class="nx-showname">
+                                    <h6>Huy Nguyễn <span>13:30</span></h6>
+                                    <p>oke e ơi</p>
+                                </div>
+                                <div class="nx-menu">
+                                    <button mat-button [matMenuTriggerFor]="menunx"><i
+                                            class="fas fa-ellipsis-v"></i></button>
+                                    <mat-menu #menunx="matMenu">
+                                        <button mat-menu-item>Chỉnh sửa</button>
+                                        <button mat-menu-item>Xóa</button>
+                                    </mat-menu>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comment">
+                        <div class="cm-main">
+                            <div class="cm-show">
+                                <div class="cm-showimg">
+                                    <div><img class="gb_Ka gbii"
+                                            src="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo"
+                                            srcset="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo 1x, https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s64-c-mo 2x "
+                                            alt="" aria-hidden="true" data-noaft="">
+
+                                    </div>
+                                </div>
+                                <div class="cm-showcomment">
+                                    <form>
+                                        <div class="input-container">
+                                            <button type="submit" class="btn"><i
+                                                    class="fas fa-paper-plane"></i></button>
+                                            <input class="input-field" type="text"
+                                                placeholder="Thêm nhập xét của lớp học" name="usrnm">
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="row">
+                <div class="col-md-10 style-element">
+                    <div class="el-header">
+                        <h5>Bài tập của bạn</h5>
+                        <span>Đã nộp</span>
+                    </div>
+                    <div class="el-content">
+                        <button mat-button [matMenuTriggerFor]="themhoactao"><i class="fas fa-plus"></i> Thêm hoặc tạo</button>
+                        <mat-menu #themhoactao="matMenu">
+                            <button mat-menu-item><i class="fas fa-file-import"></i>Tệp </button>
+                            <button mat-menu-item><i class="fas fa-link"></i><i class="fas fa-link"></i>Liên kết</button>
+                            <button mat-menu-item><i class="fab fa-google-drive"></i>GG Drive</button>
+                        </mat-menu>
+                    </div>
+                    <div class="el-danhau">
+                            <button type="button" class="danhdau">Đánh dấu là hoàn tất</button>
+                    </div>
+                </div>
+                <div class="col-md-10 style-element">
+                    <div>
+                        <span>Nhận xét riêng tư</span>
+                    </div>
+                    <div class="comment-tow">
+                        <div class="cm-main-tow">
+                            <div class="cm-show-tow">
+                                <div class="cm-showimg-tow">
+                                    <div><img class="gb_Ka gbii"
+                                            src="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo"
+                                            srcset="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo 1x, https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s64-c-mo 2x "
+                                            alt="" aria-hidden="true" data-noaft="">
+
+                                    </div>
+                                </div>
+                                <div class="cm-showcomment-tow">
+                                    <form>
+                                        <div class="input-container">
+                                            <button type="submit" class="btn"><i
+                                                    class="fas fa-paper-plane"></i></button>
+                                            <input class="input-field" type="text"
+                                                placeholder="Thêm nhập xét của lớp học" name="usrnm">
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
