@@ -1,6 +1,7 @@
+import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { data } from 'jquery';
+
 
 const baseUrl = 'https://localhost:4100/api/lophoc';
 
@@ -14,7 +15,9 @@ export class LopHocService {
   }
   //vd tienTo: 03006171
   filterLopTheoTienTo(tienTo: String) {
-    return this.http.get(`${baseUrl}/${tienTo}/tiento`);
+    return this.http.get<any>(`${baseUrl}/${tienTo}/tiento`).pipe(map(resData => {
+      return resData;
+    }));
   }
   getAllFormanghanh(maNganh) {
     return this.http.get(`${baseUrl}/${maNganh}/searchnganh`);

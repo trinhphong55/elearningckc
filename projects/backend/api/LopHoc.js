@@ -131,23 +131,30 @@ exports.insert = async (req, res) => {
         });
       }
       if (req.body.tenLop == element.tenLop) {
-        res.json({
+        return res.json({
           status: 200,
           ok: false,
           msg: "Tên này đã tồn tại",
         });
       }
+      if (req.body.tenVietTat == element.tenVietTat) {
+        return res.json({
+          status: 200,
+          ok: false,
+          msg: "Tên viết tắt này đã tồn tại",
+        });
+      }
     });
-
+    //res.json(setLopHoc(req))
     const lophoc = new LopHoc(setLopHoc(req));
     const data = await lophoc.save();
-    result = {
+
+    res.json({
       status: 200,
       ok: true,
       msg: "Thêm thành công Lớp học",
       data: data,
-    };
-    res.json(result);
+    });
   } catch (error) {
     res.json(error);
   }
@@ -227,7 +234,7 @@ exports.timLopTheoTienTo = async (req, res) => {
     const lop = await LopHoc.find({
       maLopHoc: { $regex: ".*" + TienTo + ".*" },
     });
-    res.json({ data: lop, count: lop.length });
+    res.json({ count: lop.length, tienTo: TienTo, data: lop });
   } catch (error) {
     res.json(error);
   }
@@ -249,7 +256,7 @@ exports.capNhatThongTinFaceBook = async (req, res) => {
       status: 200,
       ok: false,
       msg: "",
-      data:findLopHoc
+      data: findLopHoc,
     };
     if (updateKhoa.nModified === 0) {
       result.msg = "Cập nhật thành công, không có gì thay đổi";
