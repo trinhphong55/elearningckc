@@ -121,4 +121,18 @@ router.post('/nganhnghe/importexcel', async (req, res) => {
   }
 });
 
+// Get list nganhnghe by maBac
+router.get('/dsnn/:mabac', async (req, res) => {
+  console.log('zo');
+  const maBac = parseInt(req.params.mabac);
+  await NganhNghe.find({ maBac })
+    .then(ds => {
+      return res.json(ds);
+    })
+  .catch(err => {
+    return res.json({ message: err });
+  })
+})
+
+
 module.exports = router;

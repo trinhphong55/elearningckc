@@ -42,7 +42,9 @@ exports.layTatCaSinhVien = async (req, res) => {
       .json({ message: "Máy chủ không sữ lý được", error: error, status: 500 });
   }
 };
-exports.Laysinhvientheomalop = async (req, res) => {
+exports.Laysinhvientheomalop= async(req,res)=>
+{
+  console.log(req.params)
   try {
     const sinhViens = await SinhVienModel.find({
       maLopHoc: req.params.maLopHoc,

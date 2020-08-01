@@ -1,4 +1,7 @@
+<<<<<<< HEAD
+=======
 <!--
+>>>>>>> 48e1195e2d5a2376092bcac7947d3ffed6ea278e
 <app-modal class="modal_chucnang__wrapper" id="diem_diemsinhvien">
   <div (click)="closeModal('diem_diemsinhvien')" class="modal_chucnang__close mdi mdi-chevron-left text-white"></div>
   <div class="container-fluid mt-3">
@@ -7,6 +10,43 @@
         <h1 class="text-center text-white">Điểm sinh viên chính thức</h1>
       </div>
       <div class="col-12">
+<<<<<<< HEAD
+        <form [formGroup]="formDiemChinhThuc">
+          <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
+            <div class="row justify-content-center align-items-center">
+              <div class="col-3">
+                <div class="form-group">
+                  <label>Khoá</label>
+                  <input class="form-control" formControlName="khoa" type="number" min="15">
+                </div>
+                <div class="form-group">
+                  <label>Họ tên</label>
+                  <select id="abcdef" class="form-control modal_chucnang__select2">
+                      <option  *ngFor="let sv of sinhvien"  value="loc">{{sv.ho + sv.ten}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="form-group">
+                  <label>Bậc</label>
+                  <select class="form-control" formControlName="maBac">
+                    <option *ngFor="let b of bac" value="{{b.maBac}}">{{b.tenBac}}</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Học kì</label>
+                  <div class="d-flex">
+                    <div class="d-flex align-items-center">
+                      <label class="mb-0 mr-2">Từ</label>
+                      <input class="form-control" type="number" min="1" value="1">
+                    </div>
+                    <div class="ml-2 d-flex align-items-center">
+                      <label class="mb-0 mr-2">đến</label>
+                      <input class="form-control" type="number" min="1" value="1">
+                    </div>
+                  </div>
+                </div>
+=======
         <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
           <form>
           <div class="row justify-content-center align-items-center">
@@ -43,12 +83,18 @@
                 <select id="masv" class="form-control modal_chucnang__select2" [(ngModel)]="diemsv.maSinhVien" (change)="selectmasinhvien($event)">
                   <option *ngFor="let sv of dsSinhvien" [value]="sv.maSinhVien" >{{sv.maSinhVien}}- {{sv.ho}} {{sv.ten}} </option>
                 </select>
+>>>>>>> 48e1195e2d5a2376092bcac7947d3ffed6ea278e
               </div>
               <div class="col-3">
                 <div class="form-group">
                   <label>Lớp</label>
+<<<<<<< HEAD
+                  <select class="form-control" formControlName="maLopHoc">
+                    <option value="" *ngFor="let l of lop |filter:maBac"> {{l.tenLop}}</option>
+=======
                   <select class="form-control modal_chucnang__select2">
                     <option *ngFor="let lop of dsLop">{{lop.tenLop}}</option>
+>>>>>>> 48e1195e2d5a2376092bcac7947d3ffed6ea278e
                   </select>
                 </div>
                 <div class="form-group">
@@ -63,7 +109,7 @@
               </div>
               <div class="col-auto">
                 <div class="modal_chucnang__group__button">
-                  <button (click)="onSubmitSave()" class="modal_chucnang__button btn btn-outline-primary px-4 mx-2"><img
+                  <button (click)="logData()" class="modal_chucnang__button btn btn-outline-primary px-4 mx-2"><img
                       class="modal_chucnang__button__icon mb-1" src="assets/img/icons/search.png" alt="image icon">
                     <div>Tìm kiếm</div>
                   </button>

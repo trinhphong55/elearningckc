@@ -291,3 +291,16 @@ exports.capNhatThongTinFaceBook = async (req, res) => {
     res.json(error);
   }
 };
+
+
+//trinhphong
+exports.timLopTheoMaBac=  async (req, res) => {
+
+  var bac = parseInt(req.params.maBac);
+  try {
+    var data = await LopHoc.find({maBac:bac}).exec();
+    res.json(data);
+  } catch (error) {
+    res.json({ message: error });
+  }
+}

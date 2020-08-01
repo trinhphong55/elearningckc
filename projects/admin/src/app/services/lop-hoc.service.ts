@@ -1,15 +1,15 @@
 import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
-
+import { data } from 'jquery';
+import { LopHoc } from '../interfaces/LopHoc.interface'
 const baseUrl = 'https://localhost:4100/api/lophoc';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LopHocService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
   getAll() {
     return this.http.get(baseUrl);
   }
@@ -39,7 +39,7 @@ export class LopHocService {
   update(id, data) {
     return this.http.put(`${baseUrl}/${id}`, data);
   }
-  
+
 
 
   delete(id) {
@@ -48,5 +48,10 @@ export class LopHocService {
 
   deleteAll() {
     return this.http.delete(baseUrl);
+  }
+  //trinhphong
+  getMaBac(maBac) {
+
+    return this.http.get<LopHoc>(`${baseUrl}/${maBac}`);
   }
 }
