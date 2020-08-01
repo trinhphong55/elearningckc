@@ -59,7 +59,9 @@ export class ModalGiaovienlophocphanComponent implements OnInit {
   }
 
   changeGiaoVien(maGV: string, maLopHocPhan: string) {
-    this.gvlhpService.changeGVLHP(maGV, maLopHocPhan);
+    this.gvlhpService.changeGVLHP(maGV, maLopHocPhan).subscribe(data => {
+      console.log(data);
+    });
   }
 
   private loadGVLHP() {

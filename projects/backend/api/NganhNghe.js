@@ -123,7 +123,6 @@ router.post('/nganhnghe/importexcel', async (req, res) => {
 
 // Get list nganhnghe by maBac
 router.get('/dsnn/:mabac', async (req, res) => {
-  console.log('zo');
   const maBac = parseInt(req.params.mabac);
   await NganhNghe.find({ maBac })
     .then(ds => {
