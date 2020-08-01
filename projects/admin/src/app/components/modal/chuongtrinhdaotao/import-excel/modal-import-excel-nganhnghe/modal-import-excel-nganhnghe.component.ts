@@ -97,7 +97,7 @@ export class ModalImportExcelNganhNgheComponent implements OnInit, OnChanges {
   constructor(private modalService: ModalService, private  nganhngheservice: NganhNgheService) { }
 
   ngOnInit(): void {
-    console.log("ngOnInit");
+
   }
 
   ngOnChanges(changes: SimpleChanges): void {

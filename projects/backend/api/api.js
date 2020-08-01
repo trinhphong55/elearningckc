@@ -10,7 +10,7 @@ const groupFB = require("../api/groupFB");
 const sinhVien = require("./sinh-vien");
 const Diemsinhvien = require("./diemsinhvien");
 const GiaoVienLopHocPhan = require("./GiaoVienLopHocPhan");
-const SinhVien = require("./sinh-vien");
+const cotDiemLHP = require("./cotdiem-lophocphan");
 
 router.use("/loaimonhoc", LoaiMonHoc);
 // router.use("/lophocphan", LopHocPhanRoutes);
@@ -98,5 +98,6 @@ router.put("/sinhvien", sinhVien.capNhatSinhVien);
 router.delete('/sinhvien',sinhVien.removeAll);
 router.get("/sinhvien/:maLopHoc/siso",sinhVien.tinhTongSinhVien);
 
-
+//========================= Routes CotDiemLopHocPhan ===================================
+router.get("/cotdiemlhp", cotDiemLHP.layDiemLHP);
 module.exports = router;
