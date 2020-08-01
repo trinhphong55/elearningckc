@@ -1,11 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { data } from 'jquery';
-<<<<<<< HEAD
 import { LopHoc } from '../interfaces/LopHoc.interface'
-=======
-
->>>>>>> 48e1195e2d5a2376092bcac7947d3ffed6ea278e
 const baseUrl = 'https://localhost:4100/api/lophoc';
 
 @Injectable({
