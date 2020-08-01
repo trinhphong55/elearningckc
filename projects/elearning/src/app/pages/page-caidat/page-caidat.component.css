@@ -1,0 +1,30 @@
+.container{
+    margin-top: 10px;
+}
+.list-toggle{
+    border: solid 1px #DDDDDD;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+.col-md-8 {
+    margin: 0 auto;
+}
+.card-body{
+    padding: 0;
+}
+.form-group{
+    width: 100%;
+}
+.form-check{
+    background: red;
+    width: 100%;
+}
+.card{
+    padding: 20px;
+    margin-bottom: 20px;
+}
+.card img{
+    width: 10%;
+    border-radius: 50%;
+}
