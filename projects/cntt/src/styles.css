@@ -232,7 +232,7 @@ body {
 .header_search__input.square {
   width: 300px;
   height: 36px;
-  padding: 0 24px 0 10px;
+  padding: 0 42px 0 10px;
   border: 2px solid #283890;
   transition: width 0.4s ease-in-out, padding 0.2s;
   transition-delay: 0.4s;
