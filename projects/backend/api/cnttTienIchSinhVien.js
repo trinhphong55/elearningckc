@@ -13,6 +13,18 @@ router.get("/danhsachtienich", (req, res) => {
     res.json({ message: "Lấy danh sách bài viết thành công.", data: data });
   });
 });
+router.get("/danhsachtienichcntt", (req, res) => {
+  TienIch.find({trangThai: 1},(error, data) => {
+    if (error) {
+      return res.json({
+        message: "Lấy danh sách bài viết không thành công.",
+        data: [],
+        error: error,
+      });
+    }
+    res.json({ message: "Lấy danh sách bài viết thành công.", data: data });
+  });
+});
 router.post("/xoatienich", async (req, res) => {
   console.log(" Xoa tien ich");
   console.log(req.body.maTienIch);

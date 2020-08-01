@@ -14,7 +14,7 @@ export class TienichsvComponent implements OnInit {
   ngOnInit(): void {}
   loadDanhSachTienIch() {
     this.tienIchSinhVienCnttService.danhSachTienIch().subscribe((data) => {
-      // console.log(data);
+      console.log(data);
       this.TienIch = data.data;
     });
   }
