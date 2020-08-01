@@ -357,3 +357,14 @@
 .comment-tow .input-container .btn:hover{
     background: #99FFCC;
 }
+@media only screen and (max-width: 600px){
+
+    .style-mgt{
+      margin-top: 150px;
+    }
+    .title-icon .icon button {
+        margin-left: -10px;
+        padding-top: 00px;
+        margin-top: 27px;
+    }
+  }

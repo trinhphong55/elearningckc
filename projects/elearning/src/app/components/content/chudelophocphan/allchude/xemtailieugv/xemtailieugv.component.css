@@ -254,3 +254,27 @@
     overflow: hidden;
     width: 6.5625rem;
   }
+  @media only screen and (max-width: 600px){
+
+    .style-mgt{
+      margin-top: 150px;
+    }
+    .title-icon .icon button {
+        margin-left: -9px;
+        padding-top: 00px;
+        margin-top: 27px;
+    }
+    .thongtin .tt-icon {
+        width: 23%;
+    }
+    .thongtin .tt-client{
+        width: 55%;
+    }
+    .thongtin .tt-client div {
+     
+        width: 130px;
+    }
+    .thongtin .tt-dealine {
+      display: none;
+    }
+  }

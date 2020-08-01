@@ -208,4 +208,28 @@ button{
      .row .col-md-8 a i{
         padding-right: 20px;
     }
+    .content .left{
+        width: 77.5%;
+    }
+    .mat-expansion-panel-header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 0px 0px;
+        border-radius: inherit;
+        transition: height 225ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .songuoinop .left {
+        width: 20%;
+    }
+    .songuoinop .right {
+        width: 80%;
+    }
+    .danop_dagiao .danop {
+        width: 50%;
+        border-right: 0.5px solid #444444;
+    }
+    .danop_dagiao button {
+        border-left: none;
+    }
 }

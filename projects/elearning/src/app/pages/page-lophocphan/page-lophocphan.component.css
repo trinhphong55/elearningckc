@@ -604,22 +604,31 @@ form.ng-untouched.ng-pristine.ng-valid {
         margin-bottom: 5px;
     }
     .thongtin .tt-icon{
-        width: 10%;
+        width: 15%;
     }
     .thongtin .tt-icon div{
-        width: 60%;
+        width: 80%;
     }
     .thongtin .tt-client{
-        width: 55%;
+        width: 50%;
     }
     .thongtin .tt-client div{
+        padding-top: 20px;
+        font-size: 0.875rem;
+        font-weight: 300;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap; 
+        width: 200px; 
+    }
+    .content-sv .thongtin .tt-client div{
         padding-top: 20px;
         font-size: 0.875rem;
         font-weight: 500;
         text-overflow: ellipsis;
         overflow: hidden;
         white-space: nowrap; 
-        width: 300px; 
+        width: 200px; 
     }
     .thongtin .tt-dealine{
        display: none;
@@ -635,5 +644,55 @@ form.ng-untouched.ng-pristine.ng-valid {
         outline: none;
         margin-top: 10px;margin-left: 50px;
     }
-    
+    .nhanxet .nx-show .nx-showimg{
+        width: 15%;
+    }
+    .nhanxet .nx-show .nx-showname{
+        width: 70%;
+    }
+    .nhanxet .nx-show .nx-menu{
+        width: 10%;
+    }
+    .comment .cm-show .cm-showimg{
+        width: 15%;
+    }
+    .comment .cm-show .cm-showimg div{
+        width: 60%;
+        margin: 0 auto;
+       
+    }
+    .comment .cm-show .cm-showimg div img{
+        width: 100%;
+        border-radius: 50px;
+    }
+    .comment .cm-show .cm-showcomment{
+        width: 74%;
+    }
+    .content-sv .thongtin .tt-icon{
+        width: 15%;
+    }
+    .content-sv  .thongtin .tt-icon div i{
+       font-size:0.875rem;
+    }
+    .content-sv .thongtin .tt-client{
+        width: 50%;
+    }
+    .content-sv .thongtin .tt-client div{
+        font-size: 0.875rem;
+        font-weight: 300;
+        width: 155px; 
+    }
+    .content-sv .nhanxet .nx-show .nx-showimg {
+        width: 22%;
+    }
+    .content-sv .nhanxet .nx-show .nx-showname {
+        width: 60%;
+    }
+    .content-sv .comment .cm-show .cm-showimg {
+        width: 22%;
+    }
+    .content-sv .comment .cm-show .cm-showcomment{
+        width: 75%;
+    }
+   
 }
