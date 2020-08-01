@@ -194,13 +194,25 @@ router.put("/:maDaoTao", async (req, res) => {
 router.patch("/:maDaoTao", async (req, res) => {
   res.json("oke");
 });
-//SEARCH theo maNganh
-router.get("/:maLop/search", async (req, res) => {
-  try {
-    const lopHocPhans = await LopHocPhan.find({ maLopHoc : req.params.maLop});
-    res.json(lopHocPhans);
-  } catch (error) {
-    res.json(error);
-  }
+
+router.get('/malophocphan/:maLopHocPhan', async (req, res) => {
+  const maLopHocPhan = parseInt(req.params.maLopHocPhan);
+  await LopHocPhan.findOne({ maLopHocPhan })
+    .then(lhp => {
+      console.log(lhp);
+      return res.json(lhp);
+    })
+    .catch(err => {
+      return res.json({ status: 501, data: [], message: err });
+    })
 });
+//SEARCH theo maNganh
+// router.get("/:maLop/search", async (req, res) => {
+//   try {
+//     const lopHocPhans = await LopHocPhan.find({ maLopHoc : req.params.maLop});
+//     res.json(lopHocPhans);
+//   } catch (error) {
+//     res.json(error);
+//   }
+// });
 module.exports = router;
