@@ -78,6 +78,8 @@ import { ModalCrawlingComponent } from './components/modal/cntt/modal-crawling/m
 import { ModalNoidungtrangchuComponent } from './components/modal/cntt/modal-noidungtrangchu/modal-noidungtrangchu.component';
 import { ModalQuanlytienichcnttComponent } from './components/modal/cntt/modal-quanlytienichcntt/modal-quanlytienichcntt.component';
 import { ModalDanhmucbaivietComponent } from './components/modal/cntt/modal-danhmucbaiviet/modal-danhmucbaiviet.component';
+import { ModalQuanlybosuutapcnttComponent } from './components/modal/cntt/modal-quanlybosuutapcntt/modal-quanlybosuutapcntt.component';
+import { ModalThongtinchungComponent } from './components/modal/cntt/modal-thongtinchung/modal-thongtinchung.component';
 
 @NgModule({
   declarations: [
@@ -146,7 +148,9 @@ import { ModalDanhmucbaivietComponent } from './components/modal/cntt/modal-danh
     ModalQuanlyloaibaivietcnttComponent,
     ModalNoidungtrangchuComponent,
     ModalQuanlytienichcnttComponent,
-    ModalDanhmucbaivietComponent
+    ModalDanhmucbaivietComponent,
+    ModalQuanlybosuutapcnttComponent,
+    ModalThongtinchungComponent
   ],
   imports: [
     BrowserModule,

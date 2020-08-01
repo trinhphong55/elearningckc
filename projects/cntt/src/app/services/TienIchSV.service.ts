@@ -14,7 +14,7 @@ export class TienIchSinhVienCnttService {
   constructor(private http: HttpClient) { }
   danhSachTienIch(): Observable<any> {
     return this.http
-      .get<any>(`${this.baseUri}/danhsachtienich`, {
+      .get<any>(`${this.baseUri}/danhsachtienichcntt`, {
         headers: this.headers,
       })
       .pipe(catchError(this.errorMgmt));
