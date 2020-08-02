@@ -34,11 +34,8 @@ export class ModalGiaovienlophocphanComponent implements OnInit {
   dsMaLoaiMonHoc: string[];
   dsGVLHP = [];
   dsGV = [
-    { maGiaoVien: "001", ho: "Ngyễn", ten: "Hoàng Linh" },
-    { maGiaoVien: "002", ho: "Ngyễn", ten: "Hoàng Phong" },
-    { maGiaoVien: "003", ho: "Ngyễn", ten: "Hoàng Huy" },
-    { maGiaoVien: "004", ho: "Ngyễn", ten: "Hoàng Hưng" },
-    { maGiaoVien: "005", ho: "Ngyễn", ten: "Hoàng Tân" },
+    { maGiaoVien: "001", ho: "Lữ", ten: "Cao Tiến" },
+    { maGiaoVien: "002", ho: "Dương", ten: "Trọng Đính" },
   ];
 
   ctdt: CTDT = {
@@ -54,6 +51,17 @@ export class ModalGiaovienlophocphanComponent implements OnInit {
     return item.maBac + item.maNganhNghe + item.khoaHoc + item.maLoaiHinhDaoTao;
   }
 
+  selectBac() {
+    let maBac = parseInt(this.ctdt.maBac);
+    this.nganhNgheService.getNganhNghebymaBac(maBac).subscribe(dsnn => {
+      this.dsNganhNghe = dsnn;
+      if (dsnn.length !== 0) {
+        this.ctdt.maNganhNghe = dsnn[0].maNganhNghe;
+      }
+      this.loadGVLHP();
+    });
+  }
+
   select() {
     this.loadGVLHP();
   }
@@ -65,13 +73,6 @@ export class ModalGiaovienlophocphanComponent implements OnInit {
   }
 
   private loadGVLHP() {
-    let maBac = parseInt(this.ctdt.maBac);
-    this.nganhNgheService.getNganhNghebymaBac(maBac).subscribe(dsnn => {
-      this.dsNganhNghe = dsnn;
-      if (dsnn.length !== 0) {
-        this.ctdt.maNganhNghe = dsnn[0].maNganhNghe;
-      }
-    });
     this.maChuongTrinhDaoTao = this.convertToMaChuongTrinhDaoTao(this.ctdt);
     this.lopHocPhanService.getLopHocPhanbyCTDTandHocKi(this.maChuongTrinhDaoTao, this.hocKi).subscribe(data => {
       this.dsLHP = data.dsLHP;
@@ -93,6 +94,7 @@ export class ModalGiaovienlophocphanComponent implements OnInit {
   ngOnInit(): void {
     this.bacService.getBac().subscribe(dsbac => this.dsBac = dsbac);
     this.lhdtService.getLHDT().subscribe(dslhdt => this.dsLoaiHinhDaoTao = dslhdt);
+    this.nganhNgheService.getNganhNghebymaBac(parseInt(this.ctdt.maBac)).subscribe(dsnn => this.dsNganhNghe = dsnn);
     this.loadGVLHP();
   }
 

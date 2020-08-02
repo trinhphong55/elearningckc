@@ -1,120 +1,100 @@
-<main>
-    <div class="bg__caothang__light">
-        <div class="pt-4">
-            <section class="breadcrumb_container">
-                <div class="container-fluid pl-md-0">
-                    <nav class="breadcrumb_nav">
-                        <li class="breadcrumb_item"><a class="breadcrumb_link" href="#">Trang chủ</a></li>
-                        <li class="breadcrumb_item"><a class="breadcrumb_link" href="#">Chủ đề</a></li>
-                        <li class="breadcrumb_item"><a class="breadcrumb_link" href="#">Lorem ipsum dolor sit amet.</a></li>
-                    </nav>
+<div class="bg__caothang__light">
+    <app-breadcrumb></app-breadcrumb>
+    <section class="search_page__wrapper mt-4">
+        <div class="container-fluid bg-white shadow rounded-lg">
+            <div class="px-3 py-4 p-lg-5">
+                <div class="row search_page__form justify-content-center">
+                    <div class="col-md-11">
+                        <div class="row">
+                            <div class="col">
+                                <input class="form-control mb-3 mb-md-0" placeholder="Nhập từ khoá bài viết bạn muốn tìm...">
+                            </div>
+                            <div class="col-md-3 col-lg-2">
+                                <select class="form-control mb-3 mb-md-0">
+                                    <option class="d-none">Chủ đề</option>
+                                    <option>Tin tức</option>
+                                    <option>Thông báo</option>
+                                </select>
+                            </div>
+                            <div class="col-md-auto">
+                                <button class="w-100 btn btn-primary bg__caothang px-md-4 px-lg-5">Tìm kiếm</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </section>
+            </div>
         </div>
-        <section class="search_page__wrapper mt-4">
-            <div class="container-fluid bg-white shadow rounded-lg">
-                <div class="px-3 py-4 p-lg-5">
-                    <div class="row search_page__form justify-content-center">
-                        <div class="col-md-11">
-                            <div class="row">
-                                <div class="col">
-                                    <input class="form-control mb-3 mb-md-0" placeholder="Nhập từ khoá bài viết bạn muốn tìm...">
-                                </div>
-                                <div class="col-md-3 col-lg-2">
-                                    <select class="form-control mb-3 mb-md-0">
-                                        <option class="d-none">Chủ đề</option>
-                                        <option>Tin tức</option>
-                                        <option>Thông báo</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-auto">
-                                    <button class="w-100 btn btn-primary bg__caothang px-md-4 px-lg-5">Tìm kiếm</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="container-fluid bg-white shadow rounded-lg mt-4">
-                <div class="px-3 py-4 p-lg-5">
-                    <div class="row justify-content-center">
-                        <div class="col-md-11">
-                            <div class="h5 m-0">Có 15 kết quả</div>
-                            <div class="search_page__result mt-4">
-                                <div class="py-4 border-top">
-                                    <div class="row">
-                                        <div class="col-12 col-sm-auto">
-                                            <div class="search_page__result__image mx-auto"><img class="lazy" data-src="../../../assets/img/news/olympic.jpg" alt="result item"></div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="search_page__result__title mt-2 mt-sm-0"><a class="font-weight-bold text-reset" href="#">[S4L] KẾT QUẢ SOLUTIONS FOR LIFE KỲ 03 TRANSLATING INTO PROTEIN</a></div>
-                                            <div class="small mt-2"><span class="mr-3"><span class="mdi mdi-pencil mr-1"></span><strong>Trần Quang Khải</strong></span><span><span class="mdi mdi-clock mr-1"></span><span>15h15 26/6/2020</span></span></div>
-                                            <div class="mt-2">CLB Tin học xin chúc mừng bạn Lê Hoàng Khang (CĐ TH 19C) và bạn Võ Bằng Kiều (CĐ TH 19D) đã có lời giải chính xác cho bài toán kỳ 03 Solutions For Life với chủ đề “Translating into Protein”. Thân mời bạn đến VP. BM. Tin học lầu 7 dãy F vào lúc 11h15 ngày thứ 4 (18.12.2019) để nhận thưởng.</div>
-                                        </div>
+        <div class="container-fluid bg-white shadow rounded-lg mt-4">
+            <div class="px-3 py-4 p-lg-5">
+                <div class="row justify-content-center">
+                    <div class="col-md-11">
+                        <div class="h5 m-0">Có 15 kết quả</div>
+                        <div class="search_page__result mt-4">
+                            <div class="py-4 border-top">
+                                <div class="row">
+                                    <div class="col-12 col-sm-auto">
+                                        <div class="search_page__result__image mx-auto"><img class="lazy" data-src="../../../assets/img/news/olympic.jpg" alt="result item"></div>
                                     </div>
-                                </div>
-                                <div class="py-4 border-top">
-                                    <div class="row">
-                                        <div class="col-12 col-sm-auto">
-                                            <div class="search_page__result__image mx-auto"><img class="lazy" data-src="../../../assets/img/news/olympic.jpg"  alt="result item"></div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="search_page__result__title mt-2 mt-sm-0"><a class="font-weight-bold text-reset" href="#">[S4L] KẾT QUẢ SOLUTIONS FOR LIFE KỲ 03 TRANSLATING INTO PROTEIN</a></div>
-                                            <div class="small mt-2"><span class="mr-3"><span class="mdi mdi-pencil mr-1"></span><strong>Trần Quang Khải</strong></span><span><span class="mdi mdi-clock mr-1"></span><span>15h15 26/6/2020</span></span></div>
-                                            <div class="mt-2">CLB Tin học xin chúc mừng bạn Lê Hoàng Khang (CĐ TH 19C) và bạn Võ Bằng Kiều (CĐ TH 19D) đã có lời giải chính xác cho bài toán kỳ 03 Solutions For Life với chủ đề “Translating into Protein”. Thân mời bạn đến VP. BM. Tin học lầu 7 dãy F vào lúc 11h15 ngày thứ 4 (18.12.2019) để nhận thưởng.</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="py-4 border-top">
-                                    <div class="row">
-                                        <div class="col-12 col-sm-auto">
-                                            <div class="search_page__result__image mx-auto"><img class="lazy" data-src="../../../assets/img/news/olympic.jpg"  alt="result item"></div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="search_page__result__title mt-2 mt-sm-0"><a class="font-weight-bold text-reset" href="#">[S4L] KẾT QUẢ SOLUTIONS FOR LIFE KỲ 03 TRANSLATING INTO PROTEIN</a></div>
-                                            <div class="small mt-2"><span class="mr-3"><span class="mdi mdi-pencil mr-1"></span><strong>Trần Quang Khải</strong></span><span><span class="mdi mdi-clock mr-1"></span><span>15h15 26/6/2020</span></span></div>
-                                            <div class="mt-2">CLB Tin học xin chúc mừng bạn Lê Hoàng Khang (CĐ TH 19C) và bạn Võ Bằng Kiều (CĐ TH 19D) đã có lời giải chính xác cho bài toán kỳ 03 Solutions For Life với chủ đề “Translating into Protein”. Thân mời bạn đến VP. BM. Tin học lầu 7 dãy F vào lúc 11h15 ngày thứ 4 (18.12.2019) để nhận thưởng.</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="py-4 border-top">
-                                    <div class="row">
-                                        <div class="col-12 col-sm-auto">
-                                            <div class="search_page__result__image mx-auto"><img class="lazy" data-src="../../../assets/img/news/olympic.jpg"  alt="result item"></div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="search_page__result__title mt-2 mt-sm-0"><a class="font-weight-bold text-reset" href="#">[S4L] KẾT QUẢ SOLUTIONS FOR LIFE KỲ 03 TRANSLATING INTO PROTEIN</a></div>
-                                            <div class="small mt-2"><span class="mr-3"><span class="mdi mdi-pencil mr-1"></span><strong>Trần Quang Khải</strong></span><span><span class="mdi mdi-clock mr-1"></span><span>15h15 26/6/2020</span></span></div>
-                                            <div class="mt-2">CLB Tin học xin chúc mừng bạn Lê Hoàng Khang (CĐ TH 19C) và bạn Võ Bằng Kiều (CĐ TH 19D) đã có lời giải chính xác cho bài toán kỳ 03 Solutions For Life với chủ đề “Translating into Protein”. Thân mời bạn đến VP. BM. Tin học lầu 7 dãy F vào lúc 11h15 ngày thứ 4 (18.12.2019) để nhận thưởng.</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="py-4 border-top">
-                                    <div class="row">
-                                        <div class="col-12 col-sm-auto">
-                                            <div class="search_page__result__image mx-auto"><img class="lazy" data-src="../../../assets/img/news/olympic.jpg"  alt="result item"></div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="search_page__result__title mt-2 mt-sm-0"><a class="font-weight-bold text-reset" href="#">[S4L] KẾT QUẢ SOLUTIONS FOR LIFE KỲ 03 TRANSLATING INTO PROTEIN</a></div>
-                                            <div class="small mt-2"><span class="mr-3"><span class="mdi mdi-pencil mr-1"></span><strong>Trần Quang Khải</strong></span><span><span class="mdi mdi-clock mr-1"></span><span>15h15 26/6/2020</span></span></div>
-                                            <div class="mt-2">CLB Tin học xin chúc mừng bạn Lê Hoàng Khang (CĐ TH 19C) và bạn Võ Bằng Kiều (CĐ TH 19D) đã có lời giải chính xác cho bài toán kỳ 03 Solutions For Life với chủ đề “Translating into Protein”. Thân mời bạn đến VP. BM. Tin học lầu 7 dãy F vào lúc 11h15 ngày thứ 4 (18.12.2019) để nhận thưởng.</div>
-                                        </div>
+                                    <div class="col">
+                                        <div class="search_page__result__title mt-2 mt-sm-0"><a class="font-weight-bold text-reset" href="#">[S4L] KẾT QUẢ SOLUTIONS FOR LIFE KỲ 03 TRANSLATING INTO PROTEIN</a></div>
+                                        <div class="small mt-2"><span class="mr-3"><span class="mdi mdi-pencil mr-1"></span><strong>Trần Quang Khải</strong></span><span><span class="mdi mdi-clock mr-1"></span><span>15h15 26/6/2020</span></span></div>
+                                        <div class="mt-2">CLB Tin học xin chúc mừng bạn Lê Hoàng Khang (CĐ TH 19C) và bạn Võ Bằng Kiều (CĐ TH 19D) đã có lời giải chính xác cho bài toán kỳ 03 Solutions For Life với chủ đề “Translating into Protein”. Thân mời bạn đến VP. BM. Tin học lầu 7 dãy F vào lúc 11h15 ngày thứ 4 (18.12.2019) để nhận thưởng.</div>
                                     </div>
                                 </div>
                             </div>
-                            <nav class="search_page__pagination mt-4"><a class="mx-1 mx-md-2" href="#">Quay lại</a><a class="mx-1 mx-md-2 search_page__pagination__item" href="#">1</a><a class="mx-1 mx-md-2 search_page__pagination__item active" href="#">2</a><a class="mx-1 mx-md-2 search_page__pagination__item" href="#">3</a><a class="mx-1 mx-md-2" href="#">Tiếp theo</a></nav>
+                            <div class="py-4 border-top">
+                                <div class="row">
+                                    <div class="col-12 col-sm-auto">
+                                        <div class="search_page__result__image mx-auto"><img class="lazy" data-src="../../../assets/img/news/olympic.jpg"  alt="result item"></div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="search_page__result__title mt-2 mt-sm-0"><a class="font-weight-bold text-reset" href="#">[S4L] KẾT QUẢ SOLUTIONS FOR LIFE KỲ 03 TRANSLATING INTO PROTEIN</a></div>
+                                        <div class="small mt-2"><span class="mr-3"><span class="mdi mdi-pencil mr-1"></span><strong>Trần Quang Khải</strong></span><span><span class="mdi mdi-clock mr-1"></span><span>15h15 26/6/2020</span></span></div>
+                                        <div class="mt-2">CLB Tin học xin chúc mừng bạn Lê Hoàng Khang (CĐ TH 19C) và bạn Võ Bằng Kiều (CĐ TH 19D) đã có lời giải chính xác cho bài toán kỳ 03 Solutions For Life với chủ đề “Translating into Protein”. Thân mời bạn đến VP. BM. Tin học lầu 7 dãy F vào lúc 11h15 ngày thứ 4 (18.12.2019) để nhận thưởng.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="py-4 border-top">
+                                <div class="row">
+                                    <div class="col-12 col-sm-auto">
+                                        <div class="search_page__result__image mx-auto"><img class="lazy" data-src="../../../assets/img/news/olympic.jpg"  alt="result item"></div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="search_page__result__title mt-2 mt-sm-0"><a class="font-weight-bold text-reset" href="#">[S4L] KẾT QUẢ SOLUTIONS FOR LIFE KỲ 03 TRANSLATING INTO PROTEIN</a></div>
+                                        <div class="small mt-2"><span class="mr-3"><span class="mdi mdi-pencil mr-1"></span><strong>Trần Quang Khải</strong></span><span><span class="mdi mdi-clock mr-1"></span><span>15h15 26/6/2020</span></span></div>
+                                        <div class="mt-2">CLB Tin học xin chúc mừng bạn Lê Hoàng Khang (CĐ TH 19C) và bạn Võ Bằng Kiều (CĐ TH 19D) đã có lời giải chính xác cho bài toán kỳ 03 Solutions For Life với chủ đề “Translating into Protein”. Thân mời bạn đến VP. BM. Tin học lầu 7 dãy F vào lúc 11h15 ngày thứ 4 (18.12.2019) để nhận thưởng.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="py-4 border-top">
+                                <div class="row">
+                                    <div class="col-12 col-sm-auto">
+                                        <div class="search_page__result__image mx-auto"><img class="lazy" data-src="../../../assets/img/news/olympic.jpg"  alt="result item"></div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="search_page__result__title mt-2 mt-sm-0"><a class="font-weight-bold text-reset" href="#">[S4L] KẾT QUẢ SOLUTIONS FOR LIFE KỲ 03 TRANSLATING INTO PROTEIN</a></div>
+                                        <div class="small mt-2"><span class="mr-3"><span class="mdi mdi-pencil mr-1"></span><strong>Trần Quang Khải</strong></span><span><span class="mdi mdi-clock mr-1"></span><span>15h15 26/6/2020</span></span></div>
+                                        <div class="mt-2">CLB Tin học xin chúc mừng bạn Lê Hoàng Khang (CĐ TH 19C) và bạn Võ Bằng Kiều (CĐ TH 19D) đã có lời giải chính xác cho bài toán kỳ 03 Solutions For Life với chủ đề “Translating into Protein”. Thân mời bạn đến VP. BM. Tin học lầu 7 dãy F vào lúc 11h15 ngày thứ 4 (18.12.2019) để nhận thưởng.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="py-4 border-top">
+                                <div class="row">
+                                    <div class="col-12 col-sm-auto">
+                                        <div class="search_page__result__image mx-auto"><img class="lazy" data-src="../../../assets/img/news/olympic.jpg"  alt="result item"></div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="search_page__result__title mt-2 mt-sm-0"><a class="font-weight-bold text-reset" href="#">[S4L] KẾT QUẢ SOLUTIONS FOR LIFE KỲ 03 TRANSLATING INTO PROTEIN</a></div>
+                                        <div class="small mt-2"><span class="mr-3"><span class="mdi mdi-pencil mr-1"></span><strong>Trần Quang Khải</strong></span><span><span class="mdi mdi-clock mr-1"></span><span>15h15 26/6/2020</span></span></div>
+                                        <div class="mt-2">CLB Tin học xin chúc mừng bạn Lê Hoàng Khang (CĐ TH 19C) và bạn Võ Bằng Kiều (CĐ TH 19D) đã có lời giải chính xác cho bài toán kỳ 03 Solutions For Life với chủ đề “Translating into Protein”. Thân mời bạn đến VP. BM. Tin học lầu 7 dãy F vào lúc 11h15 ngày thứ 4 (18.12.2019) để nhận thưởng.</div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                        <nav class="search_page__pagination mt-4"><a class="mx-1 mx-md-2" href="#">Quay lại</a><a class="mx-1 mx-md-2 search_page__pagination__item" href="#">1</a><a class="mx-1 mx-md-2 search_page__pagination__item active" href="#">2</a><a class="mx-1 mx-md-2 search_page__pagination__item" href="#">3</a><a class="mx-1 mx-md-2" href="#">Tiếp theo</a></nav>
                     </div>
                 </div>
             </div>
-        </section>
-    </div>
-    <section class="social_media__wrapper shadow"><a class="social_media__facebook fab fa-facebook-f bg_gradient_facebook" href="#"></a><a class="social_media__youtube fab fa-youtube" href="#"></a>
-        <div class="social_media__search bg-white">
-            <form class="header_search">
-                <input class="header_search__input bg-white" type="text" placeholder="Nhập keyword...">
-                <button class="header_search__button" type="reset"></button>
-            </form>
-        </div><a class="social_media__BackToTop mdi mdi-chevron-up bg__caothang" href="#"></a>
+        </div>
     </section>
-</main>
+</div>

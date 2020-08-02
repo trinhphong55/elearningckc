@@ -1,4 +1,4 @@
-<app-modal class="modal_chucnang__wrapper" id="ctdt_giaovienlophocphan">
+<app-modal class="modal_chucnang__wrapper show" id="ctdt_giaovienlophocphan">
   <div (click)="closeModal('ctdt_giaovienlophocphan')" class="modal_chucnang__close mdi mdi-chevron-left text-white">
   </div>
   <div class="container-fluid mt-3">
@@ -9,10 +9,10 @@
       <div class="col-12">
         <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
           <div class="row justify-content-center align-items-center">
-            <div class="col-3">
+            <div class="col-6">
               <div class="form-group">
                 <label>Bậc</label>
-                <select class="form-control" [(ngModel)]="ctdt.maBac" (change)="select()">
+                <select class="form-control" [(ngModel)]="ctdt.maBac" (change)="selectBac()">
                   <option *ngFor="let bac of dsBac" [value]="bac.maBac">{{ bac.tenBac }}</option>
                 </select>
               </div>
@@ -33,6 +33,13 @@
               </div>
               <div class="form-group">
                 <label>Khoá</label>
+                <input class="form-control" type="number" min="15" max="50" [(ngModel)]="ctdt.khoaHoc"
+                  (change)="select()">
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="form-group">
+                <label>Lớp học</label>
                 <input class="form-control" type="number" min="15" max="50" [(ngModel)]="ctdt.khoaHoc"
                   (change)="select()">
               </div>
@@ -76,7 +83,7 @@
               <tr *ngFor="let lhp of dsLHP; index as idx">
                 <td class="text-center">{{idx + 1}}</td>
                 <td>
-                  <input class="form-control" [value]="lhp.tenLopHocPhan" disabled>
+                  <input class="form-control"  title="haha" [value]="lhp.tenLopHocPhan" disabled>
                 </td>
                 <td>
                   <input class="form-control" [value]="dsMaLoaiMonHoc[idx]" disabled>

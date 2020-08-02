@@ -216,6 +216,7 @@ export class ModalChitieudaotaoComponent implements OnInit {
     this.msgList = [];
     this.deleteLopHoc(maNganh, maBac);
     this.getLopHoc();
+    this.lopTams = [];
   }
   /**
    * XepLopTheoMaNganh
@@ -236,19 +237,18 @@ export class ModalChitieudaotaoComponent implements OnInit {
     this.isBtnHocPhanDisplay = true;
   }
   public onChangeLoaiHinhDaoTao() {
-    this.layChiTieuTuTienTo();
     this.loadNganh();
   }
   public onChangeKhoaHoc() {
-    this.layChiTieuTuTienTo();
     this.loadNganh();
+    this.lopTams = [];
   }
   //bắt sự kiện show môn theo ngành
   changed() {
-    this.layChiTieuTuTienTo();
     this.loadNganh();
   }
   loadNganh() {
+
     this.layChiTieuTuTienTo();
     this.setChiTieuTheoTienTo();
     this.nganhtamlist = [];
@@ -373,7 +373,6 @@ export class ModalChitieudaotaoComponent implements OnInit {
           let maHople = this.taoTienTo(maNganh, maBac, khoa, loai);
           if (el.tienTo == maHople) {
             element.get('soChiTieu').setValue(el.count);
-            console.log(element.value);
           }
         });
       });
@@ -565,6 +564,9 @@ export class ModalChitieudaotaoComponent implements OnInit {
     if (this.dsSinhVien) {
       this.msg = 'Danh sách sinh viên';
       this.importExcel();
+      this.getSiSo();
+      this.getLopHoc();
+
     } else {
       this.msg =
         'Danh sách sinh viên trống, không có sinh viên nào được thêm vào';

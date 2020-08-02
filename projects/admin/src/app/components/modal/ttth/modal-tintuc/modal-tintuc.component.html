@@ -1,0 +1,151 @@
+<app-modal class="modal_chucnang__wrapper " id="ttth-tintuc">
+  <div (click)="closeModal('ttth-tintuc')" class="modal_chucnang__close mdi mdi-chevron-left text-white"></div>
+  <div class="container-fluid mt-3">
+    <div class="row">
+      <div class="col-12">
+        <h1 class="text-center text-white">Quản lý tin tức </h1>
+      </div>
+      <div class="col-12" [ngClass]="{ 'd-none': selectedItem }">
+        <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
+          <div class="row justify-content-center align-items-center">
+            <div class="col-9">
+              <div class="form-group">
+                <label>Chọn loại tin tức</label>
+                <select class="modal_chucnang__select2 form-control" #id_loaitintuc>
+                  <option></option>
+                  <option value="Tin tức">Tin tức</option>
+                  <option value="Lịch khai giảng">Lịch khai giảng</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlFile1">Tải hình ảnh</label>
+                <input type="file" name="image" class="form-control-file" (change)="onFileSelected($event)"
+                  ng2FileSelect [uploader]="uploader" accept="image/x-png,image/gif,image/jpeg">
+                  <img style="width:180px;height:180px" id="blah" [src]="imageSrc || 'http://placehold.it/180'"
+                  alt="your image" />
+              </div>
+              <div class="form-group">
+                <label>Tiêu đề </label>
+                <input type="text" class="form-control" #tentintuc>
+              </div>
+              <div class="form-group">
+                <label>Mô tả </label>
+                <input type="text" class="form-control" #description>
+              </div>
+              <div class="form-group">
+                <label>Nội dung</label>
+                <ckeditor [editor]="Editor" (change)="onChange($event)"></ckeditor>
+              </div>
+            </div>
+            <div class="col-auto">
+              <div class="modal_chucnang__group__button">
+                <button class="modal_chucnang__button btn btn-outline-primary px-4 mx-2" [disabled]="!id_loaitintuc.value || !tentintuc.value|| !description.value || !imageSrc"
+                  (click)="addTinTuc(id_loaitintuc.value,tentintuc.value, description.value);id_loaitintuc.value=''; tentintuc.value=''; description.value='';uploader.uploadAll()"><img
+                    class="modal_chucnang__button__icon mb-2" src="assets/img/icons/add.png" alt="image icon">
+                  <div>Thêm mới</div>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12" *ngIf="selectedItem">
+        <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
+          <div class="row justify-content-center align-items-center">
+            <div class="col-9">
+              <div class="form-group">
+                <label>Chọn loại tin tức</label>
+                <select class="modal_chucnang__select2 form-control"
+                  [(ngModel)]="selectedItem.id_loaitintuc">
+                  <option></option>
+                  <option value="Tin tức">Tin tức</option>
+                  <option value="Lịch khai giảng">Lịch khai giảng</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlFile1">Tải hình ảnh</label>
+                <input type="file" name="image" class="form-control-file" (change)="onFileSelected($event)"
+                ng2FileSelect [uploader]="uploader" accept="image/x-png,image/gif,image/jpeg">
+                <img style="width:180px;height:180px" id="blah" [src]="imageSrc || selectedItem.image"
+                alt="your image" />
+              </div>
+              <div class="form-group">
+                <label>Tiêu đề </label>
+                <input type="text" class="form-control"  [(ngModel)]="selectedItem.tentintuc">
+              </div>
+              <div class="form-group">
+                <label>Mô tả </label>
+                <input type="text" class="form-control"  [(ngModel)]="selectedItem.description">
+              </div>
+              <div class="form-group">
+                <label>Nội dung</label>
+                <ckeditor [editor]="Editor" [(ngModel)]="selectedItem.noidung" ></ckeditor>
+              </div>
+              <div class="form-group">
+                <label>Hiển thị</label>
+                  <div class="form-check">
+                    <input class="form-check-input" (change)="getValueCheckBox($event)"  *ngIf="selectedItem.hienthi == true" type="checkbox" checked>
+                    <input class="form-check-input" (change)="getValueCheckBox($event)"  *ngIf="selectedItem.hienthi == false" type="checkbox">
+                  </div>
+              </div>
+            </div>
+            <div class="col-auto">
+              <div class="modal_chucnang__group__button">
+                <button class="modal_chucnang__button btn btn-outline-success px-4 mx-2"
+                  (click)="saveTinTuc(selectedItem);uploader.uploadAll()"><img class="modal_chucnang__button__icon mb-2"
+                    src="assets/img/icons/upgrade.png" alt="image icon">
+                  <div>Cập nhật</div>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
+          <table class="modal_chucnang__table table table-hover"  *ngIf="TinTuc" datatable="ng">
+            <thead class="bg__caothang text-white">
+              <tr>
+                <th>#</th>
+                <th scope="col">Menu</th>
+                <th scope="col">Image</th>
+                <th scope="col">Tiêu đề </th>
+                <th scope="col">Mô tả</th>
+                <th scope="col">Hiển thị</th>
+                <th scope="col">Người tạo</th>
+                <th scope="col">Người sửa</th>
+                <th class="text-center" scope="col"><span
+                    class="modal_chucnang__button__save mdi mdi-content-save-outline mdi-24px"></span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let tintuc of TinTuc; let i = index">
+                <td style="max-width: 50px">{{i + 1}}</td>
+                <td>{{tintuc.id_loaitintuc}}</td>
+                <td style="max-width: 100px">
+                  <img style="width: 60px;height: 60px;" src="{{tintuc.image}}" alt="">
+                </td>
+                <td>{{tintuc.tentintuc}}</td>
+                <td>{{tintuc.description}}</td>
+                <td>
+                  <div class="custom-control custom-checkbox">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" [checked]="tintuc.hienthi">
+                    </div>
+                  </div>
+                </td>
+                <td>{{tintuc.nguoitao}}</td>
+                <td>{{tintuc.nguoisua}}</td>
+                <td class="text-center">
+                  <span class="modal_chucnang__button__delete mdi mdi-pencil mdi-24px  mr-2"
+                    (click)="onSelect(tintuc)"></span>
+                  <span class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px" (click)="xoaTinTuc(tintuc)"></span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-modal>
