@@ -64,8 +64,8 @@ export class ModalQuanlybosuutapcnttComponent implements OnInit {
           .editItemTienIch(this.boSuuTapForm.value)
           .subscribe((res) => {
             this.loadDanhSachBST();
-            console.log(' Tin tuc duoc chinh sua thanh cong!', res);
-            this.toastr.success('Chỉnh sửa bài viết thành công!');
+            console.log('  chinh sua thanh cong!', res);
+            this.toastr.success('Chỉnh sửa item thành công!');
           });
       }
     } else {
@@ -76,8 +76,8 @@ export class ModalQuanlybosuutapcnttComponent implements OnInit {
           .themItemBST(this.boSuuTapForm.value)
           .subscribe((res) => {
             this.loadDanhSachBST();
-            console.log(' Tien ich duoc them thanh cong!', res);
-            this.toastr.success('Thêm tiện ích thành công !');
+            console.log(' them thanh cong!', res);
+            this.toastr.success('Thêm item thành công !');
           });
       }
     }
