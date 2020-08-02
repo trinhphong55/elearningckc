@@ -39,15 +39,12 @@ export class LopHocService {
   update(id, data) {
     return this.http.put(`${baseUrl}/${id}`, data);
   }
-<<<<<<< HEAD
   updateFB(id, data) {
     return this.http.put(`${baseUrl}/${id}/facebook`, data);
   }
-=======
 
 
 
->>>>>>> master
   delete(id) {
     return this.http.delete(`${baseUrl}/${id}`);
   }
