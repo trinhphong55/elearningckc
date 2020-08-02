@@ -1,16 +1,19 @@
 const router = require("express").Router();
 const GiaoVienRoutes = require("./GiaoVien");
+const MonHoc = require("./MonHoc");
+const ChuongTrinhDaoTao = require("./ChuongTrinhDaoTao");
 const KeHoachDaoTao = require("./KeHoachDaoTao");
 const LoaiHinhDaoTao = require("./LoaiHinhDaoTao");
 const LopHocPhan = require("./LopHocPhan");
 const LoaiMonHoc = require("./LoaiMonHoc");
+const groupFB = require("../api/groupFB");
 const sinhVien = require("./sinh-vien");
-const Diemsinhvien= require("./diemsinhvien");
-const MonHoc = require('./MonHoc');
-const ChuongTrinhDaoTao = require('./ChuongTrinhDaoTao');
-const GiaoVienLopHocPhan = require('./GiaoVienLopHocPhan');
+const Diemsinhvien = require("./diemsinhvien");
+const GiaoVienLopHocPhan = require("./GiaoVienLopHocPhan");
+const cotDiemLHP = require("./cotdiem-lophocphan");
 
 router.use("/loaimonhoc", LoaiMonHoc);
+// router.use("/lophocphan", LopHocPhanRoutes);
 router.use("/giaovien", GiaoVienRoutes);
 router.use("/monhoc", MonHoc);
 router.use("/ctdt", ChuongTrinhDaoTao);
@@ -19,7 +22,6 @@ router.use("/lhdt", LoaiHinhDaoTao);
 router.use("/lophocphan", LopHocPhan);
 router.use('/gvlhp', GiaoVienLopHocPhan);
 
-const groupFB=require("../api/groupFB");
 const boMon = require("../api/bomon");
 const khoabomonController = require("../api/khoabomon");
 const loaidonviController = require("../api/loaidonvi");
@@ -30,6 +32,7 @@ const validate = khoabomonController.checkValidate();
 //nganhnghe bac
 const NganhNgheRoutes = require("./NganhNghe");
 const BacRoutes = require("./Bac");
+const diemsinhvienModel = require("../models/diemsinhvien.model");
 //nganhnghe
 router.use("/", NganhNgheRoutes);
 //bac
@@ -66,13 +69,14 @@ router.get("/lophoc", LopHoc.getAll);
 router.get("/lophoc/:id", LopHoc.getOne);
 router.get("/lophoc/:khoa/searchkhoa",LopHoc.getAllForkhoa);
 router.get("/lophoc/:maNganh/searchnganh",LopHoc.getAllForManghanh);
+router.get("/lophoc/mabac/:maBac",LopHoc.timLopTheoMaBac);//trinh phong them
 
 //Thêm dữ liệu vào KhoaBoMon
 router.post("/lophoc", LopHoc.checkValidate(), LopHoc.insert);
 //Xóa KhoaBoMon theo :id truyền vào
 router.delete("/lophoc/:id", LopHoc.delete);
 router.delete("/lophoc", LopHoc.removeAll);
-router.delete("/lophoc/:maNganh/search", LopHoc.deleteMaNganh);
+router.delete("/lophoc/:tienTo/tiento", LopHoc.deleteTheoTienTo);
 //Cập nhật KHoaBoMon theo :id và data truyền vào ( lư ý data ở request.body)
 router.put("/lophoc/:id", LopHoc.checkValidate(), LopHoc.update);
 router.put("/lophoc/:maLop/facebook", LopHoc.capNhatThongTinFaceBook);
@@ -94,8 +98,6 @@ router.put("/sinhvien", sinhVien.capNhatSinhVien);
 router.delete('/sinhvien',sinhVien.removeAll);
 router.get("/sinhvien/:maLopHoc/siso",sinhVien.tinhTongSinhVien);
 
-
-
-
-
+//========================= Routes CotDiemLopHocPhan ===================================
+router.get("/cotdiemlhp", cotDiemLHP.layDiemLHP);
 module.exports = router;

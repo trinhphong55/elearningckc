@@ -59,13 +59,19 @@ export class ModalGiaovienlophocphanComponent implements OnInit {
   }
 
   changeGiaoVien(maGV: string, maLopHocPhan: string) {
-    // alert('zo');
-    this.gvlhpService.changeGVLHP(maGV, maLopHocPhan).subscribe(status => {
-      console.log(status);
-    })
+    this.gvlhpService.changeGVLHP(maGV, maLopHocPhan).subscribe(data => {
+      console.log(data);
+    });
   }
 
   private loadGVLHP() {
+    let maBac = parseInt(this.ctdt.maBac);
+    this.nganhNgheService.getNganhNghebymaBac(maBac).subscribe(dsnn => {
+      this.dsNganhNghe = dsnn;
+      if (dsnn.length !== 0) {
+        this.ctdt.maNganhNghe = dsnn[0].maNganhNghe;
+      }
+    });
     this.maChuongTrinhDaoTao = this.convertToMaChuongTrinhDaoTao(this.ctdt);
     this.lopHocPhanService.getLopHocPhanbyCTDTandHocKi(this.maChuongTrinhDaoTao, this.hocKi).subscribe(data => {
       this.dsLHP = data.dsLHP;
@@ -87,7 +93,6 @@ export class ModalGiaovienlophocphanComponent implements OnInit {
   ngOnInit(): void {
     this.bacService.getBac().subscribe(dsbac => this.dsBac = dsbac);
     this.lhdtService.getLHDT().subscribe(dslhdt => this.dsLoaiHinhDaoTao = dslhdt);
-    this.nganhNgheService.getNganhnghe().subscribe(dsnn => this.dsNganhNghe = dsnn);
     this.loadGVLHP();
   }
 

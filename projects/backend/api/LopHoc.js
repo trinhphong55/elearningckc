@@ -65,22 +65,39 @@ exports.getAllForkhoa = async (req, res) => {
     res.json(error);
   }
 };
-exports.deleteMaNganh = async (req, res) => {
+exports.deleteTheoTienTo = async (req, res) => {
   try {
-    let LopHocs = await LopHoc.deleteMany({
-      maNganh: req.params.maNganh,
-    });
+    let TienTo = req.params.tienTo;
+    TienTo = TienTo.slice(0, 7);
+    if (TienTo.length >= 7) {
+      let LopHocs = await LopHoc.deleteMany({
+        maLopHoc: { $regex: TienTo + ".*" },
+      });
 
-    if (LopHocs.deletedCount === 0) {
-      res.json({ status: 200, ok: 1, msg: "Id nay khong ton tai" });
+      if (LopHocs.deletedCount === 0) {
+        res.status(200).json({
+          status: 200,
+          msg: "Xóa thất bại",
+          tienTo: TienTo,
+          xoa: LopHocs.deletedCount,
+        });
+      } else {
+        res.status(200).json({
+          status: 200,
+          msg: "Xóa thành công",
+          tienTo: TienTo,
+          xoa: LopHocs.deletedCount,
+        });
+      }
     } else {
-      res.json({
-        status: true,
-        msg: "Deleted successful",
+      res.status(200).json({
+        status: 200,
+        msg: "Tiền tố truyền vào thiếu thông tin",
+        tienTo: TienTo,
       });
     }
   } catch (error) {
-    res.json(error);
+    res.status(500).json(error);
   }
 };
 exports.update = async (req, res) => {
@@ -131,23 +148,30 @@ exports.insert = async (req, res) => {
         });
       }
       if (req.body.tenLop == element.tenLop) {
-        res.json({
+        return res.json({
           status: 200,
           ok: false,
           msg: "Tên này đã tồn tại",
         });
       }
+      if (req.body.tenVietTat == element.tenVietTat) {
+        return res.json({
+          status: 200,
+          ok: false,
+          msg: "Tên viết tắt này đã tồn tại",
+        });
+      }
     });
-
+    //res.json(setLopHoc(req))
     const lophoc = new LopHoc(setLopHoc(req));
     const data = await lophoc.save();
-    result = {
+
+    res.json({
       status: 200,
       ok: true,
       msg: "Thêm thành công Lớp học",
       data: data,
-    };
-    res.json(result);
+    });
   } catch (error) {
     res.json(error);
   }
@@ -224,10 +248,14 @@ exports.timLopTheoTienTo = async (req, res) => {
   try {
     let TienTo = req.params.tienTo;
     TienTo = TienTo.slice(0, 7);
-    const lop = await LopHoc.find({
-      maLopHoc: { $regex: ".*" + TienTo + ".*" },
-    });
-    res.json({ data: lop, count: lop.length });
+    if (TienTo.length >= 7) {
+      const lop = await LopHoc.find({
+        maLopHoc: { $regex: +TienTo + ".*" },
+      });
+      res.json({ count: lop.length, tienTo: TienTo, data: lop });
+    } else {
+      res.json({ count: 0, tienTo: TienTo, data: null });
+    }
   } catch (error) {
     res.json(error);
   }
@@ -249,7 +277,7 @@ exports.capNhatThongTinFaceBook = async (req, res) => {
       status: 200,
       ok: false,
       msg: "",
-      data:findLopHoc
+      data: findLopHoc,
     };
     if (updateKhoa.nModified === 0) {
       result.msg = "Cập nhật thành công, không có gì thay đổi";
@@ -263,3 +291,16 @@ exports.capNhatThongTinFaceBook = async (req, res) => {
     res.json(error);
   }
 };
+
+
+//trinhphong
+exports.timLopTheoMaBac=  async (req, res) => {
+
+  var bac = parseInt(req.params.maBac);
+  try {
+    var data = await LopHoc.find({maBac:bac}).exec();
+    res.json(data);
+  } catch (error) {
+    res.json({ message: error });
+  }
+}

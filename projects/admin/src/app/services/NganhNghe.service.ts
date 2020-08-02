@@ -32,7 +32,7 @@ export class NganhNgheService {
     } catch (error) {
       return(error)
     }
-  
+
   }
 
   //Them moi 1nganh
@@ -68,6 +68,11 @@ export class NganhNgheService {
       return error;
     }
 
+  }
+
+  getNganhNghebymaBac(maBac: number): Observable<nganhnghe[]> {
+    let url = "https://localhost:4100/api/dsnn"
+    return this.http.get<nganhnghe[]>(`${url}/${maBac}`);
   }
 
 }

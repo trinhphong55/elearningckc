@@ -1,0 +1,71 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+                <button mat-button>Trả bài</button>
+                <button mat-button><i class="fas fa-envelope"></i></button>
+        </div> 
+        <div class="col-md-2">
+            <form>
+                <div class="form-group">
+                  <input type="diem" class="form-control"  placeholder="Nhập điểm">
+                </div>
+              </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <section class="example-section">
+                <span class="example-list-section">
+                  <mat-checkbox class="example-margin"
+                                [checked]="allComplete"
+                                [indeterminate]="someComplete()"
+                                (change)="setAll($event.checked)">
+                    {{task.name}}
+                  </mat-checkbox>
+                </span>
+                <span class="example-list-section">
+                  <ul>
+                    <li *ngFor="let subtask of task.subtasks">
+                      <mat-checkbox [(ngModel)]="subtask.completed"
+                                    [color]="subtask.color"
+                                    (ngModelChange)="updateAllComplete()">
+                        {{subtask.name}}
+                      </mat-checkbox>
+                    </li>
+                  </ul>
+                </span>
+              </section>
+        </div>
+        <div class="col-md-8">
+            <div class="content">
+                    <div class="title">
+                        <h4>Tên bài kiểm tra</h4>
+                    </div>
+                    <div class="danop-dagiao">
+                        <div class="danop">
+                            <h5>0 đã nộp</h5>
+                        </div>
+                        <div class="dagiao">
+                            <h5>1 đã giao</h5>
+                        </div>
+                    </div>
+                    <div class="bieumau">
+                        <a class="uqZtlf x0HGk QRiHXd MymH0d maXJsd" target="_blank" aria-label="Tệp đính kèm: Google Biểu mẫu: Blank Quiz" jsaction="LWntbc" href="https://docs.google.com/forms/d/e/1FAIpQLSdLpk7V4B5Q_254H0qk6X3b1z4jWY_Nw5HdP4ptug92xuwrxQ/viewform?authuser=0" title="Blank Quiz" data-focus-id="hSRGPd-https://docs.google.com/forms/d/e/1FAIpQLSdLpk7V4B5Q_254H0qk6X3b1z4jWY_Nw5HdP4ptug92xuwrxQ/viewform?authuser=0"><div class="bxp7vf mAeA1"><img jsname="q4uQmd" jsaction="error:dyBsCf" src="https://lh5.googleusercontent.com/1lVHNFr3zoHbhQlIk8qd1LDcUbQiLb0VU8fTcbe8FQFNljzj31ja66X76BCmol93rs8Jea0=w90-h90-p" aria-hidden="true" data-mime-type="application/vnd.google-apps.freebird"><div class="S8qYve"><svg height="70px" width="105px" y="0px" x="0px" viewBox="0 0 105 70" enable-background="new 0 0 105 70"><g opacity=".5"><path d="m104.98 54.297c-0.017 0-0.017-54.297-0.017-54.297h-104.96v70h89.441s16.139-15.703 15.539-15.703z" fill="#E5E5E5"></path></g><polygon points="89.042 54.018 89.042 70 105 54.018" fill="#673ab7"></polygon><g opacity=".702"><polygon points="73.084 70 89.042 70 89.042 54.018" fill="#bbb"></polygon></g></svg></div></div><div class="J5AvUe"><div class="A6dC2c bKJwEd VBEdtc-Wvd9Cc zZN2Lb-Wvd9Cc">Blank Quiz</div><div class="cSyPgb cfaOwb"><div class="kRYv9b YVvGBb">Google Biểu mẫu</div></div></div></a>
+                    </div>
+                    <div class="select-box">
+                        <form class="example-form">
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Tất cả</mat-label>
+                                <mat-select multiple>
+                                    <mat-option>Tất cả </mat-option>
+                                    <mat-option>Đã nộp </mat-option>
+                                    <mat-option>Đã giao</mat-option>
+                                    <mat-option>Chưa chấm điểm</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </form>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>

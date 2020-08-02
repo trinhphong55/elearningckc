@@ -1,7 +1,8 @@
 import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
+import { SinhVien } from '../interfaces/SinhVien.interface';
+import { from } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
