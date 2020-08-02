@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -122,7 +123,9 @@ import { PageCaidatComponent } from './pages/page-caidat/page-caidat.component';
     MatExpansionModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatTableModule
+    MatTableModule,
+    HttpClientModule,
+    
   ],
   entryComponents: [
   ],

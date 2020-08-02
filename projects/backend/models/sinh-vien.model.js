@@ -72,8 +72,7 @@ const SinhVienSchema = new Schema({
   },
   email: {
     type: String,
-    required: true,
-    default: "baomat",
+    default: 'baomat',
   },
   matKhau: {
     type: String,

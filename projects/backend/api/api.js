@@ -100,4 +100,6 @@ router.get("/sinhvien/:maLopHoc/siso",sinhVien.tinhTongSinhVien);
 
 //========================= Routes CotDiemLopHocPhan ===================================
 router.get("/cotdiemlhp", cotDiemLHP.layDiemLHP);
+router.get("/cotdiemlhp/:maLopHocPhan", cotDiemLHP.layDiemLHPtheoMaLHP);
+
 module.exports = router;

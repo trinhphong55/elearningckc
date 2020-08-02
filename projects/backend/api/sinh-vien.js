@@ -12,6 +12,7 @@ setSinhVien = (req) => {
     maLopHoc: req.maLopHoc,
     nguoiTao: req.nguoiTao,
     nguoiChinhSua: req.nguoiChinhSua,
+    email:req.maSinhVien+'@caothang.edu.vn',
   };
 };
 setSinhVienUpdate = (req) => {
