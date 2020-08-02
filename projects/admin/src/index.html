@@ -1,16 +1,102 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Quản Lý Hệ Thống - Trường Cao Đẳng Kỹ Thuật Cao Thắng</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
 
-<head>
-  <meta charset="utf-8">
-  <title>Quản Lý Hệ Thống - Trường Cao Đẳng Kỹ Thuật Cao Thắng</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-</head>
+    <!-- SCRIPT FACEBOOK -->
 
-<body>
-  <app-root></app-root>
-</body>
+    <!-- Script để sử dụng social plugin facebook -->
+    <script
+      async
+      defer
+      crossorigin="anonymous"
+      src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v7.0&appId=726531241502023&autoLogAppEvents=1"
+      nonce="i06wgSqK"
+    ></script>
 
+    <!-- Script những thành phần quan trọng để sử dụng API facebook -->
+    <script>
+      var AppId = "726531241502023";
+      var accesstoken = "";
+      var FBLoaded = false;
+      window.fbAsyncInit = function () {
+        FB.init({
+          appId: AppId,
+          cookie: true,
+          xfbml: true,
+          version: "v7.0",
+        });
+        FB.AppEvents.logPageView();
+        FBLoaded = true;
+        // Kiểm tra trạng thái người dùng
+        FB.getLoginStatus(function (response) {
+          statusChangeCallback(response);
+        });
+      };
+
+      //Yêu cầu login Facebook và cấp quyền
+      function RequestLoginFB() {
+        window.location =
+          "http://graph.facebook.com/oauth/authorize?client_id=726531241502023&scope=pages_manage_posts,pages_manage_engagement,pages_manage_ads,pages_manage_metadata,pages_read_engagement,pages_read_user_content,pages_show_list,public_profile,email,user_likes,user_birthday,user_posts,user_photos,user_location,publish_to_groups&redirect_uri=https://localhost:4200/facebook/";
+      }
+    </script>
+
+    <script>
+      // Xử lý trạng thái đăng nhập
+      function statusChangeCallback(response) {
+        //User đã login facebook và login ứng dụng
+        if (response.status === "connected") {
+          showWelcome();
+        }
+        //User đã login facebook nhưng chưa login ứng dụng hoặc chưa login facebook
+        else {
+          ShowLoginButton();
+        }
+      }
+
+      // Hiển thị nút đăng nhập
+      function ShowLoginButton() {
+        document
+          .getElementById("btnLoginFB")
+          .setAttribute("style", "display:block");
+        document.getElementById("status").setAttribute("style", "display:none");
+      }
+
+      //Hàm welcome sử dụng API sau khi login
+      function showWelcome() {
+        FB.api("/me", function (response) {
+          document
+            .getElementById("btnLoginFB")
+            .setAttribute("style", "display:none");
+          console.log(response.name + " access granted");
+          document.getElementById("status").innerHTML = response.name;
+          document
+            .getElementById("status")
+            .setAttribute("style", "display:block");
+        });
+      }
+    </script>
+
+    <script>
+      (function (d, s, id) {
+        var js,
+          fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {
+          return;
+        }
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      })(document, "script", "facebook-jssdk");
+    </script>
+  </head>
+
+  <body>
+    <app-root></app-root>
+  </body>
 </html>

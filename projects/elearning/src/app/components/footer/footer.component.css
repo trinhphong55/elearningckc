@@ -1,0 +1,7 @@
+footer button{
+    outline: none;
+    position: fixed;
+    bottom: 20px;
+    left: 0;
+    z-index: 400000;
+}

@@ -6,6 +6,11 @@ body {
   font-weight: 300;
 }
 
+input,
+button {
+  font-weight: inherit;
+}
+
 body {
   overflow: auto;
 }

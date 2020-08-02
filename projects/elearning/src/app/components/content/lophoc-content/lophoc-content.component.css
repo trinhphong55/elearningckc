@@ -1,0 +1,249 @@
+header{
+    width: 100%;
+    display: flex;
+    padding: 0;
+    margin-top: 0px;
+    margin-bottom: 20px;
+        position: fixed;
+        top: 0;
+        z-index: 100;
+        width: 100%;
+        box-shadow: 0 2px 2px 0 rgba(0,0,0,0.2);
+        background-color: white;
+}
+header .title-lophoc{
+    width: 15%;
+    margin-right: 80px;
+}
+header .title-lophoc .tt-image{
+    width: 100%;
+}
+header .title-lophoc .tt-image img{
+    width: 90%;
+}
+header .option{
+    width: 10%;
+    margin-right: 20px;
+
+}
+header .option .mat-form-field{
+    width: 40%;
+    padding: 0;
+    font-size: 0.875rem;
+    margin: 0;
+    height: 0;
+    background: none;
+}
+
+
+
+header .title-lophoc div{
+    padding-left: 25px;
+    margin-top: 0px;
+    margin-left: 60px;
+}
+header .title-lophoc h4 p{
+    display: inline-block;
+}
+
+.lophoc-container{
+    width: 100%;
+    margin-top: 70px;
+}
+.list-lophoc{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.list-lophoc .list-lophoc-item{
+    width: 300px;
+    margin-left: 27px;
+    margin-top: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 1px solid #CCCCCC;
+    position: relative;
+}
+.list-lophoc .list-lophoc-item:hover{
+    box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302), 0 2px 6px 2px rgba(60,64,67,0.149);
+}
+.list-lophoc .list-lophoc-item .list-title{
+    background-size: cover;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.list-lophoc .list-lophoc-item .list-title.bg1{
+    background-image: url(https://gstatic.com/classroom/themes/img_graduation.jpg);
+}
+.list-lophoc .list-lophoc-item .list-title.bg2{
+    background-image: url(https://gstatic.com/classroom/themes/img_reachout.jpg);
+}
+.list-lophoc .list-lophoc-item .list-title.bg3{
+    background-image: url(https://gstatic.com/classroom/themes/img_athleticsjumping.jpg);
+}
+.list-lophoc .list-lophoc-item .list-title.bg4{
+    background-image: url(https://gstatic.com/classroom/themes/img_code.jpg);
+}
+.list-lophoc .list-lophoc-item .list-title.bg5{
+    background-image: url(https://gstatic.com/classroom/themes/Physics.jpg);
+}
+.list-lophoc .list-lophoc-item .list-title.bg6{
+    background-image: url(https://lh3.googleusercontent.com/-ewGoSAlgntY/VN0ojAcsQEI/AAAAAAAAAS4/1LHiJmbzHeE/w984-h209-no/138_classroomdesks_brown.jpg);
+}
+.list-lophoc .list-lophoc-item .list-title.bg7{
+    background-image: url(https://lh4.googleusercontent.com/-JVP8B-wKf-o/VN0omKitxJI/AAAAAAAAAUQ/TbGF8BU0OVs/w984-h209-no/149_world_googleblue.jpg);
+}
+.list-lophoc .list-lophoc-item .list-title.bg8{
+    background-image: url(https://lh6.googleusercontent.com/-P5kxT9fpbxA/VMqrR0Q2vXI/AAAAAAAAANI/vUhVQOgtj28/w1256-h267-no/71_dots_ltblue.jpg);
+}
+.list-lophoc .list-lophoc-item .list-title.bg9{
+    background-image: url(https://lh6.googleusercontent.com/-n7VYF50Z47M/VN0onnOtbdI/AAAAAAAAAYQ/lwyObtT3Xfo/w984-h209-no/153_chalkboard_bluegrey.jpg);
+}
+.list-lophoc-item .list-title .name--menu{
+    width: 100%;
+    overflow: hidden;
+    padding-top: 15px;
+    padding-left: 10px;
+    padding-bottom: 5px;
+    color: white;
+}
+.list-lophoc-item .list-title .name--menu .name-class{
+    width: 75%;
+    float: left;
+    
+    
+}
+.list-lophoc-item .list-title .name--menu .name-class div a{
+    width: 90%;
+    overflow: hidden;
+    display: inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin: 0;
+    font-size: 1.375rem;
+    font-weight: 400;
+    line-height: 1.75rem;
+    color: white;
+  
+}
+.list-lophoc-item .list-title .name--menu .name-class div{
+    line-height: 1.1;
+    font-weight: 500;
+}
+.list-lophoc-item .list-title .name--menu .name-class div span{
+   font-size: 0.675rem;
+    font-weight: 300;
+}
+.list-lophoc-item .list-title .name--menu .menu{
+    width: 25%;
+    float: right;
+}
+.list-lophoc-item .list-title .name--menu .menu button{
+    padding: 0;
+    text-align: center;
+    justify-content: center;
+}
+.list-main{
+    border-bottom: solid 1px #CCCCCC;
+    height: 140px;
+}
+.list-main .list-main-pd{
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+.list-main .list-main-pd .lm-denhang span{
+    color: #555555;
+    font-size: 0.875rem;
+}
+.list-main .list-main-pd .lm-gio-ten a{
+    font-size: 0.775rem;
+    color: black;
+}
+.list-bottom .list-bt{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.list-bottom .list-bt .name-teacher{
+    width: 80%;
+}
+.list-bottom .list-bt .name-teacher span{
+    color: black;
+    padding-left: 10px;
+    display: block;
+    margin-top: 5px;
+
+}
+.list-bottom .list-bt .icon-go{
+    width: 20%;
+}
+.list-lophoc .list-lophoc-item .list-image{
+    position: absolute;
+    top: 25%;
+    left: 70%;
+    width: 20%;
+  
+}
+.list-lophoc .list-lophoc-item .list-image img{
+    width: 100%;
+    border-radius: 50px;
+}
+
+.option .mat-form-field-appearance-fill .mat-form-field-underline::before {height:0px!important;}
+
+
+@media only screen and (max-width: 600px) {
+    
+    header{
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 5px;
+    }
+    header .title-lophoc{
+        width: 40%;
+        padding-top: 8px;
+    }
+    header .title-lophoc{
+        width: 50%;
+        padding-top: 0px;
+        margin-bottom: 5px;
+        
+    }
+    header .title-lophoc .tt-image{
+        width: 100%;
+    }
+    header .title-lophoc .tt-image img{
+        width: 90%;
+    }
+    /*
+    header .title-lophoc h4{
+        font-size: 1rem;
+    }
+    header .title-lophoc p{
+        font-size: 1.2rem;
+    }*/
+    header .option{
+        width: 30%;
+        margin-left: 10px;
+    }
+    header .option .mat-form-field{
+        width: 100%;
+
+    }
+    .lophoc-container{
+        width: 100%;
+        margin-top: 15px;
+    }
+    .list-lophoc{
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .list-lophoc .list-lophoc-item{
+        width: 300px;
+        margin: 0 auto;
+        margin-top: 10px;
+    }
+  }

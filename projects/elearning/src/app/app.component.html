@@ -1,0 +1,67 @@
+<header class="header_wrapper sticky-top bg__caothang_1 d-flex justify-content-between px-2 text-white shadow">
+  <div class="d-flex align-items-center" id="responsive-img1">
+    <span class="offcanvas_button__open header_button__menu mdi mdi-menu mdi-24px mr-2"></span>
+    <a [routerLink]="['/']" class="py-1">
+      <img src="assets/img/E-learning White.png" alt="" class="header_logo" />
+    </a>
+  </div>
+  <div class="navbar-content">
+    <router-outlet name="navbar"></router-outlet>
+  </div>
+  <div class="header_dropdown__wrapper">
+    <div class="header_dropdown__toggle d-flex align-items-center">
+      <img class="header_user__avatar" src="assets/img/huykun.JPG" alt="" />
+      <span>Nguyễn Kun Huy</span>
+    </div>
+    <div class="header_dropdown__menu">
+      <a [routerLink]="['/']" class="header_dropdown__item">
+        <span class="mdi mdi-information mr-2"></span>
+        <span>Thông tin</span>
+      </a>
+      <a [routerLink]="['/']" class="header_dropdown__item">
+        <span class="mdi mdi-key mr-2"></span>
+        <span>Đổi mật khẩu</span>
+      </a>
+      <hr class="my-1" />
+      <a [routerLink]="['/']" class="header_dropdown__item">
+        <span class="mdi mdi-logout-variant mr-2"></span>
+        <span>Đăng xuất</span></a>
+    </div>
+  </div>
+</header>
+<main>
+  <router-outlet></router-outlet>
+</main>
+
+<div class="offcanvas offcanvas_overlay">
+  <div class="offcanvas_bar">
+    <div class="offcanvas_header">
+      <a [routerLink]="['/']">
+        <img class="offcanvas_header__logo" src="assets/img/E-learning Blue.png" alt="E-learning Blue.png" />
+      </a>
+    </div>
+    <ul class="offcanvas_nav">
+      <li class="offcanvas_nav__item">
+        <a class="offcanvas_nav__link" [routerLink]="['/']">
+          <span class="offcanvas_icons fas fa-home"></span>
+          <span class="text">Trang chủ</span>
+        </a>
+      </li>
+      <li class="offcanvas_nav__item">
+        <a class="offcanvas_nav__link" [routerLink]="[{ outlets: { primary: ['hoso'], navbar: ['hoso'] } }]">
+          <span class="offcanvas_icons fas fa-user"></span>
+          <span class="text">Trang cá nhân</span>
+        </a>
+      </li>
+      <li class="offcanvas_nav__divider"></li>
+      <li class="offcanvas_nav__item">
+        <a class="offcanvas_nav__link" [routerLink]="[
+            { outlets: { primary: ['caidat'], navbar: ['caidat'] } }
+          ]">
+          <span class="offcanvas_icons fas fa-cogs"></span>
+          <span class="text">Cài đặt</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
