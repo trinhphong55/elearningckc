@@ -318,7 +318,7 @@
         </div>
         <div class="tab-pane" id="thongtindiemso">
           <div class="row" [formGroup]="locChiTietGroupForm">
-            <div class="col-md-2">
+            <div class="col-md-6">
               <div class="form-group pr-3 pt-1">
                 <select class="form-control" id="exampleFormControlSelect1" formControlName="chonLop" (change)="onChangeChonHocKi()">
                   <option value="">Chọn lớp</option>
@@ -326,12 +326,11 @@
                 </select>
               </div>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-6">
               <div class="form-group pr-3 pt-1">
                 <select class="form-control" id="exampleFormControlSelect1" formControlName="chonHocKi" (change)="onChangeChonHocKi()">
                   <option value="">Chọn học kì</option>
                   <option *ngFor="let item of hocKis" [ngValue]=item.maHK>{{item.tenHK }}</option>
-
                 </select>
               </div>
             </div>
