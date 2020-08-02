@@ -20,6 +20,8 @@
   <script>
     var AppId='726531241502023';
     var FBLoaded=false;
+    var accessToken = 'EAAKUxryRZAUcBAKR2LpnHg0MQuLCOBqAtwk3yhRByMfZAfYFk5DT0pQ7qVErHLvbKpn3SFXsZAXjBcbZAjpFxUZC1vioanpARvvl0RUfTohVZAZBQJXwWRZBBXx4ZAZCO9DXcRd4dI1R8h5EINTM2j37wnK8iZAb2hou5LqUbf5NZCAzI6Kcl8aVNAld7WKH2c2LZAYgvKECB5Yj41ZBHcSJqdBvvw';
+
     window.fbAsyncInit = function () {
       FB.init({
         appId: AppId,
@@ -102,6 +104,41 @@
           $('#avatar').attr("src",source);
       })
     };
+    //Post lên Page message
+    function POSTPageMess() {
+      if(FBLoaded){
+        var ms = document.getElementById('message').value;
+                FB.api('me/feed', 'post', { message: ms, access_token: accessToken }, function (response) {
+                    if (!response || response.error) {
+                        alert('Có lỗi khi POST bài: ');
+                        console.log(response);
+                    } else {
+                        alert('ĐÃ POST THÀNH CÔNG');
+                    }
+                });
+      }else {
+        setTimeout("POSTPageMess",100);
+      }
+               
+    }
+    //Post lên Page picture by url
+    function POSTPagePictureUrl() {
+      if(FBLoaded){
+        var ms = document.getElementById('message').value;
+        var url=document.getElementById('picture').value;
+                FB.api('me/photos', 'post', { message: ms, url:url, access_token: accessToken }, function (response) {
+                    if (!response || response.error) {
+                        alert('Có lỗi khi POST bài: ');
+                        console.log(response);
+                    } else {
+                        alert('ĐÃ POST THÀNH CÔNG');
+                    }
+                });
+      }else {
+        setTimeout("POSTPagePictureUrl",100);
+      }
+               
+	  }
   </script>
 
   <script>
