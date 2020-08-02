@@ -8,7 +8,7 @@ body {
 
 input,
 button {
-  font-weight: inherit;
+  font-weight: inherit !important;
 }
 
 body {
