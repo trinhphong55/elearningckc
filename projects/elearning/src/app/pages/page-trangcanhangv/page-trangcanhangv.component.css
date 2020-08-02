@@ -9,67 +9,23 @@
         margin-top: 100px;
     }
 }
-
-.table{
-    border: 1px solid #BBBBBB;
-}
-
-.dealine,.name_worf,.diem{
+.table-fixed tbody {
+    height: 300px;
+    overflow-y: auto;
     width: 100%;
 }
-th{
-    border: 1px solid #BBBBBB;
-}
-td{
-    border: 1px solid #BBBBBB;
-}
-.dealine span{
-    color: #666666;
-    font-size: 0.875rem;
-    font-weight: 300;
-}
 
-.name_worf span{
-font-size: 1.2rem;
-color: #009966;
-font-weight: 500;
-border-bottom: 1px solid #BBBBBB;
-padding-bottom: 5px;
-}
-.diem span{
-    color: #666666;
-    font-size: 0.875rem;
-    font-weight: 300;
-    padding-top: 10px;
+.table-fixed thead,
+.table-fixed tbody,
+.table-fixed tr,
+.table-fixed td,
+.table-fixed th {
     display: block;
 }
-.icon-diem{
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-}
-.icon-diem .icon{
-    width: 10%;
-}
-.icon-diem .diem{
-    width: 80%;
-}
-.image-name{
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-}
-.image-name .image{
-    width: 10%;
-}
-.image-name .image div{
-    width: 60%;
-    margin: 0 auto;
-}
-.image-name .image div img{
-    width: 100%;
-    border-radius: 50px;
-}
-.image-name .name{
-    width: 80%;
+
+.table-fixed tbody td,
+.table-fixed tbody th,
+.table-fixed thead > tr > th {
+    float: left;
+    position: relative;
 }
