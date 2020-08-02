@@ -1,92 +1,100 @@
 <app-modal class="modal_chucnang__wrapper" id="cntt_quanlyslideshow">
-    <div (click)="closeModal('cntt_quanlyslideshow')" class="modal_chucnang__close mdi mdi-chevron-left text-white"></div>
-    <div class="container-fluid mt-3">
-      <div class="row">
-        <div class="col-12">
-          <h1 class="text-center text-white">Quản lý Slideshow</h1>
-        </div>
-        <div class="col-12">
-          <form>
-            <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
-              <div class="row justify-content-center align-items-center">
-                <div class="col-4">
-                  <div class="form-group">
-                    <label>Tên Hình ảnh</label>
-                    <input type="text" id="" class="form-control">
-                  </div>
-                </div>
-                <div class="col-4">
-                  <div class="form-group">
-                    <label>Chọn hình ảnh</label>
-                    <div class="input-group ">
-                      <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="inputGroupFile01"
-                          aria-describedby="inputGroupFileAddon01">
-                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-auto">
-                  <button class=" btn btn-outline-primary px-4 mx-2"><img class="modal_chucnang__button__icon mb-2"
-                      src="assets/img/icons/add.png" alt="image icon">
-                    <div>Lưu</div>
-                  </button>
+  <div
+    (click)="closeModal('cntt_quanlyslideshow')"
+    class="modal_chucnang__close mdi mdi-chevron-left text-white"
+  ></div>
+  <div class="container-fluid mt-3">
+    <div class="row">
+      <div class="col-12">
+        <h1 class="text-center text-white">Quản lý Slideshow</h1>
+      </div>
+      <div class="col-12">
+        <form>
+          <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
+            <div class="row justify-content-center align-items-center">
+              <div class="col-4">
+                <div class="form-group">
+                  <label>Tên Slideshow</label>
+                  <input
+                    [formControl]="tenSlide"
+                    type="text"
+                    placeholder="Tên slideshow"
+                    class="form-control"
+                  />
                 </div>
               </div>
+              <div class="col-4">
+                <input type="file" (change)="selectImage($event)" multiple />
+              </div>
+              <div class="col-auto">
+                <button
+                  (click)="onSubmit()"
+                  class="btn btn-outline-primary px-4 mx-2"
+                >
+                  <img
+                    class="modal_chucnang__button__icon mb-2"
+                    src="assets/img/icons/add.png"
+                    alt="image icon"
+                  />
+                  <div>Lưu</div>
+                </button>
+              </div>
             </div>
-          </form>
-        </div>
-        <div class="col-12">
-          <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
-            <div class="d-flex align-items-center mb-3">
-              <ul class="pagination m-0">
-                <li class="page-item active text-white"><a class="page-link text-reset" href="#">List hình ảnh Slideshow</a>
-                </li>
-              </ul>
-            </div>
-            <div class="d-flex align-items-center mb-2">
-              <label class="mb-0 d-flex align-items-center"><span class="text-nowrap">Hiển thị &nbsp;</span>
-                <select class="custom-select custom-select-sm form-control">
-                  <option>10</option>
-                  <option>25</option>
-                  <option>50</option>
-                </select><span class="text-nowrap">&nbsp; hàng</span>
-              </label>
-              <label class="ml-auto mb-0 d-flex align-items-center"><span class="text-nowrap">Tìm kiếm: &nbsp;</span>
-                <input class="form-control form-control-sm" placeholder="Tìm kiếm">
-              </label>
-            </div>
-            <table class="modal_chucnang__table table table-hover" id="danhsach_nganhnghe">
-              <thead class="bg__caothang text-white">
-                <th>#</th>
-                <th class="text-center" scope="col" style="max-width: 100px">Mã Hình ảnh</th>
-                <th scope="col">Tên Hình ảnh</th>
-                <th scope="col">Trạng thái</th>
-                <th class="text-center" scope="col"><span
-                    class="modal_chucnang__button__save mdi mdi-content-save-outline mdi-24px"></span></th>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style="max-width: 50px">1</td>
-                  <td style="max-width: 100px">
-                    <input class="form-control" value="PM">
-                  </td>
-                  <td>
-                    <input class="form-control" value="Công nghệ phần mềm">
-                  </td>
-                  <td>
-                    <input class="form-control" value="PM">
-                  </td>
-                  <td class="text-center"><span
-                      class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px"></span>
-                    <span class="modal_chucnang__button__edit mdi mdi-edit-outline mdi-24px"></span></td>
-  
-                </tr>
-              </tbody>
-            </table>
           </div>
+        </form>
+      </div>
+      <div class="col-12">
+        <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
+          <table
+            style="width: 100%;"
+            class="datatable__slideshow modal_chucnang__table table table-hover"
+          >
+            <thead class="bg__caothang text-white">
+              <tr>
+                <th>#</th>
+                <th scope="col" style="max-width: 100px;">
+                  Mã Slide
+                </th>
+                <th scope="col">Tên Slide</th>
+                <th>Hình ảnh</th>
+                <th scope="col">Trạng thái</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of danhSachSlideShow; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ item.maSlide }}</td>
+                <td>{{ item.tenSlide }}</td>
+                <td>
+                  <a
+                    data-fancybox="gallary"
+                    *ngFor="let x of item.danhSachHinhAnh"
+                    class="fancybox slide"
+                    rel="ligthbox"
+                    href="https://localhost:4100/{{ x.src }}"
+                  >
+                    <img
+                      width="64"
+                      alt=""
+                      src="https://localhost:4100/{{ x.src }}"
+                    />
+                  </a>
+                </td>
+                <td>{{ item.trangThai }}</td>
+                <td class="text-center">
+                  <span
+                    class="modal_chucnang__button__edit mdi mdi-file-document-edit-outline mdi-24px"
+                  ></span>
+                  <span
+                    class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px"
+                  ></span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
-  </app-modal>
+  </div>
+</app-modal>

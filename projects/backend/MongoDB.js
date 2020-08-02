@@ -1,6 +1,6 @@
 const MongoClient = require('mongodb').MongoClient;
 // const url = 'mongodb://localhost:27017/?readPreference=primary&authSource=GosuReport&appname=MongoDB%20Compass&ssl=false';
-const url = 'mongodb://elearning_team:123@103.92.26.177:27017/testAngularckc';
+const url = 'mongodb://elearning_team:123@103.92.26.177:27017/testAngularckc?retryWrites=true&w=majority?authSource=admin';
 class MongoDB {
   constructor() {
     this.conDb = null;
@@ -8,7 +8,7 @@ class MongoDB {
   }
 
   async connectDB() {
-    let dbName = 'db-caothang';
+    let dbName = 'testAngularckc';
     try {
       if(!this.dbClose) {
         const connectRs = await MongoClient.connect(url, { useUnifiedTopology: true });

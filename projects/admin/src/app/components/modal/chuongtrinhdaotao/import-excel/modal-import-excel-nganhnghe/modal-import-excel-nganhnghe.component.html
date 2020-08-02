@@ -1,0 +1,33 @@
+<app-modal class="modal_chucnang__wrapper" id="ctdt_import_excel_nganhnghe">
+  <div (click)="closeModal('ctdt_import_excel_nganhnghe')" class="modal_chucnang__close mdi mdi-chevron-left text-white"></div>
+  <div class="container-fluid mt-3">
+    <div class="row">
+      <div class="col-12">
+        <h1 class="text-center text-white">Import Danh Dách Ngành Nghề Excel</h1>
+      </div>
+
+      <input type="file" (change)="onChange($event)" #inputFile>
+      <div *ngIf="isExcelFile === false">
+        This is not an Excel file
+      </div>
+      <button (click)="removeData()">Remove Data</button>
+      <button (click)="importExcel()" *ngIf="dsnganhnghe!== undefined">Import</button>
+
+
+      <table class="table">
+        <thead class="thead-light">
+          <tr>
+            <th *ngFor="let key of keys" scope="col">{{key}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of dataSheet | async">
+            <td *ngFor="let key of keys">
+              {{item[key]}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</app-modal>
