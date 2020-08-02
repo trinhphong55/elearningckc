@@ -3,12 +3,16 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ApiService } from './services/api.service';
 import { DataTablesModule } from 'angular-datatables';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { TintucCnttService } from './services/cntt/tintuc-cntt.service'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import { FileUploadModule } from 'ng2-file-upload';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
-
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -58,7 +62,6 @@ import { ModalImportExcelNganhNgheComponent } from './components/modal/chuongtri
 import { PageTtthComponent } from './pages/page-ttth/page-ttth.component';
 import { SidebarTtthComponent } from './components/sidebar/sidebar-ttth/sidebar-ttth.component';
 import { ModalLogoComponent } from './components/modal/ttth/modal-logo/modal-logo.component';
-import { ModalQuanlypartnerComponent } from './components/modal/cntt/modal-quanlypartner/modal-quanlypartner.component';
 import { ModalQuanlyfootercnttComponent } from './components/modal/cntt/modal-quanlyfootercntt/modal-quanlyfootercntt.component';
 import { ModalBannerComponent } from './components/modal/ttth/modal-banner/modal-banner.component';
 import { ModalDangkikhoahocComponent } from './components/modal/ttth/modal-dangkikhoahoc/modal-dangkikhoahoc.component';
@@ -68,14 +71,20 @@ import { ModalKhoahocComponent } from './components/modal/ttth/modal-khoahoc/mod
 import { ModalLichkhaigiangComponent } from './components/modal/ttth/modal-lichkhaigiang/modal-lichkhaigiang.component';
 import { ModalLienheComponent } from './components/modal/ttth/modal-lienhe/modal-lienhe.component';
 import { ModalMenuComponent } from './components/modal/ttth/modal-menu/modal-menu.component';
-import { ModalSubmenuComponent } from './components/modal/ttth/modal-submenu/modal-submenu.component';
 import { ModalHomeChuongtrinhdaotaoComponent } from './components/modal/ttth/modal-home-chuongtrinhdaotao/modal-home-chuongtrinhdaotao.component';
 import { ModalQuanlyslideshowcnttComponent } from './components/modal/cntt/modal-quanlyslideshowcntt/modal-quanlyslideshowcntt.component';
 import { ModalQuanlytintuccnttComponent } from './components/modal/cntt/modal-quanlytintuccntt/modal-quanlytintuccntt.component';
 import { ModalThemtintuccnttComponent } from './components/modal/cntt/modal-themtintuccntt/modal-themtintuccntt.component';
 import { ModalChinhsuatintuccnttComponent } from './components/modal/cntt/modal-chinhsuatintuccntt/modal-chinhsuatintuccntt.component';
-import { ModalQuanlyloaitintuccnttComponent } from './components/modal/cntt/modal-quanlyloaitintuccntt/modal-quanlyloaitintuccntt.component';
 import { ModalImportExcelKhoabomonComponent } from './components/modal/chuongtrinhdaotao/modal-import-excel-khoabomon/modal-import-excel-khoabomon.component';
+import { ModalTintucComponent } from './components/modal/ttth/modal-tintuc/modal-tintuc.component';
+import { ModalQuanlyloaibaivietcnttComponent } from './components/modal/cntt/modal-quanlyloaibaivietcntt/modal-quanlyloaibaivietcntt.component';
+import { ModalCrawlingComponent } from './components/modal/cntt/modal-crawling/modal-crawling.component';
+import { ModalNoidungtrangchuComponent } from './components/modal/cntt/modal-noidungtrangchu/modal-noidungtrangchu.component';
+import { ModalQuanlytienichcnttComponent } from './components/modal/cntt/modal-quanlytienichcntt/modal-quanlytienichcntt.component';
+import { ModalDanhmucbaivietComponent } from './components/modal/cntt/modal-danhmucbaiviet/modal-danhmucbaiviet.component';
+import { ModalQuanlybosuutapcnttComponent } from './components/modal/cntt/modal-quanlybosuutapcntt/modal-quanlybosuutapcntt.component';
+import { ModalThongtinchungComponent } from './components/modal/cntt/modal-thongtinchung/modal-thongtinchung.component';
 
 @NgModule({
   declarations: [
@@ -126,7 +135,6 @@ import { ModalImportExcelKhoabomonComponent } from './components/modal/chuongtri
     PageTtthComponent,
     SidebarTtthComponent,
     ModalLogoComponent,
-    ModalQuanlypartnerComponent,
     ModalQuanlyfootercnttComponent,
     ModalBannerComponent,
     ModalDangkikhoahocComponent,
@@ -136,15 +144,21 @@ import { ModalImportExcelKhoabomonComponent } from './components/modal/chuongtri
     ModalLichkhaigiangComponent,
     ModalLienheComponent,
     ModalMenuComponent,
-    ModalSubmenuComponent,
     ModalHomeChuongtrinhdaotaoComponent,
     ModalQuanlyslideshowcnttComponent,
     ModalQuanlytintuccnttComponent,
     ModalThemtintuccnttComponent,
     ModalChinhsuatintuccnttComponent,
     ModalHomeChuongtrinhdaotaoComponent,
-    ModalQuanlyloaitintuccnttComponent,
-    ModalImportExcelKhoabomonComponent
+    ModalImportExcelKhoabomonComponent,
+    ModalTintucComponent,
+    ModalCrawlingComponent,
+    ModalQuanlyloaibaivietcnttComponent,
+    ModalNoidungtrangchuComponent,
+    ModalQuanlytienichcnttComponent,
+    ModalDanhmucbaivietComponent,
+    ModalQuanlybosuutapcnttComponent,
+    ModalThongtinchungComponent
   ],
   imports: [
     BrowserModule,
@@ -156,8 +170,12 @@ import { ModalImportExcelKhoabomonComponent } from './components/modal/chuongtri
     DataTablesModule,
     CKEditorModule,
     Ng2SearchPipeModule,
+    NgxSkeletonLoaderModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(), // ToastrModule added
+    FileUploadModule,
   ],
-  providers: [ApiService],
+  providers: [ApiService, TintucCnttService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
