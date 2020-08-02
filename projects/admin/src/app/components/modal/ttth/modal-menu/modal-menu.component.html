@@ -1,1 +1,95 @@
-<p>modal-menu works!</p>
+<app-modal class="modal_chucnang__wrapper" id="ttth-menu">
+  <div (click)="closeModal('ttth-menu')" class="modal_chucnang__close mdi mdi-chevron-left text-white"></div>
+  <div class="container-fluid mt-3">
+    <div class="row">
+      <div class="col-12">
+        <h1 class="text-center text-white">Quản lý menu</h1>
+      </div>
+      <div class="col-12">
+        <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
+          <div class="row justify-content-center align-items-center">
+            <div class="col-3">
+              <div class="form-group">
+                <label>Chọn menu cha</label>
+                <select class="modal_chucnang__select2 form-control">
+                  <option>Không</option>
+                  <option>....</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Tên</label>
+                <input type="text" class="form-control">
+              </div>
+              <!-- <div class="form-group">
+                <label>Trạng thái</label>
+
+              </div> -->
+            </div>
+            <div class="col-auto">
+              <div class="modal_chucnang__group__button">
+                <button class="modal_chucnang__button btn btn-outline-primary px-4 mx-2"><img
+                    class="modal_chucnang__button__icon mb-2" src="assets/img/icons/add.png" alt="image icon">
+                  <div>Thêm mới</div>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
+          <table class="modal_chucnang__table table table-hover" datatable>
+            <thead class="bg__caothang text-white">
+              <tr>
+                <th>#</th>
+                <th scope="col">Menu cha</th>
+                <th scope="col">Tên</th>
+                <th scope="col">Hiển thị</th>
+                <th class="text-center" scope="col"><span
+                    class="modal_chucnang__button__save mdi mdi-content-save-outline mdi-24px"></span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="max-width: 50px">1</td>
+                <td style="max-width: 100px">
+                  Không
+                </td>
+                <td>
+                  Menu 1
+                </td>
+                <td>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value=""  checked>
+                  </div>
+                </td>
+                <td class="text-center">
+                  <span class="modal_chucnang__button__delete mdi mdi-wrench-outline mdi-24px  mr-2"></span>
+                  <span class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px"></span>
+                </td>
+              </tr>
+              <tr>
+                <td style="max-width: 50px">1</td>
+                <td style="max-width: 100px">
+                  Menu 1
+                </td>
+                <td>
+                  Menu 2
+                </td>
+                <td>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value=""  checked>
+                  </div>
+                </td>
+                <td class="text-center">
+                  <span class="modal_chucnang__button__delete mdi mdi-wrench-outline mdi-24px  mr-2"></span>
+                  <span class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px"></span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-modal>

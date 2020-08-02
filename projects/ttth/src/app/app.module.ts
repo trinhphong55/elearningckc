@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -11,7 +11,7 @@ import { PageLienheComponent } from './pages/page-lienhe/page-lienhe.component';
 import { PageTintucComponent } from './pages/page-tintuc/page-tintuc.component';
 import { PageChitiettintucComponent } from './pages/page-chitiettintuc/page-chitiettintuc.component';
 import { PageDangkikhoahocComponent } from './pages/page-dangkikhoahoc/page-dangkikhoahoc.component';
-
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,11 +22,13 @@ import { PageDangkikhoahocComponent } from './pages/page-dangkikhoahoc/page-dang
     PageLienheComponent,
     PageTintucComponent,
     PageChitiettintucComponent,
-    PageDangkikhoahocComponent
+    PageDangkikhoahocComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgxUsefulSwiperModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
