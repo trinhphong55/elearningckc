@@ -77,10 +77,8 @@ import { ModalQuanlytintuccnttComponent } from './components/modal/cntt/modal-qu
 import { ModalThemtintuccnttComponent } from './components/modal/cntt/modal-themtintuccntt/modal-themtintuccntt.component';
 import { ModalChinhsuatintuccnttComponent } from './components/modal/cntt/modal-chinhsuatintuccntt/modal-chinhsuatintuccntt.component';
 import { ModalImportExcelKhoabomonComponent } from './components/modal/chuongtrinhdaotao/modal-import-excel-khoabomon/modal-import-excel-khoabomon.component';
-<<<<<<< HEAD
 import { DetailGroupfacebookComponent } from './components/modal/facebook/details/detail-groupfacebook/detail-groupfacebook.component';
 import { DetailPagefacebookComponent } from './components/modal/facebook/details/detail-pagefacebook/detail-pagefacebook.component';
-=======
 import { ModalTintucComponent } from './components/modal/ttth/modal-tintuc/modal-tintuc.component';
 import { ModalQuanlyloaibaivietcnttComponent } from './components/modal/cntt/modal-quanlyloaibaivietcntt/modal-quanlyloaibaivietcntt.component';
 import { ModalCrawlingComponent } from './components/modal/cntt/modal-crawling/modal-crawling.component';
@@ -89,7 +87,6 @@ import { ModalQuanlytienichcnttComponent } from './components/modal/cntt/modal-q
 import { ModalDanhmucbaivietComponent } from './components/modal/cntt/modal-danhmucbaiviet/modal-danhmucbaiviet.component';
 import { ModalQuanlybosuutapcnttComponent } from './components/modal/cntt/modal-quanlybosuutapcntt/modal-quanlybosuutapcntt.component';
 import { ModalThongtinchungComponent } from './components/modal/cntt/modal-thongtinchung/modal-thongtinchung.component';
->>>>>>> master
 
 @NgModule({
   declarations: [
@@ -155,12 +152,9 @@ import { ModalThongtinchungComponent } from './components/modal/cntt/modal-thong
     ModalThemtintuccnttComponent,
     ModalChinhsuatintuccnttComponent,
     ModalHomeChuongtrinhdaotaoComponent,
-<<<<<<< HEAD
-    ModalQuanlyloaitintuccnttComponent,
     ModalImportExcelKhoabomonComponent,
     DetailGroupfacebookComponent,
-    DetailPagefacebookComponent
-=======
+    DetailPagefacebookComponent,
     ModalImportExcelKhoabomonComponent,
     ModalTintucComponent,
     ModalCrawlingComponent,
@@ -170,7 +164,6 @@ import { ModalThongtinchungComponent } from './components/modal/cntt/modal-thong
     ModalDanhmucbaivietComponent,
     ModalQuanlybosuutapcnttComponent,
     ModalThongtinchungComponent
->>>>>>> master
   ],
   imports: [
     BrowserModule,
