@@ -13,9 +13,9 @@ export class TrangcanhanContentComponent implements OnInit {
   public sinhVien: SinhVien;
   public sinhVienTams: SinhVien;
 
-  public sinhViens: SinhVien[] = [];
+  public sinhViens: SinhVien[];
   public sinhVienFormGroup: FormGroup;
-  public tmp: any[];
+  public tmp: any;
 
   constructor(
     private router: ActivatedRoute,
@@ -24,17 +24,19 @@ export class TrangcanhanContentComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.layThongTinSV('0306171004');
     this.sinhVienFormGroup = new FormGroup({
       ho: new FormControl(''),
-      ten: new FormControl(),
+      ten: new FormControl(''),
       email: new FormControl(''),
       ngaySinh: new FormControl(''),
       sdt: new FormControl(''),
       password: new FormControl(''),
       cofirmPassword: new FormControl(''),
     });
-    this.layThongTinSV('0306171004');
+
     this.setValueSinhVienFormGroup();
+    console.log(this.sinhViens);
   }
   get ho() {
     return this.sinhVienFormGroup.get('ho');
@@ -61,22 +63,20 @@ export class TrangcanhanContentComponent implements OnInit {
   public layThongTinSV(maSV: string) {
     this.sinhVienService.getonesv(maSV).subscribe((sv) => {
       if (sv.data) {
-        this.sinhVien = sv.data;
-        let sinhviens = [];
-        sinhviens.push(this.sinhVien);
-        this.sinhViens = sinhviens;
+        this.sinhVien = {...sv.data};
+        this.sinhViens.push(this.sinhVien);
+        this.tmp = this.sinhViens.map(el => el);
 
       }
     });
+   
   }
   public setValueSinhVienFormGroup() {
-    console.log(this.sinhViens);
-    this.ho.setValue('huy');
-    console.log(this.sinhVienFormGroup.value);
-
-    // this.sinhVienFormGroup.get('ho').setValue('tran');
+    console.log(this.tmp);
+    // this.ho.setValue();
   }
   showThongtinsv() {
+
     this.route.navigate(['thongtinsv'], { relativeTo: this.router });
   }
   showThoikhoabieu() {
