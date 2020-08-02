@@ -102,11 +102,11 @@ body {
   height: 40px;
 }
 
-@media screen and (min-width: 1200px) {
+/* @media screen and (min-width: 1200px) {
   .header_logo__desktop {
     height: 50px;
   }
-}
+} */
 
 .header_navbar {
   display: flex;

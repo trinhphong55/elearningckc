@@ -1,8 +1,12 @@
-<app-header></app-header>
+<app-header [logo]="logo" [logoMobile]="logoMenuMobile"></app-header>
 
 <main>
+  <!-- <button (click)="logData()">log</button> -->
   <router-outlet></router-outlet>
-  <app-socialmedia></app-socialmedia>
+  <app-socialmedia
+    [facebook]="urlFacebook"
+    [youtube]="urlYoutube"
+  ></app-socialmedia>
 </main>
 
-<app-footer></app-footer>
+<app-footer [footer]="copyRight"></app-footer>
