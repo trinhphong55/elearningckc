@@ -8,6 +8,7 @@ import { BacService } from '../../../../services/Bac.service';
 import { LopHocPhanService } from '../../../../services/lophocphan.service';
 import { NganhNgheService } from '../../../../services/NganhNghe.service';
 import { GvlhpService } from '../../../../services/gvlhp.service';
+import { LopHocService } from '../../../../services/lop-hoc.service';
 
 //interfaces
 import { CTDT } from '../../../../interfaces/ctdt.interface';
@@ -15,7 +16,7 @@ import { LHDT } from '../../../../interfaces/loaihinhdaotao.interface';
 import { bac } from '../../../../interfaces/Bac.interface';
 import { LopHocPhan } from '../../../../interfaces/lophocphan.interface';
 import { nganhnghe } from '../../../../interfaces/NganhNghe.interface';
-import { GVLHP } from '../../../../interfaces/gvlhp.interface';
+import { LopHoc } from '../../../../interfaces/LopHoc.interface';
 
 @Component({
   selector: 'app-modal-giaovienlophocphan',
@@ -27,17 +28,19 @@ export class ModalGiaovienlophocphanComponent implements OnInit {
 
   private maChuongTrinhDaoTao: string;
   hocKi = "1";
+
   dsLoaiHinhDaoTao: LHDT[];
   dsLHP: LopHocPhan[];
+  dsLHPOrigin: LopHocPhan[];
+  dsLH: LopHoc[];
   dsBac: bac[];
   dsNganhNghe: nganhnghe[];
-  dsMaLoaiMonHoc: string[];
-  dsGVLHP = [];
+  dsGVLHP: object[];
+
   dsGV = [
     { maGiaoVien: "001", ho: "Lữ", ten: "Cao Tiến" },
     { maGiaoVien: "002", ho: "Dương", ten: "Trọng Đính" },
   ];
-
   ctdt: CTDT = {
     maBac: "3",
     maNganhNghe: "006",
@@ -49,6 +52,16 @@ export class ModalGiaovienlophocphanComponent implements OnInit {
 
   private convertToMaChuongTrinhDaoTao(item: CTDT): string {
     return item.maBac + item.maNganhNghe + item.khoaHoc + item.maLoaiHinhDaoTao;
+  }
+
+  selectLopHoc(maLopHoc: string) {
+    if (maLopHoc === "all") {
+      this.dsLHP = this.dsLHPOrigin;
+      return;
+    }
+    let dsFilterbymaLopHoc = this.dsLHPOrigin.filter(item => item.maLopHoc === maLopHoc);
+    console.log(maLopHoc ,dsFilterbymaLopHoc);
+    this.dsLHP = dsFilterbymaLopHoc;
   }
 
   selectBac() {
@@ -75,10 +88,10 @@ export class ModalGiaovienlophocphanComponent implements OnInit {
   private loadGVLHP() {
     this.maChuongTrinhDaoTao = this.convertToMaChuongTrinhDaoTao(this.ctdt);
     this.lopHocPhanService.getLopHocPhanbyCTDTandHocKi(this.maChuongTrinhDaoTao, this.hocKi).subscribe(data => {
-      this.dsLHP = data.dsLHP;
-      this.dsMaLoaiMonHoc = data.dsMaLoaiMonHoc;
-      this.dsGVLHP = data.dsGVLHP;
+      this.dsLHP = data;
+      this.dsLHPOrigin = data;
     });
+    this.lopHocService.getDSLopHocbymaCTDT(this.maChuongTrinhDaoTao).subscribe(dslop => this.dsLH = dslop);
   }
 
 
@@ -88,7 +101,8 @@ export class ModalGiaovienlophocphanComponent implements OnInit {
     private bacService: BacService,
     private lopHocPhanService: LopHocPhanService,
     private nganhNgheService: NganhNgheService,
-    private gvlhpService: GvlhpService,) {
+    private gvlhpService: GvlhpService,
+    private lopHocService: LopHocService) {
   }
 
   ngOnInit(): void {

@@ -103,6 +103,7 @@ router.get("/lophoc/:id", LopHoc.getOne);
 router.get("/lophoc/:khoa/searchkhoa", LopHoc.getAllForkhoa);
 router.get("/lophoc/:maNganh/searchnganh", LopHoc.getAllForManghanh);
 router.get("/lophoc/mabac/:maBac", LopHoc.timLopTheoMaBac); //trinh phong them
+router.get("/lophoc/mactdt/:maCTDT", LopHoc.getDSLopHocbymaCTDT); // Yasuo fam 100 con linh trong 10 phut
 
 //Thêm dữ liệu vào KhoaBoMon
 router.post("/lophoc", LopHoc.checkValidate(), LopHoc.insert);

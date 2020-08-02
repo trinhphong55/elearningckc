@@ -40,8 +40,10 @@
             <div class="col-3">
               <div class="form-group">
                 <label>Lớp học</label>
-                <input class="form-control" type="number" min="15" max="50" [(ngModel)]="ctdt.khoaHoc"
-                  (change)="select()">
+                <select class="form-control" #LopHoc (change)="selectLopHoc(LopHoc.value)">
+                  <option value="all">Tất cả</option>
+                  <option *ngFor="let lh of dsLH" [value]="lh.maLopHoc">{{ lh.tenVietTat }}</option>
+                </select>
               </div>
             </div>
           </div>
@@ -80,18 +82,18 @@
               <th scope="col">Số sinh viên học ghép</th>
             </thead>
             <tbody>
-              <tr *ngFor="let lhp of dsLHP; index as idx">
+              <tr *ngFor="let item of dsLHP; index as idx">
                 <td class="text-center">{{idx + 1}}</td>
                 <td>
-                  <input class="form-control"  title="haha" [value]="lhp.tenLopHocPhan" disabled>
+                  <input class="form-control"  title="haha" [value]="item.tenLopHocPhan" disabled>
                 </td>
                 <td>
-                  <input class="form-control" [value]="dsMaLoaiMonHoc[idx]" disabled>
+                  <input class="form-control" [value]="item.maLoaiMonHoc" disabled>
                 </td>
                 <td>
-                  <select class="form-control" #maGiaoVien (change)="changeGiaoVien(maGiaoVien.value, lhp.maLopHocPhan)">
+                  <select class="form-control" #maGiaoVien (change)="changeGiaoVien(maGiaoVien.value, item.maLopHocPhan)">
                     <option value="null">Chưa có</option>
-                    <option [value]="gv.maGiaoVien" *ngFor="let gv of dsGV" [selected]="dsGVLHP[idx].maGiaoVien === gv.maGiaoVien">
+                    <option [value]="gv.maGiaoVien" *ngFor="let gv of dsGV" [selected]="item.maGiaoVien === gv.maGiaoVien">
                       {{ gv.ho + " " + gv.ten }}
                     </option>
                   </select>

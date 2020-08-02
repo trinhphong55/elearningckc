@@ -9,8 +9,8 @@ router.get("/ctdt/:maCTDT/hocKi/:hocKi", async (req, res) => {
   const maChuongTrinhDaoTao = req.params.maCTDT;
   const hocKi = parseInt(req.params.hocKi);
 
+  let resultView = [];
   let dsMaLoaiMonHoc = [];
-  let dsGVLHP = [];
   //danh sach lop hoc phan
   let dsLHP = await LopHocPhan.find({
     trangThai: { $ne: 0 },
@@ -45,17 +45,19 @@ router.get("/ctdt/:maCTDT/hocKi/:hocKi", async (req, res) => {
   //danh sach giao vien lhp kem theo lhp
   await asyncForEach(dsLHP, async (lhp, index) => {
     await GVLHP.findOne({ maLopHocPhan: lhp.maLopHocPhan }).then((gvlhp) => {
-      if (gvlhp === null) {
-        let a = { maGiaoVien: "null", ghiChu: "" };
-        dsGVLHP.push(a);
-      } else {
-        let a = { maGiaoVien: gvlhp.maGiaoVien, ghiChu: gvlhp.ghiChu };
-        dsGVLHP.push(a);
+      let a = { maGiaoVien: "null", ghiChu: "" };
+      if (gvlhp !== null) {
+        a = { maGiaoVien: gvlhp.maGiaoVien, ghiChu: gvlhp.ghiChu };
       }
+      let result = lhp.toObject();
+      result.maLoaiMonHoc = dsMaLoaiMonHoc[index];
+      result.maGiaoVien = a.maGiaoVien;
+      result.ghiChu = a.ghiChu;
+      resultView.push(result);
     });
   });
 
-  return res.json({ dsLHP, dsMaLoaiMonHoc, dsGVLHP });
+  return res.json(resultView);
 });
 
 router.get("/", async (req, res) => {
