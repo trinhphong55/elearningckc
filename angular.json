@@ -13,6 +13,9 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "xlsx"
+            ],
             "outputPath": "dist/admin",
             "index": "projects/admin/src/index.html",
             "main": "projects/admin/src/main.ts",
@@ -29,8 +32,11 @@
               "node_modules/swiper/swiper-bundle.min.css",
               "node_modules/select2/dist/css/select2.min.css",
               "node_modules/datatables.net-dt/css/jquery.dataTables.css",
+              "node_modules/datatables.net-responsive-dt/css/responsive.dataTables.css",
+              "node_modules/@fancyapps/fancybox/dist/jquery.fancybox.min.css",
               "node_modules/@fortawesome/fontawesome-free/css/all.css",
               "node_modules/@mdi/font/css/materialdesignicons.css",
+              "node_modules/ngx-toastr/toastr.css",
               "projects/admin/src/assets/css/fontface.css",
               "projects/admin/src/styles.css"
             ],
@@ -40,6 +46,8 @@
               "node_modules/swiper/swiper-bundle.min.js",
               "node_modules/select2/dist/js/select2.min.js",
               "node_modules/datatables.net/js/jquery.dataTables.js",
+              "node_modules/datatables.net-responsive/js/dataTables.responsive.js",
+              "node_modules/@fancyapps/fancybox/dist/jquery.fancybox.min.js",
               "node_modules/vanilla-lazyload/dist/lazyload.min.js",
               "projects/admin/src/assets/js/main.min.js"
             ]

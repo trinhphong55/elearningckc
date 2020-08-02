@@ -1,0 +1,193 @@
+[{
+  "_id": {
+    "$oid": "5f252bac6b251018c8a9f1a8"
+  },
+  "tenkhoahoc": "Đồ họa truyển thông",
+  "image": "https://localhost:4100/uploads/cntt/ctdt1.png",
+  "makhoahoc": "#",
+  "noidung": "<p>#</p>",
+  "trangthai": true,
+  "nguoitao": "hieu",
+  "nguoisua": "loc",
+  "created_at": {
+    "$date": "2020-08-01T08:45:32.825Z"
+  },
+  "updated_at": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f252bcb6b251018c8a9f1a9"
+  },
+  "tenkhoahoc": "Thiết kế website",
+  "image": "https://localhost:4100/uploads/cntt/ctdt2.png",
+  "makhoahoc": "#",
+  "noidung": "<p>#</p>",
+  "trangthai": true,
+  "nguoitao": "hieu",
+  "nguoisua": "loc",
+  "created_at": {
+    "$date": "2020-08-01T08:46:03.893Z"
+  },
+  "updated_at": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f252be26b251018c8a9f1aa"
+  },
+  "tenkhoahoc": "Lập trình và CSDL",
+  "image": "https://localhost:4100/uploads/cntt/ctdt3.png",
+  "makhoahoc": "#",
+  "noidung": "<p>#</p>",
+  "trangthai": true,
+  "nguoitao": "hieu",
+  "nguoisua": "loc",
+  "created_at": {
+    "$date": "2020-08-01T08:46:26.128Z"
+  },
+  "updated_at": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f252c57542e3a1598da5219"
+  },
+  "tenkhoahoc": "Lập trình di động",
+  "image": "https://localhost:4100/uploads/cntt/ctdt4.png",
+  "makhoahoc": "#",
+  "noidung": "<p>#</p>",
+  "trangthai": true,
+  "nguoitao": "hieu",
+  "nguoisua": "loc",
+  "created_at": {
+    "$date": "2020-08-01T08:48:23.926Z"
+  },
+  "updated_at": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f252c61542e3a1598da521a"
+  },
+  "tenkhoahoc": "Thiết kế giao diện",
+  "image": "https://localhost:4100/uploads/cntt/ctdt5.png",
+  "makhoahoc": "#",
+  "noidung": "<p>#</p>",
+  "trangthai": true,
+  "nguoitao": "hieu",
+  "nguoisua": "loc",
+  "created_at": {
+    "$date": "2020-08-01T08:48:33.951Z"
+  },
+  "updated_at": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f252c6c542e3a1598da521b"
+  },
+  "tenkhoahoc": "Mạng máy tính",
+  "image": "https://localhost:4100/uploads/cntt/ctdt6.png",
+  "makhoahoc": "#",
+  "noidung": "<p>#</p>",
+  "trangthai": true,
+  "nguoitao": "hieu",
+  "nguoisua": "loc",
+  "created_at": {
+    "$date": "2020-08-01T08:48:44.892Z"
+  },
+  "updated_at": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f252c75542e3a1598da521c"
+  },
+  "tenkhoahoc": "Internet Marketing",
+  "image": "https://localhost:4100/uploads/cntt/ctdt7.png",
+  "makhoahoc": "#",
+  "noidung": "<p>#</p>",
+  "trangthai": true,
+  "nguoitao": "hieu",
+  "nguoisua": "loc",
+  "created_at": {
+    "$date": "2020-08-01T08:48:53.628Z"
+  },
+  "updated_at": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f252c7d542e3a1598da521d"
+  },
+  "tenkhoahoc": "Lập trình cho trẻ em",
+  "image": "https://localhost:4100/uploads/cntt/ctdt8.png",
+  "makhoahoc": "#",
+  "noidung": "<p>#</p>",
+  "trangthai": true,
+  "nguoitao": "hieu",
+  "nguoisua": "loc",
+  "created_at": {
+    "$date": "2020-08-01T08:49:01.863Z"
+  },
+  "updated_at": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f252c86542e3a1598da521e"
+  },
+  "tenkhoahoc": "Tin học văn phòng",
+  "image": "https://localhost:4100/uploads/cntt/ctdt9.png",
+  "makhoahoc": "#",
+  "noidung": "<p>#</p>",
+  "trangthai": true,
+  "nguoitao": "hieu",
+  "nguoisua": "loc",
+  "created_at": {
+    "$date": "2020-08-01T08:49:10.350Z"
+  },
+  "updated_at": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f252c98542e3a1598da521f"
+  },
+  "tenkhoahoc": "Tin học văn phòng chuẩn quốc tế (MOS)",
+  "image": "https://localhost:4100/uploads/cntt/ctdt10.png",
+  "makhoahoc": "#",
+  "noidung": "<p>#</p>",
+  "trangthai": true,
+  "nguoitao": "hieu",
+  "nguoisua": "loc",
+  "created_at": {
+    "$date": "2020-08-01T08:49:28.649Z"
+  },
+  "updated_at": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f252cb6542e3a1598da5220"
+  },
+  "tenkhoahoc": "Tin học cho trẻ em",
+  "image": "https://localhost:4100/uploads/cntt/ctdt11.png",
+  "makhoahoc": "#",
+  "noidung": "<p>#</p>",
+  "trangthai": true,
+  "nguoitao": "hieu",
+  "nguoisua": "loc",
+  "created_at": {
+    "$date": "2020-08-01T08:49:58.581Z"
+  },
+  "updated_at": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f252cd4542e3a1598da5221"
+  },
+  "tenkhoahoc": "Đồ họa cho trẻ em",
+  "image": "https://localhost:4100/uploads/cntt/ctdt12.png",
+  "makhoahoc": "#",
+  "noidung": "<p>#</p>",
+  "trangthai": true,
+  "nguoitao": "hieu",
+  "nguoisua": "loc",
+  "created_at": {
+    "$date": "2020-08-01T08:50:28.205Z"
+  },
+  "updated_at": null,
+  "__v": 0
+}]

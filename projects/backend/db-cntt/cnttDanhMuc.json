@@ -1,0 +1,106 @@
+[{
+  "_id": {
+    "$oid": "5f227b4d5f77f33214b5cca0"
+  },
+  "maDanhMuc": "DM00",
+  "tenDanhMuc": "Giới thiệu",
+  "tenVietTat": "gioithieu",
+  "trangThai": 1,
+  "createdAt": {
+    "$date": "2020-07-30T07:48:29.085Z"
+  },
+  "updatedAt": {
+    "$date": "2020-07-30T07:48:29.085Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f227b6d5f77f33214b5cca1"
+  },
+  "maDanhMuc": "DM01",
+  "tenDanhMuc": "Elearning",
+  "tenVietTat": "elearning",
+  "trangThai": 1,
+  "createdAt": {
+    "$date": "2020-07-30T07:49:01.959Z"
+  },
+  "updatedAt": {
+    "$date": "2020-07-30T07:49:01.959Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f227b7b5f77f33214b5cca2"
+  },
+  "maDanhMuc": "DM02",
+  "tenDanhMuc": "Tin tức",
+  "tenVietTat": "tintuc",
+  "trangThai": 1,
+  "createdAt": {
+    "$date": "2020-07-30T07:49:15.574Z"
+  },
+  "updatedAt": {
+    "$date": "2020-07-30T07:49:15.574Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f227c225f77f33214b5cca3"
+  },
+  "maDanhMuc": "DM03",
+  "tenDanhMuc": "Sinh viên",
+  "tenVietTat": "sinhvien",
+  "trangThai": 1,
+  "createdAt": {
+    "$date": "2020-07-30T07:52:02.527Z"
+  },
+  "updatedAt": {
+    "$date": "2020-07-30T07:52:02.527Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f227c3a5f77f33214b5cca4"
+  },
+  "maDanhMuc": "DM04",
+  "tenDanhMuc": "Hợp tác nghiên cứu",
+  "tenVietTat": "hoptacnghiencuu",
+  "trangThai": 1,
+  "createdAt": {
+    "$date": "2020-07-30T07:52:26.956Z"
+  },
+  "updatedAt": {
+    "$date": "2020-07-30T07:52:26.956Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f227c475f77f33214b5cca5"
+  },
+  "maDanhMuc": "DM05",
+  "tenDanhMuc": "Hệ đào tạo",
+  "tenVietTat": "hedaotao",
+  "trangThai": 1,
+  "createdAt": {
+    "$date": "2020-07-30T07:52:39.473Z"
+  },
+  "updatedAt": {
+    "$date": "2020-07-30T07:52:39.473Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f227c525f77f33214b5cca6"
+  },
+  "maDanhMuc": "DM06",
+  "tenDanhMuc": "Liên hệ",
+  "tenVietTat": "lienhe",
+  "trangThai": 1,
+  "createdAt": {
+    "$date": "2020-07-30T07:52:50.652Z"
+  },
+  "updatedAt": {
+    "$date": "2020-07-30T07:52:50.652Z"
+  },
+  "__v": 0
+}]
