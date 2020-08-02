@@ -8,20 +8,20 @@
       <div class="col-12">
         <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
            <div class="row justify-content-center align-items-center">
-            <div class="col-4">
+            <div class="col-4" >
               <div class="form-group">
                 <label> Tên Group</label>
-                <input class="form-control" placeholder="Tên Group..." >
+                <input class="form-control" type="text" [formControl]="tenGroup" >
               </div>
               <div class="form-group">
                 <label> Link Group</label>
-                <input class="form-control" placeholder="Link Group...">
+                <input class="form-control" [formControl]="linkGroup">
               </div>
             </div>
             <div class="col-4">
               <div class="form-group">
                 <label> ID Group</label>
-                <input class="form-control" placeholder="ID Group...">
+                <input class="form-control" [formControl]="IDGroup">
               </div>
               <div class="form-group">
                 <label>Lớp</label>
@@ -30,11 +30,11 @@
             </div>
             <div class="col-4">
               <div class="row no-gutters">
-                <div class="form-group col-2 " >
+                <div class="form-group col-3 " >
                   <label>Khoá</label>
                   <input class="form-control" type="number" [formControl]="khoa" >
                 </div>
-                <div class="form-group col ml-4">
+                <div class="form-group col ml-3">
                   <label>Bậc</label>
                   <input class="form-control" [formControl]="maBac" >
                 </div>
@@ -47,7 +47,7 @@
             <div class="">
               <div class="col-auto">
                 <div class="modal_chucnang__group__button">
-                  <button class="modal_chucnang__button btn btn-outline-success px-4 mx-2"><img
+                  <button class="modal_chucnang__button btn btn-outline-success px-4 mx-2" (click)="update()"><img
                     class="modal_chucnang__button__icon mb-2" src="assets/img/icons/upgrade.png" alt="image icon">
                   <div>Cập nhật</div>
                 </button>
@@ -59,53 +59,46 @@
       </div>
       <div class="col-12">
         <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
-          <div class="d-flex align-items-center mb-2">
-            <label class="mb-0 d-flex align-items-center"><span class="text-nowrap">Hiển thị &nbsp;</span>
-              <select class="custom-select custom-select-sm form-control">
-                <option>10</option>
-                <option>25</option>
-                <option>50</option>
-              </select><span class="text-nowrap">&nbsp; hàng</span>
-            </label>
-            <form [formGroup]="addForm" class="form-inline">
-              <div class="form-group">
-                <label for="bac" class="col-sm-2  col-form-label">Bậc </label>
-                <div class="col-sm-4">
-                  <select id="bac" class="form-control" formControlName="TenB" (change)="changedBac($event)" >
+          <div  class="row">
+            <div class="col-6 form-inline">
+              <form [formGroup]="addForm" >
+                <div class="form-group">
+                  <label for="bac">Bậc </label>
+                  <select id="bac" class="form-control ml-4 mb-1" formControlName="TenB" (change)="changedBac($event)" >
                     <option value="">Select...</option>
                     <option *ngFor="let b of bactamlist" [ngValue]=b.maBac > {{b.tenBac }}</option>
                   </select>
                 </div>
-              </div>
-            </form>
-            <form [formGroup]="addForm" class="form-inline">
-              <div class="form-group">
-                <label for="nganh" class="col-sm-2  col-form-label">Ngành </label>
-                <div class="col-sm-4">
-                  <select id="nganh" class="form-control" formControlName="TenN" (change)="changedNganh($event)" >
+                <div class="form-group">
+                  <label for="nganh" class="col-form-label">Ngành </label>
+                  <select id="nganh" class="form-control ml-2" formControlName="TenN" (change)="changedNganh($event)" >
                     <option value="">Select..</option>
-                    <option *ngFor="let n of nganhtamlist" [ngValue]=n.maNganhNghe > {{n.tenNganhNghe }}</option>
+                    <option *ngFor="let n of nganhs" [ngValue]=n.maNganhNghe > {{n.tenNganhNghe }}</option>
                   </select>
                 </div>
-              </div>
-            </form>
-            <!-- <label class="mb-0 ml-4 d-flex align-items-center"><span class="text-nowrap">Bậc &nbsp;</span>
-              <select class="custom-select custom-select-sm form-control" (change)="changed($event)">
-                <option *ngFor="let b of bac">{{b.tenBac}}</option>
-              </select><span class="text-nowrap">&nbsp; hàng</span>
-            </label> -->
-            <label class="ml-auto mb-0 d-flex align-items-center"><span class="text-nowrap">Tìm kiếm: &nbsp;</span>
-              <input class="form-control form-control-sm" placeholder="Tìm kiếm" [(ngModel)]="searchGroup">
-            </label>
+              </form>
+            </div>
+            <div class="col-3 ml-auto">
+              <label class=" d-flex align-items-center"><span class="text-nowrap">Tìm kiếm: &nbsp;</span>
+                <input class="form-control form-control-sm" placeholder="Tìm kiếm" [(ngModel)]="searchGroup">
+              </label>
+              <label class=" d-flex align-items-center"><span class="text-nowrap">Hiển thị: &nbsp;</span>
+                <select class="custom-select custom-select-sm form-control">
+                  <option> 10 hàng</option>
+                  <option> 25 hàng</option>
+                  <option> 50 hàng</option>
+                </select>
+              </label>
+            </div>
           </div>
           <table class="modal_chucnang__table table table-hover" id="">
             <thead class="bg__caothang text-white">
               <th scope="col" class="text-center">STT</th>
               <th scope="col" class="text-center">ID</th>
-              <th scope="col" class="text-center">Tên Gourp</th>
+              <th scope="col" class="text-center">Tên Lớp</th>
               <th scope="col" class="text-center">Link</th>
-              <th scope="col" class="text-center">Số thành viên</th>
-              <th scope="col" class="text-center">Số lượng bài viết</th>
+              <th scope="col" class="text-center">Người tạo</th>
+              <th scope="col" class="text-center">Khóa</th>
               <th scope="col" class="text-center">Tác vụ</th>
             </thead>
             <tbody >
@@ -115,7 +108,7 @@
                   <label >{{d.maLopHoc}}</label>
                 </td>
                 <td class="text-center">
-                  <label >{{d.tenLop}}</label>
+                  <label >{{d.tenVietTat}}</label>
                 </td>
                 <td class="text-center">
                   <label >{{d.linkFBLopHoc}}</label>

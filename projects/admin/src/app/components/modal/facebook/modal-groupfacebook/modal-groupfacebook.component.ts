@@ -1,8 +1,14 @@
+import { data } from 'jquery';
 import { LopHocService } from './../../../../services/lop-hoc.service';
 import { Component, OnInit } from '@angular/core';
 import { ModalService } from '../../../../services/modal.service';
 import { NganhNgheService } from '../../../../services/NganhNghe.service';
-import { FormControl, FormGroup, Validators, FormControlName } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  Validators,
+  FormControlName,
+} from '@angular/forms';
 import { BacService } from '../../../../services/Bac.service';
 
 @Component({
@@ -11,14 +17,15 @@ import { BacService } from '../../../../services/Bac.service';
   styleUrls: ['./modal-groupfacebook.component.css'],
 })
 export class ModalGroupfacebookComponent implements OnInit {
+  datatmp: any;
   data: any;
   bac: any;
   nganhs: any;
   lop: any;
   lopTam: [];
-  editting= false;
-  currentIndex=-1;
-  currentLop=null;
+  editting = false;
+  currentIndex = -1;
+  currentLop = null;
   addForm: FormGroup;
   statusElementList = {};
   isDone = false;
@@ -26,9 +33,9 @@ export class ModalGroupfacebookComponent implements OnInit {
   public bactamlist = [];
   public bacList: any;
   public lopTams: any;
-  public nganhtamlist={};
-  public nganhList={};
-  public nganhTam=[];
+  public nganhtamlist = {};
+  public nganhList = {};
+  public nganhTam = [];
   constructor(
     private modalService: ModalService,
     private nganhngheservice: NganhNgheService,
@@ -42,14 +49,25 @@ export class ModalGroupfacebookComponent implements OnInit {
     this.getbac();
     this.getLop();
     this.addForm = new FormGroup({
-      maBac: new FormControl({value: '', disabled: true}, Validators.required),
-      maNganh: new FormControl({value: '', disabled: true}, Validators.required),
-      khoa: new FormControl({value: '', disabled: true}, Validators.required),
-      tenLop: new FormControl({value: '', disabled: true}, Validators.required),
-      TenB: new FormControl(''),
-      TenN:new FormControl(''),
+      maBac: new FormControl(
+        { value: '', disabled: true },
+        Validators.required
+      ),
+      maNganh: new FormControl(
+        { value: '', disabled: true },
+        Validators.required
+      ),
+      khoa: new FormControl({ value: '', disabled: true }, Validators.required),
+      tenLop: new FormControl(
+        { value: '', disabled: true },
+        Validators.required
+      ),
+      TenB: new FormControl(),
+      TenN: new FormControl(),
+      IDGroup: new FormControl(),
+      linkGroup: new FormControl(),
+      tenGroup: new FormControl(),
     });
-
   }
   //Validator
   get maBac() {
@@ -64,34 +82,39 @@ export class ModalGroupfacebookComponent implements OnInit {
   get tenLop() {
     return this.addForm.get('tenLop');
   }
-  get TenB(){
+  get TenB() {
     return this.addForm.get('maBac');
   }
   get TenN() {
     return this.addForm.get('maNganh');
   }
+  get IDGroup() {
+    return this.addForm.get('IDGroup');
+  }
+  get linkGroup() {
+    return this.addForm.get('linkGroup');
+  }
+  get tenGroup() {
+    return this.addForm.get('tenGroup');
+  }
+
   getAll() {
-    this.lopService.getAll().subscribe(
-      data=> {
+    this.lopService.getAll().subscribe((data) => {
       this.data = data;
     });
   }
 
   getbac() {
-    this.bacservice.getBac().subscribe(
-      (bac) => {
-        this.bac = bac;
-        this.bactamlist=this.bac;
-      },
-    );
+    this.bacservice.getBac().subscribe((bac) => {
+      this.bac = bac;
+      this.bactamlist = this.bac;
+    });
   }
   getNganh() {
-    this.nganhngheservice.getNganhnghe().subscribe(
-      (nganhs) => {
-        this.nganhs = nganhs;
-        this.nganhtamlist=this.nganhs;
-      },
-    );
+    this.nganhngheservice.getNganhnghe().subscribe((nganhs) => {
+      this.nganhs = nganhs;
+      this.nganhtamlist = this.nganhs;
+    });
     return this.data;
   }
 
@@ -99,66 +122,75 @@ export class ModalGroupfacebookComponent implements OnInit {
     this.lopService.getAll().subscribe((lop) => {
       this.lop = lop;
       this.lopTams = this.lop;
+      console.log(lop);
     });
   }
- //bắt sự kiện show lop theo bac
- changedBac(e) {
-  
-   this.lopTams = [];
-  if (this.addForm.value.maBac !== '') {
-    this.lop.forEach((element) => {
-      console.log(element);
-      console.log(this.addForm.value);
-      if (element.maBac == this.addForm.value.TenB) {
-        this.lopTams.push(element);
-      }
-    });
-  } else {
-    this.lopTams = this.lop;
+
+  //bắt sự kiện show lop theo bac
+  changedBac(e) {
+    this.lopTams = [];
+    if (this.addForm.value.maBac !== '') {
+      this.lop.forEach((element) => {
+        if (element.maBac == this.addForm.value.TenB) {
+          this.lopTams.push(element);
+        }
+      });
+    } else {
+      this.lopTams = this.lop;
+    }
   }
-}
-//bắt sự kiện show lop theo nganh
-changedNganh(e) {
-  
-  this.lopTams = [];
- if (this.addForm.value.maNganh !== '') {
-   this.lop.forEach((element) => {
-    console.log(element);
-    console.log(this.addForm.value);
-     if (element.maNganh == this.addForm.value.TenN) {
-       this.lopTams.push(element);
-     }
-   });
- } else {
-   this.lopTams = this.lop;
- }
-}
+  //bắt sự kiện show lop theo nganh
+  changedNganh(e) {
+    this.lopTams = [];
+    if (this.addForm.value.maNganh !== '') {
+      this.lop.forEach((element) => {
+        if (element.maNganh == this.addForm.value.TenN) {
+          this.lopTams.push(element);
+        }
+      });
+    } else {
+      this.lopTams = this.lop;
+    }
+  }
 
   insertDateforForm(data) {
+    this.datatmp = data;
     this.editting = true;
     this.currentIndex = data._id;
     this.currentLop = data;
     let Bac;
-    this.bac.filter(item => {
+    this.bac.filter((item) => {
       if (data.maBac == item.maBac) {
         Bac = item.tenBac;
       }
-    })
+    });
     this.maBac.setValue(Bac);
     this.TenB.setValue(Bac);
-    
+
     let tenNganh;
-    this.nganhs.filter(item => {
+    this.nganhs.filter((item) => {
       if (data.maNganh === item.maNganhNghe) {
         tenNganh = item.tenNganhNghe;
       }
-    })
+    });
     this.maNganh.setValue(tenNganh);
     this.TenN.setValue(tenNganh);
-    this.khoa.setValue(data.khoa);
-    this.tenLop.setValue(data.tenLop);
-  }
 
+    this.khoa.setValue(data.khoa);
+    this.tenLop.setValue(data.tenVietTat);
+    this.IDGroup.setValue(data.IDGroupFB);
+    this.tenGroup.setValue(data.tenGroupFB);
+    this.linkGroup.setValue(data.linkGroupFB);
+  }
+  update() {
+    this.lopService
+      .updateFB(this.datatmp.maLopHoc, {
+        tenGroupFB: this.addForm.value.tenGroup,
+        IDGroupFB: this.addForm.value.IDGroup,
+        linkGroupFB: this.addForm.value.linkGroup,
+      })
+      .subscribe((res) => console.log(res));
+  }
   openDetail() {
     this.modalService.open('detail-groupfb');
   }
@@ -166,5 +198,4 @@ changedNganh(e) {
   closeModal(id: string) {
     this.modalService.close(id);
   }
-
 }
