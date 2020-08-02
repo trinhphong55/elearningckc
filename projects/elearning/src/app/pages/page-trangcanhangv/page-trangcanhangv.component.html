@@ -148,89 +148,111 @@
                     </form>
                 </div>
                 <div class="tab-pane" id="dslophocphan">
-                    <div class="col-lg-12 mx-auto bg-white rounded shadow">
-
-                        <!-- Fixed header table-->
-                        <div class="table-responsive">
-                            <table class="table table-fixed">
-                                <thead>
-                                    <tr>
-                                        <th scope="col" class="col-3">#</th>
-                                        <th scope="col" class="col-3">First</th>
-                                        <th scope="col" class="col-3">Last</th>
-                                        <th scope="col" class="col-3">Handle</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row" class="col-3">1</th>
-                                        <td class="col-3">Mark</td>
-                                        <td class="col-3">Otto</td>
-                                        <td class="col-3">@mdo</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row" class="col-3">2</th>
-                                        <td class="col-3">Jacob</td>
-                                        <td class="col-3">Thornton</td>
-                                        <td class="col-3">@fat</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row" class="col-3">3</th>
-                                        <td colspan="2" class="col-6">Larry the Bird</td>
-                                        <td class="col-3">@twitter</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row" class="col-3">4</th>
-                                        <td class="col-3">Martin</td>
-                                        <td class="col-3">Williams</td>
-                                        <td class="col-3">@Marty</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row" class="col-3">5</th>
-                                        <td colspan="2" class="col-3">Sam</td>
-                                        <td colspan="2" class="col-3">Pascal</td>
-                                        <td class="col-3">@sam</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row" class="col-3">6</th>
-                                        <td class="col-3">John</td>
-                                        <td class="col-3">Green</td>
-                                        <td class="col-3">@john</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row" class="col-3">7</th>
-                                        <td colspan="2" class="col-3">David</td>
-                                        <td colspan="2" class="col-3">Bowie</td>
-                                        <td class="col-3">@david</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row" class="col-3">8</th>
-                                        <td class="col-3">Pedro</td>
-                                        <td class="col-3">Rodriguez</td>
-                                        <td class="col-3">@rod</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row" class="col-3">5</th>
-                                        <td colspan="2" class="col-3">Sam</td>
-                                        <td colspan="2" class="col-3">Pascal</td>
-                                        <td class="col-3">@sam</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row" class="col-3">10</th>
-                                        <td class="col-3">Jacob</td>
-                                        <td class="col-3">Thornton</td>
-                                        <td class="col-3">@fat</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row" class="col-3">11</th>
-                                        <td colspan="2" class="col-6">Larry the Bird</td>
-                                        <td class="col-3">@twitter</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div><!-- End -->
-                        
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="form-group pr-3 pt-1">
+                                <select class="form-control" id="exampleFormControlSelect1">
+                                    <option>Chọn bậc</option>
+                                    <option>Cao đẳng</option>
+                                    <option>Trung cấp</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group pr-3 pt-1">
+                                <select class="form-control" id="exampleFormControlSelect1">
+                                    <option>Chọn học kì</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
+                    <div class="row">
+                        <div class="col-lg-12 mx-auto bg-white rounded shadow">
+                            <div class="table-responsive">
+                                <table class="table table-fixed">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" class="col-1">STT</th>
+                                            <th scope="col" class="col-2">Tên lớp học phần</th>
+                                            <th scope="col" class="col-1">Học kì</th>
+                                            <th scope="col" class="col-2 style-text">Tổng sinh viên</th>
+                                            <th scope="col" class="col-2 style-text">Tình trạng nộp điểm</th>
+                                            <th scope="col" class="col-2">Loại lớp</th>
+                                            <th scope="col" class="col-1 style-text">Số bài giảng</th>
+                                            <th scope="col" class="col-1 style-text">Số bài tập</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="col-1">1</td>
+                                            <td class="col-2 style-text">Lập trình hướng đối tượng</td>
+                                            <td class="col-1">1</td>
+                                            <td class="col-2">38 sv</td>
+                                            <td class="col-2">đã nộp điểm</td>
+                                            <td class="col-2 style-text">bình thường</td>
+                                            <td class="col-1">3</td>
+                                            <td class="col-1">4</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="col-1">2</td>
+                                            <td class="col-2 style-text">Lập trình Laravel</td>
+                                            <td class="col-1">2</td>
+                                            <td class="col-2">38 sv</td>
+                                            <td class="col-2">đã nộp điểm</td>
+                                            <td class="col-2 style-text">học ghép</td>
+                                            <td class="col-1">3</td>
+                                            <td class="col-1">4</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="col-1">1</td>
+                                            <td class="col-2 style-text">Lập trình hướng đối tượng</td>
+                                            <td class="col-1">1</td>
+                                            <td class="col-2">38 sv</td>
+                                            <td class="col-2">đã nộp điểm</td>
+                                            <td class="col-2 style-text">bình thường</td>
+                                            <td class="col-1">3</td>
+                                            <td class="col-1">4</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="col-1">1</td>
+                                            <td class="col-2 style-text">Lập trình hướng đối tượng</td>
+                                            <td class="col-1">1</td>
+                                            <td class="col-2">38 sv</td>
+                                            <td class="col-2">đã nộp điểm</td>
+                                            <td class="col-2 style-text">bình thường</td>
+                                            <td class="col-1">3</td>
+                                            <td class="col-1">4</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="col-1">1</td>
+                                            <td class="col-2 style-text">Lập trình hướng đối tượng</td>
+                                            <td class="col-1">1</td>
+                                            <td class="col-2">38 sv</td>
+                                            <td class="col-2">đã nộp điểm</td>
+                                            <td class="col-2 style-text">bình thường</td>
+                                            <td class="col-1">3</td>
+                                            <td class="col-1">4</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="col-1">1</td>
+                                            <td class="col-2 style-text">Lập trình hướng đối tượng</td>
+                                            <td class="col-1">1</td>
+                                            <td class="col-2">38 sv</td>
+                                            <td class="col-2">đã nộp điểm</td>
+                                            <td class="col-2 style-text">bình thường</td>
+                                            <td class="col-1">3</td>
+                                            <td class="col-1">4</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
         </div>
