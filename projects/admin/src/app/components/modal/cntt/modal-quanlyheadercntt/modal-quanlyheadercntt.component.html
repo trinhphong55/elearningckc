@@ -3,65 +3,119 @@
     (click)="closeModal('cntt_quanlyheader')"
     class="modal_chucnang__close mdi mdi-chevron-left text-white"
   ></div>
-  <div class="container-fluid mt-3">
+  <form [formGroup]="formMenuHeader" class="container-fluid mt-3 pb-5">
+    <!-- <button type="button" (click)="logData()">log</button> -->
     <div class="row">
-      <div class="col-12">
+      <div class="col-12 mb-3">
         <h1 class="text-center text-uppercase text-white">Menu header</h1>
       </div>
-      <div class="col-12">
-        <div class="modal_chucnang__box border rounded p-4 mt-4 bg-white">
-          <form>
-            <div class="row">
-              <div class="col-12 d-flex">
-                <h5>Menu level 1</h5>
-                <div class="ml-auto">
-                  <button
-                    type="button"
-                    class="mdi mdi-plus text-success p-0 bg-transparent border-0"
-                  >
-                    Thêm menu level 2
-                  </button>
-                  <button
-                    type="button"
-                    class="mdi mdi-minus text-danger ml-4 p-0 bg-transparent border-0"
-                  >
-                    Xoá menu level 2
-                  </button>
+      <div class="sticky-top col-12">
+        <div
+          class="modal_chucnang__box border rounded p-3 mx-auto bg-white d-flex justify-content-center align-items-center"
+        >
+          <button
+            (click)="onSave()"
+            type="button"
+            class="modal_chucnang__button btn btn-outline-primary px-4 mx-2"
+          >
+            <img
+              class="modal_chucnang__button__icon mb-2"
+              src="assets/img/icons/upgrade.png"
+              alt="image icon"
+            />
+            <div>Cập nhật</div>
+          </button>
+          <button
+            (click)="(onReset)"
+            type="button"
+            class="modal_chucnang__button btn btn-outline-danger px-4 mx-2"
+          >
+            <img
+              class="modal_chucnang__button__icon mb-2"
+              src="assets/img/icons/error.png"
+              alt="image icon"
+            />
+            <div>Huỷ</div>
+          </button>
+        </div>
+      </div>
+      <div *ngFor="let itemMenu of arrayMenu" class="col-12">
+        <div class="modal_chucnang__box border rounded p-5 mt-4 bg-white">
+          <div class="row">
+            <div class="col-12 d-flex">
+              <h5>Menu level 1</h5>
+              <div class="ml-auto">
+                <button
+                  type="button"
+                  class="mdi mdi-plus text-success p-0 bg-transparent border-0"
+                  (click)="addSubMenu(itemMenu.sub)"
+                >
+                  Thêm menu level 2
+                </button>
+                <button
+                  type="button"
+                  class="mdi mdi-minus text-danger ml-4 p-0 bg-transparent border-0"
+                  (click)="removeSubMenu(itemMenu.sub)"
+                >
+                  Xoá menu level 2
+                </button>
+              </div>
+            </div>
+            <div class="col-3">
+              <input
+                type="text"
+                [formControlName]="itemMenu.icon"
+                class="form-control"
+                placeholder="Class Icon"
+              />
+            </div>
+            <div class="col-4">
+              <input
+                type="text"
+                [formControlName]="itemMenu.name"
+                class="form-control"
+                placeholder="Tên hiển thị"
+              />
+            </div>
+            <div class="col-5">
+              <input
+                type="text"
+                [formControlName]="itemMenu.url"
+                class="form-control"
+                placeholder="URL"
+              />
+            </div>
+          </div>
+          <div [formArrayName]="itemMenu.sub">
+            <div
+              *ngFor="
+                let subItem of getSubMenu(itemMenu.sub).controls;
+                let i = index
+              "
+              class="mt-3"
+            >
+              <div formGroupName="{{ i }}" class="row">
+                <div class="offset-3 col-4">
+                  <input
+                    type="text"
+                    formControlName="name"
+                    class="form-control"
+                    placeholder="Tên hiển thị"
+                  />
+                </div>
+                <div class="col-5">
+                  <input
+                    type="text"
+                    formControlName="url"
+                    class="form-control"
+                    placeholder="URL"
+                  />
                 </div>
               </div>
-              <div class="col-2">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Class Icon"
-                />
-              </div>
-              <div class="col-4">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Tên hiển thị"
-                />
-              </div>
-              <div class="col-6">
-                <input type="text" class="form-control" placeholder="URL" />
-              </div>
             </div>
-            <div class="row mt-3">
-              <div class="offset-2 col-4">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Tên hiển thị"
-                />
-              </div>
-              <div class="col-6">
-                <input type="text" class="form-control" placeholder="URL" />
-              </div>
-            </div>
-          </form>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </form>
 </app-modal>
