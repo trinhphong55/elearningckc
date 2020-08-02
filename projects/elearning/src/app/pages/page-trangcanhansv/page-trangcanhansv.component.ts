@@ -147,7 +147,6 @@ export class PageTrangcanhansvComponent implements OnInit {
         if (res.data) {
           this.lopHocPhan = res.data;
           this.lopHocPhans.push(this.lopHocPhan);
-
         }
       }
     );
@@ -164,7 +163,6 @@ export class PageTrangcanhansvComponent implements OnInit {
             }
           });
         });
-
       }
     });
   }
@@ -185,6 +183,7 @@ export class PageTrangcanhansvComponent implements OnInit {
     console.log(this.locChiTietGroupForm.value);
     this.layThongTinSV('0306171004');
   }
+  //################################ Xu ly loc #######################################
   public locLopHocPhan(ChiTietDiems: ChiTietDiemSVLHP[]): ChiTietDiemSVLHP[] {
     if (this.chonLop.value) {
       let tmp = ChiTietDiems;
