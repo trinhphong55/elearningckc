@@ -18,18 +18,14 @@
       <div class="chuong-trinh-dao-tao-content mt-3 p-10 " >
           <div class="container">
               <div class="row text-center "  >
-                  <div class="chuong-trinh-dao-tao-item col-lg-2 col-md-3 col-sm-3 col-6" data-aos="zoom-out" data-aos-duration="2000" ><a href="#"> <p>Đồ họa truyển thông</p><img src="assets/img/ctdt1.png" alt=""></a></div>
-                  <div class="chuong-trinh-dao-tao-item col-lg-2 col-md-3 col-sm-3 col-6" data-aos="zoom-out" data-aos-duration="2000" ><a href="#"><p>Thiết kế website</p><img src="assets/img/ctdt2.png" alt=""></a></div>
-                  <div class="chuong-trinh-dao-tao-item col-lg-2 col-md-3 col-sm-3 col-6" data-aos="zoom-out" data-aos-duration="2000" ><a href="#"><p>Lập trình và CSDL</p><img src="assets/img/ctdt3.png" alt=""></a></div>
-                  <div class="chuong-trinh-dao-tao-item col-lg-2 col-md-3 col-sm-3 col-6" data-aos="zoom-out" data-aos-duration="2000" ><a href="#"><p>Lập trình di động</p><img src="assets/img/ctdt4.png" alt=""></a></div>
-                  <div class="chuong-trinh-dao-tao-item col-lg-2 col-md-3 col-sm-3 col-6" data-aos="zoom-out" data-aos-duration="2000" ><a href="#"><p>Thiết kế giao diện</p><img src="assets/img/ctdt5.png" alt=""></a></div>
-                  <div class="chuong-trinh-dao-tao-item col-lg-2 col-md-3 col-sm-3 col-6" data-aos="zoom-out" data-aos-duration="2000" ><a href="#"><p>Mạng máy tính</p><img src="assets/img/ctdt6.png" alt=""></a></div>
-                  <div class="chuong-trinh-dao-tao-item col-lg-2 col-md-3 col-sm-3 col-6" data-aos="zoom-out" data-aos-duration="2000" ><a href="#"><p>Internet Marketing</p><img src="assets/img/ctdt7.png" alt=""></a></div>
-                  <div class="chuong-trinh-dao-tao-item col-lg-2 col-md-3 col-sm-3 col-6" data-aos="zoom-out" data-aos-duration="2000" ><a href="#"><p>Lập trình cho trẻ em</p><img src="assets/img/ctdt8.png" alt=""></a></div>
-                  <div class="chuong-trinh-dao-tao-item col-lg-2 col-md-3 col-sm-3 col-6" data-aos="zoom-out" data-aos-duration="2000" ><a href="#"><p>Tin học văn phòng</p><img src="assets/img/ctdt9.png" alt=""></a></div>
-                  <div class="chuong-trinh-dao-tao-item col-lg-2 col-md-3 col-sm-3 col-6" data-aos="zoom-out" data-aos-duration="2000" ><a href="#"><p>Tin học văn phòng chuẩn quốc tế (MOS)</p><img src="assets/img/ctdt10.png" alt=""></a></div>
-                  <div class="chuong-trinh-dao-tao-item col-lg-2 col-md-3 col-sm-3 col-6" data-aos="zoom-out" data-aos-duration="2000" ><a href="#"><p>Tin học cho trẻ em</p><img src="assets/img/ctdt11.png" alt=""></a></div>
-                  <div class="chuong-trinh-dao-tao-item col-lg-2 col-md-3 col-sm-3 col-6" data-aos="zoom-out" data-aos-duration="2000" ><a href="#"><p>Đồ họa cho trẻ em</p><img src="assets/img/ctdt12.png" alt=""></a></div>
+                <ng-container *ngFor="let item of KhoaHoc">
+                  <div [ngStyle]="{'background-color': item.color}" class="chuong-trinh-dao-tao-item col-lg-2 col-md-3 col-sm-3 col-6" data-aos="zoom-out" data-aos-duration="2000" >
+                    <a href="#">
+                      <p>{{item.tenkhoahoc}}</p>
+                      <img src="{{item.image}}" alt="{{item.image}}">
+                    </a>
+                  </div>
+                </ng-container>
               </div>
           </div>
       </div>

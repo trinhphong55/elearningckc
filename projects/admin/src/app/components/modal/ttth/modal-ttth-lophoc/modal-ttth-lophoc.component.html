@@ -1,0 +1,106 @@
+<app-modal class="modal_chucnang__wrapper " id="ttth-lophoc">
+  <div (click)="closeModal('ttth-lophoc')" class="modal_chucnang__close mdi mdi-chevron-left text-white"></div>
+  <div class="container-fluid mt-3">
+    <div class="row">
+      <div class="col-12">
+        <h1 class="text-center text-white">Quản lý lớp học</h1>
+      </div>
+      <div class="col-12" [ngClass]="{ 'd-none': selectedItem }">
+        <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
+          <div class="row justify-content-center align-items-center">
+            <div class="col-9">
+              <div class="form-group">
+                <label>Chọn mã khóa học</label>
+                <select class="modal_chucnang__select2 form-control" #makhoahoc>
+                  <option></option>
+                  <ng-container *ngFor="let item of MaKhoaHoc">
+                    <option  value="{{item.makhoahoc}}">{{item.makhoahoc}}</option>
+                  </ng-container>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Đợt</label>
+                <input type="text" class="form-control" #dot>
+              </div>
+              <div class="form-group">
+                <label>Lớp học</label>
+                <input type="text" class="form-control" #lop>
+              </div>
+            </div>
+            <div class="col-auto">
+              <div class="modal_chucnang__group__button">
+                <button class="modal_chucnang__button btn btn-outline-primary px-4 mx-2" [disabled]="!makhoahoc.value || !dot.value || !lop.value "
+                  (click)="add(makhoahoc.value,dot.value,lop.value);makhoahoc.value=''; dot.value=''; lop.value=''"><img
+                    class="modal_chucnang__button__icon mb-2" src="assets/img/icons/add.png" alt="image icon">
+                  <div>Thêm mới</div>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12" *ngIf="selectedItem">
+        <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
+          <div class="row justify-content-center align-items-center">
+            <div class="col-9">
+              <div class="form-group">
+                <label>Mã khóa học</label>
+                <input type="text" class="form-control"  [(ngModel)]="selectedItem.makhoahoc">
+              </div>
+              <div class="form-group">
+                <label>Đợt </label>
+                <input type="text" class="form-control"  [(ngModel)]="selectedItem.dot">
+              </div>
+              <div class="form-group">
+                <label>Lớp</label>
+                <input type="text" class="form-control"  [(ngModel)]="selectedItem.lop">
+              </div>
+            </div>
+            <div class="col-auto">
+              <div class="modal_chucnang__group__button">
+                <button class="modal_chucnang__button btn btn-outline-success px-4 mx-2"
+                  (click)="update(selectedItem)"><img class="modal_chucnang__button__icon mb-2"
+                    src="assets/img/icons/upgrade.png" alt="image icon">
+                  <div>Cập nhật</div>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
+          <table class="modal_chucnang__table table table-hover"  *ngIf="LopHoc" datatable="ng">
+            <thead class="bg__caothang text-white">
+              <tr>
+                <th>#</th>
+                <th scope="col">Mã khóa học</th>
+                <th scope="col">Đợt</th>
+                <th scope="col">Lớp</th>
+                <th scope="col">Người tạo</th>
+                <th scope="col">Người sửa</th>
+                <th class="text-center" scope="col"><span
+                    class="modal_chucnang__button__save mdi mdi-content-save-outline mdi-24px"></span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of LopHoc; let i = index">
+                <td style="max-width: 50px">{{i + 1}}</td>
+                <td>{{item.makhoahoc}}</td>
+                <td>{{item.dot}}</td>
+                <td>{{item.lop}}</td>
+                <td>{{item.nguoitao}}</td>
+                <td>{{item.nguoisua}}</td>
+                <td class="text-center">
+                  <span class="modal_chucnang__button__delete mdi mdi-pencil mdi-24px  mr-2"
+                    (click)="onSelect(item);imageSrc=null"></span>
+                  <span class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px" (click)="delete(item)"></span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-modal>

@@ -3,10 +3,12 @@ import { ttthBanner } from '../../models/ttthBanner';
 import { ttthCamOn } from '../../models/ttthCamOn';
 import { ttthTienIch } from '../../models/ttthTienIch';
 import { ttthTinTuc } from '../../models/ttthTinTuc';
+import { ttthKhoaHoc } from '../../models/ttthKhoaHoc';
 import { BannerService } from '../../services/banner.service';
 import { CamonService } from '../../services/camon.service';
 import { TienichService } from '../../services/tienich.service';
 import { TintucService } from '../../services/tintuc.service';
+import { KhoahocService } from '../../services/khoahoc.service';
 
 @Component({
   selector: 'app-index',
@@ -19,7 +21,8 @@ export class IndexComponent implements OnInit {
   TienIch: ttthTienIch[];
   TinTucChinh: ttthTinTuc[];
   TinTucPhu: ttthTinTuc[];
-  constructor(private bannerService: BannerService,private camonService: CamonService,private tienichService: TienichService,private tintucService: TintucService) { }
+  KhoaHoc: ttthKhoaHoc[];
+  constructor(private bannerService: BannerService,private camonService: CamonService,private tienichService: TienichService,private tintucService: TintucService,private khoahocService: KhoahocService) { }
 
   ngOnInit(): void {
     this.getBannerfromServices();
@@ -27,6 +30,7 @@ export class IndexComponent implements OnInit {
     this.getTienIchfromServices();
     this.getTinTucChinh();
     this.getTinTucPhu();
+    this.getKhoaHoc();
   }
   getBannerfromServices(): void {
     this.bannerService.getBanner().subscribe(data => this.Banner = data);
@@ -42,5 +46,8 @@ export class IndexComponent implements OnInit {
   }
   getTinTucPhu():void{
     this.tintucService.getTinTucPhu().subscribe(data => this.TinTucPhu = data);
+  }
+  getKhoaHoc():void{
+    this.khoahocService.get().subscribe(data => this.KhoaHoc = data);
   }
 }

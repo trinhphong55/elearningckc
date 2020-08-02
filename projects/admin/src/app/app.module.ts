@@ -80,6 +80,7 @@ import { ModalQuanlytienichcnttComponent } from './components/modal/cntt/modal-q
 import { ModalDanhmucbaivietComponent } from './components/modal/cntt/modal-danhmucbaiviet/modal-danhmucbaiviet.component';
 import { ModalQuanlybosuutapcnttComponent } from './components/modal/cntt/modal-quanlybosuutapcntt/modal-quanlybosuutapcntt.component';
 import { ModalThongtinchungComponent } from './components/modal/cntt/modal-thongtinchung/modal-thongtinchung.component';
+import { ModalTtthLophocComponent } from './components/modal/ttth/modal-ttth-lophoc/modal-ttth-lophoc.component';
 
 @NgModule({
   declarations: [
@@ -150,7 +151,8 @@ import { ModalThongtinchungComponent } from './components/modal/cntt/modal-thong
     ModalQuanlytienichcnttComponent,
     ModalDanhmucbaivietComponent,
     ModalQuanlybosuutapcnttComponent,
-    ModalThongtinchungComponent
+    ModalThongtinchungComponent,
+    ModalTtthLophocComponent
   ],
   imports: [
     BrowserModule,
