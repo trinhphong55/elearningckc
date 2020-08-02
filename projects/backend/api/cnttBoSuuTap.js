@@ -38,6 +38,7 @@ router.post("/uploads", upload.single("image"), function (req, res) {
 router.post("/taobst", (req, res) => {
     console.log("req.body.src  " + req.body.src);
     var imgName = req.body.src.slice(12);
+    console.log(req.body)
     var boSuuTap = new BoSuuTap({
         maBST: req.body.maBST,
         url: req.body.url,
