@@ -1,8 +1,9 @@
 const KhoaBoMon = require("../models/khoabomon.model");
+const { check, validationResult } = require("express-validator");
 
 exports.getKhoaBonMon = async (req, res) => {
   try {
-    const khoabomon = await KhoaBoMon.find({'trangThai':'1'});
+    const khoabomon = await KhoaBoMon.find({ trangThai: "1" });
 
     res.json(khoabomon);
   } catch (error) {
@@ -22,6 +23,10 @@ exports.postKhoaBoMon = async (req, res) => {
   let nameIsExist = 0;
 
   try {
+    const err = validationResult(req);
+    if(!err.isEmpty()){
+      res.status(422).json(err.errors);
+    }
     const khoabomon = await KhoaBoMon.find();
 
     khoabomon.forEach((element) => {
@@ -35,12 +40,14 @@ exports.postKhoaBoMon = async (req, res) => {
 
     if (idIsExist > 0) {
       res.json({
-        status: false,
-        msg: "Id nay da ton tai",
+        status: 200,
+        ok:false,
+        msg: "Mã khoa này đã tồn tại",
       });
     } else if (nameIsExist > 0) {
       res.json({
-        status: false,
+        status: 200,
+        ok:false,
         msg: "Tên này đã tồn tại",
       });
     } else {
@@ -52,10 +59,12 @@ exports.postKhoaBoMon = async (req, res) => {
         nguoiChinhSua: req.body.nguoiChinhSua,
         maLoai: req.body.maLoai,
       });
+
       const saveKhoa = await khoaBoMon.save();
       res.json({
-        status: true,
-        msg: "Created Khoa Successful",
+        status: 200,
+        ok:true,
+        msg: "Thêm thành công Khoa-Bộ môn vào danh sách",
         data: saveKhoa,
       });
     }
@@ -76,7 +85,7 @@ exports.deleteKhoaBoMon = async (req, res) => {
   // }
 
   try {
-    const updateKhoa = await KhoaBoMon.update(
+    const updateKhoa = await KhoaBoMon.updateOne(
       { _id: req.params.id },
       {
         $set: {
@@ -87,10 +96,10 @@ exports.deleteKhoaBoMon = async (req, res) => {
 
     let result;
 
-    if (updateKhoa.n === 0) {
+    if (updateKhoa.nModified === 0) {
       result = {
         status: false,
-        msg: "err",
+        msg: "Xóa thất bại",
       };
     } else {
       result = {
@@ -104,8 +113,37 @@ exports.deleteKhoaBoMon = async (req, res) => {
   }
 };
 
+//validation data from request
+
+exports.checkValidate = () => {
+  return [
+    check("maKhoa", "MA KHOA is required").notEmpty(),
+    check("maKhoa", "MA KHOA is must be at least 10 chars long").isLength({ max: 50}),
+
+    check("tenKhoa", "TEN KHOA is must be at most 50 chars long ").isLength({ max: 50}),
+    check("tenKhoa", "TEN KHOA is required").notEmpty(),
+
+    check("tenVietTat", "TEN VIET TAT must be at most 15 char long").isLength({ max: 15 }),
+    check("tenVietTat", "TEN VIET TAT is required").notEmpty(),
+
+    check("nguoiTao", "NGUOI TAO is required").notEmpty(),
+
+    check("nguoiChinhSua", "NGUOI CHINH SUASUA is required").notEmpty(),
+
+    check("maLoai", "MA LOAI is required").notEmpty(),
+    check("maLoai", "MA LOAI is numberic").isNumeric(),
+  ];
+};
+
 exports.updateKhoaBoMon = async (req, res) => {
   try {
+
+    const err = validationResult(req);
+    if(!err.isEmpty()){
+      res.status(422).json(err.errors);
+    }
+    console.log(req.body);
+
     const updateKhoa = await KhoaBoMon.update(
       { _id: req.params.id },
       {
@@ -115,24 +153,26 @@ exports.updateKhoaBoMon = async (req, res) => {
           tenVietTat: req.body.tenVietTat,
           nguoiTao: req.body.nguoiTao,
           nguoiChinhSua: req.body.nguoiChinhSua,
+          maLoai: req.body.maLoai,
         },
       }
     );
 
-    let result;
+    let  result = {
+      status: 200,
+      ok: false,
+      msg: "",
+    };
 
-    if (updateKhoa.n === 0) {
-      result = {
-        status: false,
-        msg: "err",
-      };
+    if (updateKhoa.nModified === 0) {
+      result.msg = "Chưa được cập nhật";
+
     } else {
-      result = {
-        status: true,
-        msg: " Update successful",
-      };
+      result.ok = true;
+      result.msg ="Cập nhật thành công Khoa-Bộ môn";
+
     }
-    res.json(result);
+    res.status(200).json(result);
   } catch (error) {
     res.json(error);
   }

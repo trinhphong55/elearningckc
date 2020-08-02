@@ -1,0 +1,698 @@
+.container-fluid{
+    margin-top: 30px;
+}
+.luong{
+    margin: 0 auto;
+}
+.luong .row{
+    margin-bottom: 20px;
+}
+.luong-title{
+    height: 250px;
+    background-image: url(https://gstatic.com/classroom/themes/img_reachout.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 10px;
+}
+.col-md-8{
+    padding-right: 0;
+}
+.col-md-4{
+    padding-left: 0;
+}
+.name-classrom{
+    padding-top: 20px;
+    color: white;
+    font-weight: 500;
+}
+.soluong{
+    color: white;
+    font-weight: 500;
+}
+.malop{
+    color: white;
+}
+.right-chude{
+    position: relative;
+}
+.mat-card-content-gv p {
+    padding: 20px 0 0 20px;
+    color: #777777;
+}
+.style-mat-card{
+    padding: 0;
+}
+.style-mat-card button{
+    border: none;
+    outline: none;
+    box-shadow: none;
+    padding: 20px 0 20px 10px;
+    width: 80%;
+    color: #777777;
+}
+.mat-card-header-text {
+    margin: 0;
+ }
+.style-mat-card button:hover{
+    
+    color: #00CCCC;
+}
+.example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }
+  .chiasetext{
+      padding-left: 60px;
+  }
+  .content-gv-header{
+      width: 100%;
+      display: flex;
+  }
+  .content-gv-header .content-gv-header-left{
+      width: 50%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .content-gv-header .content-gv-header-left .text{
+      width: 50%;
+      margin-left: 20px;
+  }
+  .content-gv-header .content-gv-header-right{
+    width: 50%;
+
+}
+.content-gv-header .content-gv-header-right button{
+    float: right;
+}
+form.ng-untouched.ng-pristine.ng-valid {
+    width: 100%;
+    position: relative;
+}
+.style-button{
+    position: absolute;
+    top: 53%;
+    right: 0;
+    transform: translate(-50%,-50%);
+    padding: 0;
+}
+.form-control {
+    display: block;
+    width: 100%;
+    height: calc(1.5em + .75rem + 2px);
+    padding: 1.375rem 1.75rem;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #555555;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 3.25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.text-noidung{
+    font-size: 0.875rem;
+}
+.content-gv-main{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.content-gv-main .example-header-image{
+   width: 7%;
+}
+.content-gv-main .content-gv-main-from{
+    width: 90%;
+    margin-left: 10px;
+}
+
+
+.row-comment{
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+.mat-button{
+    outline: none;
+}
+.title-icon{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap; 
+    color: #007b83;
+    border-bottom: 1.5px solid #007b83;
+}
+.title-icon .title{
+    width: 80%;
+
+}
+.title-icon .title h3{
+    padding-top: 20px;
+    padding-left: 20px;
+}
+.title-icon .iocn{
+    width: 20%;
+}
+.title-icon .icon button{
+    margin-left: 85px;
+   padding-top: 20px;
+}
+
+
+.content-gv{
+    width: 96%;
+    border: solid 1px #e0e0e0;
+    border-radius: 7px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+.content-gv .thongtin{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    border-bottom: solid 1px #e0e0e0;
+    cursor: pointer;
+    padding-bottom: 10px;
+}
+.content-gv .thongtin:hover{
+    background-color: #CCFFCC;
+}
+.thongtin .tt-icon{
+    width: 10%;
+}
+.thongtin .tt-icon div{
+    width: 50%;
+    background: #007b83;
+    height: 35px;
+    margin: 0 auto;
+    border-radius: 20px;
+    text-align: center;
+    justify-content: center;
+    position: relative;
+    margin-top: 10px;
+}
+.thongtin .tt-icon div i{
+   font-size: 1.3rem;
+   color: white;
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%,-50%);
+}
+.thongtin .tt-client{
+    width: 55%;
+}
+.thongtin .tt-client div{
+    padding-top: 20px;
+    font-size: 1rem;
+    font-weight: 500;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap; 
+    width: 400px; 
+}
+.thongtin .tt-dealine{
+    width: 25%;
+    color: #555555;
+}
+.thongtin .tt-dealine div{
+    font-size: 0.785rem;
+    padding-top: 20px;
+}
+.thongtin .tt-menu{
+    width: 5%;
+}
+.thongtin .tt-menu button{
+    outline: none;
+    margin-top: 10px;
+}
+
+.songuoinop{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    border-bottom: solid 1px #e0e0e0;
+}
+.songuoinop .left{
+    width: 70%;
+}
+.songuoinop .left div{
+    padding-top: 20px;
+    padding-left: 20px;
+}
+.songuoinop .left div p{
+    padding: 0;
+    margin: 0;
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: #666666;
+}
+.songuoinop .right{
+    width: 30%;
+}
+.danop_dagiao{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.danop_dagiao .danop{
+    width: 40%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.danop_dagiao .dagiao{
+    width: 40%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.danop_dagiao button{
+    border-left: 0.5px solid #e0e0e0;
+    border-radius: 0;
+    padding: 0;
+    width: 100%;
+    outline: none;
+    color: #666666;
+}
+.danop_dagiao button p{
+    font-size: 2rem;
+  
+}
+.content-gv .nhanxet{
+    border-bottom: solid 1px #e0e0e0;
+}
+
+.nhanxet .nx-main{
+    padding-top: 10px;
+    padding-left: 5px;
+}
+.nhanxet .nx-main .nx-number{
+    margin-bottom: 10px;
+}
+.nhanxet .nx-show{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.nhanxet .nx-show .nx-showimg{
+    width: 10%;
+}
+.nhanxet .nx-show .nx-showimg div{
+    width: 40%;
+    margin: 0 auto;
+   
+}
+.nhanxet .nx-show .nx-showimg div img{
+    width: 100%;
+    border-radius: 50px;
+}
+.nhanxet .nx-show .nx-showname{
+    width: 80%;
+}
+.nhanxet .nx-show .nx-menu{
+    width: 10%;
+}
+
+.comment .cm-main{
+    padding-top: 10px;
+    padding-left: 5px;
+}
+
+.comment .cm-show{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.comment .cm-show .cm-showimg{
+    width: 10%;
+}
+.comment .cm-show .cm-showimg div{
+    width: 40%;
+    margin: 0 auto;
+   
+}
+.comment .cm-show .cm-showimg div img{
+    width: 100%;
+    border-radius: 50px;
+}
+.comment .cm-show .cm-showcomment{
+    width: 85%;
+}
+
+
+.comment .input-container {
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+    margin-bottom: 15px;
+    position: relative;
+} 
+.comment .input-container .btn{
+    position: absolute;
+    right: 0;
+    top:5px;
+    border-radius: 50px;
+    outline: none;
+}
+.comment .input-container .btn i{
+    padding: 0;
+}
+.comment .input-container .btn:hover{
+    background: #99FFCC;
+}
+  .input-field {
+    width: 100%;
+    padding: 10px;
+    outline: #006666;
+    border-radius: 20px;
+    border: 1px solid #e0e0e0;
+
+  }
+  .input-field:focus {
+    border: 2px solid #006666;
+   
+  }
+
+
+
+  .content-sv{
+    width: 96%;
+    border: solid 1px #007b83;
+    border-radius: 7px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+.content-sv .thongtin{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    border-bottom: solid 1px #007b83;
+    cursor: pointer;
+    padding-bottom: 10px;
+}
+.content-sv .thongtin:hover{
+    background-color: #CCFFCC;
+    opacity: 0.5;
+}
+.content-sv .thongtin .tt-icon{
+    width: 10%;
+}
+.content-sv .thongtin .tt-icon div{
+    width: 50%;
+    background: #007b83;
+    height: 35px;
+    margin: 0 auto;
+    border-radius: 20px;
+    text-align: center;
+    justify-content: center;
+    position: relative;
+    margin-top: 10px;
+}
+.content-sv  .thongtin .tt-icon div i{
+   font-size: 1.3rem;
+   color: white;
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%,-50%);
+}
+.content-sv .thongtin .tt-client{
+    width: 55%;
+}
+.content-sv .thongtin .tt-client div{
+    padding-top: 20px;
+    font-size: 1rem;
+    font-weight: 500;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap; 
+    width: 400px; 
+}
+.content-sv .thongtin .tt-dealine{
+    width: 25%;
+    color: #555555;
+}
+.content-sv .thongtin .tt-dealine div{
+    font-size: 0.785rem;
+    padding-top: 20px;
+}
+.content-sv .thongtin .tt-menu{
+    width: 5%;
+}
+.content-sv .thongtin .tt-menu button{
+    outline: none;
+    margin-top: 10px;
+}
+
+.content-sv .songuoinop{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    border-bottom: solid 1px #007b83;
+}
+.content-sv .songuoinop .left{
+    width: 70%;
+}
+.content-sv .songuoinop .left div{
+    padding-top: 20px;
+    padding-left: 20px;
+}
+.content-sv .songuoinop .left div p{
+    padding: 0;
+    margin: 0;
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: #666666;
+}
+.content-sv .songuoinop .right{
+    width: 30%;
+}
+.content-sv .danop_dagiao{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.content-sv .danop_dagiao .danop{
+    width: 40%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.content-sv .danop_dagiao .dagiao{
+    width: 40%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.content-sv .danop_dagiao button{
+    border-left: 0.5px solid #e0e0e0;
+    border-radius: 0;
+    padding: 0;
+    width: 100%;
+    outline: none;
+    color: #666666;
+}
+.content-sv .danop_dagiao button p{
+    font-size: 2rem;
+  
+}
+.content-sv .content-gv .nhanxet{
+    border-bottom: solid 1px #e0e0e0;
+}
+
+.content-sv .nhanxet .nx-main{
+    padding-top: 10px;
+    padding-left: 5px;
+}
+.content-sv .nhanxet .nx-main .nx-number{
+    margin-bottom: 10px;
+}
+.content-sv .nhanxet .nx-show{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.content-sv .nhanxet .nx-show .nx-showimg{
+    width: 10%;
+}
+.content-sv .nhanxet .nx-show .nx-showimg div{
+    width: 40%;
+    margin: 0 auto;
+   
+}
+.content-sv .nhanxet .nx-show .nx-showimg div img{
+    width: 100%;
+    border-radius: 50px;
+}
+.content-sv .nhanxet .nx-show .nx-showname{
+    width: 80%;
+}
+.content-sv .nhanxet .nx-show .nx-menu{
+    width: 10%;
+}
+
+.content-sv .comment .cm-main{
+    padding-top: 10px;
+    padding-left: 5px;
+}
+
+.content-sv .comment .cm-show{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.content-sv .comment .cm-show .cm-showimg{
+    width: 10%;
+}
+.content-sv .comment .cm-show .cm-showimg div{
+    width: 40%;
+    margin: 0 auto;
+   
+}
+.content-sv .comment .cm-show .cm-showimg div img{
+    width: 100%;
+    border-radius: 50px;
+}
+.content-sv .comment .cm-show .cm-showcomment{
+    width: 85%;
+}
+
+
+.content-sv .comment .input-container {
+    display:  -ms-flexbox;
+    display: flex;
+    width: 100%;
+    margin-bottom: 15px;
+    position: relative;
+} 
+.content-sv .comment .input-container .btn{
+    position: absolute;
+    right: 0;
+    top:5px;
+    border-radius: 50px;
+    outline: none;
+}
+.content-sv .comment .input-container .btn i{
+    padding: 0;
+}
+.content-sv .comment .input-container .btn:hover{
+    background: #99FFCC;
+}
+  .input-field {
+    width: 100%;
+    padding: 10px;
+    outline: #006666;
+    border-radius: 20px;
+    border: 1px solid #e0e0e0;
+
+  }
+  .input-field:focus {
+    border: 2px solid #006666;
+   
+  }
+
+
+  @media only screen and (max-width: 600px){
+    .container-fluid{
+        margin-top: 100px;
+    }
+    .row {
+        width: 100%;
+        margin: 0 auto;
+    }
+    .chise{
+        margin: 0;
+        width: 100%;
+        padding: 0;
+        margin-top: 10px;
+        margin-bottom: 5px;
+    }
+    .thongtin .tt-icon{
+        width: 15%;
+    }
+    .thongtin .tt-icon div{
+        width: 80%;
+    }
+    .thongtin .tt-client{
+        width: 50%;
+    }
+    .thongtin .tt-client div{
+        padding-top: 20px;
+        font-size: 0.875rem;
+        font-weight: 300;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap; 
+        width: 200px; 
+    }
+    .content-sv .thongtin .tt-client div{
+        padding-top: 20px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap; 
+        width: 200px; 
+    }
+    .thongtin .tt-dealine{
+       display: none;
+    }
+    .thongtin .tt-dealine div{
+        font-size: 0.785rem;
+        padding-top: 20px;
+    }
+    .thongtin .tt-menu{
+        width: 5%;
+    }
+    .thongtin .tt-menu button{
+        outline: none;
+        margin-top: 10px;margin-left: 50px;
+    }
+    .nhanxet .nx-show .nx-showimg{
+        width: 15%;
+    }
+    .nhanxet .nx-show .nx-showname{
+        width: 70%;
+    }
+    .nhanxet .nx-show .nx-menu{
+        width: 10%;
+    }
+    .comment .cm-show .cm-showimg{
+        width: 15%;
+    }
+    .comment .cm-show .cm-showimg div{
+        width: 60%;
+        margin: 0 auto;
+       
+    }
+    .comment .cm-show .cm-showimg div img{
+        width: 100%;
+        border-radius: 50px;
+    }
+    .comment .cm-show .cm-showcomment{
+        width: 74%;
+    }
+    .content-sv .thongtin .tt-icon{
+        width: 15%;
+    }
+    .content-sv  .thongtin .tt-icon div i{
+       font-size:0.875rem;
+    }
+    .content-sv .thongtin .tt-client{
+        width: 50%;
+    }
+    .content-sv .thongtin .tt-client div{
+        font-size: 0.875rem;
+        font-weight: 300;
+        width: 155px; 
+    }
+    .content-sv .nhanxet .nx-show .nx-showimg {
+        width: 22%;
+    }
+    .content-sv .nhanxet .nx-show .nx-showname {
+        width: 60%;
+    }
+    .content-sv .comment .cm-show .cm-showimg {
+        width: 22%;
+    }
+    .content-sv .comment .cm-show .cm-showcomment{
+        width: 75%;
+    }
+   
+}

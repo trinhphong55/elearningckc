@@ -1,5 +1,6 @@
 const MongoClient = require('mongodb').MongoClient;
-const url = 'mongodb://localhost:27017/?readPreference=primary&authSource=GosuReport&appname=MongoDB%20Compass&ssl=false';
+// const url = 'mongodb://localhost:27017/?readPreference=primary&authSource=GosuReport&appname=MongoDB%20Compass&ssl=false';
+const url = 'mongodb://elearning_team:123@103.92.26.177:27017/testAngularckc?retryWrites=true&w=majority?authSource=admin';
 class MongoDB {
   constructor() {
     this.conDb = null;
@@ -7,7 +8,7 @@ class MongoDB {
   }
 
   async connectDB() {
-    let dbName = 'ttth';
+    let dbName = 'testAngularckc';
     try {
       if(!this.dbClose) {
         const connectRs = await MongoClient.connect(url, { useUnifiedTopology: true });
@@ -22,8 +23,8 @@ class MongoDB {
   }
 
   async updateOrInsertOne(key, data, collectionName, callback) {
-    console.log('key', key);
-    console.log('data', data);
+    // console.log('key', key);
+    // console.log('data', data);
     let result = false;
     try {
       await this.connectDB();
@@ -33,8 +34,7 @@ class MongoDB {
       result = await this.conDb.collection(collectionName).updateOne(key,{$set: data}, { upsert: true});
       await this.closeDB();
     } catch (error) {
-      if(callback) callback('',error)
-      console.log(error);
+      console.log('error: ', error.message);
       await this.closeDB();
     }
     return result;
@@ -61,7 +61,7 @@ class MongoDB {
   }
 
   async find(options) {
-    let result = null;
+    let result = false;
     try {
       await this.connectDB();
       result = await this.conDb.collection(this.collectionName).find(options).toArray();

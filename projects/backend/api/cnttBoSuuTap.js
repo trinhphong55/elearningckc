@@ -36,14 +36,15 @@ router.post("/uploads", upload.single("image"), function (req, res) {
 });
 
 router.post("/taobst", (req, res) => {
-    console.log("req.body.src  " + req.body.anhBia);
+    console.log("req.body.src  " + req.body.src);
     var imgName = req.body.src.slice(12);
+    console.log(req.body)
     var boSuuTap = new BoSuuTap({
         maBST: req.body.maBST,
         url: req.body.url,
         alt: req.body.alt,
         src: "uploads/cntt/" + imgName,
-        trangThai : 1
+        trangThai: 1
     });
     console.log(boSuuTap);
     boSuuTap.save((err, data) => {
@@ -59,7 +60,6 @@ router.post("/chinhsuabst", async (req, res) => {
     console.log(" Chinh sua BST");
     console.log("req.body.src  " + req.body.src);
     var imgName = req.body.src.slice(12);
-    console.log(req.body.maBaiViet);
     await BoSuuTap.findOneAndUpdate(
         { _id: req.body._id },
         {
@@ -77,6 +77,30 @@ router.post("/chinhsuabst", async (req, res) => {
 // Get All Tintuc
 router.get("/danhsachbst", (req, res) => {
     BoSuuTap.find((error, data) => {
+        if (error) {
+            return res.json({
+                message: "Lấy danh sách BST thành công.",
+                data: [],
+                error: error,
+            });
+        }
+        res.json({ message: "Lấy danh sách bst thành công.", data: data });
+    });
+});
+router.get("/danhsachlienketcntt", (req, res) => {
+    BoSuuTap.find({ maBST: "BST01", trangThai: 1 }, (error, data) => {
+        if (error) {
+            return res.json({
+                message: "Lấy danh sách BST thành công.",
+                data: [],
+                error: error,
+            });
+        }
+        res.json({ message: "Lấy danh sách bst thành công.", data: data });
+    });
+});
+router.get("/danhsachslidercntt", (req, res) => {
+    BoSuuTap.find({ maBST: "BST02", trangThai: 1 }, (error, data) => {
         if (error) {
             return res.json({
                 message: "Lấy danh sách BST thành công.",

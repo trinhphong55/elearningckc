@@ -18,6 +18,8 @@ import { PageJobDetailComponent } from './pages/page-job-detail/page-job-detail.
 import { SocialmediaComponent } from './components/socialmedia/socialmedia.component';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 import { TienichsvComponent } from './components/tienichsv/tienichsv.component';
+import { DonvilienketComponent } from './components/donvilienket/donvilienket.component';
+import { SlidersinhvienComponent } from './components/slidersinhvien/slidersinhvien.component';
 
 
 @NgModule({
@@ -36,6 +38,8 @@ import { TienichsvComponent } from './components/tienichsv/tienichsv.component';
     SocialmediaComponent,
     BreadcrumbComponent,
     TienichsvComponent,
+    DonvilienketComponent,
+    SlidersinhvienComponent,
 
 
   ],

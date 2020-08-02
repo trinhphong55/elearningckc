@@ -10,7 +10,8 @@ const khoabomonSchema = new Schema({
   },
   tenKhoa: {
     type: String,
-    required: true
+    required: true,
+    unique:true
 
   },
   tenVietTat: {
@@ -30,7 +31,7 @@ const khoabomonSchema = new Schema({
   },
   ngayChinhSua: {
     type: Date,
-    default: Date.now,
+    default: Date.now(),
   },
   trangThai: {
     type: Number,
