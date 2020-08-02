@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalService } from '../../../../services/modal.service';
+import { GroupfbService } from '../../../../services/groupfb.service';
 
 @Component({
   selector: 'app-modal-groupfacebook',
@@ -7,12 +8,21 @@ import { ModalService } from '../../../../services/modal.service';
   styleUrls: ['./modal-groupfacebook.component.css']
 })
 export class ModalGroupfacebookComponent implements OnInit {
-
-  constructor(private modalService: ModalService) { }
-
+  data:any;
+  constructor(private modalService: ModalService,private groupFBService: GroupfbService) { }
+  searchGroup;
   ngOnInit(): void {
+    this.getAll();
   }
 
+  getAll(){
+    this.groupFBService.getAll().subscribe(
+      data => {
+        this.data = data;
+        console.log(this.data);
+      }
+    );
+  }
   closeModal(id: string) {
     this.modalService.close(id)
   }

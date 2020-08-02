@@ -18,22 +18,33 @@
                   <label>Mã khoa - Bộ môn </label>
                   <input class="form-control" formControlName="maKhoa" required>
                   <div *ngIf="maKhoa.invalid && (maKhoa.dirty || maKhoa.touched)" class="alert alert-danger">
-
                     <div *ngIf="maKhoa.errors.required">
-                      Mã khoa is required.
+                      Mã khoa không được để trống
                     </div>
-
+                    <div *ngIf="maKhoa.errors.minlength">
+                      Mã khoa không được ít 2 kí tự
+                    </div>
+                    <div *ngIf="maKhoa.errors.pattern">
+                      Không được có ký tự đặc biệt
+                    </div>
+                    <div *ngIf="maKhoa.errors.maxlength">
+                      Mã khoa không được nhiều hơn 50 kí tự
+                    </div>
                   </div>
                 </div>
                 <div class="form-group">
                   <label>Tên khoa - Bộ môn</label>
                   <input class="form-control" formControlName="tenKhoa">
                   <div *ngIf="tenKhoa.invalid && (tenKhoa.dirty || tenKhoa.touched)" class="alert alert-danger">
-
                     <div *ngIf="tenKhoa.errors.required">
-                      Tên Khoa is required.
+                      Tên Khoa không được để trống
                     </div>
-
+                    <div *ngIf="tenKhoa.errors.pattern">
+                      Không được có ký tự đặc biệt
+                    </div>
+                    <div *ngIf="tenKhoa.errors.maxlength">
+                      Không được nhiều hơn 50 kí tự
+                    </div>
                   </div>
                 </div>
               </div>
@@ -43,11 +54,18 @@
                   <input class="form-control" formControlName="tenVietTat">
                   <div *ngIf="tenVietTat.invalid && (tenVietTat.dirty || tenVietTat.touched)"
                     class="alert alert-danger">
-
                     <div *ngIf="tenVietTat.errors.required">
-                      Tên viết tắt is required.
+                      Tên viết tắt không được để trống
                     </div>
-
+                    <div *ngIf="tenVietTat.errors.minlength">
+                      Tên viết tắt không được ít hơn 4 kí tự.
+                    </div>
+                    <div *ngIf="tenVietTat.errors.pattern">
+                      Không được có ký tự đặc biệt
+                    </div>
+                    <div *ngIf="tenVietTat.errors.maxlength">
+                      Không được dài hơn 15 kí tự
+                    </div>
                   </div>
                 </div>
                 <div class="form-group">
@@ -55,26 +73,28 @@
                   <select class="form-control" formControlName="loaiDonVi">
                     <option value="" disabled>Chọn...</option>
                     <option *ngFor="let loai of loais" [ngValue]=loai.maLoaiDonVi>{{ loai.tenLoaiDonVi }}</option>
-                    <div *ngIf="loaiDonVi.invalid && (loaiDonVi.dirty || loaiDonVi.touched)" class="alert alert-danger">
-
-                      <div *ngIf="loaiDonVi.errors.required">
-                        Name is required.
-                      </div>
-
-                    </div>
                   </select>
+                </div>
+                <div *ngIf="loaiDonVi.invalid && (loaiDonVi.dirty || loaiDonVi.touched)" class="alert alert-danger">
+                  <div *ngIf="loaiDonVi.errors.required">
+                    Loại đơn vị không được để trống
+                  </div>
                 </div>
               </div>
               <div class="col-auto">
-                <div class="modal_chucnang__group__button" (click)="addModal()">
-                  <button class="modal_chucnang__button btn btn-outline-primary px-4 mx-2"><img
+                <div class="modal_chucnang__group__button">
+                  <button class="modal_chucnang__button btn btn-outline-primary px-4 mx-2" (click)="addModal()"><img
                       class="modal_chucnang__button__icon mb-2" src="assets/img/icons/add.png" alt="image icon">
                     <div>Thêm mới</div>
-
                   </button>
-                  <button class="modal_chucnang__button btn btn-outline-success px-4 mx-2"><img
-                      class="modal_chucnang__button__icon mb-2" src="assets/img/icons/upgrade.png" alt="image icon">
+                  <button class="modal_chucnang__button btn btn-outline-success px-4 mx-2" (click)="importExcel()"><img
+                      class="modal_chucnang__button__icon mb-2" src="assets/img/icons/upgrade.png" alt="image icon"/>
                     <div>Import Excel</div>
+                  </button>
+                  <button class="modal_chucnang__button btn btn-outline-success px-4 mx-2"
+                    (click)="updateModal(currentIndex,currentKhoa)"><img class="modal_chucnang__button__icon mb-2"
+                      src="assets/img/icons/upgrade.png" alt="image icon">
+                    <div>Cập nhật </div>
                   </button>
                 </div>
               </div>
@@ -107,38 +127,64 @@
                   class="modal_chucnang__button__save ml-2 mdi mdi-content-save-outline mdi-24px"></span></th>
             </thead>
             <tbody>
+              <tr *ngFor="let khoa of khoas; let i= index" [ngClass]="statusElementList"
+                (click)="insertDateforForm(khoa)">
 
-              <tr *ngFor="let khoa of khoas; let i= index">
-                <ng-template [ngIf]="removeDisplayKhoa(khoa)">
-                  <td style="max-width: 50px">{{ i+1  }}</td>
-                  <td style="max-width: 100px">
-                    <input class="form-control" disabled value="{{ khoa.maKhoa}}">
-                  </td>
-                  <td>
-                    <input class="form-control" disabled value=" {{ khoa.tenKhoa }}">
-                  </td>
-                  <td>
-                    <input class="form-control" disabled value=" {{ khoa.tenVietTat }}">
-                  </td>
-                  <td>
-                    <select class="form-control">
-                      <option value="" disabled>Chọn...</option>
-                      <option *ngFor="let loai of loais" [ngValue]=loai.maLoaiDonVi>{{ loai.tenLoaiDonVi }}</option>
-                    </select>
-                  </td>
-                  <td class="text-center">
-                    <span class="modal_chucnang__button__edit mdi mdi-file-document-edit-outline mdi-24px"
-                      (click)="updateModal(khoa._id,khoa)">
-                    </span>
-                    <span class="modal_chucnang__button__delete ml-2 mdi mdi-delete-outline mdi-24px "
-                      (click)="deleteModal(khoa._id)">
-                    </span>
-                  </td>
-                </ng-template>
+                <td style="max-width: 50px">{{ i+1  }}</td>
+                <td style="max-width: 100px">
+                  <input class="form-control" disabled value="{{ khoa.maKhoa}}">
+                </td>
+                <td>
+                  <input class="form-control" disabled value=" {{ khoa.tenKhoa }}">
+                </td>
+                <td>
+                  <input class="form-control" disabled value=" {{ khoa.tenVietTat }}">
+                </td>
+                <td>
+
+                  <div *ngFor="let loai of loais">
+                    <p *ngIf="khoa.maLoai == loai.maLoaiDonVi"> {{ loai.tenLoaiDonVi }}</p>
+                  </div>
+
+                </td>
+                <td class="text-center">
+                  <span class="modal_chucnang__button__edit mdi mdi-file-document-edit-outline mdi-24px"
+                    (click)="insertDateforForm(khoa)">
+                  </span>
+                  <span class="modal_chucnang__button__delete ml-2 mdi mdi-delete-outline mdi-24px "
+                    (click)="deleteModal(khoa._id, khoa.maLoai)">
+                  </span>
+                </td>
               </tr>
+              <tr *ngFor="let khoa of bomons; let i= index" [ngClass]="statusElementList"
+                (click)="insertDateforForm(khoa)">
 
+                <td style="max-width: 50px">{{ i+1  }}</td>
+                <td style="max-width: 100px">
+                  <input class="form-control" disabled value="{{ khoa.maBoMon}}">
+                </td>
+                <td>
+                  <input class="form-control" disabled value=" {{ khoa.tenBoMon }}">
+                </td>
+                <td>
+                  <input class="form-control" disabled value=" {{ khoa.tenVietTat }}">
+                </td>
+                <td>
 
+                  <div *ngFor="let loai of loais">
+                    <p *ngIf="khoa.maLoai == loai.maLoaiDonVi"> {{ loai.tenLoaiDonVi }}</p>
+                  </div>
 
+                </td>
+                <td class="text-center">
+                  <span class="modal_chucnang__button__edit mdi mdi-file-document-edit-outline mdi-24px"
+                    (click)="insertDateforForm(khoa)">
+                  </span>
+                  <span class="modal_chucnang__button__delete ml-2 mdi mdi-delete-outline mdi-24px "
+                    (click)="deleteModal(khoa._id, khoa.maLoai)">
+                  </span>
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>

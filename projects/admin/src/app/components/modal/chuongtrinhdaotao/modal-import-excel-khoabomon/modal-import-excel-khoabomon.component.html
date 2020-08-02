@@ -1,0 +1,42 @@
+<app-modal class="modal_chucnang__wrapper" id="ctdt_importexcelkhoabomon">
+  <div (click)="closeModal('ctdt_importexcelkhoabomon')"  class="modal_chucnang__close mdi mdi-chevron-left text-white"></div>
+  <div class="container-fluid mt-3">
+    <div class="row">
+      <div class="col-12">
+        <h1 class="text-center text-white">Import Danh Sách Khoa-Bộ Môn Excel</h1></div>
+        <div class="col-12">
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" (change)="onChange($event)" #inputFile >
+          <label class="custom-file-label" for="customFile">Choose file</label>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="alert alert-info" *ngIf="isExcelFile === false">
+          This is not an Excel file
+        </div>
+        </div>
+        <div class="col-12">
+        <button class="btn btn-danger" (click)="removeData()">Remove Data</button>
+        <button class="btn btn-success" (click)="importExcel()" *ngIf="dsKhoabomon!== undefined">Import</button>
+        </div>
+        <div class="col-12">
+          <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
+            <div class="d-flex align-items-center mb-2">
+        <table class="modal_chucnang__table table table-hover">
+          <thead class="bg__caothang text-white">
+            <!-- class="thead-light" -->
+            <tr>
+              <th *ngFor="let key of keys" scope="col">{{key}}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of dataSheet | async">
+              <td *ngFor="let key of keys">
+                {{item[key]}}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div></div></div></div>
+</app-modal>

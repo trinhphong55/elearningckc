@@ -10,8 +10,8 @@ export class AppComponent implements OnInit {
   constructor() {}
 
   // Cờ đã đăng nhập
-  // isLogged: Boolean = false;
   isLogged: Boolean = true;
+  // isLogged: Boolean = false;
 
   // Account
   account = {

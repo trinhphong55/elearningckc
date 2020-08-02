@@ -1,0 +1,9 @@
+.custom-select {
+    background: none;
+    height: auto;
+  }
+  
+  .custom-select:focus {
+    box-shadow: none;
+  }
+  

@@ -36,14 +36,14 @@ router.post("/uploads", upload.single("image"), function (req, res) {
 });
 
 router.post("/taobst", (req, res) => {
-    console.log("req.body.src  " + req.body.anhBia);
+    console.log("req.body.src  " + req.body.src);
     var imgName = req.body.src.slice(12);
     var boSuuTap = new BoSuuTap({
         maBST: req.body.maBST,
         url: req.body.url,
         alt: req.body.alt,
         src: "uploads/cntt/" + imgName,
-        trangThai : 1
+        trangThai: 1
     });
     console.log(boSuuTap);
     boSuuTap.save((err, data) => {
@@ -87,7 +87,7 @@ router.get("/danhsachbst", (req, res) => {
     });
 });
 router.get("/danhsachlienketcntt", (req, res) => {
-    BoSuuTap.find({maBST:"BST01", trangThai :1}, (error, data) => {
+    BoSuuTap.find({ maBST: "BST01", trangThai: 1 }, (error, data) => {
         if (error) {
             return res.json({
                 message: "Lấy danh sách BST thành công.",
@@ -99,7 +99,7 @@ router.get("/danhsachlienketcntt", (req, res) => {
     });
 });
 router.get("/danhsachslidercntt", (req, res) => {
-    BoSuuTap.find({maBST:"BST02", trangThai :1}, (error, data) => {
+    BoSuuTap.find({ maBST: "BST02", trangThai: 1 }, (error, data) => {
         if (error) {
             return res.json({
                 message: "Lấy danh sách BST thành công.",

@@ -7,7 +7,6 @@ const fs = require("fs");
 const app = express();
 const morgan = require("morgan");
 const path = require("path");
-//e-learningdb
 
 // const MONGODB_URI =
 //   "mongodb://elearning_team:123@103.92.26.177:27017/testAngularckc?retryWrites=true&w=majority?authSource=admin";
@@ -24,8 +23,8 @@ const httpsOptions = {
 //   useNewUrlParser: true,
 //   useFindAndModify: false,
 //   useCreateIndex: true,
-//   useUnifiedTopology: true
-// })
+//   useUnifiedTopology: true,
+// });
 
 mongoose.connection.on("error", (err) => {
   console.log("Mongoose conection error:" + err);
