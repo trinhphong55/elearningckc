@@ -1,3 +1,6 @@
+import { SinhVien } from './../../models/SinhVien.interface';
+import { DiemSinhVien } from './../../models/diemsv.interface';
+import { DiemSinhVienService } from './../../../../../admin/src/app/services/diem-sinh-vien.service';
 import { CotDiemSinhVienLopHocPhanService } from './../../services/cotdiem-sinhvien-lophocphan.service';
 import { CotDiemSinhVienLopHocPhan } from './../../models/CotDiemSinhVienLopHocPhan.interface';
 import { LopHocPhanService } from './../../services/lophocphan.service';
@@ -5,7 +8,6 @@ import { ChiTietDiemSVLHP } from './../../models/ChiTietDiemSVLHP.interface';
 import { CtDiemsvLhpService } from './../../services/ct-diemsv-lhp.service';
 import { SinhVienService } from './../../services/sinh-vien.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SinhVien } from './../../models/SinhVien.interface copy';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { LopHocPhan } from '../../models/lophocphan.interface';
@@ -26,6 +28,8 @@ export class PageTrangcanhansvComponent implements OnInit {
   public lopHocPhans: LopHocPhan[] = [];
 
   public cotDiems: CotDiemSinhVienLopHocPhan[] = [];
+
+  public diemSinhViens: DiemSinhVien[] = [];
   public sinhVienFormGroup: FormGroup;
   public locChiTietGroupForm: FormGroup;
 
@@ -61,11 +65,13 @@ export class PageTrangcanhansvComponent implements OnInit {
     private sinhVienService: SinhVienService,
     private ctDiemsvLhpService: CtDiemsvLhpService,
     private LopHocPhanService: LopHocPhanService,
-    private cotDiemService: CotDiemSinhVienLopHocPhanService
+    private cotDiemService: CotDiemSinhVienLopHocPhanService,
+    private diemSinhVienService: DiemSinhVienService
   ) {}
 
   ngOnInit(): void {
     this.layThongTinSV('0306171004');
+    this.layDiemSinhVien('0306171004');
     // this.layLopHocPhan();
     // this.layCotDiemSinhVienLHP();
     this.sinhVienFormGroup = new FormGroup({
@@ -127,10 +133,17 @@ export class PageTrangcanhansvComponent implements OnInit {
         //  this.ctDiemLHPs.forEach(el => {
         //    this.layLopHocPhanTheoMaLHP(el.maHocPhan);
         //  })
-        this.layLopHocPhan(this.ctDiemLHPs);
+        this.ganTenLopHocPhanCTDiem(this.ctDiemLHPs);
         this.layCotDiemSinhVienLHP(this.ctDiemLHPs);
         this.ctDiemLHPs = this.locLopHocPhan(this.ctDiemLHPs);
       }
+    });
+  }
+  public layDiemSinhVien(maSinhVien: String) {
+    this.diemSinhVienService.getAllFor(maSinhVien).subscribe((res: any) => {
+      this.diemSinhViens = res;
+      this.ganTenLopHocPhanDiemSV(this.diemSinhViens);
+
     });
   }
   public setValueSinhVienFormGroup(sinhVien: SinhVien) {
@@ -151,7 +164,22 @@ export class PageTrangcanhansvComponent implements OnInit {
       }
     );
   }
-  public layLopHocPhan(ChiTiemDiems: ChiTietDiemSVLHP[]) {
+  public ganTenLopHocPhanDiemSV(diemSV: DiemSinhVien[]) {
+    this.LopHocPhanService.getLopHocPhan().subscribe((res) => {
+      if (res) {
+        this.lopHocPhans = res;
+        this.lopHocPhans = this.locMaLopTheoHocKi(this.lopHocPhans);
+        diemSV.forEach((ct) => {
+          this.lopHocPhans.forEach((lop) => {
+            if (ct.maLopHocPhan == lop.maLopHocPhan) {
+              ct.tenLopHocPhan = lop.tenLopHocPhan;
+            }
+          });
+        });
+      }
+    });
+  }
+  public ganTenLopHocPhanCTDiem(ChiTiemDiems: ChiTietDiemSVLHP[]) {
     this.LopHocPhanService.getLopHocPhan().subscribe((res) => {
       if (res) {
         this.lopHocPhans = res;
@@ -180,8 +208,12 @@ export class PageTrangcanhansvComponent implements OnInit {
   }
   //################################# Xu ly su kien ##################################
   onChangeChonHocKi() {
-    console.log(this.locChiTietGroupForm.value);
+
     this.layThongTinSV('0306171004');
+    this.layDiemSinhVien('0306171004');
+  }
+  onSubmitCapNhatSinhVien(){
+    console.log(this.sinhVienFormGroup.value);
   }
   //################################ Xu ly loc #######################################
   public locLopHocPhan(ChiTietDiems: ChiTietDiemSVLHP[]): ChiTietDiemSVLHP[] {

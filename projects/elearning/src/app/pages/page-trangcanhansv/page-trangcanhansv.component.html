@@ -15,6 +15,9 @@
           <a href="" data-target="#thoikhoabieu" data-toggle="tab" class="nav-link">Thời khóa biểu</a>
         </li>
         <li class="nav-item">
+          <a href="" data-target="#bangdiemtongket" data-toggle="tab" class="nav-link">Bảng điểm tổng kết</a>
+        </li>
+        <li class="nav-item">
           <a href="" data-target="#thongtindiemso" data-toggle="tab" class="nav-link">Điểm số</a>
         </li>
       </ul>
@@ -152,7 +155,7 @@
               <label class="col-lg-3 col-form-label form-control-label"></label>
               <div class="col-lg-9">
                 <input type="reset" class="btn btn-secondary" value="Hủy ">
-                <input type="button" class="btn btn-primary" value="Lưu thông tin">
+                <input type="button" class="btn btn-primary" value="Lưu thông tin" (submit)="onSubmitCapNhatSinhVien()">
               </div>
             </div>
           </form>
@@ -382,8 +385,61 @@
             </div>
           </div>
         </div>
+        <div class="tab-pane" id="bangdiemtongket">
+          <div class="row" [formGroup]="locChiTietGroupForm">
+            <div class="col-md-6">
+              <div class="form-group pr-3 pt-1">
+                <select class="form-control" id="exampleFormControlSelect1" formControlName="chonHocKi"
+                  (change)="onChangeChonHocKi()">
+                  <option value="">Chọn học kì</option>
+                  <option *ngFor="let item of hocKis" [ngValue]=item.maHK>{{item.tenHK }}</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group pr-3 pt-1">
+                <select class="form-control" id="exampleFormControlSelect1" formControlName="chonLop"
+                  (change)="onChangeChonHocKi()">
+                  <option value="">Chọn lớp</option>
+                  <option *ngFor="let item of lopHocPhans" [ngValue]=item.maLopHocPhan>{{ item.tenLopHocPhan }}</option>
+                </select>
+              </div>
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col-md-12 shadow">
+              <table class="table table-bordered table-hover">
+                <div class="style-over-hozital">
+                  <thead>
+                    <tr>
+                      <th scope="col">
+                        STT
+                      </th>
+                      <th scope="col">
+                        Tên lớp học phần
+                      </th>
+                      <th scope="col">
+                        Điểm tổng kết
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of diemSinhViens; index as i">
+                      <td>{{ i+1 }}</td>
+                      <td class="col-4">{{ item.tenLopHocPhan }}</td>
+                      <td class="col-4">{{ item.diem }}</td>
+                    </tr>
+                  </tbody>
+                </div>
+
+              </table>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+
     <div class="col-lg-2 order-lg-1 text-center">
       <img src="assets/img/huykun.JPG" class="mx-auto img-fluid img-circle d-block" alt="avatar">
       <label class="custom-file">

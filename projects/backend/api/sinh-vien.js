@@ -1,6 +1,4 @@
-
 const SinhVienModel = require("../models/sinh-vien.model");
-
 
 setSinhVien = (req) => {
   return {
@@ -12,7 +10,7 @@ setSinhVien = (req) => {
     maLopHoc: req.maLopHoc,
     nguoiTao: req.nguoiTao,
     nguoiChinhSua: req.nguoiChinhSua,
-    email:req.maSinhVien+'@caothang.edu.vn',
+    email: req.maSinhVien + "@caothang.edu.vn",
   };
 };
 setSinhVienUpdate = (req) => {
@@ -33,6 +31,13 @@ setSinhVienUpdate = (req) => {
     sdtMe: req.sdtMe,
   };
 };
+setSinhVien_SV = (req) => {
+  return {
+    nguoiChinhSua: req.nguoiChinhSua,
+    sdt: req.sdt,
+    matkhau: req.matkhau,
+  };
+};
 exports.layTatCaSinhVien = async (req, res) => {
   try {
     const sinhViens = await SinhVienModel.find({ trangThai: "1" });
@@ -43,9 +48,8 @@ exports.layTatCaSinhVien = async (req, res) => {
       .json({ message: "Máy chủ không sữ lý được", error: error, status: 500 });
   }
 };
-exports.Laysinhvientheomalop= async(req,res)=>
-{
-  console.log(req.params)
+exports.Laysinhvientheomalop = async (req, res) => {
+  console.log(req.params);
   try {
     const sinhViens = await SinhVienModel.find({
       maLopHoc: req.params.maLopHoc,
@@ -89,26 +93,42 @@ exports.layThongtinSinhVien = async (req, res) => {
 };
 
 exports.capNhatSinhVien = async (req, res) => {
+
   try {
+    let tokens = "12341234";
+    if (req.body.tokens != tokens) {
+      res.status(403).json({
+        message: "Tài khoản này không đủ quyền để thay đổi",
+        status: 403,
+      });
+    }
     const findSinhVien = await SinhVienModel.find({
       maSinhVien: req.body.maSinhVien,
-    }).count();
+    });
 
-    if (findSinhVien == 0) {
+    if (findSinhVien.length === 0) {
       res.status(404).json({ message: "Không tìm thấy", status: 400 });
     }
-
-    const sinhViens = await SinhVienModel.updateOne(
-      { maSinhVien: req.body.maSinhVien },
-      { $set: setSinhVienUpdate(req.body.data) }
-    );
-    const updateSV = await SinhVienModel.findOne({
+    let sinhViens;
+    //Xet quyen o day
+    if (req.body.role == "sv") {
+      sinhViens = await SinhVienModel.updateOne(
+        { maSinhVien: req.body.maSinhVien },
+        { $set: setSinhVien_SV(req.body.data) }
+      );
+    } else if (req.body.role == "gv" || req.body.role == "admin") {
+      sinhViens = await SinhVienModel.updateOne(
+        { maSinhVien: req.body.maSinhVien },
+        { $set: setSinhVienUpdate(req.body.data) }
+      );
+    }
+    //kiem tra thong tin duoc cap nhat
+    const findSinhVienUpdate = await SinhVienModel.findOne({
       maSinhVien: req.body.maSinhVien,
     });
-    console.log(sinhViens);
     if (sinhViens.nModified > 0) {
       res.status(200).json({
-        data: setSinhVienUpdate(updateSV),
+        data: setSinhVienUpdate(findSinhVienUpdate),
         message: "Cập nhật thành công",
         status: 200,
       });
@@ -116,7 +136,7 @@ exports.capNhatSinhVien = async (req, res) => {
       res.status(200).json({
         message: "Cập nhật thành công, không có gì thay đổi",
         status: 200,
-        data: setSinhVienUpdate(updateSV),
+        data: setSinhVienUpdate(findSinhVienUpdate),
       });
     }
   } catch (error) {
