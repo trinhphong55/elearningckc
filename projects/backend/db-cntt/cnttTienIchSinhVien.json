@@ -1,0 +1,105 @@
+[{
+  "_id": {
+    "$oid": "5f223df75d8b166916caafba"
+  },
+  "maTienIch": "TI01",
+  "tenTienIch": "TÀI LIỆU HỌC TẬP",
+  "urlTienIch": "",
+  "iconClassTienIch": "mdi-stack-overflow",
+  "maMauTienIch": "#79859D",
+  "trangThai": 1,
+  "updatedAt": {
+    "$date": "2020-07-30T08:40:17.718Z"
+  }
+},{
+  "_id": {
+    "$oid": "5f2241797c26043054b92f7d"
+  },
+  "maTienIch": "TI04",
+  "tenTienIch": "TRA CỨU",
+  "urlTienIch": "",
+  "iconClassTienIch": "mdi-folder-account",
+  "maMauTienIch": "#006865",
+  "trangThai": 1,
+  "updatedAt": {
+    "$date": "2020-07-30T08:37:52.109Z"
+  }
+},{
+  "_id": {
+    "$oid": "5f227fc211a0fc4c14721366"
+  },
+  "urlTienIch": "",
+  "trangThai": 1,
+  "maTienIch": "TI03",
+  "tenTienIch": "E-LEARNING",
+  "iconClassTienIch": "mdi-laptop",
+  "maMauTienIch": "#054B81",
+  "updatedAt": {
+    "$date": "2020-07-30T08:36:26.911Z"
+  }
+},{
+  "_id": {
+    "$oid": "5f22802711a0fc4c14721367"
+  },
+  "urlTienIch": "",
+  "trangThai": 1,
+  "maTienIch": "TI02",
+  "tenTienIch": "CƠ HỘI VIỆC LÀM",
+  "iconClassTienIch": "mdi-near-me",
+  "maMauTienIch": "#C28F04",
+  "updatedAt": {
+    "$date": "2020-07-30T08:09:11.851Z"
+  }
+},{
+  "_id": {
+    "$oid": "5f228da52177103f1c866142"
+  },
+  "urlTienIch": "",
+  "trangThai": 1,
+  "maTienIch": "TI05",
+  "tenTienIch": "CỰU SINH VIÊN",
+  "iconClassTienIch": "mdi-school",
+  "maMauTienIch": "#2C841E",
+  "updatedAt": {
+    "$date": "2020-07-30T09:06:45.611Z"
+  }
+},{
+  "_id": {
+    "$oid": "5f228dfd2177103f1c866143"
+  },
+  "urlTienIch": "",
+  "trangThai": 1,
+  "maTienIch": "TI06",
+  "tenTienIch": "LỊCH THI",
+  "iconClassTienIch": "mdi-calendar-check",
+  "maMauTienIch": "#4722FF",
+  "updatedAt": {
+    "$date": "2020-07-30T09:08:13.122Z"
+  }
+},{
+  "_id": {
+    "$oid": "5f228e362177103f1c866144"
+  },
+  "urlTienIch": "",
+  "trangThai": 1,
+  "maTienIch": "TI07",
+  "tenTienIch": "TRUNG TÂM TIN HỌC",
+  "iconClassTienIch": "mdi-domain",
+  "maMauTienIch": "#0E86FF",
+  "updatedAt": {
+    "$date": "2020-07-30T09:09:10.592Z"
+  }
+},{
+  "_id": {
+    "$oid": "5f228e7e2177103f1c866145"
+  },
+  "urlTienIch": "",
+  "trangThai": 0,
+  "maTienIch": "TI08",
+  "tenTienIch": "HỌC PHẦN",
+  "iconClassTienIch": "mdi-layers-triple-outline",
+  "maMauTienIch": "#4E5C71",
+  "updatedAt": {
+    "$date": "2020-07-30T09:10:22.011Z"
+  }
+}]

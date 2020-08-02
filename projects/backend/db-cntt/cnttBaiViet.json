@@ -1,0 +1,313 @@
+[{
+  "_id": {
+    "$oid": "5f22a026e260953ba46dceff"
+  },
+  "loaiBaiViet": "LBV01",
+  "maDanhMuc": "DM02",
+  "tieuDe": "TUYỂN CHỌN SINH VIÊN THAM GIA ĐỘI TUYỂN TRƯỜNG CAO THẮNG DỰ THI OLYMPIC TIN HỌC TOÀN QUỐC 2020",
+  "moTaNgan": "Cuộc thi Olympic Tin học Sinh viên toàn quốc là một cuộc thi lớn dành cho các bạn sinh viên đam mê lập trình và thuật toán ở các trường Đại học, Cao đẳng tại Việt Nam, là cơ hội để các bạn có thể được học hỏi, giao lưu và khẳng định khả năng của bản thân mình. Các thí sinh sẽ phải đối mặt với một vài bài toán trong thực tế và phải giải quyết các bài toán ấy bằng thuật toán và lập trình trong vòng 3 giờ. Thí sinh nào có lời giải tối ưu hơn sẽ có điểm cao hơn. Cuộc thi được diễn ra hàng năm, tại một trường Đại học nào đó, năm nay là Đại học Cần Thơ.",
+  "noiDung": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Bibendum at varius vel pharetra vel turpis nunc. Dui vivamus arcu felis bibendum. Amet facilisis magna etiam tempor orci. Nulla pharetra diam sit amet nisl suscipit. Posuere urna nec tincidunt praesent. Libero volutpat sed cras ornare arcu dui vivamus arcu. Quis hendrerit dolor magna eget est lorem ipsum dolor. Varius quam quisque id diam vel quam elementum. Praesent tristique magna sit amet. Sed egestas egestas fringilla phasellus faucibus scelerisque. Et sollicitudin ac orci phasellus egestas.</p><p>Lectus sit amet est placerat in egestas erat imperdiet sed. Convallis posuere morbi leo urna molestie at elementum eu facilisis. Platea dictumst quisque sagittis purus sit amet. Tempor nec feugiat nisl pretium fusce id. Sed ullamcorper morbi tincidunt ornare massa eget egestas purus. Cras semper auctor neque vitae tempus quam pellentesque nec. Purus viverra accumsan in nisl nisi scelerisque. Aliquet risus feugiat in ante metus dictum. Nulla posuere sollicitudin aliquam ultrices sagittis. At tempor commodo ullamcorper a lacus vestibulum sed. Nullam eget felis eget nunc lobortis mattis aliquam faucibus purus. Gravida arcu ac tortor dignissim convallis aenean et tortor at. Gravida in fermentum et sollicitudin ac orci phasellus.</p><p>Id interdum velit laoreet id donec ultrices tincidunt arcu non. Purus non enim praesent elementum facilisis leo. Id interdum velit laoreet id donec ultrices. Dictum varius duis at consectetur lorem donec massa sapien faucibus. Sagittis orci a scelerisque purus semper eget duis. Et tortor at risus viverra adipiscing at in tellus. In aliquam sem fringilla ut morbi tincidunt augue interdum. Urna et pharetra pharetra massa massa. In mollis nunc sed id semper risus in hendrerit gravida. Amet mattis vulputate enim nulla aliquet.</p><p>Bibendum at varius vel pharetra vel turpis nunc eget. Metus dictum at tempor commodo ullamcorper a lacus vestibulum sed. Nunc vel risus commodo viverra. Vel turpis nunc eget lorem dolor sed. Elit sed vulputate mi sit. Sit amet aliquam id diam maecenas ultricies mi. Blandit aliquam etiam erat velit scelerisque in. Eu ultrices vitae auctor eu augue ut lectus arcu. Mattis ullamcorper velit sed ullamcorper morbi tincidunt ornare. In eu mi bibendum neque egestas congue. Vel facilisis volutpat est velit egestas. Pretium nibh ipsum consequat nisl. Amet massa vitae tortor condimentum lacinia quis. Tellus in hac habitasse platea dictumst vestibulum rhoncus est pellentesque. Velit sed ullamcorper morbi tincidunt ornare massa. Egestas dui id ornare arcu odio.</p><p>Posuere lorem ipsum dolor sit. Fringilla ut morbi tincidunt augue interdum velit euismod. Nisl nisi scelerisque eu ultrices. Ultricies mi eget mauris pharetra. Pulvinar etiam non quam lacus suspendisse faucibus interdum posuere lorem. Pellentesque dignissim enim sit amet venenatis. Sapien eget mi proin sed libero enim. Donec massa sapien faucibus et molestie ac. Augue eget arcu dictum varius. Placerat vestibulum lectus mauris ultrices eros. In hac habitasse platea dictumst vestibulum. Nullam non nisi est sit amet facilisis magna etiam. Bibendum ut tristique et egestas quis. Tincidunt eget nullam non nisi est. Quam pellentesque nec nam aliquam sem et tortor consequat. Tortor dignissim convallis aenean et tortor at. Aliquet nec ullamcorper sit amet risus nullam. Bibendum at varius vel pharetra vel turpis nunc. Quis vel eros donec ac odio tempor orci dapibus. Diam sit amet nisl suscipit adipiscing bibendum.</p>",
+  "anhBia": "uploads/cntt/logo-circle.png",
+  "nguoiViet": null,
+  "thoiGianDangBai": {
+    "$date": "2020-07-30T08:41:20.639Z"
+  },
+  "viTriHienThi": -1,
+  "crawling": false,
+  "crawlURL": null,
+  "trangThai": 1,
+  "maBaiViet": "BV0001",
+  "createdAt": {
+    "$date": "2020-07-30T10:25:42.118Z"
+  },
+  "updatedAt": {
+    "$date": "2020-07-30T10:25:42.118Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f22a0d1e260953ba46dcf00"
+  },
+  "loaiBaiViet": "LBV01",
+  "maDanhMuc": "DM02",
+  "tieuDe": "MÀN ĐIỀU TRẦN QUANH CO, KHÔI HÀI CỦA GOOGLE VÀ FACEBOOK",
+  "moTaNgan": "Phiên điều trần về độc quyền vừa diễn ra với sự tham gia của Facebook, Google, Apple và Amazon không được tổ chức tốt. CEO Facebook trả lời quanh co và hướng mũi dùi sang đối thủ.",
+  "noiDung": "<p>Trong phiên điều trần diễn ra rạng sáng 30/7 (giờ Việt Nam), CEO của 4 gã khổng lồ công nghệ đã cùng lúc phải nhận những câu hỏi về độc quyền từ các thành viên của Hạ viện Mỹ. Tuy nhiên, theo nhận định của <i>Reuters, </i>CEO <a href=\"https://zingnews.vn/tieu-diem/google.html\">Google</a> và <a href=\"https://zingnews.vn/tieu-diem/facebook.html\">Facebook</a> phải đối mặt với những câu hỏi hóc búa nhất.</p><h3>Màn trình diễn của 4 CEO thế nào?</h3><p>Mở đầu buổi điều trần, <a href=\"https://zingnews.vn/tieu-diem/mark-zuckerberg.html\">Mark Zuckerberg</a>, Tim Cook, <a href=\"https://zingnews.vn/tieu-diem/jeff-bezos.html\">Jeff Bezos</a> và Sundar Pichai buộc phải giơ cánh tay phải lên để thề rằng những gì nói với Hạ viện đều là sự thật. Ngoài ra, chủ tọa Cicilline cũng yêu cầu người đứng đầu của 4 công ty công nghệ lớn không được trả lời theo các trợ lý sau hậu trường.</p><p>Thế nhưng có vẻ Sudar Pichai không làm như vậy khi ông liên tục nhìn về phía trái camera trong lúc suy nghĩ câu trả lời.</p><p>Về phía CEO Facebook, như mọi khi, Mark Zuckerberg liên tục uống nước trong phiên điều trần của mình. Và đúng như dự đoán của phóng viên Tony Romm, Mark Zuckerberg dù diện lên bộ vest đáng tin cậy nhưng vẻ mặt của người đứng đầu Facebook vẫn trông “rất lập dị”</p><p>“Mặc bộ vest trông đáng tin, uống nước để lấy lại bình tĩnh và phông nền với đèn flash của phóng viên là cách mà Mark Zuckerberg xuất hiện trong hàng nghìn bài báo viết về các bê bối của Facebook trong năm qua. Nhưng năm nay, nhờ có Covid-19, 4 ông lớn công nghệ có quyền được ngồi ở nhà điều trần. Đó là một lợi thế cho họ”, Tony Romm, phóng viên chuyên về mảng chính sách công nghệ của <i>Washington Post </i>nói trong phần giao lưu trước phiên điều trần.</p><p>Như một cỗ máy được lập trình sẵn, Mark nhìn chằm chằm vào camera góc rộng dí sát vào gương mặt. Không đảo mắt, CEO Facebook trả lời vanh vách các câu hỏi của Hạ viện. Khác với những CEO còn lại, Mark dùng góc máy cận để che đi điểm yếu duy nhất của mình là đôi tay lúng túng khi trả lời, đặc biệt là với các bằng chứng email thuyết phục về việc lợi dụng vị thế độc quyền mạng xã hội để thâu tóm đối thủ.<br>&nbsp;</p><p>Trong khi đó, CEO Sundar Pichai của Google lại liên tục phải xin trả lời sau, hoặc xem kỹ lại các bằng chứng mà các nghị sĩ đưa ra. Dù đây mới là lần đầu điều trần tại quốc hội, CEO Amazon Jeff Bezos lại tỏ ra là người tự tin và trả lời các câu hỏi rất thoải mái. CEO Apple Tim Cook cũng có màn thể hiện tốt.</p><p><i>Reuters </i>nhận định cuộc điều trần 4 công ty công nghệ lớn nhất thế giới lại diễn ra theo cách kém công nghệ. Cả 4 CEO ngồi ở nhà và trả lời qua dịch vụ họp trực tuyến, và Bezos đã có thời gian nghỉ ngơi tới 90 phút khi gần như bị \"bỏ quên\" sau vài phút đầu chia sẻ hoàn cảnh của Amazon. CEO Amazon còn thảnh thơi ăn bánh, uống nước trong khi các lãnh đạo công nghệ khác đối mặt nhiều câu hỏi khó.</p>",
+  "anhBia": "uploads/cntt/logo-circle.png",
+  "nguoiViet": null,
+  "thoiGianDangBai": {
+    "$date": "2020-07-30T08:41:20.639Z"
+  },
+  "viTriHienThi": 3,
+  "crawling": false,
+  "crawlURL": null,
+  "trangThai": 1,
+  "maBaiViet": "BV0002",
+  "createdAt": {
+    "$date": "2020-07-30T10:28:33.380Z"
+  },
+  "updatedAt": {
+    "$date": "2020-07-30T10:28:33.380Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f22a12ae260953ba46dcf01"
+  },
+  "loaiBaiViet": "LBV02",
+  "maDanhMuc": "DM02",
+  "tieuDe": "[TUYỂN DỤNG] CÔNG TY TNHH NEXON NETWORKS VINA",
+  "moTaNgan": "[TUYỂN DỤNG] CÔNG TY TNHH NEXON NETWORKS VINA",
+  "noiDung": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Habitasse platea dictumst quisque sagittis purus sit. Et leo duis ut diam quam. Quisque egestas diam in arcu. Facilisis leo vel fringilla est. Tristique et egestas quis ipsum suspendisse ultrices. Tellus at urna condimentum mattis. Nisl pretium fusce id velit ut tortor pretium viverra. Augue eget arcu dictum varius duis at consectetur lorem. Cras fermentum odio eu feugiat pretium nibh. Integer feugiat scelerisque varius morbi. Egestas sed tempus urna et pharetra pharetra massa. Imperdiet dui accumsan sit amet. Scelerisque eu ultrices vitae auctor eu augue ut lectus. Sapien et ligula ullamcorper malesuada proin libero nunc consequat interdum.</p><p>Turpis nunc eget lorem dolor sed viverra ipsum nunc. Enim sed faucibus turpis in eu. Morbi tincidunt augue interdum velit euismod in pellentesque massa. Ornare arcu odio ut sem. Massa tincidunt nunc pulvinar sapien. Aenean sed adipiscing diam donec adipiscing tristique risus. Malesuada pellentesque elit eget gravida cum. In hac habitasse platea dictumst vestibulum rhoncus. At in tellus integer feugiat scelerisque varius morbi enim. Porta nibh venenatis cras sed felis eget velit. Aliquam ut porttitor leo a diam sollicitudin tempor id eu. Quisque non tellus orci ac auctor augue mauris. Erat velit scelerisque in dictum non consectetur a erat. Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis. Magna fringilla urna porttitor rhoncus dolor. Pretium quam vulputate dignissim suspendisse in est ante in nibh. Mauris commodo quis imperdiet massa tincidunt nunc pulvinar. Nulla aliquet enim tortor at auctor urna nunc id cursus.</p><p>Dictum fusce ut placerat orci. Ultrices neque ornare aenean euismod elementum nisi quis eleifend. Consectetur libero id faucibus nisl tincidunt eget nullam. Eu volutpat odio facilisis mauris. Neque vitae tempus quam pellentesque nec nam aliquam. Velit aliquet sagittis id consectetur purus ut faucibus pulvinar elementum. Elit eget gravida cum sociis. Dui faucibus in ornare quam viverra orci sagittis eu volutpat. Pellentesque habitant morbi tristique senectus. Eu sem integer vitae justo eget magna fermentum iaculis. Senectus et netus et malesuada fames ac turpis egestas integer. Lectus urna duis convallis convallis.</p>",
+  "anhBia": "uploads/cntt/logo-circle.png",
+  "nguoiViet": null,
+  "thoiGianDangBai": {
+    "$date": "2020-07-30T08:41:20.639Z"
+  },
+  "viTriHienThi": 1,
+  "crawling": false,
+  "crawlURL": null,
+  "trangThai": 1,
+  "maBaiViet": "BV0003",
+  "createdAt": {
+    "$date": "2020-07-30T10:30:02.420Z"
+  },
+  "updatedAt": {
+    "$date": "2020-07-30T10:30:02.420Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f22a192e260953ba46dcf02"
+  },
+  "loaiBaiViet": "LBV02",
+  "maDanhMuc": "DM02",
+  "tieuDe": "[TUYỂN DỤNG] CÔNG TY CÔNG NGHỆ DNTECH",
+  "moTaNgan": "Công ty TNHH đầu tư và chuyển giao Công nghệ DNTECH cần tuyển NHÂN VIÊN KỸ THUẬT IT, làm việc tại Thành phố Hồ Chí Minh. Mô tả công việc: Triển khai hệ thống camera giám sát, nhà thông minh Hướng dẫn khách hàng cài đặt các sản phẩm công nghệ của Công ty Hỗ […]",
+  "noiDung": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Habitasse platea dictumst quisque sagittis purus sit. Et leo duis ut diam quam. Quisque egestas diam in arcu. Facilisis leo vel fringilla est. Tristique et egestas quis ipsum suspendisse ultrices. Tellus at urna condimentum mattis. Nisl pretium fusce id velit ut tortor pretium viverra. Augue eget arcu dictum varius duis at consectetur lorem. Cras fermentum odio eu feugiat pretium nibh. Integer feugiat scelerisque varius morbi. Egestas sed tempus urna et pharetra pharetra massa. Imperdiet dui accumsan sit amet. Scelerisque eu ultrices vitae auctor eu augue ut lectus. Sapien et ligula ullamcorper malesuada proin libero nunc consequat interdum.</p><p>Turpis nunc eget lorem dolor sed viverra ipsum nunc. Enim sed faucibus turpis in eu. Morbi tincidunt augue interdum velit euismod in pellentesque massa. Ornare arcu odio ut sem. Massa tincidunt nunc pulvinar sapien. Aenean sed adipiscing diam donec adipiscing tristique risus. Malesuada pellentesque elit eget gravida cum. In hac habitasse platea dictumst vestibulum rhoncus. At in tellus integer feugiat scelerisque varius morbi enim. Porta nibh venenatis cras sed felis eget velit. Aliquam ut porttitor leo a diam sollicitudin tempor id eu. Quisque non tellus orci ac auctor augue mauris. Erat velit scelerisque in dictum non consectetur a erat. Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis. Magna fringilla urna porttitor rhoncus dolor. Pretium quam vulputate dignissim suspendisse in est ante in nibh. Mauris commodo quis imperdiet massa tincidunt nunc pulvinar. Nulla aliquet enim tortor at auctor urna nunc id cursus.</p><p>Dictum fusce ut placerat orci. Ultrices neque ornare aenean euismod elementum nisi quis eleifend. Consectetur libero id faucibus nisl tincidunt eget nullam. Eu volutpat odio facilisis mauris. Neque vitae tempus quam pellentesque nec nam aliquam. Velit aliquet sagittis id consectetur purus ut faucibus pulvinar elementum. Elit eget gravida cum sociis. Dui faucibus in ornare quam viverra orci sagittis eu volutpat. Pellentesque habitant morbi tristique senectus. Eu sem integer vitae justo eget magna fermentum iaculis. Senectus et netus et malesuada fames ac turpis egestas integer. Lectus urna duis convallis convallis.</p>",
+  "anhBia": "uploads/cntt/logo-circle.png",
+  "nguoiViet": null,
+  "thoiGianDangBai": {
+    "$date": "2020-07-30T08:41:20.639Z"
+  },
+  "viTriHienThi": 1,
+  "crawling": false,
+  "crawlURL": null,
+  "trangThai": 1,
+  "maBaiViet": "BV0004",
+  "createdAt": {
+    "$date": "2020-07-30T10:31:46.404Z"
+  },
+  "updatedAt": {
+    "$date": "2020-07-30T10:31:46.404Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f22a1aee260953ba46dcf03"
+  },
+  "loaiBaiViet": "LBV02",
+  "maDanhMuc": "DM02",
+  "tieuDe": "[TUYỂN DỤNG] CÔNG TY CỔ PHẦN TIN HỌC MINH THÔNG",
+  "moTaNgan": "GIỚI THIỆU NHÀ TUYỂN DỤNG: CÔNG TY CỔ PHẦN TIN HỌC MINH THÔNG (MINH THONG INFORMATIC JSC) thành lập từ năm 2001, Công Ty chúng tôi là nhà phân phối sản phẩm uy tín các linh kiện vi tính Motherboard, VGA, HDD, SSD, ram, KB, Mouse…chính hãng của những thương hiệu được ưa chuộng hàng đầu thế […]",
+  "noiDung": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Habitasse platea dictumst quisque sagittis purus sit. Et leo duis ut diam quam. Quisque egestas diam in arcu. Facilisis leo vel fringilla est. Tristique et egestas quis ipsum suspendisse ultrices. Tellus at urna condimentum mattis. Nisl pretium fusce id velit ut tortor pretium viverra. Augue eget arcu dictum varius duis at consectetur lorem. Cras fermentum odio eu feugiat pretium nibh. Integer feugiat scelerisque varius morbi. Egestas sed tempus urna et pharetra pharetra massa. Imperdiet dui accumsan sit amet. Scelerisque eu ultrices vitae auctor eu augue ut lectus. Sapien et ligula ullamcorper malesuada proin libero nunc consequat interdum.</p><p>Turpis nunc eget lorem dolor sed viverra ipsum nunc. Enim sed faucibus turpis in eu. Morbi tincidunt augue interdum velit euismod in pellentesque massa. Ornare arcu odio ut sem. Massa tincidunt nunc pulvinar sapien. Aenean sed adipiscing diam donec adipiscing tristique risus. Malesuada pellentesque elit eget gravida cum. In hac habitasse platea dictumst vestibulum rhoncus. At in tellus integer feugiat scelerisque varius morbi enim. Porta nibh venenatis cras sed felis eget velit. Aliquam ut porttitor leo a diam sollicitudin tempor id eu. Quisque non tellus orci ac auctor augue mauris. Erat velit scelerisque in dictum non consectetur a erat. Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis. Magna fringilla urna porttitor rhoncus dolor. Pretium quam vulputate dignissim suspendisse in est ante in nibh. Mauris commodo quis imperdiet massa tincidunt nunc pulvinar. Nulla aliquet enim tortor at auctor urna nunc id cursus.</p><p>Dictum fusce ut placerat orci. Ultrices neque ornare aenean euismod elementum nisi quis eleifend. Consectetur libero id faucibus nisl tincidunt eget nullam. Eu volutpat odio facilisis mauris. Neque vitae tempus quam pellentesque nec nam aliquam. Velit aliquet sagittis id consectetur purus ut faucibus pulvinar elementum. Elit eget gravida cum sociis. Dui faucibus in ornare quam viverra orci sagittis eu volutpat. Pellentesque habitant morbi tristique senectus. Eu sem integer vitae justo eget magna fermentum iaculis. Senectus et netus et malesuada fames ac turpis egestas integer. Lectus urna duis convallis convallis.</p>",
+  "anhBia": "uploads/cntt/logo-circle.png",
+  "nguoiViet": null,
+  "thoiGianDangBai": {
+    "$date": "2020-07-30T08:41:20.639Z"
+  },
+  "viTriHienThi": 1,
+  "crawling": false,
+  "crawlURL": null,
+  "trangThai": 1,
+  "maBaiViet": "BV0005",
+  "createdAt": {
+    "$date": "2020-07-30T10:32:14.496Z"
+  },
+  "updatedAt": {
+    "$date": "2020-07-30T10:32:14.496Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f22a1c2e260953ba46dcf04"
+  },
+  "loaiBaiViet": "LBV02",
+  "maDanhMuc": "DM02",
+  "tieuDe": "[TUYỂN DỤNG] CÔNG TY TNHH MTV THẾ GIỚI CÔNG NGHỆ (HD KING)",
+  "moTaNgan": "Công ty TNHH MTV Thế giới Công nghệ (HDKING) cần 2 bạn lập trình viên (sinh viên mới tốt nghiệp hoặc sinh viên chưa có kinh nghiệm hoặc đã có kinh nghiệm), ưu tiên đã học qua ngôn ngữ Java. Các bạn sinh viên quan tâm vui lòng gởi hồ sơ về: CÔNG TY TNHH MTV THẾ […]",
+  "noiDung": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Habitasse platea dictumst quisque sagittis purus sit. Et leo duis ut diam quam. Quisque egestas diam in arcu. Facilisis leo vel fringilla est. Tristique et egestas quis ipsum suspendisse ultrices. Tellus at urna condimentum mattis. Nisl pretium fusce id velit ut tortor pretium viverra. Augue eget arcu dictum varius duis at consectetur lorem. Cras fermentum odio eu feugiat pretium nibh. Integer feugiat scelerisque varius morbi. Egestas sed tempus urna et pharetra pharetra massa. Imperdiet dui accumsan sit amet. Scelerisque eu ultrices vitae auctor eu augue ut lectus. Sapien et ligula ullamcorper malesuada proin libero nunc consequat interdum.</p><p>Turpis nunc eget lorem dolor sed viverra ipsum nunc. Enim sed faucibus turpis in eu. Morbi tincidunt augue interdum velit euismod in pellentesque massa. Ornare arcu odio ut sem. Massa tincidunt nunc pulvinar sapien. Aenean sed adipiscing diam donec adipiscing tristique risus. Malesuada pellentesque elit eget gravida cum. In hac habitasse platea dictumst vestibulum rhoncus. At in tellus integer feugiat scelerisque varius morbi enim. Porta nibh venenatis cras sed felis eget velit. Aliquam ut porttitor leo a diam sollicitudin tempor id eu. Quisque non tellus orci ac auctor augue mauris. Erat velit scelerisque in dictum non consectetur a erat. Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis. Magna fringilla urna porttitor rhoncus dolor. Pretium quam vulputate dignissim suspendisse in est ante in nibh. Mauris commodo quis imperdiet massa tincidunt nunc pulvinar. Nulla aliquet enim tortor at auctor urna nunc id cursus.</p><p>Dictum fusce ut placerat orci. Ultrices neque ornare aenean euismod elementum nisi quis eleifend. Consectetur libero id faucibus nisl tincidunt eget nullam. Eu volutpat odio facilisis mauris. Neque vitae tempus quam pellentesque nec nam aliquam. Velit aliquet sagittis id consectetur purus ut faucibus pulvinar elementum. Elit eget gravida cum sociis. Dui faucibus in ornare quam viverra orci sagittis eu volutpat. Pellentesque habitant morbi tristique senectus. Eu sem integer vitae justo eget magna fermentum iaculis. Senectus et netus et malesuada fames ac turpis egestas integer. Lectus urna duis convallis convallis.</p>",
+  "anhBia": "uploads/cntt/logo-circle.png",
+  "nguoiViet": null,
+  "thoiGianDangBai": {
+    "$date": "2020-07-30T08:41:20.639Z"
+  },
+  "viTriHienThi": 1,
+  "crawling": false,
+  "crawlURL": null,
+  "trangThai": 1,
+  "maBaiViet": "BV0006",
+  "createdAt": {
+    "$date": "2020-07-30T10:32:34.378Z"
+  },
+  "updatedAt": {
+    "$date": "2020-07-30T10:32:34.378Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f22a243e260953ba46dcf05"
+  },
+  "loaiBaiViet": "LBV03",
+  "maDanhMuc": "DM02",
+  "tieuDe": "Tài liệu học tập môn Hướng Đối Tượng",
+  "moTaNgan": "Tài liệu học tập môn Hướng Đối Tượng",
+  "noiDung": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Habitasse platea dictumst quisque sagittis purus sit. Et leo duis ut diam quam. Quisque egestas diam in arcu. Facilisis leo vel fringilla est. Tristique et egestas quis ipsum suspendisse ultrices. Tellus at urna condimentum mattis. Nisl pretium fusce id velit ut tortor pretium viverra. Augue eget arcu dictum varius duis at consectetur lorem. Cras fermentum odio eu feugiat pretium nibh. Integer feugiat scelerisque varius morbi. Egestas sed tempus urna et pharetra pharetra massa. Imperdiet dui accumsan sit amet. Scelerisque eu ultrices vitae auctor eu augue ut lectus. Sapien et ligula ullamcorper malesuada proin libero nunc consequat interdum.</p><p>Turpis nunc eget lorem dolor sed viverra ipsum nunc. Enim sed faucibus turpis in eu. Morbi tincidunt augue interdum velit euismod in pellentesque massa. Ornare arcu odio ut sem. Massa tincidunt nunc pulvinar sapien. Aenean sed adipiscing diam donec adipiscing tristique risus. Malesuada pellentesque elit eget gravida cum. In hac habitasse platea dictumst vestibulum rhoncus. At in tellus integer feugiat scelerisque varius morbi enim. Porta nibh venenatis cras sed felis eget velit. Aliquam ut porttitor leo a diam sollicitudin tempor id eu. Quisque non tellus orci ac auctor augue mauris. Erat velit scelerisque in dictum non consectetur a erat. Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis. Magna fringilla urna porttitor rhoncus dolor. Pretium quam vulputate dignissim suspendisse in est ante in nibh. Mauris commodo quis imperdiet massa tincidunt nunc pulvinar. Nulla aliquet enim tortor at auctor urna nunc id cursus.</p><p>Dictum fusce ut placerat orci. Ultrices neque ornare aenean euismod elementum nisi quis eleifend. Consectetur libero id faucibus nisl tincidunt eget nullam. Eu volutpat odio facilisis mauris. Neque vitae tempus quam pellentesque nec nam aliquam. Velit aliquet sagittis id consectetur purus ut faucibus pulvinar elementum. Elit eget gravida cum sociis. Dui faucibus in ornare quam viverra orci sagittis eu volutpat. Pellentesque habitant morbi tristique senectus. Eu sem integer vitae justo eget magna fermentum iaculis. Senectus et netus et malesuada fames ac turpis egestas integer. Lectus urna duis convallis convallis.</p>",
+  "anhBia": "uploads/cntt/logo-circle.png",
+  "nguoiViet": null,
+  "thoiGianDangBai": {
+    "$date": "2020-07-30T08:41:20.639Z"
+  },
+  "viTriHienThi": -1,
+  "crawling": false,
+  "crawlURL": null,
+  "trangThai": 1,
+  "maBaiViet": "BV0007",
+  "createdAt": {
+    "$date": "2020-07-30T10:34:43.690Z"
+  },
+  "updatedAt": {
+    "$date": "2020-07-30T10:34:43.690Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f22a26de260953ba46dcf06"
+  },
+  "loaiBaiViet": "LBV03",
+  "maDanhMuc": "DM02",
+  "tieuDe": "Tài liệu môn Toán Rời Rạc",
+  "moTaNgan": "Tài liệu môn Toán Rời Rạc",
+  "noiDung": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Habitasse platea dictumst quisque sagittis purus sit. Et leo duis ut diam quam. Quisque egestas diam in arcu. Facilisis leo vel fringilla est. Tristique et egestas quis ipsum suspendisse ultrices. Tellus at urna condimentum mattis. Nisl pretium fusce id velit ut tortor pretium viverra. Augue eget arcu dictum varius duis at consectetur lorem. Cras fermentum odio eu feugiat pretium nibh. Integer feugiat scelerisque varius morbi. Egestas sed tempus urna et pharetra pharetra massa. Imperdiet dui accumsan sit amet. Scelerisque eu ultrices vitae auctor eu augue ut lectus. Sapien et ligula ullamcorper malesuada proin libero nunc consequat interdum.</p><p>Turpis nunc eget lorem dolor sed viverra ipsum nunc. Enim sed faucibus turpis in eu. Morbi tincidunt augue interdum velit euismod in pellentesque massa. Ornare arcu odio ut sem. Massa tincidunt nunc pulvinar sapien. Aenean sed adipiscing diam donec adipiscing tristique risus. Malesuada pellentesque elit eget gravida cum. In hac habitasse platea dictumst vestibulum rhoncus. At in tellus integer feugiat scelerisque varius morbi enim. Porta nibh venenatis cras sed felis eget velit. Aliquam ut porttitor leo a diam sollicitudin tempor id eu. Quisque non tellus orci ac auctor augue mauris. Erat velit scelerisque in dictum non consectetur a erat. Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis. Magna fringilla urna porttitor rhoncus dolor. Pretium quam vulputate dignissim suspendisse in est ante in nibh. Mauris commodo quis imperdiet massa tincidunt nunc pulvinar. Nulla aliquet enim tortor at auctor urna nunc id cursus.</p><p>Dictum fusce ut placerat orci. Ultrices neque ornare aenean euismod elementum nisi quis eleifend. Consectetur libero id faucibus nisl tincidunt eget nullam. Eu volutpat odio facilisis mauris. Neque vitae tempus quam pellentesque nec nam aliquam. Velit aliquet sagittis id consectetur purus ut faucibus pulvinar elementum. Elit eget gravida cum sociis. Dui faucibus in ornare quam viverra orci sagittis eu volutpat. Pellentesque habitant morbi tristique senectus. Eu sem integer vitae justo eget magna fermentum iaculis. Senectus et netus et malesuada fames ac turpis egestas integer. Lectus urna duis convallis convallis.</p>",
+  "anhBia": "uploads/cntt/logo-circle.png",
+  "nguoiViet": null,
+  "thoiGianDangBai": {
+    "$date": "2020-07-30T08:41:20.639Z"
+  },
+  "viTriHienThi": -1,
+  "crawling": false,
+  "crawlURL": null,
+  "trangThai": 1,
+  "maBaiViet": "BV0008",
+  "createdAt": {
+    "$date": "2020-07-30T10:35:25.562Z"
+  },
+  "updatedAt": {
+    "$date": "2020-07-30T10:35:25.562Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f22a2aee260953ba46dcf07"
+  },
+  "loaiBaiViet": "LBV00",
+  "maDanhMuc": "DM02",
+  "tieuDe": "Lịch đào tạo năm học",
+  "moTaNgan": "Lịch đào tạo năm học 2020",
+  "noiDung": "\n        <div class=\"file_header\">T&#x1EC7;p &#x111;&#xED;nh k&#xE8;m</div>\n        <table border=\"0\">\n  <thead>\n    <tr>\n      <th width=\"5\">TT</th>\n      <th>Ti&#xEA;u &#x111;&#x1EC1;</th>\n      <th width=\"100\">Dung l&#x1B0;&#x1EE3;ng</th>      \n    </tr>\n  </thead>\n  <tbody>\n      <tr>\n    <td class=\"giua\">1</td>\n    <td><a target=\"_blank\" href=\"https://daotao.caothang.edu.vn/uploads//files/Lich_DT/LDT_1920_21052020_Web.xls\">L&#x1ECB;ch &#x111;&#xE0;o t&#x1EA1;o 2019-2020 (ch&#xED;nh th&#x1EE9;c)</a></td>\n    <td class=\"phai\">329.216 KB</td>    \n  </tr>\n      <tr>\n    <td class=\"giua\">2</td>\n    <td><a target=\"_blank\" href=\"https://daotao.caothang.edu.vn/uploads//files/Lich_DT/LDT_1819_final_280818.xls\">L&#x1ECB;ch &#x111;&#xE0;o t&#x1EA1;o 2018-2019</a></td>\n    <td class=\"phai\">329.216 KB</td>    \n  </tr>\n      <tr>\n    <td class=\"giua\">3</td>\n    <td><a target=\"_blank\" href=\"https://daotao.caothang.edu.vn/uploads//files/Lich_DT/LDT17.18-31-8-2017.xls\">L&#x1ECB;ch &#x111;&#xE0;o t&#x1EA1;o 2017-2018</a></td>\n    <td class=\"phai\">653.312 KB</td>    \n  </tr>\n      <tr>\n    <td class=\"giua\">4</td>\n    <td><a target=\"_blank\" href=\"https://daotao.caothang.edu.vn/uploads//files/Lich_DT/01_LDT 2016-2017 NGAY 26 - 8 - 2016.xls\">L&#x1ECB;ch &#x111;&#xE0;o t&#x1EA1;o 2016-2017</a></td>\n    <td class=\"phai\">352.256 KB</td>    \n  </tr>\n      <tr>\n    <td class=\"giua\">5</td>\n    <td><a target=\"_blank\" href=\"https://daotao.caothang.edu.vn/uploads//files/Lich_DT/LICH_DAO_TAO_15-16.xls\">L&#x1ECB;ch &#x111;&#xE0;o t&#x1EA1;o 2015-2016</a></td>\n    <td class=\"phai\">408.576 KB</td>    \n  </tr>\n        </tbody>  \n</table> ",
+  "anhBia": "uploads/cntt/logo-circle.png",
+  "nguoiViet": null,
+  "thoiGianDangBai": {
+    "$date": "2020-07-30T08:41:20.639Z"
+  },
+  "viTriHienThi": 0,
+  "crawling": true,
+  "crawlURL": "https://daotao.caothang.edu.vn/bai-viet/2-Lich-dao-tao-938675f0e9064d27e576fa4894cf84a1.html",
+  "trangThai": 1,
+  "createdAt": {
+    "$date": "2020-07-30T10:36:30.137Z"
+  },
+  "updatedAt": {
+    "$date": "2020-07-30T10:44:54.223Z"
+  },
+  "__v": 0,
+  "maBaiViet": "BV0009"
+},{
+  "_id": {
+    "$oid": "5f22a4dd489a862568fd3e8b"
+  },
+  "loaiBaiViet": "LBV00",
+  "maDanhMuc": "DM02",
+  "tieuDe": "Lịch thi lần 2 chính trị 2 các lớp CD 2018 và CDN KTML 19 - CDN KTDN 19",
+  "moTaNgan": "Lịch thi lần 2 chính trị 2 các lớp CD 2018 và CDN KTML 19 - CDN KTDN 19",
+  "noiDung": "\n                      <p class=\"dam\"></p>\n                        <div></div>\n                        <div class=\"file_content\">\n              <div class=\"file_header\">T&#x1EC7;p &#x111;&#xED;nh k&#xE8;m</div>\n              <table border=\"0\">\n  <thead>\n    <tr>\n      <th width=\"5\">TT</th>\n      <th>Ti&#xEA;u &#x111;&#x1EC1;</th>\n      <th width=\"100\">Dung l&#x1B0;&#x1EE3;ng</th>      \n    </tr>\n  </thead>\n  <tbody>\n      <tr>\n    <td class=\"giua\">1</td>\n    <td><a target=\"_blank\" href=\"https://gddc.caothang.edu.vn/uploads//files/CHINH-TRI-2---CD-2018.pdf\">CHINH-TRI-2---CD-2018.pdf</a></td>\n    <td class=\"phai\">122.043 KB</td>    \n  </tr>\n        </tbody>  \n</table> </div>\n                        ",
+  "anhBia": "uploads/cntt/logo-circle.png",
+  "nguoiViet": null,
+  "thoiGianDangBai": {
+    "$date": "2020-07-30T10:44:18.095Z"
+  },
+  "viTriHienThi": 0,
+  "crawling": true,
+  "crawlURL": "https://gddc.caothang.edu.vn/bai-viet/71-Lich-thi-lan-2-chinh-tri-2-cac-lop-CD-2018-va-CDN-KTML-19---CDN-KTDN-19-c13aa892d05e9b5ffc4b1582e48e23f1.html",
+  "trangThai": 1,
+  "createdAt": {
+    "$date": "2020-07-30T10:45:49.215Z"
+  },
+  "updatedAt": {
+    "$date": "2020-07-30T10:47:39.706Z"
+  },
+  "__v": 0,
+  "maBaiViet": "BV0010"
+},{
+  "_id": {
+    "$oid": "5f22a4e3489a862568fd3e8c"
+  },
+  "loaiBaiViet": "LBV00",
+  "maDanhMuc": "DM02",
+  "tieuDe": "Lịch học online - mã lớp môn Giáo dục thể chất",
+  "moTaNgan": "Lịch học online - mã lớp môn Giáo dục thể chất",
+  "noiDung": "\n                      <p class=\"dam\"></p>\n                        <div><p>Sinh vi&#xEA;n c&#xE1;c l&#x1EDB;p &#x111;&#x103;ng nh&#x1EAD;p v&#xE0;o c&#xE1;c l&#x1EDB;p Google Classroom m&#xF4;n B&#xF3;ng chuy&#x1EC1;n &#x111;&#x1EC3; n&#x1EAF;m b&#x1EAF;t c&#xE1;c n&#x1ED9;i dung h&#x1ECD;c t&#x1EAD;p. M&#xE3; c&#xE1;c l&#x1EDB;p &#x111;&#x1B0;&#x1EE3;c &#x111;&#xED;nh k&#xE8;m d&#x1B0;&#x1EDB;i &#x111;&#xE2;y. Sinh vi&#xEA;n h&#x1ECD;c gh&#xE9;p m&#xF4;n B&#xF3;ng Chuy&#x1EC1;n h&#x1ECD;c k&#x1EF3; n&#xE0;y &#x111;&#x103;ng k&#xFD; v&#xE0;o c&#xF9;ng v&#x1EDB;i c&#xE1;c l&#x1EDB;p C&#x1A1; kh&#xED; 19</p>\n</div>\n                        <div class=\"file_content\">\n              <div class=\"file_header\">T&#x1EC7;p &#x111;&#xED;nh k&#xE8;m</div>\n              <table border=\"0\">\n  <thead>\n    <tr>\n      <th width=\"5\">TT</th>\n      <th>Ti&#xEA;u &#x111;&#x1EC1;</th>\n      <th width=\"100\">Dung l&#x1B0;&#x1EE3;ng</th>      \n    </tr>\n  </thead>\n  <tbody>\n      <tr>\n    <td class=\"giua\">1</td>\n    <td><a target=\"_blank\" href=\"https://gddc.caothang.edu.vn/uploads//files/GDTC-BC-Ma-lop-google-classroom.docx\">GDTC-BC-Ma-lop-google-classroom.docx</a></td>\n    <td class=\"phai\">15.807 KB</td>    \n  </tr>\n        </tbody>  \n</table> </div>\n                        ",
+  "anhBia": "uploads/cntt/logo-circle.png",
+  "nguoiViet": null,
+  "thoiGianDangBai": {
+    "$date": "2020-07-30T10:44:18.095Z"
+  },
+  "viTriHienThi": 0,
+  "crawling": true,
+  "crawlURL": "https://gddc.caothang.edu.vn/Thong-bao-cua-Khoa/66-Lich-hoc-online---ma-lop-mon-Giao-duc-the-chat-4ee8fab5deaace3c904d5ec13aecfb90.html",
+  "trangThai": 1,
+  "createdAt": {
+    "$date": "2020-07-30T10:45:55.732Z"
+  },
+  "updatedAt": {
+    "$date": "2020-07-30T10:47:00.543Z"
+  },
+  "__v": 0,
+  "maBaiViet": "BV0011"
+},{
+  "_id": {
+    "$oid": "5f246b256f2b96321cd7492e"
+  },
+  "loaiBaiViet": "LBV01",
+  "maDanhMuc": "DM00",
+  "tieuDe": "Giới thiệu ngắn",
+  "moTaNgan": "Giới thiệu ngắn trang chủ",
+  "noiDung": "<h3>Tiền thân của khoa Công nghệ Thông tin là bộ môn Tin học (tháng 08 năm 1998) thuộc Khoa Điện Tử – Tin Học trường Cao Đẳng Kỹ Thuật Cao Thắng Thành lập vào tháng 01 năm 2020.</h3><p>Trích lược sử hình thành khoa Công nghệ Thông tin</p>",
+  "anhBia": "uploads/cntt/logo-circle.png",
+  "nguoiViet": null,
+  "thoiGianDangBai": {
+    "$date": "2020-07-31T18:32:47.985Z"
+  },
+  "viTriHienThi": 2,
+  "crawling": false,
+  "crawlURL": null,
+  "trangThai": 1,
+  "maBaiViet": "BV0012",
+  "createdAt": {
+    "$date": "2020-07-31T19:04:05.984Z"
+  },
+  "updatedAt": {
+    "$date": "2020-07-31T19:04:05.984Z"
+  },
+  "__v": 0
+}]
