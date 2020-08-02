@@ -45,7 +45,6 @@ import { NoidungbaitapsvComponent } from './components/content/pagelophocphan/no
 import { NoidungtailieusvComponent } from './components/content/pagelophocphan/noidungtailieusv/noidungtailieusv.component';
 import { XembaitapsvComponent } from './components/content/chudelophocphan/allchude/xembaitapsv/xembaitapsv.component';
 import { XemtailieusvComponent } from './components/content/chudelophocphan/allchude/xemtailieusv/xemtailieusv.component';
-import { TrangcanhanContentComponent } from './components/content/trangcanhan-content/trangcanhan-content.component';
 import { NavbarTrangchuComponent } from './components/navbar/navbar-trangchu/navbar-trangchu.component';
 import { NavbarHocphanComponent } from './components/navbar/navbar-hocphan/navbar-hocphan.component';
 import { PageTrangchuComponent } from './pages/page-trangchu/page-trangchu.component';
@@ -59,6 +58,8 @@ import { PageSodiemComponent } from './pages/page-sodiem/page-sodiem.component';
 import { PageHuongdanComponent } from './pages/page-huongdan/page-huongdan.component';
 import { PageBaitapgiaovienComponent } from './pages/page-baitapgiaovien/page-baitapgiaovien.component';
 import { PageCaidatComponent } from './pages/page-caidat/page-caidat.component';
+import { PageTrangcanhansvComponent } from './pages/page-trangcanhansv/page-trangcanhansv.component';
+import { PageTrangcanhangvComponent } from './pages/page-trangcanhangv/page-trangcanhangv.component';
 
 @NgModule({
   declarations: [
@@ -85,7 +86,6 @@ import { PageCaidatComponent } from './pages/page-caidat/page-caidat.component';
     NoidungtailieusvComponent,
     XembaitapsvComponent,
     XemtailieusvComponent,
-    TrangcanhanContentComponent,
     NavbarTrangchuComponent,
     NavbarHocphanComponent,
     PageTrangchuComponent,
@@ -98,6 +98,8 @@ import { PageCaidatComponent } from './pages/page-caidat/page-caidat.component';
     PageHuongdanComponent,
     PageBaitapgiaovienComponent,
     PageCaidatComponent,
+    PageTrangcanhansvComponent,
+    PageTrangcanhangvComponent,
   ],
   imports: [
     BrowserModule,

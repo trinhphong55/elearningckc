@@ -5,7 +5,6 @@ import { Chude1Component } from './components/content/chudelophocphan/list-chude
 import { Chude2Component } from './components/content/chudelophocphan/list-chude/chude2/chude2.component';
 import { Chude3Component } from './components/content/chudelophocphan/list-chude/chude3/chude3.component';
 import { Chude4Component } from './components/content/chudelophocphan/list-chude/chude4/chude4.component';
-import { TrangcanhanContentComponent } from './components/content/trangcanhan-content/trangcanhan-content.component';
 import { PageTrangchuComponent } from './pages/page-trangchu/page-trangchu.component';
 import { NavbarTrangchuComponent } from './components/navbar/navbar-trangchu/navbar-trangchu.component';
 import { NavbarHocphanComponent } from './components/navbar/navbar-hocphan/navbar-hocphan.component';
@@ -18,6 +17,9 @@ import { PageSodiemComponent } from './pages/page-sodiem/page-sodiem.component';
 import { PageHuongdanComponent } from './pages/page-huongdan/page-huongdan.component';
 import { PageBaitapgiaovienComponent } from './pages/page-baitapgiaovien/page-baitapgiaovien.component';
 import { PageCaidatComponent } from './pages/page-caidat/page-caidat.component';
+import { PageTrangcanhansvComponent } from './pages/page-trangcanhansv/page-trangcanhansv.component';
+import { PageTrangcanhangvComponent } from './pages/page-trangcanhangv/page-trangcanhangv.component';
+
 
 const routes: Routes = [
   {
@@ -25,8 +27,12 @@ const routes: Routes = [
     component: PageTrangchuComponent,
   },
   {
-    path: 'hoso',
-    component: TrangcanhanContentComponent,
+    path: 'hososv',
+    component: PageTrangcanhansvComponent,
+  },
+  {
+    path: 'hosogv',
+    component: PageTrangcanhangvComponent,
   },
   {
     path: 'caidat',
