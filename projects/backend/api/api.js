@@ -29,6 +29,7 @@ const cnttTienIchSinhVien = require("./cnttTienIchSinhVien");
 const cnttDanhMuc = require("./cnttDanhMuc");
 const cnttBoSuuTap = require("./cnttBoSuuTap");
 const cnttThongTinChung = require("./cnttThongTinChung");
+const cnttFooter = require("./cnttFooter");
 
 router.use("/loaimonhoc", LoaiMonHoc);
 // router.use("/lophocphan", LopHocPhanRoutes);
@@ -50,6 +51,8 @@ router.use("/danhmuc", cnttDanhMuc);
 router.use("/cnttbosuutap", cnttBoSuuTap);
 router.use("/thongtinchung", cnttThongTinChung);
 router.use("/cnttHeader", cnttHeader);
+router.use("/cnttHeader", cnttHeader);
+router.use("/cnttFooter", cnttFooter);
 //end cntt
 //ttthRoutes
 router.use("/ttthTinTuc", ttthTinTucRoute);

@@ -82,7 +82,7 @@ export class ModalQuanlyheadercnttComponent implements OnInit {
   }
 
   logData(): void {
-    console.log('dèualt');
+    console.log('default');
     console.log(this._defaultFormvalue);
     console.log('form');
     console.log(this.formMenuHeader.value);
@@ -91,36 +91,37 @@ export class ModalQuanlyheadercnttComponent implements OnInit {
   getHeaderFromDatabase(): void {
     this.headerService.getHeader().subscribe((data) => {
       if (data.data.length > 0) {
-        this._defaultFormvalue = data.data[0];
-        this.formMenuHeader.patchValue(this._defaultFormvalue);
+        const xData = data.data[0];
+        this._defaultFormvalue = xData;
+        this.formMenuHeader.patchValue(xData);
         //#region add submenu to form
-        if (this._defaultFormvalue.sub1.length > 0) {
-          for (let i = 0; i < this._defaultFormvalue.sub1.length; i++) {
-            const item = this._defaultFormvalue.sub1[i];
+        if (xData.sub1.length > 0) {
+          for (let i = 0; i < xData.sub1.length; i++) {
+            const item = xData.sub1[i];
             this.setSubMenu('sub1', item.name, item.url);
           }
         }
-        if (this._defaultFormvalue.sub2.length > 0) {
-          for (let i = 0; i < this._defaultFormvalue.sub2.length; i++) {
-            const item = this._defaultFormvalue.sub2[i];
+        if (xData.sub2.length > 0) {
+          for (let i = 0; i < xData.sub2.length; i++) {
+            const item = xData.sub2[i];
             this.setSubMenu('sub2', item.name, item.url);
           }
         }
-        if (this._defaultFormvalue.sub3.length > 0) {
-          for (let i = 0; i < this._defaultFormvalue.sub3.length; i++) {
-            const item = this._defaultFormvalue.sub3[i];
+        if (xData.sub3.length > 0) {
+          for (let i = 0; i < xData.sub3.length; i++) {
+            const item = xData.sub3[i];
             this.setSubMenu('sub3', item.name, item.url);
           }
         }
-        if (this._defaultFormvalue.sub4.length > 0) {
-          for (let i = 0; i < this._defaultFormvalue.sub4.length; i++) {
-            const item = this._defaultFormvalue.sub4[i];
+        if (xData.sub4.length > 0) {
+          for (let i = 0; i < xData.sub4.length; i++) {
+            const item = xData.sub4[i];
             this.setSubMenu('sub4', item.name, item.url);
           }
         }
-        if (this._defaultFormvalue.sub5.length > 0) {
-          for (let i = 0; i < this._defaultFormvalue.sub5.length; i++) {
-            const item = this._defaultFormvalue.sub5[i];
+        if (xData.sub5.length > 0) {
+          for (let i = 0; i < xData.sub5.length; i++) {
+            const item = xData.sub5[i];
             this.setSubMenu('sub5', item.name, item.url);
           }
         }
@@ -158,14 +159,20 @@ export class ModalQuanlyheadercnttComponent implements OnInit {
   }
 
   onReset(): void {
-    this.formMenuHeader.patchValue(this._defaultFormvalue);
+    if (this._defaultFormvalue != undefined) {
+      return this.formMenuHeader.patchValue(this._defaultFormvalue);
+    }
+    return this.formMenuHeader.reset();
   }
 
   onSave(): void {
     this.headerService
       .saveHeader(this.formMenuHeader.value)
       .subscribe((data) => {
-        this.getHeaderFromDatabase();
+        this.formMenuHeader.patchValue({
+          _id: data.data._id,
+        });
+        this._defaultFormvalue = this.formMenuHeader.value;
         alert(data.message);
       });
   }
