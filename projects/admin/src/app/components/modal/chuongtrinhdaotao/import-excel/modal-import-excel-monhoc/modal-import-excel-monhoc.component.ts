@@ -83,7 +83,7 @@ export class ModalImportExcelMonhocComponent implements OnInit, OnChanges {
   constructor(private modalService: ModalService, private monhocService: MonhocService) { }
 
   ngOnInit(): void {
-    console.log("ngOnInit");
+    
   }
 
   ngOnChanges(changes: SimpleChanges): void {

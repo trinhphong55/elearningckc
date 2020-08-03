@@ -39,6 +39,12 @@
     .logo{
         justify-content: center;
     }
+    .header-infor{
+      display: none;
+    }
+    .header-top-content{
+      justify-content: center;
+    }
 }
 @media (min-width: 992px){
     .search-header.desk{
@@ -49,10 +55,10 @@
     }
 }
 @media (min-width: 576px){
-    
+
 }
 @media (max-width: 576px){
 
-    
-    
+
+
 }

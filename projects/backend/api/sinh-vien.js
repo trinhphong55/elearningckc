@@ -1,6 +1,6 @@
+
 const SinhVienModel = require("../models/sinh-vien.model");
-const { async } = require("rxjs");
-const LopHocModel = require("../models/LopHoc.model");
+
 
 setSinhVien = (req) => {
   return {

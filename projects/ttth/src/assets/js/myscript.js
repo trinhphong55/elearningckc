@@ -1,10 +1,10 @@
 $(document).ready(function() {
   //slide
-  var swiper = new Swiper('.swiper-container', {
-    pagination: {
-      el: '.swiper-pagination',
-    },
-  });
+  // var swiper = new Swiper('.swiper-container', {
+  //   pagination: {
+  //     el: '.swiper-pagination',
+  //   },
+  // });
   //giu thanh menu
   $(window).scroll(function () {
     if ($(this).scrollTop()) {
@@ -82,10 +82,11 @@ $(document).ready(function() {
   function myFunction(x) {
     if (x.matches) { // If media query matches
       $(".footer-locat").removeClass("container");
+      $("#menu>ul").removeClass("d-flex justify-content-center");
 
     } else {
       $(".footer-locat").addClass("container");
-
+      $("#menu>ul").addClass("d-flex justify-content-center");
     }
   }
 

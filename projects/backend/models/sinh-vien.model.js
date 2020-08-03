@@ -1,4 +1,4 @@
-const mongoose =  require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 // "_id": {
 //   "$oid": "5efe0fb6f30afb6ea1ceeaf4"
@@ -29,105 +29,102 @@ const Schema = mongoose.Schema;
 // "nguoiChinhSua": "mã trong bảng Giáo Viên",
 // "ngayChinhSua": "kiểu DateTime"
 const SinhVienSchema = new Schema({
-  maSinhVien:{
-    type:String,
-    required:true,
-    unique:true
+  maSinhVien: {
+    type: String,
+    required: true,
+    unique: true,
   },
-  CMND:{
-    type:String,
-    required:true,
-    default:'baomat',
-
+  CMND: {
+    type: String,
+    required: true,
+    default: "baomat",
   },
-  ho:{
-    type:String,
-    required:true
+  ho: {
+    type: String,
+    required: true,
   },
-  ten:{
-    type:String,
-    required:true
+  ten: {
+    type: String,
+    required: true,
   },
-  gioiTinh:{
-    type:String,
-    required:true
+  gioiTinh: {
+    type: String,
+    required: true,
   },
-  ngaySinh:{
-    type:String,
-    required:true
+  ngaySinh: {
+    type: String,
+    required: true,
   },
-  diaChiThuongTru:{
-    type:String,
-    required:true,
-    default:'baomat',
+  diaChiThuongTru: {
+    type: String,
+    required: true,
+    default: "baomat",
   },
-  diaChiTamTru:{
-    type:String,
-    required:true,
-    default:'baomat',
+  diaChiTamTru: {
+    type: String,
+    required: true,
+    default: "baomat",
   },
-  sdt:{
-    type:String,
-    required:true,
-    default:'baomat',
+  sdt: {
+    type: String,
+    required: true,
+    default: "baomat",
   },
-  email:{
-    type:String,
-    required:true,
-    default:'baomat',
+  email: {
+    type: String,
+    required: true,
+    default: "baomat",
   },
-  matKhau:{
-    type:String,
-    default:'baomat',
-
+  matKhau: {
+    type: String,
   },
-  tokens:{
-    type:String,
-    required:true,
-    default:'baomat'
+  tokens: {
+    type: String,
+    required: true,
+    default: "baomat",
   },
-  hoTenCha:{
-    type:String,
-    required:true,
-    default:'baomat'
+  hoTenCha: {
+    type: String,
+    required: true,
+    default: "baomat",
   },
-  hoTenMe:{
-    type:String,
-    required:true,
-    default:'baomat',
+  hoTenMe: {
+    type: String,
+    required: true,
+    default: "baomat",
   },
-  sdtCha:{
-    type:String,
-    required:true,
-    default:'baomat',
+  sdtCha: {
+    type: String,
+    required: true,
+    default: "baomat",
   },
-  sdtMe:{
-    type:String,
-    required:true,
-    default:'baomat',
+  sdtMe: {
+    type: String,
+    required: true,
+    default: "baomat",
   },
-  maLopHoc:{
-    type:String,
-    required:true
+  maLopHoc: {
+    type: String,
+    required: true,
   },
-  trangThai:{
-    type:Number,
-    required:true,
-    default:1
+  trangThai: {
+    type: Number,
+    required: true,
+    default: 1,
   },
-  nguoiTao:{
-    type:String,
-    required:true
+  nguoiTao: {
+    type: String,
+    required: true,
   },
-  nguoiChinhSua:{
-    type:String,
-    required:true
+  nguoiChinhSua: {
+    type: String,
+    required: true,
   },
-  ngayChinhSua:{
-    type:Date,
-    default:Date.now(),
-    required:true
-  }
+  ngayChinhSua: {
+    type: Date,
+    default: Date.now(),
+    required: true,
+  },
 });
 
-module.exports = mongoose.model("SinhVien",SinhVienSchema,"SinhVien");
+module.exports = mongoose.model("SinhVien", SinhVienSchema, "SinhVien");
