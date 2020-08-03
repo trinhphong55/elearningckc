@@ -8,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class HeaderComponent implements OnInit {
   @Input() logo: any;
   @Input() logoMobile: any;
+  @Input() menu: any;
   constructor() {}
 
   ngOnInit(): void {}

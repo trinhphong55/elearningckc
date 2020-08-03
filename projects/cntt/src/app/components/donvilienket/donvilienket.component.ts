@@ -1,23 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import {CnttBoSuuTapService} from '../../services/bosuutap.service'
+import { CnttBoSuuTapService } from '../../services/bosuutap.service';
 
 @Component({
   selector: 'app-donvilienket',
   templateUrl: './donvilienket.component.html',
-  styleUrls: ['./donvilienket.component.css']
+  styleUrls: ['./donvilienket.component.css'],
 })
 export class DonvilienketComponent implements OnInit {
   DonViLienKet: any = [];
-  constructor(private cnttBoSuuTapService: CnttBoSuuTapService) {   
-    this.loadDanhSachDonViLienKet()
+  constructor(private cnttBoSuuTapService: CnttBoSuuTapService) {
+    this.loadDanhSachDonViLienKet();
   }
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
   loadDanhSachDonViLienKet() {
     this.cnttBoSuuTapService.danhSachItemLienKiet().subscribe((data) => {
-      console.log(data);
+      // console.log(data);
       this.DonViLienKet = data.data;
     });
   }
-
 }

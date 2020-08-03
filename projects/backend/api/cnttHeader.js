@@ -37,9 +37,7 @@ router.post("/", async (req, res) => {
         name5: req.body.name5,
         url5: req.body.url5,
       });
-      console.log(newHeader);
       await newHeader.save();
-      console.log(newHeader);
       res.json({
         message: "Thêm thông tin header Khoa CNTT thành công",
         data: newHeader,
@@ -57,7 +55,6 @@ router.post("/", async (req, res) => {
     res.json({
       message: "Cập nhật thông tin header Khoa CNTT thất bại",
       data: [],
-      code: 400,
     });
   }
 });

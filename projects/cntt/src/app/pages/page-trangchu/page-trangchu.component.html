@@ -398,87 +398,63 @@
     <div class="row">
       <div class="col-lg-3">
         <a [routerLink]="['/']"
-          ><img class="footer_logo" src="assets/img/logo/logo_white.png"
+          ><img class="footer_logo" [src]="logoMenuMobile"
         /></a>
         <nav class="footer_text mt-2 mt-lg-3">
           <li class="d-flex mt-2">
             <span class="mr-2 mdi mdi-map-marker"></span
-            ><span
-              >Lầu 7 (Dãy nhà F) 65 Huỳnh Thúc Kháng, P.Bến Nghé, Q.1, Tp Hồ Chí
-              Minh</span
-            >
+            ><span>{{ diaChi }}</span>
           </li>
           <li class="d-flex mt-2">
             <span class="mr-2 mdi mdi-phone"></span
-            ><span>+ 08.38212360 (ext-14)</span>
+            ><span>{{ soDienThoai }}</span>
           </li>
           <li class="d-flex mt-2">
-            <span class="mr-2 mdi mdi-email"></span
-            ><span>cntt@caothang.edu.vn</span>
+            <span class="mr-2 mdi mdi-email"></span><span>{{ email }}</span>
           </li>
         </nav>
       </div>
       <div class="col-lg">
         <div class="row">
           <div class="col-sm-6 col-md mt-3 mt-lg-0">
-            <div class="footer_title text-uppercase">Sinh viên</div>
+            <div class="footer_title text-uppercase">
+              <a [routerLink]="footer.url1" class="text-white">{{
+                footer.name1
+              }}</a>
+            </div>
             <nav class="footer_text mt-2 mt-lg-3">
-              <li class="mt-2">
-                <a class="text-reset" [routerLink]="['/']">Cựu sinh viên</a>
-              </li>
-              <li class="mt-2">
-                <a class="text-reset" [routerLink]="['/']">Thời khoá biểu</a>
-              </li>
-              <li class="mt-2">
-                <a class="text-reset" [routerLink]="['/']">E-Learning</a>
-              </li>
-              <li class="mt-2">
-                <a class="text-reset" [routerLink]="['/']">Tài liệu học tập</a>
-              </li>
-              <li class="mt-2">
-                <a class="text-reset" [routerLink]="['/']">Tra cứu</a>
-              </li>
-              <li class="mt-2">
-                <a class="text-reset" [routerLink]="['/']">Việc làm</a>
+              <li class="mt-2" *ngFor="let item1 of footer.sub1">
+                <a class="text-reset" [routerLink]="item1.url">{{
+                  item1.name
+                }}</a>
               </li>
             </nav>
           </div>
           <div class="col-sm-6 col-md mt-3 mt-lg-0">
-            <div class="footer_title text-uppercase">Hợp tác & Nghiên cứu</div>
+            <div class="footer_title text-uppercase">
+              <a [routerLink]="footer.url2" class="text-white">{{
+                footer.name2
+              }}</a>
+            </div>
             <nav class="footer_text mt-2 mt-lg-3">
-              <li class="mt-2">
-                <a class="text-reset" [routerLink]="['/']">Hợp tác Quốc tế</a>
-              </li>
-              <li class="mt-2">
-                <a class="text-reset" [routerLink]="['/']"
-                  >Công trình khoa học</a
-                >
-              </li>
-              <li class="mt-2">
-                <a class="text-reset" [routerLink]="['/']"
-                  >Bảng vàng thành tích</a
-                >
-              </li>
-              <li class="mt-2">
-                <a class="text-reset" [routerLink]="['/']"
-                  >Doanh nghiệp đồng hành</a
-                >
+              <li class="mt-2" *ngFor="let item2 of footer.sub2">
+                <a class="text-reset" [routerLink]="item2.url">{{
+                  item2.name
+                }}</a>
               </li>
             </nav>
           </div>
           <div class="col-sm-6 col-md mt-3 mt-lg-0">
-            <div class="footer_title text-uppercase">Thông báo</div>
+            <div class="footer_title text-uppercase">
+              <a [routerLink]="footer.url3" class="text-white">{{
+                footer.name3
+              }}</a>
+            </div>
             <nav class="footer_text mt-2 mt-lg-3">
-              <li class="mt-2">
-                <a class="text-reset" [routerLink]="['/']"
-                  >Thông báo từ Trường</a
-                >
-              </li>
-              <li class="mt-2">
-                <a class="text-reset" [routerLink]="['/']">Thông báo Bộ Môn</a>
-              </li>
-              <li class="mt-2">
-                <a class="text-reset" [routerLink]="['/']">Thông báo từ Khoa</a>
+              <li class="mt-2" *ngFor="let item3 of footer.sub3">
+                <a class="text-reset" [routerLink]="item3.url">{{
+                  item3.name
+                }}</a>
               </li>
             </nav>
           </div>
