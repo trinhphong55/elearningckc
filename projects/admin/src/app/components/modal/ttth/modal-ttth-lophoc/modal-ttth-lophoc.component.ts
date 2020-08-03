@@ -1,6 +1,5 @@
 import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { ModalService } from '../../../../services/modal.service';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { LophocService } from '../../../../services/ttth/lophoc.service';
 import { KhoahocService } from '../../../../services/ttth/khoahoc.service';
 import { ttthLopHoc } from '../../../../../models/ttthLopHoc';
@@ -25,18 +24,22 @@ export class ModalTtthLophocComponent implements OnInit {
   }
 
   getdanhsach(): void {
-    this.lophocService.get().subscribe((data) => this.LopHoc = data);
+    this.lophocService.get().subscribe((data) => {this.LopHoc = data});
   }
   getmakhoahoc(): void {
     this.khoahocService.get().subscribe((data) => this.MaKhoaHoc = data);
   }
 
   // add
-  add(makhoahoc: string,dot: string,lop: string): void {
+  add(makhoahoc: string,dot: string,lop: string,buoihoc: string,giohoc: string,ngaykhaigiang: Date,hocphi: string): void {
     const newItem: ttthLopHoc = new ttthLopHoc();
     newItem.makhoahoc = makhoahoc;
     newItem.dot = dot;
     newItem.lop = lop;
+    newItem.buoihoc = buoihoc;
+    newItem.giohoc = giohoc;
+    newItem.ngaykhaigiang = ngaykhaigiang;
+    newItem.hocphi = hocphi;
     newItem.trangthai = true;
     newItem.nguoitao = 'hieu';
     newItem.nguoisua = 'loc';
