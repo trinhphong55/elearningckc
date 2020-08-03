@@ -126,6 +126,16 @@ export class PageTrangcanhansvComponent implements OnInit {
       }
     });
   }
+  public capNhatSinhVien(data) {
+    console.log(data);
+    this.sinhVienService.capNhatSinhVien(data).subscribe(
+      (res) => {
+        console.log(data);
+        console.log(res);
+      },
+      (err) => console.log(err)
+    );
+  }
   public layThongTinDiemLHP(maSv: String) {
     this.ctDiemsvLhpService.layCTtheoMaSV(maSv).subscribe((res: any) => {
       if (res.data) {
@@ -139,11 +149,11 @@ export class PageTrangcanhansvComponent implements OnInit {
       }
     });
   }
+
   public layDiemSinhVien(maSinhVien: String) {
     this.diemSinhVienService.getAllFor(maSinhVien).subscribe((res: any) => {
       this.diemSinhViens = res;
       this.ganTenLopHocPhanDiemSV(this.diemSinhViens);
-
     });
   }
   public setValueSinhVienFormGroup(sinhVien: SinhVien) {
@@ -208,12 +218,20 @@ export class PageTrangcanhansvComponent implements OnInit {
   }
   //################################# Xu ly su kien ##################################
   onChangeChonHocKi() {
-
     this.layThongTinSV('0306171004');
     this.layDiemSinhVien('0306171004');
   }
-  onSubmitCapNhatSinhVien(){
-    console.log(this.sinhVienFormGroup.value);
+  onSubmitCapNhatSinhVien() {
+    this.sinhVien.matKhau = this.password.value;
+    this.sinhVien.nguoiChinhSua = this.sinhVien.maSinhVien;
+    this.sinhVien.sdt = this.sdt.value;
+    const req = {
+      maSinhVien: this.sinhVien.maSinhVien,
+      tokens: '12341234',
+      role: 'sv',
+      data: this.sinhVien,
+    };
+    this.capNhatSinhVien(req);
   }
   //################################ Xu ly loc #######################################
   public locLopHocPhan(ChiTietDiems: ChiTietDiemSVLHP[]): ChiTietDiemSVLHP[] {

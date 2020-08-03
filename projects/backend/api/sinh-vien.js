@@ -29,13 +29,16 @@ setSinhVienUpdate = (req) => {
     hoTenMe: req.hoTenMe,
     sdtCha: req.sdtCha,
     sdtMe: req.sdtMe,
+    ngayChinhSua: req.ngayChinhSua
+      ? new Date(req.ngayChinhSua).toISOString()
+      : Date.now(),
   };
 };
 setSinhVien_SV = (req) => {
   return {
     nguoiChinhSua: req.nguoiChinhSua,
     sdt: req.sdt,
-    matkhau: req.matkhau,
+    matKhau: req.matKhau,
   };
 };
 exports.layTatCaSinhVien = async (req, res) => {
@@ -48,8 +51,8 @@ exports.layTatCaSinhVien = async (req, res) => {
       .json({ message: "Máy chủ không sữ lý được", error: error, status: 500 });
   }
 };
+
 exports.Laysinhvientheomalop = async (req, res) => {
-  console.log(req.params);
   try {
     const sinhViens = await SinhVienModel.find({
       maLopHoc: req.params.maLopHoc,
@@ -61,6 +64,7 @@ exports.Laysinhvientheomalop = async (req, res) => {
       .json({ message: "Máy chủ không sữ lý được", error: error, status: 500 });
   }
 };
+
 exports.themSinhVien = async (req, res) => {
   try {
     const sinhViens = await SinhVienModel.create(setSinhVien(req.body));
@@ -93,7 +97,6 @@ exports.layThongtinSinhVien = async (req, res) => {
 };
 
 exports.capNhatSinhVien = async (req, res) => {
-
   try {
     let tokens = "12341234";
     if (req.body.tokens != tokens) {
