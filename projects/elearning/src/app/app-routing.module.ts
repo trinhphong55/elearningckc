@@ -13,7 +13,7 @@ import { NavbarNoneComponent } from './components/navbar/navbar-none/navbar-none
 import { PageBaigiangComponent } from './pages/page-baigiang/page-baigiang.component';
 import { PageMoinguoiComponent } from './pages/page-moinguoi/page-moinguoi.component';
 import { PageChudelophocphanComponent } from './pages/page-chudelophocphan/page-chudelophocphan.component';
-import { PageSodiemComponent } from './pages/page-sodiem/page-sodiem.component';
+import { PageCotodiemComponent } from './pages/page-cotdiem/page-cotdiem.component';
 import { PageHuongdanComponent } from './pages/page-huongdan/page-huongdan.component';
 import { PageBaitapgiaovienComponent } from './pages/page-baitapgiaovien/page-baitapgiaovien.component';
 import { PageCaidatComponent } from './pages/page-caidat/page-caidat.component';
@@ -75,8 +75,8 @@ const routes: Routes = [
     component: PageMoinguoiComponent,
   },
   {
-    path: 'sodiem',
-    component: PageSodiemComponent,
+    path: 'cotdiem',
+    component: PageCotodiemComponent,
   },
   {
     path: 'huongdan',
