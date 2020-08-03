@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const MonHoc = require('../models/MonHoc.model');
+const LopHocPhan = require('../models/LopHocPhan.model');
 
 const {
   getNextNumber, isNameExist,
@@ -12,9 +13,28 @@ router.get('/', async (req, res) => {
     const dsMonHoc = await MonHoc.find( {trangThai: { $ne: 0 }} );
     return res.json(dsMonHoc);
   } catch (err) {
-    return res.json({message: err});
+    return res.json({ message: err });
   }
 })
+
+router.get('/malophoc/:maLopHoc/hocki/:hocKi', async (req, res) => {
+  const maLopHoc = req.params.maLopHoc;
+  const hocKi = req.params.hocKi;
+  let dsLHP;
+  let dsMonHoc= [];
+  await LopHocPhan.find({ maLopHoc, hocKi }).sort({ tenLopHocPhan: 1 })
+    .then(ds => {
+      dsLHP = ds;
+      // return res.json(ds);
+    })
+  dsLHP.forEach(item => {
+    let maMonHoc = item.maDaoTao.slice(item.maDaoTao.length - 4);
+    let tenMonHoc = item.tenLopHocPhan.split("-")[1].trim();
+    let soTinChi;
+    dsMonHoc.push({ maMonHoc, tenMonHoc });
+  });
+  return res.json(dsMonHoc);
+});
 
 //IMPORT EXCEL
 router.post('/importexcel', async (req, res) => {
@@ -127,17 +147,5 @@ router.put('/:maMonHoc', async (req, res) => {
     return res.json({ message: err });
   });
 })
-// router.patch('/:maMonHoc', async (req, res) => {
-//   console.log(req.body);
-//   try {
-//     const updatedMonhoc = await MonHoc.updateOne(
-//       { maMonHoc: req.params.maMonHoc },
-//       { $set: { tenMonHoc: req.body.tenMonHoc } }
-//     );
-//     res.json(updatedMonhoc);
-//   } catch (error) {
-//     res.json({ message: error });
-//   }
-// })
 
 module.exports = router;

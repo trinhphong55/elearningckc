@@ -1,46 +1,41 @@
 import { Component, OnInit } from '@angular/core';
 
-
 //Services
 import { ModalService } from '../../../../services/modal.service';
 import { LHDTService } from '../../../../services/loaihinhdaotao.service';
 import { BacService } from '../../../../services/Bac.service';
 import { LopHocPhanService } from '../../../../services/lophocphan.service';
 import { NganhNgheService } from '../../../../services/NganhNghe.service';
-import { GvlhpService } from '../../../../services/gvlhp.service';
 import { LopHocService } from '../../../../services/lop-hoc.service';
+import { MonhocService } from '../../../../services/monhoc.service';
+import { ThoikhoabieuService } from '../../../../services/thoikhoabieu.service';
 
 //interfaces
 import { CTDT } from '../../../../interfaces/ctdt.interface';
 import { LHDT } from '../../../../interfaces/loaihinhdaotao.interface';
 import { bac } from '../../../../interfaces/Bac.interface';
-import { LopHocPhan } from '../../../../interfaces/lophocphan.interface';
 import { nganhnghe } from '../../../../interfaces/NganhNghe.interface';
 import { LopHoc } from '../../../../interfaces/LopHoc.interface';
+import { MonHoc } from '../../../../interfaces/monhoc.interface';
 
 @Component({
-  selector: 'app-modal-giaovienlophocphan',
-  templateUrl: './modal-giaovienlophocphan.component.html',
-  styleUrls: ['./modal-giaovienlophocphan.component.css'],
-  providers: [LHDTService, BacService, NganhNgheService, LopHocPhanService, GvlhpService]
+  selector: 'app-modal-thoikhoabieu',
+  templateUrl: './modal-thoikhoabieu.component.html',
+  styleUrls: ['./modal-thoikhoabieu.component.css']
 })
-export class ModalGiaovienlophocphanComponent implements OnInit {
+export class ModalThoikhoabieuComponent implements OnInit {
 
   private maChuongTrinhDaoTao: string;
   hocKi = "1";
+  maLopHoc = "null";
 
   dsLoaiHinhDaoTao: LHDT[];
-  dsLHP: LopHocPhan[];
-  dsLHPOrigin: LopHocPhan[];
   dsLH: LopHoc[];
   dsBac: bac[];
   dsNganhNghe: nganhnghe[];
-  dsGVLHP: object[];
+  dsMonHoc: MonHoc[];
+  TKB: [];
 
-  dsGV = [
-    { maGiaoVien: "001", ho: "Lữ", ten: "Cao Tiến" },
-    { maGiaoVien: "002", ho: "Dương", ten: "Trọng Đính" },
-  ];
   ctdt: CTDT = {
     maBac: "3",
     maNganhNghe: "006",
@@ -52,14 +47,25 @@ export class ModalGiaovienlophocphanComponent implements OnInit {
     return item.maBac + item.maNganhNghe + item.khoaHoc + item.maLoaiHinhDaoTao;
   }
 
-  selectLopHoc(maLopHoc: string) {
-    if (maLopHoc === "all") {
-      this.dsLHP = this.dsLHPOrigin;
-      return;
+  private loadTKB() {
+    this.maChuongTrinhDaoTao = this.convertToMaChuongTrinhDaoTao(this.ctdt);
+    this.lopHocService.getDSLopHocbymaCTDT(this.maChuongTrinhDaoTao).subscribe(dslop => {
+      this.dsLH = dslop;
+    });
+    this.dsMonHoc = [];
+    this.maLopHoc = "null";
+    this.TKB = [];
+  }
+
+  selectLopHocOrHocKi() {
+    this.monhocService.getDSMonHocbymaLopHocNhocKi(this.maLopHoc, parseInt(this.hocKi)).subscribe(dsmh => {
+      this.dsMonHoc = dsmh;
+    });
+    if (this.maLopHoc !== "null") {
+      this.thoikhoabieuService.getTKBbymaLopHocNhocKi(this.maLopHoc, parseInt(this.hocKi)).subscribe(tkb => {
+        this.TKB = tkb;
+      });
     }
-    let dsFilterbymaLopHoc = this.dsLHPOrigin.filter(item => item.maLopHoc === maLopHoc);
-    console.log(maLopHoc ,dsFilterbymaLopHoc);
-    this.dsLHP = dsFilterbymaLopHoc;
   }
 
   selectBac() {
@@ -69,45 +75,40 @@ export class ModalGiaovienlophocphanComponent implements OnInit {
       if (dsnn.length !== 0) {
         this.ctdt.maNganhNghe = dsnn[0].maNganhNghe;
       }
-      this.loadGVLHP();
+      this.loadTKB();
     });
   }
 
   select() {
-    this.loadGVLHP();
+    this.loadTKB();
   }
 
-  changeGiaoVien(maGV: string, maLopHocPhan: string) {
-    this.gvlhpService.changeGVLHP(maGV, maLopHocPhan).subscribe(data => {
-      console.log(data);
-    });
+  saveTKB() {
+    if (this.maLopHoc === "null") {
+      alert('Vui long chon lop hoc');
+      return;
+    }
+    console.log(this.TKB);
+    this.thoikhoabieuService.addTKB(this.maLopHoc, parseInt(this.hocKi), this.TKB).subscribe(result => {
+      alert(result.message);
+    })
   }
-
-  private loadGVLHP() {
-    this.maChuongTrinhDaoTao = this.convertToMaChuongTrinhDaoTao(this.ctdt);
-    this.lopHocPhanService.getLopHocPhanbyCTDTandHocKi(this.maChuongTrinhDaoTao, this.hocKi).subscribe(data => {
-      this.dsLHP = data;
-      this.dsLHPOrigin = data;
-    });
-    this.lopHocService.getDSLopHocbymaCTDT(this.maChuongTrinhDaoTao).subscribe(dslop => this.dsLH = dslop);
-  }
-
 
   constructor(
     private modalService: ModalService,
     private lhdtService: LHDTService,
     private bacService: BacService,
-    private lopHocPhanService: LopHocPhanService,
     private nganhNgheService: NganhNgheService,
-    private gvlhpService: GvlhpService,
-    private lopHocService: LopHocService) {
+    private lopHocService: LopHocService,
+    private monhocService: MonhocService,
+    private thoikhoabieuService: ThoikhoabieuService,) {
   }
 
   ngOnInit(): void {
     this.bacService.getBac().subscribe(dsbac => this.dsBac = dsbac);
     this.lhdtService.getLHDT().subscribe(dslhdt => this.dsLoaiHinhDaoTao = dslhdt);
     this.nganhNgheService.getNganhNghebymaBac(parseInt(this.ctdt.maBac)).subscribe(dsnn => this.dsNganhNghe = dsnn);
-    this.loadGVLHP();
+    this.loadTKB();
   }
 
   closeModal(id: string) {
