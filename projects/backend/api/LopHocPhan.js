@@ -209,12 +209,12 @@ router.get('/malophocphan/:maLopHocPhan', async (req, res) => {
     })
 });
 //SEARCH theo maNganh
-// router.get("/:maLop/search", async (req, res) => {
-//   try {
-//     const lopHocPhans = await LopHocPhan.find({ maLopHoc : req.params.maLop});
-//     res.json(lopHocPhans);
-//   } catch (error) {
-//     res.json(error);
-//   }
-// });
+router.get("/:maLop/search", async (req, res) => {
+  try {
+    const lopHocPhans = await LopHocPhan.find({ maLopHoc : req.params.maLop});
+    res.json(lopHocPhans);
+  } catch (error) {
+    res.json(error);
+  }
+});
 module.exports = router;

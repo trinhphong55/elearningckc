@@ -59,7 +59,7 @@ import { PageSodiemComponent } from './pages/page-sodiem/page-sodiem.component';
 import { PageHuongdanComponent } from './pages/page-huongdan/page-huongdan.component';
 import { PageBaitapgiaovienComponent } from './pages/page-baitapgiaovien/page-baitapgiaovien.component';
 import { PageCaidatComponent } from './pages/page-caidat/page-caidat.component';
-
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -122,7 +122,8 @@ import { PageCaidatComponent } from './pages/page-caidat/page-caidat.component';
     MatExpansionModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatTableModule
+    MatTableModule,
+    HttpClientModule
   ],
   entryComponents: [
   ],
