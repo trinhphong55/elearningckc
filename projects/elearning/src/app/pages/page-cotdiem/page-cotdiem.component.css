@@ -1,19 +1,34 @@
-
-.col-lg-4 img{
-    width: 50%;
-    border-radius: 80%;
+.container-fluid{
+    margin-top: 30px;
+}
+.col-md-4.style-table{
+    max-width: 30.333333%;
+}
+.style-table{
+    border: solid 0.5px #DDDDDD;
+    border-radius: 5px;
+}
+.style-table p {
+    color: #007b83;
+    font-size: 1.3rem;
+    font-weight: 500;
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.style-table p,.style-table form{
+    padding: 10px;
+}
+.button-style{
+    background-color: #007b83;
+    color: white;
+    padding: 5px;
 }
 
-@media only screen and (max-width: 600px){
-    .container{
-        margin-top: 100px;
-    }
-}
+
 .table-fixed thead {
     color: #007b83;
 }
 .table-fixed thead {
-    width: 98.5%;
+    width: 98%;
 }
 .table-fixed thead th{
     padding: 10px 5px 10px 5px;
@@ -61,4 +76,35 @@ td{
 }
 .style-text:hover {
     overflow: visible;
+    background: whitesmoke;
 }
+.modal-dialog {
+    max-width: 700px;
+}
+
+.style-suadiem{
+    padding: 0;
+}
+.style-suadiem form{padding: 0;}
+.style-suadiem form .form-group{
+    margin: 0;
+    padding: 0;
+}
+.table-fixed tbody td .style-suadiem{
+    padding: 1.5px;
+}
+.style-padding-top{
+    padding-top: 2.5px;
+}
+.chitietcotdiem{
+    cursor: pointer;
+    color: #007b83;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+@media only screen and (max-width: 600px){
+    .container-fluid{
+        margin-top: 80px;
+    }
+  }
+
