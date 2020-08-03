@@ -2,10 +2,8 @@
   background: #FFF;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  border-bottom: 1px solid #DFDFDF;
-  border-left: 1px solid #ECECEC;
+  border: 4px solid #099CF4;
   border-radius: 8px;
-  border-right: 1px solid #ECECEC;
   -webkit-box-shadow: 0 2px 4px 0px rgba(0, 0, 0, 0.05);
   box-shadow: 0 2px 4px 0px rgba(0, 0, 0, 0.05);
   margin-bottom: 20px;
@@ -20,13 +18,10 @@
   margin-top: 100px;
 }
 .featured-box-primary .box-content {
-  border-top-color: #099CF4;
   text-align: left;
 }
 .box-content {
   border-radius: 8px;
-  border-top: 1px solid rgba(0, 0, 0, 0.06);
-  border-top-width: 4px;
   padding: 28.8px;
   padding: 1.8rem;
   position: relative;

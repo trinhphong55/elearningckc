@@ -16,20 +16,23 @@
     <thead class="table-primary">
       <tr class="text-center">
         <th scope="col">#</th>
-        <th scope="col">Khóa học</th>
-        <th scope="col">Đợt</th>
-        <th scope="col">Lớp Học</th>
+        <th scope="col">Lớp học</th>
+        <th scope="col">Buổi học</th>
+        <th scope="col">Giờ học</th>
         <th scope="col">Ngày khai giảng</th>
+        <th scope="col">Học phí</th>
         <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let item of LopHoc;let i = index" class="text-center" >
         <th scope="row">{{i + 1}}</th>
-        <td>{{item.makhoahoc}}</td>
-        <td>{{item.dot}}</td>
         <td>{{item.lop}}</td>
+        <td>{{item.buoihoc}}</td>
+        <td>{{item.giohoc}}</td>
         <td>{{item.ngaykhaigiang | date: 'dd/MM/yyyy'}}</td>
+        <td>{{item.hocphi}}</td>
+
         <td><a style="color:aliceblue" type="button" class="btn btn-primary">Đăng kí</a></td>
       </tr>
     </tbody>
