@@ -19,21 +19,21 @@
           <div class="form-row">
             <div class="form-group col-lg-6">
                 <label class="font-weight-bold text-dark text-2 required">MSSV *</label>
-                <input id="mssv" name="mssv" class="form-control" required="" type="text" value="" placeholder="VD: 0306123456" data-msg-required="Vui lòng nhập MSSV">
+                <input class="form-control" type="text" placeholder="VD: 0306123456" #mssv>
             </div>
             <div class="form-group col-lg-6">
                 <label class="font-weight-bold text-dark text-2 required">Họ tên *</label>
-                <input id="ho-ten" name="ho_ten" class="form-control" required="" type="text" value="" placeholder="VD: Nguyễn Văn A" data-msg-required="Vui lòng nhập họ tên">
+                <input class="form-control" type="text"placeholder="VD: Nguyễn Văn A" #hoten>
             </div>
           </div>
           <div class="form-row">
             <div class="form-group col-lg-6">
                 <label class="font-weight-bold text-dark text-2 required">Ngày sinh</label>
-                <input id="ngay-sinh" name="ngay_sinh" class="form-control" required="" type="text" placeholder="VD: 21/09/1990" >
+                <input class="form-control"ype="text" placeholder="VD: 21/09/1990" #ngaysinh>
             </div>
             <div class="form-group col-lg-6">
                 <label class="font-weight-bold text-dark text-2 required">Nơi sinh</label>
-                <select id="noi-sinh" name="noi_sinh" class="form-control select2-hidden-accessible" required=""  tabindex="-1" aria-hidden="true">
+                <select class="form-control " tabindex="-1" aria-hidden="true" #noisinh>
                     <option data-select2-id="select2-data-2-jvbd"></option>
                                                                     <option value="An Giang">An Giang</option>
                                                                     <option value="Bà Rịa - Vũng Tàu">Bà Rịa - Vũng Tàu</option>
@@ -104,19 +104,32 @@
           <div class="form-row">
             <div class="form-group col">
                 <label class="font-weight-bold text-dark text-2 required">Số điện thoại</label>
-                <input id="dien-thoai" name="dien_thoai" class="form-control" required="" type="tel" placeholder="VD: 0909123456" data-msg-required="Vui lòng nhập số điện thoại">
+                <input class="form-control" type="tel" placeholder="VD: 0909123456" #sodienthoai>
             </div>
           </div>
           <div class="form-row">
-            <div class="form-group col" data-select2-id="select2-data-6-e1pb">
-                <label class="font-weight-bold text-dark text-2 required">Khoá học</label>
-                <select id="khoa-hoc" name="khoa_hoc" class="form-control select2-hidden-accessible" required="" data-msg-required="Vui lòng chọn khoá học" data-select2-id="select2-data-khoa-hoc" tabindex="-1" aria-hidden="true">
+            <div class="form-group col">
+                <label class="font-weight-bold text-dark text-2 required">Lớp học</label>
+                <select  class="form-control" #lophoc>
+                  <ng-container *ngFor="let item of LopHoc">
+                    <option value="{{item.lop}}">{{item.lop}} - {{item.ngaykhaigiang | date:'dd/MM/yyyy'}}</option>
+                  </ng-container>
+                </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col">
+                <label class="font-weight-bold text-dark text-2 required">Hình thức học</label>
+                <select  class="form-control" #hinhthuchoc>
+                    <option value="Học tại trường">Học tại trường</option>
+                    <option value="Trực tuyến -Elearning">Trực tuyến -Elearning</option>
                 </select>
             </div>
           </div>
           <div class="form-row">
             <div class="form-group col-lg-12">
-                <input type="submit" value="Đăng Ký" class="btn btn-primary float-right" style="font-size: 0.8em;">
+                <input type="submit" value="Đăng Ký" class="btn btn-primary float-right" style="font-size: 0.8em;"
+                (click)="dangkikhoahoc(mssv.value,hoten.value,ngaysinh.value,noisinh.value,sodienthoai.value,lophoc.value,hinhthuchoc.value);mssv.value=''; hoten.value=''; ngaysinh.value=''; noisinh.value=''; sodienthoai.value=''; lophoc.value=''">
             </div>
           </div>
         </div>
