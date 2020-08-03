@@ -118,4 +118,70 @@ router.post("/xoatintuc", async (req, res) => {
   });
 });
 
+//#region API
+router.get("/danhmuc=:maDanhMuc", async (req, res) => {
+  try {
+    // res.json(req.params);
+    const data = await TinTuc.find({
+      maDanhMuc: req.params.maDanhMuc,
+    });
+    res.json({
+      message: "Lấy bài viết theo danh mục thành công",
+      code: 200,
+      data: data,
+    });
+  } catch (error) {
+    res.json({
+      message: "Lấy bài viết theo danh mục thất bại",
+      code: 400,
+      data: [],
+      error: error,
+    });
+  }
+});
+
+router.get("/loaibaiviet=:loaiBaiViet", async (req, res) => {
+  try {
+    // res.json(req.params);
+    const data = await TinTuc.find({
+      loaiBaiViet: req.params.loaiBaiViet,
+    });
+    res.json({
+      message: "Lấy bài viết theo loại bài viết thành công",
+      code: 200,
+      data: data,
+    });
+  } catch (error) {
+    res.json({
+      message: "Lấy bài viết theo loại bài viết thất bại",
+      code: 400,
+      data: [],
+      error: error,
+    });
+  }
+});
+
+router.get("/:maDanhMuc/:loaiBaiViet", async (req, res) => {
+  try {
+    // res.json(req.params);
+    const data = await TinTuc.find({
+      loaiBaiViet: req.params.loaiBaiViet,
+      maDanhMuc: req.params.maDanhMuc,
+    });
+    res.json({
+      message: "Lấy bài viết theo danh mục và loại bài viết thành công",
+      code: 200,
+      data: data,
+    });
+  } catch (error) {
+    res.json({
+      message: "Lấy bài viết theo danh mục và loại bài viết thất bại",
+      code: 400,
+      data: [],
+      error: error,
+    });
+  }
+});
+//#endregion
+
 module.exports = router;
