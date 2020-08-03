@@ -1,9 +1,7 @@
-export class ttthKhoaHoc {
-  tenkhoahoc: String
-  image: String
+export class ttthLopHoc {
   makhoahoc: String
-  noidung: String
-  color: String
+  dot: String
+  lop: String
   trangthai: Boolean
   nguoitao: String
   nguoisua: String

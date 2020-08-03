@@ -1,0 +1,46 @@
+{
+  "icon1": "mdi mdi-home-outline",
+  "name1": "Trang chủ",
+  "url1": "/",
+  "sub1": [],
+  "icon2": "mdi mdi-information-outline",
+  "name2": "Giới thiệu",
+  "url2": "/",
+  "sub2": [
+    { "name": "Tầm nhìn - sứ mạng", "url": "/" },
+    { "name": "Mục tiêu đào tạo", "url": "/" },
+    { "name": "Ban chủ nhiệm Khoa", "url": "/" },
+    { "name": "Các bộ phận & Hội đồng", "url": "/" },
+    { "name": "Đội ngũ giáo viên", "url": "/" },
+    { "name": "Liên hệ", "url": "/" }
+  ],
+  "icon3": "mdi mdi-bell-circle-outline",
+  "name3": "Thông báo",
+  "url3": "/",
+  "sub3": [
+    { "name": "Thông báo CĐ Ngành", "url": "/" },
+    { "name": "Thông báo CĐ Nghề", "url": "/" },
+    { "name": "Thông báo Trường", "url": "/" }
+  ],
+  "icon4": "mdi mdi-school-outline",
+  "name4": "Sinh viên",
+  "url4": "/",
+  "sub4": [
+    { "name": "Cựu sinh viên", "url": "/" },
+    { "name": "Thời khoá biểu", "url": "/" },
+    { "name": "E-Learning", "url": "/" },
+    { "name": "Tài liệu học tập", "url": "/" },
+    { "name": "Tra cứu", "url": "/" },
+    { "name": "Mẫu đơn", "url": "/" },
+    { "name": "Việc làm", "url": "/" }
+  ],
+  "icon5": "mdi mdi-medal-outline",
+  "name5": "Hợp tác & Nghiên cứu",
+  "url5": "/",
+  "sub5": [
+    { "name": "Hợp tác quốc tế", "url": "/" },
+    { "name": "Công trình khoa học", "url": "/" },
+    { "name": "Bảng vàng thành tích", "url": "/" },
+    { "name": "Doanh nghiệp đồng hành", "url": "/" }
+  ]
+}
