@@ -1,9 +1,9 @@
 export interface Khoabomon{
-      maKhoa: String;
-      tenKhoa: String;
-      tenVietTat: String;
-      nguoiTao:String;
-      nguoiChinhSua: String;
+      maKhoa: string;
+      tenKhoa: string;
+      tenVietTat: string;
+      nguoiTao:string;
+      nguoiChinhSua: string;
       ngayChinhSua:Date;
-      maLoai:Number;
+      maLoai:number;
     };

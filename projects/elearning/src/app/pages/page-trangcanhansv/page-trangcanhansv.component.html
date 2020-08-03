@@ -1,6 +1,9 @@
 <div class="container-fluid mt-4">
+
   <div class="row my-2">
+
     <div class="col-lg-10 order-lg-2">
+
       <ul class="nav nav-tabs">
         <li class="nav-item">
           <a href="" data-target="#profile" data-toggle="tab" class="nav-link active">Thông tin</a>
@@ -101,6 +104,8 @@
             </tbody>
           </table>
         </div>
+        <!------------Modal Thong bao-->
+
         <div class="tab-pane" id="edit">
           <form [formGroup]="sinhVienFormGroup">
             <div class="form-group row">
@@ -155,7 +160,8 @@
               <label class="col-lg-3 col-form-label form-control-label"></label>
               <div class="col-lg-9">
                 <input type="reset" class="btn btn-secondary" value="Hủy ">
-                <input type="button" class="btn btn-primary" value="Lưu thông tin" (click)="onSubmitCapNhatSinhVien()">
+                <input type="button" class="btn btn-primary" value="Lưu thông tin" data-toggle="modal"
+                  data-target="#thongBao" (click)="onSubmitCapNhatSinhVien()">
               </div>
             </div>
           </form>
@@ -324,7 +330,7 @@
             <div class="col-md-6">
               <div class="form-group pr-3 pt-1">
                 <select class="form-control" id="exampleFormControlSelect1" formControlName="chonHocKi"
-                  (change)="onChangeChonHocKi()">
+                  (change)="onChangeDanhSachCotDiem()">
                   <option value="">Chọn học kì</option>
                   <option *ngFor="let item of hocKis" [ngValue]=item.maHK>{{item.tenHK }}</option>
                 </select>
@@ -333,7 +339,7 @@
             <div class="col-md-6">
               <div class="form-group pr-3 pt-1">
                 <select class="form-control" id="exampleFormControlSelect1" formControlName="chonLop"
-                  (change)="onChangeChonHocKi()">
+                  (change)="onChangeDanhSachCotDiem()">
                   <option value="">Chọn lớp</option>
                   <option *ngFor="let item of lopHocPhans" [ngValue]=item.maLopHocPhan>{{ item.tenLopHocPhan }}</option>
                 </select>
@@ -386,11 +392,11 @@
           </div>
         </div>
         <div class="tab-pane" id="bangdiemtongket">
-          <div class="row" [formGroup]="locChiTietGroupForm">
+          <div class="row" [formGroup]="locBangDiemFormGroup">
             <div class="col-md-6">
               <div class="form-group pr-3 pt-1">
                 <select class="form-control" id="exampleFormControlSelect1" formControlName="chonHocKi"
-                  (change)="onChangeChonHocKi()">
+                  (change)="onChangBangDiem()">
                   <option value="">Chọn học kì</option>
                   <option *ngFor="let item of hocKis" [ngValue]=item.maHK>{{item.tenHK }}</option>
                 </select>
@@ -399,7 +405,7 @@
             <div class="col-md-6">
               <div class="form-group pr-3 pt-1">
                 <select class="form-control" id="exampleFormControlSelect1" formControlName="chonLop"
-                  (change)="onChangeChonHocKi()">
+                  (change)="onChangBangDiem()">
                   <option value="">Chọn lớp</option>
                   <option *ngFor="let item of lopHocPhans" [ngValue]=item.maLopHocPhan>{{ item.tenLopHocPhan }}</option>
                 </select>
@@ -439,7 +445,25 @@
         </div>
       </div>
     </div>
-
+    <div class="modal fade" id="thongBao" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Phản hồi</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <h4 *ngFor="let item of messages">{{ item.msg }}</h4>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="col-lg-2 order-lg-1 text-center">
       <img src="assets/img/huykun.JPG" class="mx-auto img-fluid img-circle d-block" alt="avatar">
       <label class="custom-file">

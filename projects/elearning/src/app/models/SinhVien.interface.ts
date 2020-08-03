@@ -1,24 +1,24 @@
 export interface SinhVien {
-  maSinhVien: String;
-  CMND: String;
-  ho: String;
-  ten:String;
-  gioiTinh: Number;
-  ngaySinh: String;
-  diaChiThuongTru: String;
-  diaChiTamTru: String;
-  sdt: String;
-  email: String;
-  matKhau: String;
-  tokens: String;
-  hoTenCha: String;
-  hoTenMe: String;
-  sdtCha: String;
-  sdtMe: String;
-  maLopHoc: String;
-  trangThai: String;
-  nguoiTao: String;
-  nguoiChinhSua: String;
+  maSinhVien: string;
+  CMND: string;
+  ho: string;
+  ten:string;
+  gioiTinh: number;
+  ngaySinh: string;
+  diaChiThuongTru: string;
+  diaChiTamTru: string;
+  sdt: string;
+  email: string;
+  matKhau: string;
+  tokens: string;
+  hoTenCha: string;
+  hoTenMe: string;
+  sdtCha: string;
+  sdtMe: string;
+  maLopHoc: string;
+  trangThai: string;
+  nguoiTao: string;
+  nguoiChinhSua: string;
 }
 // maSinhVien
 // CMND

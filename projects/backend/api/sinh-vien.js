@@ -164,9 +164,9 @@ exports.removeAll = async (req, res) => {
 };
 exports.tinhTongSinhVien = async (req, res) => {
   try {
-    const total = await SinhVienModel.count({ maLopHoc: req.params.maLopHoc });
+    const total = await SinhVienModel.find({ maLopHoc: req.params.maLopHoc });
     // const lopHoc = await LopHocModel.findOne({ maLopHoc: req.params.maLopHoc });
-    res.json({ maLopHoc: req.params.maLopHoc, siSo: total });
+    res.json({ maLopHoc: req.params.maLopHoc, siSo: total.length });
   } catch (error) {
     res.json(error);
   }
