@@ -8,7 +8,7 @@ const LopHocPhan = require("./LopHocPhan");
 const LoaiMonHoc = require("./LoaiMonHoc");
 const groupFB = require("../api/groupFB");
 const boMon = require("../api/bomon");
-
+const cnttHeader = require("./cnttHeader");
 const sinhVien = require("./sinh-vien");
 const Diemsinhvien = require("./diemsinhvien");
 const GiaoVienLopHocPhan = require("./GiaoVienLopHocPhan");
@@ -50,6 +50,7 @@ router.use("/cnttTienIchSinhVien", cnttTienIchSinhVien);
 router.use("/danhmuc", cnttDanhMuc);
 router.use("/cnttbosuutap", cnttBoSuuTap);
 router.use("/thongtinchung", cnttThongTinChung);
+router.use("/cnttHeader", cnttHeader);
 //end cntt
 //ttthRoutes
 router.use("/ttthTinTuc", ttthTinTucRoute);
