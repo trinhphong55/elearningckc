@@ -96,11 +96,12 @@ router.get("/danhsachtintuc", (req, res) => {
 });
 // Get Tintuc by id
 router.get("/tintuc/:id", (req, res) => {
-  TinTuc.find(req.params.id, (error, data) => {
+  
+  TinTuc.findById(req.params.id, (error, data) => {
     if (error) {
-      return next(error);
+      return (error);
     }
-    res.json(data);
+    res.json({ message: "Lấy bài viết thành công.", data: data });
   });
 });
 // add Tintuc add

@@ -6,26 +6,13 @@
                 <div class="col-md-7 col-lg-8">
                     <div class="px-3 py-4 p-lg-5">
                         <div class="text-center">
-                            <h1 class="post_page__title font-weight-bold text-uppercase">[S4L] KẾT QUẢ SOLUTIONS FOR LIFE KỲ 03 TRANSLATING INTO PROTEIN</h1>
+                            <h1 class="post_page__title font-weight-bold text-uppercase">{{cnttTinTuc.tieuDe}}</h1>
                             <div class="d-flex flex-column flex-sm-row justify-content-center">
-                                <div class="mr-sm-4"><span class="mdi mdi-pencil mr-1"></span><strong>Trần Quang Khải</strong></div>
-                                <div><span class="mdi mdi-clock mr-1"></span><span>15h15 26/6/2020</span></div>
+                                <div class="mr-sm-4"><span class="mdi mdi-pencil mr-1"></span><strong>{{cnttTinTuc.nguoiViet}}</strong></div>
+                                <div><span class="mdi mdi-clock mr-1"></span><span>{{cnttTinTuc.thoiGianDangBai}}</span></div>
                             </div>
                         </div>
-                        <div class="post_page__content text-justify mt-4">
-                            <p>
-                                CLB Tin học xin chúc mừng bạn Lê Hoàng Khang (CĐ TH 19C) và bạn Võ Bằng Kiều (CĐ TH
-                                19D) đã có lời giải chính xác cho bài toán kỳ 03 Solutions For Life với chủ đề
-                                “Translating into Protein”. Thân mời bạn đến VP. BM. Tin học lầu 7 dãy F vào lúc
-                                11h15 ngày thứ 4 (18.12.2019) để nhận thưởng.
-                            </p><img src="../../../assets/img/news/bang-vang-thanh-tich-03.jpg">
-                            <p>
-                                Xin chúc mừng các bạn đã xuất sắc giải quyết được yêu cầu bài toán, đồng thời xin gởi
-                                lời cảm ơn các bạn còn lại đã hưởng ứng tham gia cuộc thi, rất mong nhận được sự
-                                nhiệt thành của các bạn trong các cuộc thi sắp tới.
-                            </p>
-                            <p>Cuộc thi Solutions For Life</p>
-                            <p>CLB Tin học Cao Thắng ./.</p>
+                        <div class="post_page__content text-justify mt-4"[innerHTML]="cnttTinTuc.noiDung" >
                         </div>
                     </div>
                 </div>

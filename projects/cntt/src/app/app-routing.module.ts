@@ -14,7 +14,7 @@ const routes: Routes = [
     path: '', component: PageTrangchuComponent, pathMatch: 'full'
   },
   {
-    path: 'post', component: PagePostComponent
+    path: 'post/:id', component: PagePostComponent
   },
   {
     path: 'contact', component: PageContactComponent
