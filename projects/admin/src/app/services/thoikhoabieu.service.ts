@@ -15,14 +15,14 @@ export class ThoikhoabieuService {
 
   private tkbURL = "https://localhost:4100/api/tkb";
 
-  getTKBbymaLopHocNhocKi(maLopHoc: string, hocKi: number): Observable<[]> {
+  getTKBbymaLopHocNhocKi(maLopHoc: string, hocKi: number): Observable<any> {
     let url = `${this.tkbURL}/malophoc/${maLopHoc}/hocki/${hocKi}`;
-    return this.http.get<[]>(url);
+    return this.http.get<any>(url);
   }
 
 
-  addTKB(maLopHoc: string, hocKi: number, data: []): Observable<any> {
-    return this.http.post<any>(this.tkbURL, { maLopHoc, hocKi, data }, httpOptions);
+  addTKB(maLopHoc: string, hocKi: number, data: [], tuanBatDau: number, tuanKetThuc: number): Observable<any> {
+    return this.http.post<any>(this.tkbURL, { maLopHoc, hocKi, data, tuanBatDau, tuanKetThuc }, httpOptions);
   }
 
   constructor(

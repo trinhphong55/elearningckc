@@ -10,6 +10,10 @@ const LopHocPhanSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  tenVietTatLopHocPhan: {
+    type: String,
+    default: "",
+  },
   maLopHoc: {
     type: String,
     required: true,

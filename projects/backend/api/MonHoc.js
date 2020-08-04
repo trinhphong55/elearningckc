@@ -1,6 +1,11 @@
 const router = require('express').Router();
 const MonHoc = require('../models/MonHoc.model');
 const LopHocPhan = require('../models/LopHocPhan.model');
+const KHDT = require('../models/KeHoachDaoTao.model');
+const GVLHP = require('../models/GiaoVienLopHocPhan.model');
+const GiaoVienDAO = require('../DAO/GiaoVienDAO');
+const giaoVienDAO = new GiaoVienDAO();
+
 
 const {
   getNextNumber, isNameExist,
@@ -22,15 +27,35 @@ router.get('/malophoc/:maLopHoc/hocki/:hocKi', async (req, res) => {
   const hocKi = req.params.hocKi;
   let dsLHP;
   let dsMonHoc= [];
-  await LopHocPhan.find({ maLopHoc, hocKi }).sort({ tenLopHocPhan: 1 })
-    .then(ds => {
-      dsLHP = ds;
-      // return res.json(ds);
-    })
-  dsLHP.forEach(item => {
-    let maMonHoc = item.maDaoTao.slice(item.maDaoTao.length - 4);
-    let tenMonHoc = item.tenLopHocPhan.split("-")[1].trim();
-    let soTinChi;
+
+  await LopHocPhan.find({ maLopHoc, hocKi, trangThai: { $ne: 0 } }).sort({ tenLopHocPhan: 1 }).then(ds => {
+    dsLHP = ds;
+  });
+
+  await asyncForEach(dsLHP, async (lhp, index) => {
+    let maMonHoc = lhp.maDaoTao.slice(lhp.maDaoTao.length - 4);
+    let tenMonHocVietTat = lhp.tenVietTatLopHocPhan.split("-")[1].trim();
+    let maGiaoVien = "null";
+    let DVHT = 0;
+    let tenGiaoVien = "null"
+    await KHDT.findOne({ maDaoTao: lhp.maDaoTao })
+      .then(khdt => {
+        DVHT = khdt.donViHocTrinh;
+      });
+    await GVLHP.findOne({ maLopHocPhan: lhp.maLopHocPhan, trangThai: { $ne: 0 } })
+      .then(gvlhp => {
+        if (gvlhp === null) {
+          tenGiaoVien = "Chưa có GVLHP";
+        } else {
+          maGiaoVien = gvlhp.maGiaoVien;
+        }
+      });
+    if (maGiaoVien !== "null") {
+      await giaoVienDAO.layThongTinGiaoVien(maGiaoVien).then(gv => {
+        tenGiaoVien = gv[0].ho + " " + gv[0].ten;
+      })
+    }
+    let tenMonHoc = tenMonHocVietTat + " / " + `${DVHT}` + " - " + tenGiaoVien;
     dsMonHoc.push({ maMonHoc, tenMonHoc });
   });
   return res.json(dsMonHoc);
@@ -77,8 +102,8 @@ router.post('/', async (req, res) => {
   }
 
   maMonHoc = await getNextNumber();
-  const { tenMonHoc, tenVietTat, maLoaiMonHoc, tenTiengAnh, tenVietTatTiengAnh } = req.body;
-  const monHoc = new MonHoc({ maMonHoc, tenMonHoc, tenVietTat, maLoaiMonHoc, tenTiengAnh, tenVietTatTiengAnh });
+  const { tenMonHoc, tenVietTat, maLoaiMonHoc } = req.body;
+  const monHoc = new MonHoc({ maMonHoc, tenMonHoc, tenVietTat, maLoaiMonHoc });
   monHoc.save().then(() => {
     return res.json({ success: "added MonHoc" });
   }).catch(err => {
@@ -137,10 +162,10 @@ router.delete('/:maMonHoc', async (req, res) => {
 router.put('/:maMonHoc', async (req, res) => {
   console.log('du lieu chua update', req.body);
   const { maMonHoc } = req.params;
-  const { tenMonHoc, tenVietTat, maLoaiMonHoc, tenTiengAnh, tenVietTatTiengAnh } = req.body;
+  const { tenMonHoc, tenVietTat, maLoaiMonHoc } = req.body;
   await MonHoc.updateOne(
       { maMonHoc: maMonHoc },
-      { $set: { tenMonHoc, tenVietTat, maLoaiMonHoc, tenTiengAnh, tenVietTatTiengAnh } }
+      { $set: { tenMonHoc, tenVietTat, maLoaiMonHoc } }
   ).then(() => {
     return res.json({ success: "updated MonHoc" });
   }).catch(err => {

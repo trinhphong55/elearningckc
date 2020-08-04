@@ -28,13 +28,16 @@ export class ModalThoikhoabieuComponent implements OnInit {
   private maChuongTrinhDaoTao: string;
   hocKi = "1";
   maLopHoc = "null";
+  tenLopHoc = "null";
+  tuanBatDau: number;
+  tuanKetThuc: number;
+  TKB: [];
 
   dsLoaiHinhDaoTao: LHDT[];
   dsLH: LopHoc[];
   dsBac: bac[];
   dsNganhNghe: nganhnghe[];
   dsMonHoc: MonHoc[];
-  TKB: [];
 
   ctdt: CTDT = {
     maBac: "3",
@@ -57,13 +60,27 @@ export class ModalThoikhoabieuComponent implements OnInit {
     this.TKB = [];
   }
 
-  selectLopHocOrHocKi() {
+  selectLopHoc(indexLopHoc: number) {
+    this.tenLopHoc = this.dsLH[indexLopHoc -1 ].tenVietTat.toString();
+    this.monhocService.getDSMonHocbymaLopHocNhocKi(this.maLopHoc, parseInt(this.hocKi)).subscribe(dsmh => {
+      this.dsMonHoc = dsmh;
+    });
+    this.thoikhoabieuService.getTKBbymaLopHocNhocKi(this.maLopHoc, parseInt(this.hocKi)).subscribe(data => {
+      this.TKB = data.TKB;
+      this.tuanBatDau = data.tuanBatDau;
+      this.tuanKetThuc = data.tuanKetThuc;
+    });
+  }
+
+  selectHocKi() {
     this.monhocService.getDSMonHocbymaLopHocNhocKi(this.maLopHoc, parseInt(this.hocKi)).subscribe(dsmh => {
       this.dsMonHoc = dsmh;
     });
     if (this.maLopHoc !== "null") {
-      this.thoikhoabieuService.getTKBbymaLopHocNhocKi(this.maLopHoc, parseInt(this.hocKi)).subscribe(tkb => {
-        this.TKB = tkb;
+      this.thoikhoabieuService.getTKBbymaLopHocNhocKi(this.maLopHoc, parseInt(this.hocKi)).subscribe(data => {
+        this.TKB = data.TKB;
+        this.tuanBatDau = data.tuanBatDau;
+        this.tuanKetThuc = data.tuanKetThuc;
       });
     }
   }
@@ -89,7 +106,7 @@ export class ModalThoikhoabieuComponent implements OnInit {
       return;
     }
     console.log(this.TKB);
-    this.thoikhoabieuService.addTKB(this.maLopHoc, parseInt(this.hocKi), this.TKB).subscribe(result => {
+    this.thoikhoabieuService.addTKB(this.maLopHoc, parseInt(this.hocKi), this.TKB, this.tuanBatDau, this.tuanKetThuc).subscribe(result => {
       alert(result.message);
     })
   }

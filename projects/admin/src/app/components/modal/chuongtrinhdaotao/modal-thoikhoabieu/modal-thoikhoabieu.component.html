@@ -40,7 +40,7 @@
             <div class="col-3">
               <div class="form-group">
                 <label>Lớp học</label>
-                <select class="form-control" [(ngModel)]="maLopHoc" (change)="selectLopHocOrHocKi()">
+                <select class="form-control" [(ngModel)]="maLopHoc" (change)="selectLopHoc($event.target.selectedIndex)">
                   <option value="null" selected disabled>Chọn lớp học</option>
                   <option *ngFor="let lh of dsLH" [value]="lh.maLopHoc">{{ lh.tenVietTat }}</option>
                 </select>
@@ -68,10 +68,10 @@
       <div class="col-12">
         <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
           <div class="d-flex justify-content-between">
-            <div class="col">
+            <div class="col-4">
               <div class="form-inline">
                 <label class="mr-2">Học kì:</label>
-                <select class="form-control" [(ngModel)]="hocKi" (change)="selectLopHocOrHocKi()">
+                <select class="form-control" [(ngModel)]="hocKi" (change)="selectHocKi()">
                   <option value="1">Học kì 1</option>
                   <option value="2">Học kì 2</option>
                   <option value="3">Học kì 3</option>
@@ -82,11 +82,21 @@
                 </select>
               </div>
             </div>
-            <!-- <div class="form-inline">
-              <label class="ml-auto mb-0 d-flex align-items-center"><span class="text-nowrap">Bộ lọc: &nbsp;</span>
-                <input class="form-control form-control-sm" placeholder="Nhập từ khoá...">
-              </label>
-            </div> -->
+            <div class="col">
+              <div class="form-row d-flex justify-content-end">
+                <div *ngIf="maLopHoc !== 'null'" class="col">
+                  <h5 class="text-center">TKB lớp {{ tenLopHoc }}</h5>
+                </div>
+                <div class="form-inline">
+                  <label class="mr-2">Tuần bắt đầu:</label>
+                  <input type="number" min="1" [(ngModel)]="tuanBatDau" max="52" class="form-control" required>
+                </div>
+                <div class="form-inline">
+                  <label class="mr-2">Tuần kết thúc:</label>
+                  <input type="number" min="1" [(ngModel)]="tuanKetThuc" max="52" class="form-control" required>
+                </div>
+              </div>
+            </div>
           </div>
           <table class="modal_chucnang__table table table-hover" id="danhsach_giaovienlophocphan">
             <thead class="bg__caothang text-white">

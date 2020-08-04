@@ -20,25 +20,23 @@ router.get("/malophoc/:maLopHoc/hocki/:hocKi", async (req, res) => {
   ];
 
   if (maLopHoc === "null") {
-    return res.json(arrayNull);
+    return res.json({ TKB: arrayNull, tuanBatDau: 1, tuanKetThuc: 20 });
   }
   const hocKi = req.params.hocKi;
 
   await TKB.findOne({ maLopHoc, hocKi }).then((tkb) => {
     if (tkb === null) {
-      return res.json(arrayNull);
+      return res.json({ TKB: arrayNull, tuanBatDau: 1, tuanKetThuc: 20 });
     } else {
-      return res.json(tkb.data);
+      return res.json({ TKB: tkb.data, tuanBatDau: tkb.tuanBatDau, tuanKetThuc: tkb.tuanKetThuc });
     }
   });
 });
 
 router.post("/", async (req, res) => {
-  const hocKi = parseInt(req.body.hocKi);
-  const maLopHoc = req.body.maLopHoc;
-  const data = req.body.data;
+  const { hocKi, maLopHoc, data, tuanBatDau, tuanKetThuc } = req.body;
 
-  await TKB.findOneAndUpdate({ maLopHoc, hocKi }, { $set: { data } }).then(
+  await TKB.findOneAndUpdate({ maLopHoc, hocKi }, { $set: { data, tuanBatDau, tuanKetThuc } }).then(
     result => {
       if (result !== null) {
         return res.json({
@@ -47,7 +45,7 @@ router.post("/", async (req, res) => {
           message: "Cap nhat thanh cong",
         });
       } else {
-        const newTKB = new TKB({ hocKi, maLopHoc, data });
+        const newTKB = new TKB({ hocKi, maLopHoc, data, tuanBatDau, tuanKetThuc });
         newTKB.save().then(() => {
           return res.json({
             status: 200,

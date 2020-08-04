@@ -95,21 +95,6 @@ router.post('/', async (req, res) => {
 });
 
 
-//SPECIFIC KHDT
-// router.get('/:maDaoTao', async (req, res) => {
-//   // try {
-//   //   const item = await MonHoc.findOne({ maKeHoachDaoTao: req.params.maKeHoachDaoTao });
-//   //   if (item === null) {
-//   //     res.json({status: "null"});
-//   //   } else {
-//   //     res.json(item);
-//   //   }
-//   // } catch (err) {
-//   //   res.json({message: err});
-//   // }
-//   res.json('oke');
-// })
-
 //DELETE KHDT
 router.delete('/', async (req, res) => {
   KHDT.deleteMany().then(res.json('Done'));
@@ -117,32 +102,11 @@ router.delete('/', async (req, res) => {
 
 //UPATE KHDT
 router.put('/:maDaoTao', async (req, res) => {
-  // console.log('du lieu chua update', req.body);
-  // const { maKeHoachDaoTao } = req.params;
-  // const { tenMonHoc, tenVietTat, loaiMonHoc, tenTiengAnh, tenVietTatTiengAnh } = req.body;
-  // await MonHoc.updateOne(
-  //     { maKeHoachDaoTao: maKeHoachDaoTao },
-  //     { $set: { tenMonHoc, tenVietTat, loaiMonHoc, tenTiengAnh, tenVietTatTiengAnh } }
-  // ).then(() => {
-  //   res.json({ success: "updated MonHoc" });
-  // }).catch(err => {
-  //   res.json({ message: err });
-  // });
   res.json('oke');
 });
 
 
 router.patch('/:maDaoTao', async (req, res) => {
-  // console.log(req.body);
-  // try {
-  //   const updatedMonhoc = await MonHoc.updateOne(
-  //     { maKeHoachDaoTao: req.params.maKeHoachDaoTao },
-  //     { $set: { tenMonHoc: req.body.tenMonHoc } }
-  //   );
-  //   res.json(updatedMonhoc);
-  // } catch (error) {
-  //   res.json({ message: error });
-  // }
   res.json('oke');
 })
 
