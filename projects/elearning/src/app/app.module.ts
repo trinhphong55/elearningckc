@@ -60,6 +60,7 @@ import { PageHuongdanComponent } from './pages/page-huongdan/page-huongdan.compo
 import { PageBaitapgiaovienComponent } from './pages/page-baitapgiaovien/page-baitapgiaovien.component';
 import { PageCaidatComponent } from './pages/page-caidat/page-caidat.component';
 import { HttpClientModule } from '@angular/common/http';
+import {CookieService} from 'ngx-cookie-service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -132,6 +133,7 @@ import { HttpClientModule } from '@angular/common/http';
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
       useValue: { appearance: 'fill' },
     },
+    CookieService,
   ],
   bootstrap: [AppComponent],
 })
