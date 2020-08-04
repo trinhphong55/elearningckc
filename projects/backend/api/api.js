@@ -8,7 +8,7 @@ const LopHocPhan = require("./LopHocPhan");
 const LoaiMonHoc = require("./LoaiMonHoc");
 const groupFB = require("../api/groupFB");
 const boMon = require("../api/bomon");
-
+const cnttHeader = require("./cnttHeader");
 const sinhVien = require("./sinh-vien");
 const Diemsinhvien = require("./diemsinhvien");
 const GiaoVienLopHocPhan = require("./GiaoVienLopHocPhan");
@@ -22,6 +22,7 @@ const ttthCamOnRoute = require("./ttthCamOn");
 const ttthTienIchRoute = require("./ttthTienIch");
 const ttthKhoaHocRoute = require("./ttthKhoaHoc");
 const ttthLopHocRoute = require("./ttthLopHoc");
+const ttthDangKiKhoaHocRoute = require("./ttthDangKiKhoaHoc");
 const cnttLoaiBaiVietRoutes = require("./cnttLoaiBaiViet");
 const cnttSlideShowRoutes = require("./cnttSlideShow");
 const cnttTrangChu = require("./cnttTrangChu");
@@ -29,6 +30,7 @@ const cnttTienIchSinhVien = require("./cnttTienIchSinhVien");
 const cnttDanhMuc = require("./cnttDanhMuc");
 const cnttBoSuuTap = require("./cnttBoSuuTap");
 const cnttThongTinChung = require("./cnttThongTinChung");
+const cnttFooter = require("./cnttFooter");
 
 router.use("/loaimonhoc", LoaiMonHoc);
 // router.use("/lophocphan", LopHocPhanRoutes);
@@ -49,6 +51,9 @@ router.use("/cnttTienIchSinhVien", cnttTienIchSinhVien);
 router.use("/danhmuc", cnttDanhMuc);
 router.use("/cnttbosuutap", cnttBoSuuTap);
 router.use("/thongtinchung", cnttThongTinChung);
+router.use("/cnttHeader", cnttHeader);
+router.use("/cnttHeader", cnttHeader);
+router.use("/cnttFooter", cnttFooter);
 //end cntt
 //ttthRoutes
 router.use("/ttthTinTuc", ttthTinTucRoute);
@@ -58,6 +63,7 @@ router.use("/ttthCamOn", ttthCamOnRoute);
 router.use("/ttthTienIch", ttthTienIchRoute);
 router.use("/ttthKhoaHoc", ttthKhoaHocRoute);
 router.use("/ttthLopHoc", ttthLopHocRoute);
+router.use("/ttthDangKiKhoaHoc", ttthDangKiKhoaHocRoute);
 //ttth
 const khoabomonController = require("../api/khoabomon");
 const loaidonviController = require("../api/loaidonvi");

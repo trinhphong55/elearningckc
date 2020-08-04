@@ -1,0 +1,183 @@
+[{
+  "_id": {
+    "$oid": "5f2835ffe785a33bbc908c0a"
+  },
+  "icon1": "mdi mdi-home-outline",
+  "name1": "Trang chủ",
+  "url1": "/",
+  "icon2": "mdi mdi-information-outline",
+  "name2": "Giới thiệu",
+  "url2": "/",
+  "icon3": "mdi mdi-bell-circle-outline",
+  "name3": "Thông báo",
+  "url3": "/",
+  "icon4": "mdi mdi-school-outline",
+  "name4": "Sinh viên",
+  "url4": "/",
+  "icon5": "mdi mdi-medal-outline",
+  "name5": "Hợp tác & Nghiên cứu",
+  "url5": "/",
+  "sub1": [],
+  "sub2": [
+    {
+      "name": "Giới thiệu chung",
+      "url": "/",
+      "_id": {
+        "$oid": "5f2840249165871ebc373c3c"
+      }
+    },
+    {
+      "name": "Tầm nhìn - Sứ mạng",
+      "url": "/",
+      "_id": {
+        "$oid": "5f2840249165871ebc373c3d"
+      }
+    },
+    {
+      "name": "Mục tiêu đào tạo",
+      "url": "/",
+      "_id": {
+        "$oid": "5f2840249165871ebc373c3e"
+      }
+    },
+    {
+      "name": "Ban chủ nhiệm Khoa",
+      "url": "/",
+      "_id": {
+        "$oid": "5f2840249165871ebc373c3f"
+      }
+    },
+    {
+      "name": "Các bộ phận & Hội đồng",
+      "url": "/",
+      "_id": {
+        "$oid": "5f2840249165871ebc373c40"
+      }
+    },
+    {
+      "name": "Đội ngũ giáo viên",
+      "url": "/",
+      "_id": {
+        "$oid": "5f2840249165871ebc373c41"
+      }
+    },
+    {
+      "name": "Liên hệ",
+      "url": "/",
+      "_id": {
+        "$oid": "5f2840249165871ebc373c42"
+      }
+    }
+  ],
+  "sub3": [
+    {
+      "name": "Thông báo Trường",
+      "url": "/",
+      "_id": {
+        "$oid": "5f2840249165871ebc373c43"
+      }
+    },
+    {
+      "name": "Thông báo CĐ Ngành",
+      "url": "/",
+      "_id": {
+        "$oid": "5f2840249165871ebc373c44"
+      }
+    },
+    {
+      "name": "Thông báo CĐ Nghề",
+      "url": "/",
+      "_id": {
+        "$oid": "5f2840249165871ebc373c45"
+      }
+    }
+  ],
+  "sub4": [
+    {
+      "name": "Cựu sinh viên",
+      "url": "/",
+      "_id": {
+        "$oid": "5f2840249165871ebc373c46"
+      }
+    },
+    {
+      "name": "Thời khoá biểu",
+      "url": "/",
+      "_id": {
+        "$oid": "5f2840249165871ebc373c47"
+      }
+    },
+    {
+      "name": "E-learning",
+      "url": "/",
+      "_id": {
+        "$oid": "5f2840249165871ebc373c48"
+      }
+    },
+    {
+      "name": "Tài liệu học tập",
+      "url": "/",
+      "_id": {
+        "$oid": "5f2840249165871ebc373c49"
+      }
+    },
+    {
+      "name": "Tra cứu",
+      "url": "/",
+      "_id": {
+        "$oid": "5f2840249165871ebc373c4a"
+      }
+    },
+    {
+      "name": "Mẫu đơn",
+      "url": "/",
+      "_id": {
+        "$oid": "5f2840249165871ebc373c4b"
+      }
+    },
+    {
+      "name": "Việc làm",
+      "url": "/",
+      "_id": {
+        "$oid": "5f2840249165871ebc373c4c"
+      }
+    }
+  ],
+  "sub5": [
+    {
+      "name": "Hợp tác quốc tế",
+      "url": "/",
+      "_id": {
+        "$oid": "5f2840249165871ebc373c4d"
+      }
+    },
+    {
+      "name": "Công trình khoa học",
+      "url": "/",
+      "_id": {
+        "$oid": "5f2840249165871ebc373c4e"
+      }
+    },
+    {
+      "name": "Bảng vàng thành tích",
+      "url": "/",
+      "_id": {
+        "$oid": "5f2840249165871ebc373c4f"
+      }
+    },
+    {
+      "name": "Doanh nghiệp đồng hành",
+      "url": null,
+      "_id": {
+        "$oid": "5f2840249165871ebc373c50"
+      }
+    }
+  ],
+  "createdAt": {
+    "$date": "2020-08-03T16:06:23.356Z"
+  },
+  "updatedAt": {
+    "$date": "2020-08-03T16:49:40.371Z"
+  },
+  "__v": 0
+}]

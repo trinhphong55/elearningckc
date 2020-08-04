@@ -376,6 +376,30 @@ body {
   font-size: 0.875rem;
   line-height: 1.5;
   list-style: none;
+  overflow: auto;
+}
+
+.offcanvas_bar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.offcanvas_bar::-webkit-scrollbar-track {
+  background: #e5e5e5;
+}
+
+.offcanvas_bar::-webkit-scrollbar-thumb {
+  background: rgba(0, 72, 146, 0.3);
+}
+
+.offcanvas_bar::-webkit-scrollbar-thumb:hover {
+  background-image: linear-gradient(
+    to right top,
+    #00a650,
+    #009580,
+    #0080a2,
+    #0066a9,
+    #004892
+  );
 }
 
 .offcanvas_nav__divider {

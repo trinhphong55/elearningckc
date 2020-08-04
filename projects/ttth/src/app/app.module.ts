@@ -12,6 +12,7 @@ import { PageTintucComponent } from './pages/page-tintuc/page-tintuc.component';
 import { PageChitiettintucComponent } from './pages/page-chitiettintuc/page-chitiettintuc.component';
 import { PageDangkikhoahocComponent } from './pages/page-dangkikhoahoc/page-dangkikhoahoc.component';
 import { HttpClientModule } from '@angular/common/http';
+import { PageDanhsachlophocComponent } from './pages/page-danhsachlophoc/page-danhsachlophoc.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,6 +24,7 @@ import { HttpClientModule } from '@angular/common/http';
     PageTintucComponent,
     PageChitiettintucComponent,
     PageDangkikhoahocComponent,
+    PageDanhsachlophocComponent,
   ],
   imports: [
     BrowserModule,
