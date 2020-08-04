@@ -48,8 +48,6 @@ export class ModalGiaovienlophocphanComponent implements OnInit {
     maLoaiHinhDaoTao: "1",
   };
 
-  isChanged = false;
-
   private convertToMaChuongTrinhDaoTao(item: CTDT): string {
     return item.maBac + item.maNganhNghe + item.khoaHoc + item.maLoaiHinhDaoTao;
   }

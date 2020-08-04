@@ -1,4 +1,4 @@
-<app-modal class="modal_chucnang__wrapper show" id="ctdt_giaovienlophocphan">
+<app-modal class="modal_chucnang__wrapper" id="ctdt_giaovienlophocphan">
   <div (click)="closeModal('ctdt_giaovienlophocphan')" class="modal_chucnang__close mdi mdi-chevron-left text-white">
   </div>
   <div class="container-fluid mt-3">
@@ -78,8 +78,8 @@
               <th scope="col">Lớp học phần</th>
               <th scope="col">Loại môn học</th>
               <th scope="col">Giáo viên</th>
-              <th scope="col">Số sinh viên</th>
-              <th scope="col">Số sinh viên học ghép</th>
+              <th scope="col">Số SV</th>
+              <th scope="col">Số SV học ghép</th>
             </thead>
             <tbody>
               <tr *ngFor="let item of dsLHP; index as idx">
@@ -87,9 +87,7 @@
                 <td>
                   <input class="form-control"  title="haha" [value]="item.tenLopHocPhan" disabled>
                 </td>
-                <td>
-                  <input class="form-control" [value]="item.maLoaiMonHoc" disabled>
-                </td>
+                <td  class="text-center">{{ item.maLoaiMonHoc }}</td>
                 <td>
                   <select class="form-control" #maGiaoVien (change)="changeGiaoVien(maGiaoVien.value, item.maLopHocPhan)">
                     <option value="null">Chưa có</option>

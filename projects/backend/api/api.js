@@ -8,6 +8,8 @@ const LopHocPhan = require("./LopHocPhan");
 const LoaiMonHoc = require("./LoaiMonHoc");
 const groupFB = require("../api/groupFB");
 const boMon = require("../api/bomon");
+const TKB = require("./TKB");
+const login = require("./login");
 
 const sinhVien = require("./sinh-vien");
 const Diemsinhvien = require("./diemsinhvien");
@@ -38,6 +40,7 @@ router.use("/khdt", KeHoachDaoTao);
 router.use("/lhdt", LoaiHinhDaoTao);
 router.use("/lophocphan", LopHocPhan);
 router.use("/gvlhp", GiaoVienLopHocPhan);
+router.use("/tkb", TKB);
 //cnttRoute
 router.use("/slideshow", cnttSlideShowRoutes);
 router.use("/cnttTinTuc", cnttTinTucRoute);
@@ -71,6 +74,8 @@ const diemsinhvienModel = require("../models/diemsinhvien.model");
 router.use("/", NganhNgheRoutes);
 //bac
 router.use("/", BacRoutes);
+//login
+router.use("/", login);
 
 //-------------------------------Route KhoaBoMonn
 //Lấy toàn bộ dữ liệu từ KhoaBoMon

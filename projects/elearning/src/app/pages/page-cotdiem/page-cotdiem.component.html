@@ -1,0 +1,2102 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4 style-table">
+            <p class="h3">Thêm cột điểm</p>
+            <form>
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-4 col-form-label">Tên cột điểm</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="inputnamediem" placeholder="Nhập tên cột điểm">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-4 col-form-label">Hệ số</label>
+                    <div class="col-sm-8">
+                        <input type="number" class="form-control" id="inputheso" placeholder="Nhập hệ số">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-4 col-form-label">Mô tả</label>
+                    <div class="col-sm-8">
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="exampleFormControlSelect1" class="col-sm-4 col-form-label">Chọn liên kết </label>
+                    <div class="col-sm-8">
+                        <select class="form-control" id="exampleFormControlSelect1">
+                            <option>Offline</option>
+                            <option>Bài tập 1</option>
+                            <option>Bài tập 2</option>
+                            <option>Bài tập 3</option>
+                            <option>Bài tập 4</option>
+                            <option>Bài tập 5</option>
+                            <option>Bài tập 6</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="btn button-style">Thêm</button>
+            </form>
+        </div>
+        <div class="col-md-8 style-table ml-1">
+            <p class="h3">Danh sách cột điểm</p>
+            <table class="table table-fixed">
+                <div class="style-over-hozital">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="col-md-1">
+                                STT
+                            </th>
+                            <th scope="col" class="col-md-2">
+                                Tên cột điểm
+                            </th>
+                            <th scope="col" class="col-md-1">
+                                Hệ số
+                            </th>
+                            <th scope="col" class="col-md-2">
+                                Tên bài tập
+                            </th>
+                            <th scope="col" class="col-md-2">
+                                Mô tả
+                            </th>
+                            <th scope="col" class="col-md-2">
+                                Liên kết
+                            </th>
+                            <th scope="col" class="col-md-2 style-text">
+                                Chi tiết
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            <tr>
+                                <td class="col-md-1">1</td>
+                                <td class="col-md-2">Kiểm tra 15p</td>
+                                <td class="col-md-1">1</td>
+                                <td class="col-md-2 style-text">Test report, test summary</td>
+                                <td class="col-md-2 style-text">Sinh viên tự tìm hiểu</td>
+                                <td class="col-md-2 style-text">
+                                    Bài tập số 1
+                                </td>
+                                <td class="col-md-2 style-text">
+                                    <a class="p-0 m-0 chitietcotdiem" data-toggle="modal" data-target="#exampleModalCenter">Chi tiết cột
+                                        điểm</a>
+                                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                    
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary">Import</button>
+                                                    <button type="button" class="btn btn-primary">Export</button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="col-md-12 style-table ml-1">
+                                                        <p class="h3">Bảng chi tiết 1 cột điểm</p>
+                                                        <table class="table table-fixed">
+                                                            <div class="style-over-hozital">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th scope="col" class="col-md-1">
+                                                                            STT
+                                                                        </th>
+                                                                        <th scope="col" class="col-md-4">
+                                                                            Mã số sinh viên
+                                                                        </th>
+                                                                        <th scope="col" class="col-md-4">
+                                                                            Họ tên
+                                                                        </th>
+                                                                        <th scope="col" class="col-md-3">
+                                                                            Điểm
+                                                                        </th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </div>
+                                    
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                    
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-1">1</td>
+                                <td class="col-md-2">Kiểm tra 15p</td>
+                                <td class="col-md-1">1</td>
+                                <td class="col-md-2 style-text">Test report, test summary</td>
+                                <td class="col-md-2 style-text">Sinh viên tự tìm hiểu</td>
+                                <td class="col-md-2 style-text">
+                                    Bài tập số 1
+                                </td>
+                                <td class="col-md-2 style-text">
+                                    <a class="p-0 m-0 chitietcotdiem" data-toggle="modal" data-target="#exampleModalCenter">Chi tiết cột
+                                        điểm</a>
+                                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                    
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary">Import</button>
+                                                    <button type="button" class="btn btn-primary">Export</button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="col-md-12 style-table ml-1">
+                                                        <p class="h3">Bảng chi tiết 1 cột điểm</p>
+                                                        <table class="table table-fixed">
+                                                            <div class="style-over-hozital">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th scope="col" class="col-md-1">
+                                                                            STT
+                                                                        </th>
+                                                                        <th scope="col" class="col-md-4">
+                                                                            Mã số sinh viên
+                                                                        </th>
+                                                                        <th scope="col" class="col-md-4">
+                                                                            Họ tên
+                                                                        </th>
+                                                                        <th scope="col" class="col-md-3">
+                                                                            Điểm
+                                                                        </th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </div>
+                                    
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                    
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-1">1</td>
+                                <td class="col-md-2">Kiểm tra 15p</td>
+                                <td class="col-md-1">1</td>
+                                <td class="col-md-2 style-text">Test report, test summary</td>
+                                <td class="col-md-2 style-text">Sinh viên tự tìm hiểu</td>
+                                <td class="col-md-2 style-text">
+                                    Bài tập số 1
+                                </td>
+                                <td class="col-md-2 style-text">
+                                    <a class="p-0 m-0 chitietcotdiem" data-toggle="modal" data-target="#exampleModalCenter">Chi tiết cột
+                                        điểm</a>
+                                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                    
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary">Import</button>
+                                                    <button type="button" class="btn btn-primary">Export</button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="col-md-12 style-table ml-1">
+                                                        <p class="h3">Bảng chi tiết 1 cột điểm</p>
+                                                        <table class="table table-fixed">
+                                                            <div class="style-over-hozital">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th scope="col" class="col-md-1">
+                                                                            STT
+                                                                        </th>
+                                                                        <th scope="col" class="col-md-4">
+                                                                            Mã số sinh viên
+                                                                        </th>
+                                                                        <th scope="col" class="col-md-4">
+                                                                            Họ tên
+                                                                        </th>
+                                                                        <th scope="col" class="col-md-3">
+                                                                            Điểm
+                                                                        </th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </div>
+                                    
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                    
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-1">1</td>
+                                <td class="col-md-2">Kiểm tra 15p</td>
+                                <td class="col-md-1">1</td>
+                                <td class="col-md-2 style-text">Test report, test summary</td>
+                                <td class="col-md-2 style-text">Sinh viên tự tìm hiểu</td>
+                                <td class="col-md-2 style-text">
+                                    Bài tập số 1
+                                </td>
+                                <td class="col-md-2 style-text">
+                                    <a class="p-0 m-0 chitietcotdiem" data-toggle="modal" data-target="#exampleModalCenter">Chi tiết cột
+                                        điểm</a>
+                                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                    
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary">Import</button>
+                                                    <button type="button" class="btn btn-primary">Export</button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="col-md-12 style-table ml-1">
+                                                        <p class="h3">Bảng chi tiết 1 cột điểm</p>
+                                                        <table class="table table-fixed">
+                                                            <div class="style-over-hozital">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th scope="col" class="col-md-1">
+                                                                            STT
+                                                                        </th>
+                                                                        <th scope="col" class="col-md-4">
+                                                                            Mã số sinh viên
+                                                                        </th>
+                                                                        <th scope="col" class="col-md-4">
+                                                                            Họ tên
+                                                                        </th>
+                                                                        <th scope="col" class="col-md-3">
+                                                                            Điểm
+                                                                        </th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </div>
+                                    
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                    
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-1">1</td>
+                                <td class="col-md-2">Kiểm tra 15p</td>
+                                <td class="col-md-1">1</td>
+                                <td class="col-md-2 style-text">Test report, test summary</td>
+                                <td class="col-md-2 style-text">Sinh viên tự tìm hiểu</td>
+                                <td class="col-md-2 style-text">
+                                    Bài tập số 1
+                                </td>
+                                <td class="col-md-2 style-text">
+                                    <a class="p-0 m-0 chitietcotdiem" data-toggle="modal" data-target="#exampleModalCenter">Chi tiết cột
+                                        điểm</a>
+                                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                    
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary">Import</button>
+                                                    <button type="button" class="btn btn-primary">Export</button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="col-md-12 style-table ml-1">
+                                                        <p class="h3">Bảng chi tiết 1 cột điểm</p>
+                                                        <table class="table table-fixed">
+                                                            <div class="style-over-hozital">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th scope="col" class="col-md-1">
+                                                                            STT
+                                                                        </th>
+                                                                        <th scope="col" class="col-md-4">
+                                                                            Mã số sinh viên
+                                                                        </th>
+                                                                        <th scope="col" class="col-md-4">
+                                                                            Họ tên
+                                                                        </th>
+                                                                        <th scope="col" class="col-md-3">
+                                                                            Điểm
+                                                                        </th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </div>
+                                    
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                    
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-1">1</td>
+                                <td class="col-md-2">Kiểm tra 15p</td>
+                                <td class="col-md-1">1</td>
+                                <td class="col-md-2 style-text">Test report, test summary</td>
+                                <td class="col-md-2 style-text">Sinh viên tự tìm hiểu</td>
+                                <td class="col-md-2 style-text">
+                                    Bài tập số 1
+                                </td>
+                                <td class="col-md-2 style-text">
+                                    <a class="p-0 m-0 chitietcotdiem" data-toggle="modal" data-target="#exampleModalCenter">Chi tiết cột
+                                        điểm</a>
+                                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                    
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary">Import</button>
+                                                    <button type="button" class="btn btn-primary">Export</button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="col-md-12 style-table ml-1">
+                                                        <p class="h3">Bảng chi tiết 1 cột điểm</p>
+                                                        <table class="table table-fixed">
+                                                            <div class="style-over-hozital">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th scope="col" class="col-md-1">
+                                                                            STT
+                                                                        </th>
+                                                                        <th scope="col" class="col-md-4">
+                                                                            Mã số sinh viên
+                                                                        </th>
+                                                                        <th scope="col" class="col-md-4">
+                                                                            Họ tên
+                                                                        </th>
+                                                                        <th scope="col" class="col-md-3">
+                                                                            Điểm
+                                                                        </th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </div>
+                                    
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                    
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-1">1</td>
+                                <td class="col-md-2">Kiểm tra 15p</td>
+                                <td class="col-md-1">1</td>
+                                <td class="col-md-2 style-text">Test report, test summary</td>
+                                <td class="col-md-2 style-text">Sinh viên tự tìm hiểu</td>
+                                <td class="col-md-2 style-text">
+                                    Bài tập số 1
+                                </td>
+                                <td class="col-md-2 style-text">
+                                    <a class="p-0 m-0 chitietcotdiem" data-toggle="modal" data-target="#exampleModalCenter">Chi tiết cột
+                                        điểm</a>
+                                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                    
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary">Import</button>
+                                                    <button type="button" class="btn btn-primary">Export</button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="col-md-12 style-table ml-1">
+                                                        <p class="h3">Bảng chi tiết 1 cột điểm</p>
+                                                        <table class="table table-fixed">
+                                                            <div class="style-over-hozital">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th scope="col" class="col-md-1">
+                                                                            STT
+                                                                        </th>
+                                                                        <th scope="col" class="col-md-4">
+                                                                            Mã số sinh viên
+                                                                        </th>
+                                                                        <th scope="col" class="col-md-4">
+                                                                            Họ tên
+                                                                        </th>
+                                                                        <th scope="col" class="col-md-3">
+                                                                            Điểm
+                                                                        </th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </div>
+                                    
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                    
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-1">1</td>
+                                <td class="col-md-2">Kiểm tra 15p</td>
+                                <td class="col-md-1">1</td>
+                                <td class="col-md-2 style-text">Test report, test summary</td>
+                                <td class="col-md-2 style-text">Sinh viên tự tìm hiểu</td>
+                                <td class="col-md-2 style-text">
+                                    Bài tập số 1
+                                </td>
+                                <td class="col-md-2 style-text">
+                                    <a class="p-0 m-0 chitietcotdiem" data-toggle="modal" data-target="#exampleModalCenter">Chi tiết cột
+                                        điểm</a>
+                                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                    
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary">Import</button>
+                                                    <button type="button" class="btn btn-primary">Export</button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="col-md-12 style-table ml-1">
+                                                        <p class="h3">Bảng chi tiết 1 cột điểm</p>
+                                                        <table class="table table-fixed">
+                                                            <div class="style-over-hozital">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th scope="col" class="col-md-1">
+                                                                            STT
+                                                                        </th>
+                                                                        <th scope="col" class="col-md-4">
+                                                                            Mã số sinh viên
+                                                                        </th>
+                                                                        <th scope="col" class="col-md-4">
+                                                                            Họ tên
+                                                                        </th>
+                                                                        <th scope="col" class="col-md-3">
+                                                                            Điểm
+                                                                        </th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="col-md-1">1</td>
+                                                                        <td class="col-md-4">0306171351</td>
+                                                                        <td class="col-md-4">Nguyễn Quang Huy</td>
+                                                                        <td class="col-md-3 style-suadiem"
+                                                                            style="padding-top: 0;padding-bottom: 0.3px;">
+                                                                            <form>
+                                                                                <div class="form-group row ">
+                                                                                    <div class="col-6 style-padding-top">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="inputheso" placeholder="7">
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        <input type="checkbox"
+                                                                                            class="form-check-input mt-3"
+                                                                                            id="exampleCheck1">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </div>
+                                    
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                    
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr> 
+                    </tbody>
+                </div>
+
+            </table>
+        </div>
+    </div>
+</div>
+

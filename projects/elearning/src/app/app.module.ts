@@ -45,7 +45,6 @@ import { NoidungbaitapsvComponent } from './components/content/pagelophocphan/no
 import { NoidungtailieusvComponent } from './components/content/pagelophocphan/noidungtailieusv/noidungtailieusv.component';
 import { XembaitapsvComponent } from './components/content/chudelophocphan/allchude/xembaitapsv/xembaitapsv.component';
 import { XemtailieusvComponent } from './components/content/chudelophocphan/allchude/xemtailieusv/xemtailieusv.component';
-import { TrangcanhanContentComponent } from './components/content/trangcanhan-content/trangcanhan-content.component';
 import { NavbarTrangchuComponent } from './components/navbar/navbar-trangchu/navbar-trangchu.component';
 import { NavbarHocphanComponent } from './components/navbar/navbar-hocphan/navbar-hocphan.component';
 import { PageTrangchuComponent } from './pages/page-trangchu/page-trangchu.component';
@@ -55,12 +54,15 @@ import { PageBaigiangComponent } from './pages/page-baigiang/page-baigiang.compo
 import { PageMoinguoiComponent } from './pages/page-moinguoi/page-moinguoi.component';
 import { PageChudelophocphanComponent } from './pages/page-chudelophocphan/page-chudelophocphan.component';
 import { TaobaitapComponent } from './components/content/chudelophocphan/taobaitap/taobaitap.component';
-import { PageSodiemComponent } from './pages/page-sodiem/page-sodiem.component';
+import { PageCotodiemComponent } from './pages/page-cotdiem/page-cotdiem.component';
 import { PageHuongdanComponent } from './pages/page-huongdan/page-huongdan.component';
 import { PageBaitapgiaovienComponent } from './pages/page-baitapgiaovien/page-baitapgiaovien.component';
 import { PageCaidatComponent } from './pages/page-caidat/page-caidat.component';
 import { HttpClientModule } from '@angular/common/http';
+
 import {CookieService} from 'ngx-cookie-service';
+import { PageTrangcanhansvComponent } from './pages/page-trangcanhansv/page-trangcanhansv.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -86,7 +88,6 @@ import {CookieService} from 'ngx-cookie-service';
     NoidungtailieusvComponent,
     XembaitapsvComponent,
     XemtailieusvComponent,
-    TrangcanhanContentComponent,
     NavbarTrangchuComponent,
     NavbarHocphanComponent,
     PageTrangchuComponent,
@@ -95,10 +96,11 @@ import {CookieService} from 'ngx-cookie-service';
     PageBaigiangComponent,
     PageMoinguoiComponent,
     PageChudelophocphanComponent,
-    PageSodiemComponent,
+    PageCotodiemComponent,
     PageHuongdanComponent,
     PageBaitapgiaovienComponent,
     PageCaidatComponent,
+    PageTrangcanhansvComponent,
   ],
   imports: [
     BrowserModule,

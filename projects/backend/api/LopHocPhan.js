@@ -109,7 +109,7 @@ router.post("/", async (req, res) => {
   dsLopHoc.forEach((lh) => {
     dsKHDT.forEach((khdt) => {
       lophocphan = {
-        tenLopHocPhan: lh.tenLop,
+        tenLopHocPhan: lh.tenVietTat,
         maLopHoc: lh.maLopHoc,
         maDaoTao: khdt.maDaoTao,
         hocKi,
@@ -137,7 +137,9 @@ router.post("/", async (req, res) => {
         nextNumber++;
         let maMonHoc = lhp.maDaoTao.slice(lhp.maDaoTao.length - 4);
         MonHoc.findOne({ maMonHoc }).then((mh) => {
-          lhp.tenLopHocPhan = lhp.tenLopHocPhan + " - " + mh.tenMonHoc;
+          let tenlhp = lhp.tenLopHocPhan;
+          lhp.tenLopHocPhan = tenlhp + " - " + mh.tenMonHoc;
+          lhp.tenVietTatLopHocPhan  = tenlhp + " - " +mh.tenVietTat;
           LopHocPhan.create(lhp)
             .then(console.log("added " + lhp.maDaoTao))
             .catch((err) => {
@@ -170,20 +172,6 @@ router.post("/", async (req, res) => {
   }
 });
 
-//SPECIFIC LopHocPhan
-// router.get('/:maDaoTao', async (req, res) => {
-//   // try {
-//   //   const item = await MonHoc.findOne({ maLopHocPhan: req.params.maLopHocPhan });
-//   //   if (item === null) {
-//   //     res.json({status: "null"});
-//   //   } else {
-//   //     res.json(item);
-//   //   }
-//   // } catch (err) {
-//   //   res.json({message: err});
-//   // }
-//   res.json('oke');
-// })
 
 //DELETE LopHocPhan
 router.delete("/:maDaoTao", async (req, res) => {
@@ -192,10 +180,6 @@ router.delete("/:maDaoTao", async (req, res) => {
 
 //UPATE LopHocPhan
 router.put("/:maDaoTao", async (req, res) => {
-  res.json("oke");
-});
-
-router.patch("/:maDaoTao", async (req, res) => {
   res.json("oke");
 });
 
@@ -219,4 +203,11 @@ router.get("/:maLop/search", async (req, res) => {
     res.json(error);
   }
 });
+
+// router.patch('/haha', async (req, res) => {
+//   LopHocPhan.deleteMany().then(result => console.log(result));
+// })
+
+// ***  API for team App Android  ***
+
 module.exports = router;
