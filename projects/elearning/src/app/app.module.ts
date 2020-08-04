@@ -27,10 +27,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { TaochudeComponent } from './components/content/chudelophocphan/taochude/taochude.component';
-import { Chude1Component } from './components/content/chudelophocphan/list-chude/chude1/chude1.component';
 import { Chude2Component } from './components/content/chudelophocphan/list-chude/chude2/chude2.component';
-import { Chude3Component } from './components/content/chudelophocphan/list-chude/chude3/chude3.component';
-import { Chude4Component } from './components/content/chudelophocphan/list-chude/chude4/chude4.component';
 import { TaobaiktraComponent } from './components/content/chudelophocphan/taobaiktra/taobaiktra.component';
 import { TaocauhoiComponent } from './components/content/chudelophocphan/taocauhoi/taocauhoi.component';
 import { TaotailieuComponent } from './components/content/chudelophocphan/taotailieu/taotailieu.component';
@@ -70,10 +67,7 @@ import { PageTrangcanhangvComponent } from './pages/page-trangcanhangv/page-tran
     ChiaseComponent,
     TaobaitapComponent,
     TaochudeComponent,
-    Chude1Component,
     Chude2Component,
-    Chude3Component,
-    Chude4Component,
     TaobaiktraComponent,
     TaocauhoiComponent,
     TaotailieuComponent,
@@ -127,7 +121,7 @@ import { PageTrangcanhangvComponent } from './pages/page-trangcanhangv/page-tran
     MatNativeDateModule,
     MatTableModule,
     HttpClientModule,
-    
+
   ],
   entryComponents: [
   ],

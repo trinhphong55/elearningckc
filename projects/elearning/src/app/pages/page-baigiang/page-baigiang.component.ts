@@ -25,7 +25,7 @@ export class PageBaigiangComponent implements OnInit {
     this.chuDeService.layTatCa().subscribe((res:any) => {
       if(res.data){
         this.dsChuDe = res.data;
-        console.log(this.dsChuDe);
+
       }else{
         console.log(res);
       }

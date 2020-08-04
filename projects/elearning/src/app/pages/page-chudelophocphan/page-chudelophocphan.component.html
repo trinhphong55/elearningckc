@@ -43,7 +43,8 @@
               <mat-expansion-panel hideToggle>
                 <mat-expansion-panel-header>
                   <mat-panel-title>
-                    <i class="far fa-bookmark gv"></i><h6>{{ baigiang.tieuDe }}</h6>
+                    <i class="far fa-bookmark gv"></i>
+                    <h6>{{ baigiang.tieuDe }}</h6>
                     <span><i class="far fa-comments"></i>2</span>
                   </mat-panel-title>
                   <mat-panel-description>
@@ -62,18 +63,15 @@
                   <div class="left">
                     <p>{{ baigiang.moTa }}</p>
                   </div>
-                  <div class="right">
-                    <div class="danop_dagiao">
-                      <div class="danop">
-                        <button mat-button>
-                          <p>1</p>Đã nộp
+                  <div class="right" >
+                    <div class="danop_dagiao" >
+                      <ng-container *ngFor="let item of baigiang.dinhKem">
+                        <a href="/projects/backend/models/{{item}}" download> <button mat-button>
+                          <p><i class="fas fa-file-archive"></i></p>
                         </button>
-                      </div>
-                      <div class="dagiao">
-                        <button mat-button>
-                          <p>0</p>Đã giao
-                        </button>
-                      </div>
+                      </a>
+                      </ng-container>
+
                     </div>
                   </div>
                 </div>

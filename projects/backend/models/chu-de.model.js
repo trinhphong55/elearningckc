@@ -4,17 +4,17 @@ const Schema = mongoose.Schema;
 const ChuDeSchema = new Schema({
   thuTu:{
     type:Number,
-    require:true,
+    required:true,
 
   },
   maChuDe:{
     type:String,
-    require:true,
+    required:true,
 
   },
   tenChuDe:{
     type:String,
-    require:true,
+    required:true,
 
   },
 

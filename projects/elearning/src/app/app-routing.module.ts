@@ -1,10 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { Chude1Component } from './components/content/chudelophocphan/list-chude/chude1/chude1.component';
 import { Chude2Component } from './components/content/chudelophocphan/list-chude/chude2/chude2.component';
-import { Chude3Component } from './components/content/chudelophocphan/list-chude/chude3/chude3.component';
-import { Chude4Component } from './components/content/chudelophocphan/list-chude/chude4/chude4.component';
 import { PageTrangchuComponent } from './pages/page-trangchu/page-trangchu.component';
 import { NavbarTrangchuComponent } from './components/navbar/navbar-trangchu/navbar-trangchu.component';
 import { NavbarHocphanComponent } from './components/navbar/navbar-hocphan/navbar-hocphan.component';
@@ -47,11 +44,7 @@ const routes: Routes = [
     children: [
       { path: '', component: PageChudelophocphanComponent },
       { path: 'all', component: PageChudelophocphanComponent },
-      {
-        path: 'chude/:id',
-        component: Chude2Component,
-
-      },
+      { path: 'chude/:id', component: Chude2Component },
     ],
   },
   {

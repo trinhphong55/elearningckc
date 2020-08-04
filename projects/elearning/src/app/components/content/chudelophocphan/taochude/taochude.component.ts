@@ -1,3 +1,6 @@
+import { Router, ActivatedRoute } from '@angular/router';
+import { ChuDe } from './../../../../models/chu-de.interface';
+import { ChuDeService } from './../../../../services/chu-de.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,9 +9,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./taochude.component.css']
 })
 export class TaochudeComponent implements OnInit {
-  checked: boolean=false;
-  constructor() { }
 
+  checked: boolean=true;
+  public tenChuDe:string;
+  public chuDe:ChuDe;
+
+
+  constructor(private chuDeService:ChuDeService,private route: ActivatedRoute,
+    private router: Router) { }
+
+  public themChuDe(){
+    this.chuDeService.them({tenChuDe:this.tenChuDe, nguoiChinhSua: 'trandinhuy'}).subscribe((res) => {
+      console.log(res);
+
+    }, (err) => {
+      console.log(err);
+    })
+
+  }
   ngOnInit(): void {
   }
 

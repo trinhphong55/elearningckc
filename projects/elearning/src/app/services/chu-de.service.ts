@@ -17,7 +17,7 @@ export class ChuDeService {
     return this.http.get(`${this.baseUrl}/${id}`);
   }
   public them(data){
-    return this.http.get(`${this.baseUrl}`,data);
+    return this.http.post(`${this.baseUrl}`,data);
   }
 
 }

@@ -21,10 +21,8 @@ import { XembaitapsvComponent } from '../../components/content/chudelophocphan/a
   styleUrls: ['./page-chudelophocphan.component.css'],
 })
 export class PageChudelophocphanComponent implements OnInit {
-
   public dsChuDe: ChuDe[] = [];
   public dsBaiGiang: BaiGiang[] = [];
-
 
   constructor(
     public dialog: MatDialog,
@@ -39,25 +37,30 @@ export class PageChudelophocphanComponent implements OnInit {
   }
 
   public layDS_ChuDe() {
-    this.chuDeService.layTatCa().subscribe((res: any) => {
-      if (res.data) {
-        this.dsChuDe = res.data;
-
-      } else {
-        console.log(res);
-      }
-    }, err => console.log(err));
+    this.chuDeService.layTatCa().subscribe(
+      (res: any) => {
+        if (res.data) {
+          this.dsChuDe = res.data;
+        } else {
+          console.log(res);
+        }
+      },
+      (err) => console.log(err)
+    );
   }
   public layDS_BaiGiang() {
-    this.baiGiangService.layTatCa().subscribe((res: any) => {
-      if (res.data) {
-        this.dsBaiGiang = res.data;
+    this.baiGiangService.layTatCa().subscribe(
+      (res: any) => {
+        if (res.data) {
+          this.dsBaiGiang = res.data;
 
-        this.dsBaiGiang.forEach((el) => {
-          el.ngayChinhSua = new Date(el.ngayChinhSua).toUTCString();
-        });
-      }
-    }, err => console.log(err));
+          this.dsBaiGiang.forEach((el) => {
+            el.ngayChinhSua = new Date(el.ngayChinhSua).toUTCString();
+          });
+        }
+      },
+      (err) => console.log(err)
+    );
   }
   openTaobaitap() {
     this.dialog.open(TaobaitapComponent, {
@@ -67,7 +70,12 @@ export class PageChudelophocphanComponent implements OnInit {
     });
   }
   opentaochude() {
-    this.dialog.open(TaochudeComponent, { width: '250px' });
+    let dialog = this.dialog.open(TaochudeComponent, { width: '250px' });
+    dialog.afterClosed().subscribe((res) => {
+      console.log(res);
+      this.layDS_ChuDe();
+      this.layDS_BaiGiang();
+    });
   }
   openTaobaiktra() {
     this.dialog.open(TaobaiktraComponent, {

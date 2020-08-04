@@ -1,7 +1,7 @@
 export interface ChuDe {
   trangThai: number;
-  ngayTao: Date;
-  ngayChinhSua: Date;
+  ngayTao: any;
+  ngayChinhSua: any;
   thuTu: number;
   maChuDe: string;
   tenChuDe: string;
