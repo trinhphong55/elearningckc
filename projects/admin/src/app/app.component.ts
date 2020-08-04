@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { AuthService } from '../app/services/auth/auth.service';
+import { setCookie, getCookie } from '../../../common/helper';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +9,8 @@ import { FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  constructor() {}
+  constructor(private authService: AuthService) {
+  }
 
   // Cờ đã đăng nhập
   // isLogged: Boolean = true;
@@ -25,19 +28,41 @@ export class AppComponent implements OnInit {
     remember: new FormControl(false),
   });
 
-  ngOnInit(): void {}
-
-  logData(): void {
-    console.log(this.loginForm.value);
+  ngOnInit(): void {
+    if(getCookie('token') && getCookie('role') == 'admin'){
+      this.isLogged = true;
+    }
+    if(getCookie('role') && getCookie('role') != 'admin'){
+      alert('Bạn không có quyền cập vào trang admin');
+    }
   }
 
   onLogin(): void {
-    if (
-      this.account.email === this.loginForm.get('email').value &&
-      this.account.password === this.loginForm.get('password').value
-    ) {
-      this.isLogged = true;
-      alert('Đăng nhập thành công');
-    }
+    this.authService.login(this.loginForm.value).subscribe(
+      (response) => {
+        if(response.data.token && response.data.role == 'admin'){
+          setCookie('token', response.data.token, '7');
+          setCookie('role', response.data.role, '7');
+          setCookie('displayName', response.data.displayName, '7');
+          this.isLogged = true;
+        }
+
+        if(response.data.token && response.data.role != 'admin'){
+          setCookie('token', response.data.token, '7');
+          setCookie('role', response.data.role, '7');
+          setCookie('displayName', response.data.displayName, '7');
+          window.location.href = "http://localhost:4400";
+        }
+
+        if(response.data == ''){
+          alert("Mật khẩu hoặc tài khoản không chính xác");
+        }
+
+        if(response.data != '' && response.data.role != 'admin'){
+          alert('Bạn không có quyền cập vào trang admin');
+        }
+
+      }
+    )
   }
 }
