@@ -1,27 +1,35 @@
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { HttpClient, HttpParams, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { cnttTinTuc } from '../../models/cnttTinTuc';
-import { catchError, map } from 'rxjs/operators';
+import {
+  HttpClient,
+  HttpHeaders,
+  HttpErrorResponse,
+} from '@angular/common/http';
+import { catchError, map, retry } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TinTucCnttService {
-
   baseUri: string = 'https://localhost:4100/api/cnttTinTuc';
-  headers = new HttpHeaders().set('Content-Type', 'application/json')
+  headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
   loadTinTuc(id): Observable<any> {
     let url = `${this.baseUri}/tintuc/${id}`;
-    return this.http.get(url, {headers: this.headers}).pipe(
+    return this.http.get(url, { headers: this.headers }).pipe(
       map((res: Response) => {
-        return res || {}
+        return res || {};
       }),
       catchError(this.errorMgmt)
-    )
+    );
   }
+  searchTinTuc(query: string): Observable<any> {
+    return this.http
+      .get(this.baseUri + '/search=' + query)
+      .pipe(retry(1), catchError(this.errorMgmt));
+  }
+
   // Error handling
   errorMgmt(error: HttpErrorResponse) {
     let errorMessage = '';
@@ -35,5 +43,4 @@ export class TinTucCnttService {
     console.log(errorMessage);
     return throwError(errorMessage);
   }
-
 }

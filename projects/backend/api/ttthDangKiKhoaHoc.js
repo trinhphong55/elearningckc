@@ -31,21 +31,12 @@ router.post('/add', (req, res) => {
     res.json(data)
   })
 })
-
-// sua
-router.post('/update', async (req, res) => {
+// xoa
+router.post('/delete', async (req, res) => {
   await ttthdangkilophoc.findOneAndUpdate({
     _id: req.body._id
   }, {
-    mssv: req.body.mssv,
-    hoten: req.body.hoten,
-    ngaysinh: req.body.ngaysinh,
-    noisinh: req.body.noisinh,
-    sodienthoai: req.body.sodienthoai,
-    lophoc: req.body.lophoc,
-    hinhthuchoc: req.body.hinhthuchoc,
-    trangthai: req.body.trangthai,
-    created_at: req.body.created_at,
+    trangthai: false
   });
 })
 module.exports = router

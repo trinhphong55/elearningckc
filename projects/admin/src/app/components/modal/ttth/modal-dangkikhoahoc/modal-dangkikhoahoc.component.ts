@@ -1,18 +1,45 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { ModalService } from '../../../../services/modal.service';
-
+import { ToastrService } from 'ngx-toastr';
+import { DangkilophocService } from '../../../../services/ttth/dangkilophoc.service';
 @Component({
   selector: 'app-modal-dangkikhoahoc',
   templateUrl: './modal-dangkikhoahoc.component.html',
   styleUrls: ['./modal-dangkikhoahoc.component.css']
 })
 export class ModalDangkikhoahocComponent implements OnInit {
-  constructor(private modalService: ModalService) { }
-
+  constructor(private modalService: ModalService,private dangkilophocService: DangkilophocService,private toastr: ToastrService) { }
+  DKKH:any[];
+  dtOptions: any = {};
   ngOnInit(): void {
+    this.getdanhsach();
+    this.dtOptions = {
+      dom: 'Bfrtip',
+      buttons: [
+        'excel',
+        {
+          text: 'Some button',
+          key: '1',
+          action: function (e, dt, node, config) {
+            alert('Button activated');
+          }
+        }
+      ]
+    };
   }
 
   closeModal(id: string) {
     this.modalService.close(id)
+  }
+  getdanhsach(): void {
+    this.dangkilophocService.get().subscribe(data => this.DKKH = data);
+  }
+  delete(DKKH: any):void {
+    this.dangkilophocService.delete(DKKH)
+    .subscribe(data => {
+      this.DKKH.push(data);
+    });
+    this.toastr.success('Xóa thành công');
+    // window.location.reload();
   }
 }

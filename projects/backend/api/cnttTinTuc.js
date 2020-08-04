@@ -96,10 +96,9 @@ router.get("/danhsachtintuc", (req, res) => {
 });
 // Get Tintuc by id
 router.get("/tintuc/:id", (req, res) => {
-  
   TinTuc.findById(req.params.id, (error, data) => {
     if (error) {
-      return (error);
+      return error;
     }
     res.json({ message: "Lấy bài viết thành công.", data: data });
   });
@@ -125,6 +124,8 @@ router.get("/danhmuc=:maDanhMuc", async (req, res) => {
     // res.json(req.params);
     const data = await TinTuc.find({
       maDanhMuc: req.params.maDanhMuc,
+    }).sort({
+      updatedAt: "desc", // asc || desc
     });
     res.json({
       message: "Lấy bài viết theo danh mục thành công",
@@ -146,6 +147,8 @@ router.get("/loaibaiviet=:loaiBaiViet", async (req, res) => {
     // res.json(req.params);
     const data = await TinTuc.find({
       loaiBaiViet: req.params.loaiBaiViet,
+    }).sort({
+      updatedAt: "desc", // asc || desc
     });
     res.json({
       message: "Lấy bài viết theo loại bài viết thành công",
@@ -168,6 +171,9 @@ router.get("/:maDanhMuc/:loaiBaiViet", async (req, res) => {
     const data = await TinTuc.find({
       loaiBaiViet: req.params.loaiBaiViet,
       maDanhMuc: req.params.maDanhMuc,
+      trangThai: 1,
+    }).sort({
+      updatedAt: "desc", // asc || desc
     });
     res.json({
       message: "Lấy bài viết theo danh mục và loại bài viết thành công",
@@ -180,6 +186,30 @@ router.get("/:maDanhMuc/:loaiBaiViet", async (req, res) => {
       code: 400,
       data: [],
       error: error,
+    });
+  }
+});
+
+router.get("/search=:query", async (req, res) => {
+  try {
+    const newRegExp = (pattern) => new RegExp(`.*${pattern}.*`);
+    const regexQuery = newRegExp(req.params.query);
+    const data = await TinTuc.find({
+      trangThai: 1,
+      tieuDe: { $regex: regexQuery, $options: "i" }, // i: không phân biệt chữ hoa & thường
+    }).sort({
+      updatedAt: "desc", // asc || desc
+    });
+    res.json({
+      message: "Tìm bài viết thành công",
+      code: 200,
+      data: data,
+    });
+  } catch (error) {
+    res.json({
+      message: "Tìm bài viết thất bại",
+      code: 400,
+      data: data,
     });
   }
 });

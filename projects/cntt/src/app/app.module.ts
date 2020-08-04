@@ -1,9 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -20,7 +22,6 @@ import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.componen
 import { TienichsvComponent } from './components/tienichsv/tienichsv.component';
 import { DonvilienketComponent } from './components/donvilienket/donvilienket.component';
 import { SlidersinhvienComponent } from './components/slidersinhvien/slidersinhvien.component';
-
 
 @NgModule({
   declarations: [
@@ -40,16 +41,17 @@ import { SlidersinhvienComponent } from './components/slidersinhvien/slidersinhv
     TienichsvComponent,
     DonvilienketComponent,
     SlidersinhvienComponent,
-
-
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgxUsefulSwiperModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgxSkeletonLoaderModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

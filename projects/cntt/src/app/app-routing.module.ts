@@ -20,7 +20,7 @@ const routes: Routes = [
     path: 'contact', component: PageContactComponent
   },
   {
-    path: 'search', component: PageSearchComponent
+    path: 'timkiem', component: PageSearchComponent
   },
   {
     path: 'document', component: PageDocumentComponent
