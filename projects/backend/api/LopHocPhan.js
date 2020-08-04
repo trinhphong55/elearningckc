@@ -3,6 +3,7 @@ const LopHocPhan = require("../models/LopHocPhan.model");
 const KHDT = require("../models/KeHoachDaoTao.model");
 const MonHoc = require("../models/MonHoc.model");
 const GVLHP = require("../models/GiaoVienLopHocPhan.model");
+const { json } = require("express");
 
 //GET LHP, loaimonhoc, giaovienlhp by maCTDT and hocKi with loaiMonHoc
 router.get("/ctdt/:maCTDT/hocKi/:hocKi", async (req, res) => {
@@ -61,7 +62,8 @@ router.get("/ctdt/:maCTDT/hocKi/:hocKi", async (req, res) => {
 });
 
 router.get("/", async (req, res) => {
-  return res.json("haha");
+  var data= await LopHocPhan.find().exec();
+  return res.json(data);
 });
 
 //POST LopHocPhan
@@ -198,16 +200,16 @@ router.patch("/:maDaoTao", async (req, res) => {
 });
 
 router.get('/malophocphan/:maLopHocPhan', async (req, res) => {
+  try{
   const maLopHocPhan = parseInt(req.params.maLopHocPhan);
-  await LopHocPhan.findOne({ maLopHocPhan })
-    .then(lhp => {
-      console.log(lhp);
-      return res.json(lhp);
-    })
-    .catch(err => {
+  var data =await LopHocPhan.find({ maLopHocPhan:maLopHocPhan }).exec()
+    res.json(data);
+  }
+    catch(err) {
       return res.json({ status: 501, data: [], message: err });
-    })
-});
+    }
+  });
+    
 //SEARCH theo maNganh
 router.get("/:maLop/search", async (req, res) => {
   try {
