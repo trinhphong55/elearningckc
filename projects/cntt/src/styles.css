@@ -486,7 +486,7 @@ body {
 }
 
 .social_media__wrapper {
-  z-index: 1030;
+  z-index: 900;
   position: fixed;
   top: 50%;
   right: 0;
