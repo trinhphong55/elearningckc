@@ -4,7 +4,6 @@ import { ToastrService } from 'ngx-toastr';
 import { CamonService } from '../../../../services/ttth/camon.service';
 import { ttthCamOn } from '../../../../../models/ttthCamOn';
 const URL = 'https://localhost:4100/api/ttthCamOn/uploads';
-declare var $: any;
 @Component({
   selector: 'app-modal-home-camon',
   templateUrl: './modal-home-camon.component.html',

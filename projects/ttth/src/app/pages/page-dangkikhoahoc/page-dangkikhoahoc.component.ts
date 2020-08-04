@@ -22,21 +22,26 @@ export class PageDangkikhoahocComponent implements OnInit {
   }
   // add
   dangkikhoahoc(mssv: string,hoten: string,ngaysinh: string,noisinh: string,sodienthoai: string,lophoc: string,hinhthuchoc: string): void {
-    const newItem: ttthDangKiKhoaHoc = new ttthDangKiKhoaHoc();
-    newItem.mssv = mssv;
-    newItem.hoten = hoten;
-    newItem.ngaysinh = ngaysinh;
-    newItem.noisinh = noisinh;
-    newItem.sodienthoai = sodienthoai;
-    newItem.lophoc = lophoc;
-    newItem.hinhthuchoc = hinhthuchoc;
-    newItem.trangthai = true;
-    newItem.created_at = (new Date);
-    this.dangkikhoahocService.add(newItem)
-      .subscribe(data => {
-        this.LopHoc.push(data);
-      });
-    alert('thanh cong');
-    // this.toastr.success('Đăng kí thành công');
+    if (!mssv || !hoten || !ngaysinh|| !noisinh|| !sodienthoai|| !lophoc|| !hinhthuchoc) {
+      alert('Vui lòng nhập đủ thông tin')
+    }
+    else{
+      const newItem: ttthDangKiKhoaHoc = new ttthDangKiKhoaHoc();
+      newItem.mssv = mssv;
+      newItem.hoten = hoten;
+      newItem.ngaysinh = ngaysinh;
+      newItem.noisinh = noisinh;
+      newItem.sodienthoai = sodienthoai;
+      newItem.lophoc = lophoc;
+      newItem.hinhthuchoc = hinhthuchoc;
+      newItem.trangthai = true;
+      newItem.created_at = (new Date);
+      this.dangkikhoahocService.add(newItem)
+        .subscribe(data => {
+          this.LopHoc.push(data);
+        });
+      alert('Gửi thành công');
+    }
+
   }
 }
