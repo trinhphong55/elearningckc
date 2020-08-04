@@ -29,7 +29,9 @@ const cnttDanhMuc = require("./cnttDanhMuc");
 const cnttBoSuuTap = require("./cnttBoSuuTap");
 const cnttThongTinChung = require("./cnttThongTinChung");
 
-const ctDiemLopHP = require('./ct-diemsv-lhp');
+const ctDiemLopHP = require("./ct-diemsv-lhp");
+const ChuDe = require("./chu-de");
+const baiGiang = require("./bai-giang");
 
 router.use("/loaimonhoc", LoaiMonHoc);
 // router.use("/lophocphan", LopHocPhanRoutes);
@@ -138,6 +140,13 @@ router.get("/cotdiemlhp/:maLopHocPhan", cotDiemLHP.layDiemLHPtheoMaLHP);
 
 //======================= Routes ChitietDiemSVLopHocPhan ==================================
 router.get("/ct-diemsv-lophocphan/:masv", ctDiemLopHP.layCTDiemLopHPtheoMaSV);
+
+//=========================== Routes ChuDe =============================================
+router.get("/chude", ChuDe.layTatCa);
+router.post("/chude", ChuDe.them);
+//=========================== Routes BaiGiang =============================================
+router.get("/baigiang", baiGiang.layTatCa);
+router.post("/baigiang", baiGiang.them);
 
 
 module.exports = router;

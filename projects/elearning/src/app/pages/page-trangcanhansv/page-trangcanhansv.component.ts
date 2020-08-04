@@ -163,11 +163,8 @@ export class PageTrangcanhansvComponent implements OnInit {
     this.ctDiemsvLhpService.layCTtheoMaSV(maSv).subscribe((res: any) => {
       if (res.data) {
         this.ctDiemLHPs = res.data;
-        this.ganTenCotDiemSinhVienLHP(this.ctDiemLHPs);
+        this.ganTenCotDiemCTDiem(this.ctDiemLHPs);
         this.ganTenLopHocPhanCTDiem(this.ctDiemLHPs);
-        let tmp = this.loc_CTDiem_LopHocPhan(this.ctDiemLHPs);
-        this.ctDiemLHPs = tmp;
-        console.log(this.ctDiemLHPs);
       }
     });
   }
@@ -201,7 +198,7 @@ export class PageTrangcanhansvComponent implements OnInit {
       if (res) {
         this.lopHocPhans = res;
         this.lopHocPhans = this.locMaLopHocPhanTheoHocKi(this.lopHocPhans);
-        diemSV = this.locDiemSVTheoLopHocPhan(this.diemSinhViens);
+        diemSV = this.loc_Theo_LopHocPhan(this.diemSinhViens);
         diemSV.forEach((ct) => {
           this.lopHocPhans.forEach((lop) => {
             if (ct.maLopHocPhan == lop.maLopHocPhan) {
@@ -213,7 +210,7 @@ export class PageTrangcanhansvComponent implements OnInit {
       }
     });
   }
-  public locDiemSVTheoLopHocPhan(diemSV) {
+  public loc_Theo_LopHocPhan(diemSV) {
     let diems = [];
     diemSV.forEach((diem) => {
       this.lopHocPhans.forEach((lop) => {
@@ -230,7 +227,8 @@ export class PageTrangcanhansvComponent implements OnInit {
         if (res) {
           this.lopHocPhans = res;
           this.lopHocPhans = this.locMaLopHocPhanTheoHocKi(this.lopHocPhans);
-          ChiTietDiem = this.locDiemSVTheoLopHocPhan(this.diemSinhViens);
+          ChiTietDiem = this.loc_CTDiem_LopHocPhan(this.ctDiemLHPs);
+          console.log(ChiTietDiem);
           ChiTietDiem.forEach((ct) => {
             this.lopHocPhans.forEach((lop) => {
               if (ct.maHocPhan == lop.maLopHocPhan) {
@@ -244,7 +242,7 @@ export class PageTrangcanhansvComponent implements OnInit {
       (err) => console.log(err)
     );
   }
-  public ganTenCotDiemSinhVienLHP(ChiTiemDiems: ChiTietDiemSVLHP[]) {
+  public ganTenCotDiemCTDiem(ChiTiemDiems: ChiTietDiemSVLHP[]) {
     this.cotDiemService.layTatCa().subscribe((res: any) => {
       this.cotDiems = res;
       ChiTiemDiems.forEach((ct) => {
@@ -279,10 +277,12 @@ export class PageTrangcanhansvComponent implements OnInit {
     this.capNhatSinhVien(req);
   }
   //################################ Xu ly loc #######################################
-  public loc_CTDiem_LopHocPhan(ChiTietDiems: ChiTietDiemSVLHP[]): ChiTietDiemSVLHP[] {
+  public loc_CTDiem_LopHocPhan(
+    ChiTietDiems: ChiTietDiemSVLHP[]
+  ): ChiTietDiemSVLHP[] {
     let tmp = ChiTietDiems;
     ChiTietDiems = [];
-    if (this.chonLop.value) {
+    if (this.chonLop.value || this.chonHocKi.value) {
       tmp.forEach((ct) => {
         if (ct.maHocPhan == this.chonLop.value) {
           ChiTietDiems.push(ct);
