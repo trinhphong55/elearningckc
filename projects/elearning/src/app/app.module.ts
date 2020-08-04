@@ -55,8 +55,8 @@ import { PageMoinguoiComponent } from './pages/page-moinguoi/page-moinguoi.compo
 import { PageChudelophocphanComponent } from './pages/page-chudelophocphan/page-chudelophocphan.component';
 import { TaobaitapComponent } from './components/content/chudelophocphan/taobaitap/taobaitap.component';
 import { PageCotodiemComponent } from './pages/page-cotdiem/page-cotdiem.component';
-import { PageHuongdanComponent } from './pages/page-huongdan/page-huongdan.component';
-import { PageBaitapgiaovienComponent } from './pages/page-baitapgiaovien/page-baitapgiaovien.component';
+import { PageTongdiemComponent } from './pages/page-tongdiem/page-tongdiem.component';
+import { PageChamdiemComponent } from './pages/page-chamdiem/page-chamdiem.component';
 import { PageCaidatComponent } from './pages/page-caidat/page-caidat.component';
 import { PageTrangcanhansvComponent } from './pages/page-trangcanhansv/page-trangcanhansv.component';
 import { PageTrangcanhangvComponent } from './pages/page-trangcanhangv/page-trangcanhangv.component';
@@ -95,8 +95,8 @@ import { PageTrangcanhangvComponent } from './pages/page-trangcanhangv/page-tran
     PageMoinguoiComponent,
     PageChudelophocphanComponent,
     PageCotodiemComponent,
-    PageHuongdanComponent,
-    PageBaitapgiaovienComponent,
+    PageTongdiemComponent,
+    PageChamdiemComponent,
     PageCaidatComponent,
     PageTrangcanhansvComponent,
     PageTrangcanhangvComponent,

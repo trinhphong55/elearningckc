@@ -4,6 +4,7 @@
 .col-md-4.style-table{
     max-width: 30.333333%;
 }
+
 .style-table{
     border: solid 0.5px #DDDDDD;
     border-radius: 5px;
@@ -14,97 +15,52 @@
     font-weight: 500;
     font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
-.style-table p,.style-table form{
-    padding: 10px;
+.scrollable{
+    height: 400px;
+    overflow-y:scroll;
+    overflow-x: none;
+  }
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background:#007b83; 
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #007b83; 
+  }
+  .style-chitietcotdiem{
+      cursor: pointer;
+      color: #007b83;
+  }
+  .modal-dialog {
+    max-width: 700px;
+    margin: 1.75rem auto;
 }
+
 .button-style{
     background-color: #007b83;
     color: white;
     padding: 5px;
 }
 
-
-.table-fixed thead {
-    color: #007b83;
-}
-.table-fixed thead {
-    width: 98%;
-}
-.table-fixed thead th{
-    padding: 10px 5px 10px 5px;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-weight: 500;
-}
-.table-fixed tbody td{
-    padding: 10px 5px 10px 5px;
-    color: #555555;
-    font-size: 0.875rem;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-weight: 500;
-}
-.table-fixed tbody {
-    height: 300px;
-    overflow-y: auto;
-    width: 100%;
-}
-th{
-    border: 1px solid #BBBBBB;
-}
-td{
-    border: 1px solid #BBBBBB;
-}
-
-.table-fixed thead,
-.table-fixed tbody,
-.table-fixed tr,
-.table-fixed td,
-.table-fixed th {
-    display: block;
-}
-
-.table-fixed tbody td,
-.table-fixed tbody th,
-.table-fixed thead > tr > th {
-    float: left;
-    position: relative;
-}
-.style-text{
-    white-space: nowrap; 
-    width: 99%; 
-    overflow: hidden; 
-    text-overflow: ellipsis;
-}
-.style-text:hover {
-    overflow: visible;
-    background: whitesmoke;
-}
-.modal-dialog {
-    max-width: 700px;
-}
-
-.style-suadiem{
-    padding: 0;
-}
-.style-suadiem form{padding: 0;}
-.style-suadiem form .form-group{
-    margin: 0;
-    padding: 0;
-}
-.table-fixed tbody td .style-suadiem{
-    padding: 1.5px;
-}
-.style-padding-top{
-    padding-top: 2.5px;
-}
-.chitietcotdiem{
-    cursor: pointer;
-    color: #007b83;
-    font-size: 0.875rem;
-    font-weight: 500;
-}
 @media only screen and (max-width: 600px){
     .container-fluid{
         margin-top: 80px;
+    }
+    .col-md-4.style-table{
+        max-width:100%;
     }
   }
 
