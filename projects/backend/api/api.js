@@ -7,6 +7,7 @@ const LoaiHinhDaoTao = require("./LoaiHinhDaoTao");
 const LopHocPhan = require("./LopHocPhan");
 const LoaiMonHoc = require("./LoaiMonHoc");
 const groupFB = require("../api/groupFB");
+const pagefb=require("../api/pagefb");
 const boMon = require("../api/bomon");
 
 const sinhVien = require("./sinh-vien");
@@ -118,8 +119,13 @@ router.get("/lophoc/:tienTo/tiento", LopHoc.timLopTheoTienTo);
 
 //-----------------------------Routes LoaiDonVi
 router.get("/loaidonvi", loaidonviController.getLoaiDonVi);
-//-----------------------------Routes groupFB
+//-----------------------------Routes FB--------------------------------------------
 router.get("/groupfb", groupFB.getAll);
+//Lấy tất cả từ PageFB
+router.get("/pagefb",pagefb.getAll);
+//Thêm 1 page vào PageFB
+router.post("/pagefb",pagefb.postPageFB);
+//Update 1 page trong PageFB
 
 //----------------------------Routes SinhVien------------
 router.get("/sinhvien", sinhVien.layTatCaSinhVien);

@@ -11,13 +11,16 @@
       </div>
       <div class="col-12">
         <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
-          <p>Message</p>
+          <form action="" enctype="multipart/form-data">
+            <p>Message</p>
           <input type="text" name="message" id="message" />
           <br /><br />
+          <input type="file" name="picture">
           <p>Url picture</p>
           <input type="text" name="picture" id="picture"/>
           <br /><br />
-          <input type="button" value="GỬI" onclick="POSTPagePictureUrl()" />
+          <input type="button" value="GỬI" onclick="PostByRequest()" />
+          </form>
         </div>
       </div>
     </div>

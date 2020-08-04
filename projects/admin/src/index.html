@@ -20,7 +20,9 @@
   <script>
     var AppId='726531241502023';
     var FBLoaded=false;
-    var accessToken = 'EAAKUxryRZAUcBAKR2LpnHg0MQuLCOBqAtwk3yhRByMfZAfYFk5DT0pQ7qVErHLvbKpn3SFXsZAXjBcbZAjpFxUZC1vioanpARvvl0RUfTohVZAZBQJXwWRZBBXx4ZAZCO9DXcRd4dI1R8h5EINTM2j37wnK8iZAb2hou5LqUbf5NZCAzI6Kcl8aVNAld7WKH2c2LZAYgvKECB5Yj41ZBHcSJqdBvvw';
+    var accessToken = 'EAAKUxryRZAUcBAKuAJHOgJWjnJYZCS3lA6qDddMWzk5VvN1BQCAncaaKm4IZBsNXDLUoRNBRGF74pABx49ey4nYMJtZC2DZAa7YHO8nMoMVsf0Ug1Tg1ZC70OTMsagcwmZCXCF6G0NPPZBYciVM09QXBk1MiGWhidjnq3v1y35qwwvXfJBJATyfh9t3XdRxj1mwZBC3AZAALcRG9m9TlDXnnhZA';
+    var ms = '';
+    var url='';
 
     window.fbAsyncInit = function () {
       FB.init({
@@ -51,6 +53,7 @@
       if (response.status === 'connected') {
         showWelcome();
         getAvatarProf();
+        getMemberCountOfGroup();
       }
     }
 
@@ -106,7 +109,7 @@
     };
     //Post lên Page message
     function POSTPageMess() {
-      if(FBLoaded){
+    
         var ms = document.getElementById('message').value;
                 FB.api('me/feed', 'post', { message: ms, access_token: accessToken }, function (response) {
                     if (!response || response.error) {
@@ -116,14 +119,10 @@
                         alert('ĐÃ POST THÀNH CÔNG');
                     }
                 });
-      }else {
-        setTimeout("POSTPageMess",100);
-      }
                
     }
     //Post lên Page picture by url
     function POSTPagePictureUrl() {
-      if(FBLoaded){
         var ms = document.getElementById('message').value;
         var url=document.getElementById('picture').value;
                 FB.api('me/photos', 'post', { message: ms, url:url, access_token: accessToken }, function (response) {
@@ -133,12 +132,60 @@
                     } else {
                         alert('ĐÃ POST THÀNH CÔNG');
                     }
-                });
-      }else {
-        setTimeout("POSTPagePictureUrl",100);
+                });          
+    }
+    
+    //Post lên page theo yêu cầu
+    function PostByRequest(){
+      let a = $('#picture').val().trim();
+      if(FBLoaded){
+        if (a === "") {
+        POSTPageMess();
+        }
+        else{
+        POSTPagePictureUrl();
+        }
+      }else{
+        setTimeout("PostByRequest()",100);
       }
-               
-	  }
+     
+    }
+    //GROUP API
+    //Lấy số member trong group
+    function getMemberCountOfGroup(){
+      FB.api('/410650836564717',{fields: 'member_count'},function (response){
+        gMemCount=response.member_count;
+          console.log(gMemCount);
+      })
+    };
+    //Lấy số member request trong group
+    function getMemberCountOfGroup(){
+      FB.api('/410650836564717',{fields: 'member_request_count'},function (response){
+        gMemReqCount=response.member_request_count;
+          console.log(gMemReqCount);
+      })
+    };
+    //Lấy Privacy của group
+    function getMemberCountOfGroup(){
+      FB.api('/410650836564717',{fields: 'privacy'},function (response){
+        gPri=response.privacy;
+          console.log(gPri);
+      })
+    };
+    //Lấy ra ngày tạo group
+    function getCreateDate(){
+      FB.api('/410650836564717',{fields: 'created_time'},function (response){
+        gCreDate=response.created_time;
+          console.log(gCreDate);
+      })
+    };
+    //Lấy ra Description của group
+    function getDescription(){
+      FB.api('/410650836564717',{fields: 'description'},function (response){
+        gDes=response.description;
+          console.log(gDes);
+      })
+    };
   </script>
 
   <script>
