@@ -1,31 +1,42 @@
+import { ChuDe } from './../../models/chu-de.interface';
+import { ChuDeService } from './../../services/chu-de.service';
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute,Router,ParamMap} from '@angular/router';
-
+import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-page-baigiang',
   templateUrl: './page-baigiang.component.html',
-  styleUrls: ['./page-baigiang.component.css']
+  styleUrls: ['./page-baigiang.component.css'],
 })
 export class PageBaigiangComponent implements OnInit {
 
-  constructor(private router :ActivatedRoute,private route:Router) { }
+  public dsChuDe :ChuDe[] = [];
+
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private chuDeService: ChuDeService
+  ) {}
 
   ngOnInit(): void {
+    this.layDS_ChuDe();
   }
-  showAllchude(){
-    this.route.navigate(['all'],{relativeTo:this.router});
+  public layDS_ChuDe(){
+    this.chuDeService.layTatCa().subscribe((res:any) => {
+      if(res.data){
+        this.dsChuDe = res.data;
+        console.log(this.dsChuDe);
+      }else{
+        console.log(res);
+      }
+    })
   }
-  showchude1(){
-    this.route.navigate(['chude1'],{relativeTo:this.router});
+
+  public xem_ChuDe(chude){
+    this.router.navigate(['chude', chude],{ relativeTo: this.route });
+
   }
-  showchude2(){
-    this.route.navigate(['chude2'],{relativeTo:this.router});
-  }
-  showchude3(){
-    this.route.navigate(['chude3'],{relativeTo:this.router});
-  }
-  showchude4(){
-    this.route.navigate(['chude4'],{relativeTo:this.router});
+  showAllchude() {
+    this.router.navigate(['all'], { relativeTo: this.route });
   }
 }

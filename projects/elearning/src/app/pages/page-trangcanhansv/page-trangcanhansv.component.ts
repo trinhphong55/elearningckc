@@ -140,10 +140,12 @@ export class PageTrangcanhansvComponent implements OnInit {
   public layThongTinSV(maSV: string) {
     this.sinhVienService.getonesv(maSV).subscribe((sv) => {
       if (sv.data) {
-        this.sinhVien = { ...sv.data };
+        this.sinhVien = sv.data ;
         this.setValueSinhVienFormGroup(this.sinhVien);
         this.sinhViens.push(this.sinhVien);
       }
+    }, (err) => {
+      console.log(err);
     });
   }
   public capNhatSinhVien(data) {
@@ -173,7 +175,7 @@ export class PageTrangcanhansvComponent implements OnInit {
     this.diemSinhVienService.getAllFor(maSinhVien).subscribe((res: any) => {
       this.diemSinhViens = res;
       this.ganTenLopHocPhanDiemSV(this.diemSinhViens);
-    });
+    }, err => console.log(err));
   }
   public setValueSinhVienFormGroup(sinhVien: SinhVien) {
     this.ho.setValue(sinhVien.ho);
@@ -292,17 +294,15 @@ export class PageTrangcanhansvComponent implements OnInit {
     return ChiTietDiems;
   }
   public locMaLopHocPhanTheoHocKi(lopHocPhans: LopHocPhan[]) {
+    let tmp = lopHocPhans;
+    lopHocPhans = [];
     if (this.chonHocKi.value) {
-      let tmp = lopHocPhans;
-      lopHocPhans = [];
       tmp.forEach((ct) => {
         if (ct.hocKi == this.chonHocKi.value) {
           lopHocPhans.push(ct);
         }
       });
     } else if (this.chonHocKiBD.value) {
-      let tmp = lopHocPhans;
-      lopHocPhans = [];
       tmp.forEach((ct) => {
         if (ct.hocKi == this.chonHocKiBD.value) {
           lopHocPhans.push(ct);

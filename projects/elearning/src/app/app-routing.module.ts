@@ -20,7 +20,6 @@ import { PageCaidatComponent } from './pages/page-caidat/page-caidat.component';
 import { PageTrangcanhansvComponent } from './pages/page-trangcanhansv/page-trangcanhansv.component';
 import { PageTrangcanhangvComponent } from './pages/page-trangcanhangv/page-trangcanhangv.component';
 
-
 const routes: Routes = [
   {
     path: '',
@@ -49,24 +48,9 @@ const routes: Routes = [
       { path: '', component: PageChudelophocphanComponent },
       { path: 'all', component: PageChudelophocphanComponent },
       {
-        path: 'chude1',
-        component: Chude1Component,
-      },
-      {
-        path: 'chude1',
-        component: Chude1Component,
-      },
-      {
-        path: 'chude2',
+        path: 'chude/:id',
         component: Chude2Component,
-      },
-      {
-        path: 'chude3',
-        component: Chude3Component,
-      },
-      {
-        path: 'chude4',
-        component: Chude4Component,
+
       },
     ],
   },

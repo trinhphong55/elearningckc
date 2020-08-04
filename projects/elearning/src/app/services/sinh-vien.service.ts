@@ -13,10 +13,10 @@ export class SinhVienService {
     return this.http.post(this.baseUrl, data);
   }
 
-  public tinhTongSinhVien(maLop: String) {
+  public tinhTongSinhVien(maLop) {
     return this.http.get<any>(`${this.baseUrl}/${maLop}/siso`);
   }
-  public laysinhvien(maLop: String) {
+  public laysinhvien(maLop) {
     return this.http.get(`${this.baseUrl}/${maLop}`);
   }
   public getAll() {

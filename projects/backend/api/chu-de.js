@@ -31,3 +31,12 @@ exports.them = async (req, res) => {
       .json({ message: "Máy chủ không sữ lý được", error: error, status: 500 });
   }
 };
+
+exports.layMot = async(req, res) => {
+  try {
+    const chuDes = await chuDeModel.findOne({ maChuDe:req.params.maChuDe });
+    return res.json({data: chuDes, message: "Lấy thành công", status: 200 });
+  } catch (error) {
+    res.json(error);
+  }
+}

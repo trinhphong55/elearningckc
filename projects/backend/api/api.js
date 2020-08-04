@@ -143,10 +143,11 @@ router.get("/ct-diemsv-lophocphan/:masv", ctDiemLopHP.layCTDiemLopHPtheoMaSV);
 
 //=========================== Routes ChuDe =============================================
 router.get("/chude", ChuDe.layTatCa);
+router.get("/chude/:maChuDe", ChuDe.layMot);
 router.post("/chude", ChuDe.them);
 //=========================== Routes BaiGiang =============================================
 router.get("/baigiang", baiGiang.layTatCa);
+router.get("/baigiang/:maChuDe", baiGiang.layTheoMaChuDe);
 router.post("/baigiang", baiGiang.them);
-
 
 module.exports = router;
