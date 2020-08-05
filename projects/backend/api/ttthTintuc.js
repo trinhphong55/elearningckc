@@ -112,4 +112,30 @@ router.post('/ttthxoatintuc', async (req, res) => {
     trangthai: false
   });
 })
+
+
+router.get("/search=:query", async (req, res) => {
+  try {
+    const newRegExp = (pattern) => new RegExp(`.*${pattern}.*`);
+    const regexQuery = newRegExp(req.params.query);
+    const data = await ttthtintuc.find({
+      trangthai: 1,
+      tentintuc: { $regex: regexQuery, $options: "i" }, // i: không phân biệt chữ hoa & thường
+    }).sort({
+      updated_at: "desc", // asc || desc
+    });
+    res.json({
+      message: "Tìm bài viết thành công",
+      code: 200,
+      data: data,
+    });
+  } catch (error) {
+    res.json({
+      message: "Tìm bài viết thất bại",
+      code: 400,
+      data: data,
+    });
+  }
+});
+
 module.exports = router
