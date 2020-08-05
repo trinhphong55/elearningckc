@@ -14,4 +14,11 @@ export class PagefbService {
     create(data) {
         return this.http.post(baseUrl, data);
     }
+    update(id, data) {
+        return this.http.put(`${baseUrl}/${id}`, data);
+      }
+    
+      delete(id) {
+        return this.http.delete(`${baseUrl}/${id}`);
+      }
 }

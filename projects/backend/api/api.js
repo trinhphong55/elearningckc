@@ -126,7 +126,9 @@ router.get("/pagefb",pagefb.getAll);
 //Thêm 1 page vào PageFB
 router.post("/pagefb",pagefb.postPageFB);
 //Update 1 page trong PageFB
-
+router.put("/pagefb/:id",pagefb.updatePageFB);
+//Delete 1 page trong PageFB
+router.delete("/pagefb/:id",pagefb.deletePageFB);
 //----------------------------Routes SinhVien------------
 router.get("/sinhvien", sinhVien.layTatCaSinhVien);
 router.get("/sinhvien/:maLopHoc/malop", sinhVien.Laysinhvientheomalop);

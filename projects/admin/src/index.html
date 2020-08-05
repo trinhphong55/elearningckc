@@ -53,7 +53,7 @@
       if (response.status === 'connected') {
         showWelcome();
         getAvatarProf();
-        getMemberCountOfGroup();
+        
       }
     }
 
@@ -104,8 +104,33 @@
           $('#avatar').attr("src",source);
       })
     };
+
+    //API Group
      function getIDGroup(ctr){
       alert(ctr.data);
+      FB.api('/'+ctr.data,{fields: 'member_count'},function (response){
+        gMemCount=response.member_count;
+          console.log(gMemCount);
+      });
+      FB.api('/'+ctr.data,{fields: 'member_request_count'},function (response){
+        gMemReqCount=response.member_request_count;
+          console.log(gMemReqCount);
+      });
+      FB.api('/'+ctr.data,{fields: 'privacy'},function (response){
+        gPri=response.privacy;
+          console.log(gPri);
+      });
+      FB.api('/'+ctr.data,{fields: 'created_time'},function (response){
+        gCreDate=response.created_time;
+          console.log(gCreDate);
+      });
+      FB.api('/'+ctr.data,{fields: 'description'},function (response){
+        gDes=response.description;
+        if(!gDes){
+          gDes='Không có Description';
+        }
+          console.log(gDes);
+      })
       }
     //Post lên Page message
     function POSTPageMess() {
@@ -150,42 +175,42 @@
       }
 
     }
-    //GROUP API
-    //Lấy số member trong group
-    function getMemberCountOfGroup(){
-      FB.api('/410650836564717',{fields: 'member_count'},function (response){
-        gMemCount=response.member_count;
-          console.log(gMemCount);
-      })
-    };
-    //Lấy số member request trong group
-    function getMemberCountOfGroup(){
-      FB.api('/410650836564717',{fields: 'member_request_count'},function (response){
-        gMemReqCount=response.member_request_count;
-          console.log(gMemReqCount);
-      })
-    };
-    //Lấy Privacy của group
-    function getMemberCountOfGroup(){
-      FB.api('/410650836564717',{fields: 'privacy'},function (response){
-        gPri=response.privacy;
-          console.log(gPri);
-      })
-    };
-    //Lấy ra ngày tạo group
-    function getCreateDate(){
-      FB.api('/410650836564717',{fields: 'created_time'},function (response){
-        gCreDate=response.created_time;
-          console.log(gCreDate);
-      })
-    };
-    //Lấy ra Description của group
-    function getDescription(){
-      FB.api('/410650836564717',{fields: 'description'},function (response){
-        gDes=response.description;
-          console.log(gDes);
-      })
-    };
+    // //GROUP API
+    // //Lấy số member trong group
+    // function getMemberCountOfGroup(){
+    //   FB.api('/410650836564717',{fields: 'member_count'},function (response){
+    //     gMemCount=response.member_count;
+    //       console.log(gMemCount);
+    //   })
+    // };
+    // //Lấy số member request trong group
+    // function getMemberCountOfGroup(){
+    //   FB.api('/410650836564717',{fields: 'member_request_count'},function (response){
+    //     gMemReqCount=response.member_request_count;
+    //       console.log(gMemReqCount);
+    //   })
+    // };
+    // //Lấy Privacy của group
+    // function getMemberCountOfGroup(){
+    //   FB.api('/410650836564717',{fields: 'privacy'},function (response){
+    //     gPri=response.privacy;
+    //       console.log(gPri);
+    //   })
+    // };
+    // //Lấy ra ngày tạo group
+    // function getCreateDate(){
+    //   FB.api('/410650836564717',{fields: 'created_time'},function (response){
+    //     gCreDate=response.created_time;
+    //       console.log(gCreDate);
+    //   })
+    // };
+    // //Lấy ra Description của group
+    // function getDescription(){
+    //   FB.api('/410650836564717',{fields: 'description'},function (response){
+    //     gDes=response.description;
+    //       console.log(gDes);
+    //   })
+    // };
   </script>
 
   <script>
