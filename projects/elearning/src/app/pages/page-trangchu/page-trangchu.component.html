@@ -5,12 +5,9 @@
                 <div class="name--menu">
                     <div class="name-class">
                         <div>
-                            <!-- <ng-template *ngFor="let lop of dsLop" [ngIf]="l.maLopHoc == lop.maLopHoc">
-                                <a [routerLink]="[{ outlets: { primary: ['lophocphan'], navbar: [l.maLopHocPhan] } }]">{{lop.tenLop}}</a>
-                            </ng-template> -->
-                            <a [routerLink]="[{ outlets: { primary: ['lophocphan'], navbar: ['lophocphan'] } }]">
-                                Anh văn A1
-                               </a>
+                            <ng-template *ngFor="let lop of dsLop" [ngIf]="l.maLopHoc == lop.maLopHoc">
+                                <a [routerLink]="[{ outlets: { primary: ['lophocphan',l.maLopHocPhan], navbar: ['lophocphan'] } }]">{{lop.tenLop}}</a>
+                            </ng-template>
                         </div>
                         <div>
                             <span>Số Lượng:{{l.soLuongSV}}</span>

@@ -19,8 +19,6 @@ import { PageBaitapgiaovienComponent } from './pages/page-baitapgiaovien/page-ba
 import { PageCaidatComponent } from './pages/page-caidat/page-caidat.component';
 import { PageTrangcanhansvComponent } from './pages/page-trangcanhansv/page-trangcanhansv.component';
 import { PageTrangcanhangvComponent } from './pages/page-trangcanhangv/page-trangcanhangv.component';
-
-
 const routes: Routes = [
   {
     path: '',
@@ -39,8 +37,9 @@ const routes: Routes = [
     component: PageCaidatComponent,
   },
   {
-    path: 'lophocphan',
+    path: 'lophocphan/:id',
     component: PageLophocphanComponent,
+    
   },
   {
     path: 'baigiang',
@@ -71,19 +70,19 @@ const routes: Routes = [
     ],
   },
   {
-    path: 'moinguoi',
+    path: 'moinguoi/:id',
     component: PageMoinguoiComponent,
   },
   {
-    path: 'cotdiem',
+    path: 'cotdiem/:id',
     component: PageCotodiemComponent,
   },
   {
-    path: 'huongdan',
+    path: 'huongdan/:id',
     component: PageHuongdanComponent,
   },
   {
-    path: 'baitapgv',
+    path: 'baitapgv/:id',
     component: PageBaitapgiaovienComponent,
   },
   {
@@ -92,7 +91,8 @@ const routes: Routes = [
     outlet: 'navbar',
   },
   {
-    path: 'lophocphan',
+    
+    path: 'lophocphan/:id',
     component: NavbarHocphanComponent,
     outlet: 'navbar',
   },
