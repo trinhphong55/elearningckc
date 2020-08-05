@@ -59,10 +59,9 @@ import { PageHuongdanComponent } from './pages/page-huongdan/page-huongdan.compo
 import { PageBaitapgiaovienComponent } from './pages/page-baitapgiaovien/page-baitapgiaovien.component';
 import { PageCaidatComponent } from './pages/page-caidat/page-caidat.component';
 import { HttpClientModule } from '@angular/common/http';
-
-import {CookieService} from 'ngx-cookie-service';
 import { PageTrangcanhansvComponent } from './pages/page-trangcanhansv/page-trangcanhansv.component';
-
+import { PageTrangcanhangvComponent } from './pages/page-trangcanhangv/page-trangcanhangv.component';
+import {CookieService} from 'ngx-cookie-service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -101,6 +100,7 @@ import { PageTrangcanhansvComponent } from './pages/page-trangcanhansv/page-tran
     PageBaitapgiaovienComponent,
     PageCaidatComponent,
     PageTrangcanhansvComponent,
+    PageTrangcanhangvComponent,
   ],
   imports: [
     BrowserModule,

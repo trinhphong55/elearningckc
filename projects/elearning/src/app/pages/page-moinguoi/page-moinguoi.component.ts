@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MoigvComponent } from '../../components/content/pageMoinguoi/moigv/moigv.component';
+import {MoigvComponent} from '../../components/content/pageMoinguoi/moigv/moigv.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MoisvComponent } from '../../components/content/pageMoinguoi/moisv/moisv.component';
 import { ApiService } from '../../../../../admin/src/app/services/api.service';
@@ -7,6 +7,8 @@ import { SinhVienService } from '../../../../../admin/src/app/services/sinh-vien
 import { GvlhpService } from '../../../../../admin/src/app/services/gvlhp.service';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { from } from 'rxjs';
+
+
 @Component({
   selector: 'app-page-moinguoi',
   templateUrl: './page-moinguoi.component.html',
@@ -74,6 +76,8 @@ export class PageMoinguoiComponent implements OnInit {
       }
     );
   }
+ 
+
 
   //ds hoc sinh
   // danhSachHocSinh() {

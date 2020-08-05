@@ -4,15 +4,17 @@
     "reportVersion": 1,
     "event": "Allocation failed - JavaScript heap out of memory",
     "trigger": "FatalError",
-    "filename": "report.20200804.111059.7332.0.001.json",
-    "dumpEventTime": "2020-08-04T11:11:00Z",
-    "dumpEventTimeStamp": "1596514260033",
-    "processId": 7332,
+    "filename": "report.20200804.224455.10416.0.001.json",
+    "dumpEventTime": "2020-08-04T22:44:56Z",
+    "dumpEventTimeStamp": "1596555896397",
+    "processId": 10416,
     "cwd": "D:\\DATN\\CaoThangAngular",
     "commandLine": [
       "D:\\Nodejs\\node.exe",
-      "D:\\DATN\\CaoThangAngular\\node_modules\\@ngtools\\webpack\\src\\type_checker_worker.js",
-      "9d93e901-158a-4cf9-ba1b-2f0582ffcfeb"
+      "C:\\Users\\PC\\AppData\\Roaming\\npm/node_modules/@angular/cli/bin/ng",
+      "serve",
+      "elearning",
+      "--port=4400"
     ],
     "nodejsVersion": "v12.16.1",
     "wordSize": 64,
@@ -51,38 +53,38 @@
       {
         "model": "Intel(R) Core(TM) i5-7200U CPU @ 2.50GHz",
         "speed": 2712,
-        "user": 28259656,
+        "user": 37107078,
         "nice": 0,
-        "sys": 17377250,
-        "idle": 159069234,
-        "irq": 1961296
+        "sys": 20534343,
+        "idle": 177242531,
+        "irq": 2208250
       },
       {
         "model": "Intel(R) Core(TM) i5-7200U CPU @ 2.50GHz",
         "speed": 2712,
-        "user": 28243578,
+        "user": 37445015,
         "nice": 0,
-        "sys": 12727578,
-        "idle": 163734765,
-        "irq": 133203
+        "sys": 15279437,
+        "idle": 182159281,
+        "irq": 164390
       },
       {
         "model": "Intel(R) Core(TM) i5-7200U CPU @ 2.50GHz",
         "speed": 2712,
-        "user": 34116656,
+        "user": 44636000,
         "nice": 0,
-        "sys": 13977875,
-        "idle": 156611375,
-        "irq": 120828
+        "sys": 16826171,
+        "idle": 173421546,
+        "irq": 151281
       },
       {
         "model": "Intel(R) Core(TM) i5-7200U CPU @ 2.50GHz",
         "speed": 2712,
-        "user": 35238140,
+        "user": 46217953,
         "nice": 0,
-        "sys": 13537062,
-        "idle": 155930703,
-        "irq": 92578
+        "sys": 16252140,
+        "idle": 172413625,
+        "irq": 117656
       }
     ],
     "networkInterfaces": [
@@ -221,51 +223,19 @@
       "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+546637"
     },
     {
-      "pc": "0x00007ff6f114f618",
-      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+982920"
+      "pc": "0x00007ff6f106b281",
+      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+48113"
     },
     {
-      "pc": "0x00007ff6f1069d8c",
-      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+42748"
-    },
-    {
-      "pc": "0x00007ff6f1065320",
-      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+23696"
-    },
-    {
-      "pc": "0x00007ff6f11495c0",
-      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+958256"
-    },
-    {
-      "pc": "0x00007ff6f1069d8c",
-      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+42748"
-    },
-    {
-      "pc": "0x00007ff6f1069d8c",
-      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+42748"
-    },
-    {
-      "pc": "0x00007ff6f1069d8c",
-      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+42748"
-    },
-    {
-      "pc": "0x00007ff6f1069d8c",
-      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+42748"
-    },
-    {
-      "pc": "0x00007ff6f1069d8c",
-      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+42748"
-    },
-    {
-      "pc": "0x0000002327273f3e",
+      "pc": "0x0000030c5feea083",
       "symbol": ""
     }
   ],
   "javascriptHeap": {
-    "totalMemory": 2149105664,
-    "totalCommittedMemory": 2149105664,
-    "usedMemory": 2126085016,
-    "availableMemory": 52073832,
+    "totalMemory": 2156146688,
+    "totalCommittedMemory": 2156146688,
+    "usedMemory": 2125119176,
+    "availableMemory": 47777760,
     "memoryLimit": 2197815296,
     "heapSpaces": {
       "read_only_space": {
@@ -276,68 +246,68 @@
         "available": 0
       },
       "new_space": {
-        "memorySize": 2097152,
-        "committedMemory": 2097152,
-        "capacity": 1047456,
-        "used": 11192,
-        "available": 1036264
+        "memorySize": 6291456,
+        "committedMemory": 6291456,
+        "capacity": 3142368,
+        "used": 546120,
+        "available": 2596248
       },
       "old_space": {
-        "memorySize": 2085765120,
-        "committedMemory": 2085765120,
-        "capacity": 2076702760,
-        "used": 2075422280,
-        "available": 1280480
+        "memorySize": 2004762624,
+        "committedMemory": 2004762624,
+        "capacity": 1995051968,
+        "used": 1994681432,
+        "available": 370536
       },
       "code_space": {
-        "memorySize": 5410816,
-        "committedMemory": 5410816,
-        "capacity": 4707712,
-        "used": 4707712,
+        "memorySize": 6983680,
+        "committedMemory": 6983680,
+        "capacity": 6172000,
+        "used": 6172000,
         "available": 0
       },
       "map_space": {
-        "memorySize": 10489856,
-        "committedMemory": 10489856,
-        "capacity": 1008160,
-        "used": 1008160,
+        "memorySize": 17043456,
+        "committedMemory": 17043456,
+        "capacity": 3574400,
+        "used": 3574400,
         "available": 0
       },
       "large_object_space": {
-        "memorySize": 44679168,
-        "committedMemory": 44679168,
-        "capacity": 44564176,
-        "used": 44564176,
+        "memorySize": 120180736,
+        "committedMemory": 120180736,
+        "capacity": 119568128,
+        "used": 119568128,
         "available": 0
       },
       "code_large_object_space": {
-        "memorySize": 401408,
-        "committedMemory": 401408,
-        "capacity": 338688,
-        "used": 338688,
+        "memorySize": 622592,
+        "committedMemory": 622592,
+        "capacity": 544288,
+        "used": 544288,
         "available": 0
       },
       "new_large_object_space": {
         "memorySize": 0,
         "committedMemory": 0,
-        "capacity": 1047456,
+        "capacity": 3142368,
         "used": 0,
-        "available": 1047456
+        "available": 3142368
       }
     }
   },
   "resourceUsage": {
-    "userCpuSeconds": 5380.39,
-    "kernelCpuSeconds": 466.015,
-    "cpuConsumptionPercent": 6.81359,
-    "maxRss": 2144743424,
+    "userCpuSeconds": 3608.34,
+    "kernelCpuSeconds": 82,
+    "cpuConsumptionPercent": 16.9663,
+    "maxRss": 2132537344,
     "pageFaults": {
-      "IORequired": 19407692,
+      "IORequired": 10236616,
       "IONotRequired": 0
     },
     "fsActivity": {
-      "reads": 328235,
-      "writes": 37
+      "reads": 11707,
+      "writes": 9
     }
   },
   "libuv": [
@@ -346,7 +316,6 @@
     "ALLUSERSPROFILE": "C:\\ProgramData",
     "APPDATA": "C:\\Users\\PC\\AppData\\Roaming",
     "BROWSERSLIST_IGNORE_OLD_DATA": "1",
-    "COLORTERM": "truecolor",
     "CommonProgramFiles": "C:\\Program Files\\Common Files",
     "CommonProgramFiles(x86)": "C:\\Program Files (x86)\\Common Files",
     "CommonProgramW6432": "C:\\Program Files\\Common Files",
@@ -355,10 +324,8 @@
     "DriverData": "C:\\Windows\\System32\\Drivers\\DriverData",
     "FPS_BROWSER_APP_PROFILE_STRING": "Internet Explorer",
     "FPS_BROWSER_USER_PROFILE_STRING": "Default",
-    "GIT_ASKPASS": "d:\\Microsoft VS Code\\resources\\app\\extensions\\git\\dist\\askpass.sh",
     "HOMEDRIVE": "C:",
     "HOMEPATH": "\\Users\\PC",
-    "LANG": "en_US.UTF-8",
     "LOCALAPPDATA": "C:\\Users\\PC\\AppData\\Local",
     "LOGONSERVER": "\\\\DESKTOP-UR2M317",
     "NUMBER_OF_PROCESSORS": "4",
@@ -382,8 +349,6 @@
     "SystemDrive": "C:",
     "SystemRoot": "C:\\WINDOWS",
     "TEMP": "C:\\Users\\PC\\AppData\\Local\\Temp",
-    "TERM_PROGRAM": "vscode",
-    "TERM_PROGRAM_VERSION": "1.47.3",
     "TMP": "C:\\Users\\PC\\AppData\\Local\\Temp",
     "USERDOMAIN": "DESKTOP-UR2M317",
     "USERDOMAIN_ROAMINGPROFILE": "DESKTOP-UR2M317",
@@ -391,11 +356,16 @@
     "USERPROFILE": "C:\\Users\\PC",
     "VBOX_MSI_INSTALL_PATH": "C:\\Program Files\\Oracle\\VirtualBox\\",
     "VS120COMNTOOLS": "C:\\Program Files (x86)\\Microsoft Visual Studio 12.0\\Common7\\Tools\\",
-    "VSCODE_GIT_ASKPASS_MAIN": "d:\\Microsoft VS Code\\resources\\app\\extensions\\git\\dist\\askpass-main.js",
-    "VSCODE_GIT_ASKPASS_NODE": "D:\\Microsoft VS Code\\Code.exe",
-    "VSCODE_GIT_IPC_HANDLE": "\\\\.\\pipe\\vscode-git-4e62de0cf1-sock",
     "WEBPACK_DEV_SERVER": "true",
-    "windir": "C:\\WINDOWS"
+    "windir": "C:\\WINDOWS",
+    "TERM_PROGRAM": "vscode",
+    "TERM_PROGRAM_VERSION": "1.47.3",
+    "LANG": "en_US.UTF-8",
+    "COLORTERM": "truecolor",
+    "VSCODE_GIT_IPC_HANDLE": "\\\\.\\pipe\\vscode-git-4e62de0cf1-sock",
+    "GIT_ASKPASS": "d:\\Microsoft VS Code\\resources\\app\\extensions\\git\\dist\\askpass.sh",
+    "VSCODE_GIT_ASKPASS_NODE": "D:\\Microsoft VS Code\\Code.exe",
+    "VSCODE_GIT_ASKPASS_MAIN": "d:\\Microsoft VS Code\\resources\\app\\extensions\\git\\dist\\askpass-main.js"
   },
   "sharedObjects": [
     "D:\\Nodejs\\node.exe",
@@ -438,6 +408,8 @@
     "C:\\WINDOWS\\SYSTEM32\\dhcpcsvc6.DLL",
     "C:\\WINDOWS\\SYSTEM32\\dhcpcsvc.DLL",
     "C:\\WINDOWS\\SYSTEM32\\DNSAPI.dll",
+    "C:\\Windows\\System32\\rasadhlp.dll",
+    "C:\\WINDOWS\\System32\\fwpuclnt.dll",
     "C:\\WINDOWS\\system32\\napinsp.dll",
     "C:\\WINDOWS\\system32\\pnrpnsp.dll",
     "C:\\WINDOWS\\System32\\winrnr.dll",
