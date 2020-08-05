@@ -11,7 +11,7 @@
                             <button mat-button (click)="openMoigv()"><i class="fas fa-user-plus"></i></button>
                         </div>
                     </div>
-                    <div class="list-gv" >
+                    <div class="list-gv" *ngFor="let ds of dsGiaoVienLophp">
                         <div class="nx-showimg">
                             <div>
                                 <img class="gb_Ka gbii"
@@ -21,7 +21,9 @@
                             </div>
                         </div>
                         <div class="nx-showname">
-                            <!-- <h6>{{gv.ho}} {{gv.ten}} </h6> -->
+                            <ng-template *ngFor="let gv of dsGiaoVien" [ngIf]="gv.maGiaoVien== ds.maGiaoVien">
+                                <h6>{{gv.ho}} {{gv.ten}} ({{ds.loai}}) </h6>
+                            </ng-template>
 
                         </div>
                     </div>
@@ -43,32 +45,33 @@
                             <input type="checkbox" name="" id="">
                         </div>
                         <div class="nx-showimg">
-                            
+
                         </div>
                         <div class="nx-showname">
                             <div class="form-group pr-3 pt-1 w-50">
                                 <select class="form-control" id="exampleFormControlSelect1">
-                                  <option>Tác vụ</option>
-                                  
-                                  <option>Gửi mail</option>
-                                  <option>Ẩn</option>
-                                  <option>Xóa</option>
+                                    <option>Tác vụ</option>
+
+                                    <option>Gửi mail</option>
+                                    <option>Ẩn</option>
+                                    <option>Xóa</option>
                                 </select>
-                              </div>
+                            </div>
                         </div>
                         <div class="nx-showicon">
-                            <button mat-button [matMenuTriggerFor]="sapxeptheoten"><i class="fas fa-text-height"></i></button>
+                            <button mat-button [matMenuTriggerFor]="sapxeptheoten"><i
+                                    class="fas fa-text-height"></i></button>
                             <mat-menu #sapxeptheoten="matMenu">
                                 <button mat-menu-item>Sắp xếp theo họ</button>
                                 <button mat-menu-item>Sắp xếp theo tên</button>
                             </mat-menu>
                         </div>
                     </div>
-                    <div class="list-sv">
+                    <div class="list-sv" *ngFor="let hs of dsHocSinh">
                         <div class="checkbox">
                             <input type="checkbox" name="" id="">
                         </div>
-                        
+
                         <div class="nx-showimg">
                             <div>
                                 <img class="gb_Ka gbii"
@@ -78,52 +81,7 @@
                             </div>
                         </div>
                         <div class="nx-showname">
-                            <h6>Huy Nguyễn</h6>
-                        </div>
-                        <div class="nx-showicon">
-                            <button mat-button [matMenuTriggerFor]="menu"><i class="fas fa-ellipsis-v"></i></button>
-                            <mat-menu #menu="matMenu">
-                                <button mat-menu-item>Gửi mail cho học viên</button>
-                            </mat-menu>
-                        </div>
-                    </div>
-                   
-                    <div class="list-sv">
-                        <div class="checkbox">
-                            <input type="checkbox" name="" id="">
-                        </div>
-                        <div class="nx-showimg">
-                            <div>
-                                <img class="gb_Ka gbii"
-                                    src="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo"
-                                    srcset="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo 1x, https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s64-c-mo 2x "
-                                    alt="" aria-hidden="true" data-noaft="">
-                            </div>
-                        </div>
-                        <div class="nx-showname">
-                            <h6>Huy Nguyễn</h6>
-                        </div>
-                        <div class="nx-showicon">
-                            <button mat-button [matMenuTriggerFor]="menu"><i class="fas fa-ellipsis-v"></i></button>
-                            <mat-menu #menu="matMenu">
-                                <button mat-menu-item>Gửi mail cho học viên</button>
-                            </mat-menu>
-                        </div>
-                    </div>
-                    <div class="list-sv">
-                        <div class="checkbox">
-                            <input type="checkbox" name="" id="">
-                        </div>
-                        <div class="nx-showimg">
-                            <div>
-                                <img class="gb_Ka gbii"
-                                    src="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo"
-                                    srcset="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo 1x, https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s64-c-mo 2x "
-                                    alt="" aria-hidden="true" data-noaft="">
-                            </div>
-                        </div>
-                        <div class="nx-showname">
-                            <h6>Huy Nguyễn</h6>
+                                <h6>{{hs.ho}} {{hs.ten}}</h6>
                         </div>
                         <div class="nx-showicon">
                             <button mat-button [matMenuTriggerFor]="menu"><i class="fas fa-ellipsis-v"></i></button>
@@ -136,5 +94,4 @@
             </div>
         </div>
     </div>
-
 </div>
