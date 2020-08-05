@@ -19,7 +19,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { LophocContentComponent } from './components/content/lophoc-content/lophoc-content.component';
 import { MatCardModule } from '@angular/material/card';
 import { ChiaseComponent } from './components/content/pagelophocphan/chiase/chiase.component';
 import { MatSelectModule } from '@angular/material/select';
@@ -65,7 +64,6 @@ import { PageTrangcanhangvComponent } from './pages/page-trangcanhangv/page-tran
   declarations: [
     AppComponent,
     FooterComponent,
-    LophocContentComponent,
     ChiaseComponent,
     TaobaitapComponent,
     TaochudeComponent,
