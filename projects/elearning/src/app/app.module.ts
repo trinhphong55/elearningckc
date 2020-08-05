@@ -29,9 +29,7 @@ import { Chude1Component } from './components/content/chudelophocphan/list-chude
 import { Chude2Component } from './components/content/chudelophocphan/list-chude/chude2/chude2.component';
 import { Chude3Component } from './components/content/chudelophocphan/list-chude/chude3/chude3.component';
 import { Chude4Component } from './components/content/chudelophocphan/list-chude/chude4/chude4.component';
-import { TaobaiktraComponent } from './components/content/chudelophocphan/taobaiktra/taobaiktra.component';
-import { TaocauhoiComponent } from './components/content/chudelophocphan/taocauhoi/taocauhoi.component';
-import { TaotailieuComponent } from './components/content/chudelophocphan/taotailieu/taotailieu.component';
+import { TaobaigiangComponent } from './components/content/chudelophocphan/taobaigiang/taobaigiang.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MoigvComponent } from './components/content/pageMoinguoi/moigv/moigv.component';
@@ -39,11 +37,11 @@ import { MoisvComponent } from './components/content/pageMoinguoi/moisv/moisv.co
 import { NoidungbaitapComponent } from './components/content/pagelophocphan/noidungbaitap/noidungbaitap.component';
 import { NoidungtaileuComponent } from './components/content/pagelophocphan/noidungtaileu/noidungtaileu.component';
 import { XembaitapgvComponent } from './components/content/chudelophocphan/allchude/xembaitapgv/xembaitapgv.component';
-import { XemtailieugvComponent } from './components/content/chudelophocphan/allchude/xemtailieugv/xemtailieugv.component';
+import { XembaiganggvComponent } from './components/content/chudelophocphan/allchude/xembaiganggv/xembaiganggv.component';
 import { NoidungbaitapsvComponent } from './components/content/pagelophocphan/noidungbaitapsv/noidungbaitapsv.component';
 import { NoidungtailieusvComponent } from './components/content/pagelophocphan/noidungtailieusv/noidungtailieusv.component';
 import { XembaitapsvComponent } from './components/content/chudelophocphan/allchude/xembaitapsv/xembaitapsv.component';
-import { XemtailieusvComponent } from './components/content/chudelophocphan/allchude/xemtailieusv/xemtailieusv.component';
+import { XembaigiangsvComponent } from './components/content/chudelophocphan/allchude/xembaigiangsv/xembaigiangsv.component';
 import { NavbarTrangchuComponent } from './components/navbar/navbar-trangchu/navbar-trangchu.component';
 import { NavbarHocphanComponent } from './components/navbar/navbar-hocphan/navbar-hocphan.component';
 import { PageTrangchuComponent } from './pages/page-trangchu/page-trangchu.component';
@@ -71,19 +69,17 @@ import { PageTrangcanhangvComponent } from './pages/page-trangcanhangv/page-tran
     Chude2Component,
     Chude3Component,
     Chude4Component,
-    TaobaiktraComponent,
-    TaocauhoiComponent,
-    TaotailieuComponent,
+    TaobaigiangComponent,
     MoigvComponent,
     MoisvComponent,
     NoidungbaitapComponent,
     NoidungtaileuComponent,
     XembaitapgvComponent,
-    XemtailieugvComponent,
+    XembaiganggvComponent,
     NoidungbaitapsvComponent,
     NoidungtailieusvComponent,
     XembaitapsvComponent,
-    XemtailieusvComponent,
+    XembaigiangsvComponent,
     NavbarTrangchuComponent,
     NavbarHocphanComponent,
     PageTrangchuComponent,

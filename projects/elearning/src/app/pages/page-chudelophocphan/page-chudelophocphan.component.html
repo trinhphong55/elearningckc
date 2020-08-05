@@ -3,15 +3,12 @@
         <button mat-button [matMenuTriggerFor]="menu"> <i class="fas fa-plus"></i> Tạo</button>
         <mat-menu #menu="matMenu">
             <button mat-menu-item (click)="openTaobaitap()">Bài tập</button>
-            <button mat-menu-item (click)="openTaobaiktra()">Bài tập kiểm tra</button>
-            <button mat-menu-item (click)="openTaocauhoi()"> Câu hỏi</button>
-            <button mat-menu-item (click)="openTaotailieu()">Tài liệu</button>
-            <button mat-menu-item>Sử dụng lại bài đăng</button>
+            <button mat-menu-item (click)="openTaotailieu()">Bài giảng</button>
             <button mat-menu-item (click)="opentaochude()">Chủ đề</button>
         </mat-menu>
     </div>
     <div class="col-md-8">
-        <a href="#" target="_bank"> <i class="far fa-calendar-minus"></i>Lịch Google</a>
+        <a href="#" target="_bank"> <i class="far fa-calendar-minus"></i>Xem điểm tổng kết</a>
         <a href="#" target="_bank"><i class="fas fa-folder"></i> Thư mục Drive của lớp học</a>
     </div>
 </div>
@@ -127,7 +124,7 @@
                 <mat-expansion-panel hideToggle>
                     <mat-expansion-panel-header>
                         <mat-panel-title>
-                            <i class="far fa-bookmark"></i> Tên tài liệu mới
+                            <i class="far fa-bookmark"></i> Tên bài giảng mới
                             <span><i class="far fa-comments"></i>2</span>
                         </mat-panel-title>
                         <mat-panel-description>
@@ -144,7 +141,7 @@
                     <p>Đã giao vào ngày nào đó</p>
                     <div class="songuoinop">
                         <div class="left">
-                            <p>Tên bài tập</p>
+                            <p>Nội dung bài giảng</p>
                         </div>
                         <div class="right">
                             <div class="bieumau">
@@ -182,8 +179,7 @@
                         </div>
                     </div>
                     <button mat-button>2 nhận xét của lớp học</button>
-                    <p style="border-top: solid 1px black;"><button mat-button (click)="openXTLGV()">Xem tài
-                            liệu</button></p>
+                    <p style="border-top: solid 1px black;"><button mat-button (click)="openXTLGV()">Xem bài giảng</button></p>
                 </mat-expansion-panel>
             </mat-accordion>
         </div>
@@ -298,7 +294,7 @@
                 <mat-expansion-panel hideToggle>
                     <mat-expansion-panel-header>
                         <mat-panel-title>
-                            <i class="far fa-bookmark"></i> Tên tài liệu mới
+                            <i class="far fa-bookmark"></i> Tên bài giảng mới
                             <span><i class="far fa-comments"></i>2</span>
                         </mat-panel-title>
                         <mat-panel-description>
@@ -315,7 +311,7 @@
                     <p>Đã giao vào ngày nào đó</p>
                     <div class="songuoinop">
                         <div class="left">
-                            <p>Tên bài tập</p>
+                            <p>Nội dung bài giảng</p>
                         </div>
                         <div class="right">
                             <div class="bieumau">
@@ -353,8 +349,7 @@
                         </div>
                     </div>
                     <button mat-button>2 nhận xét của lớp học</button>
-                    <p style="border-top: solid 1px black;"><button mat-button (click)="openXTLGV()">Xem tài
-                            liệu</button></p>
+                    <p style="border-top: solid 1px black;"><button mat-button (click)="openXTLGV()">Xem bài giảng</button></p>
                 </mat-expansion-panel>
             </mat-accordion>
         </div>
@@ -469,7 +464,7 @@
                 <mat-expansion-panel hideToggle>
                     <mat-expansion-panel-header>
                         <mat-panel-title>
-                            <i class="far fa-bookmark"></i> Tên tài liệu mới
+                            <i class="far fa-bookmark"></i> Tên bài giảng mới
                             <span><i class="far fa-comments"></i>2</span>
                         </mat-panel-title>
                         <mat-panel-description>
@@ -486,7 +481,7 @@
                     <p>Đã giao vào ngày nào đó</p>
                     <div class="songuoinop">
                         <div class="left">
-                            <p>Tên bài tập</p>
+                            <p>Nội dung bải giảng</p>
                         </div>
                         <div class="right">
                             <div class="bieumau">
@@ -524,7 +519,7 @@
                         </div>
                     </div>
                     <button mat-button>2 nhận xét của lớp học</button>
-                    <p style="border-top: solid 1px black;"><button mat-button (click)="openXTLSV()">Xem tài liệu</button>
+                    <p style="border-top: solid 1px black;"><button mat-button (click)="openXTLSV()">Xem bài giảng</button>
                     </p>
                 </mat-expansion-panel>
             </mat-accordion>
