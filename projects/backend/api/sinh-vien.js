@@ -36,9 +36,8 @@ setSinhVienUpdate = (req) => {
 };
 setSinhVien_SV = (req) => {
   return {
-    nguoiChinhSua: req.nguoiChinhSua,
+    nguoiChinhSua: req.maSinhVien,
     sdt: req.sdt,
-    matKhau: req.matKhau,
   };
 };
 exports.layTatCaSinhVien = async (req, res) => {
@@ -99,6 +98,7 @@ exports.layThongtinSinhVien = async (req, res) => {
 exports.capNhatSinhVien = async (req, res) => {
   try {
     let tokens = "12341234";
+   
     if (req.body.tokens != tokens) {
       res.status(403).json({
         message: "Tài khoản này không đủ quyền để thay đổi",
@@ -117,7 +117,7 @@ exports.capNhatSinhVien = async (req, res) => {
     if (req.body.role == "sv") {
       sinhViens = await SinhVienModel.updateOne(
         { maSinhVien: req.body.maSinhVien },
-        { $set: setSinhVien_SV(req.body.data) }
+        { $set: setSinhVien_SV(req.body) }
       );
     } else if (req.body.role == "gv" || req.body.role == "admin") {
       sinhViens = await SinhVienModel.updateOne(
