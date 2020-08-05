@@ -23,8 +23,8 @@
                 <input type="text" class="form-control" #dot>
               </div>
               <div class="form-group">
-                <label>Lớp học</label>
-                <input type="text" class="form-control" #lop>
+                <label>Giáo viên</label>
+                <input type="text" class="form-control" #giaovien>
               </div>
               <div class="form-group">
                 <label>Buổi học</label>
@@ -36,7 +36,7 @@
               </div>
               <div class="form-group">
                 <label>Ngày khai giảng</label>
-                <input type="date" class="form-control" #ngaykhaigiang>
+                <input type="text" class="form-control" #ngaykhaigiang>
               </div>
               <div class="form-group">
                 <label>Học phí</label>
@@ -45,8 +45,8 @@
             </div>
             <div class="col-auto">
               <div class="modal_chucnang__group__button">
-                <button class="modal_chucnang__button btn btn-outline-primary px-4 mx-2" [disabled]="!makhoahoc.value || !dot.value || !lop.value|| !buoihoc.value|| !giohoc.value|| !hocphi.value || !ngaykhaigiang.value "
-                  (click)="add(makhoahoc.value,dot.value,lop.value,ngaykhaigiang.value,buoihoc.value,giohoc.value,hocphi.value);makhoahoc.value=''; dot.value=''; lop.value=''; buoihoc.value=''; giohoc.value=''; hocphi.value=''"><img
+                <button class="modal_chucnang__button btn btn-outline-primary px-4 mx-2" [disabled]="!makhoahoc.value || !dot.value || !giaovien.value|| !buoihoc.value|| !giohoc.value|| !hocphi.value || !ngaykhaigiang.value "
+                  (click)="add(makhoahoc.value,dot.value,giaovien.value,buoihoc.value,giohoc.value,ngaykhaigiang.value,hocphi.value);makhoahoc.value=''; dot.value=''; giaovien.value=''; buoihoc.value=''; giohoc.value=''; hocphi.value=''"><img
                     class="modal_chucnang__button__icon mb-2" src="assets/img/icons/add.png" alt="image icon">
                   <div>Thêm mới</div>
                 </button>
@@ -86,7 +86,7 @@
               </div>
               <div class="form-group">
                 <label>Ngày khai giảng</label>
-                <input type="date" class="form-control" [(ngModel)]="selectedItem.ngaykhaigiang">
+                <input type="text" class="form-control" [(ngModel)]="selectedItem.ngaykhaigiang">
               </div>
               <div class="form-group">
                 <label>Học phí</label>
@@ -113,13 +113,11 @@
                 <th>#</th>
                 <th scope="col">Mã khóa học</th>
                 <th scope="col">Đợt</th>
-                <th scope="col">Lớp</th>
                 <th scope="col">Buổi học</th>
                 <th scope="col">Giờ học</th>
                 <th scope="col">Ngày khai giảng</th>
                 <th scope="col">Học phí</th>
-                <th scope="col">Người tạo</th>
-                <th scope="col">Người sửa</th>
+                <th scope="col">Lớp</th>
                 <th class="text-center" scope="col"><span
                     class="modal_chucnang__button__save mdi mdi-content-save-outline mdi-24px"></span></th>
               </tr>
@@ -129,13 +127,12 @@
                 <td style="max-width: 50px">{{i + 1}}</td>
                 <td>{{item.makhoahoc}}</td>
                 <td>{{item.dot}}</td>
-                <td>{{item.lop}}</td>
                 <td>{{item.buoihoc}}</td>
                 <td>{{item.giohoc}}</td>
-                <td>{{item.ngaykhaigiang  | date : 'dd/MM/yyyy'}}</td>
+                <td>{{item.ngaykhaigiang}}</td>
                 <td>{{item.hocphi}}</td>
-                <td>{{item.nguoitao}}</td>
-                <td>{{item.nguoisua}}</td>
+                <td>{{item.lop}}</td>
+
                 <td class="text-center">
                   <span class="modal_chucnang__button__delete mdi mdi-pencil mdi-24px  mr-2"
                     (click)="onSelect(item);imageSrc=null"></span>

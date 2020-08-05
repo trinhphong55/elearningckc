@@ -5,7 +5,7 @@ const multer = require('multer')
 // get
 router.get('/', async (req, res) => {
   try {
-    const danhsach = await ttthlophoc.find({ trangthai: true });
+    const danhsach = await ttthlophoc.find({ trangthai: true }).sort({created_at: -1});
     res.json(danhsach);
   } catch (error) {
     res.json([]);
@@ -21,11 +21,12 @@ router.post('/add', (req, res) => {
     giohoc: req.body.giohoc,
     ngaykhaigiang: req.body.ngaykhaigiang,
     hocphi: req.body.hocphi,
+    giaovien: req.body.giaovien,
     trangthai: req.body.trangthai,
     nguoitao: req.body.nguoitao,
     nguoisua: req.body.nguoisua,
     created_at: req.body.created_at,
-    updated_at: req.body.updated_at,
+    updated_at: req.body.updated_at
   })
   add.save((err, data) => {
     if (err) {
@@ -47,6 +48,7 @@ router.post('/update', async (req, res) => {
     giohoc: req.body.giohoc,
     ngaykhaigiang: req.body.ngaykhaigiang,
     hocphi: req.body.hocphi,
+    giaovien: req.body.giaovien,
     trangthai: req.body.trangthai,
     nguoitao: req.body.nguoitao,
     nguoisua: req.body.nguoisua,

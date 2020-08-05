@@ -4,8 +4,9 @@ export class ttthLopHoc {
   lop: String
   buoihoc: String
   giohoc: String
-  ngaykhaigiang: Date
+  ngaykhaigiang: String
   hocphi: String
+  giaovien: String
   trangthai: Boolean
   nguoitao: String
   nguoisua: String
