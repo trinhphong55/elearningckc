@@ -1,4 +1,5 @@
 const SinhVienModel = require("../models/sinh-vien.model");
+const { check, validationResult } = require("express-validator");
 
 setSinhVien = (req) => {
   return {
@@ -97,10 +98,21 @@ exports.layThongtinSinhVien = async (req, res) => {
 
 exports.capNhatSinhVien = async (req, res) => {
   try {
+    const err = validationResult(req);
+    if(!err.isEmpty()){
+      res.status(422).json(err.errors);
+    }
+  
     let tokens = "12341234";
-   
+    console.log(req.body.sdt.length);
+   if(req.body.sdt.length != 10){
+     return res.status(403).json({
+      message: "Số điện thoại không hợp lệ",
+      status: 403,
+    });
+   }
     if (req.body.tokens != tokens) {
-      res.status(403).json({
+      return res.status(403).json({
         message: "Tài khoản này không đủ quyền để thay đổi",
         status: 403,
       });
@@ -130,13 +142,13 @@ exports.capNhatSinhVien = async (req, res) => {
       maSinhVien: req.body.maSinhVien,
     });
     if (sinhViens.nModified > 0) {
-      res.status(200).json({
+      return res.status(200).json({
         data: setSinhVienUpdate(findSinhVienUpdate),
         message: "Cập nhật thành công",
         status: 200,
       });
     } else {
-      res.status(200).json({
+      return res.status(200).json({
         message: "Cập nhật thành công, không có gì thay đổi",
         status: 200,
         data: setSinhVienUpdate(findSinhVienUpdate),
@@ -170,4 +182,11 @@ exports.tinhTongSinhVien = async (req, res) => {
   } catch (error) {
     res.json(error);
   }
+};
+exports.checkValidate = () => {
+  return [
+    check("sdt", "Số điện thoại phải 10 số").isLength({ max: 10, min: 10}),
+    check("sdt", "Số điện thoại trống").notEmpty(),
+    check("sdt", "Số điện thoại phải là số").isNumeric(),
+  ];
 };
