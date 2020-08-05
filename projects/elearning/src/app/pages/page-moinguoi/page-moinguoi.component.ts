@@ -90,7 +90,6 @@ export class PageMoinguoiComponent implements OnInit {
         this.sinhVienService.laysinhvien(this.maLopHoc).subscribe(
           dsHocSinh => {
             this.dsHocSinh = dsHocSinh;
-            console.log(dsHocSinh)
           },
           (error) => {
             console.log(error);

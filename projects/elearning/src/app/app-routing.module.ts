@@ -42,7 +42,7 @@ const routes: Routes = [
     
   },
   {
-    path: 'baigiang',
+    path: 'baigiang/:id',
     component: PageBaigiangComponent,
     children: [
       { path: '', component: PageChudelophocphanComponent },
