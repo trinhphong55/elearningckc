@@ -1,129 +1,140 @@
 <div class="container-fluid mt-5">
-    <div class="row" style="border-bottom:solid 0.5px black;padding-bottom: 20px;">
-        <div class="col-md-2">
-            <div mat-dialog-actions>
-                <button mat-button mat-dialog-close><i class="fas fa-times"></i></button>
-                <span style="margin-left: 5px;">Bài tập</span>
-            </div>
-
-        </div>
-        <div class="col-md-8">
-
-        </div>
-        <div class="col-md-2">
-            <div>
-                <button mat-button>Giao bài</button>
-                <button mat-button [matMenuTriggerFor]="menu"><i class="fas fa-angle-down"></i></button>
-                <mat-menu #menu="matMenu">
-                    <button mat-menu-item>Giao bài</button>
-                    <button mat-menu-item>Lên lịch</button>
-                    <button mat-menu-item>Lưu bản nháp</button>
-                    <button mat-menu-item>Hủy bản nháp</button>
-                </mat-menu>
-            </div>
-        </div>
+  <div class="row" style="border-bottom:solid 0.5px black;padding-bottom: 20px;">
+    <div class="col-md-2">
+      <div mat-dialog-actions>
+        <button mat-button mat-dialog-close><i class="fas fa-times"></i></button>
+        <span style="margin-left: 5px;">Bài tập</span>
+      </div>
     </div>
-    <div class="row">
-        <div class="col-md-8">
-            <div class="row">
-                <div class="col-md-12" style="padding-top:10px">
-                    <form class="example-form">
-                        <mat-form-field class="example-full-width" style="width:100%">
-                            <mat-label>Tiêu đề</mat-label>
-                            <input matInput placeholder="Tiêu đề">
-                        </mat-form-field>
-                    </form>
-                </div>
-                <div class="col-md-12">
-                    <form>
-                        <div class="form-group">
-                            <label for="exampleFormControlTextarea1">Hướng dẫn (không bắt buộc)</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                          </div>
-                    </form>
-                </div>
-                <div class="col-md-4 ">
-                    <button mat-button [matMenuTriggerFor]="menuthem">Thêm</button>
-                    <mat-menu #menuthem="matMenu">
-                        <button mat-menu-item><i class="fab fa-google-drive style-icon"></i>Google Drive</button>
-                        <button mat-menu-item><i class="fas fa-link style-icon"></i>Liên kết</button>
-                        <button mat-menu-item><i class="fas fa-folder-open style-icon"></i>Tệp</button>
-                        <button mat-menu-item><i class="fab fa-youtube style-icon"></i>Youtube</button>
-                    </mat-menu>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <mat-label>Dành cho</mat-label>
-            <form class="example-form">
-                <mat-form-field class="example-full-width">
-                    <mat-label>Chọn tên lớp</mat-label>
-                    <mat-select multiple>
-                        <mat-option>Cấu trúc dữ liệu </mat-option>
-                        <mat-option>Lập trình HDT</mat-option>
-                        <mat-option>Thiết kế web</mat-option>
-                        <mat-option>Lập trình di động</mat-option>
-                    </mat-select>
-                </mat-form-field>
-                <mat-form-field class="example-full-width">
-                    <mat-label>Chọn tất cả học viên</mat-label>
-                    <mat-select multiple>
-                        <mat-option>Tất cả học viên </mat-option>
-                        <mat-option>Tên tài khoản</mat-option>
-                    </mat-select>
-                </mat-form-field>
-            </form>
-            <mat-label>Điểm</mat-label>
-            <form class="example-form">
-                <mat-form-field class="example-full-width">
-                    <mat-label>100</mat-label>
-                    <mat-select multiple>
-                        <mat-option>Chưa chấm điểm</mat-option>
-                    </mat-select>
-                </mat-form-field>
-            </form>
-
-
-
-            <mat-label>Đến hạng</mat-label>
-            <form class="example-form">
-                <mat-form-field>
-                    <input matInput [matDatepicker]="myDatePicker">
-                    <mat-datepicker-toggle [for]="myDatePicker" matSuffix></mat-datepicker-toggle>
-                    <mat-datepicker #myDatePicker></mat-datepicker>
-                </mat-form-field>
-            </form>
-            
-
-             
-
-
-            <mat-label>Chủ đề </mat-label>
-            <form class="example-form">
-                <mat-form-field class="example-full-width">
-                    <mat-label>tạo chủ đề</mat-label>
-                    <input matInput placeholder="Tạo chủ đề">
-                </mat-form-field>
-                <mat-form-field class="example-full-width">
-                    <mat-label>Không có chủ đề</mat-label>
-                    <mat-select multiple>
-                        <mat-option>Chủ đề 1</mat-option>
-                        <mat-option>Chủ đề 2</mat-option>
-                        <mat-option>Chủ đề 3</mat-option>
-                        <mat-option>Chủ đề 4</mat-option>
-                    </mat-select>
-                </mat-form-field>
-            </form>
-            <button mat-button [matMenuTriggerFor]="Tieuchichamdiem"><i class="fas fa-plus"></i> Tiêu chí chấm
-                điểm</button>
-            <mat-menu #Tieuchichamdiem="matMenu">
-                <button mat-menu-item>Tại tiêu chí chấm điểm</button>
-                <button mat-menu-item>Sử dụng lại tiêu chí chấm điểm</button>
-                <button mat-menu-item>Nhập từ trang tính</button>
-            </mat-menu>
-        </div>
+    <div class="col-md-8">
     </div>
+    <div class="col-md-2">
+      <div>
+        <button mat-button>Giao bài</button>
+        <button mat-button [matMenuTriggerFor]="menu"><i class="fas fa-angle-down"></i></button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>Giao bài</button>
+          <button mat-menu-item>Lên lịch</button>
+          <button mat-menu-item>Lưu bản nháp</button>
+          <button mat-menu-item>Hủy bản nháp</button>
+        </mat-menu>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="row">
+        <div class="col-md-12" style="padding-top:10px">
+          <form class="example-form">
+            <mat-form-field class="example-full-width" style="width:100%">
+              <mat-label>Tiêu đề</mat-label>
+              <input matInput placeholder="Tiêu đề">
+            </mat-form-field>
+          </form>
+        </div>
+        <div class="col-md-12">
+          <form>
+            <div class="form-group">
+              <label for="exampleFormControlTextarea1">Hướng dẫn (không bắt buộc)</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="col-md-4 ">
+          <button mat-button [matMenuTriggerFor]="menuthem">Thêm</button>
+          <mat-menu #menuthem="matMenu">
+            <button mat-menu-item><i class="fab fa-google-drive style-icon"></i>Google Drive</button>
+            <button mat-menu-item><i class="fas fa-link style-icon"></i>Liên kết</button>
+            <button mat-menu-item type="button" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-folder-open style-icon" ></i>Tệp</button>
+            <button mat-menu-item><i class="fab fa-youtube style-icon"></i>Youtube</button>
+          </mat-menu>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <mat-label>Dành cho</mat-label>
+      <form class="example-form">
+        <mat-form-field class="example-full-width">
+          <mat-label>Chọn tên lớp</mat-label>
+          <mat-select multiple>
+            <mat-option>Cấu trúc dữ liệu </mat-option>
+            <mat-option>Lập trình HDT</mat-option>
+            <mat-option>Thiết kế web</mat-option>
+            <mat-option>Lập trình di động</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Chọn tất cả học viên</mat-label>
+          <mat-select multiple>
+            <mat-option>Tất cả học viên </mat-option>
+            <mat-option>Tên tài khoản</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </form>
+      <mat-label>Điểm</mat-label>
+      <form class="example-form">
+        <mat-form-field class="example-full-width">
+          <mat-label>100</mat-label>
+          <mat-select multiple>
+            <mat-option>Chưa chấm điểm</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </form>
+      <mat-label>Đến hạng</mat-label>
+      <form class="example-form">
+        <mat-form-field>
+          <input matInput [matDatepicker]="myDatePicker">
+          <mat-datepicker-toggle [for]="myDatePicker" matSuffix></mat-datepicker-toggle>
+          <mat-datepicker #myDatePicker></mat-datepicker>
+        </mat-form-field>
+      </form>
+      <mat-label>Chủ đề </mat-label>
+      <form class="example-form">
+        <mat-form-field class="example-full-width">
+          <mat-label>tạo chủ đề</mat-label>
+          <input matInput placeholder="Tạo chủ đề">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Không có chủ đề</mat-label>
+          <mat-select multiple>
+            <mat-option>Chủ đề 1</mat-option>
+            <mat-option>Chủ đề 2</mat-option>
+            <mat-option>Chủ đề 3</mat-option>
+            <mat-option>Chủ đề 4</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </form>
+      <button mat-button [matMenuTriggerFor]="Tieuchichamdiem"><i class="fas fa-plus"></i> Tiêu chí chấm
+        điểm</button>
+      <mat-menu #Tieuchichamdiem="matMenu">
+        <button mat-menu-item>Tại tiêu chí chấm điểm</button>
+        <button mat-menu-item>Sử dụng lại tiêu chí chấm điểm</button>
+        <button mat-menu-item>Nhập từ trang tính</button>
+      </mat-menu>
+    </div>
+  </div>
+  <!-- Button trigger modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <script>
-     $('.datepicker').datepicker();
+  $('.datepicker').datepicker();
 </script>
