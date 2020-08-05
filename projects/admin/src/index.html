@@ -54,36 +54,33 @@
       }
     }
 
-      // Hiển thị nút đăng nhập
-      function ShowLoginButton() {
-        document
-          .getElementById("btnLoginFB")
-          .setAttribute("style", "display:block");
-        document.getElementById("status").setAttribute("style", "display:none");
-      }
-
-      //Hàm welcome sử dụng API sau khi login
-      function showWelcome() {
-        FB.api("/me", function (response) {
-          document
-            .getElementById("btnLoginFB")
-            .setAttribute("style", "display:none");
-          console.log(response.name + " access granted");
-          document.getElementById("status").innerHTML = response.name;
-          document
-            .getElementById("status")
-            .setAttribute("style", "display:block");
-        });
-      }
-
-
     // Hiển thị nút đăng nhập
     function ShowLoginButton() {
-            document.getElementById('btnLoginFB').setAttribute('style', 'display:block');
-            document.getElementById('status').setAttribute('style', 'display:none');
-        }
-      
-    
+      document
+        .getElementById("btnLoginFB")
+        .setAttribute("style", "display:block");
+      document.getElementById("status").setAttribute("style", "display:none");
+    }
+
+    //Hàm welcome sử dụng API sau khi login
+    function showWelcome() {
+      FB.api("/me", function (response) {
+        document
+          .getElementById("btnLoginFB")
+          .setAttribute("style", "display:none");
+        console.log(response.name + " access granted");
+        document.getElementById("status").innerHTML = response.name;
+        document
+          .getElementById("status")
+          .setAttribute("style", "display:block");
+      });
+    }
+
+  // Hiển thị nút đăng nhập
+  function ShowLoginButton() {
+          document.getElementById('btnLoginFB').setAttribute('style', 'display:block');
+          document.getElementById('status').setAttribute('style', 'display:none');
+      }
 
     //Hàm welcome sử dụng API sau khi login
     function showWelcome() {
@@ -104,6 +101,9 @@
           $('#avatar').attr("src",source);
       })
     };
+     function getIDGroup(ctr){
+      alert(ctr.data);
+      }
     //Post lên Page message
     function POSTPageMess() {
       if(FBLoaded){
@@ -119,7 +119,7 @@
       }else {
         setTimeout("POSTPageMess",100);
       }
-               
+
     }
     //Post lên Page picture by url
     function POSTPagePictureUrl() {
@@ -137,7 +137,7 @@
       }else {
         setTimeout("POSTPagePictureUrl",100);
       }
-               
+
 	  }
   </script>
 

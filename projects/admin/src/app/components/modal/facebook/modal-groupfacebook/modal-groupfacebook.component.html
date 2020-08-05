@@ -94,7 +94,7 @@
           <table class="modal_chucnang__table table table-hover" id="">
             <thead class="bg__caothang text-white">
               <th scope="col" class="text-center">STT</th>
-              <th scope="col" class="text-center">ID</th>
+              <th scope="col" class="text-center">ID Group</th>
               <th scope="col" class="text-center">Tên Lớp</th>
               <th scope="col" class="text-center">Link</th>
               <th scope="col" class="text-center">Người tạo</th>
@@ -105,7 +105,7 @@
               <tr *ngFor=" let d of lopTams |filter: searchGroup; index as stt" (click)="insertDateforForm(d)">
                 <td class="text-center">{{stt+1}}</td>
                 <td class="text-center">
-                  <label >{{d.maLopHoc}}</label>
+                  <div class="a" id="maGoup + {{stt}}">{{d.IDGroupFB}}</div>
                 </td>
                 <td class="text-center">
                   <label >{{d.tenVietTat}}</label>
@@ -122,7 +122,7 @@
                 <td class="text-center">
                   <div class="form-group">
                     <span class="modal_chucnang__button__delete ml-2 mdi mdi-delete-outline mdi-24px"></span>
-                    <button class="modal_chucnang__button btn btn-outline-success px-4 mx-2" (click)="openDetail()">View</button>
+                    <button class="modal_chucnang__button btn btn-outline-success px-4 mx-2" (click)="openDetail(d)" onclick="getIDGroup(this)" data="{{d.IDGroupFB}}">View</button>
                   </div>
                 </td>
               </tr>

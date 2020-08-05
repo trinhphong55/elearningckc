@@ -1,3 +1,4 @@
+import { ChangeDetialFB } from './../../../../services/changeDetailFB.service';
 import { data } from 'jquery';
 import { LopHocService } from './../../../../services/lop-hoc.service';
 import { Component, OnInit } from '@angular/core';
@@ -29,6 +30,7 @@ export class ModalGroupfacebookComponent implements OnInit {
   addForm: FormGroup;
   statusElementList = {};
   isDone = false;
+  text = '';
   //Khai báo list
   public bactamlist = [];
   public bacList: any;
@@ -40,7 +42,8 @@ export class ModalGroupfacebookComponent implements OnInit {
     private modalService: ModalService,
     private nganhngheservice: NganhNgheService,
     private bacservice: BacService,
-    private lopService: LopHocService
+    private lopService: LopHocService,
+    private _changeDetailFB: ChangeDetialFB
   ) {}
   searchGroup;
   ngOnInit(): void {
@@ -68,6 +71,7 @@ export class ModalGroupfacebookComponent implements OnInit {
       linkGroup: new FormControl(),
       tenGroup: new FormControl(),
     });
+    this._changeDetailFB.setTitleFormGroupFB(this.text);
   }
   //Validator
   get maBac() {
@@ -122,7 +126,6 @@ export class ModalGroupfacebookComponent implements OnInit {
     this.lopService.getAll().subscribe((lop) => {
       this.lop = lop;
       this.lopTams = this.lop;
-      console.log(lop);
     });
   }
 
@@ -189,10 +192,14 @@ export class ModalGroupfacebookComponent implements OnInit {
         IDGroupFB: this.addForm.value.IDGroup,
         linkGroupFB: this.addForm.value.linkGroup,
       })
+
       .subscribe((res) => console.log(res));
   }
-  openDetail() {
+  openDetail(detail) {
     this.modalService.open('detail-groupfb');
+    this.text = detail.tenGroupFB;
+    this._changeDetailFB.setTitleFormGroupFB(this.text);
+    document.getElementById('tenDetail').textContent = (this.text);
   }
 
   closeModal(id: string) {
