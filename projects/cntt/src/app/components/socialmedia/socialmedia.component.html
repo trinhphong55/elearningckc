@@ -1,18 +1,24 @@
 <section class="social_media__wrapper shadow">
   <a
+    target="_blank"
     class="social_media__facebook fab fa-facebook-f bg_gradient_facebook"
     [href]="facebook"
   ></a>
-  <a class="social_media__youtube fab fa-youtube" [href]="youtube"></a>
+  <a target="_blank" class="social_media__youtube fab fa-youtube" [href]="youtube"></a>
   <div class="social_media__search bg-white">
-    <form class="header_search">
+    <a
+      [routerLink]="['/timkiem']"
+      class="mdi mdi-magnify fg__caothang"
+      style="font-size: 36px;"
+    ></a>
+    <!-- <form class="header_search">
       <input
         type="text"
         class="header_search__input bg-white"
         placeholder="Nhập nội dung cần tìm kiếm"
       />
       <button class="header_search__button" type="reset"></button>
-    </form>
+    </form> -->
   </div>
   <a
     class="social_media__BackToTop mdi mdi-chevron-up bg__caothang"
