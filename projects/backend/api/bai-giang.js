@@ -44,3 +44,11 @@ exports.layTheoMaChuDe = async (req, res) => {
     .json({ message: "Máy chủ không sữ lý được", errors: error, status: 500 });
   }
 }
+exports.layTheo_MaLHP = async (req, res) => {
+  try {
+    const chuDes = await baiGiangModel.find({ maLopHocPhan:req.params.maLopHocPhan });
+    return res.json({count:chuDes.length, data: chuDes, message: "Lấy thành công", status: 200 });
+  } catch (error) {
+    res.json(error);
+  }
+}

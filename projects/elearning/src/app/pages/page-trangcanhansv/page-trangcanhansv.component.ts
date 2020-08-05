@@ -86,6 +86,8 @@ export class PageTrangcanhansvComponent implements OnInit {
     // this.layLopHocPhan();
     // this.layCotDiemSinhVienLHP();
     this.sinhVienFormGroup = new FormGroup({
+      mssv: new FormControl(''),
+      gioiTinh: new FormControl(''),
       ho: new FormControl(''),
       ten: new FormControl(''),
       email: new FormControl(''),
@@ -102,6 +104,12 @@ export class PageTrangcanhansvComponent implements OnInit {
       chonLop: new FormControl(''),
       chonHocKi: new FormControl(''),
     });
+  }
+  get mssv() {
+    return this.sinhVienFormGroup.get('mssv');
+  }
+  get gioiTinh() {
+    return this.sinhVienFormGroup.get('gioiTinh');
   }
   get ho() {
     return this.sinhVienFormGroup.get('ho');
@@ -178,6 +186,8 @@ export class PageTrangcanhansvComponent implements OnInit {
     }, err => console.log(err));
   }
   public setValueSinhVienFormGroup(sinhVien: SinhVien) {
+    this.mssv.setValue(sinhVien.maSinhVien);
+    this.gioiTinh.setValue(sinhVien.gioiTinh);
     this.ho.setValue(sinhVien.ho);
     this.ten.setValue(sinhVien.ten);
     this.ngaySinh.setValue(sinhVien.ngaySinh);

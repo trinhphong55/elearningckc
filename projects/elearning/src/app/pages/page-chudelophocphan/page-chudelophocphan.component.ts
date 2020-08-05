@@ -23,6 +23,8 @@ import { XembaitapsvComponent } from '../../components/content/chudelophocphan/a
 export class PageChudelophocphanComponent implements OnInit {
   public dsChuDe: ChuDe[] = [];
   public dsBaiGiang: BaiGiang[] = [];
+  public maLopHocPhan:number = 1;
+
   // @Output  dsBaiGiang: BaiGiang[] = [];
 
   constructor(
@@ -39,7 +41,7 @@ export class PageChudelophocphanComponent implements OnInit {
   }
 
   public layDS_ChuDe() {
-    this.chuDeService.layTatCa().subscribe(
+    this.chuDeService.layTheo_maLopHocPhan(this.maLopHocPhan).subscribe(
       (res: any) => {
         if (res.data) {
           this.dsChuDe = res.data;

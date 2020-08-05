@@ -32,6 +32,7 @@ const cnttThongTinChung = require("./cnttThongTinChung");
 const ctDiemLopHP = require("./ct-diemsv-lhp");
 const ChuDe = require("./chu-de");
 const baiGiang = require("./bai-giang");
+const binhLuan = require("./binh-luan");
 
 router.use("/loaimonhoc", LoaiMonHoc);
 // router.use("/lophocphan", LopHocPhanRoutes);
@@ -71,6 +72,7 @@ const validate = khoabomonController.checkValidate();
 const NganhNgheRoutes = require("./NganhNghe");
 const BacRoutes = require("./Bac");
 const diemsinhvienModel = require("../models/diemsinhvien.model");
+const { themBinhLuan } = require("./binh-luan");
 //nganhnghe
 router.use("/", NganhNgheRoutes);
 //bac
@@ -144,10 +146,15 @@ router.get("/ct-diemsv-lophocphan/:masv", ctDiemLopHP.layCTDiemLopHPtheoMaSV);
 //=========================== Routes ChuDe =============================================
 router.get("/chude", ChuDe.layTatCa);
 router.get("/chude/:maChuDe", ChuDe.layMot);
+router.get("/chude/:maLopHocPhan/lop-hoc-phan", ChuDe.layTheo_MaLHP);
+
 router.post("/chude", ChuDe.them);
 //=========================== Routes BaiGiang =============================================
 router.get("/baigiang", baiGiang.layTatCa);
 router.get("/baigiang/:maChuDe", baiGiang.layTheoMaChuDe);
 router.post("/baigiang", baiGiang.them);
-
+router.get("/baigiang/:maLopHocPhan/lop-hoc-phan", baiGiang.layTheo_MaLHP);
+//========================= Routes BinhLuan ==========================================
+router.get("/binhluan/:loaiBaiViet/baiviet/:maBaiViet", binhLuan.layBinhLuan_theoBaiViet);
+router.post("/binhluan", binhLuan.themBinhLuan);
 module.exports = router;

@@ -17,7 +17,10 @@ const ChuDeSchema = new Schema({
     required:true,
 
   },
-
+  maLopHocPhan:{
+    type:String,
+    required:true,
+  },
   trangThai:{
     type:Number,
     require:true,

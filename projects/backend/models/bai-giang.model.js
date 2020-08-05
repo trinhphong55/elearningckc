@@ -23,7 +23,7 @@ const BaiGiangSchema = new Schema({
     required:true,
 
   },
-  maLopHocHocPhan:{
+  maLopHocPhan:{
     type:String,
     required:true,
 

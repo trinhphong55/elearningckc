@@ -11,6 +11,8 @@ import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 export class PageBaigiangComponent implements OnInit {
 
   public dsChuDe :ChuDe[] = [];
+  public maLopHocPhan:number = 1;
+
 
   constructor(
     private route: ActivatedRoute,
@@ -22,7 +24,7 @@ export class PageBaigiangComponent implements OnInit {
     this.layDS_ChuDe();
   }
   public layDS_ChuDe(){
-    this.chuDeService.layTatCa().subscribe((res:any) => {
+    this.chuDeService.layTheo_maLopHocPhan(this.maLopHocPhan).subscribe((res:any) => {
       if(res.data){
         this.dsChuDe = res.data;
 

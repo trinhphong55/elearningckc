@@ -13,6 +13,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class Chude2Component implements OnInit {
   public chuDe:ChuDe;
   public dsBaiGiang: BaiGiang[] = [];
+  public maLopHocPhan:number = 1;
 
   constructor(
     private route: ActivatedRoute,

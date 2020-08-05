@@ -4,6 +4,7 @@ setChuDe = (req) => {
   return {
     thuTu:req.thuTu,
     maChuDe: req.maChuDe,
+    maLopHocPhan:req.maLopHocPhan,
     tenChuDe: req.tenChuDe,
     ngayChinhSua: req.ngayChinhSua?req.ngayChinhSua:(new Date()).toISOString(),
     nguoiChinhSua: req.nguoiChinhSua,
@@ -36,6 +37,14 @@ exports.layMot = async(req, res) => {
   try {
     const chuDes = await chuDeModel.findOne({ maChuDe:req.params.maChuDe });
     return res.json({data: chuDes, message: "Lấy thành công", status: 200 });
+  } catch (error) {
+    res.json(error);
+  }
+}
+exports.layTheo_MaLHP = async (req, res) => {
+  try {
+    const chuDes = await chuDeModel.find({ maLopHocPhan:req.params.maLopHocPhan });
+    return res.json({count:chuDes.length,data: chuDes, message: "Lấy thành công", status: 200 });
   } catch (error) {
     res.json(error);
   }

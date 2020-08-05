@@ -102,9 +102,7 @@ exports.capNhatSinhVien = async (req, res) => {
     if(!err.isEmpty()){
       res.status(422).json(err.errors);
     }
-  
     let tokens = "12341234";
-    console.log(req.body.sdt.length);
    if(req.body.sdt.length != 10){
      return res.status(403).json({
       message: "Số điện thoại không hợp lệ",
