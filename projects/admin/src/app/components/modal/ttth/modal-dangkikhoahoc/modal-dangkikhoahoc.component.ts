@@ -17,13 +17,6 @@ export class ModalDangkikhoahocComponent implements OnInit {
       dom: 'Bfrtip',
       buttons: [
         'excel',
-        {
-          text: 'Some button',
-          key: '1',
-          action: function (e, dt, node, config) {
-            alert('Button activated');
-          }
-        }
       ]
     };
   }

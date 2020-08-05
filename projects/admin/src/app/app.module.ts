@@ -68,7 +68,6 @@ import { ModalDangkikhoahocComponent } from './components/modal/ttth/modal-dangk
 import { ModalHomeCamonComponent } from './components/modal/ttth/modal-home-camon/modal-home-camon.component';
 import { ModalHomeTienichComponent } from './components/modal/ttth/modal-home-tienich/modal-home-tienich.component';
 import { ModalKhoahocComponent } from './components/modal/ttth/modal-khoahoc/modal-khoahoc.component';
-import { ModalLichkhaigiangComponent } from './components/modal/ttth/modal-lichkhaigiang/modal-lichkhaigiang.component';
 import { ModalLienheComponent } from './components/modal/ttth/modal-lienhe/modal-lienhe.component';
 import { ModalMenuComponent } from './components/modal/ttth/modal-menu/modal-menu.component';
 import { ModalHomeChuongtrinhdaotaoComponent } from './components/modal/ttth/modal-home-chuongtrinhdaotao/modal-home-chuongtrinhdaotao.component';
@@ -86,6 +85,8 @@ import { ModalDanhmucbaivietComponent } from './components/modal/cntt/modal-danh
 import { ModalQuanlybosuutapcnttComponent } from './components/modal/cntt/modal-quanlybosuutapcntt/modal-quanlybosuutapcntt.component';
 import { ModalThongtinchungComponent } from './components/modal/cntt/modal-thongtinchung/modal-thongtinchung.component';
 import { ModalTtthLophocComponent } from './components/modal/ttth/modal-ttth-lophoc/modal-ttth-lophoc.component';
+import { ModelTtthDotthiComponent } from './components/modal/ttth/model-ttth-dotthi/model-ttth-dotthi.component';
+import { ModalDangkidotthiComponent } from './components/modal/ttth/modal-dangkidotthi/modal-dangkidotthi.component';
 
 @NgModule({
   declarations: [
@@ -142,7 +143,6 @@ import { ModalTtthLophocComponent } from './components/modal/ttth/modal-ttth-lop
     ModalHomeCamonComponent,
     ModalHomeTienichComponent,
     ModalKhoahocComponent,
-    ModalLichkhaigiangComponent,
     ModalLienheComponent,
     ModalMenuComponent,
     ModalHomeChuongtrinhdaotaoComponent,
@@ -160,7 +160,9 @@ import { ModalTtthLophocComponent } from './components/modal/ttth/modal-ttth-lop
     ModalDanhmucbaivietComponent,
     ModalQuanlybosuutapcnttComponent,
     ModalThongtinchungComponent,
-    ModalTtthLophocComponent
+    ModalTtthLophocComponent,
+    ModelTtthDotthiComponent,
+    ModalDangkidotthiComponent,
   ],
   imports: [
     BrowserModule,

@@ -15,6 +15,7 @@ import { PageChitiettintucComponent } from './pages/page-chitiettintuc/page-chit
 import { PageDangkikhoahocComponent } from './pages/page-dangkikhoahoc/page-dangkikhoahoc.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PageDanhsachlophocComponent } from './pages/page-danhsachlophoc/page-danhsachlophoc.component';
+import { PageDangkidotthiComponent } from './pages/page-dangkidotthi/page-dangkidotthi.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +28,7 @@ import { PageDanhsachlophocComponent } from './pages/page-danhsachlophoc/page-da
     PageChitiettintucComponent,
     PageDangkikhoahocComponent,
     PageDanhsachlophocComponent,
+    PageDangkidotthiComponent,
   ],
   imports: [
     BrowserModule,
