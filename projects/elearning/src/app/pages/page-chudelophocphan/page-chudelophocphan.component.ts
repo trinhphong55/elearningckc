@@ -2,7 +2,7 @@ import { BaiGiang } from '../../models/bai-giang.interface';
 import { BaiGiangService } from './../../services/bai-giang.service';
 import { ChuDe } from './../../models/chu-de.interface';
 import { ChuDeService } from './../../services/chu-de.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { TaobaitapComponent } from '../../components/content/chudelophocphan/taobaitap/taobaitap.component';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
@@ -23,17 +23,19 @@ import { XembaitapsvComponent } from '../../components/content/chudelophocphan/a
 export class PageChudelophocphanComponent implements OnInit {
   public dsChuDe: ChuDe[] = [];
   public dsBaiGiang: BaiGiang[] = [];
+  // @Output  dsBaiGiang: BaiGiang[] = [];
 
   constructor(
     public dialog: MatDialog,
-    private router: ActivatedRoute,
-    private route: Router,
+    private route: ActivatedRoute,
+    private router: Router,
     private chuDeService: ChuDeService,
     private baiGiangService: BaiGiangService
   ) {}
   ngOnInit(): void {
     this.layDS_BaiGiang();
     this.layDS_ChuDe();
+
   }
 
   public layDS_ChuDe() {
@@ -75,6 +77,7 @@ export class PageChudelophocphanComponent implements OnInit {
       console.log(res);
       this.layDS_ChuDe();
       this.layDS_BaiGiang();
+
     });
   }
   openTaobaiktra() {

@@ -5,8 +5,8 @@
         <div class="list-group">
           <button mat-button class="list-group-item list-group-item-action" (click)="showAllchude()">Tất cả chủ
             đề</button>
-          <button mat-button class="list-group-item list-group-item-action" *ngFor="let item of dsChuDe"
-            (click)="xem_ChuDe(item.maChuDe)">
+          <button mat-button class="list-group-item list-group-item-action"   *ngFor="let item of dsChuDe"
+          (click)="xem_ChuDe(item.maChuDe)">
             <ng-container>
               {{ item.tenChuDe }}
             </ng-container>
