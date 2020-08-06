@@ -1,17 +1,16 @@
 <div class="pt-4">
-    <section class="breadcrumb_container">
-        <div class="container-fluid pl-md-0">
-            <nav class="breadcrumb_nav">
-                <li class="breadcrumb_item">
-                    <a class="breadcrumb_link" href="#">Trang chủ</a>
-                </li>
-                <li class="breadcrumb_item">
-                    <a class="breadcrumb_link" href="#">Chủ đề</a>
-                </li>
-                <li class="breadcrumb_item">
-                    <a class="breadcrumb_link" href="#">Lorem ipsum dolor sit amet.</a>
-                </li>
-            </nav>
-        </div>
-    </section>
+  <section class="breadcrumb_container">
+    <div class="container-fluid pl-md-0">
+      <nav class="breadcrumb_nav">
+        <li class="breadcrumb_item">
+          <a class="breadcrumb_link" routerLink="/">Trang chủ</a>
+        </li>
+        <li class="breadcrumb_item" *ngFor="let breadcrumb of breadcrumbs">
+          <a class="breadcrumb_link" [routerLink]="breadcrumb.url">{{
+            breadcrumb.label
+          }}</a>
+        </li>
+      </nav>
+    </div>
+  </section>
 </div>

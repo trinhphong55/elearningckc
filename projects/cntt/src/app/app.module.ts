@@ -16,7 +16,6 @@ import { PageContactComponent } from './pages/page-contact/page-contact.componen
 import { PageSearchComponent } from './pages/page-search/page-search.component';
 import { PageDocumentComponent } from './pages/page-document/page-document.component';
 import { PageJobComponent } from './pages/page-job/page-job.component';
-import { PageJobDetailComponent } from './pages/page-job-detail/page-job-detail.component';
 import { SocialmediaComponent } from './components/socialmedia/socialmedia.component';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 import { TienichsvComponent } from './components/tienichsv/tienichsv.component';
@@ -26,7 +25,7 @@ import { PageDanhsachtintucComponent } from './pages/page-danhsachtintuc/page-da
 import { SliderHighlightComponent } from './components/slider-highlight/slider-highlight.component';
 import { SliderCohoivieclamComponent } from './components/slider-cohoivieclam/slider-cohoivieclam.component';
 import { SliderTintucnoibatComponent } from './components/slider-tintucnoibat/slider-tintucnoibat.component';
-
+import { PageBaivietComponent } from './pages/page-baiviet/page-baiviet.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +38,6 @@ import { SliderTintucnoibatComponent } from './components/slider-tintucnoibat/sl
     PageSearchComponent,
     PageDocumentComponent,
     PageJobComponent,
-    PageJobDetailComponent,
     SocialmediaComponent,
     BreadcrumbComponent,
     TienichsvComponent,
@@ -49,6 +47,7 @@ import { SliderTintucnoibatComponent } from './components/slider-tintucnoibat/sl
     SliderHighlightComponent,
     SliderCohoivieclamComponent,
     SliderTintucnoibatComponent,
+    PageBaivietComponent,
   ],
   imports: [
     BrowserModule,

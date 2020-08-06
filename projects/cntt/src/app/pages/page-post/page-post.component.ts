@@ -27,5 +27,5 @@ export class PagePostComponent implements OnInit {
       this.cnttTinTucKhac = data.data;
     });
   }
-  
+
 }
