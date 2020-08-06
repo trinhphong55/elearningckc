@@ -78,7 +78,10 @@
 
                     <button mat-button>{{dsbl.count}} nhận xét của lớp học</button>
                     <ng-container *ngFor="let bl of dsbl.data">
-                      <p>{{bl.noiDung}}</p>
+                      <div class="nx-showname">
+                        <h6>{{bl.nguoiTao}}</h6> <i>{{bl.ngayTao}}</i>
+                        <p>{{bl.noiDung}}</p>
+                      </div>
                     </ng-container>
 
                     <p style="border-top: solid 1px black;"><button mat-button (click)="openXBTGV()">Xem bài
