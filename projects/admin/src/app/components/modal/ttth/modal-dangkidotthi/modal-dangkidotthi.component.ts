@@ -26,13 +26,15 @@ export class ModalDangkidotthiComponent implements OnInit {
     this.modalService.close(id)
   }
   getdanhsach(): void {
-    this.DangkidotthiService.get().subscribe(data => this.DKDT = data);
+    this.DangkidotthiService.get().subscribe((data) => {this.DKDT = data; setTimeout(() => {}, 0);});
   }
   delete(DKDT: any):void {
     this.DangkidotthiService.delete(DKDT)
     .subscribe(data => {
       this.DKDT.push(data);
+      setTimeout(() => {}, 0);
     });
+    this.getdanhsach();
     this.toastr.success('Xóa thành công');
     // window.location.reload();
   }

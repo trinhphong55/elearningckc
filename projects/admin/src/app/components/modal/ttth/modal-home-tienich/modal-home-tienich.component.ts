@@ -36,6 +36,7 @@ export class ModalHomeTienichComponent implements OnInit {
 
   getdanhsach(): void {
     this.tienichService.get().subscribe((data) => {this.TienIch = data;
+      setTimeout(() => {}, 0);
     });
   }
 

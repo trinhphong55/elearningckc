@@ -18,7 +18,7 @@
                 <select class="modal_chucnang__select2 form-control" #lophoc>
                   <option></option>
                   <ng-container *ngFor="let item of LopHoc">
-                    <option  value="{{item.lop}}">{{item.lop}}</option>
+                    <option  value="{{item.makhoahoc + '-' + item.lop + '-' + item.dot + '-' + item.buoihoc + '-' + item.giaovien}}">{{item.makhoahoc + '-' + item.lop + '-' + item.dot + '-' + item.buoihoc + '-' + item.giaovien}}</option>
                   </ng-container>
                 </select>
               </div>

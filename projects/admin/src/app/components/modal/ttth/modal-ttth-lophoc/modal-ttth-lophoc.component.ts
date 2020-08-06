@@ -4,7 +4,6 @@ import { LophocService } from '../../../../services/ttth/lophoc.service';
 import { KhoahocService } from '../../../../services/ttth/khoahoc.service';
 import { ttthLopHoc } from '../../../../../models/ttthLopHoc';
 import { ToastrService } from 'ngx-toastr';
-import { exit } from 'process';
 
 @Component({
   selector: 'app-modal-ttth-lophoc',
@@ -15,6 +14,7 @@ export class ModalTtthLophocComponent implements OnInit {
   constructor(private modalService: ModalService,private lophocService: LophocService,private khoahocService: KhoahocService ,private toastr: ToastrService) { }
   LopHoc: ttthLopHoc[];
   MaKhoaHoc: any[];
+  getYear = new Date().getFullYear();
   ngOnInit(): void {
     this.getdanhsach();
     this.getmakhoahoc();
@@ -35,7 +35,7 @@ export class ModalTtthLophocComponent implements OnInit {
     const newItem: ttthLopHoc = new ttthLopHoc();
     newItem.makhoahoc = makhoahoc;
     newItem.dot = dot;
-    newItem.lop = makhoahoc + '-' + new Date().getFullYear() + '-' + dot + '-' + buoihoc + '-' + giaovien;
+    newItem.lop =  String(this.getYear);
     newItem.buoihoc = buoihoc;
     newItem.giohoc = giohoc;
     newItem.ngaykhaigiang = ngaykhaigiang;
@@ -49,6 +49,7 @@ export class ModalTtthLophocComponent implements OnInit {
     this.lophocService.add(newItem)
       .subscribe(data => {
         this.LopHoc.push(data);
+        setTimeout(() => {}, 0);
       });
     this.getdanhsach();
     this.toastr.success('Thêm thành công');
@@ -71,6 +72,7 @@ export class ModalTtthLophocComponent implements OnInit {
     this.lophocService.delete(LopHoc)
     .subscribe(data => {
       this.LopHoc.push(data);
+      setTimeout(() => {}, 0);
     });
     this.getdanhsach();
     // window.location.reload();

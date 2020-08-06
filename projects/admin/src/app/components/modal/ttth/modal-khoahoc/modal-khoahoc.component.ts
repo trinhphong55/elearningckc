@@ -38,7 +38,7 @@ export class ModalKhoahocComponent implements OnInit {
   }
 
   getdanhsach(): void {
-    this.khoahocService.get().subscribe((data) => this.KhoaHoc = data);
+    this.khoahocService.get().subscribe((data) => {this.KhoaHoc = data;});
   }
 
   // add
@@ -80,6 +80,7 @@ export class ModalKhoahocComponent implements OnInit {
     this.khoahocService.add(newItem)
       .subscribe(data => {
         this.KhoaHoc.push(data);
+        setTimeout(() => {}, 0);
       });
     this.getdanhsach();
     this.toastr.success('Thêm thành công');
@@ -105,6 +106,7 @@ export class ModalKhoahocComponent implements OnInit {
     this.khoahocService.delete(KhoaHoc)
     .subscribe(data => {
       this.KhoaHoc.push(data);
+      setTimeout(() => {}, 0);
     });
     this.getdanhsach();
     // window.location.reload();

@@ -41,6 +41,7 @@ export class ModalTintucComponent implements OnInit {
 
   getTinTucfromServices(): void {
     this.tintucService.getTinTuc().subscribe((data) => {this.TinTuc = data;
+      setTimeout(() => {}, 0);
     });
   }
 

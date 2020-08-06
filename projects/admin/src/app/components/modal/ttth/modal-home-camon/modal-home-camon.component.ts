@@ -21,7 +21,7 @@ export class ModalHomeCamonComponent implements OnInit {
     this.modalService.close(id)
   }
   getdanhsach(): void {
-    this.camonService.get().subscribe(data => this.CamOn = data);
+    this.camonService.get().subscribe((data) => {this.CamOn = data; setTimeout(() => {}, 0);});
   }
    addCamOn(tieudechinh: string,tieudephu: string,icon: string): void {
       tieudechinh = tieudechinh.trim();

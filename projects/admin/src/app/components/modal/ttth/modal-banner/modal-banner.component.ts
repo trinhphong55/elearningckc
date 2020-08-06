@@ -79,7 +79,9 @@ export class ModalBannerComponent implements OnInit  {
        this.bannerService.addBanner(newItem)
          .subscribe(addBanner => {
            this.Banner.push(addBanner);
+           setTimeout(() => {}, 0);
          });
+        this.getBannerfromServices();
        this.toastr.success('Thêm thành công');
      }
    }
@@ -110,8 +112,9 @@ export class ModalBannerComponent implements OnInit  {
     this.bannerService.xoaBanner(Banner)
     .subscribe(xoaBanner => {
       this.Banner.push(xoaBanner);
+      setTimeout(() => {}, 0);
     });
+    this.getBannerfromServices();
     this.toastr.success('Xóa thành công');
-    window.location.reload();
   }
 }

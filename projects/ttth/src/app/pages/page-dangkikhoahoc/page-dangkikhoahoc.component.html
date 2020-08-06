@@ -112,7 +112,7 @@
                 <label class="font-weight-bold text-dark text-2 required">Lớp học</label>
                 <select  class="form-control" #lophoc>
                   <ng-container *ngFor="let item of LopHoc">
-                    <option value="{{item.lop}}">{{item.lop}} - {{item.ngaykhaigiang | date:'dd/MM/yyyy'}}</option>
+                    <option value="{{item.makhoahoc + '-' + item.lop + '-' + item.dot + '-' + item.buoihoc + '-' + item.giaovien}}">{{item.makhoahoc + '-' + item.lop + '-' + item.dot + '-' + item.buoihoc + '-' + item.giaovien}}</option>
                   </ng-container>
                 </select>
             </div>

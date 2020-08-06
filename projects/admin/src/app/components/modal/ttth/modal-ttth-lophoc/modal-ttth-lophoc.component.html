@@ -46,7 +46,7 @@
             <div class="col-auto">
               <div class="modal_chucnang__group__button">
                 <button class="modal_chucnang__button btn btn-outline-primary px-4 mx-2" [disabled]="!makhoahoc.value || !dot.value || !giaovien.value|| !buoihoc.value|| !giohoc.value|| !hocphi.value || !ngaykhaigiang.value "
-                  (click)="add(makhoahoc.value,dot.value,giaovien.value,buoihoc.value,giohoc.value,ngaykhaigiang.value,hocphi.value);makhoahoc.value=''; dot.value=''; giaovien.value=''; buoihoc.value=''; giohoc.value=''; hocphi.value=''"><img
+                  (click)="add(makhoahoc.value,dot.value,giaovien.value,buoihoc.value,giohoc.value,ngaykhaigiang.value,hocphi.value);makhoahoc.value=''; dot.value=''; giaovien.value=''; buoihoc.value=''; giohoc.value=''; hocphi.value=''; ngaykhaigiang.value=''"><img
                     class="modal_chucnang__button__icon mb-2" src="assets/img/icons/add.png" alt="image icon">
                   <div>Thêm mới</div>
                 </button>
@@ -73,8 +73,8 @@
                 <input type="text" class="form-control"  [(ngModel)]="selectedItem.dot">
               </div>
               <div class="form-group">
-                <label>Lớp</label>
-                <input type="text" class="form-control"  [(ngModel)]="selectedItem.lop">
+                <label>Giáo viên</label>
+                <input type="text" class="form-control" [(ngModel)]="selectedItem.giaovien">
               </div>
               <div class="form-group">
                 <label>Buổi học</label>
@@ -117,7 +117,6 @@
                 <th scope="col">Giờ học</th>
                 <th scope="col">Ngày khai giảng</th>
                 <th scope="col">Học phí</th>
-                <th scope="col">Lớp</th>
                 <th class="text-center" scope="col"><span
                     class="modal_chucnang__button__save mdi mdi-content-save-outline mdi-24px"></span></th>
               </tr>
@@ -131,8 +130,6 @@
                 <td>{{item.giohoc}}</td>
                 <td>{{item.ngaykhaigiang}}</td>
                 <td>{{item.hocphi}}</td>
-                <td>{{item.lop}}</td>
-
                 <td class="text-center">
                   <span class="modal_chucnang__button__delete mdi mdi-pencil mdi-24px  mr-2"
                     (click)="onSelect(item);imageSrc=null"></span>

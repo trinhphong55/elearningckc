@@ -17,13 +17,15 @@ export class ModalLienheComponent implements OnInit {
     this.modalService.close(id)
   }
   getdanhsach(): void {
-    this.LienheService.get().subscribe(data => this.LienHe = data);
+    this.LienheService.get().subscribe((data) => {this.LienHe = data; setTimeout(() => {}, 0);});
   }
   delete(LienHe: any):void {
     this.LienheService.delete(LienHe)
     .subscribe(data => {
       this.LienHe.push(data);
+      setTimeout(() => {}, 0);
     });
+    this.getdanhsach();
     this.toastr.success('Xóa thành công');
     // window.location.reload();
   }
