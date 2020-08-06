@@ -9,7 +9,7 @@ import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { LopHocPhanService } from '../../../../../admin/src/app/services/lophocphan.service';
 import { LopHocService } from '../../../../../admin/src/app/services/lop-hoc.service';
 import { from } from 'rxjs';
-
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-page-moinguoi',
@@ -26,23 +26,26 @@ export class PageMoinguoiComponent implements OnInit {
   dsTenHocSinh: any;
   dsLopHP: any
   maLopHoc: any;
+  soluong:any;
   constructor(public dialog: MatDialog,
     private apiService: ApiService,
     private sinhVienService: SinhVienService,
     private gvlhpService: GvlhpService,
     private router: ActivatedRoute, private route: Router,
     private lopHocPhanService: LopHocPhanService,
-    private lopHocService: LopHocService,) { }
+    private lopHocService: LopHocService,
+    private cookie:CookieService) { }
 
   ngOnInit(): void {
     this.danhSachGiaoVien(),
       this.danhSachLopHocPhan();
     this.danhSachHocSinh();
+    this.moiGiaoVien();
     this.maLophocPhan = this.router.snapshot.paramMap.get('id');
-    this.maLopHoc;
   }
   openMoigv() {
     this.dialog.open(MoigvComponent, { width: '400px' });
+    this.cookie.set("maLophocPhan",this.maLophocPhan)
   }
   openMoisv() {
     this.dialog.open(MoisvComponent, { width: '400px' });
@@ -84,15 +87,13 @@ export class PageMoinguoiComponent implements OnInit {
         this.dsLopHP = dsLopHP
         this.dsLopHP = this.dsLopHP.filter(x => {
           if (x.maLopHocPhan == this.maLophocPhan)
-          this.maLopHoc = x.maLopHoc;
-            return x;
+            this.maLopHoc = x.maLopHoc;
+          return x;
         })
         this.sinhVienService.laysinhvien(this.maLopHoc).subscribe(
           dsHocSinh => {
             this.dsHocSinh = dsHocSinh;
-          },
-          (error) => {
-            console.log(error);
+            this.soluong=this.dsHocSinh.length;
           }
         )
       },
@@ -104,5 +105,10 @@ export class PageMoinguoiComponent implements OnInit {
 
   //ds hoc sinh
   danhSachHocSinh() {
+  }
+
+  //moi giao vien
+  moiGiaoVien(){
+
   }
 }
