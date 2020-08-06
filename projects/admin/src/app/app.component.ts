@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
 
   // Cờ đã đăng nhập
   // isLogged: Boolean = true;
-  isLogged: Boolean = true;
+  isLogged: Boolean = false;
 
   loginForm = new FormGroup({
     email: new FormControl(),
@@ -30,6 +30,13 @@ export class AppComponent implements OnInit {
       alert('Bạn không có quyền cập vào trang admin');
       window.location.href = "http://localhost:4400";
     }
+  }
+
+  onLogout(): void {
+    console.log('logout');
+    setCookie('token', '', '0');
+    setCookie('role', '', '0');
+    window.location.href = "https://localhost:4200";
   }
 
   onLogin(): void {
@@ -56,7 +63,6 @@ export class AppComponent implements OnInit {
         if(response.data != null && response.data.role != 'admin'){
           alert('Bạn không có quyền cập vào trang admin');
         }
-
       }
     )
   }
