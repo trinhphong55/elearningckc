@@ -1208,3 +1208,9 @@ input:focus { outline: none; }
     width: 100%;
     margin-bottom: 30px;
   }
+  .select2-container--default .select2-selection--single{
+    border-color: rgba(0, 0, 0, 0.09);
+    font-size: 0.85rem;
+    line-height: 1.85;
+    height: calc(1.5em + .75rem + 2px);
+  }

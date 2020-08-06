@@ -33,7 +33,7 @@
             </div>
             <div class="form-group col-lg-6">
                 <label class="font-weight-bold text-dark text-2 required">Nơi sinh</label>
-                <select class="form-control " tabindex="-1" aria-hidden="true" #noisinh>
+                <select class="form-control ttth__select2" tabindex="-1" aria-hidden="true" #noisinh>
                     <option data-select2-id="select2-data-2-jvbd"></option>
                                                                     <option value="An Giang">An Giang</option>
                                                                     <option value="Bà Rịa - Vũng Tàu">Bà Rịa - Vũng Tàu</option>
@@ -110,7 +110,7 @@
           <div class="form-row">
             <div class="form-group col">
                 <label class="font-weight-bold text-dark text-2 required">Lớp học</label>
-                <select  class="form-control" #lophoc>
+                <select  class="form-control ttth__select2" #lophoc>
                   <ng-container *ngFor="let item of LopHoc">
                     <option value="{{item.makhoahoc + '-' + item.lop + '-' + item.dot + '-' + item.buoihoc + '-' + item.giaovien}}">{{item.makhoahoc + '-' + item.lop + '-' + item.dot + '-' + item.buoihoc + '-' + item.giaovien}}</option>
                   </ng-container>
