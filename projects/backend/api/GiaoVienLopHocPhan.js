@@ -35,5 +35,17 @@ router.post("/", async (req, res) => {
     })
     .catch((err) => console.log(err));
 });
+//trinh phong
+router.post('/giaovienlophocphan', async (req, res) => {
+  try {
+    const gvhp = new GVLHP(req.body);
+      var data = await gvhp.save();
+      res.status(201).json({ data });
+     
+       }
+   catch (error) {
+    return error;
+  }
+});
 
 module.exports = router;

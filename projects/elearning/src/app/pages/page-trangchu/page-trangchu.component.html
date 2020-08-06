@@ -7,9 +7,7 @@
                     <div class="name-class">
                         <div>
                             <ng-template *ngFor="let lop of dsLop" [ngIf]="l.maLopHoc == lop.maLopHoc">
-                                <a [routerLink]="[{ outlets: { primary: ['lophocphan'], navbar: ['lophocphan'] } }]">
-                                    {{lop.tenLop}}
-                                </a>
+                                <a [routerLink]="[{ outlets: { primary: ['lophocphan',l.maLopHocPhan], navbar: ['lophocphan',l.maLopHocPhan] } }]">{{lop.tenLop}}</a>
                             </ng-template>
                         </div>
                         <!-- <div [(ngModel)]="maLopHoc">
@@ -271,7 +269,7 @@
                             <a [routerLink]="[{ outlets: { primary: ['lophocphan'], navbar: ['lophocphan'] } }]">
                                 Thiết kế Web
                               </a>
-                           
+
                         </div>
                         <div>
                             <span>10 sinh viên</span>
