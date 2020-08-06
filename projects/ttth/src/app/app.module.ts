@@ -18,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { PageDanhsachlophocComponent } from './pages/page-danhsachlophoc/page-danhsachlophoc.component';
 import { PageDangkidotthiComponent } from './pages/page-dangkidotthi/page-dangkidotthi.component';
 import { PageTimkiemComponent } from './pages/page-timkiem/page-timkiem.component';
+import { PageTracuudiemComponent } from './pages/page-tracuudiem/page-tracuudiem.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,6 +33,7 @@ import { PageTimkiemComponent } from './pages/page-timkiem/page-timkiem.componen
     PageDanhsachlophocComponent,
     PageDangkidotthiComponent,
     PageTimkiemComponent,
+    PageTracuudiemComponent,
   ],
   imports: [
     BrowserModule,

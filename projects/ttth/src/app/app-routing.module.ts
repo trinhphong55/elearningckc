@@ -8,6 +8,7 @@ import { PageTintucComponent } from './pages/page-tintuc/page-tintuc.component';
 import { PageDanhsachlophocComponent } from './pages/page-danhsachlophoc/page-danhsachlophoc.component';
 import { PageDangkidotthiComponent } from './pages/page-dangkidotthi/page-dangkidotthi.component';
 import { PageTimkiemComponent } from './pages/page-timkiem/page-timkiem.component';
+import { PageTracuudiemComponent } from './pages/page-tracuudiem/page-tracuudiem.component';
 
 
 const routes: Routes = [
@@ -34,6 +35,9 @@ const routes: Routes = [
   },
   {
     path: 'timkiem', component: PageTimkiemComponent
+  },
+  {
+    path: 'tracuudiem', component: PageTracuudiemComponent
   },
 ];
 

@@ -1,0 +1,78 @@
+<section class="mt-4">
+  <div class="container">
+      <div class="row">
+              <div class="col-12">
+                      <div class="breadcrumbs">
+                          <a class="breadcrumb__step breadcrumb__step--active" routerLink="/">Trang chủ</a>
+                          <a class="breadcrumb__step" href="">Kết quả thi</a>
+                      </div>
+              </div>
+      </div>
+  </div>
+</section>
+<section class="search_page__wrapper my-4 wrap_tracuudiem">
+  <div class="container ">
+    <div class="px-3 py-4 p-lg-5 bg-white shadow rounded-lg">
+      <div class="row search_page__form justify-content-center">
+        <div class="col-md-11">
+          <form  class="row">
+            <div class="col">
+              <input class="form-control mb-3 mb-md-0" maxlength="10" placeholder="Nhập mã số sinh viên" #mssv/>
+            </div>
+            <div class="col-md-auto">
+              <button class="w-100 btn btn-primary bg__caothang px-md-4 px-lg-5" (click)="TraCuuDiem(mssv.value);mssv.value=''">
+               Xem kết quả
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="tra-cuu-diem container ">
+    <div class="px-3 py-4 p-lg-5 bg-white shadow rounded-lg mt-4">
+      <div class="h5 mb-4" *ngIf="!DiemThi || DiemThi.length == 0">Không có kết quả</div>
+      <ng-container  *ngIf="DiemThi">
+        <div class="row justify-content-center" *ngFor="let item of DiemThi">
+          <div class="col-md-12">
+            <div class="h5 mb-4">{{item.hoten}}</div>
+              <div class="row mb-4">
+                <div class="col"><i class="fas fa-map-marker-alt"></i><span>MSSV: </span>{{item.mssv}}</div>
+                <div class="col"><i class="fas fa-envelope"></i><span>Ngày sinh: </span>{{item.ngaysinh}}</div>
+              </div>
+              <div class="row mb-4">
+                <div class="col"><i class="fas fa-phone"></i><span>SBD: </span>{{item.sobaodanh}}</div>
+                <div class="col"><i class="fas fa-address-card"></i><span>Nơi sinh: </span>{{item.noisinh}}</div>
+              </div>
+              <div class="row mb-4">
+                <div class="col"><i class="fas fa-book-open"></i><span>Lớp: </span>{{item.lop}}</div>
+              </div>
+          </div>
+          <div class="col-md-12  py-4 border-top">
+            <div class="row mb-4">
+              <div class="col"><span>Tổng điểm: </span><div class="btn btn-danger">{{item.tongdiem}}</div></div>
+              <div class="col"><span>Xếp loại: </span><div class="btn btn-success">{{item.xeploai}}</div></div>
+            </div>
+            <div class="row mb-4">
+              <div class="col"><i class="far fa-calendar"></i>Ngày thi: {{item.ngaythi}}</div>
+              <div class="col"><i class="fab fa-cuttlefish"></i>Lập trình C++: {{item.laptrinhc}}</div>
+            </div>
+            <div class="row mb-4">
+              <div class="col"><i class="fas fa-clock"></i>Giờ thi: {{item.giothi}}</div>
+              <div class="col"><i class="fas fa-file-word"></i>MS Word: {{item.msword}}</div>
+            </div>
+            <div class="row mb-4">
+              <div class="col"><i class="fas fa-door-open"></i>Phòng thi: {{item.phongthi}}</div>
+              <div class="col"><i class="fas fa-file-excel"></i>MS Excel: {{item.msexcel}}</div>
+            </div>
+            <div class="row mb-4">
+              <div class="col"></div>
+              <div class="col"><i class="fas fa-file-powerpoint"></i>MS Powerpoint: {{item.mspowerpoint}}</div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+    </div>
+  </div>
+</section>

@@ -87,6 +87,7 @@ import { ModalThongtinchungComponent } from './components/modal/cntt/modal-thong
 import { ModalTtthLophocComponent } from './components/modal/ttth/modal-ttth-lophoc/modal-ttth-lophoc.component';
 import { ModelTtthDotthiComponent } from './components/modal/ttth/model-ttth-dotthi/model-ttth-dotthi.component';
 import { ModalDangkidotthiComponent } from './components/modal/ttth/modal-dangkidotthi/modal-dangkidotthi.component';
+import { ModalDiemthiComponent } from './components/modal/ttth/modal-diemthi/modal-diemthi.component';
 
 @NgModule({
   declarations: [
@@ -163,6 +164,7 @@ import { ModalDangkidotthiComponent } from './components/modal/ttth/modal-dangki
     ModalTtthLophocComponent,
     ModelTtthDotthiComponent,
     ModalDangkidotthiComponent,
+    ModalDiemthiComponent,
   ],
   imports: [
     BrowserModule,
