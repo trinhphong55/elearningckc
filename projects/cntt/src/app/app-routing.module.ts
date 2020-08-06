@@ -8,6 +8,7 @@ import { PageSearchComponent } from './pages/page-search/page-search.component';
 import { PageDocumentComponent } from './pages/page-document/page-document.component';
 import { PageJobComponent } from './pages/page-job/page-job.component';
 import { PageJobDetailComponent } from './pages/page-job-detail/page-job-detail.component';
+import { PageDanhsachtintucComponent } from './pages/page-danhsachtintuc/page-danhsachtintuc.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,9 @@ const routes: Routes = [
   },
   {
     path: 'job-detail', component: PageJobDetailComponent
+  },
+  {
+    path: 'list', component: PageDanhsachtintucComponent
   },
   {
     path: '**', component: PageNotfoundComponent

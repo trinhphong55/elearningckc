@@ -22,6 +22,7 @@ import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.componen
 import { TienichsvComponent } from './components/tienichsv/tienichsv.component';
 import { DonvilienketComponent } from './components/donvilienket/donvilienket.component';
 import { SlidersinhvienComponent } from './components/slidersinhvien/slidersinhvien.component';
+import { PageDanhsachtintucComponent } from './pages/page-danhsachtintuc/page-danhsachtintuc.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { SlidersinhvienComponent } from './components/slidersinhvien/slidersinhv
     TienichsvComponent,
     DonvilienketComponent,
     SlidersinhvienComponent,
+    PageDanhsachtintucComponent,
   ],
   imports: [
     BrowserModule,
