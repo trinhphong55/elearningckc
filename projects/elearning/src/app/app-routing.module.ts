@@ -10,9 +10,9 @@ import { NavbarNoneComponent } from './components/navbar/navbar-none/navbar-none
 import { PageBaigiangComponent } from './pages/page-baigiang/page-baigiang.component';
 import { PageMoinguoiComponent } from './pages/page-moinguoi/page-moinguoi.component';
 import { PageChudelophocphanComponent } from './pages/page-chudelophocphan/page-chudelophocphan.component';
-import { PageSodiemComponent } from './pages/page-sodiem/page-sodiem.component';
-import { PageHuongdanComponent } from './pages/page-huongdan/page-huongdan.component';
-import { PageBaitapgiaovienComponent } from './pages/page-baitapgiaovien/page-baitapgiaovien.component';
+import { PageCotodiemComponent } from './pages/page-cotdiem/page-cotdiem.component';
+import { PageTongdiemComponent } from './pages/page-tongdiem/page-tongdiem.component';
+import { PageChamdiemComponent } from './pages/page-chamdiem/page-chamdiem.component';
 import { PageCaidatComponent } from './pages/page-caidat/page-caidat.component';
 import { PageTrangcanhansvComponent } from './pages/page-trangcanhansv/page-trangcanhansv.component';
 import { PageTrangcanhangvComponent } from './pages/page-trangcanhangv/page-trangcanhangv.component';
@@ -52,16 +52,16 @@ const routes: Routes = [
     component: PageMoinguoiComponent,
   },
   {
-    path: 'sodiem',
-    component: PageSodiemComponent,
+    path: 'cotdiem',
+    component: PageCotodiemComponent,
   },
   {
-    path: 'huongdan',
-    component: PageHuongdanComponent,
+    path: 'tongdiem',
+    component: PageTongdiemComponent,
   },
   {
-    path: 'baitapgv',
-    component: PageBaitapgiaovienComponent,
+    path: 'chamdiem',
+    component: PageChamdiemComponent,
   },
   {
     path: '',

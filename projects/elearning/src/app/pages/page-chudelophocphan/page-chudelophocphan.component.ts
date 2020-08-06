@@ -9,13 +9,11 @@ import { TaobaitapComponent } from '../../components/content/chudelophocphan/tao
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { TaochudeComponent } from '../../components/content/chudelophocphan/taochude/taochude.component';
-import { TaobaiktraComponent } from '../../components/content/chudelophocphan/taobaiktra/taobaiktra.component';
-import { TaocauhoiComponent } from '../../components/content/chudelophocphan/taocauhoi/taocauhoi.component';
-import { TaotailieuComponent } from '../../components/content/chudelophocphan/taotailieu/taotailieu.component';
 import { XembaitapgvComponent } from '../../components/content/chudelophocphan/allchude/xembaitapgv/xembaitapgv.component';
-import { XemtailieugvComponent } from '../../components/content/chudelophocphan/allchude/xemtailieugv/xemtailieugv.component';
-import { XemtailieusvComponent } from '../../components/content/chudelophocphan/allchude/xemtailieusv/xemtailieusv.component';
 import { XembaitapsvComponent } from '../../components/content/chudelophocphan/allchude/xembaitapsv/xembaitapsv.component';
+import {TaobaigiangComponent} from '../../components/content/chudelophocphan/taobaigiang/taobaigiang.component';
+import {XembaiganggvComponent} from '../../components/content/chudelophocphan/allchude/xembaiganggv/xembaiganggv.component';
+import {XembaigiangsvComponent} from '../../components/content/chudelophocphan/allchude/xembaigiangsv/xembaigiangsv.component';
 
 @Component({
   selector: 'app-page-chudelophocphan',
@@ -102,26 +100,8 @@ export class PageChudelophocphanComponent implements OnInit {
       this.layDS_BaiGiang();
     });
   }
-  openTaobaiktra() {
-    this.dialog.open(TaobaiktraComponent, {
-      width: '100%',
-      height: '100vh',
-      maxWidth: '90vw',
-    });
-  }
-  openTaocauhoi() {
-    this.dialog.open(TaocauhoiComponent, {
-      width: '100%',
-      height: '100vh',
-      maxWidth: '90vw',
-    });
-  }
-  openTaotailieu() {
-    this.dialog.open(TaotailieuComponent, {
-      width: '100%',
-      height: '100vh',
-      maxWidth: '90vw',
-    });
+  openTaotailieu(){
+    this.dialog.open(TaobaigiangComponent,{width:'100%',height:'100vh',maxWidth:'90vw'});
   }
   openXBTGV() {
     this.dialog.open(XembaitapgvComponent, {
@@ -130,19 +110,11 @@ export class PageChudelophocphanComponent implements OnInit {
       maxWidth: '90vw',
     });
   }
-  openXTLGV() {
-    this.dialog.open(XemtailieugvComponent, {
-      width: '100%',
-      height: '100vh',
-      maxWidth: '90vw',
-    });
+  openXTLGV(){
+    this.dialog.open(XembaiganggvComponent,{width:'100%',height:'100vh',maxWidth:'90vw'});
   }
-  openXTLSV() {
-    this.dialog.open(XemtailieusvComponent, {
-      width: '100%',
-      height: '100vh',
-      maxWidth: '90vw',
-    });
+  openXTLSV(){
+    this.dialog.open(XembaigiangsvComponent,{width:'100%',height:'100vh',maxWidth:'90vw'});
   }
   openXBTSV() {
     this.dialog.open(XembaitapsvComponent, {

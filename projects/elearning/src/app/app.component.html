@@ -23,9 +23,10 @@
         <span>Đổi mật khẩu</span>
       </a>
       <hr class="my-1" />
-      <a [routerLink]="['/']" class="header_dropdown__item">
+      <button (click)="onLogout()" class="header_dropdown__item">
         <span class="mdi mdi-logout-variant mr-2"></span>
-        <span>Đăng xuất</span></a>
+        <span>Đăng xuất</span>
+      </button>
     </div>
   </div>
 </header>

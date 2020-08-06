@@ -12,7 +12,7 @@
     border-bottom: 1.5px solid #007b83;
 }
 .title-icon .title{
-    width: 83.2%;
+    width: 80%;
 
 }
 .title-icon .title h3{
@@ -23,8 +23,9 @@
     width: 20%;
 }
 .title-icon .icon button{
-    margin-left: 85px;
-   padding-top: 20px;
+    margin-left: 109px;
+    margin-top: 26px;
+    padding-top: 0px;
 }
 .content{
     width: 100%;
@@ -56,15 +57,6 @@
     position: relative;
     margin-top: 10px;
 }
-.bieumau a{
-    -webkit-box-flex: 1;
-    box-flex: 1;
-    -webkit-flex-grow: 1;
-    flex-grow: 1;
-    overflow: hidden;
-    text-decoration: none;
-    outline: none;
-  }
 .thongtin .tt-icon div i{
    font-size: 1.3rem;
    color: white;
@@ -244,4 +236,45 @@
   .input-field:focus {
     border: 2px solid #006666;
    
+  }
+  .bieumau a{
+    -webkit-box-flex: 1;
+    box-flex: 1;
+    -webkit-flex-grow: 1;
+    flex-grow: 1;
+    overflow: hidden;
+    text-decoration: none;
+    outline: none;
+  }
+  .po4Aib .mAeA1, .H5nYcc .mAeA1, .FGTZvd .mAeA1, .PRmYNe>* {
+    margin-right: 1rem;
+  }
+  .mAeA1 {
+    height: 4.375rem;
+    overflow: hidden;
+    width: 6.5625rem;
+  }
+  @media only screen and (max-width: 600px){
+
+    .style-mgt{
+      margin-top: 150px;
+    }
+    .title-icon .icon button {
+        margin-left: -9px;
+        padding-top: 00px;
+        margin-top: 27px;
+    }
+    .thongtin .tt-icon {
+        width: 23%;
+    }
+    .thongtin .tt-client{
+        width: 55%;
+    }
+    .thongtin .tt-client div {
+     
+        width: 130px;
+    }
+    .thongtin .tt-dealine {
+      display: none;
+    }
   }
