@@ -22,7 +22,7 @@ const routes: Routes = [
     path: 'tintuc', component: PageTintucComponent
   },
   {
-    path: 'chitiettintuc', component: PageChitiettintucComponent
+    path: 'chitiettintuc/:id', component: PageChitiettintucComponent
   },
   {
     path: 'dangkikhoahoc', component: PageDangkikhoahocComponent

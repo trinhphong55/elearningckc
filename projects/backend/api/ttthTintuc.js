@@ -112,8 +112,38 @@ router.post('/ttthxoatintuc', async (req, res) => {
     trangthai: false
   });
 })
-
-
+router.get("/tintucttth/:id", (req, res) => {
+  ttthtintuc.findById(req.params.id, (error, data) => {
+    if (error) {
+      return error;
+    }
+    res.json({ message: "Lấy bài viết thành công.", data: data });
+  });
+});
+router.get("/tintucttthkhac", (req, res) => {
+  ttthtintuc.find({trangthai: true},(error, data) => {
+    if (error) {
+      return res.json({
+        message: "Lấy danh sách bài viết thành công.",
+        data: [],
+        error: error,
+      });
+    }
+    res.json({ message: "Lấy danh sách bài viết thành công.", data: data });
+  }).limit(3);
+});
+router.get("/tintucttth", (req, res) => {
+  ttthtintuc.find({trangthai: true},(error, data) => {
+    if (error) {
+      return res.json({
+        message: "Lấy danh sách bài viết thành công.",
+        data: [],
+        error: error,
+      });
+    }
+    res.json({ message: "Lấy danh sách bài viết thành công.", data: data });
+  });
+});
 router.get("/search=:query", async (req, res) => {
   try {
     const newRegExp = (pattern) => new RegExp(`.*${pattern}.*`);
