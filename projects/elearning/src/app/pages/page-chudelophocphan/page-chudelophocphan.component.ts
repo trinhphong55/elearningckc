@@ -74,7 +74,6 @@ export class PageChudelophocphanComponent implements OnInit {
     this.binhLuanService.layBinhLuan(LoaiBaiViet, maBaiViet).subscribe(
       (res: any) => {
         res.data.forEach((element) => {
-          console.log(element.ngayTao);
           element.ngayTao =
             new Date(element.ngayTao).toLocaleDateString() +
             ' : ' +
@@ -100,6 +99,7 @@ export class PageChudelophocphanComponent implements OnInit {
     });
   }
   openTaotailieu() {
+
     this.dialog.open(TaobaigiangComponent, {
       width: '100%',
       height: '100vh',

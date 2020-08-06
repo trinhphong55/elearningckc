@@ -73,7 +73,7 @@ const validate = khoabomonController.checkValidate();
 const NganhNgheRoutes = require("./NganhNghe");
 const BacRoutes = require("./Bac");
 const diemsinhvienModel = require("../models/diemsinhvien.model");
-const { themBinhLuan } = require("./binh-luan");
+
 //nganhnghe
 router.use("/", NganhNgheRoutes);
 //bac

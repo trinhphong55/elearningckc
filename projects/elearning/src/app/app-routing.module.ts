@@ -1,3 +1,4 @@
+import { TaobaigiangComponent } from './components/content/chudelophocphan/taobaigiang/taobaigiang.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -45,6 +46,7 @@ const routes: Routes = [
       { path: '', component: PageChudelophocphanComponent },
       { path: 'all', component: PageChudelophocphanComponent },
       { path: 'chude/:id', component: Chude2Component },
+      { path: 'taobaigiang', component: TaobaigiangComponent },
     ],
   },
   {

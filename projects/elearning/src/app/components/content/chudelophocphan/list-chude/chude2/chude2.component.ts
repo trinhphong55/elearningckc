@@ -38,14 +38,12 @@ export class Chude2Component implements OnInit {
     );
   }
   public layDS_binhLuan_baiGiang(LoaiBaiViet, maBaiViet) {
+
     this.binhLuanService.layBinhLuan(LoaiBaiViet, maBaiViet).subscribe(
       (res: any) => {
-        res.data.forEach((element) => {
 
-          element.ngayTao =
-            new Date(element.ngayTao).toLocaleDateString() +
-            ' - ' +
-            new Date(element.ngayTao).toLocaleTimeString();
+        res.data.forEach((element) => {
+          element.ngayTao = new Date(element.ngayTao).toUTCString();
         });
         this.dsBinhLuan_baiGiang.push(res);
       },
@@ -62,6 +60,7 @@ export class Chude2Component implements OnInit {
       this.baiGiangService.layTheoMaChuDe(params.id).subscribe((res: any) => {
         if (res.data) {
           this.dsBaiGiang = [];
+          this.dsBinhLuan_baiGiang = [];
           this.dsBaiGiang = res.data;
           this.dsBaiGiang.forEach((el) => {
             el.ngayChinhSua = this.formatDate(el.ngayChinhSua);
@@ -72,8 +71,10 @@ export class Chude2Component implements OnInit {
     });
   }
   public onClick_BinhLuan(maBaiGiang){
+
     this.themBinhLuan(maBaiGiang);
     this.xem_ChuDe();
+    this.binhLuan.setValue('');
   }
   public themBinhLuan(maBaiGiang) {
     let data = {
@@ -83,7 +84,7 @@ export class Chude2Component implements OnInit {
       nguoiTao: '0306171249',
     };
     this.binhLuanService.themBinhluan(data).subscribe((res) => {
-      console.log(res);
+
     });
   }
 }

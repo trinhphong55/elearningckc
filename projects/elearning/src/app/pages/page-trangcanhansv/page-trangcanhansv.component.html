@@ -376,7 +376,7 @@
                 </select>
               </div>
             </div>
-            <div class="col-md-6">
+            <!-- <div class="col-md-6">
               <div class="form-group pr-3 pt-1">
                 <select class="form-control" id="exampleFormControlSelect1" formControlName="chonLop"
                   (change)="onChangBangDiem()">
@@ -384,7 +384,7 @@
                   <option *ngFor="let item of lopHocPhans" [ngValue]=item.maLopHocPhan>{{ item.tenLopHocPhan }}</option>
                 </select>
               </div>
-            </div>
+            </div> -->
 
           </div>
           <div class="row">
@@ -397,7 +397,7 @@
                         STT
                       </th>
                       <th scope="col">
-                        Tên lớp học phần
+                        Tên môn học
                       </th>
                       <th scope="col">
                         Điểm tổng kết
@@ -405,11 +405,13 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let item of diemSinhViens; index as i">
-                      <td>{{ i+1 }}</td>
-                      <td class="col-4">{{ item.tenLopHocPhan }}</td>
-                      <td class="col-4">{{ item.diem }}</td>
-                    </tr>
+                    <ng-container *ngFor="let item of dsKHDT; index as i">
+                      <tr>
+                        <td>{{ i+1 }}</td>
+                        <td class="col-4">{{ item.tenMonHoc }}</td>
+                        <td class="col-4">{{ item.diemSinhVien?.diem }}</td>
+                      </tr>
+                    </ng-container>
                   </tbody>
                 </div>
 

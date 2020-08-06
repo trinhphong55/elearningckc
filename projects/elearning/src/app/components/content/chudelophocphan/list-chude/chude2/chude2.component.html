@@ -75,7 +75,9 @@
                 </div>
 
                 <div class="nx-showname">
-                  <h6>{{bl.nguoiTao}} <i>{{bl.ngayTao}}</i></h6>
+                  <span>
+                    <h6>{{bl.nguoiTao}} </h6><i>{{bl.ngayTao}}</i>
+                  </span>
                   <p>{{bl.noiDung}}</p>
                 </div>
                 <div class="nx-menu">
@@ -105,7 +107,8 @@
           <div class="cm-showcomment">
             <form>
               <div class="input-container">
-                <button type="submit" (click)="onClick_BinhLuan(item.maBaiGiang)" class="btn"><i class="fas fa-paper-plane"></i></button>
+                <button type="submit" (keyup.enter)="onClick_BinhLuan(item.maBaiGiang)"
+                  (click)="onClick_BinhLuan(item.maBaiGiang)" class="btn"><i class="fas fa-paper-plane"></i></button>
                 <input class="input-field" placeholder="Thêm nhập xét của lớp học" [formControl]="binhLuan">
               </div>
             </form>

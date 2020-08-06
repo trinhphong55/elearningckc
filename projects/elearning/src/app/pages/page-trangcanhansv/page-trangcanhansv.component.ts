@@ -1,3 +1,6 @@
+import { MonhocService } from './../../services/monhoc.service';
+import { KHDT_DiemSinVien } from '../../models/khdt_diemsv.interface';
+import { KHDTService } from '../../services/khdt_diemsinhvien.service';
 import { SinhVien } from './../../models/SinhVien.interface';
 import { DiemSinhVien } from './../../models/diemsv.interface';
 import { DiemSinhVienService } from './../../../../../admin/src/app/services/diem-sinh-vien.service';
@@ -11,6 +14,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { LopHocPhan } from '../../models/lophocphan.interface';
+import { CTDT } from '../../models/ctdt.interface';
 
 @Component({
   selector: 'app-page-trangcanhansv',
@@ -37,6 +41,7 @@ export class PageTrangcanhansvComponent implements OnInit {
   public cotDiems: CotDiemSinhVienLopHocPhan[] = [];
 
   public diemSinhViens: DiemSinhVien[] = [];
+  public dsKHDT: KHDT_DiemSinVien[] = [];
 
   public sinhVienFormGroup: FormGroup;
   public locChiTietGroupForm: FormGroup;
@@ -77,7 +82,9 @@ export class PageTrangcanhansvComponent implements OnInit {
     private ctDiemsvLhpService: CtDiemsvLhpService,
     private LopHocPhanService: LopHocPhanService,
     private cotDiemService: CotDiemSinhVienLopHocPhanService,
-    private diemSinhVienService: DiemSinhVienService
+    private diemSinhVienService: DiemSinhVienService,
+    private kHDTService: KHDTService,
+    private monHocService:MonhocService
   ) {}
 
   ngOnInit(): void {
@@ -146,15 +153,20 @@ export class PageTrangcanhansvComponent implements OnInit {
   }
 
   public layThongTinSV(maSV: string) {
-    this.sinhVienService.getonesv(maSV).subscribe((sv) => {
-      if (sv.data) {
-        this.sinhVien = sv.data ;
-        this.setValueSinhVienFormGroup(this.sinhVien);
-        this.sinhViens.push(this.sinhVien);
+    this.sinhVienService.getonesv(maSV).subscribe(
+      (sv) => {
+        if (sv.data) {
+          this.sinhVien = sv.data;
+          let maCT = '3006171';
+          this.layCTDT_theoHocKi(this.chonHocKiBD.value, maCT);
+          this.setValueSinhVienFormGroup(this.sinhVien);
+          this.sinhViens.push(this.sinhVien);
+        }
+      },
+      (err) => {
+        console.log(err);
       }
-    }, (err) => {
-      console.log(err);
-    });
+    );
   }
   public capNhatSinhVien(data) {
     this.messages = [];
@@ -180,10 +192,13 @@ export class PageTrangcanhansvComponent implements OnInit {
   }
 
   public layDiemSinhVien(maSinhVien: string) {
-    this.diemSinhVienService.getAllFor(maSinhVien).subscribe((res: any) => {
-      this.diemSinhViens = res;
-      this.ganTenLopHocPhanDiemSV(this.diemSinhViens);
-    }, err => console.log(err));
+    this.diemSinhVienService.getAllFor(maSinhVien).subscribe(
+      (res: any) => {
+        this.diemSinhViens = res;
+        this.ganTenLopHocPhanDiemSV(this.diemSinhViens);
+      },
+      (err) => console.log(err)
+    );
   }
   public setValueSinhVienFormGroup(sinhVien: SinhVien) {
     this.mssv.setValue(sinhVien.maSinhVien);
@@ -266,6 +281,30 @@ export class PageTrangcanhansvComponent implements OnInit {
       });
     });
   }
+  public layCTDT_theoHocKi(hocKi, maCTDT) {
+    if(hocKi){
+      this.kHDTService
+      .getKHDTByHocKiNMaCTDT(maCTDT, hocKi)
+      .subscribe((res: any) => {
+        this.dsKHDT = res;
+        this.dsKHDT.forEach((khdt) => {
+          this.diemSinhViens.forEach((diem) => {
+            if ((diem.maDaoTao == khdt.maDaoTao)) {
+              khdt.diemSinhVien = diem;
+            }
+          });
+          this.monHocService.getMonHocFromMaMonHoc(khdt.maMonHoc).subscribe((res:any) =>{
+            khdt.tenMonHoc = res.tenMonHoc;
+          });
+
+        });
+      });
+    }
+    else{
+      this.dsKHDT = [];
+    }
+
+  }
   //################################# Xu ly su kien ##################################
   onChangeDanhSachCotDiem() {
     this.layThongTinSV(this.taiKhoan.displayName);
@@ -273,8 +312,9 @@ export class PageTrangcanhansvComponent implements OnInit {
   }
   onChangBangDiem() {
     this.chonHocKi.setValue('');
-    this.layThongTinSV(this.taiKhoan.displayName);
     this.layDiemSinhVien(this.taiKhoan.displayName);
+    this.layThongTinSV(this.taiKhoan.displayName);
+
   }
   onSubmitCapNhatSinhVien() {
     this.sinhVien.matKhau = this.password.value;
