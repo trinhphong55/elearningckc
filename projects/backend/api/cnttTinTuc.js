@@ -149,6 +149,18 @@ router.get("/danhsachtintuckhac", (req, res) => {
     res.json({ message: "Lấy danh sách bài viết thành công.", data: data });
   }).limit(3);
 });
+router.get("/danhsachtintuccntt", (req, res) => {
+  TinTuc.find({trangThai: 1},(error, data) => {
+    if (error) {
+      return res.json({
+        message: "Lấy danh sách bài viết thành công.",
+        data: [],
+        error: error,
+      });
+    }
+    res.json({ message: "Lấy danh sách bài viết thành công.", data: data });
+  });
+});
 // Get Tintuc by id
 router.get("/tintuc/:id", (req, res) => {
   TinTuc.findById(req.params.id, (error, data) => {
