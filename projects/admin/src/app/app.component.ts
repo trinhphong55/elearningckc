@@ -16,12 +16,6 @@ export class AppComponent implements OnInit {
   // isLogged: Boolean = true;
   isLogged: Boolean = false;
 
-  // Account
-  account = {
-    email: 'admin',
-    password: '123',
-  };
-
   loginForm = new FormGroup({
     email: new FormControl(),
     password: new FormControl(),
@@ -34,31 +28,32 @@ export class AppComponent implements OnInit {
     }
     if(getCookie('role') && getCookie('role') != 'admin'){
       alert('Bạn không có quyền cập vào trang admin');
+      window.location.href = "http://localhost:4400";
     }
   }
 
   onLogin(): void {
     this.authService.login(this.loginForm.value).subscribe(
       (response) => {
-        if(response.data.token && response.data.role == 'admin'){
+        if(response.data != null && response.data.role == 'admin'){
           setCookie('token', response.data.token, '7');
           setCookie('role', response.data.role, '7');
           setCookie('displayName', response.data.displayName, '7');
           this.isLogged = true;
         }
 
-        if(response.data.token && response.data.role != 'admin'){
+        if(response.data != null && response.data.role != 'admin'){
           setCookie('token', response.data.token, '7');
           setCookie('role', response.data.role, '7');
           setCookie('displayName', response.data.displayName, '7');
           window.location.href = "http://localhost:4400";
         }
 
-        if(response.data == ''){
-          alert("Mật khẩu hoặc tài khoản không chính xác");
+        if(response.data == null){
+          alert(response.msg);
         }
 
-        if(response.data != '' && response.data.role != 'admin'){
+        if(response.data != null && response.data.role != 'admin'){
           alert('Bạn không có quyền cập vào trang admin');
         }
 
