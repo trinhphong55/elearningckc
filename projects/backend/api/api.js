@@ -10,6 +10,7 @@ const groupFB = require("../api/groupFB");
 const boMon = require("../api/bomon");
 const TKB = require("./TKB");
 const login = require("./login");
+const BaiTap = require("./BaiTap");
 
 const sinhVien = require("./sinh-vien");
 const Diemsinhvien = require("./diemsinhvien");
@@ -41,6 +42,9 @@ router.use("/lhdt", LoaiHinhDaoTao);
 router.use("/lophocphan", LopHocPhan);
 router.use("/gvlhp", GiaoVienLopHocPhan);
 router.use("/tkb", TKB);
+
+//Elearning routes
+router.use("/baitap", BaiTap);
 //cnttRoute
 router.use("/slideshow", cnttSlideShowRoutes);
 router.use("/cnttTinTuc", cnttTinTucRoute);
