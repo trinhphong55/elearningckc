@@ -20,7 +20,7 @@ export class ChuDeService {
     return this.http.post(`${this.baseUrl}`,data);
   }
   public layTheo_maLopHocPhan(maLopHocPhan){
-    return this.http.get(`${this.baseUrl}/${maLopHocPhan}/lop-hoc-phan`);
+    return this.http.get(`${this.baseUrl}/${maLopHocPhan}/lop-hoc-phan/`);
 
   }
 

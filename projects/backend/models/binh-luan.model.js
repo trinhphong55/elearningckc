@@ -1,10 +1,12 @@
 const mongoose = require("mongoose");
+const { ObjectID } = require("mongodb");
 const Schema = mongoose.Schema;
 
 const BinhLuanSchema = new Schema({
   maBinhLuan:{
-    type:String,
-    required:true
+    type:ObjectID,
+    required:true,
+
   },
   loaiBaiViet:{
     type:String,

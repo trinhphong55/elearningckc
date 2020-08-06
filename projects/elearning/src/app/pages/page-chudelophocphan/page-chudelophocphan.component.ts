@@ -1,3 +1,5 @@
+import { BinhLuan } from './../../models/binh-luan.interface';
+import { BinhLuanService } from './../../services/binh-luan.service';
 import { BaiGiang } from '../../models/bai-giang.interface';
 import { BaiGiangService } from './../../services/bai-giang.service';
 import { ChuDe } from './../../models/chu-de.interface';
@@ -23,7 +25,8 @@ import { XembaitapsvComponent } from '../../components/content/chudelophocphan/a
 export class PageChudelophocphanComponent implements OnInit {
   public dsChuDe: ChuDe[] = [];
   public dsBaiGiang: BaiGiang[] = [];
-  public maLopHocPhan:number = 1;
+  public maLopHocPhan: number = 1;
+  public dsBinhLuan_baiGiang: any[] = [];
 
   // @Output  dsBaiGiang: BaiGiang[] = [];
 
@@ -32,12 +35,12 @@ export class PageChudelophocphanComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private chuDeService: ChuDeService,
-    private baiGiangService: BaiGiangService
+    private baiGiangService: BaiGiangService,
+    private binhLuanService: BinhLuanService
   ) {}
   ngOnInit(): void {
     this.layDS_BaiGiang();
     this.layDS_ChuDe();
-
   }
 
   public layDS_ChuDe() {
@@ -57,11 +60,29 @@ export class PageChudelophocphanComponent implements OnInit {
       (res: any) => {
         if (res.data) {
           this.dsBaiGiang = res.data;
-
           this.dsBaiGiang.forEach((el) => {
-            el.ngayChinhSua = new Date(el.ngayChinhSua).toUTCString();
+            // el.ngayChinhSua = new Date(el.ngayChinhSua);
+            el.ngayChinhSua =
+              new Date(el.ngayChinhSua).getHours() +
+              ':' +
+              new Date(el.ngayChinhSua).getMinutes() +
+              ' ngày: ' +
+              new Date(el.ngayChinhSua).getDay() +
+              '/' +
+              new Date(el.ngayChinhSua).getMonth();
+            console.log(el.maBaiGiang + ': ' + el.maChuDe);
+            this.layDS_binhLuan_baiGiang(1, el.maBaiGiang);
           });
+          console.log(this.dsBinhLuan_baiGiang);
         }
+      },
+      (err) => console.log(err)
+    );
+  }
+  public layDS_binhLuan_baiGiang(LoaiBaiViet, maBaiViet) {
+    this.binhLuanService.layBinhLuan(LoaiBaiViet, maBaiViet).subscribe(
+      (res: any) => {
+        this.dsBinhLuan_baiGiang.push(res);
       },
       (err) => console.log(err)
     );
@@ -79,7 +100,6 @@ export class PageChudelophocphanComponent implements OnInit {
       console.log(res);
       this.layDS_ChuDe();
       this.layDS_BaiGiang();
-
     });
   }
   openTaobaiktra() {
