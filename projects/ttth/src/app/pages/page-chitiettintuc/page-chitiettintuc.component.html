@@ -17,8 +17,8 @@
               <div class="col-md-9">
                   <div class="post-wrap">
                       <h2 class="sub-title">{{TinTuc.tentintuc}}</h2>
-                      <div class="posted"><i class="far fa-clock"></i>{{TinTuc.noidung}}</div>
-                      <div class="post-content" [innerHTML]="TinTuc.noiDung" >
+                      <div class="posted"><i class="far fa-clock"></i>{{TinTuc.updated_at}}</div>
+                      <div class="post-content" [innerHTML]="TinTuc.noidung" >
                       </div>
                   </div>
               </div>
@@ -26,7 +26,7 @@
                   <div class="other-news">
                       <h3 class="sub-title">TIN LIÊN QUAN</h3>
                       <div class="sub-news" *ngFor="let item of TinTucKhac">
-                          <div class="img-wrap"><img src="{{item.image}}" alt="co-khi"></div><a class="sub-title" href="/">{{item.tentintuc}}</a>
+                          <div class="img-wrap"><img src="{{item.image}}" alt="co-khi"></div><a class="sub-title" href="/chitiettintuc/{{item._id}}">{{item.tentintuc}}</a>
                           <div class="posted"><i class="far fa-clock"></i>{{item.updated_at}}</div>
                           <div class="news-content" [innerHTML]="item.description">
                           </div>

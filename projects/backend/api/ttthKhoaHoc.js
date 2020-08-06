@@ -33,6 +33,39 @@ router.post('/add', (req, res) => {
     res.json(data)
   })
 })
+
+router.get("/khoahoc/:id", (req, res) => {
+  ttthkhoahoc.findById(req.params.id, (error, data) => {
+    if (error) {
+      return error;
+    }
+    res.json({ message: "Lấy KH thành công.", data: data });
+  });
+});
+router.get("/khoahocttthkhac", (req, res) => {
+  ttthkhoahoc.find({trangthai: true},(error, data) => {
+    if (error) {
+      return res.json({
+        message: "Lấy danh sách KH không thành công.",
+        data: [],
+        error: error,
+      });
+    }
+    res.json({ message: "Lấy danh sách KH thành công.", data: data });
+  }).limit(3);
+});
+router.get("/khoahocttth", (req, res) => {
+  ttthkhoahoc.find({trangthai: true},(error, data) => {
+    if (error) {
+      return res.json({
+        message: "Lấy danh sách KH không thành công.",
+        data: [],
+        error: error,
+      });
+    }
+    res.json({ message: "Lấy danh sách KH thành công.", data: data });
+  });
+});
 // File upload settings
 
 const PATH = './uploads/cntt';

@@ -9,6 +9,7 @@ import { PageDanhsachlophocComponent } from './pages/page-danhsachlophoc/page-da
 import { PageDangkidotthiComponent } from './pages/page-dangkidotthi/page-dangkidotthi.component';
 import { PageTimkiemComponent } from './pages/page-timkiem/page-timkiem.component';
 import { PageTracuudiemComponent } from './pages/page-tracuudiem/page-tracuudiem.component';
+import { PageChitietkhoahocComponent } from './pages/page-chitietkhoahoc/page-chitietkhoahoc.component';
 
 
 const routes: Routes = [
@@ -20,6 +21,9 @@ const routes: Routes = [
   },
   {
     path: 'tintuc', component: PageTintucComponent
+  },
+  {
+    path: 'chitietkhoahoc/:id', component: PageChitietkhoahocComponent
   },
   {
     path: 'chitiettintuc/:id', component: PageChitiettintucComponent
