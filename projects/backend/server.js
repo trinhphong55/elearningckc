@@ -35,10 +35,10 @@ mongoose.connection.once("open", () => {
 });
 
 // enable CORS
-// app.use(cors());
-app.use(cors(
-  { credentials: true, origin: "http://localhost:4400" },
-));
+app.use(cors());
+// app.use(cors(
+//   { credentials: true, origin: "http://localhost:4400" },
+// ));
 
 
 // Make sure you place body-parser before your CRUD handlers!

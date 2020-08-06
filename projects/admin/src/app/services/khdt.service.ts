@@ -24,8 +24,8 @@ export class KHDTService {
     return this.http.get<KHDT[]>(url);
   }
 
-  addDSKHDT(ctdt: CTDT, dskhdt: KHDT[]): Observable<any> {
-    return this.http.post<any>(this.khdtURL, [ctdt, dskhdt], httpOptions);
+  addDSKHDT(ctdt: CTDT, dskhdt: KHDT[], hocKi: string): Observable<any> {
+    return this.http.post<any>(this.khdtURL, { dskhdt, ctdt, hocKi } , httpOptions);
   }
 
 }

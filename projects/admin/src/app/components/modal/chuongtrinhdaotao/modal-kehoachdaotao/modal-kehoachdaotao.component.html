@@ -11,7 +11,7 @@
             <div class="col-3">
               <div class="form-group">
                 <label>Bậc</label>
-                <select class="form-control" [(ngModel)]="ctdt.maBac" (change)="select()">
+                <select class="form-control" [(ngModel)]="ctdt.maBac" (change)="selectBac()">
                   <option *ngFor="let bac of dsBac" [value]="bac.maBac">{{ bac.tenBac }}</option>
                 </select>
               </div>
