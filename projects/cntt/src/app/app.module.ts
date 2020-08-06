@@ -23,6 +23,9 @@ import { TienichsvComponent } from './components/tienichsv/tienichsv.component';
 import { DonvilienketComponent } from './components/donvilienket/donvilienket.component';
 import { SlidersinhvienComponent } from './components/slidersinhvien/slidersinhvien.component';
 import { PageDanhsachtintucComponent } from './pages/page-danhsachtintuc/page-danhsachtintuc.component';
+import { SliderHighlightComponent } from './components/slider-highlight/slider-highlight.component';
+import { SliderCohoivieclamComponent } from './components/slider-cohoivieclam/slider-cohoivieclam.component';
+import { SliderTintucnoibatComponent } from './components/slider-tintucnoibat/slider-tintucnoibat.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +46,9 @@ import { PageDanhsachtintucComponent } from './pages/page-danhsachtintuc/page-da
     DonvilienketComponent,
     SlidersinhvienComponent,
     PageDanhsachtintucComponent,
+    SliderHighlightComponent,
+    SliderCohoivieclamComponent,
+    SliderTintucnoibatComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,9 +1,7 @@
-import { Component, OnInit, getPlatform } from '@angular/core';
-import { Swiper } from 'swiper';
+import { Component, OnInit } from '@angular/core';
 import { TrangChuService } from '../../services/trangchu.service';
 import { ThongTinChungService } from '../../services/thongtinchung.service';
 import { HeaderFooterService } from '../../services/header-footer.service';
-declare var $: any;
 
 @Component({
   selector: 'app-page-trangchu',
@@ -59,20 +57,7 @@ export class PageTrangchuComponent implements OnInit {
     this.getFooter();
   }
 
-  logData(): void {
-    // console.log(this._rawData);
-    // console.log('filter data theo tung vi tri');
-    // console.log('log listBaiVietQuanTrong');
-    // console.log(this.listBaiVietQuanTrong);
-    // console.log('log listCoHoiViecLam');
-    // console.log(this.listCoHoiViecLam);
-    // console.log('log listGioiThieuNgan');
-    // console.log(this.listGioiThieuNgan);
-    // console.log('log listTinTucNoiBat');
-    // console.log(this.listTinTucNoiBat);
-    // console.log(this.baiVietQuanTrongDauTien);
-    // console.log(this.gioiThieuNganDauTien);
-  }
+  logData(): void {}
 
   getDataCanHienThiLenTrangChu(): void {
     this.trangChuService.getDataCanHienThiLenTrangChu().subscribe((data) => {

@@ -46,7 +46,7 @@ export class SlidersinhvienComponent implements OnInit, AfterViewInit {
     this.cnttBoSuuTapService.danhSachItemSlider().subscribe((data) => {
       this.Item = data.data;
       setTimeout(() => {
-        console.log('run time out');
+        // console.log('run time out');
         this._slider.update();
       }, 0);
     });
