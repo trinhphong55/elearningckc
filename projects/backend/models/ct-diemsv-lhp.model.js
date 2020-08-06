@@ -16,7 +16,10 @@ const CTDiemSVLopHocPhan = new Schema({
     type: String,
     required: true,
   },
-
+  maChuDe: {
+    type: String,
+    required: true,
+  },
   diem: {
     type: Number,
     required: true,

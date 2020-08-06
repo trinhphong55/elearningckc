@@ -1,21 +1,21 @@
 export interface CotDiemSinhVienLopHocPhan {
-  maLopHocPhan:String;
+  maLopHocPhan:string;
 
-  maGiaoVien:String;
+  maGiaoVien:string;
 
-  maCotDiem:Number;
+  maCotDiem:number;
 
-  tenCotDiem:String;
+  tenCotDiem:string;
 
-  heSo:Number;
+  heSo:number;
 
-  tinhDiem:Number;
+  tinhDiem:number;
 
-  nguoiTao:String;
+  nguoiTao:string;
 
-  nguoiChinhSua:String;
+  nguoiChinhSua:string;
 
   ngayChinhSua:Date;
 
-  trangThai:Number;
+  trangThai:number;
 }

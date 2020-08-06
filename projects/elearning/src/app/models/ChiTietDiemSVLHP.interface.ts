@@ -1,19 +1,22 @@
 export interface ChiTietDiemSVLHP {
-  maSinhVien:String;
+  maSinhVien:string;
 
-  maHocPhan:Number;
-  tenLopHocPhan:String;
+  maHocPhan:number;
+  tenLopHocPhan:string;
 
-  maCotDiem:Number;
-  tenCotDiem:String;
+  maCotDiem:number;
+  tenCotDiem:string;
 
-  diem:Number;
+  maChuDe:string,
+  tenChuDe:string,
 
-  nguoiTao:String;
+  diem:number;
 
-  nguoiChinhSua:String;
+  nguoiTao:string;
 
-  ngayChinhSua:String;
+  nguoiChinhSua:string;
 
-  trangThai:Number;
+  ngayChinhSua:string;
+
+  trangThai:number;
 }

@@ -1,3 +1,5 @@
+import { ChuDe } from './../../models/chu-de.interface';
+import { ChuDeService } from './../../services/chu-de.service';
 import { MonhocService } from './../../services/monhoc.service';
 import { KHDT_DiemSinVien } from '../../models/khdt_diemsv.interface';
 import { KHDTService } from '../../services/khdt_diemsinhvien.service';
@@ -39,7 +41,7 @@ export class PageTrangcanhansvComponent implements OnInit {
   public lopHocPhans: LopHocPhan[] = [];
 
   public cotDiems: CotDiemSinhVienLopHocPhan[] = [];
-
+  public dsChuDe:ChuDe[] = [];
   public diemSinhViens: DiemSinhVien[] = [];
   public dsKHDT: KHDT_DiemSinVien[] = [];
 
@@ -84,7 +86,8 @@ export class PageTrangcanhansvComponent implements OnInit {
     private cotDiemService: CotDiemSinhVienLopHocPhanService,
     private diemSinhVienService: DiemSinhVienService,
     private kHDTService: KHDTService,
-    private monHocService:MonhocService
+    private monHocService: MonhocService,
+    private chuDeService:ChuDeService,
   ) {}
 
   ngOnInit(): void {
@@ -254,16 +257,27 @@ export class PageTrangcanhansvComponent implements OnInit {
         if (res) {
           this.lopHocPhans = res;
           this.lopHocPhans = this.locMaLopHocPhanTheoHocKi(this.lopHocPhans);
-          ChiTietDiem = this.loc_CTDiem_LopHocPhan(this.ctDiemLHPs);
-          console.log(ChiTietDiem);
-          ChiTietDiem.forEach((ct) => {
-            this.lopHocPhans.forEach((lop) => {
-              if (ct.maHocPhan == lop.maLopHocPhan) {
-                ct.tenLopHocPhan = lop.tenLopHocPhan;
-              }
+          if (this.lopHocPhans.length > 0) {
+            ChiTietDiem = this.loc_CTDiem_LopHocPhan(this.ctDiemLHPs);
+            ChiTietDiem.forEach((ct) => {
+              this.lopHocPhans.forEach((lop) => {
+                if (ct.maHocPhan == lop.maLopHocPhan) {
+                  ct.tenLopHocPhan = lop.tenLopHocPhan;
+                }
+              });
             });
-          });
-          this.ctDiemLHPs = ChiTietDiem;
+            ChiTietDiem.forEach(el => {
+              this.chuDeService.layMot(el.maChuDe).subscribe((res:any) => {
+                el.tenChuDe = res.data.tenChuDe;
+              })
+            })
+            this.ctDiemLHPs = ChiTietDiem;
+          }else{
+
+            this.ctDiemLHPs = [];
+          }
+
+
         }
       },
       (err) => console.log(err)
@@ -282,28 +296,27 @@ export class PageTrangcanhansvComponent implements OnInit {
     });
   }
   public layCTDT_theoHocKi(hocKi, maCTDT) {
-    if(hocKi){
+    if (hocKi) {
       this.kHDTService
-      .getKHDTByHocKiNMaCTDT(maCTDT, hocKi)
-      .subscribe((res: any) => {
-        this.dsKHDT = res;
-        this.dsKHDT.forEach((khdt) => {
-          this.diemSinhViens.forEach((diem) => {
-            if ((diem.maDaoTao == khdt.maDaoTao)) {
-              khdt.diemSinhVien = diem;
-            }
+        .getKHDTByHocKiNMaCTDT(maCTDT, hocKi)
+        .subscribe((res: any) => {
+          this.dsKHDT = res;
+          this.dsKHDT.forEach((khdt) => {
+            this.diemSinhViens.forEach((diem) => {
+              if (diem.maDaoTao == khdt.maDaoTao) {
+                khdt.diemSinhVien = diem;
+              }
+            });
+            this.monHocService
+              .getMonHocFromMaMonHoc(khdt.maMonHoc)
+              .subscribe((res: any) => {
+                khdt.tenMonHoc = res.tenMonHoc;
+              });
           });
-          this.monHocService.getMonHocFromMaMonHoc(khdt.maMonHoc).subscribe((res:any) =>{
-            khdt.tenMonHoc = res.tenMonHoc;
-          });
-
         });
-      });
-    }
-    else{
+    } else {
       this.dsKHDT = [];
     }
-
   }
   //################################# Xu ly su kien ##################################
   onChangeDanhSachCotDiem() {
@@ -314,7 +327,6 @@ export class PageTrangcanhansvComponent implements OnInit {
     this.chonHocKi.setValue('');
     this.layDiemSinhVien(this.taiKhoan.displayName);
     this.layThongTinSV(this.taiKhoan.displayName);
-
   }
   onSubmitCapNhatSinhVien() {
     this.sinhVien.matKhau = this.password.value;
@@ -334,7 +346,7 @@ export class PageTrangcanhansvComponent implements OnInit {
   ): ChiTietDiemSVLHP[] {
     let tmp = ChiTietDiems;
     ChiTietDiems = [];
-    if (this.chonLop.value || this.chonHocKi.value) {
+    if (this.chonLop.value && this.chonHocKi.value) {
       tmp.forEach((ct) => {
         if (ct.maHocPhan == this.chonLop.value) {
           ChiTietDiems.push(ct);
