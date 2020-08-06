@@ -41,7 +41,7 @@ export class PageTrangcanhansvComponent implements OnInit {
   public lopHocPhans: LopHocPhan[] = [];
 
   public cotDiems: CotDiemSinhVienLopHocPhan[] = [];
-  public dsChuDe:ChuDe[] = [];
+  public dsChuDe: ChuDe[] = [];
   public diemSinhViens: DiemSinhVien[] = [];
   public dsKHDT: KHDT_DiemSinVien[] = [];
 
@@ -87,7 +87,7 @@ export class PageTrangcanhansvComponent implements OnInit {
     private diemSinhVienService: DiemSinhVienService,
     private kHDTService: KHDTService,
     private monHocService: MonhocService,
-    private chuDeService:ChuDeService,
+    private chuDeService: ChuDeService
   ) {}
 
   ngOnInit(): void {
@@ -266,18 +266,28 @@ export class PageTrangcanhansvComponent implements OnInit {
                 }
               });
             });
-            ChiTietDiem.forEach(el => {
-              this.chuDeService.layMot(el.maChuDe).subscribe((res:any) => {
+            ChiTietDiem.forEach((el) => {
+              this.chuDeService.layMot(el.maChuDe).subscribe((res: any) => {
                 el.tenChuDe = res.data.tenChuDe;
-              })
-            })
+              });
+            });
             this.ctDiemLHPs = ChiTietDiem;
-          }else{
-
+          } else {
+            // ChiTietDiem.forEach((ct) => {
+            //   this.lopHocPhans.forEach((lop) => {
+            //     if (ct.maHocPhan == lop.maLopHocPhan) {
+            //       ct.tenLopHocPhan = lop.tenLopHocPhan;
+            //     }
+            //   });
+            // });
+            // ChiTietDiem.forEach((el) => {
+            //   this.chuDeService.layMot(el.maChuDe).subscribe((res: any) => {
+            //     el.tenChuDe = res.data.tenChuDe;
+            //   });
+            // });
+            // console.log(ChiTietDiem);
             this.ctDiemLHPs = [];
           }
-
-
         }
       },
       (err) => console.log(err)
@@ -371,6 +381,7 @@ export class PageTrangcanhansvComponent implements OnInit {
         }
       });
     }
+
     return lopHocPhans;
   }
 }
