@@ -55,13 +55,10 @@ import { PageCotodiemComponent } from './pages/page-cotdiem/page-cotdiem.compone
 import { PageTongdiemComponent } from './pages/page-tongdiem/page-tongdiem.component';
 import { PageChamdiemComponent } from './pages/page-chamdiem/page-chamdiem.component';
 import { PageCaidatComponent } from './pages/page-caidat/page-caidat.component';
-<<<<<<< HEAD
 import { HttpClientModule } from '@angular/common/http';
-=======
 import { PageTrangcanhansvComponent } from './pages/page-trangcanhansv/page-trangcanhansv.component';
 import { PageTrangcanhangvComponent } from './pages/page-trangcanhangv/page-trangcanhangv.component';
 
->>>>>>> master
 @NgModule({
   declarations: [
     AppComponent,
