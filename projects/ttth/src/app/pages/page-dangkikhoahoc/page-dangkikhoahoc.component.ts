@@ -1,21 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,AfterViewInit } from '@angular/core';
 import { LophocService } from '../../services/lophoc.service';
 import { DangkikhoahocService } from '../../services/dangkikhoahoc.service';
 import { ttthDangKiKhoaHoc } from '../../models/ttthDangKiKhoaHoc';
 // import { ToastrService } from 'ngx-toastr';
-
+declare var $: any;
 @Component({
   selector: 'app-page-dangkikhoahoc',
   templateUrl: './page-dangkikhoahoc.component.html',
   styleUrls: ['./page-dangkikhoahoc.component.css']
 })
-export class PageDangkikhoahocComponent implements OnInit {
+export class PageDangkikhoahocComponent implements OnInit,AfterViewInit {
   LopHoc: any[];
   DangKiKhoaHoc: ttthDangKiKhoaHoc[];
   constructor(private lophocService: LophocService,private dangkikhoahocService: DangkikhoahocService ) {}
 
   ngOnInit(): void {
     this.getLopHoc();
+  }
+  ngAfterViewInit(): void {
+    $(document).ready(function () {
+      $('.ttth__select2').select2();
+    });
   }
   getLopHoc(){
     this.lophocService.get().subscribe(data => this.LopHoc = data);

@@ -2,7 +2,9 @@
   <section class="home-banner">
       <div  class="swiper-container gallery_home__slider">
           <div class="swiper-wrapper">
-              <div class="swiper-slide" *ngFor="let item of Banner"><img [src]="item.image" alt="slide"></div>
+            <ng-container *ngFor="let item of Banner">
+              <a href="{{item.link}}" class="swiper-slide" ><img [src]="item.image" alt="slide"></a>
+            </ng-container>
           </div>
           <!-- Add Pagination -->
   <div class="swiper-pagination"></div>
@@ -37,9 +39,9 @@
       </div>
   </section>
   <section class="lich-thi " >
-      <a href="#">
+      <a [routerLink]="['/dangkikhoahoc']" routerLinkActive="router-link-active" >
           <div class="text-center pt-4 pb-4 ">
-              <h2 class="title">lịch thi</h2>
+              <h2 class="title">Đăng kí khóa học</h2>
               <img src="assets/img/line.png" alt="line">
               <br>
               <p>Chứng chỉ tin học quốc gia</p> <span>Dành cho thí sinh tự do</span>

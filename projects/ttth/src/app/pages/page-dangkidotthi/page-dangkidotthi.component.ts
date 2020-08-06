@@ -1,18 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,AfterViewInit } from '@angular/core';
 import { DangkidotthiService } from '../../services/dangkidotthi.service';
 import { ttthDangKiDotThi } from '../../models/ttthDangKiDotThi';
+declare var $: any;
 @Component({
   selector: 'app-page-dangkidotthi',
   templateUrl: './page-dangkidotthi.component.html',
   styleUrls: ['./page-dangkidotthi.component.css']
 })
-export class PageDangkidotthiComponent implements OnInit {
+export class PageDangkidotthiComponent implements OnInit,AfterViewInit {
   DotThi: any[];
   DangKiDotThi: ttthDangKiDotThi[];
   constructor(private DangkidotthiService: DangkidotthiService ) {}
 
   ngOnInit(): void {
     this.getDotThi();
+  }
+  ngAfterViewInit(): void {
+    $(document).ready(function () {
+      $('.ttth__select2').select2();
+    });
   }
   getDotThi(){
     this.DangkidotthiService.getDotThi().subscribe(data => this.DotThi = data);

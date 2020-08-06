@@ -33,7 +33,8 @@
             </div>
             <div class="form-group col-lg-6">
                 <label class="font-weight-bold text-dark text-2 required">Nơi sinh</label>
-                <select class="form-control " tabindex="-1" aria-hidden="true" #noisinh>
+                <select class="form-control ttth__select2" tabindex="-1" aria-hidden="true" #noisinh>
+                  <option value=""> </option>
                   <option value="An Giang">An Giang</option>
                   <option value="Bà Rịa - Vũng Tàu">Bà Rịa - Vũng Tàu</option>
                   <option value="Bắc Giang">Bắc Giang</option>
@@ -109,7 +110,7 @@
           <div class="form-row">
             <div class="form-group col">
                 <label class="font-weight-bold text-dark text-2 required">Đợt thi</label>
-                <select  class="form-control" #lophoc>
+                <select class="form-control ttth__select2" #lophoc>
                   <ng-container *ngFor="let item of DotThi">
                     <option value="{{item.lophoc}}">{{item.tendot}} - {{item.lophoc}} - {{item.ngaythi | date:'dd/MM/yyyy'}}</option>
                   </ng-container>
