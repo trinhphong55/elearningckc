@@ -9,6 +9,7 @@ const LoaiMonHoc = require("./LoaiMonHoc");
 const groupFB = require("../api/groupFB");
 const boMon = require("../api/bomon");
 const auth = require("./auth");
+const TKB = require("./TKB");
 
 const sinhVien = require("./sinh-vien");
 const Diemsinhvien = require("./diemsinhvien");
@@ -39,6 +40,7 @@ router.use("/khdt", KeHoachDaoTao);
 router.use("/lhdt", LoaiHinhDaoTao);
 router.use("/lophocphan", LopHocPhan);
 router.use("/gvlhp", GiaoVienLopHocPhan);
+router.use("/tkb", TKB);
 //cnttRoute
 router.use("/slideshow", cnttSlideShowRoutes);
 router.use("/cnttTinTuc", cnttTinTucRoute);
@@ -106,6 +108,7 @@ router.get("/lophoc/:id", LopHoc.getOne);
 router.get("/lophoc/:khoa/searchkhoa", LopHoc.getAllForkhoa);
 router.get("/lophoc/:maNganh/searchnganh", LopHoc.getAllForManghanh);
 router.get("/lophoc/mabac/:maBac", LopHoc.timLopTheoMaBac); //trinh phong them
+router.get("/lophoc/mactdt/:maCTDT", LopHoc.getDSLopHocbymaCTDT); // Yasuo fam 100 con linh trong 10 phut
 
 //Thêm dữ liệu vào KhoaBoMon
 router.post("/lophoc", LopHoc.checkValidate(), LopHoc.insert);
