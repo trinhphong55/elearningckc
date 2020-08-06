@@ -24,7 +24,7 @@ export class ModelTtthDotthiComponent implements OnInit {
   }
 
   getdanhsach(): void {
-    this.DotthiService.get().subscribe((data) => {this.DotThi = data});
+    this.DotthiService.get().subscribe((data) => {this.DotThi = data; });
   }
   getlophoc(): void {
     this.lophocService.get().subscribe((data) => this.LopHoc = data);
@@ -44,6 +44,7 @@ export class ModelTtthDotthiComponent implements OnInit {
     this.DotthiService.add(newItem)
       .subscribe(data => {
         this.DotThi.push(data);
+        setTimeout(() => {}, 0);
       });
     this.getdanhsach();
     this.toastr.success('Thêm thành công');
@@ -66,6 +67,7 @@ export class ModelTtthDotthiComponent implements OnInit {
     this.DotthiService.delete(DotThi)
     .subscribe(data => {
       this.DotThi.push(data);
+      setTimeout(() => {}, 0);
     });
     this.getdanhsach();
     // window.location.reload();

@@ -1,0 +1,83 @@
+<section class="search_page__wrapper my-4">
+  <div class="container bg-white shadow rounded-lg">
+    <div class="px-3 py-4 p-lg-5">
+      <div class="row search_page__form justify-content-center">
+        <div class="col-md-11">
+          <form [formGroup]="formSearch" (submit)="searchBaiViet()" class="row">
+            <div class="col">
+              <input
+                formControlName="query"
+                class="form-control mb-3 mb-md-0"
+                placeholder="Nhập từ khoá bài viết bạn muốn tìm..."
+              />
+            </div>
+            <div class="col-md-auto">
+              <button
+                [disabled]="disableButton"
+                class="w-100 btn btn-primary bg__caothang px-md-4 px-lg-5"
+              >
+                Tìm kiếm
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container bg-white shadow rounded-lg mt-4">
+    <div class="px-3 py-4 p-lg-5">
+      <div class="row justify-content-center">
+        <div class="col-md-11">
+          <div [ngClass]="{ 'd-none': !loading }" class="h5 mb-3">
+            Đang tìm kiếm
+          </div>
+          <section *ngIf="loading">
+            <ngx-skeleton-loader
+              count="5"
+              [theme]="{
+                'border-radius': '.25rem',
+                height: '20px',
+                'background-color': '#eee'
+              }"
+            >
+            </ngx-skeleton-loader>
+          </section>
+          <div class="h5 m-0" *ngIf="result.data.length === 0">
+            Chưa có kết quả
+          </div>
+          <div class="search_page__result mt-4" *ngIf="result.data.length > 0">
+            <div class="h5 m-3">Có {{ result.data.length }} kết quả</div>
+            <div class="py-4 border-top" *ngFor="let item of result.data">
+              <div class="row">
+                <div class="col-12 col-sm-auto">
+                  <div class="search_page__result__image mx-auto">
+                    <img [src]="item.image" alt="result item" />
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="search_page__result__title mt-2 mt-sm-0">
+                    <a
+                      class="font-weight-bold text-reset"
+                      routerLink="/chitiettintuc/{{ item._id }}"
+                      >{{ item.tentintuc }}</a
+                    >
+                  </div>
+                  <div class="small mt-2">
+                    <span class="mr-3"
+                      ><span class="fas fa-user mr-1"></span
+                      ><strong>{{ item.nguoitao || "Admin" }}</strong></span
+                    ><span
+                      ><span class="fas fa-clock mr-1"></span
+                      ><span>{{ item.updated_at }}</span></span
+                    >
+                  </div>
+                  <div class="mt-2">{{ item.description }}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

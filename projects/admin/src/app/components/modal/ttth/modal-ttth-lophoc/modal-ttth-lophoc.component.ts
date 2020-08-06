@@ -14,7 +14,7 @@ export class ModalTtthLophocComponent implements OnInit {
   constructor(private modalService: ModalService,private lophocService: LophocService,private khoahocService: KhoahocService ,private toastr: ToastrService) { }
   LopHoc: ttthLopHoc[];
   MaKhoaHoc: any[];
-
+  getYear = new Date().getFullYear();
   ngOnInit(): void {
     this.getdanhsach();
     this.getmakhoahoc();
@@ -31,15 +31,16 @@ export class ModalTtthLophocComponent implements OnInit {
   }
 
   // add
-  add(makhoahoc: string,dot: string,lop: string,buoihoc: string,giohoc: string,ngaykhaigiang: Date,hocphi: string): void {
+  add(makhoahoc: string,dot: string,giaovien: string,buoihoc: string,giohoc: string,ngaykhaigiang: string,hocphi: string): void {
     const newItem: ttthLopHoc = new ttthLopHoc();
     newItem.makhoahoc = makhoahoc;
     newItem.dot = dot;
-    newItem.lop = lop;
+    newItem.lop =  String(this.getYear);
     newItem.buoihoc = buoihoc;
     newItem.giohoc = giohoc;
     newItem.ngaykhaigiang = ngaykhaigiang;
     newItem.hocphi = hocphi;
+    newItem.giaovien = giaovien;
     newItem.trangthai = true;
     newItem.nguoitao = 'hieu';
     newItem.nguoisua = 'loc';
@@ -48,6 +49,7 @@ export class ModalTtthLophocComponent implements OnInit {
     this.lophocService.add(newItem)
       .subscribe(data => {
         this.LopHoc.push(data);
+        setTimeout(() => {}, 0);
       });
     this.getdanhsach();
     this.toastr.success('Thêm thành công');
@@ -70,6 +72,7 @@ export class ModalTtthLophocComponent implements OnInit {
     this.lophocService.delete(LopHoc)
     .subscribe(data => {
       this.LopHoc.push(data);
+      setTimeout(() => {}, 0);
     });
     this.getdanhsach();
     // window.location.reload();

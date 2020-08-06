@@ -1,10 +1,16 @@
 <body>
   <section class="home-banner">
-      <swiper  class="swiper-container">
+      <div  class="swiper-container gallery_home__slider">
           <div class="swiper-wrapper">
               <div class="swiper-slide" *ngFor="let item of Banner"><img [src]="item.image" alt="slide"></div>
           </div>
-      </swiper>
+          <!-- Add Pagination -->
+  <div class="swiper-pagination"></div>
+
+  <!-- Add Arrows -->
+  <div class="swiper-button-next"></div>
+  <div class="swiper-button-prev"></div>
+      </div>
   </section>
   <section class="chuong-trinh-dao-tao mt-100 " >
       <div class="container">

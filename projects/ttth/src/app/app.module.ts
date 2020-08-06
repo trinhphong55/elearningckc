@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -16,6 +17,7 @@ import { PageDangkikhoahocComponent } from './pages/page-dangkikhoahoc/page-dang
 import { HttpClientModule } from '@angular/common/http';
 import { PageDanhsachlophocComponent } from './pages/page-danhsachlophoc/page-danhsachlophoc.component';
 import { PageDangkidotthiComponent } from './pages/page-dangkidotthi/page-dangkidotthi.component';
+import { PageTimkiemComponent } from './pages/page-timkiem/page-timkiem.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +31,7 @@ import { PageDangkidotthiComponent } from './pages/page-dangkidotthi/page-dangki
     PageDangkikhoahocComponent,
     PageDanhsachlophocComponent,
     PageDangkidotthiComponent,
+    PageTimkiemComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,7 +39,8 @@ import { PageDangkidotthiComponent } from './pages/page-dangkidotthi/page-dangki
     NgxUsefulSwiperModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxSkeletonLoaderModule
   ],
   providers: [],
   bootstrap: [AppComponent]
