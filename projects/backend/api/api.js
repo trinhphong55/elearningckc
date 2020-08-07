@@ -134,9 +134,14 @@ router.delete("/pagefb/:id",pagefb.deletePageFB);
 router.get("/baidangfb",baidangfb.getAll);
 //Thêm vào draw
 router.post("/baidangfb",baidangfb.postToDrawFB);
-//Xoas bai post
-// router.delete("/baidangfb/:id",pagefb.deletePostFB);
-
+//Thêm vào posted
+router.post("/baidangfb/:postID",baidangfb.postedToFB);
+//Update posted 
+router.put("/baidangfb/:postID",baidangfb.updatePostedFB);
+//Xóa bài post
+router.delete("/baidangfb/:id",baidangfb.deletePostFB);
+//Update từ draw sang posted
+router.put("/baidangfbv2/:id",baidangfb.updateDrawToPosted);
 //----------------------------Routes SinhVien------------
 router.get("/sinhvien", sinhVien.layTatCaSinhVien);
 router.get("/sinhvien/:maLopHoc/malop", sinhVien.Laysinhvientheomalop);

@@ -10,7 +10,6 @@ const baidangfbSchema = new Schema({
     },
     postID: {
       type: String,
-      required: true,
       unique:true
   
     },
