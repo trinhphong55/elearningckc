@@ -36,6 +36,12 @@ export class LopHocPhanService {
   layLopHocPhantheoMaLop(maLopHoc:string):Observable<LopHocPhan[]>{
     return this.http.get<any>(`${this.lophocphanURL}/${maLopHoc}/search`);
   }
+
+  //lay lop hoc phan theo mssv(trinhphong)
+  getLopHocPhanbyMssv(maSinhVien: string): Observable<LopHocPhan> {
+    let url = `${this.lophocphanURL}/${maSinhVien}/sinhvien`;
+    return this.http.get<LopHocPhan>(url);
+  }
   constructor(
     private http: HttpClient,
   ) { }

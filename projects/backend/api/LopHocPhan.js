@@ -3,6 +3,9 @@ const LopHocPhan = require("../models/LopHocPhan.model");
 const KHDT = require("../models/KeHoachDaoTao.model");
 const MonHoc = require("../models/MonHoc.model");
 const GVLHP = require("../models/GiaoVienLopHocPhan.model");
+const SINHVIEN =require("../models/sinh-vien.model");
+const { data } = require("jquery");
+const { async } = require("rxjs");
 
 //GET LHP, loaimonhoc, giaovienlhp by maCTDT and hocKi with loaiMonHoc
 router.get("/ctdt/:maCTDT/hocKi/:hocKi", async (req, res) => {
@@ -200,7 +203,31 @@ router.get("/:maLop/search", async (req, res) => {
     res.json(error);
   }
 });
-
+//magv=> lopHp
+router.get("/:magiaovien/giaovienlophocphan", async (req, res) => {
+  try {
+    var dt = await GVLHP.find({maGiaoVien:'001' });
+    var data=[];
+    var arr=[]
+   arr=dt.forEach(async x=>{
+      data= await LopHocPhan.find({maLopHocPhan:x.maLopHocPhan});
+      return data;
+   })
+   console.log(arr);
+  } catch (error) {
+    res.json(error);
+  }
+});
+//tim mssv =>lophp //trinhphong
+router.get("/:maSinhVien/sinhvien", async (req, res) => {
+  try {
+      var dt =await SINHVIEN.findOne({maSinhVien:req.params.maSinhVien });
+     var data= await LopHocPhan.find({maLopHoc:dt.maLopHoc})
+     res.json(data);
+  } catch (error) {
+    res.json(error);
+  }
+});
 // router.patch('/haha', async (req, res) => {
 //   LopHocPhan.deleteMany().then(result => console.log(result));
 // })
