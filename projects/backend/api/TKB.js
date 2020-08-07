@@ -10,23 +10,21 @@ const giaoVienDAO = new GiaoVienDAO();
 const {
   asyncForEach
 } = require('../utils/MonHoc.util');
+const MonHoc = require("../models/MonHoc.model");
 
 router.get("/android/malophoc/:maLopHoc/hocki/:hocKi", async (req, res) => {
   const maLopHoc = req.params.maLopHoc;
   const hocKi = req.params.hocKi;
 
-  let dsLHP;
-  let item = [];
+  let dsLHP = [];
+  let tkb = [];
   let newTKB = [];
   let dsMonHoc = [];
 
-  await LopHocPhan.find({ maLopHoc, hocKi, trangThai: { $ne: 0 } }).sort({ tenLopHocPhan: 1 }).then(ds => {
-    if (ds.length !== 0) {
-      dsLHP = ds;
-    } else {
-      return res.json({ status: 401, data: [], message: "lop hoc nay chua co tkb" });
-    }
-  });
+  dsLHP = await LopHocPhan.find({ maLopHoc, hocKi, trangThai: { $ne: 0 } });
+  if (dsLHP.length === 0) {
+    return res.status(401).json({ message: "ma Lop Hoc khong ton tai", status: 401, data: []})
+  }
 
   await asyncForEach(dsLHP, async (lhp, index) => {
     let maMonHoc = lhp.maDaoTao.slice(lhp.maDaoTao.length - 4);
@@ -55,14 +53,14 @@ router.get("/android/malophoc/:maLopHoc/hocki/:hocKi", async (req, res) => {
     dsMonHoc.push({ maMonHoc, tenMonHoc });
   });
 
-  await TKB.findOne({ maLopHoc, hocKi }).then((tkb) => {
-    if (tkb === null) {
+  await TKB.findOne({ maLopHoc, hocKi }).then((yasuo) => {
+    if (yasuo === null) {
       return res.json({ status: 401, data: [], message: "lop hoc nay chua co tkb" });
     } else {
-      item = tkb.data;
+      tkb = yasuo.data;
     }
   });
-  await asyncForEach(item, async (tiet) => {
+  await asyncForEach(tkb, async (tiet) => {
     let temp = [];
     await asyncForEach(tiet, async (thu) => {
       if (thu !== "") {
@@ -146,6 +144,70 @@ router.post("/", async (req, res) => {
       message: "Internal Server Error",
     });
   });
+});
+
+router.get("/androidv2/malophoc/:maLopHoc/hocki/:hocKi", async (req, res) => {
+  const maLopHoc = req.params.maLopHoc;
+  const hocKi = req.params.hocKi;
+
+  let dsLHP = [];
+  let tkb = [];
+  let newTKB = [];
+  let dsPhanTu = [];
+
+  dsLHP = await LopHocPhan.find({ maLopHoc, hocKi, trangThai: { $ne: 0 } });
+  if (dsLHP.length === 0) {
+    return res.status(401).json({ message: "ma Lop Hoc khong ton tai", status: 401, data: []})
+  }
+  console.log('tiep tuc');
+  await asyncForEach(dsLHP, async (lhp, index) => {
+    let phanTu = {};
+    let maMonHoc = lhp.maDaoTao.slice(lhp.maDaoTao.length - 4);
+    await MonHoc.findOne({ maMonHoc, trangThai: { $ne: 0 } })
+      .then(mh => {
+        phanTu.maMonHoc = mh.maMonHoc;
+        phanTu.tenMonHoc = mh.tenMonHoc;
+        phanTu.LoaiMonHoc = mh.maLoaiMonHoc;
+      })
+    let maGiaoVien = "null";
+    let tenGiaoVien = "null"
+    await GVLHP.findOne({ maLopHocPhan: lhp.maLopHocPhan, trangThai: { $ne: 0 } })
+      .then(gvlhp => {
+        if (gvlhp === null) {
+          tenGiaoVien = "Chưa có GVLHP";
+        } else {
+          maGiaoVien = gvlhp.maGiaoVien;
+        }
+      });
+    if (maGiaoVien !== "null") {
+      await giaoVienDAO.layThongTinGiaoVien(maGiaoVien).then(gv => {
+        phanTu.tenGiaoVien = gv[0].ho + " " + gv[0].ten;
+      })
+    }
+    dsPhanTu.push(phanTu);
+  });
+
+  await TKB.findOne({ maLopHoc, hocKi }).then((yasuo) => {
+    if (yasuo === null) {
+      return res.json({ status: 401, data: [], message: "lop hoc nay chua co tkb" });
+    } else {
+      tkb = yasuo.data;
+    }
+  });
+
+  await asyncForEach(tkb, async (tiet) => {
+    let temp = [];
+    await asyncForEach(tiet, async (thu) => {
+      if (thu !== "") {
+        let tmpPhanTu = dsPhanTu.find(pt => pt.maMonHoc === thu);
+        temp.push(tmpPhanTu);
+      } else {
+        temp.push({});
+      }
+    })
+    newTKB.push(temp);
+  })
+  return res.json(newTKB);
 });
 
 module.exports = router;

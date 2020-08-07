@@ -4,8 +4,6 @@ const KHDT = require("../models/KeHoachDaoTao.model");
 const MonHoc = require("../models/MonHoc.model");
 const GVLHP = require("../models/GiaoVienLopHocPhan.model");
 const SINHVIEN =require("../models/sinh-vien.model");
-const { data } = require("jquery");
-const { async } = require("rxjs");
 
 const GiaoVienDAO = require('../DAO/GiaoVienDAO');
 const giaoVienDAO = new GiaoVienDAO();
@@ -19,7 +17,7 @@ router.get("/ctdt/:maCTDT/hocKi/:hocKi", async (req, res) => {
 
   let resultView = [];
   let dsMaLoaiMonHoc = [];
-  //danh sach lop hoc phan
+
   let dsLHP = await LopHocPhan.find({
     trangThai: { $ne: 0 },
     maLopHoc: { $regex: maChuongTrinhDaoTao },
@@ -28,13 +26,6 @@ router.get("/ctdt/:maCTDT/hocKi/:hocKi", async (req, res) => {
     return res.json({ message: err });
   });
 
-  // async function asyncForEach(array, callback) {
-  //   for (let index = 0; index < array.length; index++) {
-  //     await callback(array[index], index);
-  //   }
-  // }
-
-  //danh sach loai mon hoc kem theo lhp
   await asyncForEach(dsLHP, async (lhp, index) => {
     let maMonHoc = lhp.maDaoTao.slice(lhp.maDaoTao.length - 4);
     await MonHoc.findOne({ maMonHoc })
@@ -80,7 +71,6 @@ router.post("/", async (req, res) => {
   let dsLopHoc = req.body[1];
   let nextNumber = 1;
 
-  //get NextNumber
   await LopHocPhan.findOne({}, {}, { sort: { ngayTao: -1 } })
     .exec()
     .then((lastLHP) => {
@@ -89,12 +79,10 @@ router.post("/", async (req, res) => {
       }
     });
 
-  //Tra ve thong bao chua co lop hoc
   if (dsLopHoc === undefined || hocKi === undefined) {
     return res.json({ error: "Chua co Lop hoc" });
   }
 
-  //Cat maChuongTrinhDaoTao tu ma lop hoc
   const maChuongTrinhDaoTao = dsLopHoc[0].maLopHoc.slice(0, 7);
 
   await KHDT.find({ maChuongTrinhDaoTao, hocKi, trangThai: { $ne: 0 } })
@@ -102,8 +90,8 @@ router.post("/", async (req, res) => {
     .catch((err) => {
       return res.json({ message: err });
     });
-  //neu dsKHDT rong?
-  if (dsKHDT.length === 0) {
+
+    if (dsKHDT.length === 0) {
     return res.json({
       error: "Chuong trinh dao tao nay chua co ke hoach dao tao",
     });
@@ -126,13 +114,6 @@ router.post("/", async (req, res) => {
     });
   });
 
-  // return res.json(dsLHP);
-
-  // async function asyncForEach(array, callback) {
-  //   for (let index = 0; index < array.length; index++) {
-  //     await callback(array[index], index);
-  //   }
-  // }
 
   //kiem tra da ton tai trong database
   await asyncForEach(dsLHP, async (lhp, index) => {
@@ -234,9 +215,6 @@ router.get("/:maSinhVien/sinhvien", async (req, res) => {
     res.json(error);
   }
 });
-// router.patch('/haha', async (req, res) => {
-//   LopHocPhan.deleteMany().then(result => console.log(result));
-// })
 
 // ***  API for team App Android  ***
 
