@@ -8,9 +8,13 @@ const LopHocPhan = require("./LopHocPhan");
 const LoaiMonHoc = require("./LoaiMonHoc");
 const groupFB = require("../api/groupFB");
 const boMon = require("../api/bomon");
+const auth = require("./auth");
 const TKB = require("./TKB");
+<<<<<<< HEAD
 const login = require("./login");
 const BaiTap = require("./BaiTap");
+=======
+>>>>>>> elearning-2
 
 const sinhVien = require("./sinh-vien");
 const Diemsinhvien = require("./diemsinhvien");
@@ -85,7 +89,7 @@ router.use("/", NganhNgheRoutes);
 //bac
 router.use("/", BacRoutes);
 //login
-router.use("/", login);
+router.use("/", auth);
 
 //-------------------------------Route KhoaBoMonn
 //Lấy toàn bộ dữ liệu từ KhoaBoMon

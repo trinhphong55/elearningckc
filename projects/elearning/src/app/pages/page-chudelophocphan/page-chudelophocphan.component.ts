@@ -106,32 +106,4 @@ export class PageChudelophocphanComponent implements OnInit {
       maxWidth: '90vw',
     });
   }
-  openXBTGV() {
-    this.dialog.open(XembaitapgvComponent, {
-      width: '100%',
-      height: '100vh',
-      maxWidth: '90vw',
-    });
-  }
-  openXTLGV() {
-    this.dialog.open(XembaiganggvComponent, {
-      width: '100%',
-      height: '100vh',
-      maxWidth: '90vw',
-    });
-  }
-  openXTLSV() {
-    this.dialog.open(XembaigiangsvComponent, {
-      width: '100%',
-      height: '100vh',
-      maxWidth: '90vw',
-    });
-  }
-  openXBTSV() {
-    this.dialog.open(XembaitapsvComponent, {
-      width: '100%',
-      height: '100vh',
-      maxWidth: '90vw',
-    });
-  }
 }
