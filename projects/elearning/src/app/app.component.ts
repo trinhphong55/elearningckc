@@ -10,7 +10,13 @@ export class AppComponent implements OnInit{
 
   displayName: string = '';
   ngOnInit(): void {
-    this.displayName = getCookie('displayName');
+    if(getCookie('token') && getCookie('role') == 'admin'){
+      alert('Bạn không có quyền cập vào trang elearning');
+      window.location.href = "https://localhost:4200";
+    }
+    else{
+      this.displayName = getCookie('displayName');
+    }
   }
 
   onLogout(): void {

@@ -11,8 +11,8 @@ lophocphan:string;
 baigiang:string;
 moinguoi:string;
 cotdiem:string;
-huongdan:string;
-baitapgv:string;
+chamdiem:string;
+tongdiem:string;
   constructor(   private router: ActivatedRoute, private route: Router,) { }
 
   ngOnInit(): void {
@@ -21,8 +21,8 @@ baitapgv:string;
     this.baigiang="/baigiang/"+this.malophocphan;
     this.moinguoi="/moinguoi/"+this.malophocphan;
     this.cotdiem="/cotdiem/"+this.malophocphan;
-    this.huongdan="/huongdan/"+this.malophocphan;
-    this.baitapgv="/baitapgv/"+this.malophocphan;
+    this.chamdiem="/chamdiem/"+this.malophocphan;
+    this.tongdiem="/tongdiem/"+this.malophocphan;
     
 
 

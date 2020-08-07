@@ -121,16 +121,16 @@ export class PageTrangchuComponent implements OnInit {
     this.lopHocPhanService.getLopHocPhan().subscribe(
       dsLopHP => {
         this.dsLopHP = dsLopHP;
+       this.dsGiaoVienLopHP.filter(x=>{
+        this.test= this.dsLopHP.filter(y=>{
+          if( x.maLopHocPhan==y.maLopHocPhan)
+           return y;
+            });
+          })
         
-        this.dsLopHP.forEach(x => {
-          this.dsGiaoVienLopHP.filter(y => {
-           if (y.maLopHocPhan==x.maLopHocPhanx)
-           this.test= this.dsLopHP.indexOf(this.dsGiaoVienLopHP)
-          });
-        })
-      
-        this.danhSachLopHocPhan();
+ 
         console.log(this.test)
+     
       },
       (error) => {
         console.log(error)

@@ -8,11 +8,11 @@ export interface Task {
   subtasks?: Task[];
 }
 @Component({
-  selector: 'app-page-baitapgiaovien',
-  templateUrl: './page-baitapgiaovien.component.html',
-  styleUrls: ['./page-baitapgiaovien.component.css']
+  selector: 'app-page-chamdiem',
+  templateUrl: './page-chamdiem.component.html',
+  styleUrls: ['./page-chamdiem.component.css']
 })
-export class PageBaitapgiaovienComponent implements OnInit {
+export class PageChamdiemComponent implements OnInit {
   task: Task = {
     name: 'Tất cả học viên',
     completed: false,
