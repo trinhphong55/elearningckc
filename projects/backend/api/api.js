@@ -72,6 +72,8 @@ router.use("/ttthKhoaHoc", ttthKhoaHocRoute);
 const khoabomonController = require("../api/khoabomon");
 const loaidonviController = require("../api/loaidonvi");
 const LopHoc = require("../api/LopHoc");
+const LopHocDAO = require("../DAO/LopHocDAO");
+const lopHocDAO = new LopHocDAO();
 //
 const validate = khoabomonController.checkValidate();
 
@@ -79,7 +81,11 @@ const validate = khoabomonController.checkValidate();
 const NganhNgheRoutes = require("./NganhNghe");
 const BacRoutes = require("./Bac");
 const diemsinhvienModel = require("../models/diemsinhvien.model");
+<<<<<<< HEAD
 
+=======
+const { route } = require("./GiaoVien");
+>>>>>>> 66b4456d4c2d35d7fd47f991ba97cd7a5979dc62
 //nganhnghe
 router.use("/", NganhNgheRoutes);
 //bac
@@ -112,6 +118,24 @@ router.delete("/bomon/:id", boMon.deleteKhoaBoMon);
 router.put("/bomon/:id", boMon.checkValidate(), boMon.updateKhoaBoMon);
 
 //---------------------------Routes LopHoc--------------------------
+router.post("/thongKeLopTheoNganhCuaNam", async (req, res) => {
+  const nam = req.body.nam;
+  let result = false;
+  result = await lopHocDAO.layDanhSachLopHocTheoTungNganhCuaNam(nam);
+  if(result != false){
+    data = {
+      'msg': 'Lấy danh sách thống kê thành công',
+      'data': result,
+    };
+  }
+  else {
+    data = {
+      'msg': 'Lấy danh sách thống kê thất bại',
+      'data': null,
+    };
+  }
+  res.send(data);
+})
 //Lấy toàn bộ dữ liệu từ KhoaBoMon
 router.get("/lophoc", LopHoc.getAll);
 router.get("/lophoc/:id", LopHoc.getOne);
