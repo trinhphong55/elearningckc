@@ -19,11 +19,55 @@ router.get("/tracuudiem=:query", async (req, res) => {
     const regexQuery = newRegExp(req.params.query);
     const data = await ttthdiemthi.find({
       mssv: { $regex: regexQuery, $options: "i" }, // i: không phân biệt chữ hoa & thường
-    });
+    }).limit(1);
     res.json(data);
   } catch (error) {
 
   }
 });
+// get
+router.get('/', async (req, res) => {
+  try {
+    const danhsach = await ttthdiemthi.find({ trangthai: true }).sort({created_at: -1});
+    res.json(danhsach);
+  } catch (error) {
+    res.json([]);
+  }
+});
 
+// update
+router.post('/update', async (req, res) => {
+  await ttthdiemthi.findOneAndUpdate({
+    _id: req.body._id
+  }, {
+    hoten: req.body.hoten,
+    mssv: req.body.mssv,
+    ngaysinh: req.body.ngaysinh,
+    sobaodanh: req.body.sobaodanh,
+    noisinh: req.body.noisinh,
+    lop: req.body.lop,
+    tongdiem: req.body.tongdiem,
+    xeploai: req.body.xeploai,
+    ngaythi: req.body.ngaythi,
+    giothi: req.body.giothi,
+    phongthi: req.body.phongthi,
+    laptrinhc: req.body.laptrinhc,
+    msword: req.body.msword,
+    msexcel: req.body.msexcel,
+    mspowerpoint: req.body.mspowerpoint,
+    trangthai: req.body.trangthai,
+    nguoitao: req.body.nguoitao,
+    nguoisua: req.body.nguoisua,
+    created_at: req.body.created_at,
+    updated_at: req.body.updated_at,
+  });
+})
+// delete
+router.post('/delete', async (req, res) => {
+  await ttthdiemthi.findOneAndUpdate({
+    _id: req.body._id
+  }, {
+    trangthai: false
+  });
+})
 module.exports = router

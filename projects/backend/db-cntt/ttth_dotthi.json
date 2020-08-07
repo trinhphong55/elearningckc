@@ -1,0 +1,122 @@
+[{
+  "_id": {
+    "$oid": "5f2a220a40616c1f2c0dd63c"
+  },
+  "tendot": "111111111111111",
+  "lophoc": "THA 1 2020",
+  "ngaythi": {
+    "$date": "2020-08-14T00:00:00Z"
+  },
+  "trangthai": false,
+  "nguoitao": "hieu",
+  "nguoisua": "loc",
+  "created_at": {
+    "$date": "2020-08-05T03:05:46.293Z"
+  },
+  "updated_at": {
+    "$date": "2020-08-05T03:10:14.449Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f2a22da40616c1f2c0dd63d"
+  },
+  "tendot": "thi lan 1",
+  "lophoc": "THA 1 2020",
+  "ngaythi": {
+    "$date": "2020-08-05T00:00:00Z"
+  },
+  "trangthai": false,
+  "nguoitao": "hieu",
+  "nguoisua": "loc",
+  "created_at": {
+    "$date": "2020-08-05T03:09:14.983Z"
+  },
+  "updated_at": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f2b6e1b41a8a12578edf6af"
+  },
+  "tendot": "12321",
+  "lophoc": "THA-2020-Đợt 1-246-Thầy Hiếu ",
+  "ngaythi": {
+    "$date": "2020-08-14T00:00:00Z"
+  },
+  "trangthai": false,
+  "nguoitao": "hieu",
+  "nguoisua": "loc",
+  "created_at": {
+    "$date": "2020-08-06T02:42:35.706Z"
+  },
+  "updated_at": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f2b6e5641a8a12578edf6b0"
+  },
+  "tendot": "12321",
+  "lophoc": "THA-2020-Đợt 1-246-Thầy Hiếu ",
+  "ngaythi": {
+    "$date": "2020-09-04T00:00:00Z"
+  },
+  "trangthai": false,
+  "nguoitao": "hieu",
+  "nguoisua": "loc",
+  "created_at": {
+    "$date": "2020-08-06T02:43:34.845Z"
+  },
+  "updated_at": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f2b6e6841a8a12578edf6b1"
+  },
+  "tendot": "3123",
+  "lophoc": "THA-2020-Đợt 1-246-Thầy Hiếu ",
+  "ngaythi": {
+    "$date": "2020-08-19T00:00:00Z"
+  },
+  "trangthai": false,
+  "nguoitao": "hieu",
+  "nguoisua": "loc",
+  "created_at": {
+    "$date": "2020-08-06T02:43:52.900Z"
+  },
+  "updated_at": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f2b6f65fbd49f0820c4de13"
+  },
+  "tendot": "THi",
+  "lophoc": "THA-2020-Đợt 1-246-Thầy Hiếu ",
+  "ngaythi": {
+    "$date": "2020-08-18T00:00:00Z"
+  },
+  "trangthai": true,
+  "nguoitao": "hieu",
+  "nguoisua": "loc",
+  "created_at": {
+    "$date": "2020-08-06T02:48:05.076Z"
+  },
+  "updated_at": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f2cfb65422731279c2e172b"
+  },
+  "tendot": "Đợt 2",
+  "lophoc": "THA-2020-Đợt 1-246-Thầy Hiếu ",
+  "ngaythi": {
+    "$date": "2020-08-19T00:00:00Z"
+  },
+  "trangthai": true,
+  "nguoitao": "hieu",
+  "nguoisua": "loc",
+  "created_at": {
+    "$date": "2020-08-07T06:57:41.394Z"
+  },
+  "updated_at": null,
+  "__v": 0
+}]

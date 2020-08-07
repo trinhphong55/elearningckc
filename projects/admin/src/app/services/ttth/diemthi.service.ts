@@ -15,4 +15,17 @@ export class DiemthiService {
     return this.http.post<ttthDiemThi[]>('https://localhost:4100/api/ttthDiemThi/importdiemthi', DiemThi, httpOptions).pipe(
       );
   }
+
+  get(): Observable<any[]  >{
+    return this.http.get<any[] >('https://localhost:4100/api/ttthDiemThi/').pipe(
+    );
+  }
+  update(updateItem: any): Observable<any> {
+    return this.http.post<any>('https://localhost:4100/api/ttthDiemThi/update', updateItem, httpOptions).pipe(
+    );
+  }
+  delete(deleteItem: any): Observable<any> {
+    return this.http.post<any>('https://localhost:4100/api/ttthDiemThi/delete', deleteItem, httpOptions).pipe(
+    );
+  }
 }

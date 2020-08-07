@@ -88,6 +88,7 @@ import { ModalTtthLophocComponent } from './components/modal/ttth/modal-ttth-lop
 import { ModelTtthDotthiComponent } from './components/modal/ttth/model-ttth-dotthi/model-ttth-dotthi.component';
 import { ModalDangkidotthiComponent } from './components/modal/ttth/modal-dangkidotthi/modal-dangkidotthi.component';
 import { ModalDiemthiComponent } from './components/modal/ttth/modal-diemthi/modal-diemthi.component';
+import { ModalTtthQuanlidiemthiComponent } from './components/modal/ttth/modal-ttth-quanlidiemthi/modal-ttth-quanlidiemthi.component';
 
 @NgModule({
   declarations: [
@@ -165,6 +166,7 @@ import { ModalDiemthiComponent } from './components/modal/ttth/modal-diemthi/mod
     ModelTtthDotthiComponent,
     ModalDangkidotthiComponent,
     ModalDiemthiComponent,
+    ModalTtthQuanlidiemthiComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,38 +1,94 @@
 [{
   "_id": {
-    "$oid": "5f244c63e2c86b0b40cfa692"
+    "$oid": "5f224f5bd95ed909f4e8ebc5"
+  },
+  "image": "https://localhost:4100/uploads/cntt/istockphoto-695994502-640x640.png",
+  "link": "a",
+  "vitri": "1",
+  "hienthi": null,
+  "trangthai": false,
+  "nguoitao": "hieu",
+  "nguoisua": "loc",
+  "created_at": {
+    "$date": "2020-07-30T04:40:59.633Z"
+  },
+  "updated_at": {
+    "$date": "2020-07-30T06:25:45.652Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f225096d95ed909f4e8ebc6"
+  },
+  "image": "https://localhost:4100/uploads/cntt/71216222_1151485135038926_6781284538933837824_n.jpg",
+  "link": "a",
+  "vitri": "1",
+  "hienthi": true,
+  "trangthai": false,
+  "nguoitao": "hieu",
+  "nguoisua": "loc",
+  "created_at": {
+    "$date": "2020-07-30T04:46:14.899Z"
+  },
+  "updated_at": {
+    "$date": "2020-07-30T04:51:29.015Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f2267c5abb99d22a8b3c6b8"
+  },
+  "image": "https://localhost:4100/uploads/cntt/9a435f589b4549e0e15daf9bc5455491.jpg",
+  "link": "b",
+  "vitri": "3",
+  "hienthi": false,
+  "trangthai": false,
+  "nguoitao": "hieu",
+  "nguoisua": "loc",
+  "created_at": {
+    "$date": "2020-07-30T06:25:09.524Z"
+  },
+  "updated_at": {
+    "$date": "2020-07-30T06:25:18.589Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f2298bab3b08928203923d2"
+  },
+  "image": "https://localhost:4100/uploads/cntt/19c9c3f892d8f5406c3077cec3a095e2.jpg",
+  "link": "jk",
+  "vitri": "3",
+  "hienthi": true,
+  "trangthai": false,
+  "nguoitao": "hieu",
+  "nguoisua": "loc",
+  "created_at": {
+    "$date": "2020-07-30T09:54:02.680Z"
+  },
+  "updated_at": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f229aa0b3b08928203923d3"
   },
   "image": "https://localhost:4100/uploads/cntt/khoa-hoc-data-science-for-marketing-certificate-257.png",
   "link": "#",
-  "vitri": "1",
+  "vitri": "4",
   "hienthi": true,
   "trangthai": true,
   "nguoitao": "hieu",
   "nguoisua": "loc",
   "created_at": {
-    "$date": "2020-07-31T16:52:50.985Z"
+    "$date": "2020-07-30T10:02:08.295Z"
   },
-  "updated_at": null,
+  "updated_at": {
+    "$date": "2020-07-31T04:52:09.056Z"
+  },
   "__v": 0
 },{
   "_id": {
-    "$oid": "5f244c6ee2c86b0b40cfa693"
-  },
-  "image": "https://localhost:4100/uploads/cntt/slide-lap-trinh-android-k259.png",
-  "link": "#",
-  "vitri": "2",
-  "hienthi": true,
-  "trangthai": true,
-  "nguoitao": "hieu",
-  "nguoisua": "loc",
-  "created_at": {
-    "$date": "2020-07-31T16:53:02.037Z"
-  },
-  "updated_at": null,
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "5f244c7de2c86b0b40cfa694"
+    "$oid": "5f237ee3d922b122ccf1690d"
   },
   "image": "https://localhost:4100/uploads/cntt/slide-network-K259.png",
   "link": "#",
@@ -42,23 +98,61 @@
   "nguoitao": "hieu",
   "nguoisua": "loc",
   "created_at": {
-    "$date": "2020-07-31T16:53:17.430Z"
+    "$date": "2020-07-31T02:16:03.459Z"
   },
-  "updated_at": null,
+  "updated_at": {
+    "$date": "2020-07-31T04:52:05.616Z"
+  },
   "__v": 0
 },{
   "_id": {
-    "$oid": "5f244c85e2c86b0b40cfa695"
+    "$oid": "5f237ef1d922b122ccf1690e"
   },
-  "image": "https://localhost:4100/uploads/cntt/tong-tk.png",
+  "image": "https://localhost:4100/uploads/cntt/slide-lap-trinh-android-k259.png",
   "link": "#",
-  "vitri": "4",
+  "vitri": "1",
   "hienthi": true,
   "trangthai": true,
   "nguoitao": "hieu",
   "nguoisua": "loc",
   "created_at": {
-    "$date": "2020-07-31T16:53:25.298Z"
+    "$date": "2020-07-31T02:16:17.189Z"
+  },
+  "updated_at": {
+    "$date": "2020-07-31T04:51:53.055Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f237effd922b122ccf1690f"
+  },
+  "image": "https://localhost:4100/uploads/cntt/tong-tk.png",
+  "link": "#",
+  "vitri": "2",
+  "hienthi": true,
+  "trangthai": true,
+  "nguoitao": "hieu",
+  "nguoisua": "loc",
+  "created_at": {
+    "$date": "2020-07-31T02:16:31.279Z"
+  },
+  "updated_at": {
+    "$date": "2020-07-31T04:49:17.555Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f2b6c7241a8a12578edf6aa"
+  },
+  "image": "https://localhost:4100/uploads/cntt/Lọt  dog.png",
+  "link": "123",
+  "vitri": "1",
+  "hienthi": true,
+  "trangthai": false,
+  "nguoitao": "hieu",
+  "nguoisua": "loc",
+  "created_at": {
+    "$date": "2020-08-06T02:35:30.075Z"
   },
   "updated_at": null,
   "__v": 0

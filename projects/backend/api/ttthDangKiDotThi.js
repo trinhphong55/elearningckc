@@ -5,7 +5,7 @@ const multer = require('multer')
 // get
 router.get('/', async (req, res) => {
   try {
-    const danhsach = await ttthdangkidotthi.find({ trangthai: true });
+    const danhsach = await ttthdangkidotthi.find({ trangthai: true }).sort({created_at: -1});
     res.json(danhsach);
   } catch (error) {
     res.json([]);
