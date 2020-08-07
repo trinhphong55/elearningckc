@@ -1,6 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FileUploadModule } from 'ng2-file-upload';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -53,6 +54,7 @@ import { PageCotodiemComponent } from './pages/page-cotdiem/page-cotdiem.compone
 import { PageTongdiemComponent } from './pages/page-tongdiem/page-tongdiem.component';
 import { PageChamdiemComponent } from './pages/page-chamdiem/page-chamdiem.component';
 import { PageCaidatComponent } from './pages/page-caidat/page-caidat.component';
+import { HttpClientModule } from '@angular/common/http';
 import { PageTrangcanhansvComponent } from './pages/page-trangcanhansv/page-trangcanhansv.component';
 import { PageTrangcanhangvComponent } from './pages/page-trangcanhangv/page-trangcanhangv.component';
 
@@ -114,8 +116,13 @@ import { PageTrangcanhangvComponent } from './pages/page-trangcanhangv/page-tran
     MatDatepickerModule,
     MatNativeDateModule,
     MatTableModule,
+<<<<<<< HEAD
     HttpClientModule,
 
+=======
+    FileUploadModule,
+    HttpClientModule,
+>>>>>>> elearning
   ],
   entryComponents: [
   ],

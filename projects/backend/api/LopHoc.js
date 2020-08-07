@@ -1,6 +1,5 @@
 const LopHoc = require("../models/LopHoc.model");
 const { check, validationResult } = require("express-validator");
-const sinhVienModel = require("../models/sinh-vien.model");
 
 // "maLopHoc": "mã Bậc + mã Ngành Nghề + Khoá Học + mã Loại Hình Đào Tạo + Số thứ tự",
 // "tenLop": "kiểu String",
@@ -303,4 +302,16 @@ exports.timLopTheoMaBac=  async (req, res) => {
   } catch (error) {
     res.json({ message: error });
   }
+}
+
+//Yasuo fam linh 100 con trong 10 phut
+exports.getDSLopHocbymaCTDT = async (req, res) => {
+  const maCTDT = req.params.maCTDT;
+  await LopHoc.find({ maLopHoc: { $regex: maCTDT }, trangThai: { $ne: 0 } })
+    .then(ds => {
+      return res.json(ds);
+    })
+    .catch(err => {
+      return res.json({ message: err });
+    })
 }

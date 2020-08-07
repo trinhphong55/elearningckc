@@ -9,8 +9,8 @@ router.get("/ctdt/:maCTDT/hocKi/:hocKi", async (req, res) => {
   const maChuongTrinhDaoTao = req.params.maCTDT;
   const hocKi = parseInt(req.params.hocKi);
 
+  let resultView = [];
   let dsMaLoaiMonHoc = [];
-  let dsGVLHP = [];
   //danh sach lop hoc phan
   let dsLHP = await LopHocPhan.find({
     trangThai: { $ne: 0 },
@@ -45,17 +45,19 @@ router.get("/ctdt/:maCTDT/hocKi/:hocKi", async (req, res) => {
   //danh sach giao vien lhp kem theo lhp
   await asyncForEach(dsLHP, async (lhp, index) => {
     await GVLHP.findOne({ maLopHocPhan: lhp.maLopHocPhan }).then((gvlhp) => {
-      if (gvlhp === null) {
-        let a = { maGiaoVien: "null", ghiChu: "" };
-        dsGVLHP.push(a);
-      } else {
-        let a = { maGiaoVien: gvlhp.maGiaoVien, ghiChu: gvlhp.ghiChu };
-        dsGVLHP.push(a);
+      let a = { maGiaoVien: "null", ghiChu: "" };
+      if (gvlhp !== null) {
+        a = { maGiaoVien: gvlhp.maGiaoVien, ghiChu: gvlhp.ghiChu };
       }
+      let result = lhp.toObject();
+      result.maLoaiMonHoc = dsMaLoaiMonHoc[index];
+      result.maGiaoVien = a.maGiaoVien;
+      result.ghiChu = a.ghiChu;
+      resultView.push(result);
     });
   });
 
-  return res.json({ dsLHP, dsMaLoaiMonHoc, dsGVLHP });
+  return res.json(resultView);
 });
 
 router.get("/", async (req, res) => {
@@ -106,7 +108,7 @@ router.post("/", async (req, res) => {
   dsLopHoc.forEach((lh) => {
     dsKHDT.forEach((khdt) => {
       lophocphan = {
-        tenLopHocPhan: lh.tenLop,
+        tenLopHocPhan: lh.tenVietTat,
         maLopHoc: lh.maLopHoc,
         maDaoTao: khdt.maDaoTao,
         hocKi,
@@ -134,7 +136,9 @@ router.post("/", async (req, res) => {
         nextNumber++;
         let maMonHoc = lhp.maDaoTao.slice(lhp.maDaoTao.length - 4);
         MonHoc.findOne({ maMonHoc }).then((mh) => {
-          lhp.tenLopHocPhan = lhp.tenLopHocPhan + " - " + mh.tenMonHoc;
+          let tenlhp = lhp.tenLopHocPhan;
+          lhp.tenLopHocPhan = tenlhp + " - " + mh.tenMonHoc;
+          lhp.tenVietTatLopHocPhan  = tenlhp + " - " +mh.tenVietTat;
           LopHocPhan.create(lhp)
             .then(console.log("added " + lhp.maDaoTao))
             .catch((err) => {
@@ -167,20 +171,6 @@ router.post("/", async (req, res) => {
   }
 });
 
-//SPECIFIC LopHocPhan
-// router.get('/:maDaoTao', async (req, res) => {
-//   // try {
-//   //   const item = await MonHoc.findOne({ maLopHocPhan: req.params.maLopHocPhan });
-//   //   if (item === null) {
-//   //     res.json({status: "null"});
-//   //   } else {
-//   //     res.json(item);
-//   //   }
-//   // } catch (err) {
-//   //   res.json({message: err});
-//   // }
-//   res.json('oke');
-// })
 
 //DELETE LopHocPhan
 router.delete("/:maDaoTao", async (req, res) => {
@@ -192,8 +182,16 @@ router.put("/:maDaoTao", async (req, res) => {
   res.json("oke");
 });
 
-router.patch("/:maDaoTao", async (req, res) => {
-  res.json("oke");
+router.get('/malophocphan/:maLopHocPhan', async (req, res) => {
+  const maLopHocPhan = parseInt(req.params.maLopHocPhan);
+  await LopHocPhan.findOne({ maLopHocPhan })
+    .then(lhp => {
+      console.log(lhp);
+      return res.json(lhp);
+    })
+    .catch(err => {
+      return res.json({ status: 501, data: [], message: err });
+    })
 });
 //SEARCH theo maNganh
 router.get("/:maLop/search", async (req, res) => {
@@ -204,6 +202,7 @@ router.get("/:maLop/search", async (req, res) => {
     res.json(error);
   }
 });
+<<<<<<< HEAD
 //SEARCH theo maLopHocPhan
 //Nguoi tạo: Trần Đình Huy
 
@@ -220,4 +219,13 @@ router.get("/:maLopHocPhan/malhp", async (req, res) => {
     });
   } catch (error) {}
 });
+=======
+
+// router.patch('/haha', async (req, res) => {
+//   LopHocPhan.deleteMany().then(result => console.log(result));
+// })
+
+// ***  API for team App Android  ***
+
+>>>>>>> elearning
 module.exports = router;

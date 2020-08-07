@@ -1,35 +1,38 @@
 
 <div class="lophoc-container">
     <div class="list-lophoc">
-        <div class="list-lophoc-item">
+        <div class="list-lophoc-item" *ngFor="let l of filterDsLop" (change)="danhSachLopHocPhan()">
             <div class="list-title bg1">
                 <div class="name--menu">
                     <div class="name-class">
                         <div>
-                            <a [routerLink]="[{ outlets: { primary: ['lophocphan'], navbar: ['lophocphan'] } }]">
-                                Cấu trúc dữ liệu thuật toán
-                              </a>
+                            <ng-template *ngFor="let lop of dsLop" [ngIf]="l.maLopHoc == lop.maLopHoc">
+                                <a [routerLink]="[{ outlets: { primary: ['lophocphan',l.maLopHocPhan], navbar: ['lophocphan',l.maLopHocPhan] } }]">{{lop.tenLop}}</a>
+                            </ng-template>
                         </div>
+                        <!-- <div [(ngModel)]="maLopHoc">
+                            <span value="{{l.maLopHoc}}"   >Số Lượng:{{dsSinhVien}}</span>
+                        </div> -->
                         <div>
-                            <span>10 sinh viên</span>
-                        </div>
-                        <div>
-                            <span>
-                                ĐVHP  :  9
+                            <span >
+                                ĐVHP : 9
                             </span>
                         </div>
                         <div>
-                            <span>Trạng thái :đang học</span>
+                            <ng-template [ngIf]="l.trangThai==1"> <span>Trạng thái: đang học</span></ng-template>
+                            <ng-template [ngIf]="l.trangThai!=1"> <span>Trạng thái: Đã nộp điểm</span></ng-template>
+
                         </div>
                     </div>
                     <div class="menu">
-                        <button mat-button [matMenuTriggerFor]="menu"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></button>
-                            <mat-menu #menu="matMenu">
-                                <button mat-menu-item>Di chuyển</button>
-                                <button mat-menu-item>Chỉnh sửa</button>
-                                <button mat-menu-item>Lưu trữ</button>
-                                <button mat-menu-item>Sao chép</button>
-                            </mat-menu>
+                        <button mat-button [matMenuTriggerFor]="menu"><i class="fa fa-ellipsis-v"
+                                aria-hidden="true"></i></button>
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item>Di chuyển</button>
+                            <button mat-menu-item>Chỉnh sửa</button>
+                            <button mat-menu-item>Lưu trữ</button>
+                            <button mat-menu-item>Sao chép</button>
+                        </mat-menu>
                     </div>
                 </div>
             </div>
@@ -49,7 +52,13 @@
                 <div class="list-bt">
                     <div class="name-teacher">
                         <div>
-                            <span> GV : Lữ Cao Tiến</span>
+                            <ng-template *ngFor="let hp of dsGiaoVienLopHP" [ngIf]="l.maLopHocPhan== hp.maLopHocPhan">
+                            <ng-template *ngFor="let gv of dsGiaoVien" [ngIf]="gv.maGiaoVien==hp.maGiaoVien" >
+                                <span > {{gv.ho}} {{gv.ten}}</span>
+                            </ng-template>
+                            </ng-template>
+
+
                         </div>
                     </div>
                     <div class="icon-go">
@@ -58,10 +67,13 @@
                 </div>
             </div>
             <div class="list-image">
-                <img class="gb_Ka gbii" src="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo" srcset="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo 1x, https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s64-c-mo 2x " alt="" aria-hidden="true" data-noaft="">
+                <img class="gb_Ka gbii"
+                    src="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo"
+                    srcset="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo 1x, https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s64-c-mo 2x "
+                    alt="" aria-hidden="true" data-noaft="">
             </div>
         </div>
-        <div class="list-lophoc-item">
+        <!-- <div class="list-lophoc-item">
             <div class="list-title bg2">
                 <div class="name--menu">
                     <div class="name-class">
@@ -257,7 +269,7 @@
                             <a [routerLink]="[{ outlets: { primary: ['lophocphan'], navbar: ['lophocphan'] } }]">
                                 Thiết kế Web
                               </a>
-                           
+
                         </div>
                         <div>
                             <span>10 sinh viên</span>
@@ -565,6 +577,6 @@
             <div class="list-image">
                 <img class="gb_Ka gbii" src="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo" srcset="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo 1x, https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s64-c-mo 2x " alt="" aria-hidden="true" data-noaft="">
             </div>
-        </div>
+        </div> -->
     </div>
 </div>

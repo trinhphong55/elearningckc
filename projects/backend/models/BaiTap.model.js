@@ -1,24 +1,33 @@
 const mongoose = require('mongoose');
 
-const MonHocSchema = new mongoose.Schema({
-  maMonHoc: {
-    type: String,
+const BaiTapSchema = new mongoose.Schema({
+  maBaiTap: {
+    type: Number,
     required: true
   },
-  tenMonHoc: {
-    type: String,
+  lopHocPhan: {
+    type: [],
     required: true,
-    unique: true,
-    trim: true,
   },
-  tenVietTat: {
+  tieuDe: {
     type: String,
     trim: true,
-    default: "",
   },
-  maLoaiMonHoc: {
+  huongDan: {
     type: String,
     trim: true,
+  },
+  deadLine: {
+    type: String,
+    default: "null",
+  },
+  file: {
+    type: [],
+    default: [],
+  },
+  chuDe: {
+    type: String,
+    default: "null",
   },
   nguoiTao: {
     type: String,
@@ -36,12 +45,12 @@ const MonHocSchema = new mongoose.Schema({
     type: Number,
     default: 1,
   },
-  created_at: {
+  ngayTao: {
     type: Date,
     default: Date.now,
   },
 });
 
-const MonHoc = mongoose.model('MonHoc', MonHocSchema, 'MonHoc');
+const BaiTap = mongoose.model('BaiTap', BaiTapSchema, 'BaiTap');
 
-module.exports = MonHoc;
+module.exports = BaiTap;
