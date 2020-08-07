@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TaocauhoiComponent } from './taocauhoi.component';
+import { PageTongdiemComponent } from './page-tongdiem.component';
 
-describe('TaocauhoiComponent', () => {
-  let component: TaocauhoiComponent;
-  let fixture: ComponentFixture<TaocauhoiComponent>;
+describe('PageTongdiemComponent', () => {
+  let component: PageTongdiemComponent;
+  let fixture: ComponentFixture<PageTongdiemComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TaocauhoiComponent ]
+      declarations: [ PageTongdiemComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TaocauhoiComponent);
+    fixture = TestBed.createComponent(PageTongdiemComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

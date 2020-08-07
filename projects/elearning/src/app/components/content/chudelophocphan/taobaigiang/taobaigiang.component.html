@@ -1,18 +1,18 @@
 <div class="container-fluid mt-5">
     <div class="row" style="border-bottom:solid 0.5px black;padding-bottom: 20px;">
-        <div class="col-md-2">
+        <div class="col-2">
             <div mat-dialog-actions>
                 <button mat-button mat-dialog-close><i class="fas fa-times"></i></button>
-                <span style="margin-left: 5px;">Hỏi</span>
+                <span style="margin-left: 5px;">Bài giảng</span>
             </div>
 
         </div>
-        <div class="col-md-8">
+        <div class="col-8">
 
         </div>
-        <div class="col-md-2">
+        <div class="col-2">
             <div>
-                <button mat-button>Hỏi</button>
+                <button mat-button>Đăng</button>
                 <button mat-button [matMenuTriggerFor]="menu"><i class="fas fa-angle-down"></i></button>
                 <mat-menu #menu="matMenu">
                     <button mat-menu-item>Giao bài</button>
@@ -24,13 +24,13 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-8">
             <div class="row">
-                <div class="col-md-12" style="padding-top:10px">
+                <div class="col-12" style="padding-top:10px">
                     <form class="example-form">
                         <mat-form-field class="example-full-width" style="width:100%">
-                            <mat-label>Câu hỏi</mat-label>
-                            <input matInput placeholder="Câu hỏi">
+                            <mat-label>Tiêu đề</mat-label>
+                            <input matInput placeholder="Tiêu đề">
                         </mat-form-field>
                     </form>
                 </div>
@@ -53,7 +53,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-4">
             <mat-label>Dành cho</mat-label>
             <form class="example-form">
                 <mat-form-field class="example-full-width">
@@ -73,23 +73,6 @@
                     </mat-select>
                 </mat-form-field>
             </form>
-            <mat-label>Điểm</mat-label>
-            <form class="example-form">
-                <mat-form-field class="example-full-width">
-                    <mat-label>100</mat-label>
-                    <mat-select multiple>
-                        <mat-option>Chưa chấm điểm</mat-option>
-                    </mat-select>
-                </mat-form-field>
-            </form>
-            <mat-label>Đến hạng</mat-label>
-            <form class="example-form">
-                <mat-form-field>
-                    <input matInput [matDatepicker]="myDatePicker">
-                    <mat-datepicker-toggle [for]="myDatePicker" matSuffix></mat-datepicker-toggle>
-                    <mat-datepicker #myDatePicker></mat-datepicker>
-                </mat-form-field>
-            </form>
             <mat-label>Chủ đề </mat-label>
             <form class="example-form">
                 <mat-form-field class="example-full-width">
@@ -97,7 +80,8 @@
                     <input matInput placeholder="Tạo chủ đề">
                 </mat-form-field>
                 <mat-form-field class="example-full-width">
-                    <mat-label>Không có chủ đề</mat-label>
+                    
+                    <mat-label>Chọn chủ đề có sẵn</mat-label>
                     <mat-select multiple>
                         <mat-option>Chủ đề 1</mat-option>
                         <mat-option>Chủ đề 2</mat-option>
@@ -106,8 +90,6 @@
                     </mat-select>
                 </mat-form-field>
             </form>
-            <mat-checkbox class="example-margin">Học viên có thể trả lời câu trả lời của nhau</mat-checkbox>
-            <mat-checkbox class="example-margin">Học viên có thể chỉnh sửa câu trả lời</mat-checkbox>
         </div>
     </div>
 </div>
