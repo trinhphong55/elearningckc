@@ -60,9 +60,10 @@ router.get("/ctdt/:maCTDT/hocKi/:hocKi", async (req, res) => {
   return res.json(resultView);
 });
 
+//trịnh phong sua
 router.get("/", async (req, res) => {
-  const lophocphan = await LopHocPhan.find({trangThai: 1});
-  res.json(lophocphan);
+  var data = await LopHocPhan.find().exec();
+  res.json(data);
 });
 
 //POST LopHocPhan
@@ -183,15 +184,12 @@ router.put("/:maDaoTao", async (req, res) => {
 });
 
 router.get('/malophocphan/:maLopHocPhan', async (req, res) => {
-  const maLopHocPhan = parseInt(req.params.maLopHocPhan);
-  await LopHocPhan.findOne({ maLopHocPhan })
-    .then(lhp => {
-      console.log(lhp);
-      return res.json(lhp);
-    })
-    .catch(err => {
-      return res.json({ status: 501, data: [], message: err });
-    })
+  try {
+    const lopHocPhans = await LopHocPhan.find({ maLopHocPhan : req.params.maLopHocPhan});
+    res.json(lopHocPhans);
+  } catch (error) {
+    res.json(error);
+  }
 });
 //SEARCH theo maNganh
 router.get("/:maLop/search", async (req, res) => {

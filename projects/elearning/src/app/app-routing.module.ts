@@ -36,11 +36,12 @@ const routes: Routes = [
     component: PageCaidatComponent,
   },
   {
-    path: 'lophocphan',
+    path: 'lophocphan/:id',
     component: PageLophocphanComponent,
+
   },
   {
-    path: 'baigiang',
+    path: 'baigiang/:id',
     component: PageBaigiangComponent,
     children: [
       { path: '', component: PageChudelophocphanComponent },
@@ -50,11 +51,11 @@ const routes: Routes = [
     ],
   },
   {
-    path: 'moinguoi',
+    path: 'moinguoi/:id',
     component: PageMoinguoiComponent,
   },
   {
-    path: 'cotdiem',
+    path: 'cotdiem/:id',
     component: PageCotodiemComponent,
   },
   {
@@ -65,13 +66,15 @@ const routes: Routes = [
     path: 'chamdiem',
     component: PageChamdiemComponent,
   },
+
   {
     path: '',
     component: NavbarTrangchuComponent,
     outlet: 'navbar',
   },
   {
-    path: 'lophocphan',
+
+    path: 'lophocphan/:id',
     component: NavbarHocphanComponent,
     outlet: 'navbar',
   },
