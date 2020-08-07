@@ -1,4 +1,4 @@
-const LopHoc = require("../models/LopHoc.model");
+ const LopHoc = require("../models/LopHoc.model");
 const { check, validationResult } = require("express-validator");
 
 // "maLopHoc": "mã Bậc + mã Ngành Nghề + Khoá Học + mã Loại Hình Đào Tạo + Số thứ tự",

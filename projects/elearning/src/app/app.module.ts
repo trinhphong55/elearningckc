@@ -62,7 +62,7 @@ import { PageCaidatComponent } from './pages/page-caidat/page-caidat.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PageTrangcanhansvComponent } from './pages/page-trangcanhansv/page-trangcanhansv.component';
 import { PageTrangcanhangvComponent } from './pages/page-trangcanhangv/page-trangcanhangv.component';
-
+import { CookieService } from 'ngx-cookie-service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -133,6 +133,7 @@ import { PageTrangcanhangvComponent } from './pages/page-trangcanhangv/page-tran
   entryComponents: [
   ],
   providers: [
+    CookieService,
     {
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
       useValue: { appearance: 'fill' },

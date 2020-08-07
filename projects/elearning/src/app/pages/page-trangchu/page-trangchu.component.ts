@@ -1,33 +1,35 @@
 
-import { Component, OnInit, Input } from '@angular/core';
-import { FormControl,FormGroup } from '@angular/forms';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { LopHocPhanService } from '../../../../../admin/src/app/services/lophocphan.service';
 import { LopHocService } from '../../../../../admin/src/app/services/lop-hoc.service';
 import { GvlhpService } from '../../../../../admin/src/app/services/gvlhp.service';
 import { ApiService } from '../../../../../admin/src/app/services/api.service';
-import {  SinhVienService} from '../../../../../admin/src/app/services//sinh-vien.service';
-
+import { SinhVienService } from '../../../../../admin/src/app/services//sinh-vien.service';
+import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-page-trangchu',
   templateUrl: './page-trangchu.component.html',
   styleUrls: ['./page-trangchu.component.css']
 })
 export class PageTrangchuComponent implements OnInit {
-  Doituong: any=1;
-  dsLop:any;
-  dsLopHP: any;
+  Doituong: any = 1;
+  dsLop: any;
+  dsLopHP: any = [];
   maLopHoc: string;
   maLopHocPhan: any;
-  filterDsLop:any;
-  dsGiaoVien:any;
-  dsGiaoVienLopHP:any;
-  dsSinhVien:any;
- @Input() maBac:string;
-  khoa:string;
-  hocKi:string;
-  formDanhSachLop = new FormGroup({
-    maLopHoc: new FormControl(),
-  })
+  filterDsLop: any;
+  dsGiaoVien: any;
+  dsGiaoVienLopHP: any;
+  dsSinhVien: any;
+  maBac: any;
+  hocKi: any = 1;
+  maKhoa: any = 1;
+  test:any
+  maGiaoVien:any
+  // formDanhSachLop = new FormGroup({
+  //   maLopHoc: new FormControl(),
+  // })
   lophocs = [{ id: 1, name: 'Cơ sử dữ liệu', status: true },
   { id: 2, name: 'Nhập môn lập trình', status: true },
   { id: 3, name: 'Cấu trúc dữ liệu', status: true },
@@ -37,10 +39,11 @@ export class PageTrangchuComponent implements OnInit {
   ];
   constructor(
     private lopHocPhanService: LopHocPhanService,
-    private lopHocService:LopHocService,
-    private gvlhpService:GvlhpService,
-    private apiService:ApiService,
-    private SinhVienService:SinhVienService,) { }
+    private lopHocService: LopHocService,
+    private gvlhpService: GvlhpService,
+    private apiService: ApiService,
+    private SinhVienService: SinhVienService,
+    private cookie: CookieService) { }
 
   ngOnInit(): void {
     this.danhSachLop();
@@ -48,18 +51,21 @@ export class PageTrangchuComponent implements OnInit {
     this.danhSachGVLHP();
     this.danhSachLopHocPhan();
     this.danhSachSinhVien();
+    this.layCookie();
+    this.dsLopGiaoVien();
   }
-  toppings = new FormControl();
-  toppingList: string[] = ['học kì 1', 'học kì 2', 'học kì 3', 'học kì 4', 'học kì 5', 'học kì 6'];
-  khoahocs = new FormControl();
-  khoahocList: string[] = ['khóa 17', 'khóa 18', 'khóa 19', 'khóa 20'];
-  
-
+  // lay cookie
+  layCookie() {
+    this.maKhoa = this.cookie.get("khoa")
+    this.maBac = this.cookie.get("bac")
+    this.hocKi = this.cookie.get("hocKi")
+  }
   ///hien thi ds lop
-  danhSachLop(){
+  danhSachLop() {
     this.lopHocService.getAll().subscribe(
-      (dsLop) => {
+      dsLop => {
         this.dsLop = dsLop;
+
       },
       (error) => {
         console.log(error);
@@ -67,8 +73,8 @@ export class PageTrangchuComponent implements OnInit {
     );
   }
   //danh Sach Sinh Vien
-  danhSachSinhVien(){
-    var phong:string= this.formDanhSachLop.get('maLopHoc').value
+  danhSachSinhVien() {
+    var phong: string = this.maLopHoc
     this.SinhVienService.tinhTongSinhVien(phong).subscribe(
       (dsSinhVien) => {
         this.dsSinhVien = dsSinhVien.siSo;
@@ -77,96 +83,84 @@ export class PageTrangchuComponent implements OnInit {
         console.log(error);
       }
     );
-    
-    
+
+
   }
+
+  ///hien thi dsgv
+  danhSachGV() {
+    this.apiService.layDanhSachGiaoVien().subscribe(
+      (dsGiaoVien) => {
+        this.dsGiaoVien = dsGiaoVien;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+
+  }
+
+  // ds gv lớp hoc phần
+    danhSachGVLHP() {
+      this.maGiaoVien="001";
+      this.gvlhpService.timGiaoVienLHPTheoMaGV("001").subscribe(
+        (dsGiaoVienLopHP) => {
+          this.dsGiaoVienLopHP = dsGiaoVienLopHP;
   
-///hien thi dsgv
-danhSachGV(){
-  // this.apiService.layDanhSachGiaoVien().subscribe(
-  //   (dsGiaoVien) => {
-  //     this.dsGiaoVien = dsGiaoVien;
-  //     console.log(this.dsGiaoVien)
-  //   },
-  //   (error) => {
-  //     console.log(error);
-  //   }
-  // );
-  this.dsGiaoVien=[
-    { "maGiaoVien": "001",
-    "ho": "Lữ",
-    "ten": "Cao Tiến",
-    "maBoMon": "A-BoMon",
-    "ngaySinh": "7/6/1999",
-    "sdt": "1234567890",
-    "email": "lctien@gmail.com",
-    "trinhDoChuyenMon": "Thạc sĩ",
-    "cmnd": "11111111",
-    "trangThai": 1,
-    "matKhauBanDau": "e10adc3949ba59abbe56e057f20f883e"},
-    {
-      "maGiaoVien": "002",
-      "ho": "Dương",
-      "ten": "Trọng Đính",
-      "maBoMon": "B-BoMon",
-      "ngaySinh": "1/1/1999",
-      "sdt": "0987654321",
-      "email": "dtdinh@gmail.com",
-      "trinhDoChuyenMon": "Thạc sĩ",
-      "cmnd": "22222222",
-      "trangThai": 1,
-      "matKhauBanDau": "e10adc3949ba59abbe56e057f20f883e"
-  }
-  ]
- 
-}
-
-// ds lớp hoc phần
- danhSachGVLHP(){
-  this.gvlhpService.getall().subscribe(
-    (dsGiaoVienLopHP) => {
-      this.dsGiaoVienLopHP = dsGiaoVienLopHP;
-    },
-    (error) => {
-      console.log(error);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
     }
-  );
 
-}
+  //danh sách lớp giáo viên
+  dsLopGiaoVien() {
+
+    this.danhSachLop();
+    this.lopHocPhanService.getLopHocPhan().subscribe(
+      dsLopHP => {
+        this.dsLopHP = dsLopHP;
+        
+        this.dsLopHP.forEach(x => {
+          this.dsGiaoVienLopHP.filter(y => {
+           if (y.maLopHocPhan==x.maLopHocPhanx)
+           this.test= this.dsLopHP.indexOf(this.dsGiaoVienLopHP)
+          });
+        })
+      
+        this.danhSachLopHocPhan();
+        console.log(this.test)
+      },
+      (error) => {
+        console.log(error)
+      });
+
+  }
+
   //hien thi ds lop hoc phan
   danhSachLopHocPhan() {
+    this.layCookie();
     if (this.Doituong == 1) {
       this.maLopHoc = '30061711';
       this.lopHocPhanService.layLopHocPhantheoMaLop(this.maLopHoc).subscribe(
         dsLopHP => {
           this.dsLopHP = dsLopHP;
-          this.filterDsLop = this.dsLopHP.filter(x=>{
-            if(x.hocKi=1)
+          this.filterDsLop = this.dsLopHP.filter(x => {
+            if (x.hocKi == this.hocKi)
               return x;
           })
-         
-          console.log(this.filterDsLop)
-          console.log(this.maBac)
-          console.log(this.khoa)
-          console.log(this.hocKi)
+          this.danhSachLopHocPhan()
         },
         (error) => {
           console.log(error)
         });
 
-        ///lây theo lọc
-     
     }
-    else{
-      this.maLopHocPhan = 1;
-      this.lopHocPhanService.getLopHocPhanbyMaLopHocPhan(this.maLopHocPhan ).subscribe(
-        (dsLopHP) => {
-          this.dsLopHP = dsLopHP;
-        },
-        (error) => {
-          console.log(error)
-        });
+    else {
+      this.dsLopGiaoVien();
     }
   }
   //hien thi danh sach danh sach lop
+
 }
