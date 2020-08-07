@@ -19,18 +19,30 @@ const routes: Routes = [
   {
     path: 'lien-he',
     component: PageContactComponent,
+    data: {
+      breadcrumb: 'Liên hệ',
+    },
   },
   {
     path: 'tim-kiem',
     component: PageSearchComponent,
+    data: {
+      breadcrumb: 'Tìm kiếm',
+    },
   },
   {
     path: 'tai-lieu',
     component: PageDocumentComponent,
+    data: {
+      breadcrumb: 'Tài liệu',
+    },
   },
   {
     path: 'viec-lam',
     component: PageJobComponent,
+    data: {
+      breadcrumb: 'Việc làm',
+    },
   },
   {
     path: 'bai-viet',
