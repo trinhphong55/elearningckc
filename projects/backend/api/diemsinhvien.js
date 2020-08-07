@@ -44,7 +44,6 @@ exports.getDiemSinhVien_maSSV = async (req, res) => {
         }
       });
     });
-    res.json();
     khdt.forEach((kh) => {
       monHocs.forEach((mh) => {
         if (kh.maMonHoc == mh.maMonHoc) {
@@ -52,42 +51,36 @@ exports.getDiemSinhVien_maSSV = async (req, res) => {
         }
       });
     });
-    diemsinhvien.forEach((diem) => {
-      khdt.forEach((kh) => {
-        if (diem.maDaoTao == kh.maDaoTao) {
-        }
-      });
-    });
-    let result = (req) => {
-      return {
-        diemsinhvien: req.diemsinhvien,
-        donViHocTrinh: req.donViHocTrinh,
-        soTietHoc: req.soTietHoc,
-        soTuan: req.soTuan,
-        hocKi: req.hocKi,
-        loaiTienThu: req.loaiTienThu,
-        tinh: req.tinh,
-        xet: req.xet,
-        nguoiTao: req.nguoiTao,
-        nguoiChinhSua: req.nguoiChinhSua,
-        trangThai: req.trangThai,
-        maChuongTrinhDaoTao: req.maChuongTrinhDaoTao,
-        maBoMon: req.maBoMon,
-        maDaoTao: req.maDaoTao,
-        maMonHoc: req.maMonHoc,
-        tenMonHoc: req.tenMonHoc,
-        ngayChinhSua: req.ngayChinhSua,
-        ngayTao: req.ngayTao,
-      };
-    };
-    let khdt_ten = [];
-    khdt.forEach((el) => {
-      khdt_ten.push(result(el));
 
-    });
-    console.log(khdt_ten);
-    return res.json(khdt_ten);
+
+    let khdt_ten = [];
+    khdt.forEach(el => {
+      khdt_ten.push(result(el));
+    })
+    res.json(khdt_ten);
   } catch (error) {
     res.json(error);
   }
+};
+let result = (req) => {
+  return {
+    diemsinhvien: req.diemsinhvien,
+    donViHocTrinh: req.donViHocTrinh,
+    soTietHoc: req.soTietHoc,
+    soTuan: req.soTuan,
+    hocKi: req.hocKi,
+    loaiTienThu: req.loaiTienThu,
+    tinh: req.tinh,
+    xet: req.xet,
+    nguoiTao: req.nguoiTao,
+    nguoiChinhSua: req.nguoiChinhSua,
+    trangThai: req.trangThai,
+    maChuongTrinhDaoTao: req.maChuongTrinhDaoTao,
+    maBoMon: req.maBoMon,
+    maDaoTao: req.maDaoTao,
+    maMonHoc: req.maMonHoc,
+    tenMonHoc: req.tenMonHoc,
+    ngayChinhSua: req.ngayChinhSua,
+    ngayTao: req.ngayTao,
+  };
 };
