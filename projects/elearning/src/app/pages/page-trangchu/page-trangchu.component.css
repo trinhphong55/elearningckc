@@ -63,8 +63,8 @@
 .list-lophoc-item .list-title .name--menu .name-class{
     width: 75%;
     float: left;
-    
-    
+
+
 }
 .list-lophoc-item .list-title .name--menu .name-class div a{
     width: 90%;
@@ -77,7 +77,7 @@
     font-weight: 400;
     line-height: 1.75rem;
     color: white;
-  
+
 }
 .list-lophoc-item .list-title .name--menu .name-class div{
     line-height: 1.1;
@@ -137,7 +137,7 @@
     top: 25%;
     left: 70%;
     width: 20%;
-  
+
 }
 .list-lophoc .list-lophoc-item .list-image img{
     width: 100%;
@@ -148,7 +148,7 @@
 
 
 @media only screen and (max-width: 600px) {
-    
+
     header{
         width: 100%;
         display: flex;
@@ -163,7 +163,7 @@
         width: 50%;
         padding-top: 0px;
         margin-bottom: 5px;
-        
+
     }
     header .title-lophoc .tt-image{
         width: 100%;
