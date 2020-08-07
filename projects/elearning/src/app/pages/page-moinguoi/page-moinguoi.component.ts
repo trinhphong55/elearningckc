@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {MoigvComponent} from '../../components/content/pageMoinguoi/moigv/moigv.component';
+import { MoigvComponent } from '../../components/content/pageMoinguoi/moigv/moigv.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MoisvComponent } from '../../components/content/pageMoinguoi/moisv/moisv.component';
 import { ApiService } from '../../../../../admin/src/app/services/api.service';
@@ -37,7 +37,7 @@ export class PageMoinguoiComponent implements OnInit {
     private cookie:CookieService) { }
 
   ngOnInit(): void {
-    // this.danhSachGiaoVien(),
+    this.danhSachGiaoVien(),
       this.danhSachLopHocPhan();
     this.danhSachHocSinh();
     this.moiGiaoVien();
@@ -49,6 +49,34 @@ export class PageMoinguoiComponent implements OnInit {
   }
   openMoisv() {
     this.dialog.open(MoisvComponent, { width: '400px' });
+  }
+  //
+  danhSachGVLHP() {
+    this.gvlhpService.getall().subscribe(
+      dsGiaoVienhp => {
+        this.dsGiaoVienhp = dsGiaoVienhp;
+        this.dsGiaoVienLophp = this.dsGiaoVienhp.filter(x => {
+          if (x.maLopHocPhan == this.maLophocPhan)
+            return x;
+        })
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  //hien thị danh sach giao vien 
+  danhSachGiaoVien() {
+    this.danhSachGVLHP();
+    this.apiService.layDanhSachGiaoVien().subscribe(
+      dsGiaoVien => {
+        this.dsGiaoVien = dsGiaoVien;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
 

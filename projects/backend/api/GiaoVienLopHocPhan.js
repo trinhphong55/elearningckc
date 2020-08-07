@@ -48,4 +48,11 @@ router.post('/giaovienlophocphan', async (req, res) => {
   }
 });
 
+//tim lop hp theo a giao vien
+router.get("/:maGiaoVien", async (req, res) => {
+
+  var data =await GVLHP.find({maGiaoVien:req.params.maGiaoVien}).exec()
+  res.json(data);
+});
+
 module.exports = router;

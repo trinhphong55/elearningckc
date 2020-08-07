@@ -28,7 +28,14 @@ export class GvlhpService {
         return error;
       }
     }
-  
+  //trinhphong tim gvlhp theo magv:
+  timGiaoVienLHPTheoMaGV(maGiaoVien:string){
+    try {
+      return this.http.get(`${this.gvlhpURL}/${maGiaoVien}`);
+    } catch (error) {
+      return error;
+    }
+  }
   changeGVLHP(maLHP: string, maGV: string): Observable<any> {
     return this.http.post<any>(this.gvlhpURL, [maLHP, maGV], httpOptions);
   }
