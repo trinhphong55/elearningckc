@@ -1,3 +1,5 @@
+import { ThoiKhoaBieu } from './../../models/thoi-khoa-bieu.interface';
+import { ThoiKhoaBieuService } from './../../services/thoi-khoa-bieu.service';
 import { ChuDe } from './../../models/chu-de.interface';
 import { ChuDeService } from './../../services/chu-de.service';
 import { MonhocService } from './../../services/monhoc.service';
@@ -17,6 +19,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { LopHocPhan } from '../../models/lophocphan.interface';
 import { CTDT } from '../../models/ctdt.interface';
+import { MonHoc } from '../../models/monhoc.interface';
 
 @Component({
   selector: 'app-page-trangcanhansv',
@@ -44,6 +47,9 @@ export class PageTrangcanhansvComponent implements OnInit {
   public dsChuDe: ChuDe[] = [];
   public diemSinhViens: DiemSinhVien[] = [];
   public dsKHDT: KHDT_DiemSinVien[] = [];
+  public dsMonHoc: MonHoc[] = [];
+  public MonHoc: MonHoc;
+  public dsThoiKhoaBieu: ThoiKhoaBieu;
 
   public sinhVienFormGroup: FormGroup;
   public locChiTietGroupForm: FormGroup;
@@ -87,7 +93,8 @@ export class PageTrangcanhansvComponent implements OnInit {
     private diemSinhVienService: DiemSinhVienService,
     private kHDTService: KHDTService,
     private monHocService: MonhocService,
-    private chuDeService: ChuDeService
+    private chuDeService: ChuDeService,
+    private thoiKhoaBieu: ThoiKhoaBieuService
   ) {}
 
   ngOnInit(): void {
@@ -154,14 +161,15 @@ export class PageTrangcanhansvComponent implements OnInit {
   get chonLopBD() {
     return this.locBangDiemFormGroup.get('chonLop');
   }
-
+  //######################### Lay Thong Tin ##########################
   public layThongTinSV(maSV: string) {
     this.sinhVienService.getonesv(maSV).subscribe(
       (sv) => {
         if (sv.data) {
           this.sinhVien = sv.data;
-          let maCT = '3006171';
+          let maCT = this.sinhVien.maLopHoc.slice(0, 7);
           this.layCTDT_theoHocKi(this.chonHocKiBD.value, maCT);
+          this.layThoiKhoaBieu_theoLop(this.sinhVien.maLopHoc, 1);
           this.setValueSinhVienFormGroup(this.sinhVien);
           this.sinhViens.push(this.sinhVien);
         }
@@ -205,7 +213,7 @@ export class PageTrangcanhansvComponent implements OnInit {
   }
   public setValueSinhVienFormGroup(sinhVien: SinhVien) {
     this.mssv.setValue(sinhVien.maSinhVien);
-    this.gioiTinh.setValue(sinhVien.gioiTinh);
+    this.gioiTinh.setValue(sinhVien.gioiTinh==0?'Nam':'Nữ');
     this.ho.setValue(sinhVien.ho);
     this.ten.setValue(sinhVien.ten);
     this.ngaySinh.setValue(sinhVien.ngaySinh);
@@ -223,6 +231,68 @@ export class PageTrangcanhansvComponent implements OnInit {
       }
     );
   }
+  public layCTDT_theoHocKi(hocKi, maCTDT) {
+    if (hocKi) {
+      this.kHDTService
+        .getKHDTByHocKiNMaCTDT(maCTDT, hocKi)
+        .subscribe((res: any) => {
+          this.dsKHDT = res;
+          this.dsKHDT.forEach((khdt) => {
+            this.diemSinhViens.forEach((diem) => {
+              if (diem.maDaoTao == khdt.maDaoTao) {
+                khdt.diemSinhVien = diem;
+              }
+            });
+            this.monHocService
+              .getMonHocFromMaMonHoc(khdt.maMonHoc)
+              .subscribe((res: any) => {
+                khdt.tenMonHoc = res.tenMonHoc;
+              });
+          });
+        });
+    } else {
+      this.dsKHDT = [];
+    }
+  }
+  public layThoiKhoaBieu_theoLop(maLopHoc, hocKi) {
+    this.thoiKhoaBieu.layThoiKhoaBieu(maLopHoc, hocKi).subscribe(
+      (res: any) => {
+        this.dsThoiKhoaBieu = res;
+        this.layMonHoc_tuMaMonHoc(this.dsThoiKhoaBieu.TKB);
+      },
+      (err) => console.log(err)
+    );
+  }
+  public layMonHoc_tuMaMonHoc(dsMaMonHoc) {
+    this.monHocService.getMonHoc().subscribe((res: any) => {
+      this.dsMonHoc = res;
+      this.dsThoiKhoaBieu.TKB =[[]];
+      this.dsThoiKhoaBieu.TKB.pop();
+      dsMaMonHoc.forEach((el) => {
+        let tiet_tmp = [];
+        el.forEach((tiet) => {
+          this.dsMonHoc.forEach((monhoc) => {
+            if (tiet == monhoc.maMonHoc) {
+              tiet = monhoc.tenMonHoc;
+              tiet_tmp.push(tiet);
+            }
+          });
+        });
+        if (tiet_tmp.length < 7) {
+          for (let i = 0; i < 7; i++) {
+            if (tiet_tmp.length < 7) {
+              tiet_tmp.push('trống');
+            }
+          }
+        }
+        if(tiet_tmp.length !== 0){
+          this.dsThoiKhoaBieu.TKB.push(tiet_tmp);
+        }
+      });
+      console.log(this.dsThoiKhoaBieu.TKB);
+    });
+  }
+  //######################## gan Ten #################################
   public ganTenLopHocPhanDiemSV(diemSV: DiemSinhVien[]) {
     this.LopHocPhanService.getLopHocPhan().subscribe((res) => {
       if (res) {
@@ -239,17 +309,6 @@ export class PageTrangcanhansvComponent implements OnInit {
         this.diemSinhViens = diemSV;
       }
     });
-  }
-  public loc_Theo_LopHocPhan(diemSV) {
-    let diems = [];
-    diemSV.forEach((diem) => {
-      this.lopHocPhans.forEach((lop) => {
-        if (diem.maLopHocPhan == lop.maLopHocPhan) {
-          diems.push(diem);
-        }
-      });
-    });
-    return diems;
   }
   public ganTenLopHocPhanCTDiem(ChiTietDiem: ChiTietDiemSVLHP[]) {
     this.LopHocPhanService.getLopHocPhan().subscribe(
@@ -305,29 +364,7 @@ export class PageTrangcanhansvComponent implements OnInit {
       });
     });
   }
-  public layCTDT_theoHocKi(hocKi, maCTDT) {
-    if (hocKi) {
-      this.kHDTService
-        .getKHDTByHocKiNMaCTDT(maCTDT, hocKi)
-        .subscribe((res: any) => {
-          this.dsKHDT = res;
-          this.dsKHDT.forEach((khdt) => {
-            this.diemSinhViens.forEach((diem) => {
-              if (diem.maDaoTao == khdt.maDaoTao) {
-                khdt.diemSinhVien = diem;
-              }
-            });
-            this.monHocService
-              .getMonHocFromMaMonHoc(khdt.maMonHoc)
-              .subscribe((res: any) => {
-                khdt.tenMonHoc = res.tenMonHoc;
-              });
-          });
-        });
-    } else {
-      this.dsKHDT = [];
-    }
-  }
+
   //################################# Xu ly su kien ##################################
   onChangeDanhSachCotDiem() {
     this.layThongTinSV(this.taiKhoan.displayName);
@@ -339,16 +376,22 @@ export class PageTrangcanhansvComponent implements OnInit {
     this.layThongTinSV(this.taiKhoan.displayName);
   }
   onSubmitCapNhatSinhVien() {
-    this.sinhVien.matKhau = this.password.value;
-    this.sinhVien.nguoiChinhSua = this.taiKhoan.displayName;
-    this.sinhVien.sdt = this.sdt.value;
-    const req = {
-      maSinhVien: this.sinhVien.maSinhVien,
-      tokens: '12341234',
-      role: this.taiKhoan.role,
-      data: this.sinhVien,
-    };
-    this.capNhatSinhVien(req);
+    if(this.password.value !== this.confirmPassword.value){
+      this.messages.push({msg:"Mật khẩu không trùng nhau", status:200});
+    }
+    else{
+      this.sinhVien.matKhau = this.password.value;
+      this.sinhVien.nguoiChinhSua = this.taiKhoan.displayName;
+      this.sinhVien.sdt = this.sdt.value;
+      const req = {
+        maSinhVien: this.sinhVien.maSinhVien,
+        tokens: '12341234',
+        role: this.taiKhoan.role,
+        data: this.sinhVien,
+      };
+      this.capNhatSinhVien(req);
+    }
+
   }
   //################################ Xu ly loc #######################################
   public loc_CTDiem_LopHocPhan(
@@ -383,5 +426,16 @@ export class PageTrangcanhansvComponent implements OnInit {
     }
 
     return lopHocPhans;
+  }
+  public loc_Theo_LopHocPhan(diemSV) {
+    let diems = [];
+    diemSV.forEach((diem) => {
+      this.lopHocPhans.forEach((lop) => {
+        if (diem.maLopHocPhan == lop.maLopHocPhan) {
+          diems.push(diem);
+        }
+      });
+    });
+    return diems;
   }
 }

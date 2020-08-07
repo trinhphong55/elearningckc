@@ -202,7 +202,6 @@ router.get("/:maLop/search", async (req, res) => {
     res.json(error);
   }
 });
-<<<<<<< HEAD
 //SEARCH theo maLopHocPhan
 //Nguoi tạo: Trần Đình Huy
 
@@ -219,13 +218,4 @@ router.get("/:maLopHocPhan/malhp", async (req, res) => {
     });
   } catch (error) {}
 });
-=======
-
-// router.patch('/haha', async (req, res) => {
-//   LopHocPhan.deleteMany().then(result => console.log(result));
-// })
-
-// ***  API for team App Android  ***
-
->>>>>>> elearning
 module.exports = router;

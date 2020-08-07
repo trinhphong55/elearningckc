@@ -29,7 +29,7 @@ export class MonhocService {
   }
 
   //Lay 1 mon hoc
-  getMonHocFromMaMonHoc(maMonHoc: string): Observable<MonHoc> {
+  getMonHocFromMaMonHoc(maMonHoc:any): Observable<MonHoc> {
     const url = `${this.monHocURL}/${maMonHoc}`;
     return this.http.get<MonHoc>(url);
   }
