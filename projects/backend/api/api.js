@@ -8,6 +8,7 @@ const LopHocPhan = require("./LopHocPhan");
 const LoaiMonHoc = require("./LoaiMonHoc");
 const groupFB = require("../api/groupFB");
 const pagefb=require("../api/pagefb");
+const baidangfb=require("../api/baidangfb");
 const boMon = require("../api/bomon");
 
 const sinhVien = require("./sinh-vien");
@@ -129,6 +130,13 @@ router.post("/pagefb",pagefb.postPageFB);
 router.put("/pagefb/:id",pagefb.updatePageFB);
 //Delete 1 page trong PageFB
 router.delete("/pagefb/:id",pagefb.deletePageFB);
+//Lấy tất cả từ db QlBaiDangFB
+router.get("/baidangfb",baidangfb.getAll);
+//Thêm vào draw
+router.post("/baidangfb",baidangfb.postToDrawFB);
+//Xoas bai post
+// router.delete("/baidangfb/:id",pagefb.deletePostFB);
+
 //----------------------------Routes SinhVien------------
 router.get("/sinhvien", sinhVien.layTatCaSinhVien);
 router.get("/sinhvien/:maLopHoc/malop", sinhVien.Laysinhvientheomalop);

@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-const baseUrl = 'https://localhost:4100/api/pagefb';
+const baseUrl = 'https://localhost:4100/api/baidangfb';
 @Injectable({
   providedIn: 'root'
 })
-
-export class PagefbService {
+export class BaiDangfbService {
     constructor(private http:HttpClient) { }
     getAll(){
         return this.http.get(baseUrl);
