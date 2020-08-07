@@ -31,5 +31,5 @@ export class NavbarHocphanComponent implements OnInit {
     this.baitapgv="/baitapgv/"+this.malophocphan;
     
     this.data=this.router.snapshot.paramMap.get('id');
-
+  }
 }

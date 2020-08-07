@@ -1,9 +1,16 @@
 <div class="container-fluid mt-4">
-  <div class="row my-2">
-    <div class="col-lg-10 order-lg-2">
+  <div class="row">
+    <div class="col-md-2 text-center">
+      <img src="assets/img/huykun.JPG" class="mx-auto img-fluid img-circle d-block" alt="avatar">
+      <label class="custom-file">
+        <input type="file" id="file" class="custom-file-input">
+        <span class="custom-file-control btn btn-light">Chọn file</span>
+      </label>
+    </div>
+    <div class="col-md-10">
       <ul class="nav nav-tabs">
         <li class="nav-item">
-          <a href="" data-target="#messages" data-toggle="tab" class="nav-link">Thông báo</a>
+          <a href="" data-target="#messages" data-toggle="tab" class="nav-link active">Thông báo</a>
         </li>
         <li class="nav-item">
           <a href="" data-target="#edit" data-toggle="tab" class="nav-link">Chỉnh sửa thông tin</a>
@@ -19,8 +26,7 @@
         </li>
       </ul>
       <div class="tab-content py-4">
-
-        <div class="tab-pane" id="messages">
+        <div class="tab-pane active" id="messages">
           <div class="scrollable">
             <div class="alert alert-info alert-dismissable">
               <a class="panel-close close" data-dismiss="alert">×</a><strong>Huy nguyễn</strong>. Đã đăng bài
@@ -318,18 +324,7 @@
         </div>
         <div class="tab-pane" id="bangdiemlophocphan">
           <div class="row">
-            <div class="col-md-2">
-              <div class="form-group pr-3 pt-1">
-                <select class="form-control" id="exampleFormControlSelect1">
-                  <option>Chọn lớp</option>
-                  <option>Lập trình hướng đối tượng</option>
-                  <option>Lập trình Laravel</option>
-                  <option>Cấu trúc dữ liệu và thuật tóan</option>
-                  <option>Toán rời rạc</option>
-                </select>
-              </div>
-            </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
               <div class="form-group pr-3 pt-1">
                 <select class="form-control" id="exampleFormControlSelect1">
                   <option>Chọn học kì</option>
@@ -343,110 +338,95 @@
           </div>
           <div class="row">
             <div class="col-md-12 shadow">
-              <table class="table table-fixed">
-                <div class="style-over-hozital">
+              <div class="scrollable">
+                <table class="table table-bordered">
                   <thead>
                     <tr>
-                      <th scope="col" class="col-md-1">
-                        STT
-                      </th>
-                      <th scope="col" class="col-md-2">
-                        Tên cột điểm
-                      </th>
-                      <th scope="col" class="col-md-2">
-                        Hệ số
-                      </th>
-                      <th scope="col" class="col-md-2">
-                        Tên bài tập
-                      </th>
-                      <th scope="col" class="col-md-2">
-                        Điểm số
-                      </th>
-                      <th scope="col" class="col-md-2">
-                        Tên chủ đề
-                      </th>
-                      <th scope="col" class="col-md-2 style-text">
-                        Tên lớp học phần
-                      </th>
+                      <th scope="col">STT</th>
+                      <th scope="col">Tên cột điểm </th>
+                      <th scope="col">Hệ số</th>
+                      <th scope="col">Tên bài tập</th>
+                      <th scope="col">Điểm số</th>
+                      <th scope="col">Tên chủ đề</th>
+                      <th scope="col">Tên lớp học phần</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td class="col-md-1">1</td>
-                      <td class="col-md-2">Kiểm tra 15p</td>
-                      <td class="col-md-2">1</td>
-                      <td class="col-md-2 style-text">Test report, test summary</td>
-                      <td class="col-md-2">5</td>
-                      <td class="col-md-2 style-text">Bài tập cá nhân</td>
-                      <td class="col-md-2 style-text">Lập trình hướng đối tượng</td>
+                      <td scope="row">1</td>
+                      <td>Kiểm tra 15p</td>
+                      <td>1</td>
+                      <td>Test report, test summary</td>
+                      <td>5</td>
+                      <td>Bài tập cá nhân</td>
+                      <td>Lập trình hướng đối tượng</td>
                     </tr>
                     <tr>
-                      <td class="col-md-1">1</td>
-                      <td class="col-md-2">Kiểm tra 15p</td>
-                      <td class="col-md-2">1</td>
-                      <td class="col-md-2 style-text">Test report, test summary</td>
-                      <td class="col-md-2">5</td>
-                      <td class="col-md-2 style-text">Bài tập cá nhân</td>
-                      <td class="col-md-2 style-text">Lập trình hướng đối tượng</td>
+                      <td scope="row">1</td>
+                      <td>Kiểm tra 15p</td>
+                      <td>1</td>
+                      <td>Test report, test summary</td>
+                      <td>5</td>
+                      <td>Bài tập cá nhân</td>
+                      <td>Lập trình hướng đối tượng</td>
                     </tr>
                     <tr>
-                      <td class="col-md-1">1</td>
-                      <td class="col-md-2">Kiểm tra 15p</td>
-                      <td class="col-md-2">1</td>
-                      <td class="col-md-2 style-text">Test report, test summary</td>
-                      <td class="col-md-2">5</td>
-                      <td class="col-md-2 style-text">Bài tập cá nhân</td>
-                      <td class="col-md-2 style-text">Lập trình hướng đối tượng</td>
+                      <td scope="row">1</td>
+                      <td>Kiểm tra 15p</td>
+                      <td>1</td>
+                      <td>Test report, test summary</td>
+                      <td>5</td>
+                      <td>Bài tập cá nhân</td>
+                      <td>Lập trình hướng đối tượng</td>
                     </tr>
                     <tr>
-                      <td class="col-md-1">1</td>
-                      <td class="col-md-2">Kiểm tra 15p</td>
-                      <td class="col-md-2">1</td>
-                      <td class="col-md-2 style-text">Test report, test summary</td>
-                      <td class="col-md-2">5</td>
-                      <td class="col-md-2 style-text">Bài tập cá nhân</td>
-                      <td class="col-md-2 style-text">Lập trình hướng đối tượng</td>
+                      <td scope="row">1</td>
+                      <td>Kiểm tra 15p</td>
+                      <td>1</td>
+                      <td>Test report, test summary</td>
+                      <td>5</td>
+                      <td>Bài tập cá nhân</td>
+                      <td>Lập trình hướng đối tượng</td>
                     </tr>
                     <tr>
-                      <td class="col-md-1">1</td>
-                      <td class="col-md-2">Kiểm tra 15p</td>
-                      <td class="col-md-2">1</td>
-                      <td class="col-md-2 style-text">Test report, test summary</td>
-                      <td class="col-md-2">5</td>
-                      <td class="col-md-2 style-text">Bài tập cá nhân</td>
-                      <td class="col-md-2 style-text">Lập trình hướng đối tượng</td>
+                      <td scope="row">1</td>
+                      <td>Kiểm tra 15p</td>
+                      <td>1</td>
+                      <td>Test report, test summary</td>
+                      <td>5</td>
+                      <td>Bài tập cá nhân</td>
+                      <td>Lập trình hướng đối tượng</td>
                     </tr>
                     <tr>
-                      <td class="col-md-1">1</td>
-                      <td class="col-md-2">Kiểm tra 15p</td>
-                      <td class="col-md-2">1</td>
-                      <td class="col-md-2 style-text">Test report, test summary</td>
-                      <td class="col-md-2">5</td>
-                      <td class="col-md-2 style-text">Bài tập cá nhân</td>
-                      <td class="col-md-2 style-text">Lập trình hướng đối tượng</td>
+                      <td scope="row">1</td>
+                      <td>Kiểm tra 15p</td>
+                      <td>1</td>
+                      <td>Test report, test summary</td>
+                      <td>5</td>
+                      <td>Bài tập cá nhân</td>
+                      <td>Lập trình hướng đối tượng</td>
                     </tr>
                     <tr>
-                      <td class="col-md-1">1</td>
-                      <td class="col-md-2">Kiểm tra 15p</td>
-                      <td class="col-md-2">1</td>
-                      <td class="col-md-2 style-text">Test report, test summary</td>
-                      <td class="col-md-2">5</td>
-                      <td class="col-md-2 style-text">Bài tập cá nhân</td>
-                      <td class="col-md-2 style-text">Lập trình hướng đối tượng</td>
+                      <td scope="row">1</td>
+                      <td>Kiểm tra 15p</td>
+                      <td>1</td>
+                      <td>Test report, test summary</td>
+                      <td>5</td>
+                      <td>Bài tập cá nhân</td>
+                      <td>Lập trình hướng đối tượng</td>
                     </tr>
                     <tr>
-                      <td class="col-md-1">1</td>
-                      <td class="col-md-2">Kiểm tra 15p</td>
-                      <td class="col-md-2">1</td>
-                      <td class="col-md-2 style-text">Test report, test summary</td>
-                      <td class="col-md-2">5</td>
-                      <td class="col-md-2 style-text">Bài tập cá nhân</td>
-                      <td class="col-md-2 style-text">Lập trình hướng đối tượng</td>
+                      <td scope="row">1</td>
+                      <td>Kiểm tra 15p</td>
+                      <td>1</td>
+                      <td>Test report, test summary</td>
+                      <td>5</td>
+                      <td>Bài tập cá nhân</td>
+                      <td>Lập trình hướng đối tượng</td>
                     </tr>
                   </tbody>
-                </div>
-
-              </table>
+                </table>
+              </div>
             </div>
           </div>
         </div>
@@ -477,85 +457,59 @@
           </div>
           <div class="row">
             <div class="col-md-12 shadow">
-              <table class="table table-fixed">
-                <div class="style-over-hozital">
+              <div class="scrollable">
+                <table class="table table-bordered">
                   <thead>
                     <tr>
-                      <th scope="col" class="col-md-4">
-                        STT
-                      </th>
-                      <th scope="col" class="col-md-4">
-                        Điểm tổng kết
-                      </th>
-                      <th scope="col" class="col-md-4">
-                        Tên lớp học phần
-                      </th>
+                      <th scope="col">STT</th>
+                      <th scope="col">Điểm tổng kết</th>
+                      <th scope="col">Tên lớp học phần</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td class="col-md-4">1</td>
-                      <td class="col-md-4">7</td>
-                      <td class="col-md-4 style-text">Lập trình hướng đối tượng</td>
+                      <td scope="row">1</td>
+                      <td>7</td>
+                      <td>Lập trình hướng đối tượng</td>
                     </tr>
                     <tr>
-                      <td class="col-md-4">1</td>
-                      <td class="col-md-4">7</td>
-                      <td class="col-md-4 style-text">Lập trình hướng đối tượng</td>
+                      <td scope="row">1</td>
+                      <td>7</td>
+                      <td>Lập trình hướng đối tượng</td>
                     </tr>
                     <tr>
-                      <td class="col-md-4">1</td>
-                      <td class="col-md-4">7</td>
-                      <td class="col-md-4 style-text">Lập trình hướng đối tượng</td>
+                      <td scope="row">1</td>
+                      <td>7</td>
+                      <td>Lập trình hướng đối tượng</td>
                     </tr>
                     <tr>
-                      <td class="col-md-4">1</td>
-                      <td class="col-md-4">7</td>
-                      <td class="col-md-4 style-text">Lập trình hướng đối tượng</td>
+                      <td scope="row">1</td>
+                      <td>7</td>
+                      <td>Lập trình hướng đối tượng</td>
                     </tr>
                     <tr>
-                      <td class="col-md-4">1</td>
-                      <td class="col-md-4">7</td>
-                      <td class="col-md-4 style-text">Lập trình hướng đối tượng</td>
+                      <td scope="row">1</td>
+                      <td>7</td>
+                      <td>Lập trình hướng đối tượng</td>
                     </tr>
                     <tr>
-                      <td class="col-md-4">1</td>
-                      <td class="col-md-4">7</td>
-                      <td class="col-md-4 style-text">Lập trình hướng đối tượng</td>
+                      <td scope="row">1</td>
+                      <td>7</td>
+                      <td>Lập trình hướng đối tượng</td>
                     </tr>
                     <tr>
-                      <td class="col-md-4">1</td>
-                      <td class="col-md-4">7</td>
-                      <td class="col-md-4 style-text">Lập trình hướng đối tượng</td>
+                      <td scope="row">1</td>
+                      <td>7</td>
+                      <td>Lập trình hướng đối tượng</td>
                     </tr>
                     <tr>
-                      <td class="col-md-4">1</td>
-                      <td class="col-md-4">7</td>
-                      <td class="col-md-4 style-text">Lập trình hướng đối tượng</td>
-                    </tr>
-                    <tr>
-                      <td class="col-md-4">1</td>
-                      <td class="col-md-4">7</td>
-                      <td class="col-md-4 style-text">Lập trình hướng đối tượng</td>
-                    </tr>
-                    <tr>
-                      <td class="col-md-4">1</td>
-                      <td class="col-md-4">7</td>
-                      <td class="col-md-4 style-text">Lập trình hướng đối tượng</td>
-                    </tr>
-                    <tr>
-                      <td class="col-md-4">1</td>
-                      <td class="col-md-4">7</td>
-                      <td class="col-md-4 style-text">Lập trình hướng đối tượng</td>
-                    </tr>
-                    <tr>
-                      <td class="col-md-4">1</td>
-                      <td class="col-md-4">7</td>
-                      <td class="col-md-4 style-text">Lập trình hướng đối tượng</td>
+                      <td scope="row">1</td>
+                      <td>7</td>
+                      <td>Lập trình hướng đối tượng</td>
                     </tr>
                   </tbody>
-                </div>
-              </table>
+                </table>
+              </div>
             </div>
           </div>
         </div>
@@ -581,11 +535,4 @@
       </div>
     </div>
   </div>
-</div>
-<div class="col-lg-2 order-lg-1 text-center">
-  <img src="assets/img/huykun.JPG" class="mx-auto img-fluid img-circle d-block" alt="avatar">
-  <label class="custom-file">
-    <input type="file" id="file" class="custom-file-input">
-    <span class="custom-file-control btn btn-light">Chọn file</span>
-  </label>
 </div>
