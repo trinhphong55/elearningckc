@@ -1,331 +1,220 @@
 <div class="container-fluid mt-4">
-    <div class="row my-2">
-        <div class="col-lg-10 order-lg-2">
-            <ul class="nav nav-tabs">
-                <li class="nav-item">
-                    <a href="" data-target="#profile" data-toggle="tab" class="nav-link active">Thông tin</a>
-                </li>
-                <li class="nav-item">
-                    <a href="" data-target="#messages" data-toggle="tab" class="nav-link">Thông báo</a>
-                </li>
-                <li class="nav-item">
-                    <a href="" data-target="#edit" data-toggle="tab" class="nav-link">Chỉnh sửa thông tin</a>
-                </li>
-                <li class="nav-item">
-                    <a href="" data-target="#dslophocphan" data-toggle="tab" class="nav-link">Danh sách lớp học phần</a>
-                </li>
-            </ul>
-            <div class="tab-content py-4">
-                <div class="tab-pane active" id="profile">
-                    <h5 class="mb-3">Thông tin giáo viên</h5>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h6>Họ tên</h6>
-                            <p>
-                                Nguyễn Quang Huy
-                            </p>
-                            <h6>Giới tính</h6>
-                            <p>
-                                Nam
-                            </p>
-                            <h6>Ngày sinh</h6>
-                            <p>
-                                21/08/1999
-                            </p>
-                            <h6>Số điện thoại</h6>
-                            <p>
-                                0962738452
-                            </p>
-                            <h6>Email</h6>
-                            <p>
-                                kunhuy0899@gmail.com
-                            </p>
-                        </div>
-                    </div>
-                    <!--/row-->
+    <div class="row">
+      <div class="col-md-2 text-center">
+        <img src="assets/img/huykun.JPG" class="mx-auto img-fluid img-circle d-block" alt="avatar">
+        <label class="custom-file">
+          <input type="file" id="file" class="custom-file-input">
+          <span class="custom-file-control btn btn-light">Chọn file</span>
+        </label>
+      </div>
+      <div class="col-md-10">
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a href="" data-target="#messages" data-toggle="tab" class="nav-link active">Thông báo</a>
+          </li>
+          <li class="nav-item">
+            <a href="" data-target="#edit" data-toggle="tab" class="nav-link">Chỉnh sửa thông tin</a>
+          </li>
+          <li class="nav-item">
+            <a href="" data-target="#dslophocphan" data-toggle="tab" class="nav-link">Danh sách lớp học phần</a>
+        </li>
+        </ul>
+        <div class="tab-content py-4">
+          <div class="tab-pane active" id="messages">
+            <div class="scrollable">
+              <div class="alert alert-info alert-dismissable">
+                <a class="panel-close close" data-dismiss="alert">×</a><strong>Huy nguyễn</strong>. Đã đăng bài
+                tập mới
+              </div>
+              <div class="alert alert-info alert-dismissable">
+                <a class="panel-close close" data-dismiss="alert">×</a><strong>Huy Nguyễn</strong> đã đăng tài
+                liệu mới
+              </div>
+              <div class="alert alert-info alert-dismissable">
+                <a class="panel-close close" data-dismiss="alert">×</a><strong>Huy Nguyễn</strong> đã đăng tài
+                liệu mới
+              </div>
+              <div class="alert alert-info alert-dismissable">
+                <a class="panel-close close" data-dismiss="alert">×</a><strong>Huy Nguyễn</strong> đã đăng tài
+                liệu mới
+              </div>
+              <table class="table table-hover table-striped">
+                <tbody>
+                  <tr>
+                    <td>
+                      <span class="float-right font-weight-bold">3 giờ trước</span> Huy Nguyễn đã đăng một
+                      bài tập mới
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <span class="float-right font-weight-bold">hôm nay</span> Huy Nguyễn đã đăng một tài
+                      liệu mới
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <span class="float-right font-weight-bold">9/10</span> Huy Nguyễn đã đăng một bài
+                      tập mới
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <span class="float-right font-weight-bold">9/4</span> Huy Nguyễn đã đăng một bài tập
+                      mới
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <span class="float-right font-weight-bold">9/4</span> Huy Nguyễn đã đăng một bài tập
+                      mới
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <span class="float-right font-weight-bold">9/4</span> Huy Nguyễn đã đăng một bài tập
+                      mới
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <span class="float-right font-weight-bold">9/4</span> Huy Nguyễn đã đăng một bài tập
+                      mới
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <span class="float-right font-weight-bold">9/4</span> Huy Nguyễn đã đăng một bài tập
+                      mới
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <span class="float-right font-weight-bold">9/4</span> Huy Nguyễn đã đăng một bài tập
+                      mới
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="tab-pane" id="edit">
+            <form role="form">
+              <div class="form-group row">
+                <label class="col-lg-3 col-form-label form-control-label">Họ</label>
+                <div class="col-lg-9">
+                  <input class="form-control" type="text" value="Jane">
                 </div>
-                <div class="tab-pane" id="messages">
-                    <div class="scrollable">
-                        <div class="alert alert-info alert-dismissable">
-                            <a class="panel-close close" data-dismiss="alert">×</a><strong>Huy nguyễn</strong>. Đã đăng bài
-                            tập mới
-                        </div>
-                        <div class="alert alert-info alert-dismissable">
-                            <a class="panel-close close" data-dismiss="alert">×</a><strong>Huy Nguyễn</strong> đã đăng tài
-                            liệu mới
-                        </div>
-                        <div class="alert alert-info alert-dismissable">
-                            <a class="panel-close close" data-dismiss="alert">×</a><strong>Huy Nguyễn</strong> đã đăng tài
-                            liệu mới
-                        </div>
-                        <div class="alert alert-info alert-dismissable">
-                            <a class="panel-close close" data-dismiss="alert">×</a><strong>Huy Nguyễn</strong> đã đăng tài
-                            liệu mới
-                        </div>
-                        <table class="table table-hover table-striped">
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <span class="float-right font-weight-bold">3 giờ trước</span> Huy Nguyễn đã đăng một
-                                        bài tập mới
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="float-right font-weight-bold">hôm nay</span> Huy Nguyễn đã đăng một tài
-                                        liệu mới
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="float-right font-weight-bold">9/10</span> Huy Nguyễn đã đăng một bài
-                                        tập mới
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="float-right font-weight-bold">9/4</span> Huy Nguyễn đã đăng một bài tập
-                                        mới
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="float-right font-weight-bold">9/4</span> Huy Nguyễn đã đăng một bài tập
-                                        mới
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="float-right font-weight-bold">9/4</span> Huy Nguyễn đã đăng một bài tập
-                                        mới
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="float-right font-weight-bold">9/4</span> Huy Nguyễn đã đăng một bài tập
-                                        mới
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="float-right font-weight-bold">9/4</span> Huy Nguyễn đã đăng một bài tập
-                                        mới
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="float-right font-weight-bold">9/4</span> Huy Nguyễn đã đăng một bài tập
-                                        mới
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+              </div>
+              <div class="form-group row">
+                <label class="col-lg-3 col-form-label form-control-label">Tên</label>
+                <div class="col-lg-9">
+                  <input class="form-control" type="text" value="Bishop">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-lg-3 col-form-label form-control-label">Email</label>
+                <div class="col-lg-9">
+                  <input class="form-control" type="email" value="email@gmail.com">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-lg-3 col-form-label form-control-label">Họ và tên</label>
+                <div class="col-lg-9">
+                  <input class="form-control" type="text" value="janeuser">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-lg-3 col-form-label form-control-label">Ngày sinh</label>
+                <div class="col-lg-9">
+                  <input class="form-control" type="text" value="ngày sinh">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-lg-3 col-form-label form-control-label">Số điện thoại</label>
+                <div class="col-lg-9">
+                  <input class="form-control" type="text" value="số điện thoại">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-lg-3 col-form-label form-control-label">Password</label>
+                <div class="col-lg-9">
+                  <input class="form-control" type="password" value="11111122333">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-lg-3 col-form-label form-control-label">Confirm password</label>
+                <div class="col-lg-9">
+                  <input class="form-control" type="password" value="11111122333">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-lg-3 col-form-label form-control-label"></label>
+                <div class="col-lg-9">
+                  <input type="reset" class="btn btn-secondary" value="Hủy ">
+                  <input type="button" class="btn btn-primary ml-1" value="Lưu thông tin">
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="tab-pane" id="dslophocphan">
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="form-group pr-3 pt-1">
+                        <select class="form-control" id="exampleFormControlSelect1">
+                            <option>Chọn bậc</option>
+                            <option>Cao đẳng</option>
+                            <option>Trung cấp</option>
+                        </select>
                     </div>
                 </div>
-                <div class="tab-pane" id="edit">
-                    <form role="form">
-                        <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label">Họ</label>
-                            <div class="col-lg-9">
-                                <input class="form-control" type="text" value="Jane">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label">Tên</label>
-                            <div class="col-lg-9">
-                                <input class="form-control" type="text" value="Bishop">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label">Email</label>
-                            <div class="col-lg-9">
-                                <input class="form-control" type="email" value="email@gmail.com">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label">Họ và tên</label>
-                            <div class="col-lg-9">
-                                <input class="form-control" type="text" value="janeuser">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label">Ngày sinh</label>
-                            <div class="col-lg-9">
-                                <input class="form-control" type="text" value="ngày sinh">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label">Số điện thoại</label>
-                            <div class="col-lg-9">
-                                <input class="form-control" type="text" value="số điện thoại">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label">Password</label>
-                            <div class="col-lg-9">
-                                <input class="form-control" type="password" value="11111122333">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label">Confirm password</label>
-                            <div class="col-lg-9">
-                                <input class="form-control" type="password" value="11111122333">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label"></label>
-                            <div class="col-lg-9">
-                                <input type="reset" class="btn btn-secondary" value="Hủy ">
-                                <input type="button" class="btn btn-primary ml-1" value="Lưu thông tin">
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="tab-pane" id="dslophocphan">
-                    <div class="row">
-                        <div class="col-md-2">
-                            <div class="form-group pr-3 pt-1">
-                                <select class="form-control" id="exampleFormControlSelect1">
-                                    <option>Chọn bậc</option>
-                                    <option>Cao đẳng</option>
-                                    <option>Trung cấp</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="form-group pr-3 pt-1">
-                                <select class="form-control" id="exampleFormControlSelect1">
-                                    <option>Chọn học kì</option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                </select>
-                            </div>
-                        </div>
+                <div class="col-md-2">
+                    <div class="form-group pr-3 pt-1">
+                        <select class="form-control" id="exampleFormControlSelect1">
+                            <option>Chọn học kì</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                        </select>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-12 mx-auto bg-white rounded shadow">
-                            <div class="table-responsive">
-                                <table class="table table-fixed">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col" class="col-1">STT</th>
-                                            <th scope="col" class="col-2">Tên lớp học phần</th>
-                                            <th scope="col" class="col-1">Học kì</th>
-                                            <th scope="col" class="col-2 style-text">Tổng sinh viên</th>
-                                            <th scope="col" class="col-2 style-text">Tình trạng nộp điểm</th>
-                                            <th scope="col" class="col-2">Loại lớp</th>
-                                            <th scope="col" class="col-1 style-text">Số bài giảng</th>
-                                            <th scope="col" class="col-1 style-text">Số bài tập</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td class="col-1">1</td>
-                                            <td class="col-2 style-text">Lập trình hướng đối tượng</td>
-                                            <td class="col-1">1</td>
-                                            <td class="col-2">38 sv</td>
-                                            <td class="col-2">đã nộp điểm</td>
-                                            <td class="col-2 style-text">bình thường</td>
-                                            <td class="col-1">3</td>
-                                            <td class="col-1">4</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="col-1">2</td>
-                                            <td class="col-2 style-text">Lập trình Laravel</td>
-                                            <td class="col-1">2</td>
-                                            <td class="col-2">38 sv</td>
-                                            <td class="col-2">đã nộp điểm</td>
-                                            <td class="col-2 style-text">học ghép</td>
-                                            <td class="col-1">3</td>
-                                            <td class="col-1">4</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="col-1">1</td>
-                                            <td class="col-2 style-text">Lập trình hướng đối tượng</td>
-                                            <td class="col-1">1</td>
-                                            <td class="col-2">38 sv</td>
-                                            <td class="col-2">đã nộp điểm</td>
-                                            <td class="col-2 style-text">bình thường</td>
-                                            <td class="col-1">3</td>
-                                            <td class="col-1">4</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="col-1">1</td>
-                                            <td class="col-2 style-text">Lập trình hướng đối tượng</td>
-                                            <td class="col-1">1</td>
-                                            <td class="col-2">38 sv</td>
-                                            <td class="col-2">đã nộp điểm</td>
-                                            <td class="col-2 style-text">bình thường</td>
-                                            <td class="col-1">3</td>
-                                            <td class="col-1">4</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="col-1">1</td>
-                                            <td class="col-2 style-text">Lập trình hướng đối tượng</td>
-                                            <td class="col-1">1</td>
-                                            <td class="col-2">38 sv</td>
-                                            <td class="col-2">đã nộp điểm</td>
-                                            <td class="col-2 style-text">bình thường</td>
-                                            <td class="col-1">3</td>
-                                            <td class="col-1">4</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="col-1">1</td>
-                                            <td class="col-2 style-text">Lập trình hướng đối tượng</td>
-                                            <td class="col-1">1</td>
-                                            <td class="col-2">38 sv</td>
-                                            <td class="col-2">đã nộp điểm</td>
-                                            <td class="col-2 style-text">bình thường</td>
-                                            <td class="col-1">3</td>
-                                            <td class="col-1">4</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="col-1">1</td>
-                                            <td class="col-2 style-text">Lập trình hướng đối tượng</td>
-                                            <td class="col-1">1</td>
-                                            <td class="col-2">38 sv</td>
-                                            <td class="col-2">đã nộp điểm</td>
-                                            <td class="col-2 style-text">bình thường</td>
-                                            <td class="col-1">3</td>
-                                            <td class="col-1">4</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="col-1">1</td>
-                                            <td class="col-2 style-text">Lập trình hướng đối tượng</td>
-                                            <td class="col-1">1</td>
-                                            <td class="col-2">38 sv</td>
-                                            <td class="col-2">đã nộp điểm</td>
-                                            <td class="col-2 style-text">bình thường</td>
-                                            <td class="col-1">3</td>
-                                            <td class="col-1">4</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="col-1">1</td>
-                                            <td class="col-2 style-text">Lập trình hướng đối tượng</td>
-                                            <td class="col-1">1</td>
-                                            <td class="col-2">38 sv</td>
-                                            <td class="col-2">đã nộp điểm</td>
-                                            <td class="col-2 style-text">bình thường</td>
-                                            <td class="col-1">3</td>
-                                            <td class="col-1">4</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    
                 </div>
             </div>
+            <div class="row">
+              <div class="col-md-12 shadow">
+                <div class="scrollable">
+                  <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th scope="col">STT</th>
+                        <th scope="col">Tên lớp học phần</th>
+                        <th scope="col">Học kì</th>
+                        <th scope="col">Tổng sinh viên</th>
+                        <th scope="col">Tình trạng nộp điểm</th>
+                        <th scope="col">Loại lớp</th>
+                        <th scope="col">Số bài giảng</th>
+                        <th scope="col">Số bài tập</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td scope="row">1</td>
+                        <td>Lập trình hướng đối tượng</td>
+                        <td>1</td>
+                        <td>38 sv</td>
+                        <td>đã nộp điểm</td>
+                        <td>bình thường</td>
+                        <td>Lập trình hướng đối tượng</td>
+                        <td >3</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+         
         </div>
-        <div class="col-lg-2 order-lg-1 text-center">
-            <img src="assets/img/huykun.JPG" class="mx-auto img-fluid img-circle d-block" alt="avatar">
-            <label class="custom-file">
-                <input type="file" id="file" class="custom-file-input">
-                <span class="custom-file-control btn btn-light">Chọn file</span>
-            </label>
-        </div>
+      </div>
     </div>
-</div>
+  </div>

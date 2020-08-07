@@ -3,16 +3,24 @@
         <div class="col-md-12 m-auto">
             <h3 class="p-3 text-center style-title">Danh sách sinh viên</h3>
                 <div class="row mb-2">
-                    <div class="col-8">
+                    <div class="col-md-8">
 
                     </div>
-                    <div class="col-4">
+                    <div class="col-md-4">
                         <button type="button" class="btn btn-info">Chấm điểm all</button>
-                        <button type="button" class="btn btn-info ml-2">Excel</button>
+                        <div class="btn-group ml-2">
+                          <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Nhập từ
+                          </button>
+                          <div class="dropdown-menu">
+                            <input type="file" (change)="onFileChange($event)" multiple="false">
+                            <a class="dropdown-item" >Bài tập</a>
+                          </div>
+                        </div>
                     </div>
                 </div>
                 <div class="table-scroll">
-                    <div class="scrollable">
+                    <!--<div class="scrollable">
                         <div class="table-wrap">
                             <table class="table table-bordered">
                                 <thead>
@@ -36,19 +44,75 @@
                                         <td>1</td>
                                         <td>030617151</td>
                                         <td>Nguyễn Quang Huy</td>
-                                        <td>7</td>
-                                        <td>8</td>
-                                        <td>9</td>
-                                        <td>10</td>
-                                        <td>9</td>
-                                        <td>10</td>
-                                        <td>10</td>
-                                        <td>9</td>
+                                        <td><form>
+                                          <div class="form-group p-0 m-0">
+                                           
+                                            <input type="email" class="form-control border-top-0 border-right-0 border-left-0 rounded-0" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="điểm">
+                                          </div>
+                                          
+                                          
+                                        </form></td>
+                                        <td><form>
+                                          <div class="form-group p-0 m-0">
+                                           
+                                            <input type="email" class="form-control border-top-0 border-right-0 border-left-0 rounded-0" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="điểm">
+                                          </div>
+                                          
+                                          
+                                        </form></td>
+                                        <td><form>
+                                          <div class="form-group p-0 m-0">
+                                           
+                                            <input type="email" class="form-control border-top-0 border-right-0 border-left-0 rounded-0" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="điểm">
+                                          </div>
+                                          
+                                          
+                                        </form></td>
+                                        <td><form>
+                                          <div class="form-group p-0 m-0">
+                                           
+                                            <input type="email" class="form-control border-top-0 border-right-0 border-left-0 rounded-0" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="điểm">
+                                          </div>
+                                          
+                                          
+                                        </form></td>
+                                        <td><form>
+                                          <div class="form-group p-0 m-0">
+                                           
+                                            <input type="email" class="form-control border-top-0 border-right-0 border-left-0 rounded-0" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="điểm">
+                                          </div>
+                                          
+                                          
+                                        </form></td>
+                                        <td><form>
+                                          <div class="form-group p-0 m-0">
+                                           
+                                            <input type="email" class="form-control border-top-0 border-right-0 border-left-0 rounded-0" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="điểm">
+                                          </div>
+                                          
+                                          
+                                        </form></td>
+                                        <td><form>
+                                          <div class="form-group p-0 m-0">
+                                           
+                                            <input type="email" class="form-control border-top-0 border-right-0 border-left-0 rounded-0" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="điểm">
+                                          </div>
+                                          
+                                          
+                                        </form></td>
+                                        <td><form>
+                                          <div class="form-group p-0 m-0">
+                                           
+                                            <input type="email" class="form-control border-top-0 border-right-0 border-left-0 rounded-0" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="điểm">
+                                          </div>
+                                          
+                                          
+                                        </form></td>
                                         <td>
                                             <form>
                                                 <div class="form-group p-0 m-0">
                                                  
-                                                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="nhập điểm">
+                                                  <input type="email" class="form-control border-top-0 border-right-0 border-left-0 rounded-0" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="nhập điểm">
                                                 </div>
                                                 
                                                 
@@ -265,8 +329,20 @@
                                 </tbody>
                             </table>
                         </div>
+                    </div>-->
+                    <div class="scrollable">
+                      <div class="table-wrap">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr *ngFor="let row of data">
+                                    <td *ngFor="let cell of row">
+                                        {{cell}}
+                                    </td>
+                                </tr>
+                            </thead>
+                          </table>
+                      </div>
                     </div>
-                    
                 </div>
                 <div class="row">
                     <form>
