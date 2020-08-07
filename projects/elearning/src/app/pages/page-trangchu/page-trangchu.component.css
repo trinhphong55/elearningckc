@@ -122,10 +122,11 @@
     width: 80%;
 }
 .list-bottom .list-bt .name-teacher span{
-    color: black;
+    color: #444444;
     padding-left: 10px;
     display: block;
-    margin-top: 5px;
+    margin-top: 2px;
+    font-size:0.775rem;
 
 }
 .list-bottom .list-bt .icon-go{

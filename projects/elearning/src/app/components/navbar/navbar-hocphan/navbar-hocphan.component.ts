@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute,Router,ParamMap} from '@angular/router';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-navbar-hocphan',
@@ -7,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarHocphanComponent implements OnInit {
 
-  constructor() { }
+  data="";
+  constructor(private router :ActivatedRoute,private route:Router) { }
 
   ngOnInit(): void {
+    this.data=this.router.snapshot.paramMap.get('id');
   }
 
 }
