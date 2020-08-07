@@ -13,6 +13,12 @@
 <section class="container">
   <div class="row justify-content-center">
     <div class="col-lg-8">
+      <div  *ngIf="success==true" class="alert alert-success" role="alert">
+        Đăng kí thành công!
+      </div>
+      <div  *ngIf="error==true" class="alert alert-danger" role="alert">
+        Vui lòng nhập đủ thông tin!
+      </div>
       <div class="dangkikhoahoc-box featured-box-primary">
         <div class="box-content">
           <h4 class="color-primary font-weight-semibold text-4 mb-3">Vui lòng điền đầy đủ thông tin bên dưới.</h4>

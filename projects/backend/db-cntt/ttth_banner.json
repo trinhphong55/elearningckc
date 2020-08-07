@@ -1,132 +1,24 @@
 [{
   "_id": {
-    "$oid": "5f224f5bd95ed909f4e8ebc5"
+    "$oid": "5f2d97ab1e95032e5c11ecff"
   },
-  "image": "https://localhost:4100/uploads/cntt/istockphoto-695994502-640x640.png",
-  "link": "a",
-  "vitri": "1",
-  "hienthi": null,
-  "trangthai": false,
-  "nguoitao": "hieu",
-  "nguoisua": "loc",
-  "created_at": {
-    "$date": "2020-07-30T04:40:59.633Z"
-  },
-  "updated_at": {
-    "$date": "2020-07-30T06:25:45.652Z"
-  },
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "5f225096d95ed909f4e8ebc6"
-  },
-  "image": "https://localhost:4100/uploads/cntt/71216222_1151485135038926_6781284538933837824_n.jpg",
-  "link": "a",
+  "image": "https://localhost:4100/uploads/cntt/slideshow1.png",
+  "link": "#",
   "vitri": "1",
   "hienthi": true,
-  "trangthai": false,
+  "trangthai": true,
   "nguoitao": "hieu",
   "nguoisua": "loc",
   "created_at": {
-    "$date": "2020-07-30T04:46:14.899Z"
-  },
-  "updated_at": {
-    "$date": "2020-07-30T04:51:29.015Z"
-  },
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "5f2267c5abb99d22a8b3c6b8"
-  },
-  "image": "https://localhost:4100/uploads/cntt/9a435f589b4549e0e15daf9bc5455491.jpg",
-  "link": "b",
-  "vitri": "3",
-  "hienthi": false,
-  "trangthai": false,
-  "nguoitao": "hieu",
-  "nguoisua": "loc",
-  "created_at": {
-    "$date": "2020-07-30T06:25:09.524Z"
-  },
-  "updated_at": {
-    "$date": "2020-07-30T06:25:18.589Z"
-  },
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "5f2298bab3b08928203923d2"
-  },
-  "image": "https://localhost:4100/uploads/cntt/19c9c3f892d8f5406c3077cec3a095e2.jpg",
-  "link": "jk",
-  "vitri": "3",
-  "hienthi": true,
-  "trangthai": false,
-  "nguoitao": "hieu",
-  "nguoisua": "loc",
-  "created_at": {
-    "$date": "2020-07-30T09:54:02.680Z"
+    "$date": "2020-08-07T18:04:27.436Z"
   },
   "updated_at": null,
   "__v": 0
 },{
   "_id": {
-    "$oid": "5f229aa0b3b08928203923d3"
+    "$oid": "5f2d97b21e95032e5c11ed00"
   },
-  "image": "https://localhost:4100/uploads/cntt/khoa-hoc-data-science-for-marketing-certificate-257.png",
-  "link": "#",
-  "vitri": "4",
-  "hienthi": true,
-  "trangthai": true,
-  "nguoitao": "hieu",
-  "nguoisua": "loc",
-  "created_at": {
-    "$date": "2020-07-30T10:02:08.295Z"
-  },
-  "updated_at": {
-    "$date": "2020-07-31T04:52:09.056Z"
-  },
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "5f237ee3d922b122ccf1690d"
-  },
-  "image": "https://localhost:4100/uploads/cntt/slide-network-K259.png",
-  "link": "#",
-  "vitri": "3",
-  "hienthi": true,
-  "trangthai": true,
-  "nguoitao": "hieu",
-  "nguoisua": "loc",
-  "created_at": {
-    "$date": "2020-07-31T02:16:03.459Z"
-  },
-  "updated_at": {
-    "$date": "2020-07-31T04:52:05.616Z"
-  },
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "5f237ef1d922b122ccf1690e"
-  },
-  "image": "https://localhost:4100/uploads/cntt/slide-lap-trinh-android-k259.png",
-  "link": "#",
-  "vitri": "1",
-  "hienthi": true,
-  "trangthai": true,
-  "nguoitao": "hieu",
-  "nguoisua": "loc",
-  "created_at": {
-    "$date": "2020-07-31T02:16:17.189Z"
-  },
-  "updated_at": {
-    "$date": "2020-07-31T04:51:53.055Z"
-  },
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "5f237effd922b122ccf1690f"
-  },
-  "image": "https://localhost:4100/uploads/cntt/tong-tk.png",
+  "image": "https://localhost:4100/uploads/cntt/presentation-hackathon-2017.jpg",
   "link": "#",
   "vitri": "2",
   "hienthi": true,
@@ -134,25 +26,23 @@
   "nguoitao": "hieu",
   "nguoisua": "loc",
   "created_at": {
-    "$date": "2020-07-31T02:16:31.279Z"
+    "$date": "2020-08-07T18:04:34.331Z"
   },
-  "updated_at": {
-    "$date": "2020-07-31T04:49:17.555Z"
-  },
+  "updated_at": null,
   "__v": 0
 },{
   "_id": {
-    "$oid": "5f2b6c7241a8a12578edf6aa"
+    "$oid": "5f2d97b91e95032e5c11ed01"
   },
-  "image": "https://localhost:4100/uploads/cntt/Lọt  dog.png",
-  "link": "123",
-  "vitri": "1",
+  "image": "https://localhost:4100/uploads/cntt/banner-2020.png",
+  "link": "#",
+  "vitri": "3",
   "hienthi": true,
-  "trangthai": false,
+  "trangthai": true,
   "nguoitao": "hieu",
   "nguoisua": "loc",
   "created_at": {
-    "$date": "2020-08-06T02:35:30.075Z"
+    "$date": "2020-08-07T18:04:41.916Z"
   },
   "updated_at": null,
   "__v": 0

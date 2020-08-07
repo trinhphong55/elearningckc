@@ -12,6 +12,9 @@ declare var $: any;
 export class PageDangkikhoahocComponent implements OnInit,AfterViewInit {
   LopHoc: any[];
   DangKiKhoaHoc: ttthDangKiKhoaHoc[];
+  success= false;
+  error= false;
+
   constructor(private lophocService: LophocService,private dangkikhoahocService: DangkikhoahocService ) {}
 
   ngOnInit(): void {
@@ -28,7 +31,8 @@ export class PageDangkikhoahocComponent implements OnInit,AfterViewInit {
   // add
   dangkikhoahoc(mssv: string,hoten: string,ngaysinh: string,noisinh: string,sodienthoai: string,lophoc: string,hinhthuchoc: string): void {
     if (!mssv || !hoten || !ngaysinh|| !noisinh|| !sodienthoai|| !lophoc|| !hinhthuchoc) {
-      alert('Vui lòng nhập đủ thông tin')
+      this.error=true;
+
     }
     else{
       const newItem: ttthDangKiKhoaHoc = new ttthDangKiKhoaHoc();
@@ -45,7 +49,7 @@ export class PageDangkikhoahocComponent implements OnInit,AfterViewInit {
         .subscribe(data => {
           this.LopHoc.push(data);
         });
-      alert('Gửi thành công');
+        this.success=true;
     }
 
   }
