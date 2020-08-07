@@ -37,25 +37,22 @@
                              </button>
                          </div>
                          <div class="direct-contact-container col-lg-6 col-md-12 col-sm-12 col-12">
-                             <ul class="contact-list">
-                                 <li class="list-item"><i class="fa fa-map-marker fa-2x"><span class="contact-text place">TRUNG TÂM TIN HỌC TRƯỜNG CĐKT CAO THẮNG - 65 HUỲNH THÚC KHÁNG, PHƯỜNG BẾN NGHÉ QUẬN 1</span></i></li>
-                                 <li class="list-item"><i class="fa fa-phone fa-2x"><span class="contact-text phone"><a href="tel:1-212-555-5555" title="Give me a call">08 3 8212868</a></span></i></li>
-                                 <li class="list-item"><i class="fa fa-envelope fa-2x"><span class="contact-text gmail"><a href="mailto:#" title="Send me an email">ttth@caothang.edu.vn</a></span></i></li>
+                             <ul class="contact-list" *ngFor="let item of ThongTinWeb">
+                                 <li class="list-item"><i class="fa fa-map-marker fa-2x"><span class="contact-text place" [innerHTML]="item.diachi"></span></i></li>
+                                 <li class="list-item"><i class="fa fa-phone fa-2x"><span class="contact-text phone"><a href="tel:{{item.hotline}}" title="Give me a call">{{item.hotline}}</a></span></i></li>
+                                 <li class="list-item"><i class="fa fa-envelope fa-2x"><span class="contact-text gmail"><a href="mailto:{{item.email}}" title="Send me an email">{{item.email}}</a></span></i></li>
                              </ul>
                              <hr>
-                             <ul class="social-media-list">
-                                 <li><a href="#" target="_blank" class="contact-icon">
-                                     <i class="fab fa-facebook-f"></i></a>
-                                 </li>
-                                 <li><a href="#" target="_blank" class="contact-icon">
-                                 <i class="fab fa-twitter" aria-hidden="true"></i></a>
-                                 </li>
-                                 <li><a href="#" target="_blank" class="contact-icon">
-                                 <i class="fab fa-google" aria-hidden="true"></i></a>
+                             <ul class="social-media-list" *ngFor="let item of ThongTinWeb">
+                                 <li *ngFor="let mxh of item.mxh"><a href="{{mxh.link}}" target="_blank" class="contact-icon">
+                                     <i class="{{mxh.icon}}"></i></a>
                                  </li>
                              </ul>
                              <hr>
-                             <div class="copyright">&copy; ALL OF THE RIGHTS RESERVED</div>
+                             <ng-container *ngFor="let item of ThongTinWeb">
+                              <div class="copyright">{{item.copyright}}</div>
+
+                             </ng-container>
                          </div>
                      </div>
                  </div>

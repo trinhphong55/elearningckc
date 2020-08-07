@@ -68,7 +68,8 @@ export class IndexComponent implements OnInit,AfterViewInit {
     this.tienichService.get().subscribe(data => this.TienIch = data);
   }
   getTinTucChinh():void{
-    this.tintucService.getTinTucChinh().subscribe(data => this.TinTucChinh = data);
+    this.tintucService.getTinTucChinh().subscribe(data => {this.TinTucChinh = data    ;  console.log(data);});
+
   }
   getTinTucPhu():void{
     this.tintucService.getTinTucPhu().subscribe(data => this.TinTucPhu = data);

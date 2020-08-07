@@ -5,7 +5,7 @@
                   <div class="col-12">
                           <div class="breadcrumbs">
                               <a class="breadcrumb__step breadcrumb__step--active" href="/">Trang chủ</a>
-                              <a class="breadcrumb__step" href="kysu">Tin tức</a>
+                              <a class="breadcrumb__step" >Tin tức</a>
                           </div>
                   </div>
           </div>
@@ -17,7 +17,8 @@
               <div class="col-md-9">
                   <div class="post-wrap">
                       <h2 class="sub-title">{{TinTuc.tentintuc}}</h2>
-                      <div class="posted"><i class="far fa-clock"></i>{{TinTuc.updated_at}}</div>
+                      <div *ngIf="TinTuc.updated_at!=null" class="posted"><i class="far fa-clock"></i>{{TinTuc.updated_at}}</div>
+                      <div *ngIf="TinTuc.updated_at==null" class="posted"><i class="far fa-clock"></i>{{TinTuc.created_at}}</div>
                       <div class="post-content" [innerHTML]="TinTuc.noidung" >
                       </div>
                   </div>
@@ -27,7 +28,8 @@
                       <h3 class="sub-title">TIN LIÊN QUAN</h3>
                       <div class="sub-news" *ngFor="let item of TinTucKhac">
                           <div class="img-wrap"><img src="{{item.image}}" alt="co-khi"></div><a class="sub-title" href="/chitiettintuc/{{item._id}}">{{item.tentintuc}}</a>
-                          <div class="posted"><i class="far fa-clock"></i>{{item.updated_at}}</div>
+                          <div *ngIf="TinTuc.updated_at!=null" class="posted"><i class="far fa-clock"></i>{{TinTuc.updated_at}}</div>
+                          <div *ngIf="TinTuc.updated_at==null" class="posted"><i class="far fa-clock"></i>{{TinTuc.created_at}}</div>
                           <div class="news-content" [innerHTML]="item.description">
                           </div>
                       </div>

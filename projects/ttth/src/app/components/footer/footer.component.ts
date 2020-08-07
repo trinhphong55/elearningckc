@@ -11,9 +11,9 @@ export class FooterComponent implements OnInit {
   constructor(private thongtinwebService: ThongtinwebService) { }
 
   ngOnInit(): void {
-    this.getBannerfromServices();
+    this.getThongTinWeb();
   }
-  getBannerfromServices(): void {
+  getThongTinWeb(): void {
     this.thongtinwebService.getThongTinWeb().subscribe(data => this.ThongTinWeb = data);
   }
 }

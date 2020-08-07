@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { LienheService } from '../../services/lienhe.service';
 import { ttthLienHe } from '../../models/ttthLienHe';
+import { ThongtinwebService } from '../../services/thongtinweb.service';
+import { ttthThongTinWeb } from '../../models/ttthThongTinWeb';
 
 @Component({
   selector: 'app-page-lienhe',
@@ -9,9 +11,11 @@ import { ttthLienHe } from '../../models/ttthLienHe';
 })
 export class PageLienheComponent implements OnInit {
   LienHe: ttthLienHe[];
-  constructor(private LienheService: LienheService ) {}
+  ThongTinWeb: ttthThongTinWeb[];
+  constructor(private LienheService: LienheService,private ThongtinwebService: ThongtinwebService  ) {}
 
   ngOnInit(): void {
+    this.getThongTinWeb();
   }
   // add
   addLienHe(ten: string,email: string,noidung: string): void {
@@ -31,5 +35,8 @@ export class PageLienheComponent implements OnInit {
         });
       alert('Gửi thành công');
     }
+  }
+  getThongTinWeb(): void {
+    this.ThongtinwebService.getThongTinWeb().subscribe(data => this.ThongTinWeb = data);
   }
 }

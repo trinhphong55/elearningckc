@@ -28,7 +28,7 @@
               <div class="row text-center "  >
                 <ng-container *ngFor="let item of KhoaHoc">
                   <div [ngStyle]="{'background-color': item.color}" class="chuong-trinh-dao-tao-item col-lg-2 col-md-3 col-sm-3 col-6" data-aos="zoom-out" data-aos-duration="2000" >
-                    <a href="#">
+                    <a routerLink="/chitietkhoahoc/{{item._id}}" routerLinkActive="router-link-active" >
                       <p>{{item.tenkhoahoc}}</p>
                       <img src="{{item.image}}" alt="{{item.image}}">
                     </a>
@@ -74,7 +74,7 @@
           <div class="row">
               <div class="col-lg-6 col-md-6 col-12 p-1" *ngFor="let item of TinTucChinh">
                   <div class="main-news">
-                      <a href="#">
+                      <a routerLink="/chitiettintuc/{{item._id}}">
                           <span class="overlay"></span>
                           <img [src]="item.image" [alt]="item.image">
                           <div class="name-new p-3">
