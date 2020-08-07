@@ -10,10 +10,9 @@
                 <div class="col-12">
                     <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
                         <div class="row justify-content-center align-items-center">
-                            <div class="col-3">
+                            <div class="col-2">
                                 <div class="form-group">
-                                    <label>Chọn ảnh</label>
-                                    <div class="input-group">
+                                    <!-- <div class="input-group">
                                         <div class="box-img">
                                             <img id="imgBST" />
                                         </div>
@@ -22,10 +21,23 @@
                                             (change)="chonMaBoSuuTap($event)" name="image" ng2FileSelect
                                             [uploader]="uploader" accept="image/x-png,image/gif,image/jpeg"
                                             formControlName="src" />
+                                    </div> -->
+                                    <div class="upload-btn-wrapper text-center">
+                                        <div class="box-img">
+                                            <img id="imgBST" />
+                                        </div>
+                                        <input type="file" id="input_image_BST" name="image" ng2FileSelect
+                                            [uploader]="uploader" (change)="onFileSelected($event)"
+                                            onchange="document.getElementById('imgBST').src = window.URL.createObjectURL(this.files[0])"
+                                            accept="image/x-png,image/jpeg" formControlName="src" />
+                                        <label for="input_image_BST"
+                                            class="btn btn-outline-dark btn-sm btn-block mb-0 mt-2">
+                                            Chọn hình ảnh
+                                        </label>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-3">
+                            <div class="col-4">
                                 <div class="form-group">
                                     <label>Loại Bộ sưu tập</label>
                                     <select class="custom-select form-control"
@@ -38,16 +50,21 @@
                                             Hình ảnh Sinh Viên
                                         </option>
                                     </select>
+                                    <div *ngIf="maBST.invalid && (maBST.dirty || maBST.touched)"
+                                        class="alert alert-danger">
+                                        <div *ngIf="maBST.errors.required">
+                                            Vui lòng chọn loại BST.
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label>Nhập tên Bộ sưu tập</label>
-                                    <input type="text" />
-                                </div>
-                            </div>
-                            <div class="col-3">
                                 <div class="form-group">
                                     <label>Nhập alt ảnh</label>
-                                    <input class="form-control" type="text" formControlName="alt" />
+                                    <input class="form-control" type="text" formControlName="alt" required />
+                                    <div *ngIf="alt.invalid && (alt.dirty || alt.touched)" class="alert alert-danger">
+                                        <div *ngIf="alt.errors.required">
+                                            Vui lòng nhập Alt ảnh.
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label>Nhập đường dẫn ảnh</label>

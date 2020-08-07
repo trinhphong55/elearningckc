@@ -39,9 +39,9 @@ export class ModalQuanlybosuutapcnttComponent implements OnInit {
   mainForm() {
     this.boSuuTapForm = this.fb.group({
       _id: [''],
-      maBST: [''],
+      maBST: ['',Validators.required],
       url: [''],
-      alt: [''],
+      alt: ['',Validators.required],
       src: this.imgValue,
       trangThai: [''],
     });
@@ -54,6 +54,8 @@ export class ModalQuanlybosuutapcnttComponent implements OnInit {
   get myForm() {
     return this.boSuuTapForm.controls;
   }
+  get alt() { return this.boSuuTapForm.get('alt'); }
+  get maBST() { return this.boSuuTapForm.get('maBST'); }
   onSubmit() {
     this.submitted = true;
     if (this.boSuuTapForm.value._id.length > 0) {

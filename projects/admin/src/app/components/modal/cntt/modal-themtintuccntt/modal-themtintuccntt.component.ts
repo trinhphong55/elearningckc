@@ -34,11 +34,11 @@ export class ModalThemtintuccnttComponent implements OnInit {
   });
   submitted = false;
   tinTucForm: FormGroup;
-  loaiBaiViet: any = [];
-  maDanhMuc: any = [];
+  LoaiBaiViet: any = [];
+  MaDanhMuc: any = [];
   TinTuc: any = [];
   trangThai: any = [0, 1, 2];
-  viTriHienThi: any = [
+  ViTriHienThi: any = [
     {
       maViTri: 0,
       tenViTri: 'Bài viết quan trọng',
@@ -76,7 +76,7 @@ export class ModalThemtintuccnttComponent implements OnInit {
     // console.log('loai bai viet');
     // console.log(this.loaiBaiViet);
     // console.log(this.tinTucForm.value);
-    console.log(this.viTriHienThi);
+    console.log(this.ViTriHienThi);
   }
 
   // getDanhSachViTriHienThi(): void {
@@ -85,13 +85,13 @@ export class ModalThemtintuccnttComponent implements OnInit {
 
   getDanhSachDanhMuc(): void {
     this.danhMucService.getDanhSachDanhMuc().subscribe((data) => {
-      this.maDanhMuc = data.data;
+      this.MaDanhMuc = data.data;
     });
   }
 
   getDanhSachLoaiBaiViet(): void {
     this.loaiBaiVietService.getDanhSachLoaiBaiViet().subscribe((data) => {
-      this.loaiBaiViet = data.data;
+      this.LoaiBaiViet = data.data;
     });
   }
 
@@ -104,19 +104,22 @@ export class ModalThemtintuccnttComponent implements OnInit {
 
   mainForm() {
     this.tinTucForm = this.fb.group({
-      loaiBaiViet: ['-1'],
-      maDanhMuc: ['-1'],
-      maBaiViet: [''],
-      tieuDe: [''],
-      moTaNgan: [''],
-      noiDung: [''],
+      loaiBaiViet: ['-1',Validators.required],
+      maDanhMuc: ['-1',Validators.required],
+      maBaiViet: ['',Validators.required],
+      tieuDe: ['',Validators.required],
+      moTaNgan: ['',Validators.required],
+      noiDung: ['',Validators.required],
       anhBia: this.imgValue,
       nguoiViet: [''],
       thoiGianDangBai: [''],
       viTriHienThi: ['-1'],
     });
   }
-
+  get maBaiViet() { return this.tinTucForm.get('maBaiViet'); }
+  get tieuDe() { return this.tinTucForm.get('tieuDe'); }
+  get moTaNgan() { return this.tinTucForm.get('moTaNgan'); }
+  get noiDung() { return this.tinTucForm.get('noiDung'); }
   chonMaDanhMuc(e) {
     this.tinTucForm.get('maDanhMuc').setValue(e, {
       onlySelf: true,
@@ -146,12 +149,12 @@ export class ModalThemtintuccnttComponent implements OnInit {
       this.TinTuc = data.data;
     });
   }
-
+  
   // Getter to access form control
   get myForm() {
     return this.tinTucForm.controls;
   }
-
+  
   onSubmit() {
     this.submitted = true;
     if (!this.tinTucForm.valid) {
