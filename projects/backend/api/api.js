@@ -10,11 +10,7 @@ const groupFB = require("../api/groupFB");
 const boMon = require("../api/bomon");
 const auth = require("./auth");
 const TKB = require("./TKB");
-<<<<<<< HEAD
-const login = require("./login");
 const BaiTap = require("./BaiTap");
-=======
->>>>>>> elearning-2
 
 const sinhVien = require("./sinh-vien");
 const Diemsinhvien = require("./diemsinhvien");
