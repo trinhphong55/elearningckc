@@ -52,7 +52,7 @@ router.get("/khoahocttthkhac", (req, res) => {
       });
     }
     res.json({ message: "Lấy danh sách KH thành công.", data: data });
-  }).limit(3);
+  });
 });
 router.get("/khoahocttth", (req, res) => {
   ttthkhoahoc.find({trangthai: true},(error, data) => {

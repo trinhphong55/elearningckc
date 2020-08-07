@@ -9,6 +9,8 @@ declare var $: any;
 })
 export class PageDangkidotthiComponent implements OnInit,AfterViewInit {
   DotThi: any[];
+  success= false;
+  error= false;
   DangKiDotThi: ttthDangKiDotThi[];
   constructor(private DangkidotthiService: DangkidotthiService ) {}
 
@@ -26,7 +28,7 @@ export class PageDangkidotthiComponent implements OnInit,AfterViewInit {
   // add
   dangkidotthi(mssv: string,hoten: string,ngaysinh: string,noisinh: string,sodienthoai: string,lophoc: string): void {
     if (!mssv || !hoten || !ngaysinh|| !noisinh|| !sodienthoai|| !lophoc) {
-      alert('Vui lòng nhập đủ thông tin')
+     this.error=true;
     }
     else{
       const newItem: ttthDangKiDotThi = new ttthDangKiDotThi();
@@ -42,7 +44,7 @@ export class PageDangkidotthiComponent implements OnInit,AfterViewInit {
         .subscribe(data => {
           this.DangKiDotThi.push(data);
         });
-      alert('Gửi thành công');
+      this.success=true;
     }
 
   }

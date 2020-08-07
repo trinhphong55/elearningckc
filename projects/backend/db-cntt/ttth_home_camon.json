@@ -1,6 +1,6 @@
 [{
   "_id": {
-    "$oid": "5f23d9ef4f46a220b0c9f418"
+    "$oid": "5f244cdde2c86b0b40cfa696"
   },
   "icon": "far fa-calendar",
   "tieudechinh": "30+",
@@ -9,13 +9,13 @@
   "nguoitao": "hieu",
   "nguoisua": "loc",
   "created_at": {
-    "$date": "2020-07-31T08:44:31.082Z"
+    "$date": "2020-07-31T16:54:52.988Z"
   },
   "updated_at": null,
   "__v": 0
 },{
   "_id": {
-    "$oid": "5f23da024f46a220b0c9f419"
+    "$oid": "5f244cf0e2c86b0b40cfa697"
   },
   "icon": "fas fa-graduation-cap",
   "tieudechinh": "1.000.000 +",
@@ -24,13 +24,13 @@
   "nguoitao": "hieu",
   "nguoisua": "loc",
   "created_at": {
-    "$date": "2020-07-31T08:44:50.434Z"
+    "$date": "2020-07-31T16:55:12.894Z"
   },
   "updated_at": null,
   "__v": 0
 },{
   "_id": {
-    "$oid": "5f23da144f46a220b0c9f41a"
+    "$oid": "5f244d06e2c86b0b40cfa698"
   },
   "icon": "fas fa-globe-asia",
   "tieudechinh": "20 +",
@@ -39,13 +39,13 @@
   "nguoitao": "hieu",
   "nguoisua": "loc",
   "created_at": {
-    "$date": "2020-07-31T08:45:08.578Z"
+    "$date": "2020-07-31T16:55:34.340Z"
   },
   "updated_at": null,
   "__v": 0
 },{
   "_id": {
-    "$oid": "5f23da1e4f46a220b0c9f41b"
+    "$oid": "5f244d20e2c86b0b40cfa699"
   },
   "icon": "far fa-image",
   "tieudechinh": "100 +",
@@ -54,10 +54,8 @@
   "nguoitao": "hieu",
   "nguoisua": "loc",
   "created_at": {
-    "$date": "2020-07-31T08:45:18.123Z"
+    "$date": "2020-07-31T16:56:00.745Z"
   },
-  "updated_at": {
-    "$date": "2020-07-31T08:45:39.746Z"
-  },
+  "updated_at": null,
   "__v": 0
 }]

@@ -86,6 +86,7 @@ export class ModalTintucComponent implements OnInit {
       this.tintucService.addTinTuc(newTinTuc)
         .subscribe(data => {
           this.TinTuc.push(data);
+          setTimeout(() => {}, 0);
         });
       this.getTinTucfromServices();
       this.toastr.success('Thêm thành công');
@@ -119,9 +120,9 @@ export class ModalTintucComponent implements OnInit {
     this.tintucService.xoaTinTuc(TinTuc)
     .subscribe(data => {
       this.TinTuc.push(data);
+      setTimeout(() => {}, 0);
     });
     this.getTinTucfromServices();
-    window.location.reload();
     this.toastr.success('Xóa thành công');
   }
 }

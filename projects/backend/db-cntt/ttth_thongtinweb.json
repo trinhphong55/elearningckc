@@ -1,0 +1,29 @@
+[{
+  "_id": {
+    "$oid": "5f22f36d686dace554a81701"
+  },
+  "logo": "https://localhost:4100/uploads/cntt/logo.png",
+  "diachi": "Lầu 7 - Dãy F <br> Trường CĐKT Cao Thắng <br> 65 Huỳnh Thúc Kháng, P. Bến Nghé, Q.1, TPHCM",
+  "giolamviec": "\nThứ 2 - Thứ 6: 8:30 - 17:00<br>\nThứ 7 - CN : nghỉ",
+  "hotline": "(800) 123 4567",
+  "email": "ttth@caothang.edu.vn",
+  "copyright": "© Copyright 2020. All Rights Reserved.",
+  "mxh": [
+    {
+      "icon": "fab fa-facebook-f",
+      "link": "#"
+    },
+    {
+      "icon": "fab fa-twitter",
+      "link": "#"
+    },
+    {
+      "icon": "fab fa-instagram",
+      "link": "#"
+    }
+  ],
+  "nguoisua": "",
+  "updated_at": {
+    "$date": "2020-08-01T09:24:28.532Z"
+  }
+}]
