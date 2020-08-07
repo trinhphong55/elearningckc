@@ -60,8 +60,10 @@ router.get("/ctdt/:maCTDT/hocKi/:hocKi", async (req, res) => {
   return res.json(resultView);
 });
 
+//trịnh phong sua
 router.get("/", async (req, res) => {
-  return res.json("haha");
+  var data = await LopHocPhan.find().exec();
+  res.json(data);
 });
 
 //POST LopHocPhan
@@ -182,30 +184,36 @@ router.put("/:maDaoTao", async (req, res) => {
 });
 
 router.get('/malophocphan/:maLopHocPhan', async (req, res) => {
-  const maLopHocPhan = parseInt(req.params.maLopHocPhan);
-  await LopHocPhan.findOne({ maLopHocPhan })
-    .then(lhp => {
-      console.log(lhp);
-      return res.json(lhp);
-    })
-    .catch(err => {
-      return res.json({ status: 501, data: [], message: err });
-    })
-});
-//SEARCH theo maNganh
-router.get("/:maLop/search", async (req, res) => {
   try {
-    const lopHocPhans = await LopHocPhan.find({ maLopHoc : req.params.maLop});
+    const lopHocPhans = await LopHocPhan.find({ maLopHocPhan : req.params.maLopHocPhan});
     res.json(lopHocPhans);
   } catch (error) {
     res.json(error);
   }
 });
+//SEARCH theo maNganh
+router.get("/:maLop/search", async (req, res) => {
+  try {
+    const lopHocPhans = await LopHocPhan.find({ maLopHoc: req.params.maLop });
+    res.json(lopHocPhans);
+  } catch (error) {
+    res.json(error);
+  }
+});
+//SEARCH theo maLopHocPhan
+//Nguoi tạo: Trần Đình Huy
 
-// router.patch('/haha', async (req, res) => {
-//   LopHocPhan.deleteMany().then(result => console.log(result));
-// })
-
-// ***  API for team App Android  ***
-
+router.get("/:maLopHocPhan/malhp", async (req, res) => {
+  try {
+    const lopHocPhans = await LopHocPhan.findOne({
+      maLopHocPhan: req.params.maLopHocPhan,
+    });
+    res.json({
+      id: req.params.maLopHocPhan,
+      data: lopHocPhans,
+      message: "Lấy thành công",
+      status: 200,
+    });
+  } catch (error) {}
+});
 module.exports = router;

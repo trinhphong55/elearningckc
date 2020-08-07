@@ -35,5 +35,24 @@ router.post("/", async (req, res) => {
     })
     .catch((err) => console.log(err));
 });
+//trinh phong
+router.post('/giaovienlophocphan', async (req, res) => {
+  try {
+    const gvhp = new GVLHP(req.body);
+      var data = await gvhp.save();
+      res.status(201).json({ data });
+     
+       }
+   catch (error) {
+    return error;
+  }
+});
+
+//tim lop hp theo a giao vien
+router.get("/:maGiaoVien", async (req, res) => {
+
+  var data =await GVLHP.find({maGiaoVien:req.params.maGiaoVien}).exec()
+  res.json(data);
+});
 
 module.exports = router;

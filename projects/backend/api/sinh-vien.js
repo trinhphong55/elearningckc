@@ -1,6 +1,5 @@
-
 const SinhVienModel = require("../models/sinh-vien.model");
-
+const { check, validationResult } = require("express-validator");
 
 setSinhVien = (req) => {
   return {
@@ -12,6 +11,7 @@ setSinhVien = (req) => {
     maLopHoc: req.maLopHoc,
     nguoiTao: req.nguoiTao,
     nguoiChinhSua: req.nguoiChinhSua,
+    email: req.maSinhVien + "@caothang.edu.vn",
   };
 };
 setSinhVienUpdate = (req) => {
@@ -30,6 +30,15 @@ setSinhVienUpdate = (req) => {
     hoTenMe: req.hoTenMe,
     sdtCha: req.sdtCha,
     sdtMe: req.sdtMe,
+    ngayChinhSua: req.ngayChinhSua
+      ? new Date(req.ngayChinhSua).toISOString()
+      : Date.now(),
+  };
+};
+setSinhVien_SV = (req) => {
+  return {
+    nguoiChinhSua: req.maSinhVien,
+    sdt: req.sdt,
   };
 };
 exports.layTatCaSinhVien = async (req, res) => {
@@ -42,9 +51,8 @@ exports.layTatCaSinhVien = async (req, res) => {
       .json({ message: "Máy chủ không sữ lý được", error: error, status: 500 });
   }
 };
-exports.Laysinhvientheomalop= async(req,res)=>
-{
-  console.log(req.params)
+
+exports.Laysinhvientheomalop = async (req, res) => {
   try {
     const sinhViens = await SinhVienModel.find({
       maLopHoc: req.params.maLopHoc,
@@ -56,6 +64,7 @@ exports.Laysinhvientheomalop= async(req,res)=>
       .json({ message: "Máy chủ không sữ lý được", error: error, status: 500 });
   }
 };
+
 exports.themSinhVien = async (req, res) => {
   try {
     const sinhViens = await SinhVienModel.create(setSinhVien(req.body));
@@ -89,33 +98,58 @@ exports.layThongtinSinhVien = async (req, res) => {
 
 exports.capNhatSinhVien = async (req, res) => {
   try {
+    const err = validationResult(req);
+    if(!err.isEmpty()){
+      res.status(422).json(err.errors);
+    }
+    let tokens = "12341234";
+   if(req.body.sdt.length != 10){
+     return res.status(403).json({
+      message: "Số điện thoại không hợp lệ",
+      status: 403,
+    });
+   }
+    if (req.body.tokens != tokens) {
+      return res.status(403).json({
+        message: "Tài khoản này không đủ quyền để thay đổi",
+        status: 403,
+      });
+    }
     const findSinhVien = await SinhVienModel.find({
       maSinhVien: req.body.maSinhVien,
-    }).count();
+    });
 
-    if (findSinhVien == 0) {
+    if (findSinhVien.length === 0) {
       res.status(404).json({ message: "Không tìm thấy", status: 400 });
     }
-
-    const sinhViens = await SinhVienModel.updateOne(
-      { maSinhVien: req.body.maSinhVien },
-      { $set: setSinhVienUpdate(req.body.data) }
-    );
-    const updateSV = await SinhVienModel.findOne({
+    let sinhViens;
+    //Xet quyen o day
+    if (req.body.role == "sv") {
+      sinhViens = await SinhVienModel.updateOne(
+        { maSinhVien: req.body.maSinhVien },
+        { $set: setSinhVien_SV(req.body) }
+      );
+    } else if (req.body.role == "gv" || req.body.role == "admin") {
+      sinhViens = await SinhVienModel.updateOne(
+        { maSinhVien: req.body.maSinhVien },
+        { $set: setSinhVienUpdate(req.body.data) }
+      );
+    }
+    //kiem tra thong tin duoc cap nhat
+    const findSinhVienUpdate = await SinhVienModel.findOne({
       maSinhVien: req.body.maSinhVien,
     });
-    console.log(sinhViens);
     if (sinhViens.nModified > 0) {
-      res.status(200).json({
-        data: setSinhVienUpdate(updateSV),
+      return res.status(200).json({
+        data: setSinhVienUpdate(findSinhVienUpdate),
         message: "Cập nhật thành công",
         status: 200,
       });
     } else {
-      res.status(200).json({
+      return res.status(200).json({
         message: "Cập nhật thành công, không có gì thay đổi",
         status: 200,
-        data: setSinhVienUpdate(updateSV),
+        data: setSinhVienUpdate(findSinhVienUpdate),
       });
     }
   } catch (error) {
@@ -140,10 +174,17 @@ exports.removeAll = async (req, res) => {
 };
 exports.tinhTongSinhVien = async (req, res) => {
   try {
-    const total = await SinhVienModel.count({ maLopHoc: req.params.maLopHoc });
+    const total = await SinhVienModel.find({ maLopHoc: req.params.maLopHoc });
     // const lopHoc = await LopHocModel.findOne({ maLopHoc: req.params.maLopHoc });
-    res.json({ maLopHoc: req.params.maLopHoc, siSo: total });
+    res.json({ maLopHoc: req.params.maLopHoc, siSo: total.length });
   } catch (error) {
     res.json(error);
   }
+};
+exports.checkValidate = () => {
+  return [
+    check("sdt", "Số điện thoại phải 10 số").isLength({ max: 10, min: 10}),
+    check("sdt", "Số điện thoại trống").notEmpty(),
+    check("sdt", "Số điện thoại phải là số").isNumeric(),
+  ];
 };

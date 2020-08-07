@@ -55,16 +55,21 @@ export class ModalThoikhoabieuComponent implements OnInit {
     this.lopHocService.getDSLopHocbymaCTDT(this.maChuongTrinhDaoTao).subscribe(dslop => {
       this.dsLH = dslop;
     });
-    this.dsMonHoc = [];
+    // this.dsMonHoc = [];
+    // First Lop Hoc
+    let firstLop = this.maChuongTrinhDaoTao + "1";
+    this.monhocService.getDSMonHocbymaLopHocNhocKi(firstLop, parseInt(this.hocKi)).subscribe(dsmh => {
+      this.dsMonHoc = dsmh;
+    });
     this.maLopHoc = "null";
     this.TKB = [];
   }
 
   selectLopHoc(indexLopHoc: number) {
-    this.tenLopHoc = this.dsLH[indexLopHoc -1 ].tenVietTat.toString();
-    this.monhocService.getDSMonHocbymaLopHocNhocKi(this.maLopHoc, parseInt(this.hocKi)).subscribe(dsmh => {
-      this.dsMonHoc = dsmh;
-    });
+    this.tenLopHoc = this.dsLH[indexLopHoc - 1].tenVietTat.toString();
+    // this.monhocService.getDSMonHocbymaLopHocNhocKi(this.maLopHoc, parseInt(this.hocKi)).subscribe(dsmh => {
+    //   this.dsMonHoc = dsmh;
+    // });
     this.thoikhoabieuService.getTKBbymaLopHocNhocKi(this.maLopHoc, parseInt(this.hocKi)).subscribe(data => {
       this.TKB = data.TKB;
       this.tuanBatDau = data.tuanBatDau;
@@ -105,7 +110,6 @@ export class ModalThoikhoabieuComponent implements OnInit {
       alert('Vui long chon lop hoc');
       return;
     }
-    console.log(this.TKB);
     this.thoikhoabieuService.addTKB(this.maLopHoc, parseInt(this.hocKi), this.TKB, this.tuanBatDau, this.tuanKetThuc).subscribe(result => {
       alert(result.message);
     })

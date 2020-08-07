@@ -1,19 +1,22 @@
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-md-2">
-            <div class="style-list">
-                <button mat-button (click)="showAllchude()">Tất cả chủ đề</button>
-                <div class="list-chude">
-                    <button mat-button (click)="showchude1()">Chủ đề 1</button>
-                    <button mat-button (click)="showchude2()">Chủ đề 2</button>
-                    <button mat-button (click)="showchude3()">Chủ đề 3</button>
-                    <button mat-button (click)="showchude4()">Chủ đề 4</button>
-                </div>
-            </div>
-            
+  <div class="row">
+    <div class="col-md-4">
+      <div class="style-list">
+        <div class="list-group">
+          <button mat-button class="list-group-item list-group-item-action" (click)="showAllchude()">Tất cả chủ
+            đề</button>
+          <button mat-button class="list-group-item list-group-item-action"   *ngFor="let item of dsChuDe"
+          (click)="xem_ChuDe(item.maChuDe)">
+            <ng-container>
+              {{ item.tenChuDe }}
+            </ng-container>
+          </button>
         </div>
-        <div class="col-md-10">
-            <router-outlet></router-outlet>
-        </div>
+
+      </div>
     </div>
+    <div class="col-md-8">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
 </div>

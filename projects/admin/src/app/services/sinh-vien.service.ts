@@ -18,8 +18,9 @@ export class SinhVienService {
   public tinhTongSinhVien(maLop: String) {
     return this.http.get<any>(`${this.baseUrl}/${maLop}/siso`);
   }
+  //trinh phong  sua
   public laysinhvien(maLop: String){
-    return this.http.get(`${this.baseUrl}/${maLop}`);
+    return this.http.get(`${this.baseUrl}/${maLop}/malop`);
   }
   public getAll(){
     return this.http.get(this.baseUrl);

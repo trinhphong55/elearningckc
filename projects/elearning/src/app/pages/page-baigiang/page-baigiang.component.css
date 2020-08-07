@@ -8,9 +8,10 @@
     margin-bottom: 20px;
 }
 .style-list{
-    margin-top: 0px; 
+    margin-top: 0px;
     margin-left: 66px;
-    
+    align-items: left;
+
 }
 .style-list button{
     color: #007b83;
@@ -27,15 +28,15 @@
     color: white;
     padding-top: 5px;
     padding-bottom: 5px;
-    
+
 }
 .col-md-8 .row .col-md-4 button i{
     padding-right: 10px;
 }
 .col-md-8 .row .col-md-4 button:hover{
-    
+
     box-shadow: 4px 4px 4px 4px rgba(66, 120, 129, 0.8);
-    
+
 }
 .col-md-8 .row .col-md-8 a{
     padding: 20px;
@@ -56,9 +57,9 @@ button{
     margin-left: 8px;
   }
   .mat-expansion-panel-header-title, .mat-expansion-panel-header-description {
- 
+
     padding-top: 10px;
-  
+
 }
 .mat-expansion-panel-header-title i{
     padding: 5px;
@@ -71,7 +72,7 @@ button{
         margin-top: 100px;
     }
     .style-list{
-        margin-top: 0px; 
+        margin-top: 0px;
         margin-left: 0px;
         margin-bottom: 20px;
     }
