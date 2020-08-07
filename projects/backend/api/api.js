@@ -81,11 +81,7 @@ const validate = khoabomonController.checkValidate();
 const NganhNgheRoutes = require("./NganhNghe");
 const BacRoutes = require("./Bac");
 const diemsinhvienModel = require("../models/diemsinhvien.model");
-<<<<<<< HEAD
-
-=======
 const { route } = require("./GiaoVien");
->>>>>>> 66b4456d4c2d35d7fd47f991ba97cd7a5979dc62
 //nganhnghe
 router.use("/", NganhNgheRoutes);
 //bac
