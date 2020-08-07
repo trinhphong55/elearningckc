@@ -1,7 +1,6 @@
 const router = require("express").Router();
 const TKB = require("../models/TKB.model");
 
-const MonHoc = require('../models/MonHoc.model');
 const LopHocPhan = require('../models/LopHocPhan.model');
 const KHDT = require('../models/KeHoachDaoTao.model');
 const GVLHP = require('../models/GiaoVienLopHocPhan.model');
