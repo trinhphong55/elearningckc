@@ -132,7 +132,7 @@ export class PageDashboardComponent implements OnInit {
         }
       },
       title: {
-        text: "Thống kế số lượng sinh viên theo từng ngành theo năm"
+        text: "Thống kế số lượng sinh viên của từng ngành theo năm"
       },
       xaxis: {
         categories: this.years
