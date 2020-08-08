@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-navbar-hocphan',
   templateUrl: './navbar-hocphan.component.html',
@@ -13,7 +14,9 @@ moinguoi:string;
 cotdiem:string;
 chamdiem:string;
 tongdiem:string;
-  constructor(   private router: ActivatedRoute, private route: Router,) { }
+quyen:string="";
+doiTuong:any;
+  constructor(   private router: ActivatedRoute, private route: Router,  private cookie: CookieService,) { }
 
   ngOnInit(): void {
     this.malophocphan = this.router.snapshot.paramMap.get('id');
@@ -23,9 +26,15 @@ tongdiem:string;
     this.cotdiem="/cotdiem/"+this.malophocphan;
     this.chamdiem="/chamdiem/"+this.malophocphan;
     this.tongdiem="/tongdiem/"+this.malophocphan;
-    
-
-
+    this.quyenXemDiem()
+  }
+  quyenXemDiem()
+  {
+    this.doiTuong=this.cookie.get("role");
+    if(this.doiTuong== 'SV')
+    {
+      this.quyen='none'
+    }
   }
 
 }

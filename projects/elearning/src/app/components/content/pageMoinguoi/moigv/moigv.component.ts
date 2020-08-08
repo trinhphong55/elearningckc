@@ -39,7 +39,6 @@ export class MoigvComponent implements OnInit {
         this.dsGiaoVien = dsGiaoVien;
         this.dsGiaoVien.filter(x => {
           if (x.email == this.emailFormControl.value) {
-            console.log(this.dsGiaoVien)
             this.data = {
               maGiaoVien: x.maGiaoVien,
               maLopHocPhan: this.maLopHocPhan
@@ -47,8 +46,10 @@ export class MoigvComponent implements OnInit {
             this.gvlhpService.themGiaoVienLhp(this.data).subscribe(
               gvLophp=>(
                 this.gvLophp=this.data
+              
               )
             )
+            alert("Mời Thành Công");
             this.dialog.closeAll();
           }
         })

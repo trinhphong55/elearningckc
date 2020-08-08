@@ -51,8 +51,8 @@
                 <div class="list-bt">
                     <div class="name-teacher">
                         <div>
-                            <ng-template *ngFor="let hp of dsGiaoVienLopHP" [ngIf]="l.maLopHocPhan== hp.maLopHocPhan">
-                                <ng-template *ngFor="let gv of dsGiaoVien" [ngIf]="gv.maGiaoVien==hp.maGiaoVien">
+                            <ng-template *ngFor="let hp of dsGVLHP" [ngIf]="l.maLopHocPhan== hp.maLopHocPhan">
+                                <ng-template *ngFor="let gv of dsTenGv" [ngIf]="gv.maGiaoVien==hp.maGiaoVien">
                                     <span> {{gv.ho}} {{gv.ten}}</span>
                                 </ng-template>
                             </ng-template>
