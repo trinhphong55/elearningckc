@@ -8,7 +8,6 @@ import { NavbarTrangchuComponent } from './components/navbar/navbar-trangchu/nav
 import { NavbarHocphanComponent } from './components/navbar/navbar-hocphan/navbar-hocphan.component';
 import { PageLophocphanComponent } from './pages/page-lophocphan/page-lophocphan.component';
 import { NavbarNoneComponent } from './components/navbar/navbar-none/navbar-none.component';
-import { PageBaigiangComponent } from './pages/page-baigiang/page-baigiang.component';
 import { PageMoinguoiComponent } from './pages/page-moinguoi/page-moinguoi.component';
 import { PageChudelophocphanComponent } from './pages/page-chudelophocphan/page-chudelophocphan.component';
 import { PageCotodiemComponent } from './pages/page-cotdiem/page-cotdiem.component';
@@ -21,7 +20,12 @@ import { XembaitapsvComponent } from './components/content/chudelophocphan/allch
 import { XembaigiangsvComponent } from './components/content/chudelophocphan/allchude/xembaigiangsv/xembaigiangsv.component';
 import { XembaitapgvComponent } from './components/content/chudelophocphan/allchude/xembaitapgv/xembaitapgv.component';
 import { XembaiganggvComponent } from './components/content/chudelophocphan/allchude/xembaiganggv/xembaiganggv.component';
+<<<<<<< HEAD
 
+=======
+import{PageBaigiangComponent} from'./pages/page-baigiang/page-baigiang.component';
+import { from } from 'rxjs';
+>>>>>>> elearning
 const routes: Routes = [
   {
     path: '',
@@ -63,6 +67,7 @@ const routes: Routes = [
     component: PageCotodiemComponent,
   },
   {
+<<<<<<< HEAD
     path: 'tongdiem',
     component: PageTongdiemComponent,
   },
@@ -77,6 +82,30 @@ const routes: Routes = [
   {
     path:'xembaitapgv/:id',
     component:XembaitapgvComponent
+=======
+    path: 'tongdiem/:id',
+    component: PageTongdiemComponent,
+  },
+  {
+    path:'xembaitapsv',
+    component:XembaitapsvComponent
+  },
+  {
+    path:'xembaigiangsv',
+    component:XembaigiangsvComponent
+  },
+  {
+    path:'xembaitapgv',
+    component:XembaitapgvComponent
+  },
+  {
+    path:'xembaigianggv',
+    component:XembaiganggvComponent
+  },
+  {
+    path: 'chamdiem/:id',
+    component: PageChamdiemComponent,
+>>>>>>> elearning
   },
   {
     path:'xembaigianggv/:id',
