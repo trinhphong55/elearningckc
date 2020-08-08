@@ -35,6 +35,7 @@ const cnttDanhMuc = require("./cnttDanhMuc");
 const cnttBoSuuTap = require("./cnttBoSuuTap");
 const cnttThongTinChung = require("./cnttThongTinChung");
 const cnttFooter = require("./cnttFooter");
+const ttthChuDeRoutes = require("./ttthChuDe");
 
 router.use("/loaimonhoc", LoaiMonHoc);
 // router.use("/lophocphan", LopHocPhanRoutes);
@@ -72,6 +73,7 @@ router.use("/ttthLienHe", ttthLienHeRoute);
 router.use("/ttthDotThi", ttthDotThiRoute);
 router.use("/ttthDangKiDotThi", ttthDangKiDotThiRoute);
 router.use("/ttthDiemThi", ttthDiemThiRoute);
+router.use("/ttth/chude", ttthChuDeRoutes);
 //ttth
 const khoabomonController = require("../api/khoabomon");
 const loaidonviController = require("../api/loaidonvi");

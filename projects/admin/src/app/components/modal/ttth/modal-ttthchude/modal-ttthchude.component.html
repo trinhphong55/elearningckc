@@ -1,25 +1,25 @@
-<app-modal class="modal_chucnang__wrapper" id="cntt_quanlydanhmuc">
+<app-modal class="modal_chucnang__wrapper" id="ttth_chude">
   <div
-    (click)="closeModal('cntt_quanlydanhmuc')"
+    (click)="closeModal('ttth_chude')"
     class="modal_chucnang__close mdi mdi-chevron-left text-white"
   ></div>
   <div class="container-fluid mt-3">
     <div class="row">
       <div class="col-12">
-        <h1 class="text-center text-white">Quản lý danh mục</h1>
+        <h1 class="text-center text-white">Quản lý chủ đề</h1>
       </div>
       <div class="col-12">
         <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
-          <form [formGroup]="danhMucForm">
+          <form [formGroup]="chuDeForm">
             <div class="row justify-content-center align-items-center">
               <div class="col-4">
                 <div class="form-group">
-                  <label>Tên danh mục</label>
+                  <label>Tên chủ đề</label>
                   <input
-                    formControlName="tenDanhMuc"
+                    formControlName="tenChuDe"
                     type="text"
                     class="form-control"
-                    placeholder="Nhập tên danh mục mới"
+                    placeholder="Nhập tên chủ đề mới"
                   />
                 </div>
               </div>
@@ -37,8 +37,8 @@
               <div class="col-auto">
                 <button
                   [ngClass]="{ 'd-none': !hideButtonChinhSua }"
-                  [disabled]="!danhMucForm.valid"
-                  (click)="onThemDanhMuc()"
+                  [disabled]="!chuDeForm.valid"
+                  (click)="onThemChuDe()"
                   class="btn btn-outline-primary px-4 mx-2"
                 >
                   <img
@@ -49,7 +49,7 @@
                   <div>Thêm mới</div>
                 </button>
                 <button
-                  (click)="onSuaDanhMuc()"
+                  (click)="onSuaChuDe()"
                   [ngClass]="{ 'd-none': hideButtonChinhSua }"
                   class="btn btn-outline-danger px-4 mx-2"
                 >
@@ -79,10 +79,10 @@
       </div>
       <div class="col-12">
         <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
-          <h5 class="text-center m-0" *ngIf="danhSachDanhMuc.length === 0">
-            Chưa có danh mục nào.
+          <h5 class="text-center m-0" *ngIf="danhSachChuDe.length === 0">
+            Chưa có chủ đề nào.
           </h5>
-          <section *ngIf="danhSachDanhMuc.length > 0">
+          <section *ngIf="danhSachChuDe.length > 0">
             <table class="modal_chucnang__table table table-hover">
               <thead class="bg__caothang text-white">
                 <th class="text-center" scope="col">Mã loại</th>
@@ -91,20 +91,20 @@
                 <th class="text-center" scope="col">Tuỳ chọn</th>
               </thead>
               <tbody>
-                <tr *ngFor="let item of danhSachDanhMuc">
+                <tr *ngFor="let item of danhSachChuDe">
                   <td class="text-center" style="max-width: 100px;">
-                    {{ item.maDanhMuc }}
+                    {{ item.maChuDe }}
                   </td>
-                  <td>{{ item.tenDanhMuc }}</td>
+                  <td>{{ item.tenChuDe }}</td>
                   <td>{{ item.tenVietTat }}</td>
                   <td class="text-center">
                     <span
                       title="Chỉnh sửa"
-                      (click)="getInfoDanhMucCanSua(item)"
+                      (click)="getInfoChuDeCanSua(item)"
                       class="mx-1 modal_chucnang__button__edit mdi mdi-file-document-edit-outline mdi-24px"
                     ></span>
                     <span
-                      (click)="onXoaDanhMuc(item.maDanhMuc)"
+                      (click)="onXoaChuDe(item.maChuDe)"
                       title="Xoá"
                       class="mx-1 modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px"
                     ></span>
