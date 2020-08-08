@@ -67,19 +67,19 @@ const routes: Routes = [
     component: PageTongdiemComponent,
   },
   {
-    path:'xembaitapsv',
+    path:'xembaitapsv/:id',
     component:XembaitapsvComponent
   },
   {
-    path:'xembaigiangsv',
+    path:'xembaigiangsv/:id',
     component:XembaigiangsvComponent
   },
   {
-    path:'xembaitapgv',
+    path:'xembaitapgv/:id',
     component:XembaitapgvComponent
   },
   {
-    path:'xembaigianggv',
+    path:'xembaigianggv/:id',
     component:XembaiganggvComponent
   },
   {

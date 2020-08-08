@@ -186,6 +186,8 @@ router.get("/baigiang", baiGiang.layTatCa);
 router.get("/baigiang/:maChuDe", baiGiang.layTheoMaChuDe);
 router.post("/baigiang", baiGiang.them);
 router.get("/baigiang/:maLopHocPhan/lop-hoc-phan", baiGiang.layTheo_MaLHP);
+router.get("/baigiang/:maBaiGiang/ma-bai-giang", baiGiang.layTheo_maBaiGiang);
+
 //========================= Routes BinhLuan ==========================================
 router.get("/binhluan/:loaiBaiViet/baiviet/:maBaiViet", binhLuan.layBinhLuan_theoBaiViet);
 router.post("/binhluan", binhLuan.themBinhLuan);

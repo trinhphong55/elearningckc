@@ -18,6 +18,12 @@ export class BaiTapService {
   addBaiTap(baitap: BaiTap): Observable<any> {
     return this.http.post<any>(this.baiTapURL, baitap, httpOptions);
   }
+  public layDS_theoLopHocPhan(maLopHocPhan){
+    return this.http.get<any>(this.baiTapURL + `/${maLopHocPhan}/lop-hoc-phan`, httpOptions);
+  }
+  public layBaiTap_theoMaBaiTap(maBaiTap){
+    return this.http.get<any>(this.baiTapURL + `/${maBaiTap}`, httpOptions);
+  }
   constructor(
     private http: HttpClient ) {}
 }

@@ -1,9 +1,9 @@
 export interface ChiTietDiemSVLHP {
   maSinhVien:string;
-
+  heSo: number;
   maHocPhan:number;
   tenLopHocPhan:string;
-
+  tenBaiTap:string;
   maCotDiem:number;
   tenCotDiem:string;
 

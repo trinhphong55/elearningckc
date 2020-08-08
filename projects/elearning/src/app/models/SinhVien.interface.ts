@@ -16,6 +16,7 @@ export interface SinhVien {
   sdtCha: string;
   sdtMe: string;
   maLopHoc: string;
+  tenLopHoc:string;
   trangThai: string;
   nguoiTao: string;
   nguoiChinhSua: string;

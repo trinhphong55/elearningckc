@@ -1,3 +1,4 @@
+import { LopHocService } from './../../services/lop-hoc.service';
 import { ThoiKhoaBieu } from './../../models/thoi-khoa-bieu.interface';
 import { ThoiKhoaBieuService } from './../../services/thoi-khoa-bieu.service';
 import { ChuDe } from './../../models/chu-de.interface';
@@ -31,7 +32,7 @@ export class PageTrangcanhansvComponent implements OnInit {
     displayName: '0306171004',
     email: '0306171004@caothang.edu.vn',
     password: '12345',
-    role: 'sv',
+    role: 'SV',
     isValid: true,
   };
   public sinhVien: SinhVien;
@@ -94,7 +95,8 @@ export class PageTrangcanhansvComponent implements OnInit {
     private kHDTService: KHDTService,
     private monHocService: MonhocService,
     private chuDeService: ChuDeService,
-    private thoiKhoaBieu: ThoiKhoaBieuService
+    private thoiKhoaBieu: ThoiKhoaBieuService,
+    private lophocService:LopHocService
   ) {}
 
   ngOnInit(): void {
@@ -103,12 +105,12 @@ export class PageTrangcanhansvComponent implements OnInit {
     // this.layLopHocPhan();
     // this.layCotDiemSinhVienLHP();
     this.sinhVienFormGroup = new FormGroup({
-      mssv: new FormControl(''),
-      gioiTinh: new FormControl(''),
-      ho: new FormControl(''),
-      ten: new FormControl(''),
-      email: new FormControl(''),
-      ngaySinh: new FormControl(''),
+      mssv: new FormControl({value:'', disabled: true}),
+      gioiTinh: new FormControl({value:'', disabled: true}),
+      ho: new FormControl({value:'', disabled: true}),
+      ten: new FormControl({value:'', disabled: true}),
+      email:new FormControl({value:'', disabled: true}),
+      ngaySinh: new FormControl({value:'', disabled: true}),
       sdt: new FormControl(''),
       password: new FormControl(''),
       cofirmPassword: new FormControl(''),
@@ -147,7 +149,7 @@ export class PageTrangcanhansvComponent implements OnInit {
     return this.sinhVienFormGroup.get('password');
   }
   get confirmPassword() {
-    return this.sinhVienFormGroup.get('confirmPassword');
+    return this.sinhVienFormGroup.get('cofirmPassword');
   }
   get chonHocKi() {
     return this.locChiTietGroupForm.get('chonHocKi');
@@ -171,6 +173,9 @@ export class PageTrangcanhansvComponent implements OnInit {
           this.layCTDT_theoHocKi(this.chonHocKiBD.value, maCT);
           this.layThoiKhoaBieu_theoLop(this.sinhVien.maLopHoc, 1);
           this.setValueSinhVienFormGroup(this.sinhVien);
+          this.lophocService.get(this.sinhVien.maLopHoc).subscribe((res:any) => {
+            this.sinhVien.tenLopHoc = res.tenLop;
+          })
           this.sinhViens.push(this.sinhVien);
         }
       },
@@ -179,16 +184,17 @@ export class PageTrangcanhansvComponent implements OnInit {
       }
     );
   }
+
   public capNhatSinhVien(data) {
     this.messages = [];
     this.sinhVienService.capNhatSinhVien(data).subscribe(
       (res: any) => {
         this.messages.push({ msg: res.message, status: res.status });
-        console.log(this.messages);
+
       },
       (err: any) => {
-        this.messages.push({ msg: err.message, status: err.status });
-        console.log(err);
+        this.messages.push({ msg: "Máy chủ không sữ lý được", status: err.status });
+
       }
     );
   }
@@ -198,6 +204,7 @@ export class PageTrangcanhansvComponent implements OnInit {
         this.ctDiemLHPs = res.data;
         this.ganTenCotDiemCTDiem(this.ctDiemLHPs);
         this.ganTenLopHocPhanCTDiem(this.ctDiemLHPs);
+        console.log(this.ctDiemLHPs);
       }
     });
   }
@@ -207,6 +214,7 @@ export class PageTrangcanhansvComponent implements OnInit {
       (res: any) => {
         this.diemSinhViens = res;
         this.ganTenLopHocPhanDiemSV(this.diemSinhViens);
+
       },
       (err) => console.log(err)
     );
@@ -217,7 +225,7 @@ export class PageTrangcanhansvComponent implements OnInit {
     this.ho.setValue(sinhVien.ho);
     this.ten.setValue(sinhVien.ten);
     this.ngaySinh.setValue(sinhVien.ngaySinh);
-    this.password.setValue(sinhVien.matKhau);
+    // this.password.setValue(sinhVien.matKhau);
     this.sdt.setValue(sinhVien.sdt);
     this.email.setValue(sinhVien.email);
   }
@@ -289,7 +297,6 @@ export class PageTrangcanhansvComponent implements OnInit {
           this.dsThoiKhoaBieu.TKB.push(tiet_tmp);
         }
       });
-      console.log(this.dsThoiKhoaBieu.TKB);
     });
   }
   //######################## gan Ten #################################
@@ -359,6 +366,7 @@ export class PageTrangcanhansvComponent implements OnInit {
         this.cotDiems.forEach((lop) => {
           if (ct.maCotDiem == lop.maCotDiem) {
             ct.tenCotDiem = lop.tenCotDiem;
+            ct.heSo = lop.heSo;
           }
         });
       });
@@ -376,18 +384,22 @@ export class PageTrangcanhansvComponent implements OnInit {
     this.layThongTinSV(this.taiKhoan.displayName);
   }
   onSubmitCapNhatSinhVien() {
-    if(this.password.value !== this.confirmPassword.value){
+    if( !this.password.value){
+      this.messages.push({msg:"Vui lòng nhập mật khẩu cũ và mới để thay đổi", status:200});
+
+    }else if(this.password.value != this.sinhVien.matKhau){
       this.messages.push({msg:"Mật khẩu không trùng nhau", status:200});
     }
     else{
-      this.sinhVien.matKhau = this.password.value;
-      this.sinhVien.nguoiChinhSua = this.taiKhoan.displayName;
-      this.sinhVien.sdt = this.sdt.value;
+      // this.sinhVien.matKhau = this.password.value;
+      // this.sinhVien.nguoiChinhSua = this.taiKhoan.displayName;
+      // this.sinhVien.sdt = this.sdt.value;
       const req = {
         maSinhVien: this.sinhVien.maSinhVien,
         tokens: '12341234',
         role: this.taiKhoan.role,
-        data: this.sinhVien,
+        sdt: this.sdt.value,
+        nguoiChinhSua:this.taiKhoan.displayName,
       };
       this.capNhatSinhVien(req);
     }

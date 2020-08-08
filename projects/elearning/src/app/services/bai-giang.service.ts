@@ -20,5 +20,9 @@ export class BaiGiangService {
   public layTheo_maLopHocPhan(maLopHocPhan){
     return this.http.get(`${this.baseUrl}/${maLopHocPhan}/lop-hoc-phan`);
   }
+  public layTheo_maBaiGiang(maBaiGiang){
+    return this.http.get(`${this.baseUrl}/${maBaiGiang}/ma-bai-giang`);
+
+  }
 
 }

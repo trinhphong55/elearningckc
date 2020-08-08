@@ -39,6 +39,7 @@ setSinhVien_SV = (req) => {
   return {
     nguoiChinhSua: req.maSinhVien,
     sdt: req.sdt,
+    ngayChinhSua: Date.now(),
   };
 };
 exports.layTatCaSinhVien = async (req, res) => {
@@ -98,17 +99,18 @@ exports.layThongtinSinhVien = async (req, res) => {
 
 exports.capNhatSinhVien = async (req, res) => {
   try {
-    const err = validationResult(req);
-    if(!err.isEmpty()){
-      res.status(422).json(err.errors);
-    }
+
+    // const err = validationResult(req);
+    // if(!err.isEmpty()){
+    //   res.status(422).json(err.errors);
+    // }
     let tokens = "12341234";
-   if(req.body.sdt.length != 10){
-     return res.status(403).json({
-      message: "Số điện thoại không hợp lệ",
-      status: 403,
-    });
-   }
+    if (req.body.sdt.length != 10) {
+      return res.status(403).json({
+        message: "Số điện thoại không hợp lệ",
+        status: 403,
+      });
+    }
     if (req.body.tokens != tokens) {
       return res.status(403).json({
         message: "Tài khoản này không đủ quyền để thay đổi",
@@ -120,16 +122,16 @@ exports.capNhatSinhVien = async (req, res) => {
     });
 
     if (findSinhVien.length === 0) {
-      res.status(404).json({ message: "Không tìm thấy", status: 400 });
+      return res.status(404).json({ message: "Không tìm thấy", status: 400 });
     }
     let sinhViens;
     //Xet quyen o day
-    if (req.body.role == "sv") {
+    if (req.body.role == "SV") {
       sinhViens = await SinhVienModel.updateOne(
         { maSinhVien: req.body.maSinhVien },
         { $set: setSinhVien_SV(req.body) }
       );
-    } else if (req.body.role == "gv" || req.body.role == "admin") {
+    } else if (req.body.role == "GV" || req.body.role == "admin") {
       sinhViens = await SinhVienModel.updateOne(
         { maSinhVien: req.body.maSinhVien },
         { $set: setSinhVienUpdate(req.body.data) }
@@ -183,7 +185,7 @@ exports.tinhTongSinhVien = async (req, res) => {
 };
 exports.checkValidate = () => {
   return [
-    check("sdt", "Số điện thoại phải 10 số").isLength({ max: 10, min: 10}),
+    check("sdt", "Số điện thoại phải 10 số").isLength({ max: 10, min: 10 }),
     check("sdt", "Số điện thoại trống").notEmpty(),
     check("sdt", "Số điện thoại phải là số").isNumeric(),
   ];

@@ -52,3 +52,12 @@ exports.layTheo_MaLHP = async (req, res) => {
     res.json(error);
   }
 }
+
+exports.layTheo_maBaiGiang = async (req, res) => {
+  try {
+    const chuDes = await baiGiangModel.findOne({ maBaiGiang:req.params.maBaiGiang });
+    return res.json({id:chuDes.maBaiGiang, data: chuDes, message: "Lấy thành công", status: 200 });
+  } catch (error) {
+    res.json(error);
+  }
+}
