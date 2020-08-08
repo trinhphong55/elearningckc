@@ -8,8 +8,8 @@ const app = express();
 const morgan = require("morgan");
 const path = require("path");
 
-// const MONGODB_URI =
-//   "mongodb://elearning_team:123@103.92.26.177:27017/testAngularckc?retryWrites=true&w=majority?authSource=admin";
+const MONGODB_URI =
+  "mongodb://elearning_team:123@103.92.26.177:27017/testAngularckc?retryWrites=true&w=majority?authSource=admin";
 
 const PORT = 4100;
 
@@ -18,13 +18,13 @@ const httpsOptions = {
   cert: fs.readFileSync("security/localhost.crt"),
 };
 
-// // Connect with MongoDB
-// mongoose.connect(MONGODB_URI, {
-//   useNewUrlParser: true,
-//   useFindAndModify: false,
-//   useCreateIndex: true,
-//   useUnifiedTopology: true,
-// });
+// Connect with MongoDB
+mongoose.connect(MONGODB_URI, {
+  useNewUrlParser: true,
+  useFindAndModify: false,
+  useCreateIndex: true,
+  useUnifiedTopology: true,
+});
 
 mongoose.connection.on("error", (err) => {
   console.log("Mongoose conection error:" + err);
@@ -54,21 +54,3 @@ app.get("/", (req, res) => {
 const server = https.createServer(httpsOptions, app).listen(PORT, () => {
   console.log("Backend API running at port " + PORT);
 });
-
-// cntt
-mongoose.connect(
-  "mongodb://127.0.0.1:27017/ttth",
-  {
-    useNewUrlParser: true,
-    useFindAndModify: false,
-    useCreateIndex: true,
-    useUnifiedTopology: true,
-  },
-  function (err, db) {
-    if (err) {
-      console.log("fail to connect db");
-    } else {
-      console.log("db connected by cntt");
-    }
-  }
-);
