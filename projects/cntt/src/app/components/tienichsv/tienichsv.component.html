@@ -1,25 +1,15 @@
 <section class="feature_home__wrapper bg__light py-5">
-  <div
-    class="container-fluid"
-    data-aos="fade-right"
-    data-aos-delay="300"
-    data-aos-duration="1500"
-  >
+  <div class="container-fluid" data-aos="fade-right" data-aos-delay="300" data-aos-duration="1500">
     <div class="text-center">
       <div class="news_home__title text-uppercase font-weight-bold mb-3">
         Tiện ích sinh viên
       </div>
     </div>
     <div class="row">
-      <div
-        class="col-6 col-lg-3 feature_home__item"
-        *ngFor="let tienich of TienIch"
-      >
-        <a
-          [style.background]="tienich.maMauTienIch"
+      <div class="col-6 col-lg-3 feature_home__item" *ngFor="let tienich of TienIch">
+        <a [style.background]="tienich.maMauTienIch"
           class="feature_home__box card border-0 py-3 px-2 py-sm-5 px-sm-3 my-2 my-sm-3 text-center text-decoration-none text-uppercase text-white"
-          href="{{ tienich.urlTienIch }}"
-        >
+          href="{{ tienich.urlTienIch }}">
           <div class="feature_home__icon {{ tienich.iconClassTienIch }}"></div>
           <div class="feature_home__text mt-2">{{ tienich.tenTienIch }}</div>
         </a>

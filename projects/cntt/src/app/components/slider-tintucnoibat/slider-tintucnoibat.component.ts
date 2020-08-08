@@ -1,4 +1,5 @@
 import { Component, OnInit, AfterViewInit, Input } from '@angular/core';
+import { TinTucCnttService } from '../../services/tintuc.service';
 
 declare const $: any;
 declare const Swiper: any;
@@ -9,8 +10,9 @@ declare const Swiper: any;
   styleUrls: ['./slider-tintucnoibat.component.css'],
 })
 export class SliderTintucnoibatComponent implements OnInit, AfterViewInit {
+  TinTucNoiBat: any[]
   @Input() DanhSachTinTucNoiBat: any;
-  constructor() {}
+  constructor(private tinTucCnttService: TinTucCnttService) { }
 
   private _slideNoiBat: any;
   private _slideMoiNhat: any;
@@ -20,6 +22,12 @@ export class SliderTintucnoibatComponent implements OnInit, AfterViewInit {
       this._slideMoiNhat.update();
       this._slideMoiNhat.update();
     }, 1000);
+    this.loadTinTucNoiBat()
+  }
+  loadTinTucNoiBat() {
+    this.tinTucCnttService.loadTinTucNoiBat().subscribe((data) => {
+      this.TinTucNoiBat = data.data;
+    });
   }
 
   ngAfterViewInit(): void {
