@@ -1,3 +1,5 @@
+import { FormGroup, FormControl } from '@angular/forms';
+import { PagefbService } from './../../../../services/pagefb.service';
 import { Component, OnInit } from '@angular/core';
 import { ModalService } from '../../../../services/modal.service';
 
@@ -8,10 +10,42 @@ import { ModalService } from '../../../../services/modal.service';
 })
 export class ModalPagefacebookComponent implements OnInit {
 
-  constructor(private modalService: ModalService) { }
+  searchpage;
+  data: any;
+  addForm: FormGroup;
+  constructor(
+    private modalService: ModalService,
+    private pageFBService: PagefbService
+    ) { }
 
   ngOnInit(): void {
+    this.getAll();
+    this.addForm = new FormGroup({
+      tenPage: new FormControl(),
+      IDpage: new FormControl(),
+      linkPage: new FormControl()
+    })
   }
+  get tenPage() {
+    return this.addForm.get('tenPage');
+  }
+  get IDpage() {
+    return this.addForm.get('IDpage');
+  }
+  get linkPage() {
+    return this.addForm.get('linkPage');
+  }
+
+  getAll(){
+    this.pageFBService.getAll().subscribe((data) => {
+      this.data = data;
+    })
+  }
+
+  selectRow(data){
+
+  }
+
   openDetailpage() {
     this.modalService.open('detail-pagefb');
   }

@@ -1,3 +1,4 @@
+import { BaiDangfbService } from './../../../../services/baidangfb.service';
 import { Component, OnInit } from '@angular/core';
 import { ModalService } from '../../../../services/modal.service';
 
@@ -8,9 +9,19 @@ import { ModalService } from '../../../../services/modal.service';
 })
 export class ModalBaidangfacebookComponent implements OnInit {
 
-  constructor(private modalService: ModalService) { }
-
+  data:any;
+  constructor(
+    private modalService: ModalService,
+    private baiDangService: BaiDangfbService
+    ) { }
+  searchpage;
   ngOnInit(): void {
+    this.getAll();
+  }
+  getAll(){
+    this.baiDangService.getAll().subscribe((data) => {
+      this.data = data;
+    });
   }
 
   closeModal(id: string) {

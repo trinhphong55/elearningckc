@@ -8,27 +8,25 @@
       <div class="col-12">
         <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
           <div class="row justify-content-center align-items-center">
-            <div class="col-3">
+            <div class="col-4">
               <div class="form-group">
                 <label for="">Tên Page</label>
                 <input type="text" class="form-control">
               </div>
+            </div>
+            <div class="col-4">
+              <div class="form-group">
+                <label for="">ID Page</label>
+                <input type="text" class="form-control">
+              </div>
+            </div>
+            <div class="col-4">
               <div class="form-group">
                 <label for="">Link</label>
                 <input type="text" class="form-control">
               </div>
             </div>
-            <div class="col-3">
-              <div class="form-group">
-                <label for="">ID Page</label>
-                <input type="text" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="">Access Token Page</label>
-                <input type="text" class="form-control">
-              </div>
-            </div>
-            <div class="col-3">
+            <div class="">
               <div class="modal_chucnang__group__button">
                 <button class="modal_chucnang__button btn btn-outline-primary px-4 mx-2"><img
                     class="modal_chucnang__button__icon mb-2" src="assets/img/icons/add.png" alt="image icon">
@@ -54,39 +52,33 @@
               </select><span class="text-nowrap">&nbsp; hàng</span>
             </label>
             <label class="ml-auto mb-0 d-flex align-items-center"><span class="text-nowrap">Tìm kiếm: &nbsp;</span>
-              <input class="form-control form-control-sm" placeholder="Tìm kiếm">
+              <input class="form-control form-control-sm" placeholder="Tìm kiếm" [(ngModel)]="searchpage">
             </label>
           </div>
           <table class="modal_chucnang__table table table-hover" id="">
             <thead class="bg__caothang text-white">
+              <th class="text-center">STT</th>
               <th scope="col" class="text-center">id</th>
               <th scope="col" class="text-center">Tên Page</th>
               <th scope="col" class="text-center">Link</th>
-              <th scope="col" class="text-center">Số Lượng Like</th>
-              <th scope="col" class="text-center">Số lượng bài viết</th>
               <th scope="col" class="text-center">Tác vụ</th>
             </thead>
             <tbody>
-              <tr>
+              <tr *ngFor=" let d of data |filter: searchpage; index as stt">
+                <td>{{stt+1}}</td>
                 <td class="text-center">
-                  1000
+                  <div>{{d.id_Page}}</div>
                 </td>
                 <td class="text-center">
-                  Information Technology CKC
+                  <div>{{d.tenPage}}</div>
                 </td>
                 <td class="text-center">
-                  http://facebook.com/IT-CKC
-                </td>
-                <td class="text-center">
-                  185.234
-                </td>
-                <td class="text-center">
-                  500
+                  <div>{{d.linkPage}}</div>
                 </td>
                 <td class="text-center">
                   <div class="form-group">
                     <span class="modal_chucnang__button__delete ml-2 mdi mdi-delete-outline mdi-24px"></span>
-                    <button class="modal_chucnang__button btn btn-outline-success px-4 mx-2" (click)="openDetailpage()">View</button>
+                    <button class="modal_chucnang__button btn btn-outline-success px-4 mx-2" (click)="openDetailpage()" onclick="getAccessToken(this)" data="{{d.id_Page}}">View</button>
                   </div>
                 </td>
               </tr>

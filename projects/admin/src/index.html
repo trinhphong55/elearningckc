@@ -53,7 +53,7 @@
       if (response.status === 'connected') {
         showWelcome();
         getAvatarProf();
-        
+
       }
     }
 
@@ -88,7 +88,6 @@
     //Hàm welcome sử dụng API sau khi login
     function showWelcome() {
       FB.api('/me', function(response) {
-        console.log(response)
         document.getElementById('btnLoginFB').setAttribute('style', 'display:none');
         console.log(response.name + ' access granted');
         document.getElementById('username').innerHTML =response.name;
@@ -100,38 +99,43 @@
     function getAvatarProf(){
       FB.api('/me',{fields: 'picture'},function (response){
           source = response.picture.data.url;
-          console.log(source);
           $('#avatar').attr("src",source);
       })
     };
 
     //API Group
      function getIDGroup(ctr){
-      alert(ctr.data);
       FB.api('/'+ctr.data,{fields: 'member_count'},function (response){
         gMemCount=response.member_count;
-          console.log(gMemCount);
+          document.getElementById('soMem').innerText = gMemCount;
       });
       FB.api('/'+ctr.data,{fields: 'member_request_count'},function (response){
         gMemReqCount=response.member_request_count;
-          console.log(gMemReqCount);
+        document.getElementById('memRes').innerText = gMemReqCount;
       });
       FB.api('/'+ctr.data,{fields: 'privacy'},function (response){
         gPri=response.privacy;
-          console.log(gPri);
+        document.getElementById('privacyGr').innerText = gPri;
       });
       FB.api('/'+ctr.data,{fields: 'created_time'},function (response){
-        gCreDate=response.created_time;
-          console.log(gCreDate);
+        var gCreDate=response.created_time;
+        document.getElementById('createDay').innerText = gCreDate;
       });
       FB.api('/'+ctr.data,{fields: 'description'},function (response){
         gDes=response.description;
         if(!gDes){
-          gDes='Không có Description';
+          document.getElementById('Des').innerText = 'Không có';
         }
-          console.log(gDes);
+        document.getElementById('Des').innerText = gDes;
       })
       }
+    //get accessToken
+    function getAccessToken(ac){
+      FB.api('/'+ac.data,{fields: 'access_token'},function (response){
+        pAccessToken = response.access_token;
+          console.log(pAccessToken);
+      });
+    }
     //Post lên Page message
     function POSTPageMess() {
 

@@ -1,5 +1,4 @@
 import { ChangeDetialFB } from './../../../../services/changeDetailFB.service';
-import { data } from 'jquery';
 import { LopHocService } from './../../../../services/lop-hoc.service';
 import { Component, OnInit } from '@angular/core';
 import { ModalService } from '../../../../services/modal.service';
@@ -8,7 +7,6 @@ import {
   FormControl,
   FormGroup,
   Validators,
-  FormControlName,
 } from '@angular/forms';
 import { BacService } from '../../../../services/Bac.service';
 
@@ -31,6 +29,7 @@ export class ModalGroupfacebookComponent implements OnInit {
   statusElementList = {};
   isDone = false;
   text = '';
+  mss: any;
   //Khai báo list
   public bactamlist = [];
   public bacList: any;
@@ -193,7 +192,12 @@ export class ModalGroupfacebookComponent implements OnInit {
         linkGroupFB: this.addForm.value.linkGroup,
       })
 
-      .subscribe((res) => console.log(res));
+      .subscribe((res:any) => {
+        this.mss = res.msg;
+        alert(this.mss);
+      }
+
+      );
   }
   openDetail(detail) {
     this.modalService.open('detail-groupfb');
