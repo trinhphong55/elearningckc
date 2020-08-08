@@ -39,85 +39,83 @@ export class PageDashboardComponent implements OnInit {
   public series = [
     {
       name: 'Công nghệ Thông tin',
-      data: []
+      data: [4, 3, 0]
     },
     {
       name: 'Quản trị mạng máy tính',
-      data: []
+      data: [0, 0, 2]
     },
     {
       name: 'Kỹ thuật sửa chữa, lắp ráp máy tính',
-      data: []
+      data: [0, 0, 2]
     },
     {
       name: 'Công nghệ Thông tin-Chuyên ngành Công nghệ phần mềm',
-      data: []
+      data: [0, 2, 2]
     },
     {
       name: 'Công nghệ Thông tin-Chuyên ngành Mạng máy tính',
-      data: []
+      data: [0, 2, 2]
     },
     {
       name: 'Khoa học máy tính',
-      data: []
+      data: [0, 0, 0]
     },
-
   ];
   public years = [this.temp - 2, this.temp - 1, this.temp];
   constructor(private el: ElementRef, private lopHocService:LopHocService) {
-    this.lopHocService.thongKe((this.temp - 2).toString()).subscribe(
-      (response) => {
-        if(response.data){
-          let temp = response.data[this.temp - 2];
-          this.series.map(serie => {
-            if(temp[serie.name]){
-              serie.data.push(temp[serie.name]);
-            }
-            else{
-              serie.data.push(0);
-            }
-          })
-        }
-      }
-    )
+    // this.lopHocService.thongKe((this.temp - 2).toString()).subscribe(
+    //   (response) => {
+    //     if(response.data){
+    //       let temp = response.data[(this.temp - 2).toString()];
+    //       this.series.map(serie => {
+    //         if(temp[serie.name]){
+    //           serie.data.push(temp[serie.name]);
+    //         }
+    //         else{
+    //           serie.data.push(0);
+    //         }
+    //       })
+    //     }
+    //   }
+    // )
 
-    this.lopHocService.thongKe((this.temp -1).toString()).subscribe(
-      (response) => {
-        if(response.data){
-          let temp = response.data[this.temp -1];
-          this.series.map(serie => {
-            if(temp[serie.name]){
-              serie.data.push(temp[serie.name]);
-            }
-            else{
-              serie.data.push(0);
-            }
-          })
-        }
-      }
-    )
+    // this.lopHocService.thongKe((this.temp -1).toString()).subscribe(
+    //   (response) => {
+    //     if(response.data){
+    //       let temp = response.data[(this.temp -1).toString()];
+    //       this.series.map(serie => {
+    //         if(temp[serie.name]){
+    //           serie.data.push(temp[serie.name]);
+    //         }
+    //         else{
+    //           serie.data.push(0);
+    //         }
+    //       })
+    //     }
+    //   }
+    // )
 
-    this.lopHocService.thongKe((this.temp).toString()).subscribe(
-      (response) => {
-        if(response.data != null){
-          let temp = response.data[this.temp];
-          this.series.map(serie => {
-            if(temp[serie.name]){
-              serie.data.push(temp[serie.name]);
-            }
-            else{
-              serie.data.push(0);
-            }
-          })
-        }
-        else{
-          this.series.map(serie => {
-            serie.data.push(0);
-          })
-        }
-      }
-    )
-
+    // this.lopHocService.thongKe((this.temp).toString()).subscribe(
+    //   (response) => {
+    //     if(response.data != null){
+    //       let temp = response.data[this.temp];
+    //       this.series.map(serie => {
+    //         if(temp[serie.name]){
+    //           serie.data.push(temp[serie.name]);
+    //         }
+    //         else{
+    //           serie.data.push(0);
+    //         }
+    //       })
+    //     }
+    //     else{
+    //       this.series.map(serie => {
+    //         serie.data.push(0);
+    //       })
+    //     }
+    //   }
+    // )
     this.chartOptions = {
       series: this.series,
       chart: {
@@ -141,9 +139,7 @@ export class PageDashboardComponent implements OnInit {
     //2017-2018-2019
   }
   ngOnInit(): void {
-
     this.effectLoadPage();
-
   }
 
   effectLoadPage(): void {
