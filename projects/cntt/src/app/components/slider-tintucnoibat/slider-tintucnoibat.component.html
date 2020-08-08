@@ -13,36 +13,9 @@
       </div>
       <div class="col-lg-8 mt-4">
         <div class="news_home__main text-white p-3">
-          <a class="hashtag d-none d-md-inline-flex" [routerLink]="['/']"
-            >Nổi bật</a
-          >
+          <a class="hashtag d-none d-md-inline-flex" routerLink="/">Nổi bật</a>
           <div class="swiper-container h-100">
             <div class="swiper-wrapper">
-              <div class="swiper-slide">
-                <div class="news_home__main__wrapper">
-                  <div class="news_home__main__desc px-md-3">
-                    <div class="news_home__main__title mt-2 mt-md-5">
-                      <div class="d-md-none mb-2 mb-md-0">
-                        <a class="hashtag" href="#">Nổi bật</a>
-                      </div>
-                      <a
-                        class="text-white"
-                        href="#"
-                        title="TUYỂN SINH CAO ĐẲNG SỬA CHỮA LẮP RÁP MÁY TÍNH CHÍNH QUY NĂM 2020"
-                        >TUYỂN SINH CAO ĐẲNG SỬA CHỮA LẮP RÁP MÁY TÍNH CHÍNH QUY
-                        NĂM 2020</a
-                      >
-                    </div>
-                    <div class="small mt-2">24-06-2020</div>
-                  </div>
-                  <div class="news_home__main__image">
-                    <img
-                      src="http://cntt.caothang.edu.vn/wp-content/uploads/2019/12/banner-32020.png"
-                      alt="Hình ảnh"
-                    />
-                  </div>
-                </div>
-              </div>
               <div
                 class="swiper-slide"
                 *ngFor="let itemListTinTucNoiBat of DanhSachTinTucNoiBat"
@@ -51,11 +24,11 @@
                   <div class="news_home__main__desc px-md-3">
                     <div class="news_home__main__title mt-2 mt-md-5">
                       <div class="d-md-none mb-2 mb-md-0">
-                        <a class="hashtag" [routerLink]="['/']">Nổi bật</a>
+                        <a class="hashtag" routerLink="/">Nổi bật</a>
                       </div>
                       <a
                         class="text-white"
-                        [routerLink]="['/']"
+                        routerLink="/bai-viet/{{ itemListTinTucNoiBat._id }}"
                         title="{{ itemListTinTucNoiBat.tieuDe }}"
                         >{{ itemListTinTucNoiBat.tieuDe }}</a
                       >

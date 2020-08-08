@@ -5,12 +5,7 @@
         <div
           class="highlight_home__title important mt-lg-4 pr-lg-4 py-lg-4 bg__light"
         >
-          <a
-            class="text-reset text-decoration-none text-uppercase"
-            [routerLink]="['/']"
-          >
-            {{ BaiVietDauTien.tieuDe }}</a
-          >
+          {{ BaiVietDauTien.tieuDe }}
         </div>
         <small class="highlight_home__postedtime important text-muted">
           {{ BaiVietDauTien.thoiGianDangBai }}
@@ -20,7 +15,7 @@
         </div>
         <a
           class="m-0 py-2 px-4 highlight_home__read btn text-white bg__caothang"
-          [routerLink]="['/']"
+          routerLink="/bai-viet/{{ BaiVietDauTien._id }}"
           >Xem chi tiết</a
         >
       </div>
@@ -36,7 +31,7 @@
             >
               <a
                 class="position-relative highlight_home__box_image"
-                [routerLink]="['/']"
+                routerLink="/bai-viet/{{ itemBaiVietQuanTrong._id }}"
                 ><img
                   src="https://localhost:4100/{{ itemBaiVietQuanTrong.anhBia }}"
                   [alt]="itemBaiVietQuanTrong.tieuDe" /><span
@@ -50,6 +45,9 @@
                 <small class="highlight_home__postedtime text-muted">{{
                   itemBaiVietQuanTrong.thoiGianDangBai
                 }}</small>
+                <div class="d-none highlight_home__id">
+                  {{ itemBaiVietQuanTrong._id }}
+                </div>
                 <div class="highlight_home__desc">
                   {{ itemBaiVietQuanTrong.moTaNgan }}
                 </div>

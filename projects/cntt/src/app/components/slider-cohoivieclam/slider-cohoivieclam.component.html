@@ -38,7 +38,7 @@
               <div class="job_home__slider__item d-flex">
                 <a
                   class="job_home__logo_company p-1 p-md-3 d-flex justify-content-center align-items-center border"
-                  [routerLink]="['/']"
+                  routerLink="/bai-viet/{{ itemListCoHoiViecLam._id }}"
                   ><img
                     class="swiper-lazy"
                     [title]="itemListCoHoiViecLam.tieuDe"
@@ -51,7 +51,7 @@
                   <a
                     class="text-white mb-0 job_home__sub_title"
                     [title]="itemListCoHoiViecLam.tieuDe"
-                    [routerLink]="['/']"
+                    routerLink="/bai-viet/{{ itemListCoHoiViecLam._id }}"
                     >{{ itemListCoHoiViecLam.tieuDe }}</a
                   >
                   <div class="job_home__sub_desc">
@@ -79,7 +79,7 @@
         </div>
         <hr class="mt-3 mb-0" />
         <div class="d-flex align-items-center justify-content-between">
-          <a class="text-white-50" [routerLink]="['/']" style="font-size: 15px;"
+          <a class="text-white-50" routerLink="/" style="font-size: 15px;"
             >Xem tất cả</a
           >
           <div class="job_home__slider__navigation text-white-50">

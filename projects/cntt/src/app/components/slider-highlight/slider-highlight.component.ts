@@ -33,9 +33,9 @@ export class SliderHighlightComponent implements OnInit, AfterViewInit {
         modifier: 1,
         slideShadows: true,
       },
-      autoplay: {
-        delay: 5000,
-      },
+      // autoplay: {
+      //   delay: 5000,
+      // },
       autoHeight: true,
       pagination: {
         el: '.highlight_home__slider .swiper-pagination',
@@ -49,13 +49,14 @@ export class SliderHighlightComponent implements OnInit, AfterViewInit {
           // console.log($(this.slides[this.activeIndex]));
           // console.log($(this.slides[this.activeIndex]).find('.highlight_home__title').text());
           const _this = this.slides[this.activeIndex];
+          const _id = $(_this).find('.highlight_home__id').text();
           const _title = $(_this).find('.highlight_home__title').text();
           const _short = $(_this).find('.highlight_home__desc').text();
           const _postTime = $(_this).find('.highlight_home__postedtime').text();
           // console.log(_title, _short, _postTime);
           setTimeout(() => {
             // console.log('run set time out slide change');
-            $('.highlight_home__title.important').text(_title);
+            $('.highlight_home__title__text').text(_title);
             $('.highlight_home__desc.important').text(_short);
             $('.highlight_home__postedtime.important').text(_postTime);
           }, 250);
