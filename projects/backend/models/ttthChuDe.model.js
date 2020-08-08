@@ -11,4 +11,4 @@ var schema = new Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("ChuDe", schema, "ttthChuDe");
+module.exports = mongoose.model("TTTHChuDe", schemca, "ttthChuDe");
