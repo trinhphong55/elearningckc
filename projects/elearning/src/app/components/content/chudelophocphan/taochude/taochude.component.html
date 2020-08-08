@@ -1,10 +1,10 @@
 <h1 mat-dialog-title>Thêm chủ đề </h1>
 <mat-dialog-content>
     <mat-form-field appearance="legacy" >
-        <input matInput placeholder="Tên chủ đề" [(ngModel)]="checked">
+        <input matInput placeholder="Tên chủ đề" [(ngModel)]="tenChuDe">
     </mat-form-field>
 </mat-dialog-content>
 <div mat-dialog-actions>
   <button mat-button mat-dialog-close>Huỷ</button>
-  <button mat-button [disabled]="!checked" >Tạo</button>
+  <button mat-button mat-dialog-close [disabled]="!checked" (click) = "themChuDe()" >Tạo</button>
 </div>

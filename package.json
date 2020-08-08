@@ -43,6 +43,7 @@
     "@ng-bootstrap/ng-bootstrap": "^7.0.0",
     "angular-datatables": "^9.0.2",
     "aos": "^2.3.4",
+    "apexcharts": "^3.20.0",
     "axios": "^0.19.2",
     "bootstrap": "^4.5.0",
     "concurrently": "^5.2.0",
@@ -52,9 +53,12 @@
     "datatables.net-dt": "^1.10.21",
     "datatables.net-responsive": "^2.2.5",
     "datatables.net-responsive-dt": "^2.2.5",
+    "file-saver": "^2.0.2",
     "jquery": "^3.5.1",
     "jszip": "^3.5.0",
+    "ng-apexcharts": "^1.5.1",
     "ng2-file-upload": "^1.4.0",
+    "ngx-cookie-service": "^10.0.1",
     "ngx-skeleton-loader": "^2.2.1",
     "ngx-toastr": "^13.0.0",
     "ngx-useful-swiper": "^9.0.3",
@@ -92,6 +96,6 @@
     "ts-node": "~8.10.2",
     "tslint": "~6.1.2",
     "typescript": "~3.9.6",
-    "xlsx": "^0.16.4"
+    "xlsx": "^0.16.5"
   }
 }

@@ -14,7 +14,8 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "allowedCommonJsDependencies": [
-              "xlsx"
+              "xlsx",
+              "file-saver"
             ],
             "outputPath": "dist/admin",
             "index": "projects/admin/src/index.html",
@@ -56,7 +57,8 @@
               "node_modules/datatables.net-responsive/js/dataTables.responsive.js",
               "node_modules/@fancyapps/fancybox/dist/jquery.fancybox.min.js",
               "node_modules/vanilla-lazyload/dist/lazyload.min.js",
-              "projects/admin/src/assets/js/main.min.js"
+              "projects/admin/src/assets/js/main.min.js",
+              "node_modules/apexcharts/dist/apexcharts.min.js"
             ]
           },
           "configurations": {

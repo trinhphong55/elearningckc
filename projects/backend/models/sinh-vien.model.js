@@ -41,84 +41,83 @@ const SinhVienSchema = new Schema({
   },
   ho: {
     type: String,
-    required: true,
+
   },
   ten: {
     type: String,
-    required: true,
+
   },
   gioiTinh: {
     type: String,
-    required: true,
+
   },
   ngaySinh: {
     type: String,
-    required: true,
+
   },
   diaChiThuongTru: {
     type: String,
-    required: true,
+
     default: "baomat",
   },
   diaChiTamTru: {
     type: String,
-    required: true,
+
     default: "baomat",
   },
   sdt: {
     type: String,
-    required: true,
+
     default: "baomat",
   },
   email: {
     type: String,
-    required: true,
-    default: "baomat",
+    default: 'baomat',
   },
   matKhau: {
     type: String,
   },
   tokens: {
     type: String,
-    required: true,
+
     default: "baomat",
   },
   hoTenCha: {
     type: String,
-    required: true,
+
     default: "baomat",
   },
   hoTenMe: {
     type: String,
-    required: true,
+
     default: "baomat",
   },
   sdtCha: {
     type: String,
-    required: true,
+
     default: "baomat",
   },
   sdtMe: {
     type: String,
-    required: true,
+
     default: "baomat",
   },
   maLopHoc: {
     type: String,
-    required: true,
+
   },
   trangThai: {
     type: Number,
-    required: true,
+
     default: 1,
   },
   nguoiTao: {
     type: String,
-    required: true,
+
   },
   nguoiChinhSua: {
     type: String,
-    required: true,
+
   },
   ngayChinhSua: {
     type: Date,

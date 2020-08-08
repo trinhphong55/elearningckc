@@ -11,6 +11,7 @@ const boMon = require("../api/bomon");
 const cnttHeader = require("./cnttHeader");
 const auth = require("./auth");
 const TKB = require("./TKB");
+const BaiTap = require("./BaiTap");
 
 const sinhVien = require("./sinh-vien");
 const Diemsinhvien = require("./diemsinhvien");
@@ -40,6 +41,11 @@ const cnttThongTinChung = require("./cnttThongTinChung");
 const cnttFooter = require("./cnttFooter");
 const ttthChuDeRoutes = require("./ttthChuDe");
 
+const ctDiemLopHP = require("./ct-diemsv-lhp");
+const ChuDe = require("./chu-de");
+const baiGiang = require("./bai-giang");
+const binhLuan = require("./binh-luan");
+
 router.use("/loaimonhoc", LoaiMonHoc);
 // router.use("/lophocphan", LopHocPhanRoutes);
 router.use("/giaovien", GiaoVienRoutes);
@@ -50,6 +56,9 @@ router.use("/lhdt", LoaiHinhDaoTao);
 router.use("/lophocphan", LopHocPhan);
 router.use("/gvlhp", GiaoVienLopHocPhan);
 router.use("/tkb", TKB);
+
+//Elearning routes
+router.use("/baitap", BaiTap);
 //cnttRoute
 router.use("/slideshow", cnttSlideShowRoutes);
 router.use("/cnttTinTuc", cnttTinTucRoute);
@@ -82,6 +91,8 @@ router.use("/ttth/chude", ttthChuDeRoutes);
 const khoabomonController = require("../api/khoabomon");
 const loaidonviController = require("../api/loaidonvi");
 const LopHoc = require("../api/LopHoc");
+const LopHocDAO = require("../DAO/LopHocDAO");
+const lopHocDAO = new LopHocDAO();
 //
 const validate = khoabomonController.checkValidate();
 
@@ -89,6 +100,7 @@ const validate = khoabomonController.checkValidate();
 const NganhNgheRoutes = require("./NganhNghe");
 const BacRoutes = require("./Bac");
 const diemsinhvienModel = require("../models/diemsinhvien.model");
+const { route } = require("./GiaoVien");
 //nganhnghe
 router.use("/", NganhNgheRoutes);
 //bac
@@ -109,6 +121,8 @@ router.put("/khoabomon/:id", validate, khoabomonController.updateKhoaBoMon);
 
 //lấy danh sách môn học phần của sinh viên theo môn truyền vào
 router.get("/diemsinhvien/:maSinhVien/search", Diemsinhvien.getDiemsinhvien);
+router.get("/diemsinhvien/:maSinhVien/khdt", Diemsinhvien.getDiemSinhVien_maSSV);
+
 
 //Lấy toàn bộ dữ liệu từ KhoaBoMon
 router.get("/bomon", boMon.getKhoaBonMon);
@@ -121,6 +135,24 @@ router.delete("/bomon/:id", boMon.deleteKhoaBoMon);
 router.put("/bomon/:id", boMon.checkValidate(), boMon.updateKhoaBoMon);
 
 //---------------------------Routes LopHoc--------------------------
+router.post("/thongKeLopTheoNganhCuaNam", async (req, res) => {
+  const nam = req.body.nam;
+  let result = false;
+  result = await lopHocDAO.layDanhSachLopHocTheoTungNganhCuaNam(nam);
+  if(result != false){
+    data = {
+      'msg': 'Lấy danh sách thống kê thành công',
+      'data': result,
+    };
+  }
+  else {
+    data = {
+      'msg': 'Lấy danh sách thống kê thất bại',
+      'data': null,
+    };
+  }
+  res.send(data);
+})
 //Lấy toàn bộ dữ liệu từ KhoaBoMon
 router.get("/lophoc", LopHoc.getAll);
 router.get("/lophoc/:id", LopHoc.getOne);
@@ -157,4 +189,25 @@ router.get("/sinhvien/:maLopHoc/siso", sinhVien.tinhTongSinhVien);
 
 //========================= Routes CotDiemLopHocPhan ===================================
 router.get("/cotdiemlhp", cotDiemLHP.layDiemLHP);
+router.get("/cotdiemlhp/:maLopHocPhan", cotDiemLHP.layDiemLHPtheoMaLHP);
+
+//======================= Routes ChitietDiemSVLopHocPhan ==================================
+router.get("/ct-diemsv-lophocphan/:masv", ctDiemLopHP.layCTDiemLopHPtheoMaSV);
+
+//=========================== Routes ChuDe =============================================
+router.get("/chude", ChuDe.layTatCa);
+router.get("/chude/:maChuDe", ChuDe.layMot);
+router.get("/chude/:maLopHocPhan/lop-hoc-phan", ChuDe.layTheo_MaLHP);
+
+router.post("/chude", ChuDe.them);
+//=========================== Routes BaiGiang =============================================
+router.get("/baigiang", baiGiang.layTatCa);
+router.get("/baigiang/:maChuDe", baiGiang.layTheoMaChuDe);
+router.post("/baigiang", baiGiang.them);
+router.get("/baigiang/:maLopHocPhan/lop-hoc-phan", baiGiang.layTheo_MaLHP);
+router.get("/baigiang/:maBaiGiang/ma-bai-giang", baiGiang.layTheo_maBaiGiang);
+
+//========================= Routes BinhLuan ==========================================
+router.get("/binhluan/:loaiBaiViet/baiviet/:maBaiViet", binhLuan.layBinhLuan_theoBaiViet);
+router.post("/binhluan", binhLuan.themBinhLuan);
 module.exports = router;
