@@ -14,6 +14,10 @@ class GiaoVienDAO extends MongoDB{
         return await this.find({maGiaoVien: maGV});
     }
 
+    async layThongTinGiaoVienTheoEmail(email){
+      return await this.find({email: email});
+  }
+
     async layMaGVMoiNhat(){
       let result = false;
       try{

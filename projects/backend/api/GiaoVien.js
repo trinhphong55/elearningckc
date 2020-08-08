@@ -35,6 +35,11 @@ router.post('/thong-tin-giao-vien', async (req, res) => {
   res.send(result);
 })
 
+router.get('/thong-tin-giao-vien-email/:email', async (req, res) => {
+  let result = await giaoVienDAO.layThongTinGiaoVienTheoEmail(req.params.email);
+  res.send(result);
+})
+
 router.post('/cap-nhat-giao-vien', async (req, res) => {
   req.body.matKhauBanDau = md5(req.body.matKhauBanDau);
   let result = await giaoVienDAO.updateOrInsertOne({maGiaoVien: req.body.maGiaoVien}, req.body)

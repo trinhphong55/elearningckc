@@ -4,7 +4,7 @@ const GVLHP = require("../models/GiaoVienLopHocPhan.model");
 
 //trinh phong
 router.get("/", async (req, res) => {
-  var data =await GVLHP.find()
+  var data = await GVLHP.find()
   res.json(data);
 });
 
@@ -37,13 +37,21 @@ router.post("/", async (req, res) => {
 });
 //trinh phong
 router.post('/giaovienlophocphan', async (req, res) => {
+  var gv = await GVLHP.find({ maLopHocPhan: req.body.maLopHocPhan,maGiaoVien:req.body.maGiaoVien });
+console.log(gv)
+console.log(req.body)
   try {
-    const gvhp = new GVLHP(req.body);
+    if (gv == "") {
+      const gvhp = new GVLHP(req.body);
       var data = await gvhp.save();
       res.status(201).json({ data });
-     
-       }
-   catch (error) {
+    }
+    else
+    {
+      return res.json({ status: 401, data: [], message: err });
+    }
+  }
+  catch (error) {
     return error;
   }
 });
@@ -51,7 +59,7 @@ router.post('/giaovienlophocphan', async (req, res) => {
 //tim lop hp theo a giao vien
 router.get("/:maGiaoVien", async (req, res) => {
 
-  var data =await GVLHP.find({maGiaoVien:req.params.maGiaoVien}).exec()
+  var data = await GVLHP.find({ maGiaoVien: req.params.maGiaoVien }).exec()
   res.json(data);
 });
 
