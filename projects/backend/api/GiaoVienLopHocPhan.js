@@ -2,8 +2,10 @@ const router = require("express").Router();
 // const LopHocPhan = require("../models/LopHocPhan.model");
 const GVLHP = require("../models/GiaoVienLopHocPhan.model");
 
+//trinh phong
 router.get("/", async (req, res) => {
-  res.json("Get GVLHP");
+  var data =await GVLHP.find()
+  res.json(data);
 });
 
 router.post("/", async (req, res) => {

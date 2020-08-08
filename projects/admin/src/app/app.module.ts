@@ -90,6 +90,7 @@ import { ModalDangkidotthiComponent } from './components/modal/ttth/modal-dangki
 import { ModalDiemthiComponent } from './components/modal/ttth/modal-diemthi/modal-diemthi.component';
 import { ModalTtthQuanlidiemthiComponent } from './components/modal/ttth/modal-ttth-quanlidiemthi/modal-ttth-quanlidiemthi.component';
 import { ModalTtthchudeComponent } from './components/modal/ttth/modal-ttthchude/modal-ttthchude.component';
+import { ModalThoikhoabieuComponent } from './components/modal/chuongtrinhdaotao/modal-thoikhoabieu/modal-thoikhoabieu.component';
 
 @NgModule({
   declarations: [
@@ -169,6 +170,7 @@ import { ModalTtthchudeComponent } from './components/modal/ttth/modal-ttthchude
     ModalDiemthiComponent,
     ModalTtthQuanlidiemthiComponent,
     ModalTtthchudeComponent,
+    ModalThoikhoabieuComponent
   ],
   imports: [
     BrowserModule,

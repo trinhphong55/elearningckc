@@ -19,7 +19,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { LophocContentComponent } from './components/content/lophoc-content/lophoc-content.component';
 import { MatCardModule } from '@angular/material/card';
 import { ChiaseComponent } from './components/content/pagelophocphan/chiase/chiase.component';
 import { MatSelectModule } from '@angular/material/select';
@@ -30,9 +29,7 @@ import { Chude1Component } from './components/content/chudelophocphan/list-chude
 import { Chude2Component } from './components/content/chudelophocphan/list-chude/chude2/chude2.component';
 import { Chude3Component } from './components/content/chudelophocphan/list-chude/chude3/chude3.component';
 import { Chude4Component } from './components/content/chudelophocphan/list-chude/chude4/chude4.component';
-import { TaobaiktraComponent } from './components/content/chudelophocphan/taobaiktra/taobaiktra.component';
-import { TaocauhoiComponent } from './components/content/chudelophocphan/taocauhoi/taocauhoi.component';
-import { TaotailieuComponent } from './components/content/chudelophocphan/taotailieu/taotailieu.component';
+import { TaobaigiangComponent } from './components/content/chudelophocphan/taobaigiang/taobaigiang.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MoigvComponent } from './components/content/pageMoinguoi/moigv/moigv.component';
@@ -40,12 +37,11 @@ import { MoisvComponent } from './components/content/pageMoinguoi/moisv/moisv.co
 import { NoidungbaitapComponent } from './components/content/pagelophocphan/noidungbaitap/noidungbaitap.component';
 import { NoidungtaileuComponent } from './components/content/pagelophocphan/noidungtaileu/noidungtaileu.component';
 import { XembaitapgvComponent } from './components/content/chudelophocphan/allchude/xembaitapgv/xembaitapgv.component';
-import { XemtailieugvComponent } from './components/content/chudelophocphan/allchude/xemtailieugv/xemtailieugv.component';
+import { XembaiganggvComponent } from './components/content/chudelophocphan/allchude/xembaiganggv/xembaiganggv.component';
 import { NoidungbaitapsvComponent } from './components/content/pagelophocphan/noidungbaitapsv/noidungbaitapsv.component';
 import { NoidungtailieusvComponent } from './components/content/pagelophocphan/noidungtailieusv/noidungtailieusv.component';
 import { XembaitapsvComponent } from './components/content/chudelophocphan/allchude/xembaitapsv/xembaitapsv.component';
-import { XemtailieusvComponent } from './components/content/chudelophocphan/allchude/xemtailieusv/xemtailieusv.component';
-import { TrangcanhanContentComponent } from './components/content/trangcanhan-content/trangcanhan-content.component';
+import { XembaigiangsvComponent } from './components/content/chudelophocphan/allchude/xembaigiangsv/xembaigiangsv.component';
 import { NavbarTrangchuComponent } from './components/navbar/navbar-trangchu/navbar-trangchu.component';
 import { NavbarHocphanComponent } from './components/navbar/navbar-hocphan/navbar-hocphan.component';
 import { PageTrangchuComponent } from './pages/page-trangchu/page-trangchu.component';
@@ -55,16 +51,18 @@ import { PageBaigiangComponent } from './pages/page-baigiang/page-baigiang.compo
 import { PageMoinguoiComponent } from './pages/page-moinguoi/page-moinguoi.component';
 import { PageChudelophocphanComponent } from './pages/page-chudelophocphan/page-chudelophocphan.component';
 import { TaobaitapComponent } from './components/content/chudelophocphan/taobaitap/taobaitap.component';
-import { PageSodiemComponent } from './pages/page-sodiem/page-sodiem.component';
-import { PageHuongdanComponent } from './pages/page-huongdan/page-huongdan.component';
-import { PageBaitapgiaovienComponent } from './pages/page-baitapgiaovien/page-baitapgiaovien.component';
+import { PageCotodiemComponent } from './pages/page-cotdiem/page-cotdiem.component';
+import { PageTongdiemComponent } from './pages/page-tongdiem/page-tongdiem.component';
+import { PageChamdiemComponent } from './pages/page-chamdiem/page-chamdiem.component';
 import { PageCaidatComponent } from './pages/page-caidat/page-caidat.component';
+import { HttpClientModule } from '@angular/common/http';
+import { PageTrangcanhansvComponent } from './pages/page-trangcanhansv/page-trangcanhansv.component';
+import { PageTrangcanhangvComponent } from './pages/page-trangcanhangv/page-trangcanhangv.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FooterComponent,
-    LophocContentComponent,
     ChiaseComponent,
     TaobaitapComponent,
     TaochudeComponent,
@@ -72,20 +70,17 @@ import { PageCaidatComponent } from './pages/page-caidat/page-caidat.component';
     Chude2Component,
     Chude3Component,
     Chude4Component,
-    TaobaiktraComponent,
-    TaocauhoiComponent,
-    TaotailieuComponent,
+    TaobaigiangComponent,
     MoigvComponent,
     MoisvComponent,
     NoidungbaitapComponent,
     NoidungtaileuComponent,
     XembaitapgvComponent,
-    XemtailieugvComponent,
+    XembaiganggvComponent,
     NoidungbaitapsvComponent,
     NoidungtailieusvComponent,
     XembaitapsvComponent,
-    XemtailieusvComponent,
-    TrangcanhanContentComponent,
+    XembaigiangsvComponent,
     NavbarTrangchuComponent,
     NavbarHocphanComponent,
     PageTrangchuComponent,
@@ -94,10 +89,12 @@ import { PageCaidatComponent } from './pages/page-caidat/page-caidat.component';
     PageBaigiangComponent,
     PageMoinguoiComponent,
     PageChudelophocphanComponent,
-    PageSodiemComponent,
-    PageHuongdanComponent,
-    PageBaitapgiaovienComponent,
+    PageCotodiemComponent,
+    PageTongdiemComponent,
+    PageChamdiemComponent,
     PageCaidatComponent,
+    PageTrangcanhansvComponent,
+    PageTrangcanhangvComponent,
   ],
   imports: [
     BrowserModule,
@@ -122,7 +119,8 @@ import { PageCaidatComponent } from './pages/page-caidat/page-caidat.component';
     MatExpansionModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatTableModule
+    MatTableModule,
+    HttpClientModule
   ],
   entryComponents: [
   ],

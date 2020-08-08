@@ -53,29 +53,11 @@ router.get('/get/one', async (req, res) => {
 
 //DELETE CTDT
 router.delete('/:maChuongTrinhDaoTao', async (req, res) => {
-  // try {
-  //   console.log(req.params);
-  //   const removedMonhoc = await CTDT.deleteOne({ maChuongTrinhDaoTao: req.params.maChuongTrinhDaoTao }).exec();
-  //   res.json(removedMonhoc);
-  // } catch (error) {
-  //   res.json({ message: error});
-  // }
   res.json('oke');
 })
 
 //UPATE CTDT
 router.put('/:maChuongTrinhDaoTao', async (req, res) => {
-  // console.log('du lieu chua update', req.body);
-  // const { maChuongTrinhDaoTao } = req.params;
-  // const { tenCTDT, tenVietTat, loaiCTDT, tenTiengAnh, tenVietTatTiengAnh } = req.body;
-  // await CTDT.updateOne(
-  //     { maChuongTrinhDaoTao: maChuongTrinhDaoTao },
-  //     { $set: { tenCTDT, tenVietTat, loaiCTDT, tenTiengAnh, tenVietTatTiengAnh } }
-  // ).then(() => {
-  //   res.json({ success: "updated CTDT" });
-  // }).catch(err => {
-  //   res.json({ message: err });
-  // });
   res.json('oke');
 });
 

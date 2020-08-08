@@ -87,7 +87,7 @@ export class ModalMonhocComponent implements OnInit, OnChanges {
   }
 
   renewMonHoc() {
-    this.selectedMonHoc = { maMonHoc: "", tenMonHoc: "", maLoaiMonHoc: "LT", tenTiengAnh: "", tenVietTat: "", tenVietTatTiengAnh: "" };
+    this.selectedMonHoc = { maMonHoc: "", tenMonHoc: "", maLoaiMonHoc: "LT", tenVietTat: ""};
   }
 
   closeModal(id: string) {

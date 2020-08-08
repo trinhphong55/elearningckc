@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { data } from 'jquery';
 import { LopHoc } from '../interfaces/LopHoc.interface'
+import { Observable } from 'rxjs';
 const baseUrl = 'https://localhost:4100/api/lophoc';
 
 @Injectable({
@@ -53,5 +54,11 @@ export class LopHocService {
   getMaBac(maBac) {
 
     return this.http.get<LopHoc>(`${baseUrl}/${maBac}`);
+  }
+
+  //Tan Yasuo 10 phut fam 100 con linh
+  getDSLopHocbymaCTDT(maCTDT: string): Observable<LopHoc[]> {
+    let url = `${baseUrl}/mactdt/${maCTDT}`;
+    return this.http.get<LopHoc[]>(url);
   }
 }

@@ -4,7 +4,6 @@ import { MonHoc } from '../interfaces/monhoc.interface';
 
 //Get data asynchronously with Observable
 import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -21,6 +20,11 @@ export class MonhocService {
 
   getMonHoc(): Observable<MonHoc[]> {
     return this.http.get<MonHoc[]>(this.monHocURL);
+  }
+
+  getDSMonHocbymaLopHocNhocKi(maLopHoc: string, hocKi: number): Observable<MonHoc[]> {
+    let url = `${ this.monHocURL }/malophoc/${ maLopHoc }/hocki/${ hocKi }`;
+    return this.http.get<MonHoc[]>(url);
   }
 
   //Import MonHoc from Excel
