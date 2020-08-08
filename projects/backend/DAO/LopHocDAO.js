@@ -8,8 +8,7 @@ class LopHocDAO extends MongoDB{
 
   async layDanhLopHocTheoTungNganhCuaKhoa(khoa){
     let result = false;
-    let series = [];
-    let labels = [];
+    let data = {};
     try{
       await this.connectDB();
       let temp = await this.conDb.collection(this.collectionName).aggregate([
@@ -38,21 +37,18 @@ class LopHocDAO extends MongoDB{
           }
         }
       ]).toArray();
-      temp.map(nganh => {
-        series.push(nganh.total);
-        labels.push(nganh.result.tenNganhNghe);
-      })
+      if(temp.length > 0){
+        temp.map(nganh => {
+          data = { ...data, ...{[nganh.result.tenNganhNghe]: nganh.total} };
+        });
+      }
       await this.closeDB();
     } catch (error){
       console.log('error: ', error.message);
       await this.closeDB();
     }
-
-    if(series.length > 0 && labels.length > 0){
-      result = {
-        'series': series,
-        'labels': labels
-      }
+    if(Object.keys(data).length > 0){
+      result = data;
     }
     return result;
   }

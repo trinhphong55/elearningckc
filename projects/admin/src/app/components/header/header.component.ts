@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit {
     console.log('logout');
     setCookie('token', '', '0');
     setCookie('role', '', '0');
-    window.location.reload();
+    window.location.href="https://localhost:4200";
   }
 
 }

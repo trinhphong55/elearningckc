@@ -13,6 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { FileUploadModule } from 'ng2-file-upload';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { NgApexchartsModule } from "ng-apexcharts";
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -29,6 +30,7 @@ import { PageBaocaoquyetdinhComponent } from './pages/page-baocaoquyetdinh/page-
 import { PageElearningComponent } from './pages/page-elearning/page-elearning.component';
 import { PageCnttComponent } from './pages/page-cntt/page-cntt.component';
 import { PageDiemComponent } from './pages/page-diem/page-diem.component';
+import { PageResetPasswordComponent } from "./pages/page-resetPassword/page-resetPassword.component";
 import { PageChuongtrinhdaotaoComponent } from './pages/page-chuongtrinhdaotao/page-chuongtrinhdaotao.component';
 import { PageDashboardComponent } from './pages/page-dashboard/page-dashboard.component';
 import { ModalLichdaotaoComponent } from './components/modal/chuongtrinhdaotao/modal-lichdaotao/modal-lichdaotao.component';
@@ -99,6 +101,7 @@ import { ModalThoikhoabieuComponent } from './components/modal/chuongtrinhdaotao
     SidebarElearningComponent,
     SidebarBaocaoquyetdinhComponent,
     SidebarFacebookComponent,
+    PageResetPasswordComponent,
     PageFacebookComponent,
     PageBaocaoquyetdinhComponent,
     PageElearningComponent,
@@ -176,6 +179,7 @@ import { ModalThoikhoabieuComponent } from './components/modal/chuongtrinhdaotao
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
     FileUploadModule,
+    NgApexchartsModule
   ],
   providers: [ApiService, TintucCnttService],
   bootstrap: [AppComponent]

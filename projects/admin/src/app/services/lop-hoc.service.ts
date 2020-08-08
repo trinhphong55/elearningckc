@@ -1,5 +1,5 @@
 import { map } from 'rxjs/operators';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { data } from 'jquery';
 import { LopHoc } from '../interfaces/LopHoc.interface'
@@ -41,8 +41,6 @@ export class LopHocService {
     return this.http.put(`${baseUrl}/${id}`, data);
   }
 
-
-
   delete(id) {
     return this.http.delete(`${baseUrl}/${id}`);
   }
@@ -52,7 +50,6 @@ export class LopHocService {
   }
   //trinhphong
   getMaBac(maBac) {
-
     return this.http.get<LopHoc>(`${baseUrl}/${maBac}`);
   }
 
@@ -61,4 +58,16 @@ export class LopHocService {
     let url = `${baseUrl}/mactdt/${maCTDT}`;
     return this.http.get<LopHoc[]>(url);
   }
+
+  thongKe(nam: any): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    };
+    return this.http
+      .post<any>(
+        'https://localhost:4100/api/thongKeLopTheoNganhCuaNam',
+        {nam: nam},
+        httpOptions
+      );
+  };
 }
