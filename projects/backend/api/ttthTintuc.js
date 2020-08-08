@@ -6,7 +6,7 @@ const multer = require('multer')
 router.get('/ttthdanhsachtintuc', async (req, res) => {
 
   try {
-    const danhSachTinTuc = await ttthtintuc.find({ trangthai: true });
+    const danhSachTinTuc = await ttthtintuc.find({ trangthai: true }).sort({created_at: -1});
     res.json(danhSachTinTuc);
   } catch (error) {
     res.json([]);
@@ -112,4 +112,86 @@ router.post('/ttthxoatintuc', async (req, res) => {
     trangthai: false
   });
 })
+router.get("/tintucttth/:id", (req, res) => {
+  ttthtintuc.findById(req.params.id, (error, data) => {
+    if (error) {
+      return error;
+    }
+    res.json({ message: "Lấy bài viết thành công.", data: data });
+  });
+});
+router.get("/tintucttthkhac", (req, res) => {
+  ttthtintuc.find({trangthai: true},(error, data) => {
+    if (error) {
+      return res.json({
+        message: "Lấy danh sách bài viết thành công.",
+        data: [],
+        error: error,
+      });
+    }
+    res.json({ message: "Lấy danh sách bài viết thành công.", data: data });
+  }).limit(3);
+});
+router.get("/tintucttth", (req, res) => {
+  ttthtintuc.find({trangthai: true},(error, data) => {
+    if (error) {
+      return res.json({
+        message: "Lấy danh sách bài viết thành công.",
+        data: [],
+        error: error,
+      });
+    }
+    res.json({ message: "Lấy danh sách bài viết thành công.", data: data });
+  });
+});
+
+// Loc code
+router.get("/search=:query", async (req, res) => {
+  try {
+    const newRegExp = (pattern) => new RegExp(`.*${pattern}.*`);
+    const regexQuery = newRegExp(req.params.query);
+    const data = await ttthtintuc.find({
+      trangthai: 1,
+      tentintuc: { $regex: regexQuery, $options: "i" }, // i: không phân biệt chữ hoa & thường
+    }).sort({
+      updated_at: "desc", // asc || desc
+    });
+    res.json({
+      message: "Tìm bài viết thành công",
+      code: 200,
+      data: data,
+    });
+  } catch (error) {
+    res.json({
+      message: "Tìm bài viết thất bại",
+      code: 400,
+      data: data,
+    });
+  }
+});
+
+// Loc code
+router.get("/chude=:maChuDe", async (req, res) => {
+  try {
+    // res.json(req.params);
+    const data = await ttthtintuc.find({
+      id_loaitintuc: req.params.maChuDe,
+    }).sort({
+      updatedAt: "desc", // asc || desc
+    });
+    res.json({
+      message: "Lấy bài viết theo chủ đề thành công",
+      code: 200,
+      data: data,
+    });
+  } catch (error) {
+    res.json({
+      message: "Lấy bài viết theo chủ đề thất bại",
+      code: 400,
+      data: [],
+      error: error,
+    });
+  }
+});
+
 module.exports = router

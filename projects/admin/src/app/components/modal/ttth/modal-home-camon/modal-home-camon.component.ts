@@ -4,7 +4,6 @@ import { ToastrService } from 'ngx-toastr';
 import { CamonService } from '../../../../services/ttth/camon.service';
 import { ttthCamOn } from '../../../../../models/ttthCamOn';
 const URL = 'https://localhost:4100/api/ttthCamOn/uploads';
-declare var $: any;
 @Component({
   selector: 'app-modal-home-camon',
   templateUrl: './modal-home-camon.component.html',
@@ -22,7 +21,7 @@ export class ModalHomeCamonComponent implements OnInit {
     this.modalService.close(id)
   }
   getdanhsach(): void {
-    this.camonService.get().subscribe(data => this.CamOn = data);
+    this.camonService.get().subscribe((data) => {this.CamOn = data; setTimeout(() => {}, 0);});
   }
    addCamOn(tieudechinh: string,tieudephu: string,icon: string): void {
       tieudechinh = tieudechinh.trim();
@@ -65,5 +64,8 @@ export class ModalHomeCamonComponent implements OnInit {
     });
     this.toastr.success('Xóa thành công');
     window.location.reload();
+  }
+  reset():void{
+    this.selectedItem=null;
   }
 }

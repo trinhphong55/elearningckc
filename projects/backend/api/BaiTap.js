@@ -4,6 +4,7 @@ var multer = require("multer");
 var path = require("path");
 const BaiTap = require("../models/BaiTap.model");
 
+
 const PATH = "./uploads/elearning/baitap";
 
 var store = multer.diskStorage({
@@ -35,8 +36,31 @@ _router.post("/download", function (req, res, next) {
   res.sendFile(filepath);
 });
 
-_router.get("/", (req, res) => {
-  res.status(200).json("ok");
+_router.get("/:maLopHocPhan/lop-hoc-phan", async (req, res) => {
+  try {
+    const baiTaps = await BaiTap.find({ lopHocPhan: req.params.maLopHocPhan });
+    res.json({
+      count: baiTaps.length,
+      data: baiTaps,
+      message: "Lấy thành công danh sách bài tập",
+      status: 200,
+    });
+  } catch (error) {
+    res.json(error);
+  }
+});
+_router.get("/:maBaiTap", async (req, res) => {
+  try {
+    const baiTaps = await BaiTap.findOne({ maBaiTap: req.params.maBaiTap });
+    res.json({
+      id:req.params.maBaiTap,
+      data: baiTaps,
+      message: "Lấy thành công bài tập",
+      status: 200,
+    });
+  } catch (error) {
+    res.json(error);
+  }
 });
 
 // Add BaiTap
@@ -66,5 +90,4 @@ _router.post("/", async (req, res) => {
       });
     });
 });
-
 module.exports = _router;

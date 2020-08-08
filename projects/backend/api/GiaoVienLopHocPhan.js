@@ -38,8 +38,6 @@ router.post("/", async (req, res) => {
 //trinh phong
 router.post('/giaovienlophocphan', async (req, res) => {
   var gv = await GVLHP.find({ maLopHocPhan: req.body.maLopHocPhan,maGiaoVien:req.body.maGiaoVien });
-console.log(gv)
-console.log(req.body)
   try {
     if (gv == "") {
       const gvhp = new GVLHP(req.body);
@@ -48,7 +46,7 @@ console.log(req.body)
     }
     else
     {
-      return res.json({ status: 401, data: [], message: err });
+    res.status(500).json({ message:"lỗi trùng dữ liệu" });
     }
   }
   catch (error) {

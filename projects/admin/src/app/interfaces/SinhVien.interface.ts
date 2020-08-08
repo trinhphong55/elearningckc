@@ -3,7 +3,7 @@ export interface SinhVien {
   CMND: String;
   ho: String;
   ten:String;
-  gioiTinh: String;
+  gioiTinh: Number;
   ngaySinh: String;
   diaChiThuongTru: String;
   diaChiTamTru: String;

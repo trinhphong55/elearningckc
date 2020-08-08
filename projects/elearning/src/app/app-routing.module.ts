@@ -1,10 +1,8 @@
+import { TaobaigiangComponent } from './components/content/chudelophocphan/taobaigiang/taobaigiang.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { Chude1Component } from './components/content/chudelophocphan/list-chude/chude1/chude1.component';
 import { Chude2Component } from './components/content/chudelophocphan/list-chude/chude2/chude2.component';
-import { Chude3Component } from './components/content/chudelophocphan/list-chude/chude3/chude3.component';
-import { Chude4Component } from './components/content/chudelophocphan/list-chude/chude4/chude4.component';
 import { PageTrangchuComponent } from './pages/page-trangchu/page-trangchu.component';
 import { NavbarTrangchuComponent } from './components/navbar/navbar-trangchu/navbar-trangchu.component';
 import { NavbarHocphanComponent } from './components/navbar/navbar-hocphan/navbar-hocphan.component';
@@ -22,6 +20,7 @@ import { XembaitapsvComponent } from './components/content/chudelophocphan/allch
 import { XembaigiangsvComponent } from './components/content/chudelophocphan/allchude/xembaigiangsv/xembaigiangsv.component';
 import { XembaitapgvComponent } from './components/content/chudelophocphan/allchude/xembaitapgv/xembaitapgv.component';
 import { XembaiganggvComponent } from './components/content/chudelophocphan/allchude/xembaiganggv/xembaiganggv.component';
+
 import{PageBaigiangComponent} from'./pages/page-baigiang/page-baigiang.component';
 import { from } from 'rxjs';
 const routes: Routes = [
@@ -44,7 +43,7 @@ const routes: Routes = [
   {
     path: 'lophocphan/:id',
     component: PageLophocphanComponent,
-    
+
   },
   {
     path: 'baigiang/:id',
@@ -52,26 +51,8 @@ const routes: Routes = [
     children: [
       { path: '', component: PageChudelophocphanComponent },
       { path: 'all', component: PageChudelophocphanComponent },
-      {
-        path: 'chude1',
-        component: Chude1Component,
-      },
-      {
-        path: 'chude1',
-        component: Chude1Component,
-      },
-      {
-        path: 'chude2',
-        component: Chude2Component,
-      },
-      {
-        path: 'chude3',
-        component: Chude3Component,
-      },
-      {
-        path: 'chude4',
-        component: Chude4Component,
-      },
+      { path: 'chude/:id', component: Chude2Component },
+      { path: 'taobaigiang', component: TaobaigiangComponent },
     ],
   },
   {
@@ -83,36 +64,47 @@ const routes: Routes = [
     component: PageCotodiemComponent,
   },
   {
-    path: 'tongdiem/:id',
+    path: 'tongdiem',
     component: PageTongdiemComponent,
   },
   {
-    path:'xembaitapsv',
+    path:'xembaitapsv/:id',
     component:XembaitapsvComponent
   },
   {
-    path:'xembaigiangsv',
+    path:'xembaigiangsv/:id',
     component:XembaigiangsvComponent
   },
   {
-    path:'xembaitapgv',
+    path:'xembaitapgv/:id',
     component:XembaitapgvComponent
+
   },
   {
-    path:'xembaigianggv',
-    component:XembaiganggvComponent
+    path: 'tongdiem/:id',
+    component: PageTongdiemComponent,
   },
+
   {
     path: 'chamdiem/:id',
     component: PageChamdiemComponent,
   },
+  {
+    path:'xembaigianggv/:id',
+    component:XembaiganggvComponent
+  },
+  {
+    path: 'chamdiem',
+    component: PageChamdiemComponent,
+  },
+
   {
     path: '',
     component: NavbarTrangchuComponent,
     outlet: 'navbar',
   },
   {
-    
+
     path: 'lophocphan/:id',
     component: NavbarHocphanComponent,
     outlet: 'navbar',

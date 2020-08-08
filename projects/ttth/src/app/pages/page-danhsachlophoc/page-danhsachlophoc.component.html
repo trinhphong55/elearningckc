@@ -1,0 +1,35 @@
+
+  <section class="mt-4">
+    <div class="container">
+        <div class="row">
+                <div class="col-12">
+                        <div class="breadcrumbs">
+                            <a class="breadcrumb__step breadcrumb__step--active" href="/">Trang chủ</a>
+                            <a class="breadcrumb__step">Danh sách lớp học</a>
+                        </div>
+                </div>
+        </div>
+    </div>
+</section>
+<section class="container danh-sach-lop-hoc">
+  <table class="table table-bordered  table-hover" >
+    <thead class="table-primary">
+      <tr class="text-center">
+        <th scope="col">#</th>
+        <th scope="col">Lớp học</th>
+        <th scope="col">Giờ học</th>
+        <th scope="col">Ngày khai giảng</th>
+        <th scope="col">Học phí</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of LopHoc;let i = index" class="text-center" >
+        <th scope="row">{{i + 1}}</th>
+        <td>{{item.lop}}</td>
+        <td>{{item.giohoc}}</td>
+        <td>{{item.ngaykhaigiang | date: 'dd/MM/yyyy'}}</td>
+        <td>{{item.hocphi}}</td>
+      </tr>
+    </tbody>
+  </table>
+</section>

@@ -1,0 +1,115 @@
+[{
+  "_id": {
+    "$oid": "5f284857d0a97b3ce04203bb"
+  },
+  "name1": "Sinh viên",
+  "url1": "/",
+  "name2": "Thông báo",
+  "url2": "/",
+  "name3": "Hợp tác & Nghiên cứu",
+  "url3": "/",
+  "sub1": [
+    {
+      "name": "Cựu sinh viên",
+      "url": "/",
+      "_id": {
+        "$oid": "5f2849413b38801c38549055"
+      }
+    },
+    {
+      "name": "Thời khoá biểu",
+      "url": "/",
+      "_id": {
+        "$oid": "5f2849413b38801c38549056"
+      }
+    },
+    {
+      "name": "E-Learning",
+      "url": "/",
+      "_id": {
+        "$oid": "5f2849413b38801c38549057"
+      }
+    },
+    {
+      "name": "Tài liệu học tập",
+      "url": "/",
+      "_id": {
+        "$oid": "5f2849413b38801c38549058"
+      }
+    },
+    {
+      "name": "Tra cứu",
+      "url": "/",
+      "_id": {
+        "$oid": "5f2849413b38801c38549059"
+      }
+    },
+    {
+      "name": "Việc làm",
+      "url": "/",
+      "_id": {
+        "$oid": "5f2849413b38801c3854905a"
+      }
+    }
+  ],
+  "sub2": [
+    {
+      "name": "Thông báo từ Trường",
+      "url": "/",
+      "_id": {
+        "$oid": "5f2849413b38801c3854905b"
+      }
+    },
+    {
+      "name": "Thông báo từ Bộ môn",
+      "url": "/",
+      "_id": {
+        "$oid": "5f2849413b38801c3854905c"
+      }
+    },
+    {
+      "name": "Thông báo từ Khoa",
+      "url": "/",
+      "_id": {
+        "$oid": "5f2849413b38801c3854905d"
+      }
+    }
+  ],
+  "sub3": [
+    {
+      "name": "Hợp tác quốc tê",
+      "url": "/",
+      "_id": {
+        "$oid": "5f2849413b38801c3854905e"
+      }
+    },
+    {
+      "name": "Công trình khoa học",
+      "url": "/",
+      "_id": {
+        "$oid": "5f2849413b38801c3854905f"
+      }
+    },
+    {
+      "name": "Bảng vàng thành tích",
+      "url": "/",
+      "_id": {
+        "$oid": "5f2849413b38801c38549060"
+      }
+    },
+    {
+      "name": "Doanh nghiệp đồng hành",
+      "url": "/",
+      "_id": {
+        "$oid": "5f2849413b38801c38549061"
+      }
+    }
+  ],
+  "createdAt": {
+    "$date": "2020-08-03T17:24:39.133Z"
+  },
+  "updatedAt": {
+    "$date": "2020-08-03T17:28:33.771Z"
+  },
+  "__v": 0
+}]

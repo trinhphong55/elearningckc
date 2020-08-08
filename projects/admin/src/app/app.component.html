@@ -9,6 +9,7 @@
   <app-footer></app-footer>
 </section>
 <section *ngIf="!isLogged" class="login_page">
+  <!-- <router-outlet></router-outlet> -->
   <form [formGroup]="loginForm" class="login_form p-5">
     <div class="d-flex align-items-center">
       <img src="../assets/img/logo/it.png" alt="logo khoa" class="login_logo" />
@@ -22,7 +23,7 @@
         formControlName="email"
         class="login_input login_border__radius"
         type="text"
-        placeholder="Email hoặc mã số sinh viên"
+        placeholder="Email"
       />
     </div>
     <div class="login_group mt-3">
@@ -51,7 +52,11 @@
       Đăng nhập
     </button>
     <div class="mt-3 text-center">
-      <button class="fg_caothang__1" (click)="onLogout()">Quên mật khẩu?</button>
+      <a
+      class="fg_caothang__1"
+      [routerLink]="['/reset-password']"
+      >Quên mật khẩu?</a
+    >
     </div>
     <div class="mt-3 d-flex justify-content-center">
       <a

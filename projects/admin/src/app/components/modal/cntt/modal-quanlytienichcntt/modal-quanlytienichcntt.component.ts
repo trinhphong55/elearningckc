@@ -26,11 +26,11 @@ export class ModalQuanlytienichcnttComponent implements OnInit {
   mainForm() {
     this.tienIchForm = this.fb.group({
       _id: [''],
-      maTienIch: [''],
-      tenTienIch: [''],
-      urlTienIch: [''],
-      iconClassTienIch: [''],
-      maMauTienIch: [''],
+      maTienIch: ['',Validators.required],
+      tenTienIch: ['',Validators.required],
+      urlTienIch: ['',Validators.required],
+      iconClassTienIch: ['',Validators.required],
+      maMauTienIch: ['',Validators.required],
       trangThai: [''],
     });
   }
@@ -42,7 +42,11 @@ export class ModalQuanlytienichcnttComponent implements OnInit {
   get myForm() {
     return this.tienIchForm.controls;
   }
-
+  get maTienIch() { return this.tienIchForm.get('maTienIch'); }
+  get tenTienIch() { return this.tienIchForm.get('tenTienIch'); }
+  get urlTienIch() { return this.tienIchForm.get('urlTienIch'); }
+  get iconClassTienIch() { return this.tienIchForm.get('iconClassTienIch'); }
+  get maMauTienIch() { return this.tienIchForm.get('maMauTienIch'); }
   ngOnInit(): void {
     setTimeout(() => (this.showContent = true), 250);
     this.dtOptions = {

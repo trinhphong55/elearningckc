@@ -87,7 +87,10 @@ export class ModalQuanlytintuccnttComponent implements OnInit {
       trangThai: [''],
     });
   }
-
+  get maBaiViet() { return this.tinTucForm.get('maBaiViet'); }
+  get tieuDe() { return this.tinTucForm.get('tieuDe'); }
+  get moTaNgan() { return this.tinTucForm.get('moTaNgan'); }
+  get noiDung() { return this.tinTucForm.get('noiDung'); }
   //  dropdown
   chonMaDanhMuc(e) {
     this.tinTucForm.get('maDanhMuc').setValue(e, {

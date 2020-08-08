@@ -44,13 +44,28 @@ export class MoigvComponent implements OnInit {
               maLopHocPhan: this.maLopHocPhan
             }
             this.gvlhpService.themGiaoVienLhp(this.data).subscribe(
-              gvLophp=>(
-                this.gvLophp=this.data
-              
-              )
+              gvLophp=>{
+                if(gvLophp!=null || gvLophp==undefined  )
+                {
+                  alert("Thêm Thành Công")
+                this.gvLophp=this.data;
+                location.reload();
+                this.dialog.closeAll();
+                }
+                else
+                {
+                  alert("Giáo viên đã có trong lớp học")
+                }
+               
+              },
+              (error) => {
+                alert("Giáo viên đã có trong lớp học")
+                console.log(error)
+              }
+
             )
-            alert("Mời Thành Công");
-            this.dialog.closeAll();
+           
+           
           }
         })
       },

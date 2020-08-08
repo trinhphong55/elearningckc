@@ -6,6 +6,7 @@ var schema = new Schema({
   image: { type: String },
   makhoahoc: { type: String },
   noidung: { type: String },
+  color: { type: String },
   trangthai: { type: Boolean },
   nguoitao: { type: String },
   nguoisua: { type: String },

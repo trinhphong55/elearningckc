@@ -15,7 +15,7 @@ class GiaoVienDAO extends MongoDB{
     }
 
     async layThongTinGiaoVienTheoEmail(email){
-      return await this.find({email: email});
+      return await this.find({email:email});
   }
 
     async layMaGVMoiNhat(){

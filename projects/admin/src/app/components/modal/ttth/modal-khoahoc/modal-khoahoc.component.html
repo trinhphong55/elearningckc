@@ -24,14 +24,18 @@
                 <input type="text" class="form-control" #makhoahoc>
               </div>
               <div class="form-group">
+                <label>Màu nền</label>
+                <input type="text" class="form-control" #color>
+              </div>
+              <div class="form-group">
                 <label>Nội dung</label>
                 <ckeditor [editor]="Editor" (change)="onChange($event)"></ckeditor>
               </div>
             </div>
             <div class="col-auto">
               <div class="modal_chucnang__group__button">
-                <button class="modal_chucnang__button btn btn-outline-primary px-4 mx-2" [disabled]="!tenkhoahoc.value || !makhoahoc.value || !imageSrc"
-                  (click)="add(tenkhoahoc.value,makhoahoc.value);tenkhoahoc.value=''; makhoahoc.value='';uploader.uploadAll()"><img
+                <button class="modal_chucnang__button btn btn-outline-primary px-4 mx-2" [disabled]="!tenkhoahoc.value || !makhoahoc.value || !color.value || !imageSrc"
+                  (click)="add(tenkhoahoc.value,makhoahoc.value,color.value);tenkhoahoc.value=''; makhoahoc.value=''; color.value='';uploader.uploadAll()"><img
                     class="modal_chucnang__button__icon mb-2" src="assets/img/icons/add.png" alt="image icon">
                   <div>Thêm mới</div>
                 </button>
@@ -60,6 +64,10 @@
                 <input type="text" class="form-control"  [(ngModel)]="selectedItem.makhoahoc">
               </div>
               <div class="form-group">
+                <label>Màu nền</label>
+                <input type="text" class="form-control"  [(ngModel)]="selectedItem.color">
+              </div>
+              <div class="form-group">
                 <label>Nội dung</label>
                 <ckeditor [editor]="Editor" [(ngModel)]="selectedItem.noidung" ></ckeditor>
               </div>
@@ -71,6 +79,11 @@
                     src="assets/img/icons/upgrade.png" alt="image icon">
                   <div>Cập nhật</div>
                 </button>
+                <button  (click)="reset()"  type="reset"  class="btn btn-outline-dark px-4 mx-2">
+                  <img class="modal_chucnang__button__icon mb-2"
+                  src="assets/img/icons/error.png"    alt="image icon"  />
+                  <div>Huỷ bỏ</div>
+              </button>
               </div>
             </div>
           </div>
@@ -85,6 +98,7 @@
                 <th scope="col">Tên khóa học</th>
                 <th scope="col">Image</th>
                 <th scope="col">Mã khóa học</th>
+                <th scope="col">Màu nền</th>
                 <th scope="col">Người tạo</th>
                 <th scope="col">Người sửa</th>
                 <th class="text-center" scope="col"><span
@@ -99,11 +113,12 @@
                   <img style="width: 60px;height: 60px;" src="{{item.image}}" alt="">
                 </td>
                 <td>{{item.makhoahoc}}</td>
+                <td> <div [ngStyle]="{'width': '10px','height': '10px','background-color':item.color}"></div></td>
                 <td>{{item.nguoitao}}</td>
                 <td>{{item.nguoisua}}</td>
                 <td class="text-center">
-                  <span class="modal_chucnang__button__delete mdi mdi-pencil mdi-24px  mr-2"
-                    (click)="onSelect(item)"></span>
+                  <span class="modal_chucnang__button__delete mdi mdi-file-document-edit-outline  mdi-24px  mr-2"
+                    (click)="onSelect(item);imageSrc=null"></span>
                   <span class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px" (click)="delete(item)"></span>
                 </td>
               </tr>

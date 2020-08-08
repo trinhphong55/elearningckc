@@ -1,0 +1,116 @@
+<app-modal class="modal_chucnang__wrapper " id="ttth-dotthi">
+  <div (click)="closeModal('ttth-dotthi')" class="modal_chucnang__close mdi mdi-chevron-left text-white"></div>
+  <div class="container-fluid mt-3">
+    <div class="row">
+      <div class="col-12">
+        <h1 class="text-center text-white">Quản lý đợt thi</h1>
+      </div>
+      <div class="col-12" [ngClass]="{ 'd-none': selectedItem }">
+        <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
+          <div class="row justify-content-center align-items-center">
+            <div class="col-9">
+              <div class="form-group">
+                <label>Tên đợt thi</label>
+                <input type="text" class="form-control" #tendot>
+              </div>
+              <div class="form-group">
+                <label>Chọn lớp học</label>
+                <select class="modal_chucnang__select2 form-control" #lophoc>
+                  <option></option>
+                  <ng-container *ngFor="let item of LopHoc">
+                    <option  value="{{item.makhoahoc + '-' + item.lop + '-' + item.dot + '-' + item.buoihoc + '-' + item.giaovien}}">{{item.makhoahoc + '-' + item.lop + '-' + item.dot + '-' + item.buoihoc + '-' + item.giaovien}}</option>
+                  </ng-container>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Ngày thi</label>
+                <input type="date" class="form-control" #ngaythi>
+              </div>
+            </div>
+            <div class="col-auto">
+              <div class="modal_chucnang__group__button">
+                <button class="modal_chucnang__button btn btn-outline-primary px-4 mx-2" [disabled]="!tendot.value || !lophoc.value || !ngaythi.value "
+                  (click)="add(tendot.value,lophoc.value,ngaythi.value);tendot.value=''; lophoc.value=''; ngaythi.value=''"><img
+                    class="modal_chucnang__button__icon mb-2" src="assets/img/icons/add.png" alt="image icon">
+                  <div>Thêm mới</div>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12" *ngIf="selectedItem">
+        <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
+          <div class="row justify-content-center align-items-center">
+            <div class="col-9">
+              <div class="form-group">
+                <label>Tên đợt thi </label>
+                <input type="text" class="form-control"  [(ngModel)]="selectedItem.tendot">
+              </div>
+              <div class="form-group">
+                <label>Chọn lớp học</label>
+                <select class="modal_chucnang__select2 form-control" [(ngModel)]="selectedItem.lophoc">
+                  <option></option>
+                  <ng-container *ngFor="let item of LopHoc">
+                    <option  value="{{item.lop}}">{{item.lop}}</option>
+                  </ng-container>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Ngày thi</label>
+                <input type="date" class="form-control" [(ngModel)]="selectedItem.ngaythi">
+              </div>
+            </div>
+            <div class="col-auto">
+              <div class="modal_chucnang__group__button">
+                <button class="modal_chucnang__button btn btn-outline-success px-4 mx-2"
+                  (click)="update(selectedItem)"><img class="modal_chucnang__button__icon mb-2"
+                    src="assets/img/icons/upgrade.png" alt="image icon">
+                  <div>Cập nhật</div>
+                </button>
+                <button  (click)="reset()"  type="reset"  class="btn btn-outline-dark px-4 mx-2">
+                  <img class="modal_chucnang__button__icon mb-2"
+                  src="assets/img/icons/error.png"    alt="image icon"  />
+                  <div>Huỷ bỏ</div>
+              </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
+          <table class="modal_chucnang__table table table-hover"  *ngIf="DotThi" datatable="ng">
+            <thead class="bg__caothang text-white">
+              <tr>
+                <th>#</th>
+                <th scope="col">Tên đợt thi</th>
+                <th scope="col">Lớp </th>
+                <th scope="col">Ngày thi</th>
+                <th scope="col">Người tạo</th>
+                <th scope="col">Người sửa</th>
+                <th class="text-center" scope="col"><span
+                    class="modal_chucnang__button__save mdi mdi-content-save-outline mdi-24px"></span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of DotThi; let i = index">
+                <td style="max-width: 50px">{{i + 1}}</td>
+                <td>{{item.tendot}}</td>
+                <td>{{item.lophoc}}</td>
+                <td>{{item.ngaythi | date:'dd/MM/yyyy'}}</td>
+                <td>{{item.nguoitao}}</td>
+                <td>{{item.nguoisua}}</td>
+                <td class="text-center">
+                  <span class="modal_chucnang__button__delete mdi mdi-file-document-edit-outline  mdi-24px  mr-2"
+                    (click)="onSelect(item);imageSrc=null"></span>
+                  <span class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px" (click)="delete(item)"></span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-modal>
