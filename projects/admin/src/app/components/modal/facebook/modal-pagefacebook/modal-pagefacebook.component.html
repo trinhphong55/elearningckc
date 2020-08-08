@@ -64,7 +64,7 @@
               <th scope="col" class="text-center">Tác vụ</th>
             </thead>
             <tbody>
-              <tr *ngFor=" let d of data |filter: searchpage; index as stt">
+              <tr *ngFor=" let d of data |filter: searchpage; index as stt" (click)="selectRow(d)">
                 <td>{{stt+1}}</td>
                 <td class="text-center">
                   <div>{{d.id_Page}}</div>
