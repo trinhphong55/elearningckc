@@ -49,6 +49,14 @@ export class TintucService {
       catchError(this.errorMgmt)
     );
   }
+
+  getDanhSachTinTucTheoChuDe(chuDe: string): Observable<any> {
+    let url = `${this.baseUri}/chude=${chuDe}`;
+    return this.http.get(url, { headers: this.headers }).pipe(catchError(this.errorMgmt));
+  }
+
+
+
   // Error handling
   errorMgmt(error: HttpErrorResponse) {
     let errorMessage = '';

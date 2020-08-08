@@ -1,74 +1,80 @@
-<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
+<link
+  href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap"
+  rel="stylesheet"
+/>
 <header>
-  <div class="header-top ">
-      <div class="container ">
-          <div class="header-top-content d-flex">
-              <div class="flex align-items-center header-infor">
-                <div class="header-icon">
-                  <i class="far fa-clock text-7"></i>
-                </div>
-                <div class="header-info">
-                  <ng-container  *ngFor="let item of ThongTinWeb" >
-                    <p [innerHTML]="item.giolamviec"></p>
-                  </ng-container>
-                </div>
-              </div>
-              <div class="logo">
-                <img style="max-width: 220px;" *ngFor="let item of ThongTinWeb" [src]="item.logo" alt="logo">
-              </div>
-              <div class="flex align-items-center header-infor">
-                <div class="header-icon">
-                  <i class="fab fa-whatsapp"></i>
-                </div>
-                <div class="header-info">
-                  <p *ngFor="let item of ThongTinWeb">{{item.hotline}}</p>
-                </div>
-              </div>
+  <div class="header-top">
+    <div class="container">
+      <div class="header-top-content d-flex">
+        <div class="flex align-items-center header-infor">
+          <div class="header-icon">
+            <i class="far fa-clock text-7"></i>
           </div>
+          <div class="header-info">
+            <ng-container *ngFor="let item of ThongTinWeb">
+              <p [innerHTML]="item.giolamviec"></p>
+            </ng-container>
+          </div>
+        </div>
+        <div class="logo">
+          <img
+            style="max-width: 220px;"
+            *ngFor="let item of ThongTinWeb"
+            [src]="item.logo"
+            alt="logo"
+          />
+        </div>
+        <div class="flex align-items-center header-infor">
+          <div class="header-icon">
+            <i class="fab fa-whatsapp"></i>
+          </div>
+          <div class="header-info">
+            <p *ngFor="let item of ThongTinWeb">{{ item.hotline }}</p>
+          </div>
+        </div>
       </div>
+    </div>
   </div>
   <div class="header-bot">
-      <div class="container wrap_menu">
-          <div class="spinner-master">
-              <input type="checkbox" id="spinner-form" class="">
-              <label for="spinner-form" class="spinner-spin">
-                  <div class="spinner diagonal part-1"></div>
-                  <div class="spinner horizontal"></div>
-                  <div class="spinner diagonal part-2"></div>
-              </label>
-          </div>
-          <nav id="menu" class="menu ">
-              <ul class="d-flex justify-content-center">
-                  <li class="search-header flex">
-                      <form class="">
-                          <div class="search">
-                              <input type="search" class="search-box" />
-                              <span class="search-button">
-                                <span class="search-icon"></span>
-                              </span>
-                            </div>
-                      </form>
-                  </li>
-                  <li><a routerLink=""><i class="fas fa-home"></i></a></li>
-                  <!-- <li class="dropdown"><a href="#"  data-toggle="dropdown">Khóa học</a>
-                      <ul class="dropdown-menu">
-                          <li class="dropdown-item"><a href="#">AutoCad 2D</a></li>
-                          <li class="dropdown-item"><a href="#">AutoCad 3D</a></li>
-                          <li class="dropdown-item"><a href="#">CCNA</a></li>
-                          <li class="dropdown-item"><a href="#">Lắp ráp sữa chữa máy tính</a></li>
-                          <li class="dropdown-item"><a href="#">ORCAD</a></li>
-                          <li class="dropdown-item"><a href="#">Quản trị mạng</a></li>
-                          <li class="dropdown-item"><a href="#">Tin học trình độ A</a></li>
-                          <li class="dropdown-item"><a href="#">Thiết kế web</a></li>
-                      </ul>
-                    </li> -->
-                  <li><a routerLink="/danhsachlophoc">Danh sách lớp học</a></li>
-                  <li><a routerLink="/dangkikhoahoc">Đăng kí học</a></li>
-                  <li><a routerLink="/dangkidotthi">Đăng kí thi</a></li>
-                  <li><a routerLink="/tracuudiem">Kết quả thi</a></li>
-                  <li><a routerLink="/lienhe">Liên hệ</a></li>
-                  <li><a routerLink="/timkiem">Tìm kiếm</a></li>
-                  <!-- <div class="search-header desk flex">
+    <div class="container wrap_menu">
+      <div class="spinner-master">
+        <input type="checkbox" id="spinner-form" class="" />
+        <label for="spinner-form" class="spinner-spin">
+          <div class="spinner diagonal part-1"></div>
+          <div class="spinner horizontal"></div>
+          <div class="spinner diagonal part-2"></div>
+        </label>
+      </div>
+      <nav id="menu" class="menu">
+        <ul class="d-flex justify-content-center">
+          <li class="search-header flex">
+            <form class="">
+              <div class="search">
+                <input type="search" class="search-box" />
+                <span class="search-button">
+                  <span class="search-icon"></span>
+                </span>
+              </div>
+            </form>
+          </li>
+          <li>
+            <a routerLink="/"><i class="fas fa-home"></i></a>
+          </li>
+          <li class="dropdown">
+            <a href="#" data-toggle="dropdown">Khóa học</a>
+            <ul class="dropdown-menu">
+              <li class="dropdown-item" *ngFor="let item of danhSachChuDe">
+                <a href="/khoahoc/{{ item.maChuDe }}">{{ item.tenChuDe }}</a>
+              </li>
+            </ul>
+          </li>
+          <li><a routerLink="/danhsachlophoc">Danh sách lớp học</a></li>
+          <li><a routerLink="/dangkikhoahoc">Đăng kí học</a></li>
+          <li><a routerLink="/dangkidotthi">Đăng kí thi</a></li>
+          <li><a routerLink="/tracuudiem">Kết quả thi</a></li>
+          <li><a routerLink="/lienhe">Liên hệ</a></li>
+          <li><a routerLink="/timkiem">Tìm kiếm</a></li>
+          <!-- <div class="search-header desk flex">
                     <form class="">
                         <div class="search">
                             <input type="search" class="search-box" />
@@ -78,8 +84,8 @@
                           </div>
                     </form>
                 </div> -->
-              </ul>
-          </nav>
-      </div>
+        </ul>
+      </nav>
+    </div>
   </div>
 </header>

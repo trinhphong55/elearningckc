@@ -20,6 +20,7 @@ import { PageDangkidotthiComponent } from './pages/page-dangkidotthi/page-dangki
 import { PageTimkiemComponent } from './pages/page-timkiem/page-timkiem.component';
 import { PageTracuudiemComponent } from './pages/page-tracuudiem/page-tracuudiem.component';
 import { PageChitietkhoahocComponent } from './pages/page-chitietkhoahoc/page-chitietkhoahoc.component';
+import { PageDanhsachbaivietcuakhoahocComponent } from './pages/page-danhsachbaivietcuakhoahoc/page-danhsachbaivietcuakhoahoc.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +37,7 @@ import { PageChitietkhoahocComponent } from './pages/page-chitietkhoahoc/page-ch
     PageTimkiemComponent,
     PageTracuudiemComponent,
     PageChitietkhoahocComponent,
+    PageDanhsachbaivietcuakhoahocComponent,
   ],
   imports: [
     BrowserModule,

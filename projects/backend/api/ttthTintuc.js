@@ -144,6 +144,8 @@ router.get("/tintucttth", (req, res) => {
     res.json({ message: "Lấy danh sách bài viết thành công.", data: data });
   });
 });
+
+// Loc code
 router.get("/search=:query", async (req, res) => {
   try {
     const newRegExp = (pattern) => new RegExp(`.*${pattern}.*`);
@@ -164,6 +166,30 @@ router.get("/search=:query", async (req, res) => {
       message: "Tìm bài viết thất bại",
       code: 400,
       data: data,
+    });
+  }
+});
+
+// Loc code
+router.get("/chude=:maChuDe", async (req, res) => {
+  try {
+    // res.json(req.params);
+    const data = await ttthtintuc.find({
+      id_loaitintuc: req.params.maChuDe,
+    }).sort({
+      updatedAt: "desc", // asc || desc
+    });
+    res.json({
+      message: "Lấy bài viết theo chủ đề thành công",
+      code: 200,
+      data: data,
+    });
+  } catch (error) {
+    res.json({
+      message: "Lấy bài viết theo chủ đề thất bại",
+      code: 400,
+      data: [],
+      error: error,
     });
   }
 });
