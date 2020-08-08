@@ -54,11 +54,8 @@
             <div class="col-9">
               <div class="form-group">
                 <label>Chọn loại tin tức</label>
-                <select class="modal_chucnang__select2 form-control"
-                  [(ngModel)]="selectedItem.id_loaitintuc">
-                  <option></option>
-                  <option value="Tin tức">Tin tức</option>
-                  <option value="Lịch khai giảng">Lịch khai giảng</option>
+                <select class="modal_chucnang__select2 form-control" [(ngModel)]="selectedItem.id_loaitintuc">
+                  <option *ngFor="let item of danhSachChuDe" [selected]="item.maChuDe==selectedItem.id_loaitintuc" [value]="item.maChuDe">{{item.tenChuDe}}</option>
                 </select>
               </div>
               <div class="form-group">
@@ -125,11 +122,11 @@
             <tbody>
               <tr *ngFor="let tintuc of TinTuc; let i = index">
                 <td style="max-width: 50px">{{i + 1}}</td>
-                <td *ngFor="let item of danhSachChuDe">
-                  <ng-container *ngIf="item.maChuDe==tintuc.id_loaitintuc">
+                <ng-container  *ngFor="let item of danhSachChuDe">
+                  <td *ngIf="item.maChuDe==tintuc.id_loaitintuc">
                     {{item.tenChuDe}}
-                  </ng-container>
-                </td>
+                  </td>
+                </ng-container>
                 <td style="max-width: 100px">
                   <img style="width: 60px;height: 60px;" src="{{tintuc.image}}" alt="">
                 </td>

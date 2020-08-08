@@ -68,7 +68,7 @@
             <a href="#" data-toggle="dropdown">Tin tức</a>
             <ul class="dropdown-menu">
               <li class="dropdown-item" *ngFor="let item of danhSachChuDe">
-                <a href="/chude/{{ item.maChuDe }}">{{ item.tenChuDe }}</a>
+                <a routerLink="/chude/{{ item.maChuDe }}">{{ item.tenChuDe }}</a>
               </li>
             </ul>
           </li>
