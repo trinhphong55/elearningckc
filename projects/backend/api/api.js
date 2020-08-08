@@ -116,7 +116,6 @@ router.put("/bomon/:id", boMon.checkValidate(), boMon.updateKhoaBoMon);
 //---------------------------Routes LopHoc--------------------------
 router.post("/thongKeLopTheoNganhCuaNam", async (req, res) => {
   const nam = req.body.nam;
-  console.log('nam', typeof nam, nam);
   let result = false;
   result = await lopHocDAO.layDanhSachLopHocTheoTungNganhCuaNam(nam);
   if(result != false){
