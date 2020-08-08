@@ -13,6 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { FileUploadModule } from 'ng2-file-upload';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { NgxPrintModule } from 'ngx-print';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -176,6 +177,7 @@ import { ModalThoikhoabieuComponent } from './components/modal/chuongtrinhdaotao
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
     FileUploadModule,
+    NgxPrintModule,
   ],
   providers: [ApiService, TintucCnttService],
   bootstrap: [AppComponent]

@@ -51,6 +51,7 @@
     "jquery": "^3.5.1",
     "ng2-file-upload": "^1.4.0",
     "ngx-cookie-service": "^10.0.1",
+    "ngx-print": "^1.2.0-beta.5",
     "ngx-skeleton-loader": "^2.2.1",
     "ngx-toastr": "^13.0.0",
     "ngx-useful-swiper": "^9.0.3",
