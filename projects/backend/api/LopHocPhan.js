@@ -218,22 +218,12 @@ router.get("/:maSinhVien/sinhvien", async (req, res) => {
 
 // ***  API for team App Android  ***
 
-router.get("/android/masinhvien/:maSinhVien/token/:toKen", async (req, res) => {
-  const toKen = req.params.toKen; // update sau
-  const maSinhVien = req.params.maSinhVien;
+router.get("/android/malophoc/:maLopHoc", async (req, res) => {
   let dsLHP = [];
   let result = [];
-  if (maSinhVien.length !== 10) {
-    return res.status(401).json({
-      message: "ma sinh vien khong chinh xac",
-      data: [],
-      status: 401,
-    });
-  }
-  const maLopHoc =
-    maSinhVien[1] + "0" + maSinhVien.slice(2, maSinhVien.length - 3);
+  const maLopHoc = req.params.maLopHoc;
 
-  await LopHocPhan.find()
+  await LopHocPhan.find({ maLopHoc })
     .then((ds) => {
       dsLHP = ds;
     })
@@ -254,6 +244,7 @@ router.get("/android/masinhvien/:maSinhVien/token/:toKen", async (req, res) => {
       .then((mh) => {
         if (mh.length !== 0) {
           tempResult = {
+            hocKi: lhp.hocKi,
             maLopHoc: maLopHoc,
             maMonHoc: mh.maMonHoc,
             tenMonHoc: mh.tenMonHoc,

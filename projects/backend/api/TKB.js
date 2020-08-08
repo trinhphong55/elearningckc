@@ -181,9 +181,10 @@ router.get("/androidv2/malophoc/:maLopHoc/hocki/:hocKi", async (req, res) => {
       });
     if (maGiaoVien !== "null") {
       await giaoVienDAO.layThongTinGiaoVien(maGiaoVien).then(gv => {
-        phanTu.tenGiaoVien = gv[0].ho + " " + gv[0].ten;
+        tenGiaoVien = gv[0].ho + " " + gv[0].ten;
       })
     }
+    phanTu.tenGiaoVien = tenGiaoVien;
     dsPhanTu.push(phanTu);
   });
 
@@ -207,7 +208,11 @@ router.get("/androidv2/malophoc/:maLopHoc/hocki/:hocKi", async (req, res) => {
     })
     newTKB.push(temp);
   })
-  return res.json(newTKB);
+  return res.status(200).json({
+    message: 'Thanh cong',
+    status: 200,
+    data: newTKB,
+  });
 });
 
 module.exports = router;
