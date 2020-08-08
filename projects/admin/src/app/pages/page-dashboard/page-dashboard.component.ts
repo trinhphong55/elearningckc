@@ -1,4 +1,5 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { setCookie, getCookie } from '../../../../../common/helper';
 import {
   ApexAxisChartSeries,
   ApexChart,
@@ -138,7 +139,12 @@ export class PageDashboardComponent implements OnInit {
     }
     //2017-2018-2019
   }
+  isLogged: Boolean = false;
   ngOnInit(): void {
+    if(getCookie('token') && getCookie('role') == 'admin'){
+      this.isLogged = true;
+      this.effectLoadPage();
+    }
     this.effectLoadPage();
   }
 

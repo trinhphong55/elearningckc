@@ -30,6 +30,7 @@ import { PageBaocaoquyetdinhComponent } from './pages/page-baocaoquyetdinh/page-
 import { PageElearningComponent } from './pages/page-elearning/page-elearning.component';
 import { PageCnttComponent } from './pages/page-cntt/page-cntt.component';
 import { PageDiemComponent } from './pages/page-diem/page-diem.component';
+import { PageResetPasswordComponent } from "./pages/page-resetPassword/page-resetPassword.component";
 import { PageChuongtrinhdaotaoComponent } from './pages/page-chuongtrinhdaotao/page-chuongtrinhdaotao.component';
 import { PageDashboardComponent } from './pages/page-dashboard/page-dashboard.component';
 import { ModalLichdaotaoComponent } from './components/modal/chuongtrinhdaotao/modal-lichdaotao/modal-lichdaotao.component';
@@ -100,6 +101,7 @@ import { ModalThoikhoabieuComponent } from './components/modal/chuongtrinhdaotao
     SidebarElearningComponent,
     SidebarBaocaoquyetdinhComponent,
     SidebarFacebookComponent,
+    PageResetPasswordComponent,
     PageFacebookComponent,
     PageBaocaoquyetdinhComponent,
     PageElearningComponent,
