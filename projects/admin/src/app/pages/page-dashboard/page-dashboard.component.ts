@@ -36,7 +36,6 @@ export class PageDashboardComponent implements OnInit {
   public chartOptions: Partial<ChartOptions>;
   nam = '2019';
   temp = parseInt(this.nam);
-  constructor(private el: ElementRef, private lopHocService:LopHocService, ) { }
   public series = [
     {
       name: 'Công nghệ Thông tin',
@@ -65,7 +64,7 @@ export class PageDashboardComponent implements OnInit {
 
   ];
   public years = [this.temp - 2, this.temp - 1, this.temp];
-  ngOnInit(): void {
+  constructor(private el: ElementRef, private lopHocService:LopHocService) {
     this.lopHocService.thongKe((this.temp - 2).toString()).subscribe(
       (response) => {
         if(response.data){
@@ -118,7 +117,6 @@ export class PageDashboardComponent implements OnInit {
         }
       }
     )
-    console.log('series', this.series);
 
     this.chartOptions = {
       series: this.series,
@@ -134,13 +132,15 @@ export class PageDashboardComponent implements OnInit {
         }
       },
       title: {
-        text: "Thống kế số lượng sinh theo từng ngành theo năm"
+        text: "Thống kế số lượng sinh viên theo từng ngành theo năm"
       },
       xaxis: {
         categories: this.years
       }
     }
     //2017-2018-2019
+  }
+  ngOnInit(): void {
 
     this.effectLoadPage();
 
