@@ -28,11 +28,6 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { TaochudeComponent } from './components/content/chudelophocphan/taochude/taochude.component';
 import { Chude2Component } from './components/content/chudelophocphan/list-chude/chude2/chude2.component';
-<<<<<<< HEAD
-=======
-import { Chude3Component } from './components/content/chudelophocphan/list-chude/chude3/chude3.component';
-import { Chude4Component } from './components/content/chudelophocphan/list-chude/chude4/chude4.component';
->>>>>>> elearning
 import { TaobaigiangComponent } from './components/content/chudelophocphan/taobaigiang/taobaigiang.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -71,11 +66,6 @@ import { CookieService } from 'ngx-cookie-service';
     TaobaitapComponent,
     TaochudeComponent,
     Chude2Component,
-<<<<<<< HEAD
-=======
-    Chude3Component,
-    Chude4Component,
->>>>>>> elearning
     TaobaigiangComponent,
     MoigvComponent,
     MoisvComponent,

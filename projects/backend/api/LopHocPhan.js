@@ -190,7 +190,6 @@ router.get("/:maLop/search", async (req, res) => {
     res.json(error);
   }
 });
-<<<<<<< HEAD
 //SEARCH theo maLopHocPhan
 //Nguoi tạo: Trần Đình Huy
 
@@ -207,7 +206,6 @@ router.get("/:maLopHocPhan/malhp", async (req, res) => {
     });
   } catch (error) {}
 });
-=======
 //magv=> lopHp
 router.get("/:magiaovien/giaovienlophocphan", async (req, res) => {
   try {
@@ -309,5 +307,4 @@ router.get("/android/malophoc/:maLopHoc", async (req, res) => {
   });
 });
 
->>>>>>> elearning
 module.exports = router;

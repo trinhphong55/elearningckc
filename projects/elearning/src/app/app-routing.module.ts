@@ -20,12 +20,9 @@ import { XembaitapsvComponent } from './components/content/chudelophocphan/allch
 import { XembaigiangsvComponent } from './components/content/chudelophocphan/allchude/xembaigiangsv/xembaigiangsv.component';
 import { XembaitapgvComponent } from './components/content/chudelophocphan/allchude/xembaitapgv/xembaitapgv.component';
 import { XembaiganggvComponent } from './components/content/chudelophocphan/allchude/xembaiganggv/xembaiganggv.component';
-<<<<<<< HEAD
 
-=======
 import{PageBaigiangComponent} from'./pages/page-baigiang/page-baigiang.component';
 import { from } from 'rxjs';
->>>>>>> elearning
 const routes: Routes = [
   {
     path: '',
@@ -67,7 +64,6 @@ const routes: Routes = [
     component: PageCotodiemComponent,
   },
   {
-<<<<<<< HEAD
     path: 'tongdiem',
     component: PageTongdiemComponent,
   },
@@ -82,30 +78,16 @@ const routes: Routes = [
   {
     path:'xembaitapgv/:id',
     component:XembaitapgvComponent
-=======
+
+  },
+  {
     path: 'tongdiem/:id',
     component: PageTongdiemComponent,
   },
-  {
-    path:'xembaitapsv',
-    component:XembaitapsvComponent
-  },
-  {
-    path:'xembaigiangsv',
-    component:XembaigiangsvComponent
-  },
-  {
-    path:'xembaitapgv',
-    component:XembaitapgvComponent
-  },
-  {
-    path:'xembaigianggv',
-    component:XembaiganggvComponent
-  },
+
   {
     path: 'chamdiem/:id',
     component: PageChamdiemComponent,
->>>>>>> elearning
   },
   {
     path:'xembaigianggv/:id',
