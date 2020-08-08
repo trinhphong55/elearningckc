@@ -128,8 +128,8 @@
             <div class="cm-showcomment">
               <form>
                 <div class="input-container">
-                  <button type="submit" class="btn" (keyup.enter)="onClick_BinhLuan(item.maBaiGiang)"
-                    (click)="onClick_BinhLuan(item.maBaiGiang)"><i class="fas fa-paper-plane"></i></button>
+                  <button type="submit" class="btn" (keyup.enter)="onClick_BinhLuan(baiGiang?.maBaiGiang)"
+                    (click)="onClick_BinhLuan(baiGiang.maBaiGiang)"><i class="fas fa-paper-plane"></i></button>
                   <input class="input-field" type="text" placeholder="Thêm nhập xét của lớp học" name="usrnm"
                     [formControl]="binhLuan">
                 </div>

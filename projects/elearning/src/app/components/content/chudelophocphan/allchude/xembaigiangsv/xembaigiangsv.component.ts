@@ -34,7 +34,7 @@ export class XembaigiangsvComponent implements OnInit {
         .subscribe((res: any) => {
           if (res.data) {
             this.baiGiang = res.data;
-            this.layDS_binhLuan_baiGiang(2, this.baiGiang.maBaiGiang);
+            this.layDS_binhLuan_baiGiang(1, this.baiGiang.maBaiGiang);
           }
         });
     });
@@ -46,6 +46,7 @@ export class XembaigiangsvComponent implements OnInit {
           element.ngayTao = new Date(element.ngayTao).toUTCString();
         });
         this.dsBinhLuan = res;
+
       },
       (err) => console.log(err)
     );
