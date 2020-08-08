@@ -20,9 +20,9 @@ exports.getDiemsinhvien = async (req, res) => {
     const diemsinhvien = await Diemsinhvien.find({
       maSinhVien: req.params.maSinhVien,
     });
-    res.json(diemsinhvien);
+    res.json({code: 200, message: "Lấy điểm thành công", data:diemsinhvien});
   } catch (error) {
-    res.json(error);
+    res.json({code: 400, message: error, data: null});
   }
 };
 
@@ -52,14 +52,13 @@ exports.getDiemSinhVien_maSSV = async (req, res) => {
       });
     });
 
-
     let khdt_ten = [];
-    khdt.forEach(el => {
+    khdt.forEach((el) => {
       khdt_ten.push(result(el));
-    })
-    res.json(khdt_ten);
+    });
+    res.json({ code: 200, message: "Lấy điểm thành công", data: khdt_ten });
   } catch (error) {
-    res.json(error);
+    res.json({code: 400, message: error, data: null});
   }
 };
 let result = (req) => {
