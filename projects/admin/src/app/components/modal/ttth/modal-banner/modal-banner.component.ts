@@ -26,7 +26,9 @@ export class ModalBannerComponent implements OnInit  {
     };
 
   }
-
+  reset():void{
+    this.selectedItem=null;
+  }
   closeModal(id: string) {
     this.modalService.close(id)
   }

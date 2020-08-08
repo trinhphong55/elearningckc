@@ -106,4 +106,7 @@ export class ModalHomeTienichComponent implements OnInit {
     window.location.reload();
     this.toastr.success('Xóa thành công');
   }
+  reset():void{
+    this.selectedItem=null;
+  }
 }

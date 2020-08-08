@@ -68,6 +68,11 @@
                     src="assets/img/icons/upgrade.png" alt="image icon">
                   <div>Cập nhật</div>
                 </button>
+                <button  (click)="reset()"  type="reset"  class="btn btn-outline-dark px-4 mx-2">
+                  <img class="modal_chucnang__button__icon mb-2"
+                  src="assets/img/icons/error.png"    alt="image icon"  />
+                  <div>Huỷ bỏ</div>
+              </button>
               </div>
             </div>
           </div>
@@ -97,7 +102,7 @@
                 <td>{{item.nguoitao}}</td>
                 <td>{{item.nguoisua}}</td>
                 <td class="text-center">
-                  <span class="modal_chucnang__button__delete mdi mdi-pencil mdi-24px  mr-2"
+                  <span class="modal_chucnang__button__delete mdi mdi-file-document-edit-outline  mdi-24px  mr-2"
                     (click)="onSelect(item);imageSrc=null"></span>
                   <span class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px" (click)="delete(item)"></span>
                 </td>

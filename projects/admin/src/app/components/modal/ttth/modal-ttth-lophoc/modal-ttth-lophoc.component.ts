@@ -29,7 +29,9 @@ export class ModalTtthLophocComponent implements OnInit {
   getmakhoahoc(): void {
     this.khoahocService.get().subscribe((data) => this.MaKhoaHoc = data);
   }
-
+  reset():void{
+    this.selectedItem=null;
+  }
   // add
   add(makhoahoc: string,dot: string,giaovien: string,buoihoc: string,giohoc: string,ngaykhaigiang: string,hocphi: string): void {
     const newItem: ttthLopHoc = new ttthLopHoc();

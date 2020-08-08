@@ -147,4 +147,7 @@ export class ModalTintucComponent implements OnInit {
     this.getTinTucfromServices();
     this.toastr.success('Xóa thành công');
   }
+  reset():void{
+    this.selectedItem=null;
+  }
 }

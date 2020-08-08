@@ -2,7 +2,7 @@
   "_id": {
     "$oid": "5f2d944d1e95032e5c11ecfc"
   },
-  "id_loaitintuc": "Tin tức",
+  "id_loaitintuc": "CD00",
   "image": "https://localhost:4100/uploads/cntt/2-554x399.jpg",
   "tentintuc": "[THÔNG BÁO] DANH SÁCH VÀ LỊCH THI VÒNG LOẠI TUYỂN CHỌN ĐỘI TUYỂN OLYMPIC TIN HỌC CAO THẮNG 2020",
   "slug": "slug",
@@ -21,7 +21,7 @@
   "_id": {
     "$oid": "5f2d95181e95032e5c11ecfd"
   },
-  "id_loaitintuc": "Tin tức",
+  "id_loaitintuc": "CD00",
   "image": "https://localhost:4100/uploads/cntt/24785288_869745636516590_844923619084968922_o-554x674.jpg",
   "tentintuc": "TUYỂN CHỌN SINH VIÊN THAM GIA ĐỘI TUYỂN TRƯỜNG CAO THẮNG DỰ THI OLYMPIC TIN HỌC TOÀN QUỐC 2020",
   "slug": "slug",
@@ -40,7 +40,7 @@
   "_id": {
     "$oid": "5f2d967f1e95032e5c11ecfe"
   },
-  "id_loaitintuc": "Tin tức",
+  "id_loaitintuc": "CD00",
   "image": "https://localhost:4100/uploads/cntt/e638a5614488b8d6e199-80x80.jpg",
   "tentintuc": "[THÔNG BÁO] TUYỂN DỤNG SMARTOSC",
   "slug": "slug",
@@ -53,13 +53,15 @@
   "created_at": {
     "$date": "2020-08-07T17:59:27.516Z"
   },
-  "updated_at": null,
+  "updated_at": {
+    "$date": "2020-08-08T06:36:04.454Z"
+  },
   "__v": 0
 },{
   "_id": {
     "$oid": "5f2d96eb4fc0bd2e148617f1"
   },
-  "id_loaitintuc": "Tin tức",
+  "id_loaitintuc": "CD00",
   "image": "https://localhost:4100/uploads/cntt/24785288_869745636516590_844923619084968922_o-554x674.jpg",
   "tentintuc": "TUYỂN CHỌN SINH VIÊN THAM GIA ĐỘI TUYỂN TRƯỜNG CAO THẮNG DỰ THI OLYMPIC TIN HỌC TOÀN QUỐC 2020",
   "slug": "slug",
@@ -78,7 +80,7 @@
   "_id": {
     "$oid": "5f2d96ef4fc0bd2e148617f2"
   },
-  "id_loaitintuc": "Tin tức",
+  "id_loaitintuc": "CD00",
   "image": "https://localhost:4100/uploads/cntt/e638a5614488b8d6e199-80x80.jpg",
   "tentintuc": "[THÔNG BÁO] TUYỂN DỤNG SMARTOSC",
   "slug": "slug",
@@ -91,6 +93,8 @@
   "created_at": {
     "$date": "2020-08-07T17:59:27.516Z"
   },
-  "updated_at": null,
+  "updated_at": {
+    "$date": "2020-08-08T06:49:45.644Z"
+  },
   "__v": 0
 }]

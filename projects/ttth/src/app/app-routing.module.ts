@@ -24,7 +24,7 @@ const routes: Routes = [
     path: 'tintuc', component: PageTintucComponent
   },
   {
-    path: 'khoahoc/:id', component: PageDanhsachbaivietcuakhoahocComponent
+    path: 'chude/:id', component: PageDanhsachbaivietcuakhoahocComponent
   },
   {
     path: 'chitietkhoahoc/:id', component: PageChitietkhoahocComponent

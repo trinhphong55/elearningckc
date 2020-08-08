@@ -22,7 +22,9 @@ export class ModalTtthQuanlidiemthiComponent implements OnInit {
   getdanhsach(): void {
     this.DiemthiService.get().subscribe((data) => {this.DiemThi = data});
   }
-
+  reset():void{
+    this.selectedItem=null;
+  }
   ///edit
   selectedItem: ttthDiemThi;
   onSelect(DiemThi: ttthDiemThi):void {

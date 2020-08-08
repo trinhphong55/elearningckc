@@ -65,4 +65,7 @@ export class ModalHomeCamonComponent implements OnInit {
     this.toastr.success('Xóa thành công');
     window.location.reload();
   }
+  reset():void{
+    this.selectedItem=null;
+  }
 }

@@ -29,7 +29,9 @@ export class ModelTtthDotthiComponent implements OnInit {
   getlophoc(): void {
     this.lophocService.get().subscribe((data) => this.LopHoc = data);
   }
-
+  reset():void{
+    this.selectedItem=null;
+  }
   // add
   add(tendot: string,lophoc: string,ngaythi: Date): void {
     const newItem: ttthDotThi = new ttthDotThi();

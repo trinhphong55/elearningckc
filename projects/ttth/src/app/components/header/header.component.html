@@ -60,18 +60,18 @@
           <li>
             <a routerLink="/"><i class="fas fa-home"></i></a>
           </li>
-          <li class="dropdown">
-            <a href="#" data-toggle="dropdown">Khóa học</a>
-            <ul class="dropdown-menu">
-              <li class="dropdown-item" *ngFor="let item of danhSachChuDe">
-                <a href="/khoahoc/{{ item.maChuDe }}">{{ item.tenChuDe }}</a>
-              </li>
-            </ul>
-          </li>
           <li><a routerLink="/danhsachlophoc">Danh sách lớp học</a></li>
           <li><a routerLink="/dangkikhoahoc">Đăng kí học</a></li>
           <li><a routerLink="/dangkidotthi">Đăng kí thi</a></li>
           <li><a routerLink="/tracuudiem">Kết quả thi</a></li>
+          <li class="dropdown">
+            <a href="#" data-toggle="dropdown">Tin tức</a>
+            <ul class="dropdown-menu">
+              <li class="dropdown-item" *ngFor="let item of danhSachChuDe">
+                <a href="/chude/{{ item.maChuDe }}">{{ item.tenChuDe }}</a>
+              </li>
+            </ul>
+          </li>
           <li><a routerLink="/lienhe">Liên hệ</a></li>
           <li><a routerLink="/timkiem">Tìm kiếm</a></li>
           <!-- <div class="search-header desk flex">
