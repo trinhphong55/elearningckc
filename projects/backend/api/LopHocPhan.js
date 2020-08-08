@@ -4,8 +4,11 @@ const KHDT = require("../models/KeHoachDaoTao.model");
 const MonHoc = require("../models/MonHoc.model");
 const GVLHP = require("../models/GiaoVienLopHocPhan.model");
 const SINHVIEN =require("../models/sinh-vien.model");
-const { data } = require("jquery");
-const { async } = require("rxjs");
+
+const GiaoVienDAO = require('../DAO/GiaoVienDAO');
+const giaoVienDAO = new GiaoVienDAO();
+
+const { asyncForEach } = require("../utils/MonHoc.util");
 
 //GET LHP, loaimonhoc, giaovienlhp by maCTDT and hocKi with loaiMonHoc
 router.get("/ctdt/:maCTDT/hocKi/:hocKi", async (req, res) => {
@@ -14,7 +17,7 @@ router.get("/ctdt/:maCTDT/hocKi/:hocKi", async (req, res) => {
 
   let resultView = [];
   let dsMaLoaiMonHoc = [];
-  //danh sach lop hoc phan
+
   let dsLHP = await LopHocPhan.find({
     trangThai: { $ne: 0 },
     maLopHoc: { $regex: maChuongTrinhDaoTao },
@@ -23,13 +26,6 @@ router.get("/ctdt/:maCTDT/hocKi/:hocKi", async (req, res) => {
     return res.json({ message: err });
   });
 
-  async function asyncForEach(array, callback) {
-    for (let index = 0; index < array.length; index++) {
-      await callback(array[index], index);
-    }
-  }
-
-  //danh sach loai mon hoc kem theo lhp
   await asyncForEach(dsLHP, async (lhp, index) => {
     let maMonHoc = lhp.maDaoTao.slice(lhp.maDaoTao.length - 4);
     await MonHoc.findOne({ maMonHoc })
@@ -65,7 +61,7 @@ router.get("/ctdt/:maCTDT/hocKi/:hocKi", async (req, res) => {
 
 //trịnh phong sua
 router.get("/", async (req, res) => {
-  var data =await LopHocPhan.find().exec();
+  var data = await LopHocPhan.find().exec();
   res.json(data);
 });
 
@@ -75,7 +71,6 @@ router.post("/", async (req, res) => {
   let dsLopHoc = req.body[1];
   let nextNumber = 1;
 
-  //get NextNumber
   await LopHocPhan.findOne({}, {}, { sort: { ngayTao: -1 } })
     .exec()
     .then((lastLHP) => {
@@ -84,12 +79,10 @@ router.post("/", async (req, res) => {
       }
     });
 
-  //Tra ve thong bao chua co lop hoc
   if (dsLopHoc === undefined || hocKi === undefined) {
     return res.json({ error: "Chua co Lop hoc" });
   }
 
-  //Cat maChuongTrinhDaoTao tu ma lop hoc
   const maChuongTrinhDaoTao = dsLopHoc[0].maLopHoc.slice(0, 7);
 
   await KHDT.find({ maChuongTrinhDaoTao, hocKi, trangThai: { $ne: 0 } })
@@ -97,8 +90,8 @@ router.post("/", async (req, res) => {
     .catch((err) => {
       return res.json({ message: err });
     });
-  //neu dsKHDT rong?
-  if (dsKHDT.length === 0) {
+
+    if (dsKHDT.length === 0) {
     return res.json({
       error: "Chuong trinh dao tao nay chua co ke hoach dao tao",
     });
@@ -121,13 +114,6 @@ router.post("/", async (req, res) => {
     });
   });
 
-  // return res.json(dsLHP);
-
-  async function asyncForEach(array, callback) {
-    for (let index = 0; index < array.length; index++) {
-      await callback(array[index], index);
-    }
-  }
 
   //kiem tra da ton tai trong database
   await asyncForEach(dsLHP, async (lhp, index) => {
@@ -142,7 +128,7 @@ router.post("/", async (req, res) => {
         MonHoc.findOne({ maMonHoc }).then((mh) => {
           let tenlhp = lhp.tenLopHocPhan;
           lhp.tenLopHocPhan = tenlhp + " - " + mh.tenMonHoc;
-          lhp.tenVietTatLopHocPhan  = tenlhp + " - " +mh.tenVietTat;
+          lhp.tenVietTatLopHocPhan = tenlhp + " - " + mh.tenVietTat;
           LopHocPhan.create(lhp)
             .then(console.log("added " + lhp.maDaoTao))
             .catch((err) => {
@@ -175,7 +161,6 @@ router.post("/", async (req, res) => {
   }
 });
 
-
 //DELETE LopHocPhan
 router.delete("/:maDaoTao", async (req, res) => {
   res.json("oke");
@@ -186,9 +171,11 @@ router.put("/:maDaoTao", async (req, res) => {
   res.json("oke");
 });
 
-router.get('/malophocphan/:maLopHocPhan', async (req, res) => {
+router.get("/malophocphan/:maLopHocPhan", async (req, res) => {
   try {
-    const lopHocPhans = await LopHocPhan.find({ maLopHocPhan : req.params.maLopHocPhan});
+    const lopHocPhans = await LopHocPhan.find({
+      maLopHocPhan: req.params.maLopHocPhan,
+    });
     res.json(lopHocPhans);
   } catch (error) {
     res.json(error);
@@ -197,7 +184,7 @@ router.get('/malophocphan/:maLopHocPhan', async (req, res) => {
 //SEARCH theo maNganh
 router.get("/:maLop/search", async (req, res) => {
   try {
-    const lopHocPhans = await LopHocPhan.find({ maLopHoc : req.params.maLop});
+    const lopHocPhans = await LopHocPhan.find({ maLopHoc: req.params.maLop });
     res.json(lopHocPhans);
   } catch (error) {
     res.json(error);
@@ -228,10 +215,80 @@ router.get("/:maSinhVien/sinhvien", async (req, res) => {
     res.json(error);
   }
 });
-// router.patch('/haha', async (req, res) => {
-//   LopHocPhan.deleteMany().then(result => console.log(result));
-// })
 
 // ***  API for team App Android  ***
+
+router.get("/android/malophoc/:maLopHoc", async (req, res) => {
+  let dsLHP = [];
+  let result = [];
+  const maLopHoc = req.params.maLopHoc;
+
+  await LopHocPhan.find({ maLopHoc })
+    .then((ds) => {
+      dsLHP = ds;
+    })
+    .catch((err) => {
+      return res.status(500).json({
+        message: err,
+        data: [],
+        status: 500,
+      });
+    });
+
+  await asyncForEach(dsLHP, async (lhp, index) => {
+    let maMonHoc = lhp.maDaoTao.slice(lhp.maDaoTao.length - 4);
+    let tempResult = {};
+    let allowPush = true;
+    let maGiaoVien = "null";
+    await MonHoc.findOne({ maMonHoc })
+      .then((mh) => {
+        if (mh.length !== 0) {
+          tempResult = {
+            hocKi: lhp.hocKi,
+            maLopHoc: maLopHoc,
+            maMonHoc: mh.maMonHoc,
+            tenMonHoc: mh.tenMonHoc,
+            trangThai: lhp.trangThai,
+            tenVietTat: mh.tenVietTat,
+            loaiMonHoc: mh.maLoaiMonHoc,
+          };
+        } else {
+          allowPush = false;
+        }
+      })
+      .catch((err) => {
+        return res.status(500).json({
+          message: err,
+          data: [],
+          status: 500,
+        });
+      });
+    await GVLHP.findOne({
+      maLopHocPhan: lhp.maLopHocPhan,
+      trangThai: { $ne: 0 },
+    }).then((gvlhp) => {
+      if (gvlhp === null) {
+        tenGiaoVien = "Chưa có GVLHP";
+      } else {
+        maGiaoVien = gvlhp.maGiaoVien;
+      }
+    });
+    if (maGiaoVien !== "null") {
+      await giaoVienDAO.layThongTinGiaoVien(maGiaoVien).then((gv) => {
+        tenGiaoVien = gv[0].ho + " " + gv[0].ten;
+      });
+    }
+    tempResult.tenGiaoVien = tenGiaoVien;
+    if (allowPush) {
+      result.push(tempResult);
+    }
+  });
+
+  return res.status(200).json({
+    message: "Lay thanh cong",
+    data: result,
+    status: 200,
+  });
+});
 
 module.exports = router;
