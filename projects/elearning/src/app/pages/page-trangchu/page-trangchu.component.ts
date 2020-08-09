@@ -136,13 +136,14 @@ export class PageTrangchuComponent implements OnInit {
   danhSachLopGV() {
     this.layCookie();
 
-    // if (this.Doituong == undefined) {
+    if (this.Doituong == 'GV') {
       try {
-        this.thongtin = "lctien@caothang.edu.vn";
-        // this.thongtin ="lctien@caothang.edu.vn";
+        this.thongtin = this.cookie.get("displayName")+'caothang.edu.vn';
+        console.log(this.thongtin)
         this.lopHocPhanService.getLopHocPhanbyemail(this.thongtin).subscribe(
           dsGiaoVienBymaGv => {
             this.dsGiaoVienBymaGv = dsGiaoVienBymaGv;
+            console.log(this.dsGiaoVienBymaGv)
             this.filterDsLop = []
             this.dsLop.forEach(lop => {
               this.dsGiaoVienBymaGv.find(p => {
@@ -166,7 +167,7 @@ export class PageTrangchuComponent implements OnInit {
         return error;
       }
     }
-  // }
+  }
 
   //hien thi ds lop hoc phan
   danhSachLopHocPhan() {
