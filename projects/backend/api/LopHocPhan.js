@@ -3,8 +3,8 @@ const LopHocPhan = require("../models/LopHocPhan.model");
 const KHDT = require("../models/KeHoachDaoTao.model");
 const MonHoc = require("../models/MonHoc.model");
 const GVLHP = require("../models/GiaoVienLopHocPhan.model");
-const SINHVIEN =require("../models/sinh-vien.model");
-
+const SINHVIEN = require("../models/sinh-vien.model");
+const LOPHOC =require("../models/LopHoc.model");
 const GiaoVienDAO = require('../DAO/GiaoVienDAO');
 const giaoVienDAO = new GiaoVienDAO();
 
@@ -91,7 +91,7 @@ router.post("/", async (req, res) => {
       return res.json({ message: err });
     });
 
-    if (dsKHDT.length === 0) {
+  if (dsKHDT.length === 0) {
     return res.json({
       error: "Chuong trinh dao tao nay chua co ke hoach dao tao",
     });
@@ -204,19 +204,28 @@ router.get("/:maLopHocPhan/malhp", async (req, res) => {
       message: "Lấy thành công",
       status: 200,
     });
-  } catch (error) {}
+  } catch (error) { }
 });
 //magv=> lopHp
-router.get("/:magiaovien/giaovienlophocphan", async (req, res) => {
+router.get("/:email/giaovienlophocphan", async (req, res) => {
   try {
-    var dt = await GVLHP.find({maGiaoVien:'001' });
-    var data=[];
-    var arr=[]
-   arr=dt.forEach(async x=>{
-      data= await LopHocPhan.find({maLopHocPhan:x.maLopHocPhan});
-      return data;
-   })
-   console.log(arr);
+    let result = await giaoVienDAO.layThongTinGiaoVienTheoEmail(req.params.email);
+    var dt = await GVLHP.find();
+    var data = await LopHocPhan.find();
+    var lop = await lop.find();
+    var a = []
+    result.forEach(async z => {
+      dt.forEach(async x => {
+        data.forEach(async y => {
+          if (x.maGiaoVien == z.maGiaoVien) {
+            if (x.maLopHocPhan == y.maLopHocPhan) {
+              a.push(y);
+            }
+          }
+          });
+      });
+    })
+    res.json(a);
   } catch (error) {
     res.json(error);
   }
@@ -224,9 +233,9 @@ router.get("/:magiaovien/giaovienlophocphan", async (req, res) => {
 //tim mssv =>lophp //trinhphong
 router.get("/:maSinhVien/sinhvien", async (req, res) => {
   try {
-      var dt =await SINHVIEN.findOne({maSinhVien:req.params.maSinhVien });
-     var data= await LopHocPhan.find({maLopHoc:dt.maLopHoc})
-     res.json(data);
+    var dt = await SINHVIEN.findOne({ maSinhVien: req.params.maSinhVien });
+    var data = await LopHocPhan.find({ maLopHoc: dt.maLopHoc })
+    res.json(data);
   } catch (error) {
     res.json(error);
   }

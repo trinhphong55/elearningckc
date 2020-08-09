@@ -69,10 +69,9 @@ export class PageTrangchuComponent implements OnInit {
     this.maKhoa = this.cookie.get("khoa")
     this.maBac = this.cookie.get("bac")
     this.hocKi = this.cookie.get("hocKi")
-
     this.Doituong = this.cookie.get("role");
     this.thongtin = this.cookie.get("displayName");
-
+    
   }
   ///hien thi ds lop
   danhSachLop() {
@@ -96,10 +95,7 @@ export class PageTrangchuComponent implements OnInit {
         console.log(error);
       }
     );
-
-
   }
-
   //danh sach lop hoc phan 
   LaySachLopHocPhan() {
 
@@ -140,56 +136,27 @@ export class PageTrangchuComponent implements OnInit {
   danhSachLopGV() {
     this.layCookie();
 
-    if (this.Doituong == 'GV') {
+    // if (this.Doituong == undefined) {
       try {
-        this.thongtin = this.cookie.get("displayName") + "@caothang.edu.vn";
-        this.apiService.layDanhSachGiaoVienByemail(this.thongtin).subscribe(
-          dsGiaoVien => {
-            this.dsGiaoVien = dsGiaoVien;
-            this.dsGiaoVien.forEach(x => {
-              try {
-                this.maGiaoVien = x.maGiaoVien;
-                return this.maGiaoVien;
-               
-              } catch (error) {
-                return error
-              }
-           
+        this.thongtin = "lctien@caothang.edu.vn";
+        // this.thongtin ="lctien@caothang.edu.vn";
+        this.lopHocPhanService.getLopHocPhanbyemail(this.thongtin).subscribe(
+          dsGiaoVienBymaGv => {
+            this.dsGiaoVienBymaGv = dsGiaoVienBymaGv;
+            this.filterDsLop = []
+            this.dsLop.forEach(lop => {
+              this.dsGiaoVienBymaGv.find(p => {
+                if (this.maBac != -1 || this.maKhoa != -1) {
+                  if (p.maLopHoc == lop.maLopHoc && lop.maBac == this.maBac && lop.khoa == this.maKhoa)
+                    this.filterDsLop.push(p)
+                }
+                else {
+                  this.filterDsLop = []
+                  this.filterDsLop = this.dsGiaoVienBymaGv
+                }
+              })
+                    this.danhSachLopGV()
             });
-            ///// ds gv lớp hoc phần
-            this.gvlhpService.timGiaoVienLHPTheoMaGV(this.maGiaoVien).subscribe(
-              dsGiaoVienLopHP => {
-                this.dsGiaoVienBymaGv = []
-                this.dsGiaoVienLopHP = dsGiaoVienLopHP;
-                this.dsGiaoVienLopHP.forEach(y => {
-                  this.dsLopHP.find(z => {
-                    if (y.maLopHocPhan == z.maLopHocPhan) {
-                      this.dsGiaoVienBymaGv.push(z);
-                    }
-                  })
-                });
-                // loc theo ma bac va ma khoa
-                this.filterDsLop = []
-                this.dsLop.forEach(lop => {
-                  this.dsGiaoVienBymaGv.find(p => {
-                    if (this.maBac != -1 || this.maKhoa != -1) {
-                      if (p.maLopHoc == lop.maLopHoc && lop.maBac == this.maBac && lop.khoa == this.maKhoa)
-                        this.filterDsLop.push(p)
-                    }
-                    else {
-                      this.filterDsLop = []
-                      this.filterDsLop = this.dsGiaoVienBymaGv
-                    }
-                  })
-                });
-                this.danhSachLopGV();
-
-
-              },
-              (error) => {
-                console.log(error);
-              }
-            );
           },
           (error) => {
             console.log(error);
@@ -198,11 +165,8 @@ export class PageTrangchuComponent implements OnInit {
       } catch (error) {
         return error;
       }
-
     }
-  }
-
-
+  // }
 
   //hien thi ds lop hoc phan
   danhSachLopHocPhan() {
