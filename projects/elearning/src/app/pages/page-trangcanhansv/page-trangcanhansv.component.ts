@@ -212,9 +212,10 @@ export class PageTrangcanhansvComponent implements OnInit {
   public layDiemSinhVien(maSinhVien: string) {
     this.diemSinhVienService.getAllFor(maSinhVien).subscribe(
       (res: any) => {
-        this.diemSinhViens = res;
-        this.ganTenLopHocPhanDiemSV(this.diemSinhViens);
-
+        if(res.data){
+          this.diemSinhViens = res.data;
+          this.ganTenLopHocPhanDiemSV(this.diemSinhViens);
+        }
       },
       (err) => console.log(err)
     );
@@ -439,7 +440,7 @@ export class PageTrangcanhansvComponent implements OnInit {
 
     return lopHocPhans;
   }
-  public loc_Theo_LopHocPhan(diemSV) {
+  public loc_Theo_LopHocPhan(diemSV:any[]) {
     let diems = [];
     diemSV.forEach((diem) => {
       this.lopHocPhans.forEach((lop) => {
