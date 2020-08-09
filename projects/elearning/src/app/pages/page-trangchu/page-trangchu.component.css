@@ -1,4 +1,12 @@
+#timkiem{
+    display: block;
+    position: fixed; /*Cho menu cố định 1 vị trí với top và left*/
+    left: 90%; /*Nằm sát bên trái*/
 
+  }
+  #fixNav .search{
+    padding: 0;
+  }
 .lophoc-container{
     width: 100%;
     margin-top: 20px;

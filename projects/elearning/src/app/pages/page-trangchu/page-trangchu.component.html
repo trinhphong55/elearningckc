@@ -1,3 +1,8 @@
+<nav id="timkiem">
+    <div class="search"style="text-align: center;margin-top:2%;">
+        <button type="button" class="btn btn-primary" (click)="danhSachLopHocPhan()" (click)=" danhSachLopGV()">Tìm Kiếm</button>
+    </div>
+  </nav>
 <div class="lophoc-container">
     <div class="list-lophoc">
         <div class="list-lophoc-item" *ngFor="let l of filterDsLop" (change)="danhSachLopHocPhan()">
