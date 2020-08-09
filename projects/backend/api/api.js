@@ -170,7 +170,6 @@ router.delete("/lophoc/:tienTo/tiento", LopHoc.deleteTheoTienTo);
 //Cập nhật KHoaBoMon theo :id và data truyền vào ( lư ý data ở request.body)
 router.put("/lophoc/:id", LopHoc.checkValidate(), LopHoc.update);
 router.put("/lophoc/:maLop/facebook", LopHoc.capNhatThongTinFaceBook);
-
 router.get("/lophoc/:tienTo/tiento", LopHoc.timLopTheoTienTo);
 
 //-----------------------------Routes LoaiDonVi
@@ -198,7 +197,6 @@ router.get("/ct-diemsv-lophocphan/:masv", ctDiemLopHP.layCTDiemLopHPtheoMaSV);
 router.get("/chude", ChuDe.layTatCa);
 router.get("/chude/:maChuDe", ChuDe.layMot);
 router.get("/chude/:maLopHocPhan/lop-hoc-phan", ChuDe.layTheo_MaLHP);
-
 router.post("/chude", ChuDe.them);
 //=========================== Routes BaiGiang =============================================
 router.get("/baigiang", baiGiang.layTatCa);
@@ -206,6 +204,8 @@ router.get("/baigiang/:maChuDe", baiGiang.layTheoMaChuDe);
 router.post("/baigiang", baiGiang.them);
 router.get("/baigiang/:maLopHocPhan/lop-hoc-phan", baiGiang.layTheo_MaLHP);
 router.get("/baigiang/:maBaiGiang/ma-bai-giang", baiGiang.layTheo_maBaiGiang);
+router.post("/baigiang/upload", baiGiang.upload);
+router.post("/baigiang/download", baiGiang.download);
 
 //========================= Routes BinhLuan ==========================================
 router.get("/binhluan/:loaiBaiViet/baiviet/:maBaiViet", binhLuan.layBinhLuan_theoBaiViet);

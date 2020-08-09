@@ -19,7 +19,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { LopHocPhan } from '../../models/lophocphan.interface';
-import { CTDT } from '../../models/ctdt.interface';
 import { MonHoc } from '../../models/monhoc.interface';
 
 @Component({
