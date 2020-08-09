@@ -9,7 +9,7 @@ export class AppComponent implements OnInit{
   title = 'elearning';
 
   displayName: string = '';
-  ngOnInit(): void {
+  constructor(){
     if(getCookie('token')){
       if(getCookie('role') == 'admin'){
         alert('Bạn không có quyền cập vào trang elearning');
@@ -21,6 +21,9 @@ export class AppComponent implements OnInit{
     else{
       window.location.href = "https://localhost:4200";
     }
+  }
+  ngOnInit(): void {
+
   }
 
   onLogout(): void {
