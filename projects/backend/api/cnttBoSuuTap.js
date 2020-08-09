@@ -11,8 +11,7 @@ const storage = multer.diskStorage({
         cb(null, FILE_PATH);
     },
     filename: (req, file, cb) => {
-        const filename =
-            file.fieldname + "_" + Date.now() + path.extname(file.originalname);
+        const filename =`${Date.now()}${file.originalname}`
         cb(null, filename);
     },
 });
@@ -42,10 +41,8 @@ function uploadPhotos(req, res, next) {
             console.log(req.file);
             // check if photos are available
             if (!photos) {
-                res.status(400).json({
-                    status: false,
-                    message: "No photo is selected.",
-                });
+                console.log("no photo");
+                next();
             } else {
                 req.body.uploads = photos;
                 next();
@@ -57,50 +54,85 @@ function uploadPhotos(req, res, next) {
 }
 //#endregion
 
-async function saveInformationsSlideShowToDatabase(req, res) {
+async function addBST(req, res) {
     try {
-        console.log("run save infomartion");
+        console.log("run save");
         console.log(req.body);
-        console.log(req.body)
-        var boSuuTap = new BoSuuTap({
-            maBST: req.body.maBST,
-            url: req.body.url,
-            alt: req.body.alt,
-            src: "uploads/cntt/" + req.body.uploads.originalname,
-            trangThai: 1
-        });
-        console.log(boSuuTap);
-        boSuuTap.save((err, data) => {
-            if (err) {
-                return next(err);
-            }
-            res.json(data);
-        });
+        if (!req.body.uploads) {
+            var boSuuTap = new BoSuuTap({
+                maBST: req.body.maBST,
+                url: req.body.url,
+                alt: req.body.alt,
+                src: "",
+                trangThai: 1
+            });
+            console.log(boSuuTap);
+            boSuuTap.save((err, data) => {
+                if (err) {
+                    return next(err);
+                }
+                res.json(data);
+            });
+        } else {
+            var boSuuTap = new BoSuuTap({
+                maBST: req.body.maBST,
+                url: req.body.url,
+                alt: req.body.alt,
+                src: "uploads/cntt/" + req.body.uploads.filename,
+                trangThai: 1
+            });
+            console.log(boSuuTap);
+            boSuuTap.save((err, data) => {
+                if (err) {
+                    return next(err);
+                }
+                res.json(data);
+            });
+        }
     } catch (error) {
         res.json({ message: "Thêm thất bại", error: error });
     }
 }
+router.post("/taobst", uploadPhotos, addBST);
 
-router.post("/taobst", uploadPhotos, saveInformationsSlideShowToDatabase);
-
-router.post("/chinhsuabst", async (req, res) => {
-    console.log(" Chinh sua BST");
-    console.log("req.body.src  " + req.body.src);
-    var imgName = req.body.src.slice(12);
-    await BoSuuTap.findOneAndUpdate(
-        { _id: req.body._id },
-        {
-            maBST: req.body.maBST,
-            url: req.body.url,
-            alt: req.body.alt,
-            src: "uploads/cntt/" + imgName,
-            trangThai: 1
+async function editBST(req, res) {
+    try {
+        console.log("run edit");
+        console.log(req.body);
+        console.log("uploads:"+ req.body.uploads);
+        if (!req.body.uploads) {
+            await BoSuuTap.findOneAndUpdate(
+                { _id: req.body._id },
+                {
+                    maBST: req.body.maBST,
+                    url: req.body.url,
+                    alt: req.body.alt,
+                    trangThai: 1
+                }
+            );
+            res.json({
+                message: "Chỉnh sửa thành công",
+            });
+        } else {
+            await BoSuuTap.findOneAndUpdate(
+                { _id: req.body._id },
+                {
+                    maBST: req.body.maBST,
+                    url: req.body.url,
+                    alt: req.body.alt,
+                    src: "uploads/cntt/" + req.body.uploads.filename,
+                    trangThai: 1
+                }
+            );
+            res.json({
+                message: "Chỉnh sửa thành công",
+            });
         }
-    );
-    res.json({
-        message: "Chỉnh sửa thành công",
-    });
-});
+    } catch (error) {
+        res.json({ message: "Thêm thất bại", error: error });
+    }
+}
+router.post("/chinhsuabst", uploadPhotos, editBST);
 // Get All Tintuc
 router.get("/danhsachbst", (req, res) => {
     BoSuuTap.find((error, data) => {

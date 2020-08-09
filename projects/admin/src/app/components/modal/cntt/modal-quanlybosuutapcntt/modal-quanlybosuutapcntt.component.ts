@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalService } from '../../../../services/modal.service';
 import { CnttBoSuuTapService } from '../../../../services/cntt/bosuutap.service'
-import { FormGroup,FormControl, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -36,22 +36,34 @@ export class ModalQuanlybosuutapcnttComponent implements OnInit {
     alt: new FormControl(),
     trangThai: new FormControl(),
   });
-  
+
   logo: any;
   onSave(): void {
-    const formData = new FormData();
-    formData.append('_id', this._id);
-    formData.append('image', this.imgValue);
-    formData.append('maBST', this.boSuuTapForm.get('maBST').value);
-    formData.append('alt', this.boSuuTapForm.get('alt').value);
-    formData.append('url', this.boSuuTapForm.get('url').value);
-    console.log(this.imgValue);
-    this.cnttBoSuuTapService.onSave(formData).subscribe((data) => {
-      this.loadDanhSachBST();
-      this.toastr.success('Thêm item thành công !');
-    });
+    if (!this.boSuuTapForm.value._id) {
+      const formData = new FormData();
+      formData.append('image', this.imgValue);
+      formData.append('maBST', this.boSuuTapForm.get('maBST').value);
+      formData.append('alt', this.boSuuTapForm.get('alt').value);
+      formData.append('url', this.boSuuTapForm.get('url').value);
+      console.log(this.imgValue);
+      this.cnttBoSuuTapService.onSave(formData).subscribe((data) => {
+        this.loadDanhSachBST();
+        this.toastr.success('Thêm item thành công !');
+      });
+    } else {
+      const formData = new FormData();
+      formData.append('_id', this.boSuuTapForm.value._id);
+      formData.append('image', this.imgValue);
+      formData.append('maBST', this.boSuuTapForm.get('maBST').value);
+      formData.append('alt', this.boSuuTapForm.get('alt').value);
+      formData.append('url', this.boSuuTapForm.get('url').value);
+      console.log(this.imgValue);
+      this.cnttBoSuuTapService.editItemTienIch(formData).subscribe((data) => {
+        this.loadDanhSachBST();
+        this.toastr.success('Edit item thành công !');
+      });
+    }
   }
-
   chonMaBoSuuTap(e) {
     this.boSuuTapForm.get('maBST').setValue(e, {
       onlySelf: true,
