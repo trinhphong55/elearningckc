@@ -190,6 +190,22 @@ router.get("/:maLop/search", async (req, res) => {
     res.json(error);
   }
 });
+//SEARCH theo maLopHocPhan
+//Nguoi tạo: Trần Đình Huy
+
+router.get("/:maLopHocPhan/malhp", async (req, res) => {
+  try {
+    const lopHocPhans = await LopHocPhan.findOne({
+      maLopHocPhan: req.params.maLopHocPhan,
+    });
+    res.json({
+      id: req.params.maLopHocPhan,
+      data: lopHocPhans,
+      message: "Lấy thành công",
+      status: 200,
+    });
+  } catch (error) {}
+});
 //magv=> lopHp
 router.get("/:magiaovien/giaovienlophocphan", async (req, res) => {
   try {

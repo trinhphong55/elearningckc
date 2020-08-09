@@ -235,45 +235,6 @@ a:hover{
     color:#fff;
     display: block;
 }
-.chuong-trinh-dao-tao-item:nth-child(1){
-    background-color: #706D3C;
-}
-.chuong-trinh-dao-tao-item:nth-child(2){
-    background-color: #E65527;
-}
-.chuong-trinh-dao-tao-item:nth-child(3){
-    background-color: #37A5B3;
-}
-.chuong-trinh-dao-tao-item:nth-child(4){
-    background-color: #363948;
-}
-.chuong-trinh-dao-tao-item:nth-child(5){
-    background-color: #716F84;
-}
-.chuong-trinh-dao-tao-item:nth-child(6){
-    background-color: #D5BC3A;
-}
-.chuong-trinh-dao-tao-item:nth-child(7){
-    background-color: #5EA07F;
-}
-.chuong-trinh-dao-tao-item:nth-child(8){
-    background-color: #1D6285;
-}
-.chuong-trinh-dao-tao-item:nth-child(9){
-    background-color: #86B3BB;
-}
-.chuong-trinh-dao-tao-item:nth-child(10){
-    background-color: #CA58D2;
-}
-.chuong-trinh-dao-tao-item:nth-child(11){
-    background-color: #f47e01;
-}
-.chuong-trinh-dao-tao-item:nth-child(12){
-    background-color: #0082c8;
-}
-.chuong-trinh-dao-tao-item:nth-child(n+13){
-    background-color: #363948;
-}
 .lich-thi{
     background-color: #3ca1ae;
     padding: 20px 0;
@@ -1246,4 +1207,10 @@ input:focus { outline: none; }
   .dkkh{
     width: 100%;
     margin-bottom: 30px;
+  }
+  .select2-container--default .select2-selection--single{
+    border-color: rgba(0, 0, 0, 0.09);
+    font-size: 0.85rem;
+    line-height: 1.85;
+    height: calc(1.5em + .75rem + 2px);
   }

@@ -1,0 +1,27 @@
+[{
+  "_id": {
+    "$oid": "5f0eb7280ffacf3d9e28c3c3"
+  },
+  "id_khoahoc": "",
+  "buoihoc": "",
+  "giohoc": "",
+  "ngaykhaigiang": {
+    "$date": "1999-12-31T17:00:00Z"
+  },
+  "hocphi": "",
+  "trangthai": true,
+  "nguoitao": "",
+  "nguoisua": "",
+  "created_at": {
+    "$timestamp": {
+      "t": 0,
+      "i": 0
+    }
+  },
+  "updated_at": {
+    "$timestamp": {
+      "t": 0,
+      "i": 0
+    }
+  }
+}]

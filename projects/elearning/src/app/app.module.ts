@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FileUploadModule } from 'ng2-file-upload';
@@ -26,10 +27,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { TaochudeComponent } from './components/content/chudelophocphan/taochude/taochude.component';
-import { Chude1Component } from './components/content/chudelophocphan/list-chude/chude1/chude1.component';
 import { Chude2Component } from './components/content/chudelophocphan/list-chude/chude2/chude2.component';
-import { Chude3Component } from './components/content/chudelophocphan/list-chude/chude3/chude3.component';
-import { Chude4Component } from './components/content/chudelophocphan/list-chude/chude4/chude4.component';
 import { TaobaigiangComponent } from './components/content/chudelophocphan/taobaigiang/taobaigiang.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -56,7 +54,6 @@ import { PageCotodiemComponent } from './pages/page-cotdiem/page-cotdiem.compone
 import { PageTongdiemComponent } from './pages/page-tongdiem/page-tongdiem.component';
 import { PageChamdiemComponent } from './pages/page-chamdiem/page-chamdiem.component';
 import { PageCaidatComponent } from './pages/page-caidat/page-caidat.component';
-import { HttpClientModule } from '@angular/common/http';
 import { PageTrangcanhansvComponent } from './pages/page-trangcanhansv/page-trangcanhansv.component';
 import { PageTrangcanhangvComponent } from './pages/page-trangcanhangv/page-trangcanhangv.component';
 import { CookieService } from 'ngx-cookie-service';
@@ -68,10 +65,7 @@ import { CookieService } from 'ngx-cookie-service';
     ChiaseComponent,
     TaobaitapComponent,
     TaochudeComponent,
-    Chude1Component,
     Chude2Component,
-    Chude3Component,
-    Chude4Component,
     TaobaigiangComponent,
     MoigvComponent,
     MoisvComponent,
@@ -122,6 +116,7 @@ import { CookieService } from 'ngx-cookie-service';
     MatDatepickerModule,
     MatNativeDateModule,
     MatTableModule,
+    HttpClientModule,
     FileUploadModule,
     HttpClientModule,
   ],

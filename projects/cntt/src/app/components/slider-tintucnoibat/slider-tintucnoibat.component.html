@@ -1,0 +1,69 @@
+<section class="news_home__wrapper bg__light py-5">
+  <div class="container-fluid" data-aos="fade-right" data-aos-delay="300" data-aos-duration="1500">
+    <div class="row">
+      <div class="col-12 text-center">
+        <div class="news_home__title text-uppercase font-weight-bold">
+          tin tức
+        </div>
+      </div>
+      <div class="col-lg-8 mt-4">
+        <div class="news_home__main text-white p-3">
+          <a class="hashtag d-none d-md-inline-flex" routerLink="/">Nổi bật</a>
+          <div class="swiper-container h-100">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide" *ngFor="let itemListTinTucNoiBat of DanhSachTinTucNoiBat">
+                <div class="news_home__main__wrapper">
+                  <div class="news_home__main__desc px-md-3">
+                    <div class="news_home__main__title mt-2 mt-md-5">
+                      <div class="d-md-none mb-2 mb-md-0">
+                        <a class="hashtag" routerLink="/">Nổi bật</a>
+                      </div>
+                      <a class="text-white" routerLink="/bai-viet/{{ itemListTinTucNoiBat._id }}"
+                        title="{{ itemListTinTucNoiBat.tieuDe }}">{{ itemListTinTucNoiBat.tieuDe }}</a>
+                    </div>
+                    <div class="small mt-2">
+                      {{ itemListTinTucNoiBat.thoiGianDangBai }}
+                    </div>
+                  </div>
+                  <div class="news_home__main__image">
+                    <img src="https://localhost:4100/{{
+                        itemListTinTucNoiBat.anhBia
+                      }}" alt="{{ itemListTinTucNoiBat.tieuDe }}" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="news_home__main__nav">
+            <span class="news_home__main__nav-prev mdi mdi-chevron-left" role="button"></span><span
+              class="news_home__main__nav-next mdi mdi-chevron-right" role="button"></span>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 mt-4 mt-lg-0">
+        <div class="news_home__sub bg-white">
+          <div class="news_home__sub__header">
+            <div class="news_home__sub__header__title">MỚI NHẤT</div>
+            <div class="news_home__sub__nav">
+              <div class="news_home__sub__nav-prev mdi mdi-chevron-up" role="button"></div>
+              <div class="news_home__sub__nav-next mdi mdi-chevron-down" role="button"></div>
+            </div>
+          </div>
+          <div class="swiper-container">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide" *ngFor="let item of TinTucNoiBat">
+                <div class="news_home__sub__desc">
+                  <div class="news_home__sub__title">
+                    <a href="news-detail.html"
+                      title="{{item.tieuDe}}">{{item.tieuDe}}</a>
+                  </div>
+                  <div class="small mt-2">{{item.thoiGianDangBai}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

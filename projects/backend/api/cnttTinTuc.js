@@ -37,49 +37,92 @@ router.post("/uploads", upload.single("image"), function (req, res) {
 
 router.post("/taotintuc", (req, res) => {
   console.log("req.body.anhBia  " + req.body.anhBia);
-  var imgName = req.body.anhBia.slice(12);
-  var tintuc = new TinTuc({
-    loaiBaiViet: req.body.loaiBaiViet,
-    maDanhMuc: req.body.maDanhMuc,
-    maBaiViet: req.body.maBaiViet,
-    tieuDe: req.body.tieuDe,
-    moTaNgan: req.body.moTaNgan,
-    noiDung: req.body.noiDung,
-    anhBia: "uploads/cntt/" + imgName,
-    viTriHienThi: req.body.viTriHienThi,
-  });
-  console.log(tintuc);
-  tintuc.save((err, data) => {
-    if (err) {
-      return next(err);
-    }
-    res.json(data);
-  });
+  if (req.body.anhBia == null) {
+    console.log("bai viet khong co anh bia")
+    var tintuc = new TinTuc({
+      loaiBaiViet: req.body.loaiBaiViet,
+      maDanhMuc: req.body.maDanhMuc,
+      maBaiViet: req.body.maBaiViet,
+      tieuDe: req.body.tieuDe,
+      moTaNgan: req.body.moTaNgan,
+      noiDung: req.body.noiDung,
+      anhBia: "",
+      viTriHienThi: req.body.viTriHienThi,
+    });
+    console.log(tintuc);
+    tintuc.save((err, data) => {
+      if (err) {
+        return next(err);
+      }
+      res.json(data);
+    });
+  } else {
+    console.log("bai viet co anh bia")
+    var imgName = req.body.anhBia.slice(12);
+    var tintuc = new TinTuc({
+      loaiBaiViet: req.body.loaiBaiViet,
+      maDanhMuc: req.body.maDanhMuc,
+      maBaiViet: req.body.maBaiViet,
+      tieuDe: req.body.tieuDe,
+      moTaNgan: req.body.moTaNgan,
+      noiDung: req.body.noiDung,
+      anhBia: "uploads/cntt/" + imgName,
+      viTriHienThi: req.body.viTriHienThi,
+    });
+    console.log(tintuc);
+    tintuc.save((err, data) => {
+      if (err) {
+        return next(err);
+      }
+      res.json(data);
+    });
+  }
 });
 //#endregion
 
 router.post("/chinhSuaTinTuc", async (req, res) => {
   console.log(" Chinh sua bai viet");
   console.log("req.body.anhBia  " + req.body.anhBia);
-  var imgName = req.body.anhBia.slice(12);
-  console.log(req.body.maBaiViet);
-  await TinTuc.findOneAndUpdate(
-    { _id: req.body._id },
-    {
-      maBaiViet: req.body.maBaiViet,
-      loaiBaiViet: req.body.loaiBaiViet,
-      maDanhMuc: req.body.maDanhMuc,
-      tieuDe: req.body.tieuDe,
-      moTaNgan: req.body.moTaNgan,
-      noiDung: req.body.noiDung,
-      anhBia: "uploads/cntt/" + imgName,
-      viTriHienThi: req.body.viTriHienThi,
-      trangThai: req.body.trangThai,
-    }
-  );
-  res.json({
-    message: "Chỉnh sửa bài viết thành công",
-  });
+  if (req.body.anhBia == null) {
+    console.log("chinh sua khong gom anh bia")
+    console.log(req.body.maBaiViet);
+    await TinTuc.findOneAndUpdate(
+      { _id: req.body._id },
+      {
+        maBaiViet: req.body.maBaiViet,
+        loaiBaiViet: req.body.loaiBaiViet,
+        maDanhMuc: req.body.maDanhMuc,
+        tieuDe: req.body.tieuDe,
+        moTaNgan: req.body.moTaNgan,
+        noiDung: req.body.noiDung,
+        viTriHienThi: req.body.viTriHienThi,
+        trangThai: req.body.trangThai,
+      }
+    );
+    res.json({
+      message: "Chỉnh sửa bài viết thành công",
+    });
+  } else {
+    var imgName = req.body.anhBia.slice(12);
+    console.log(req.body.maBaiViet);
+    await TinTuc.findOneAndUpdate(
+      { _id: req.body._id },
+      {
+        maBaiViet: req.body.maBaiViet,
+        loaiBaiViet: req.body.loaiBaiViet,
+        maDanhMuc: req.body.maDanhMuc,
+        tieuDe: req.body.tieuDe,
+        moTaNgan: req.body.moTaNgan,
+        noiDung: req.body.noiDung,
+        anhBia: "uploads/cntt/" + imgName,
+        viTriHienThi: req.body.viTriHienThi,
+        trangThai: req.body.trangThai,
+      }
+    );
+    res.json({
+      message: "Chỉnh sửa bài viết thành công",
+    });
+  }
 });
 // Get All Tintuc
 router.get("/danhsachtintuc", (req, res) => {
@@ -94,13 +137,49 @@ router.get("/danhsachtintuc", (req, res) => {
     res.json({ message: "Lấy danh sách bài viết thành công.", data: data });
   });
 });
+router.get("/danhsachtintuckhac", (req, res) => {
+  TinTuc.find({trangThai: 1},(error, data) => {
+    if (error) {
+      return res.json({
+        message: "Lấy danh sách bài viết thành công.",
+        data: [],
+        error: error,
+      });
+    }
+    res.json({ message: "Lấy danh sách bài viết thành công.", data: data });
+  }).limit(3);
+});
+router.get("/tintucnoibatcntt", (req, res) => {
+  TinTuc.find({trangThai:1,viTriHienThi:3 },(error, data) => {
+    if (error) {
+      return res.json({
+        message: "Lấy danh sách bài viết thành công.",
+        data: [],
+        error: error,
+      });
+    }
+    res.json({ message: "Lấy danh sách bài viết thành công.", data: data });
+  }).limit(3);
+});
+router.get("/danhsachtintuccntt", (req, res) => {
+  TinTuc.find({trangThai: 1},(error, data) => {
+    if (error) {
+      return res.json({
+        message: "Lấy danh sách bài viết thành công.",
+        data: [],
+        error: error,
+      });
+    }
+    res.json({ message: "Lấy danh sách bài viết thành công.", data: data });
+  });
+});
 // Get Tintuc by id
 router.get("/tintuc/:id", (req, res) => {
-  TinTuc.find(req.params.id, (error, data) => {
+  TinTuc.findById(req.params.id, (error, data) => {
     if (error) {
-      return next(error);
+      return error;
     }
-    res.json(data);
+    res.json({ message: "Lấy bài viết thành công.", data: data });
   });
 });
 // add Tintuc add
@@ -117,5 +196,102 @@ router.post("/xoatintuc", async (req, res) => {
     message: " Xóa bài viết thành công",
   });
 });
+
+//#region API
+router.get("/danhmuc=:maDanhMuc", async (req, res) => {
+  try {
+    // res.json(req.params);
+    const data = await TinTuc.find({
+      maDanhMuc: req.params.maDanhMuc,
+    }).sort({
+      updatedAt: "desc", // asc || desc
+    });
+    res.json({
+      message: "Lấy bài viết theo danh mục thành công",
+      code: 200,
+      data: data,
+    });
+  } catch (error) {
+    res.json({
+      message: "Lấy bài viết theo danh mục thất bại",
+      code: 400,
+      data: [],
+      error: error,
+    });
+  }
+});
+
+router.get("/loaibaiviet=:loaiBaiViet", async (req, res) => {
+  try {
+    // res.json(req.params);
+    const data = await TinTuc.find({
+      loaiBaiViet: req.params.loaiBaiViet,
+    }).sort({
+      updatedAt: "desc", // asc || desc
+    });
+    res.json({
+      message: "Lấy bài viết theo loại bài viết thành công",
+      code: 200,
+      data: data,
+    });
+  } catch (error) {
+    res.json({
+      message: "Lấy bài viết theo loại bài viết thất bại",
+      code: 400,
+      data: [],
+      error: error,
+    });
+  }
+});
+
+router.get("/:maDanhMuc/:loaiBaiViet", async (req, res) => {
+  try {
+    // res.json(req.params);
+    const data = await TinTuc.find({
+      loaiBaiViet: req.params.loaiBaiViet,
+      maDanhMuc: req.params.maDanhMuc,
+      trangThai: 1,
+    }).sort({
+      updatedAt: "desc", // asc || desc
+    });
+    res.json({
+      message: "Lấy bài viết theo danh mục và loại bài viết thành công",
+      code: 200,
+      data: data,
+    });
+  } catch (error) {
+    res.json({
+      message: "Lấy bài viết theo danh mục và loại bài viết thất bại",
+      code: 400,
+      data: [],
+      error: error,
+    });
+  }
+});
+
+router.get("/search=:query", async (req, res) => {
+  try {
+    const newRegExp = (pattern) => new RegExp(`.*${pattern}.*`);
+    const regexQuery = newRegExp(req.params.query);
+    const data = await TinTuc.find({
+      trangThai: 1,
+      tieuDe: { $regex: regexQuery, $options: "i" }, // i: không phân biệt chữ hoa & thường
+    }).sort({
+      updatedAt: "desc", // asc || desc
+    });
+    res.json({
+      message: "Tìm bài viết thành công",
+      code: 200,
+      data: data,
+    });
+  } catch (error) {
+    res.json({
+      message: "Tìm bài viết thất bại",
+      code: 400,
+      data: data,
+    });
+  }
+});
+//#endregion
 
 module.exports = router;

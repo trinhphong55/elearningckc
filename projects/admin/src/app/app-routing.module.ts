@@ -8,6 +8,7 @@ import { PageDiemComponent } from './pages/page-diem/page-diem.component';
 import { PageChuongtrinhdaotaoComponent } from './pages/page-chuongtrinhdaotao/page-chuongtrinhdaotao.component';
 import { PageDashboardComponent } from './pages/page-dashboard/page-dashboard.component';
 import { PageTtthComponent } from './pages/page-ttth/page-ttth.component';
+import { PageResetPasswordComponent } from './pages/page-resetPassword/page-resetPassword.component';
 
 const routes: Routes = [
   {
@@ -43,10 +44,10 @@ const routes: Routes = [
     path: 'facebook',
     component: PageFacebookComponent,
   },
-  {
-    path: '**',
-    component: PageFacebookComponent,
-  },
+  // {
+  //   path: 'reset-password',
+  //   component: PageResetPasswordComponent,
+  // }
 ];
 
 @NgModule({

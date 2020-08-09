@@ -6,7 +6,7 @@ const multer = require('multer')
 router.get('/', async (req, res) => {
 
   try {
-    const danhsach = await ttthkhoahoc.find({ trangthai: true });
+    const danhsach = await ttthkhoahoc.find({ trangthai: true }).sort({created_at: -1});
     res.json(danhsach);
   } catch (error) {
     res.json([]);
@@ -19,6 +19,7 @@ router.post('/add', (req, res) => {
     image: req.body.image,
     makhoahoc: req.body.makhoahoc,
     noidung: req.body.noidung,
+    color: req.body.color,
     trangthai: req.body.trangthai,
     nguoitao: req.body.nguoitao,
     nguoisua: req.body.nguoisua,
@@ -32,6 +33,39 @@ router.post('/add', (req, res) => {
     res.json(data)
   })
 })
+
+router.get("/khoahoc/:id", (req, res) => {
+  ttthkhoahoc.findById(req.params.id, (error, data) => {
+    if (error) {
+      return error;
+    }
+    res.json({ message: "Lấy KH thành công.", data: data });
+  });
+});
+router.get("/khoahocttthkhac", (req, res) => {
+  ttthkhoahoc.find({trangthai: true},(error, data) => {
+    if (error) {
+      return res.json({
+        message: "Lấy danh sách KH không thành công.",
+        data: [],
+        error: error,
+      });
+    }
+    res.json({ message: "Lấy danh sách KH thành công.", data: data });
+  });
+});
+router.get("/khoahocttth", (req, res) => {
+  ttthkhoahoc.find({trangthai: true},(error, data) => {
+    if (error) {
+      return res.json({
+        message: "Lấy danh sách KH không thành công.",
+        data: [],
+        error: error,
+      });
+    }
+    res.json({ message: "Lấy danh sách KH thành công.", data: data });
+  });
+});
 // File upload settings
 
 const PATH = './uploads/cntt';
@@ -76,6 +110,7 @@ router.post('/update', async (req, res) => {
     image: req.body.image,
     makhoahoc: req.body.makhoahoc,
     noidung: req.body.noidung,
+    color: req.body.color,
     trangthai: req.body.trangthai,
     nguoitao: req.body.nguoitao,
     nguoisua: req.body.nguoisua,

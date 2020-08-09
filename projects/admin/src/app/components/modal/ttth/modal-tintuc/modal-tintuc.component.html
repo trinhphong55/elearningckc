@@ -12,9 +12,8 @@
               <div class="form-group">
                 <label>Chọn loại tin tức</label>
                 <select class="modal_chucnang__select2 form-control" #id_loaitintuc>
-                  <option></option>
-                  <option value="Tin tức">Tin tức</option>
-                  <option value="Lịch khai giảng">Lịch khai giảng</option>
+                  <option class="d-none">Chọn loại tin tức</option>
+                  <option *ngFor="let item of danhSachChuDe" [value]="item.maChuDe">{{item.tenChuDe}}</option>
                 </select>
               </div>
               <div class="form-group">
@@ -55,11 +54,8 @@
             <div class="col-9">
               <div class="form-group">
                 <label>Chọn loại tin tức</label>
-                <select class="modal_chucnang__select2 form-control"
-                  [(ngModel)]="selectedItem.id_loaitintuc">
-                  <option></option>
-                  <option value="Tin tức">Tin tức</option>
-                  <option value="Lịch khai giảng">Lịch khai giảng</option>
+                <select class="modal_chucnang__select2 form-control" [(ngModel)]="selectedItem.id_loaitintuc">
+                  <option *ngFor="let item of danhSachChuDe" [selected]="item.maChuDe==selectedItem.id_loaitintuc" [value]="item.maChuDe">{{item.tenChuDe}}</option>
                 </select>
               </div>
               <div class="form-group">
@@ -96,6 +92,11 @@
                     src="assets/img/icons/upgrade.png" alt="image icon">
                   <div>Cập nhật</div>
                 </button>
+                <button  (click)="reset()"  type="reset"  class="btn btn-outline-dark px-4 mx-2">
+                  <img class="modal_chucnang__button__icon mb-2"
+                  src="assets/img/icons/error.png"    alt="image icon"  />
+                  <div>Huỷ bỏ</div>
+              </button>
               </div>
             </div>
           </div>
@@ -107,7 +108,7 @@
             <thead class="bg__caothang text-white">
               <tr>
                 <th>#</th>
-                <th scope="col">Menu</th>
+                <th scope="col">Loại tin tức</th>
                 <th scope="col">Image</th>
                 <th scope="col">Tiêu đề </th>
                 <th scope="col">Mô tả</th>
@@ -121,7 +122,11 @@
             <tbody>
               <tr *ngFor="let tintuc of TinTuc; let i = index">
                 <td style="max-width: 50px">{{i + 1}}</td>
-                <td>{{tintuc.id_loaitintuc}}</td>
+                <ng-container  *ngFor="let item of danhSachChuDe">
+                  <td *ngIf="item.maChuDe==tintuc.id_loaitintuc">
+                    {{item.tenChuDe}}
+                  </td>
+                </ng-container>
                 <td style="max-width: 100px">
                   <img style="width: 60px;height: 60px;" src="{{tintuc.image}}" alt="">
                 </td>
@@ -137,8 +142,8 @@
                 <td>{{tintuc.nguoitao}}</td>
                 <td>{{tintuc.nguoisua}}</td>
                 <td class="text-center">
-                  <span class="modal_chucnang__button__delete mdi mdi-pencil mdi-24px  mr-2"
-                    (click)="onSelect(tintuc)"></span>
+                  <span class="modal_chucnang__button__delete mdi mdi-file-document-edit-outline  mdi-24px  mr-2"
+                    (click)="onSelect(tintuc);imageSrc=null"></span>
                   <span class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px" (click)="xoaTinTuc(tintuc)"></span>
                 </td>
               </tr>

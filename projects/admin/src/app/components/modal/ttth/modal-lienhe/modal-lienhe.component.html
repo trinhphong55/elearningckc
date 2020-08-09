@@ -7,7 +7,7 @@
       </div>
       <div class="col-12">
         <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
-          <table class="modal_chucnang__table table table-hover" datatable>
+          <table class="modal_chucnang__table table table-hover" *ngIf="LienHe" datatable="ng">
             <thead class="bg__caothang text-white">
               <tr>
                 <th>#</th>
@@ -20,37 +20,15 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td style="max-width: 50px">1</td>
-                <td>Nguyễn Văn A</td>
-                <td>123@gmail.com </td>
-                <td>aaa </td>
-                <td>12/12/2020 </td>
+              <tr *ngFor="let item of LienHe;let i = index">
+                <td style="max-width: 50px">{{i + 1}}</td>
+                <td>{{item.ten}}</td>
+                <td>{{item.email}}</td>
+                <td>{{item.noidung}}</td>
+                <td>{{item.ngaygui}}</td>
                 <td class="text-center">
-                  <span class="modal_chucnang__button__delete mdi mdi-wrench-outline mdi-24px  mr-2"></span>
-                  <span class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px"></span>
-                </td>
-              </tr>
-              <tr>
-                <td style="max-width: 50px">1</td>
-                <td>Nguyễn Văn A</td>
-                <td>123@gmail.com </td>
-                <td>aaa </td>
-                <td>12/12/2020 </td>
-                <td class="text-center">
-                  <span class="modal_chucnang__button__delete mdi mdi-wrench-outline mdi-24px  mr-2"></span>
-                  <span class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px"></span>
-                </td>
-              </tr>
-              <tr>
-                <td style="max-width: 50px">1</td>
-                <td>Nguyễn Văn A</td>
-                <td>123@gmail.com </td>
-                <td>aaa </td>
-                <td>12/12/2020 </td>
-                <td class="text-center">
-                  <span class="modal_chucnang__button__delete mdi mdi-wrench-outline mdi-24px  mr-2"></span>
-                  <span class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px"></span>
+                  <!-- <span class="modal_chucnang__button__delete mdi mdi-wrench-outline mdi-24px  mr-2"></span> -->
+                  <span class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px" (click)="delete(item)"></span>
                 </td>
               </tr>
             </tbody>

@@ -1,0 +1,201 @@
+[{
+  "_id": {
+    "$oid": "5f2c31e11db25214c44bec91"
+  },
+  "hoten": "Nguyễn Văn A",
+  "mssv": "123456782",
+  "ngaysinh": "36483",
+  "sobaodanh": "K69 - 447",
+  "noisinh": "Lâm Đồng",
+  "lop": "CDTH16C",
+  "tongdiem": "10",
+  "xeploai": "Giỏi",
+  "ngaythi": "44167",
+  "giothi": "18h",
+  "phongthi": "16.5",
+  "laptrinhc": "10",
+  "msword": "10",
+  "msexcel": "10",
+  "mspowerpoint": "10",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f2c31e11db25214c44bec92"
+  },
+  "hoten": "Nguyễn Văn B",
+  "mssv": "123456789",
+  "ngaysinh": "117215",
+  "sobaodanh": "K70 - 222",
+  "noisinh": "Mỹ",
+  "lop": "CDTH17C",
+  "tongdiem": "0",
+  "xeploai": "Kém",
+  "ngaythi": "1206370",
+  "giothi": "12h",
+  "phongthi": "162",
+  "laptrinhc": "0",
+  "msword": "0",
+  "msexcel": "0",
+  "mspowerpoint": "0",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f2c32591db25214c44bec93"
+  },
+  "hoten": "Nguyễn Văn A",
+  "mssv": "123456789",
+  "ngaysinh": "36483",
+  "sobaodanh": "K69 - 447",
+  "noisinh": "Lâm Đồng",
+  "lop": "CDTH16C",
+  "tongdiem": "10",
+  "xeploai": "Giỏi",
+  "ngaythi": "44167",
+  "giothi": "18h",
+  "phongthi": "16.5",
+  "laptrinhc": "10",
+  "msword": "10",
+  "msexcel": "10",
+  "mspowerpoint": "10",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f2c32591db25214c44bec94"
+  },
+  "hoten": "Nguyễn Văn B",
+  "mssv": "123456789",
+  "ngaysinh": "117215",
+  "sobaodanh": "K70 - 222",
+  "noisinh": "Mỹ",
+  "lop": "CDTH17C",
+  "tongdiem": "0",
+  "xeploai": "Kém",
+  "ngaythi": "1206370",
+  "giothi": "12h",
+  "phongthi": "162",
+  "laptrinhc": "0",
+  "msword": "0",
+  "msexcel": "0",
+  "mspowerpoint": "0",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f2c32d11db25214c44bec95"
+  },
+  "hoten": "Nguyễn Văn A",
+  "mssv": "123456789",
+  "ngaysinh": "36483",
+  "sobaodanh": "K69 - 447",
+  "noisinh": "Lâm Đồng",
+  "lop": "CDTH16C",
+  "tongdiem": "10",
+  "xeploai": "Giỏi",
+  "ngaythi": "44167",
+  "giothi": "18h",
+  "phongthi": "16.5",
+  "laptrinhc": "10",
+  "msword": "10",
+  "msexcel": "10",
+  "mspowerpoint": "10",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f2c32d11db25214c44bec96"
+  },
+  "hoten": "Nguyễn Văn B",
+  "mssv": "123456789",
+  "ngaysinh": "117215",
+  "sobaodanh": "K70 - 222",
+  "noisinh": "Mỹ",
+  "lop": "CDTH17C",
+  "tongdiem": "0",
+  "xeploai": "Kém",
+  "ngaythi": "1206370",
+  "giothi": "12h",
+  "phongthi": "162",
+  "laptrinhc": "0",
+  "msword": "0",
+  "msexcel": "0",
+  "mspowerpoint": "0",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f2c33811db25214c44bec97"
+  },
+  "hoten": "Nguyễn Văn A",
+  "mssv": "123456789",
+  "ngaysinh": "36483",
+  "sobaodanh": "K69 - 447",
+  "noisinh": "Lâm Đồng",
+  "lop": "CDTH16C",
+  "tongdiem": "10",
+  "xeploai": "Giỏi",
+  "ngaythi": "44167",
+  "giothi": "18h",
+  "phongthi": "16.5",
+  "laptrinhc": "10",
+  "msword": "10",
+  "msexcel": "10",
+  "mspowerpoint": "10",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f2c33811db25214c44bec98"
+  },
+  "hoten": "Nguyễn Văn B",
+  "mssv": "123456789",
+  "ngaysinh": "117215",
+  "sobaodanh": "K70 - 222",
+  "noisinh": "Mỹ",
+  "lop": "CDTH17C",
+  "tongdiem": "0",
+  "xeploai": "Kém",
+  "ngaythi": "1206370",
+  "giothi": "12h",
+  "phongthi": "162",
+  "laptrinhc": "0",
+  "msword": "0",
+  "msexcel": "0",
+  "mspowerpoint": "0",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f2c33f91db25214c44bec99"
+  },
+  "hoten": "Nguyễn Văn A",
+  "mssv": "123456789",
+  "ngaysinh": "36483",
+  "sobaodanh": "K69 - 447",
+  "noisinh": "Lâm Đồng",
+  "lop": "CDTH16C",
+  "tongdiem": "10",
+  "xeploai": "Giỏi",
+  "ngaythi": "44167",
+  "giothi": "18h",
+  "phongthi": "16.5",
+  "laptrinhc": "10",
+  "msword": "10",
+  "msexcel": "10",
+  "mspowerpoint": "10",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f2c33f91db25214c44bec9a"
+  },
+  "hoten": "Nguyễn Văn B",
+  "mssv": "123456789",
+  "ngaysinh": "117215",
+  "sobaodanh": "K70 - 222",
+  "noisinh": "Mỹ",
+  "lop": "CDTH17C",
+  "tongdiem": "0",
+  "xeploai": "Kém",
+  "ngaythi": "1206370",
+  "giothi": "12h",
+  "phongthi": "162",
+  "laptrinhc": "0",
+  "msword": "0",
+  "msexcel": "0",
+  "mspowerpoint": "0",
+  "__v": 0
+}]

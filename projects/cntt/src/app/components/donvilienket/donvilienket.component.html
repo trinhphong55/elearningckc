@@ -1,0 +1,30 @@
+<section class="partner_home__wrapper bg__light py-5">
+  <div
+    class="container-fluid"
+    data-aos="fade-right"
+    data-aos-delay="300"
+    data-aos-duration="1500"
+  >
+    <div class="text-center">
+      <div class="news_home__title text-uppercase font-weight-bold">
+        Các trường liên kết
+      </div>
+    </div>
+    <div class="partner_home__slider swiper-container mt-3">
+      <div class="swiper-wrapper align-items-center">
+        <div class="swiper-slide" *ngFor="let donViLienKet of DonViLienKet">
+          <a
+            class="partner_home__item bg-white d-flex align-items-center justify-content-center flex-column text-center text-reset p-2 p-md-3 m-md-2"
+            href="{{ donViLienKet.url }}"
+            ><img
+              class="swiper-lazy"
+              data-src="https://localhost:4100/{{ donViLienKet.src }}"
+              alt="{{ donViLienKet.alt }}"
+            />
+            <div class="partner_home__desc">{{ donViLienKet.alt }}</div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

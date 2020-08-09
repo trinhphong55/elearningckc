@@ -35,7 +35,7 @@ const upload = multer({
 });
 
 function uploadPhotos(req, res, next) {
-  console.log("run uploadPhotos");
+  // console.log("run uploadPhotos");
   upload.array("photos")(req, res, function (error) {
     try {
       const photos = req.files;

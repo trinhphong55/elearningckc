@@ -1,0 +1,253 @@
+[{
+  "_id": {
+    "$oid": "5f1256e95640dcf639a3a3c5"
+  },
+  "maBST": "BST01",
+  "url": "",
+  "alt": "Đại học FPT",
+  "src": "uploads/cntt/fpt.jpg",
+  "trangThai": 1,
+  "updatedAt": {
+    "$date": "2020-08-03T02:48:17.775Z"
+  }
+},{
+  "_id": {
+    "$oid": "5f1256e95640dcf639a3a3cc"
+  },
+  "maBST": "BST01",
+  "url": "",
+  "alt": "Đại học Khoa Học Tự Nhiên TP HCM",
+  "src": "uploads/cntt/khtn.png",
+  "trangThai": 1,
+  "updatedAt": {
+    "$date": "2020-08-03T02:49:50.200Z"
+  }
+},{
+  "_id": {
+    "$oid": "5f1256e95640dcf639a3a3c3"
+  },
+  "maBST": "BST01",
+  "url": "",
+  "alt": "Đại học Bách Khoa TP HCM",
+  "src": "uploads/cntt/bk.png",
+  "trangThai": 1,
+  "updatedAt": {
+    "$date": "2020-08-03T02:45:58.755Z"
+  }
+},{
+  "_id": {
+    "$oid": "5f26621b4e92a146b832f7e7"
+  },
+  "maBST": "BST01",
+  "url": "",
+  "src": "uploads/cntt/spkt.png",
+  "alt": "Đại học Sư phạm Kỹ thuật",
+  "trangThai": 1,
+  "updatedAt": {
+    "$date": "2020-08-03T02:50:54.403Z"
+  }
+},{
+  "_id": {
+    "$oid": "5f2662704e92a146b832f7e8"
+  },
+  "maBST": "BST01",
+  "url": "",
+  "src": "uploads/cntt/Logo_UIT_In.jpg",
+  "alt": "Đại học Công nghệ thông tin",
+  "trangThai": 1,
+  "updatedAt": {
+    "$date": "2020-08-03T02:55:54.938Z"
+  }
+},{
+  "_id": {
+    "$oid": "5f26796a6be16037e80997d8"
+  },
+  "maBST": "BST02",
+  "url": "",
+  "src": "uploads/cntt/sv1.jpg",
+  "alt": "Sinh Vien 1",
+  "trangThai": 1,
+  "updatedAt": {
+    "$date": "2020-08-03T02:59:49.158Z"
+  }
+},{
+  "_id": {
+    "$oid": "5f26797e6be16037e80997d9"
+  },
+  "maBST": "BST02",
+  "url": "",
+  "src": "uploads/cntt/sv2.jpg",
+  "alt": "Sinh Vien 2",
+  "trangThai": 1,
+  "updatedAt": {
+    "$date": "2020-08-03T03:00:03.868Z"
+  }
+},{
+  "_id": {
+    "$oid": "5f2679a46be16037e80997da"
+  },
+  "maBST": "BST02",
+  "url": "",
+  "src": "uploads/cntt/sv3.jpg",
+  "alt": "Sinh Vien 3",
+  "trangThai": 1,
+  "updatedAt": {
+    "$date": "2020-08-03T03:00:17.706Z"
+  }
+},{
+  "_id": {
+    "$oid": "5f2679bc6be16037e80997db"
+  },
+  "maBST": "BST02",
+  "url": "",
+  "src": "uploads/cntt/sv4.jpg",
+  "alt": "SinhVien 4",
+  "trangThai": 1,
+  "updatedAt": {
+    "$date": "2020-08-03T03:00:30.533Z"
+  }
+},{
+  "_id": {
+    "$oid": "5f2679db6be16037e80997dc"
+  },
+  "maBST": "BST02",
+  "url": "",
+  "src": "uploads/cntt/sv5.jpg",
+  "alt": "Sinh Vien 5",
+  "trangThai": 1,
+  "updatedAt": {
+    "$date": "2020-08-03T03:00:45.913Z"
+  }
+},{
+  "_id": {
+    "$oid": "5f26c317bc14f7433c75c93e"
+  },
+  "maBST": "BST02",
+  "url": "",
+  "src": "uploads/cntt/sv1.jpg",
+  "alt": "SinhVien 6",
+  "trangThai": 1,
+  "updatedAt": {
+    "$date": "2020-08-03T02:59:33.663Z"
+  }
+},{
+  "_id": {
+    "$oid": "5f26d1788baec043085aa24b"
+  },
+  "maBST": "BST01",
+  "url": "",
+  "src": null,
+  "alt": "sv7",
+  "trangThai": 0,
+  "updatedAt": {
+    "$date": "2020-08-02T15:22:15.240Z"
+  }
+},{
+  "_id": {
+    "$oid": "5f26d432627b59246055f6ff"
+  },
+  "maBST": "BST01",
+  "url": "",
+  "src": null,
+  "alt": "sv8",
+  "trangThai": 0,
+  "updatedAt": {
+    "$date": "2020-08-02T15:22:13.148Z"
+  }
+},{
+  "_id": {
+    "$oid": "5f26d433627b59246055f700"
+  },
+  "maBST": "BST01",
+  "url": "",
+  "src": null,
+  "alt": "sv8",
+  "trangThai": 0,
+  "updatedAt": {
+    "$date": "2020-08-02T15:22:11.323Z"
+  }
+},{
+  "_id": {
+    "$oid": "5f26d659ab40eb319436f1a1"
+  },
+  "maBST": "",
+  "url": "",
+  "src": null,
+  "alt": "sv9",
+  "trangThai": 0,
+  "updatedAt": {
+    "$date": "2020-08-02T15:22:09.433Z"
+  }
+},{
+  "_id": {
+    "$oid": "5f26d8c0e93f173a48c44786"
+  },
+  "maBST": "BST01",
+  "url": "",
+  "src": null,
+  "alt": "sv9",
+  "trangThai": 0,
+  "updatedAt": {
+    "$date": "2020-08-02T15:22:07.855Z"
+  }
+},{
+  "_id": {
+    "$oid": "5f26d8ece93f173a48c44787"
+  },
+  "maBST": "BST01",
+  "url": "",
+  "src": null,
+  "alt": "sv10",
+  "trangThai": 0,
+  "updatedAt": {
+    "$date": "2020-08-02T15:22:05.920Z"
+  }
+},{
+  "_id": {
+    "$oid": "5f26da14e3046622409a3713"
+  },
+  "maBST": "BST01",
+  "url": "",
+  "src": "uploads/cntt/2222.jpg",
+  "alt": "sv10",
+  "trangThai": 0,
+  "updatedAt": {
+    "$date": "2020-08-03T02:59:20.836Z"
+  }
+},{
+  "_id": {
+    "$oid": "5f26ddfae09ed540ece178e2"
+  },
+  "maBST": "BST02",
+  "url": "",
+  "src": "uploads/cntt/2222.jpg",
+  "alt": "sv10",
+  "trangThai": 0,
+  "updatedAt": {
+    "$date": "2020-08-03T02:59:18.805Z"
+  }
+},{
+  "_id": {
+    "$oid": "5f26de4fe09ed540ece178e3"
+  },
+  "maBST": "BST02",
+  "url": "",
+  "src": "uploads/cntt//2222.jpg",
+  "alt": "sv12",
+  "trangThai": 0,
+  "updatedAt": {
+    "$date": "2020-08-03T02:59:14.237Z"
+  }
+},{
+  "_id": {
+    "$oid": "5f27a88d4386c53cf8e6dc0c"
+  },
+  "maBST": "BST02",
+  "url": "",
+  "src": "uploads/cntt/sv2.jpg",
+  "alt": "SV1",
+  "trangThai": 1,
+  "updatedAt": {
+    "$date": "2020-08-03T06:02:53.637Z"
+  }
+}]

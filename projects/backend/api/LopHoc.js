@@ -38,7 +38,7 @@ exports.getAll = async (req, res) => {
 };
 exports.getOne = async (req, res) => {
   try {
-    const khoaBoMon = await LopHoc.findOne({ _id: req.params.id });
+    const khoaBoMon = await LopHoc.findOne({ maLopHoc: req.params.id });
     res.json(khoaBoMon);
   } catch (error) {
     res.json(error);
@@ -106,7 +106,7 @@ exports.update = async (req, res) => {
       res.status(422).json(err.errors);
     }
     const updateKhoa = await LopHoc.updateOne(
-      { _id: req.params.id },
+      { maLopHoc: req.params.id },
       {
         $set: setLopHoc(req),
       }

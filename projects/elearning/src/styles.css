@@ -335,9 +335,10 @@ body {
       left: 0;
       z-index: 0;
   }
-  .navbar-content span{
+  .navbar-content span {
     font-size: 15px;
-  }
+    padding-top: 20px;
+}
   .navbar-content .bg__caothang{
     font-size: 15px;
   }
