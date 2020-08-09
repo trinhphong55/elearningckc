@@ -33,7 +33,7 @@ export class PageTrangchuComponent implements OnInit {
   maKhoa: any = 1;
   test: any
   maGiaoVien: string;
-  dsGiaoVienBymaGv: any ;
+  dsGiaoVienBymaGv: any;
 
   constructor(
     private lopHocPhanService: LopHocPhanService,
@@ -42,7 +42,7 @@ export class PageTrangchuComponent implements OnInit {
     private apiService: ApiService,
     private SinhVienService: SinhVienService,
     private cookie: CookieService,
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.danhSachLop();
@@ -54,6 +54,7 @@ export class PageTrangchuComponent implements OnInit {
     this.danhSachGVLHP();
     this.danhSachLopGV();
     this.filterDsLop;
+    
   }
   // lay cookie
   layCookie() {
@@ -62,7 +63,6 @@ export class PageTrangchuComponent implements OnInit {
     this.hocKi = this.cookie.get("hocKi")
     this.Doituong = this.cookie.get("role");
     this.thongtin = this.cookie.get("displayName");
-    
   }
   ///hien thi ds lop
   danhSachLop() {
@@ -125,16 +125,12 @@ export class PageTrangchuComponent implements OnInit {
 
   ///hien thi dsgv
   danhSachLopGV() {
-    this.layCookie();
-
     if (this.Doituong == 'GV') {
       try {
-        this.thongtin = this.cookie.get("displayName")+'@caothang.edu.vn';
-        console.log(this.thongtin)
+        this.thongtin = this.cookie.get("displayName") + '@caothang.edu.vn';
         this.lopHocPhanService.getLopHocPhanbyemail(this.thongtin).subscribe(
           dsGiaoVienBymaGv => {
             this.dsGiaoVienBymaGv = dsGiaoVienBymaGv;
-            console.log(this.dsGiaoVienBymaGv)
             this.filterDsLop = []
             this.dsLop.forEach(lop => {
               this.dsGiaoVienBymaGv.find(p => {
@@ -147,7 +143,7 @@ export class PageTrangchuComponent implements OnInit {
                   this.filterDsLop = this.dsGiaoVienBymaGv
                 }
               })
-                    
+             
             });
           },
           (error) => {
@@ -166,13 +162,15 @@ export class PageTrangchuComponent implements OnInit {
     if (this.Doituong == 'SV') {
       this.lopHocPhanService.getLopHocPhanbyMssv(this.thongtin).subscribe(
         dsLopHP => {
+          this.layCookie();
+        
           this.dsLopHP = dsLopHP;
           this.filterDsLop = []
           this.filterDsLop = this.dsLopHP.filter(x => {
-            if (x.hocKi == this.hocKi)
-              return x;
-          })
-          this.danhSachLopHocPhan()
+              if (x.hocKi == this.hocKi) {
+                return x;
+              }
+            })
         },
         (error) => {
           console.log(error)
@@ -180,5 +178,4 @@ export class PageTrangchuComponent implements OnInit {
     }
   }
   //hien thi danh sach danh sach lop
-
 }
