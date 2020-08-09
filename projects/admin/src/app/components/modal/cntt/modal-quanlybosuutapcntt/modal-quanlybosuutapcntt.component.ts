@@ -26,7 +26,10 @@ export class ModalQuanlybosuutapcnttComponent implements OnInit {
   onFileSelected(event) {
     if (event.target.files.length > 0) {
       this.imgValue = event.target.files[0];
-    }
+    };
+    if(event.target.files[0].size > 2097152){
+      alert("File yêu cầu nhỏ hơn 2MB");
+   };
   }
 
   public boSuuTapForm = new FormGroup({
