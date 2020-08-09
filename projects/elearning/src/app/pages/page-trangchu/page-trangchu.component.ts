@@ -33,17 +33,8 @@ export class PageTrangchuComponent implements OnInit {
   maKhoa: any = 1;
   test: any
   maGiaoVien: string;
-  dsGiaoVienBymaGv: any = [];
-  // formDanhSachLop = new FormGroup({
-  //   maLopHoc: new FormControl(),
-  // })
-  lophocs = [{ id: 1, name: 'Cơ sử dữ liệu', status: true },
-  { id: 2, name: 'Nhập môn lập trình', status: true },
-  { id: 3, name: 'Cấu trúc dữ liệu', status: true },
-  { id: 4, name: 'Toán rời rạc', status: true },
-  { id: 5, name: 'Lập trình laravel', status: true },
-  { id: 6, name: 'lập trình HDT', status: true }
-  ];
+  dsGiaoVienBymaGv: any ;
+
   constructor(
     private lopHocPhanService: LopHocPhanService,
     private lopHocService: LopHocService,
@@ -138,7 +129,7 @@ export class PageTrangchuComponent implements OnInit {
 
     if (this.Doituong == 'GV') {
       try {
-        this.thongtin = this.cookie.get("displayName")+'caothang.edu.vn';
+        this.thongtin = this.cookie.get("displayName")+'@caothang.edu.vn';
         console.log(this.thongtin)
         this.lopHocPhanService.getLopHocPhanbyemail(this.thongtin).subscribe(
           dsGiaoVienBymaGv => {
@@ -156,7 +147,7 @@ export class PageTrangchuComponent implements OnInit {
                   this.filterDsLop = this.dsGiaoVienBymaGv
                 }
               })
-                    this.danhSachLopGV()
+                    
             });
           },
           (error) => {
