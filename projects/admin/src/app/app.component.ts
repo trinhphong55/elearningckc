@@ -13,19 +13,8 @@ export class AppComponent implements OnInit {
   }
 
   // Cờ đã đăng nhập
-<<<<<<< HEAD
-  // isLogged: Boolean = true;
-  isLogged: Boolean = true;
-
-  // Account
-  account = {
-    email: 'admin',
-    password: '123',
-  };
-=======
   isLogged: Boolean = true;
   // isLogged: Boolean = false;
->>>>>>> master
 
   loginForm = new FormGroup({
     email: new FormControl(),
