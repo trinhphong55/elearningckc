@@ -10,7 +10,7 @@ const baidangfbSchema = new Schema({
     },
     postID: {
       type: String,
-      unique:true
+      
   
     },
     link: {
@@ -28,6 +28,10 @@ const baidangfbSchema = new Schema({
         
     
     }, 
+    maLoai:{
+        type:Number,
+        reqired: true
+    },
     loai: {
         type: String,
         required: true

@@ -20,7 +20,10 @@ const pagefbSchema = new Schema({
       required: true
 
     },
+<<<<<<< HEAD
 
+=======
+>>>>>>> 036b382d084b4ab8ca50a866e9738ac3870995e0
     trangThai: {
       type: Number,
       default: 1,
