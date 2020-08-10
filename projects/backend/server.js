@@ -36,11 +36,15 @@ mongoose.connection.once("open", () => {
 
 // enable CORS
 app.use(cors());
+// app.use(cors(
+//   { credentials: true, origin: "http://localhost:4400" },
+// ));
+
 
 // Make sure you place body-parser before your CRUD handlers!
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-// app.use(morgan("dev"));
+app.use(morgan("dev"));
 
 // public images
 app.use("/uploads/cntt", express.static(path.join(__dirname, "uploads/cntt")));
@@ -54,21 +58,3 @@ app.get("/", (req, res) => {
 const server = https.createServer(httpsOptions, app).listen(PORT, () => {
   console.log("Backend API running at port " + PORT);
 });
-
-// // cntt
-// mongoose.connect(
-//   "mongodb://127.0.0.1:27017/ttth",
-//   {
-//     useNewUrlParser: true,
-//     useFindAndModify: false,
-//     useCreateIndex: true,
-//     useUnifiedTopology: true,
-//   },
-//   function (err, db) {
-//     if (err) {
-//       console.log("fail to connect db");
-//     } else {
-//       console.log("db connected by cntt");
-//     }
-//   }
-// );

@@ -14,7 +14,8 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "allowedCommonJsDependencies": [
-              "xlsx"
+              "xlsx",
+              "file-saver"
             ],
             "outputPath": "dist/admin",
             "index": "projects/admin/src/index.html",
@@ -32,6 +33,7 @@
               "node_modules/swiper/swiper-bundle.min.css",
               "node_modules/select2/dist/css/select2.min.css",
               "node_modules/datatables.net-dt/css/jquery.dataTables.css",
+              "node_modules/datatables.net-buttons-dt/css/buttons.dataTables.css",
               "node_modules/datatables.net-responsive-dt/css/responsive.dataTables.css",
               "node_modules/@fancyapps/fancybox/dist/jquery.fancybox.min.css",
               "node_modules/@fortawesome/fontawesome-free/css/all.css",
@@ -46,10 +48,17 @@
               "node_modules/swiper/swiper-bundle.min.js",
               "node_modules/select2/dist/js/select2.min.js",
               "node_modules/datatables.net/js/jquery.dataTables.js",
+              "node_modules/jszip/dist/jszip.js",
+              "node_modules/datatables.net-buttons/js/dataTables.buttons.js",
+              "node_modules/datatables.net-buttons/js/buttons.colVis.js",
+              "node_modules/datatables.net-buttons/js/buttons.flash.js",
+              "node_modules/datatables.net-buttons/js/buttons.html5.js",
+              "node_modules/datatables.net-buttons/js/buttons.print.js",
               "node_modules/datatables.net-responsive/js/dataTables.responsive.js",
               "node_modules/@fancyapps/fancybox/dist/jquery.fancybox.min.js",
               "node_modules/vanilla-lazyload/dist/lazyload.min.js",
-              "projects/admin/src/assets/js/main.min.js"
+              "projects/admin/src/assets/js/main.min.js",
+              "node_modules/apexcharts/dist/apexcharts.min.js"
             ]
           },
           "configurations": {
@@ -414,6 +423,7 @@
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/swiper/swiper-bundle.min.css",
+              "node_modules/select2/dist/css/select2.min.css",
               "node_modules/aos/dist/aos.css",
               "node_modules/@fortawesome/fontawesome-free/css/all.css",
               "projects/ttth/src/assets/css/fontface.css",
@@ -425,6 +435,7 @@
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
               "node_modules/aos/dist/aos.js",
+              "node_modules/select2/dist/js/select2.min.js",
               "node_modules/swiper/swiper-bundle.min.js",
               "projects/ttth/src/assets/js/myscript.js"
 

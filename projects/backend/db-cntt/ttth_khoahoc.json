@@ -4,7 +4,7 @@
   },
   "tenkhoahoc": "Đồ họa truyển thông",
   "image": "https://localhost:4100/uploads/cntt/ctdt1.png",
-  "makhoahoc": "#",
+  "makhoahoc": "KH1",
   "noidung": "<p>#</p>",
   "trangthai": true,
   "nguoitao": "hieu",
@@ -12,15 +12,18 @@
   "created_at": {
     "$date": "2020-08-01T08:45:32.825Z"
   },
-  "updated_at": null,
-  "__v": 0
+  "updated_at": {
+    "$date": "2020-08-02T16:52:34.153Z"
+  },
+  "__v": 0,
+  "color": "#706D3C"
 },{
   "_id": {
     "$oid": "5f252bcb6b251018c8a9f1a9"
   },
   "tenkhoahoc": "Thiết kế website",
   "image": "https://localhost:4100/uploads/cntt/ctdt2.png",
-  "makhoahoc": "#",
+  "makhoahoc": "KH2",
   "noidung": "<p>#</p>",
   "trangthai": true,
   "nguoitao": "hieu",
@@ -28,15 +31,18 @@
   "created_at": {
     "$date": "2020-08-01T08:46:03.893Z"
   },
-  "updated_at": null,
-  "__v": 0
+  "updated_at": {
+    "$date": "2020-08-02T16:52:44.567Z"
+  },
+  "__v": 0,
+  "color": "#E65527"
 },{
   "_id": {
     "$oid": "5f252be26b251018c8a9f1aa"
   },
   "tenkhoahoc": "Lập trình và CSDL",
   "image": "https://localhost:4100/uploads/cntt/ctdt3.png",
-  "makhoahoc": "#",
+  "makhoahoc": "KH3",
   "noidung": "<p>#</p>",
   "trangthai": true,
   "nguoitao": "hieu",
@@ -44,15 +50,18 @@
   "created_at": {
     "$date": "2020-08-01T08:46:26.128Z"
   },
-  "updated_at": null,
-  "__v": 0
+  "updated_at": {
+    "$date": "2020-08-02T08:18:10.006Z"
+  },
+  "__v": 0,
+  "color": "#37A5B3"
 },{
   "_id": {
     "$oid": "5f252c57542e3a1598da5219"
   },
   "tenkhoahoc": "Lập trình di động",
   "image": "https://localhost:4100/uploads/cntt/ctdt4.png",
-  "makhoahoc": "#",
+  "makhoahoc": "KH4",
   "noidung": "<p>#</p>",
   "trangthai": true,
   "nguoitao": "hieu",
@@ -60,15 +69,18 @@
   "created_at": {
     "$date": "2020-08-01T08:48:23.926Z"
   },
-  "updated_at": null,
-  "__v": 0
+  "updated_at": {
+    "$date": "2020-08-02T08:03:46.052Z"
+  },
+  "__v": 0,
+  "color": "#363948"
 },{
   "_id": {
     "$oid": "5f252c61542e3a1598da521a"
   },
   "tenkhoahoc": "Thiết kế giao diện",
   "image": "https://localhost:4100/uploads/cntt/ctdt5.png",
-  "makhoahoc": "#",
+  "makhoahoc": "KH5",
   "noidung": "<p>#</p>",
   "trangthai": true,
   "nguoitao": "hieu",
@@ -76,15 +88,18 @@
   "created_at": {
     "$date": "2020-08-01T08:48:33.951Z"
   },
-  "updated_at": null,
-  "__v": 0
+  "updated_at": {
+    "$date": "2020-08-02T08:03:55.897Z"
+  },
+  "__v": 0,
+  "color": "#716F84"
 },{
   "_id": {
     "$oid": "5f252c6c542e3a1598da521b"
   },
   "tenkhoahoc": "Mạng máy tính",
   "image": "https://localhost:4100/uploads/cntt/ctdt6.png",
-  "makhoahoc": "#",
+  "makhoahoc": "MMT",
   "noidung": "<p>#</p>",
   "trangthai": true,
   "nguoitao": "hieu",
@@ -92,8 +107,11 @@
   "created_at": {
     "$date": "2020-08-01T08:48:44.892Z"
   },
-  "updated_at": null,
-  "__v": 0
+  "updated_at": {
+    "$date": "2020-08-05T16:29:30.984Z"
+  },
+  "__v": 0,
+  "color": "#D5BC3A"
 },{
   "_id": {
     "$oid": "5f252c75542e3a1598da521c"
@@ -108,8 +126,11 @@
   "created_at": {
     "$date": "2020-08-01T08:48:53.628Z"
   },
-  "updated_at": null,
-  "__v": 0
+  "updated_at": {
+    "$date": "2020-08-02T08:04:15.501Z"
+  },
+  "__v": 0,
+  "color": "#1D6285"
 },{
   "_id": {
     "$oid": "5f252c7d542e3a1598da521d"
@@ -124,8 +145,11 @@
   "created_at": {
     "$date": "2020-08-01T08:49:01.863Z"
   },
-  "updated_at": null,
-  "__v": 0
+  "updated_at": {
+    "$date": "2020-08-02T08:04:26.635Z"
+  },
+  "__v": 0,
+  "color": "#86B3BB"
 },{
   "_id": {
     "$oid": "5f252c86542e3a1598da521e"
@@ -140,8 +164,11 @@
   "created_at": {
     "$date": "2020-08-01T08:49:10.350Z"
   },
-  "updated_at": null,
-  "__v": 0
+  "updated_at": {
+    "$date": "2020-08-02T08:04:40.130Z"
+  },
+  "__v": 0,
+  "color": "#CA58D2"
 },{
   "_id": {
     "$oid": "5f252c98542e3a1598da521f"
@@ -156,8 +183,11 @@
   "created_at": {
     "$date": "2020-08-01T08:49:28.649Z"
   },
-  "updated_at": null,
-  "__v": 0
+  "updated_at": {
+    "$date": "2020-08-02T08:04:49.653Z"
+  },
+  "__v": 0,
+  "color": "#f47e01"
 },{
   "_id": {
     "$oid": "5f252cb6542e3a1598da5220"
@@ -172,8 +202,11 @@
   "created_at": {
     "$date": "2020-08-01T08:49:58.581Z"
   },
-  "updated_at": null,
-  "__v": 0
+  "updated_at": {
+    "$date": "2020-08-02T08:05:03.592Z"
+  },
+  "__v": 0,
+  "color": "#0082c8"
 },{
   "_id": {
     "$oid": "5f252cd4542e3a1598da5221"
@@ -188,6 +221,9 @@
   "created_at": {
     "$date": "2020-08-01T08:50:28.205Z"
   },
-  "updated_at": null,
-  "__v": 0
+  "updated_at": {
+    "$date": "2020-08-02T08:05:11.990Z"
+  },
+  "__v": 0,
+  "color": "#363948"
 }]

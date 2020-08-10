@@ -23,9 +23,10 @@
         <span>Đổi mật khẩu</span>
       </a>
       <hr class="my-1" />
-      <a [routerLink]="['/']" class="header_dropdown__item">
+      <button (click)="onLogout()" class="header_dropdown__item">
         <span class="mdi mdi-logout-variant mr-2"></span>
-        <span>Đăng xuất</span></a>
+        <span>Đăng xuất</span>
+      </button>
     </div>
   </div>
 </header>
@@ -48,7 +49,13 @@
         </a>
       </li>
       <li class="offcanvas_nav__item">
-        <a class="offcanvas_nav__link" [routerLink]="[{ outlets: { primary: ['hoso'], navbar: ['hoso'] } }]">
+        <a class="offcanvas_nav__link" [routerLink]="[{ outlets: { primary: ['hososv'], navbar: ['hososv'] } }]">
+          <span class="offcanvas_icons fas fa-user"></span>
+          <span class="text">Trang cá nhân</span>
+        </a>
+      </li>
+      <li class="offcanvas_nav__item">
+        <a class="offcanvas_nav__link" [routerLink]="[{ outlets: { primary: ['hosogv'], navbar: ['hosogv'] } }]">
           <span class="offcanvas_icons fas fa-user"></span>
           <span class="text">Trang cá nhân</span>
         </a>

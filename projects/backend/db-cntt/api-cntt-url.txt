@@ -1,0 +1,11 @@
+==== cnttTinTuc ====
+Danh mục và loại bài viết: https://localhost:4100/api/cnttTinTuc/DM02/LBV02
+Danh mục: https://localhost:4100/api/cnttTinTuc/danhmuc=DM02
+Loại bài viết: https://localhost:4100/api/cnttTinTuc/loaibaiviet=LBV02
+
+==== Trang chủ: Vị trí hiển thị ====
+Bài viết quan trọng: https://localhost:4100/api/cntt/baivietquantrong
+Bài viết việc làm: https://localhost:4100/api/cntt/cohoivieclam
+Bài viết giới thiệu: https://localhost:4100/api/cntt/gioithieungan
+Bài viết nổi bật: https://localhost:4100/api/cntt/baivietnoibat
+Bài viết giới thiệu: https://localhost:4100/api/cntt/baivietmoinhat

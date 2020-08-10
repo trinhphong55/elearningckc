@@ -1,0 +1,100 @@
+.container-fluid{
+    margin-top: 30px;
+}
+.style-border{
+    border: solid 0.5px #007b83;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+.scrollable{
+  height: 400px;
+  overflow-y:scroll;
+}
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background:#007b83;
+  border-radius: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background:#007b83;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #007b83;
+}
+
+.style-chitietcotdiem{
+  cursor: pointer;
+  color: #007b83;
+}
+.table-scroll {
+    position: relative;
+    max-width: 1300px;
+    margin: auto;
+    overflow: hidden;
+}
+.scrollable{
+    height: 400px;
+    overflow-y:scroll;
+  }
+
+.table-scroll table {
+	width:100%;
+	margin:auto;
+	border-collapse:separate;
+	border-spacing:0;
+}
+.table-scroll th, .table-scroll td {
+	padding:5px 10px;
+
+	background:#fff;
+	white-space:nowrap;
+	vertical-align:top;
+}
+.table-scroll thead, .table-scroll tfoot {
+	background:#f9f9f9;
+}
+.style-title{
+    color: #007b83;
+  }
+  thead{
+    color: #007b83;
+  }
+.clone thead, .clone tfoot{background:transparent;}
+::-webkit-scrollbar{
+  height: 6px;
+  width: 4px;
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:horizontal{
+  background: #007b83;
+  border-radius: 10px;
+}
+@media only screen and (max-width: 600px){
+  .container-fluid{
+    margin-top: 90px;
+}
+}

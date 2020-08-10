@@ -56,6 +56,15 @@
     position: relative;
     margin-top: 10px;
 }
+.bieumau a{
+    -webkit-box-flex: 1;
+    box-flex: 1;
+    -webkit-flex-grow: 1;
+    flex-grow: 1;
+    overflow: hidden;
+    text-decoration: none;
+    outline: none;
+  }
 .thongtin .tt-icon div i{
    font-size: 1.3rem;
    color: white;

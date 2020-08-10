@@ -20,16 +20,6 @@
             </div>
             <div class="col-3">
               <div class="form-group">
-                <label>Tên tiếng anh</label>
-                <input class="form-control" [(ngModel)]="selectedMonHoc.tenTiengAnh">
-              </div>
-              <div class="form-group">
-                <label>Tên tiếng anh viết tắt</label>
-                <input class="form-control"  [(ngModel)]="selectedMonHoc.tenVietTatTiengAnh">
-              </div>
-            </div>
-            <div class="col-3">
-              <div class="form-group">
                 <label>Loại môn học</label>
                 <select class="form-control" [(ngModel)]="selectedMonHoc.maLoaiMonHoc">
                   <option *ngFor="let lmh of dsLoaiMonHoc" [value]="lmh.maLoaiMonHoc" >{{ lmh.tenLoaiMonHoc }}</option>
@@ -78,8 +68,6 @@
               <th class="text-center" scope="col" style="max-width: 100px">Mã MH</th>
               <th scope="col">Tên môn học</th>
               <th scope="col">Tên viết tắt</th>
-              <th scope="col">Tên tiếng anh</th>
-              <th scope="col">Tên tiếng anh viết tắt</th>
               <th scope="col">Loại môn học</th>
               <th class="text-center" scope="col">
                 <span role="button" (click)="getMonHoc()" >
@@ -93,22 +81,16 @@
               <tr *ngFor="let monHoc of dsMonHoc | filter:searchMonHoc">
                 <!-- [class.selected]="monHoc.maMonHoc === selectedMonHoc.maMonHoc" -->
                 <td style="max-width: 100px">
-                  <input class="form-control" disabled [value]="monHoc.maMonHoc">
+                  <div class="text-left">{{ monHoc.maMonHoc }}</div>
                 </td>
                 <td>
                   <input class="form-control" disabled [value]="monHoc.tenMonHoc">
                 </td>
                 <td>
-                  <input class="form-control" disabled [value]="monHoc.tenVietTat">
+                  <div class="text-left">{{ monHoc.tenVietTat }}</div>
                 </td>
                 <td>
-                  <input class="form-control" disabled [value]="monHoc.tenTiengAnh">
-                </td>
-                <td>
-                  <input class="form-control" disabled [value]="monHoc.tenVietTatTiengAnh">
-                </td>
-                <td>
-                  <input class="form-control" disabled [value]="monHoc.maLoaiMonHoc">
+                  <div class="text-left">{{ monHoc.maLoaiMonHoc }}</div>
                 </td>
                 <td class="text-center">
                   <span (click)="onSelect(monHoc.maMonHoc)"

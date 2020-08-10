@@ -393,7 +393,7 @@ export class ModalChitieudaotaoComponent implements OnInit {
   private getMaNTenLopHoc(): Object[] {
     let arrMaNTen = [];
     this.lopTams.forEach((lop) => {
-      let temp = { tenLop: lop.tenLop, maLopHoc: lop.maLopHoc };
+      let temp = { tenVietTat: lop.tenVietTat, maLopHoc: lop.maLopHoc };
       arrMaNTen.push(temp);
     });
     return arrMaNTen;

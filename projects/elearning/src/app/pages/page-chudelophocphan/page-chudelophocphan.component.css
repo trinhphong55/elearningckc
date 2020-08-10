@@ -189,6 +189,9 @@ button{
     background: #00CC99; border-radius: 50px;margin-right: 10px;
 }
 @media only screen and (max-width: 600px){
+    .container-fluid {
+        margin-top: 1020px;
+    }
     .row .col-md-4 button{
         background: #007b83;
         padding-left: 20px;
