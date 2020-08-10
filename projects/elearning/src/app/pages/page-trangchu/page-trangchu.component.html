@@ -1,3 +1,8 @@
+<nav id="timkiem">
+    <div class="search"style="text-align: center;margin-top:2%;">
+        <button type="button" class="btn btn-primary" (click)="danhSachLopHocPhan()" (click)=" danhSachLopGV()">Tìm Kiếm</button>
+    </div>
+  </nav>
 <div class="lophoc-container">
     <div class="list-lophoc">
         <div class="list-lophoc-item" *ngFor="let l of filterDsLop" (change)="danhSachLopHocPhan()">
@@ -52,8 +57,8 @@
                 <div class="list-bt">
                     <div class="name-teacher">
                         <div>
-                            <ng-template *ngFor="let hp of dsGiaoVienLopHP" [ngIf]="l.maLopHocPhan== hp.maLopHocPhan">
-                                <ng-template *ngFor="let gv of dsGiaoVien" [ngIf]="gv.maGiaoVien==hp.maGiaoVien">
+                            <ng-template *ngFor="let hp of dsGVLHP" [ngIf]="l.maLopHocPhan== hp.maLopHocPhan">
+                                <ng-template *ngFor="let gv of dsTenGv" [ngIf]="gv.maGiaoVien==hp.maGiaoVien">
                                     <span> {{gv.ho}} {{gv.ten}}</span>
                                 </ng-template>
                             </ng-template>

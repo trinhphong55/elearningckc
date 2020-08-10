@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import {
   MatDialog,
   MatDialogRef,
@@ -12,20 +13,16 @@ import {
   styleUrls: ['./navbar-hocphan.component.css'],
 })
 export class NavbarHocphanComponent implements OnInit {
-
-  data="";
-  constructor(private router :ActivatedRoute,private route:Router) { }
-  malophocphan:any;
-  lophocphan:string;
-  baigiang:string;
-  moinguoi:string;
-  cotdiem:string;
-  huongdan:string;
-  baitapgv:string;
-  chamdiem:string;
-  tongdiem:string;
-
-    
+malophocphan:any;
+lophocphan:string;
+baigiang:string;
+moinguoi:string;
+cotdiem:string;
+chamdiem:string;
+tongdiem:string;
+quyen:string="";
+doiTuong:any;
+  constructor(   private router: ActivatedRoute, private route: Router,  private cookie: CookieService,) { }
 
   ngOnInit(): void {
     this.malophocphan = this.router.snapshot.paramMap.get('id');
@@ -33,11 +30,17 @@ export class NavbarHocphanComponent implements OnInit {
     this.baigiang="/baigiang/"+this.malophocphan;
     this.moinguoi="/moinguoi/"+this.malophocphan;
     this.cotdiem="/cotdiem/"+this.malophocphan;
-    this.huongdan="/huongdan/"+this.malophocphan;
-    this.baitapgv="/baitapgv/"+this.malophocphan;
     this.chamdiem="/chamdiem/"+this.malophocphan;
     this.tongdiem="/tongdiem/"+this.malophocphan;
-    
-    this.data=this.router.snapshot.paramMap.get('id');
+
+    this.quyenXemDiem()
+  }
+  quyenXemDiem()
+  {
+    this.doiTuong = this.cookie.get("role");
+    if(this.doiTuong== 'SV')
+    {
+      this.quyen='none'
+    }
   }
 }
