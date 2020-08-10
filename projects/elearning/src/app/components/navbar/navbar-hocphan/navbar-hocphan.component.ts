@@ -18,6 +18,8 @@ export class NavbarHocphanComponent implements OnInit {
   cotdiem:string;
   huongdan:string;
   baitapgv:string;
+  chamdiem:string;
+  tongdiem:string;
 
     
 
@@ -29,6 +31,8 @@ export class NavbarHocphanComponent implements OnInit {
     this.cotdiem="/cotdiem/"+this.malophocphan;
     this.huongdan="/huongdan/"+this.malophocphan;
     this.baitapgv="/baitapgv/"+this.malophocphan;
+    this.chamdiem="/chamdiem/"+this.malophocphan;
+    this.tongdiem="/tongdiem/"+this.malophocphan;
     
     this.data=this.router.snapshot.paramMap.get('id');
   }
