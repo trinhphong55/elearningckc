@@ -117,14 +117,14 @@
     <div class="col-md-4">
       <div class="row">
         <div class="col-md-10 style-element">
-          <div class="el-header"   >
+          <div class="el-header"  *ngFor="let ten of dsBaiTap" >
             <h5>Bài tập của bạn</h5>
-            <ng-template *ngFor="let ten of dsBaiTap" [ngIf]="ten.chuDe==''">
+            <!-- <ng-template span [ngIf]="ten.chuDe==''">
               <span>Chưa nộp</span>
             </ng-template>
-            <ng-template *ngFor="let ten of dsBaiTap" [ngIf]="ten.chuDe!=''">
+            <ng-template span [ngIf]="ten.chuDe!=''">
               <span>Đã nộp</span>
-            </ng-template>
+            </ng-template> -->
           </div>
           <div class="el-content">
             <table class="table">
@@ -138,7 +138,7 @@
             </table>
             <table class="table">
               <tr *ngFor="let item of uploader.queue">
-                <td><strong>{{ item?.file?.name }}</strong></td>
+                <td><strong>{{ item?.file?.name }}{{phong}}</strong></td>
                 <!-- <td *ngIf="uploader.options.isHTML5" nowrap>{{ item?.file?.size/1024/1024 | number:'.2' }} MB</td>
                 <td *ngIf="uploader.options.isHTML5">
                   <div class="progress" style="margin-bottom: 0;">
@@ -161,7 +161,9 @@
           <div class="el-danhau">
             <div class="col-md-2" style="margin-bottom: 40px">
           </div>
-            <button *ngFor="let item of uploader.queue" type="button" class="danhdau" (click)="themBaiTap()" (click)="item.remove()" >Đánh dấu là hoàn tất</button>
+          <div class="row" *ngIf="uploader?.queue?.length > 0">
+            <button type="button" class="danhdau" (click)="uploader.uploadAll()">Đánh dấu là hoàn tất</button>
+          </div>
           </div>
         </div>
         <div class="col-md-10 style-element">

@@ -2,10 +2,10 @@ var express = require("express");
 var _router = express.Router();
 var multer = require("multer");
 var path = require("path");
-const BaiTapSinhVien = require("../models//BaiTapSinhVien.model");
+const BaiTapSinhVien = require("../models/BaiTapSinhVien.model");
 
 
-const PATH = "./uploads/elearning/baitapsinhvien";
+const PATH = "./uploads/elearning/nopbaitap";
 
 var store = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -48,7 +48,7 @@ _router.get("/", async (req, res) => {
 ///BT THEO MHP
 _router.get("/:maSinhVien/:maBaiTap/baitap", async (req, res) => {
   try {
-    const baiTap = await BaiTapSinhVien.find({maSinhVien:req.params.maSinhVien,maBaiTap:req.params.maBaiTap});
+    const baiTap = await BaiTapSinhVien.find({maSinhVien:req.params.maSinhVien,maBaiTap:req.params.maBaiTap,trangThai:1});
     res.json(baiTap);
   } catch (error) {
     res.json(error);
@@ -57,16 +57,11 @@ _router.get("/:maSinhVien/:maBaiTap/baitap", async (req, res) => {
 
 // Add BaiTap
 _router.post("/", async (req, res) => {
+  console.log(req.body)
   let baitap = req.body;
   let nextNumber = 1;
   //get NextNumber
-  await BaiTapSinhVien.findOne({}, {}, { sort: { ngayTao: -1 } })
-    .exec()
-    .then((bt) => {
-      if (bt !== null) {
-        nextNumber = bt.maBaiTap + 1;
-      }
-    });
+
 
     BaiTapSinhVien.maBaiTap = nextNumber;
   const newBaiTap = new BaiTapSinhVien(baitap);
