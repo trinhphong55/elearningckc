@@ -12,6 +12,7 @@ const cnttHeader = require("./cnttHeader");
 const auth = require("./auth");
 const TKB = require("./TKB");
 const BaiTap = require("./BaiTap");
+const BaiTapSinhVien = require("./BaiTapSinhVien");
 
 const sinhVien = require("./sinh-vien");
 const Diemsinhvien = require("./diemsinhvien");
@@ -59,6 +60,7 @@ router.use("/tkb", TKB);
 
 //Elearning routes
 router.use("/baitap", BaiTap);
+router.use("/baitapSinhVien", BaiTapSinhVien);
 //cnttRoute
 router.use("/slideshow", cnttSlideShowRoutes);
 router.use("/cnttTinTuc", cnttTinTucRoute);

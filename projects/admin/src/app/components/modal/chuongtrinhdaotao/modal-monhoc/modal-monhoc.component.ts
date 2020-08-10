@@ -22,9 +22,10 @@ export class ModalMonhocComponent implements OnInit, OnChanges {
   dsMonHoc: MonHoc[];
   dsLoaiMonHoc: LoaiMonHoc[];
   selectedMonHoc: MonHoc;
+  trangThai: number = 1;
 
   getMonHoc() {
-    this.monhocService.getMonHoc().subscribe(data => {
+    this.monhocService.getMonHocbyTrangThai(this.trangThai).subscribe(data => {
       this.dsMonHoc = data;
     });
   }
@@ -47,6 +48,10 @@ export class ModalMonhocComponent implements OnInit, OnChanges {
   }
 
   postMonHoc() {
+    if (this.selectedMonHoc.tenMonHoc.trim() === "") {
+      alert('Oke fine, nhap thong tin mon hoc di ban ey');
+      return;
+    }
     this.monhocService.addMonHoc(this.selectedMonHoc).subscribe(status => {
       if (status.success) {
         alert(status.success);
@@ -56,7 +61,6 @@ export class ModalMonhocComponent implements OnInit, OnChanges {
         alert('them moi that bai');
         this.renewMonHoc();
       }
-
     });
   }
 
@@ -65,29 +69,59 @@ export class ModalMonhocComponent implements OnInit, OnChanges {
       alert('Chua chon mon hoc');
       return;
     }
-    this.monhocService.updateMonHoc(this.selectedMonHoc).subscribe(status => {
-      if (status.success) {
-        alert('Cap nhat thanh cong');
-        this.getMonHoc();
+    this.monhocService.updateMonHoc(this.selectedMonHoc).subscribe(res => {
+      if (res.status === 200) {
+        alert(res.message);
       } else {
-        alert('Cap nhat that bai');
+        alert('Error: ' + res.message);
         this.renewMonHoc();
       }
     });
   }
 
+  restoreMonHoc(maMonHoc: string) {
+    this.customConfirm("Phuc hoi mon hoc nay?", () => {
+      this.monhocService.setTrangThai(maMonHoc).subscribe(res => {
+        if (res.status === 200) {
+          this.getMonHoc();
+          alert(res.message);
+        } else {
+          alert(res.message);
+          this.renewMonHoc();
+        }
+      })
+    })
+  }
+
   deleteMonHoc(maMonHoc: string) {
-    this.monhocService.deleteMonHoc(maMonHoc).subscribe(status => {
-      if (status.error) {
-        alert(status.error);
-      } else {
-        this.getMonHoc();
-      }
-    });
+    this.customConfirm("May co chac muon xoa mon hoc nay?", () => {
+      this.monhocService.deleteMonHoc(maMonHoc).subscribe(res => {
+        if (res.status === 200) {
+          this.getMonHoc();
+          alert(res.message);
+        } else {
+          alert('Error: ' + res.message);
+        }
+      });
+    })
   }
 
   renewMonHoc() {
-    this.selectedMonHoc = { maMonHoc: "", tenMonHoc: "", maLoaiMonHoc: "LT", tenVietTat: ""};
+    this.selectedMonHoc = { maMonHoc: "", tenMonHoc: "", maLoaiMonHoc: "LT", tenVietTat: "" };
+  }
+
+  changeTrangThai() {
+    this.getMonHoc();
+    this.renewMonHoc();
+  }
+
+  customConfirm(message: string, oke: Function) {
+    let a = confirm(message);
+    if (a) {
+      oke();
+    } else {
+      return;
+    }
   }
 
   closeModal(id: string) {

@@ -7,65 +7,68 @@ import { GvlhpService } from '../../../../../admin/src/app/services/gvlhp.servic
 import { ApiService } from '../../../../../admin/src/app/services/api.service';
 import { SinhVienService } from '../../../../../admin/src/app/services//sinh-vien.service';
 import { CookieService } from 'ngx-cookie-service';
+import { GVLHP } from '../../../../../admin/src/app/interfaces/gvlhp.interface'
+import { from } from 'rxjs';
+import { publish } from 'rxjs/operators';
 @Component({
   selector: 'app-page-trangchu',
   templateUrl: './page-trangchu.component.html',
   styleUrls: ['./page-trangchu.component.css']
 })
 export class PageTrangchuComponent implements OnInit {
-  Doituong: any = 1;
+  Doituong: any;
+  thongtin: any;
   dsLop: any;
   dsLopHP: any = [];
   maLopHoc: string;
   maLopHocPhan: any;
   filterDsLop: any;
-  dsGiaoVien: any;
+  dsGiaoVien: any = [];
   dsGiaoVienLopHP: any;
+  dsTenGv: any;
+  dsGVLHP: any;
   dsSinhVien: any;
   maBac: any;
   hocKi: any = 1;
   maKhoa: any = 1;
-  test:any
-  maGiaoVien:any
-  // formDanhSachLop = new FormGroup({
-  //   maLopHoc: new FormControl(),
-  // })
-  lophocs = [{ id: 1, name: 'Cơ sử dữ liệu', status: true },
-  { id: 2, name: 'Nhập môn lập trình', status: true },
-  { id: 3, name: 'Cấu trúc dữ liệu', status: true },
-  { id: 4, name: 'Toán rời rạc', status: true },
-  { id: 5, name: 'Lập trình laravel', status: true },
-  { id: 6, name: 'lập trình HDT', status: true }
-  ];
+  test: any
+  maGiaoVien: string;
+  dsGiaoVienBymaGv: any;
+
   constructor(
     private lopHocPhanService: LopHocPhanService,
     private lopHocService: LopHocService,
     private gvlhpService: GvlhpService,
     private apiService: ApiService,
     private SinhVienService: SinhVienService,
-    private cookie: CookieService) { }
+    private cookie: CookieService,
+  ) {}
 
   ngOnInit(): void {
     this.danhSachLop();
     this.danhSachGV();
-    this.danhSachGVLHP();
     this.danhSachLopHocPhan();
     this.danhSachSinhVien();
     this.layCookie();
-    this.dsLopGiaoVien();
+    this.LaySachLopHocPhan();
+    this.danhSachGVLHP();
+    this.danhSachLopGV();
+    this.filterDsLop;
+    
   }
   // lay cookie
   layCookie() {
     this.maKhoa = this.cookie.get("khoa")
     this.maBac = this.cookie.get("bac")
     this.hocKi = this.cookie.get("hocKi")
+    this.Doituong = this.cookie.get("role");
+    this.thongtin = this.cookie.get("displayName");
   }
   ///hien thi ds lop
   danhSachLop() {
     this.lopHocService.getAll().subscribe(
       dsLop => {
         this.dsLop = dsLop;
-
       },
       (error) => {
         console.log(error);
@@ -83,84 +86,96 @@ export class PageTrangchuComponent implements OnInit {
         console.log(error);
       }
     );
-
-
   }
+  //danh sach lop hoc phan 
+  LaySachLopHocPhan() {
 
-  ///hien thi dsgv
-  danhSachGV() {
-    this.apiService.layDanhSachGiaoVien().subscribe(
-      (dsGiaoVien) => {
-        this.dsGiaoVien = dsGiaoVien;
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-
-  }
-
-  // ds gv lớp hoc phần
-    danhSachGVLHP() {
-      this.maGiaoVien="001";
-      this.gvlhpService.timGiaoVienLHPTheoMaGV("001").subscribe(
-        (dsGiaoVienLopHP) => {
-          this.dsGiaoVienLopHP = dsGiaoVienLopHP;
-  
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-    }
-
-  //danh sách lớp giáo viên
-  dsLopGiaoVien() {
-
-    this.danhSachLop();
     this.lopHocPhanService.getLopHocPhan().subscribe(
       dsLopHP => {
-        this.dsLopHP = dsLopHP;
-       this.dsGiaoVienLopHP.filter(x=>{
-        this.test= this.dsLopHP.filter(y=>{
-          if( x.maLopHocPhan==y.maLopHocPhan)
-           return y;
-            });
-          })
-        
- 
-        console.log(this.test)
-     
+        this.dsLopHP = dsLopHP
       },
       (error) => {
         console.log(error)
       });
 
   }
+  //lay ds giao vien lop hp
+  danhSachGVLHP() {
+    this.gvlhpService.getall().subscribe(
+      dsGVLHP => {
+        this.dsGVLHP = dsGVLHP;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+  //lay ds giao vien
+  danhSachGV() {
+    this.apiService.layDanhSachGiaoVien().subscribe(
+      dsTenGv => {
+        this.dsTenGv = dsTenGv;
+
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  ///hien thi dsgv
+  danhSachLopGV() {
+    if (this.Doituong == 'GV') {
+      try {
+        this.thongtin = this.cookie.get("displayName") + '@caothang.edu.vn';
+        this.lopHocPhanService.getLopHocPhanbyemail(this.thongtin).subscribe(
+          dsGiaoVienBymaGv => {
+            this.dsGiaoVienBymaGv = dsGiaoVienBymaGv;
+            this.filterDsLop = []
+            this.dsLop.forEach(lop => {
+              this.dsGiaoVienBymaGv.find(p => {
+                if (this.maBac != -1 || this.maKhoa != -1) {
+                  if (p.maLopHoc == lop.maLopHoc && lop.maBac == this.maBac && lop.khoa == this.maKhoa)
+                    this.filterDsLop.push(p)
+                }
+                else {
+                  this.filterDsLop = []
+                  this.filterDsLop = this.dsGiaoVienBymaGv
+                }
+              })
+             
+            });
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+      } catch (error) {
+        return error;
+      }
+    }
+  }
 
   //hien thi ds lop hoc phan
   danhSachLopHocPhan() {
     this.layCookie();
-    if (this.Doituong == 1) {
-      this.maLopHoc = '30061711';
-      this.lopHocPhanService.layLopHocPhantheoMaLop(this.maLopHoc).subscribe(
+    if (this.Doituong == 'SV') {
+      this.lopHocPhanService.getLopHocPhanbyMssv(this.thongtin).subscribe(
         dsLopHP => {
+          this.layCookie();
+        
           this.dsLopHP = dsLopHP;
+          this.filterDsLop = []
           this.filterDsLop = this.dsLopHP.filter(x => {
-            if (x.hocKi == this.hocKi)
-              return x;
-          })
-          this.danhSachLopHocPhan()
+              if (x.hocKi == this.hocKi) {
+                return x;
+              }
+            })
         },
         (error) => {
           console.log(error)
         });
-
-    }
-    else {
-      this.dsLopGiaoVien();
     }
   }
   //hien thi danh sach danh sach lop
-
 }
