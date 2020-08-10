@@ -32,11 +32,12 @@ doiTuong:any;
     this.cotdiem="/cotdiem/"+this.malophocphan;
     this.chamdiem="/chamdiem/"+this.malophocphan;
     this.tongdiem="/tongdiem/"+this.malophocphan;
+
     this.quyenXemDiem()
   }
   quyenXemDiem()
   {
-    this.doiTuong=this.cookie.get("role");
+    this.doiTuong = this.cookie.get("role");
     if(this.doiTuong== 'SV')
     {
       this.quyen='none'

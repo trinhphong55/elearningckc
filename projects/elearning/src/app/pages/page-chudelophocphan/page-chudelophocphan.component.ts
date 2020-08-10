@@ -10,11 +10,7 @@ import { TaobaitapComponent } from '../../components/content/chudelophocphan/tao
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { TaochudeComponent } from '../../components/content/chudelophocphan/taochude/taochude.component';
-import { XembaitapgvComponent } from '../../components/content/chudelophocphan/allchude/xembaitapgv/xembaitapgv.component';
-import { XembaitapsvComponent } from '../../components/content/chudelophocphan/allchude/xembaitapsv/xembaitapsv.component';
 import { TaobaigiangComponent } from '../../components/content/chudelophocphan/taobaigiang/taobaigiang.component';
-import { XembaiganggvComponent } from '../../components/content/chudelophocphan/allchude/xembaiganggv/xembaiganggv.component';
-import { XembaigiangsvComponent } from '../../components/content/chudelophocphan/allchude/xembaigiangsv/xembaigiangsv.component';
 import { BaiTapService } from '../../services/bai-tap.service';
 
 @Component({

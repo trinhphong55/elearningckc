@@ -8,9 +8,9 @@ import { setCookie, getCookie } from '../../../../../common/helper';
 export class HeaderComponent implements OnInit {
 
   constructor() { }
-  displayName: string = '';
+  email: string = '';
   ngOnInit(): void {
-    this.displayName = getCookie('displayName');
+    this.email = getCookie('email');
   }
 
   onLogout(): void {

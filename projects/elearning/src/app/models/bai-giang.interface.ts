@@ -4,7 +4,7 @@ export interface BaiGiang {
   ngayChinhSua: any;
   trangThai: number;
   thuTu: number;
-  tieuDe: string;
+  tieuDe?: string;
   maBaiGiang: string;
   maChuDe: string;
   maLopHocHocPhan: string;

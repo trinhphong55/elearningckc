@@ -8,21 +8,30 @@ import { setCookie, getCookie } from '../../../common/helper';
 export class AppComponent implements OnInit{
   title = 'elearning';
 
-  displayName: string = '';
-  ngOnInit(): void {
-    if(getCookie('token') && getCookie('role') == 'admin'){
-      alert('Bạn không có quyền cập vào trang elearning');
-      window.location.href = "https://localhost:4200";
+  email: string = '';
+  constructor(){
+    if(getCookie('token')){
+      if(getCookie('role') == 'admin'){
+        alert('Bạn không có quyền cập vào trang elearning');
+        window.location.href = "https://localhost:4200";
+      }else{
+        this.email = getCookie('email');
+      }
     }
     else{
-      this.displayName = getCookie('displayName');
+      window.location.href = "https://localhost:4200";
     }
+  }
+  ngOnInit(): void {
+
   }
 
   onLogout(): void {
     console.log('logout');
     setCookie('token', '', '0');
+    setCookie('email', '', '0');
     setCookie('role', '', '0');
+    setCookie('name', '', '0');
     window.location.href = "https://localhost:4200";
   }
 
