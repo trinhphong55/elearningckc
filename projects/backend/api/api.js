@@ -103,6 +103,10 @@ const NganhNgheRoutes = require("./NganhNghe");
 const BacRoutes = require("./Bac");
 const diemsinhvienModel = require("../models/diemsinhvien.model");
 const { route } = require("./GiaoVien");
+
+
+const verifyToken = require('../middleware/accountAuth')
+
 //nganhnghe
 router.use("/", NganhNgheRoutes);
 //bac
@@ -180,7 +184,7 @@ router.get("/loaidonvi", loaidonviController.getLoaiDonVi);
 router.get("/groupfb", groupFB.getAll);
 
 //----------------------------Routes SinhVien------------
-router.get("/sinhvien", sinhVien.layTatCaSinhVien);
+router.get("/sinhvien", verifyToken,sinhVien.layTatCaSinhVien);
 router.get("/sinhvien/:maLopHoc/malop", sinhVien.Laysinhvientheomalop);
 router.post("/sinhvien", sinhVien.themSinhVien);
 router.get("/sinhvien/:maSV", sinhVien.layThongtinSinhVien);
