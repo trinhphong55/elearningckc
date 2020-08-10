@@ -9,31 +9,30 @@
               <h1 class="post_page__title font-weight-bold text-uppercase">
                 {{ cnttTinTuc.tieuDe }}
               </h1>
-              <div
-                class="d-flex flex-column flex-sm-row justify-content-center"
-              >
+              <div class="d-flex flex-column flex-sm-row justify-content-center">
                 <div class="mr-sm-4">
-                  <span class="mdi mdi-pencil mr-1"></span
-                  ><strong>{{ cnttTinTuc.nguoiViet }}</strong>
+                  <span class="mdi mdi-pencil mr-1"></span><strong>{{ cnttTinTuc.nguoiViet }}</strong>
                 </div>
                 <div>
-                  <span class="mdi mdi-clock mr-1"></span
-                  ><span>{{ formatDatetime(cnttTinTuc.thoiGianDangBai) }}</span>
+                  <span class="mdi mdi-clock mr-1"></span><span>{{ formatDatetime(cnttTinTuc.thoiGianDangBai) }}</span>
                 </div>
               </div>
             </div>
-            <div
-              class="post_page__content text-justify mt-4"
-              [innerHTML]="cnttTinTuc.noiDung"
-            ></div>
+            <div class="col-6 job_home__img p-5">
+              <img class="w-100" src="https://localhost:4100/{{ cnttTinTuc.anhBia }}">
+            </div>
+            <div class="job_home_description text-inherit p-5 ">
+              <p class="font-weight-light font-italic">
+                "{{ cnttTinTuc.moTaNgan }}"
+              </p>
+            </div>
+            <div class="post_page__content text-justify mt-4" [innerHTML]="cnttTinTuc.noiDung"></div>
           </div>
         </div>
         <div class="col-md-5 col-lg-4">
           <div class="px-3 py-4 p-lg-5">
             <div class="job_home__title position-relative text-center">
-              <div
-                class="job_home__desc d-inline-block bg-white text-uppercase font-weight-bold px-3"
-              >
+              <div class="job_home__desc d-inline-block bg-white text-uppercase font-weight-bold px-3">
                 Tin tức khác
               </div>
               <hr class="m-0 border-dark" />
@@ -45,11 +44,8 @@
                 </div>
               </div>
               <div class="col">
-                <a
-                  class="post_page__sub__title font-weight-bold text-dark"
-                  routerLink="/bai-viet/{{ item._id }}"
-                  >{{ item.tieuDe }}</a
-                >
+                <a class="post_page__sub__title font-weight-bold text-dark"
+                  routerLink="/bai-viet/{{ item._id }}">{{ item.tieuDe }}</a>
                 <div class="small text-muted mt-2">
                   {{ item.thoiGianDangBai }}
                 </div>
@@ -59,61 +55,14 @@
           <div class="post_page__feature">
             <div class="px-3 py-4 py-lg-0 px-lg-5">
               <div class="job_home__title position-relative text-center">
-                <div
-                  class="job_home__desc d-inline-block bg-white text-uppercase font-weight-bold px-3"
-                >
+                <div class="job_home__desc d-inline-block bg-white text-uppercase font-weight-bold px-3">
                   Tiện ích
                 </div>
                 <hr class="m-0 border-dark" />
               </div>
               <nav class="post_page__feature__nav mt-3">
-                <li class="mb-3">
-                  <a class="text-reset" href="#"
-                    ><span class="mdi mdi-domain"></span
-                    ><span class="ml-2">Trung tâm Tin học</span></a
-                  >
-                </li>
-                <li class="mb-3">
-                  <a class="text-reset" href="#"
-                    ><span class="mdi mdi-layers-triple-outline"></span
-                    ><span class="ml-2">Danh sách học phần</span></a
-                  >
-                </li>
-                <li class="mb-3">
-                  <a class="text-reset" href="#"
-                    ><span class="mdi mdi-stack-overflow"></span
-                    ><span class="ml-2">Tài liệu học tập</span></a
-                  >
-                </li>
-                <li class="mb-3">
-                  <a class="text-reset" href="#"
-                    ><span class="mdi mdi-near-me"></span
-                    ><span class="ml-2">Cơ hội việc làm</span></a
-                  >
-                </li>
-                <li class="mb-3">
-                  <a class="text-reset" href="#"
-                    ><span class="mdi mdi-laptop"></span
-                    ><span class="ml-2">E-Learning</span></a
-                  >
-                </li>
-                <li class="mb-3">
-                  <a class="text-reset" href="#"
-                    ><span class="mdi mdi-school"></span
-                    ><span class="ml-2">Cựu sinh viên</span></a
-                  >
-                </li>
-                <li class="mb-3">
-                  <a class="text-reset" href="#"
-                    ><span class="mdi mdi-folder-account"></span
-                    ><span class="ml-2">Tra cứu</span></a
-                  >
-                </li>
-                <li class="mb-3">
-                  <a class="text-reset" href="#"
-                    ><span class="mdi mdi-calendar-check"></span
-                    ><span class="ml-2">Lịch thi</span></a
-                  >
+                <li class="mb-3" *ngFor="let tienich of TienIch">
+                  <a class="text-reset text-uppercase" href="{{tienich.urlTienIch}}"><span class="mdi {{tienich.iconClassTienIch}}"></span><span class="ml-2">{{tienich.tenTienIch}}</span></a>
                 </li>
               </nav>
             </div>
