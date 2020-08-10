@@ -60,6 +60,7 @@ function uploadPhotos(req, res, next) {
 router.post("/taotintuc", uploadPhotos, async (req, res) => {
   try {
     const _baiVietMoi = new TinTuc(req.body);
+    _baiVietMoi.thoiGianDangBai = Date.now();
     await _baiVietMoi.save();
     res.json({
       message: "Thêm bài viết mới thành công",
@@ -76,6 +77,7 @@ router.post("/taotintuc", uploadPhotos, async (req, res) => {
 
 router.post("/chinhSuaTinTuc", uploadPhotos, async (req, res) => {
   try {
+    // console.log(req.body);
     await TinTuc.findOneAndUpdate(
       { _id: req.body._id },
       {
@@ -89,7 +91,6 @@ router.post("/chinhSuaTinTuc", uploadPhotos, async (req, res) => {
         noiDung: req.body.noiDung,
         noiDungASCII: req.body.noiDungASCII,
         nguoiViet: req.body.nguoiViet,
-        thoiGianDangBai: req.body.thoiGianDangBai,
         viTriHienThi: req.body.viTriHienThi,
         trangThai: req.body.trangThai,
       }
@@ -187,11 +188,9 @@ router.get("/danhsachtintuccntt", (req, res) => {
 });
 
 router.get("/tintucmoinhat", async (req, res) => {
-  const data = await TinTuc.find({ trangThai: 1 })
-    .sort({
-      updatedAt: "desc", // asc || desc
-    })
-    .limit(10);
+  const data = await TinTuc.find({ trangThai: 1 }).limit(10).sort({
+    updatedAt: "desc", // asc || desc
+  });
   res.json({ message: "Lấy danh sách bài viết thành công.", data: data });
 });
 

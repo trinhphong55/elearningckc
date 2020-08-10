@@ -38,7 +38,7 @@ export class ModalBaivietComponent implements OnInit {
     noiDung: new FormControl(null, Validators.required),
     noiDungASCII: new FormControl(null),
     nguoiViet: new FormControl(null),
-    thoiGianDangBai: new FormControl(null),
+    thoiGianDangBai: new FormControl(),
     viTriHienThi: new FormControl(-1),
     trangThai: new FormControl(1),
   });
@@ -128,7 +128,7 @@ export class ModalBaivietComponent implements OnInit {
   onFileSelected(event) {
     if (event.target.files.length > 0) {
       this._image = event.target.files[0];
-      console.log(this._image);
+      // console.log(this._image);
     }
   }
 
@@ -219,10 +219,10 @@ export class ModalBaivietComponent implements OnInit {
       const formData = new FormData();
       formData.append('maBaiViet', this.formBaiViet.get('maBaiViet').value);
       formData.append('photos', this._image);
-      formData.append(
-        'thoiGianDangBai',
-        this.formBaiViet.get('thoiGianDangBai').value
-      );
+      // formData.append(
+      //   'thoiGianDangBai',
+      //   this.formBaiViet.get('thoiGianDangBai').value
+      // );
       formData.append('maDanhMuc', this.formBaiViet.get('maDanhMuc').value);
       formData.append('loaiBaiViet', this.formBaiViet.get('loaiBaiViet').value);
       formData.append('tieuDe', this.formBaiViet.get('tieuDe').value);

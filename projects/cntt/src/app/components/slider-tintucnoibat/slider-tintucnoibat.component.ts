@@ -24,6 +24,7 @@ export class SliderTintucnoibatComponent implements OnInit, AfterViewInit {
       this._slideMoiNhat.update();
     }, 1000);
     this.loadTinTucNoiBat();
+    this.loadTinTucMoiNhat();
   }
 
   loadTinTucNoiBat() {
