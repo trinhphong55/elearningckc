@@ -44,8 +44,8 @@
         </div>
       </div>
       <div class="col-12">
-        <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
-          <div class="d-flex align-items-center mb-2">
+        <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white" >
+          <div class="d-flex align-items-center mb-2" >
             <label class="mb-0 d-flex align-items-center"><span class="text-nowrap">Hiển thị &nbsp;</span>
               <select class="custom-select custom-select-sm form-control">
                 <option>10</option>
@@ -53,10 +53,31 @@
                 <option>50</option>
               </select><span class="text-nowrap">&nbsp; hàng</span>
             </label>
+            <ng-container [formGroup]="addForm">
+              <div>
+                <span>Trạng thái</span>
+                <select id="tinhtrang" formControlName="trangThai" (change)="changedTrangThai()" >
+                 <option value="">Select...</option>
+                 <option value="1">Chưa post</option>
+                <option value="2">Đã post</option>
+               </select>
+              </div>
+              <!-- <div>
+                <span>Theo loại</span>
+                <select id="loai" formControlName="theLoai" (change)="changedTrangThai()">
+                 <option value="">Select...</option>
+                 <option value="1">Thông báo</option>
+                 <option value="2">Tin tức</option>
+                 <option value="3">Hỏi đáp</option>
+                </select>
+              </div> -->
+            </ng-container>
+       
             <label class="ml-auto mb-0 d-flex align-items-center"><span class="text-nowrap">Tìm kiếm: &nbsp;</span>
               <input class="form-control form-control-sm" placeholder="Tìm kiếm" [(ngModel)]="searchpage">
             </label>
           </div>
+          
           <table class="modal_chucnang__table table table-hover" id="">
             <thead class="bg__caothang text-white">
               <th class="text-center">STT</th>
@@ -69,7 +90,7 @@
               <th scope="col" class="text-center">Tác vụ</th>
             </thead>
             <tbody>
-              <tr *ngFor=" let d of data |filter: searchpage; index as stt">
+              <tr *ngFor=" let d of posttams |filter: searchpage; index as stt">
                 <td>{{stt+1}}</td>
                 <td class="text-center">
                   <div>{{d.id}}</div>

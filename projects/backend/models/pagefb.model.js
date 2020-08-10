@@ -20,11 +20,6 @@ const pagefbSchema = new Schema({
       required: true
   
     },
-    accessTokenPage: {
-      type: String,
-      required: true
-  
-    }, 
     trangThai: {
       type: Number,
       default: 1,
