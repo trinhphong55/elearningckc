@@ -27,9 +27,9 @@ export class ModalQuanlybosuutapcnttComponent implements OnInit {
     if (event.target.files.length > 0) {
       this.imgValue = event.target.files[0];
     };
-    if(event.target.files[0].size > 2097152){
+    if (event.target.files[0].size > 2097152) {
       alert("File yêu cầu nhỏ hơn 2MB");
-   };
+    };
   }
 
   public boSuuTapForm = new FormGroup({
@@ -117,6 +117,10 @@ export class ModalQuanlybosuutapcnttComponent implements OnInit {
     this.cnttBoSuuTapService.danhSachItemBST().subscribe((data) => {
       this.BoSuuTap = data.data;
     });
+  }
+  showTrangThai(trangThai: any): string {
+    if (trangThai == 1) { return 'Đã đăng' }
+    return 'Đã xóa'
   }
 
 }

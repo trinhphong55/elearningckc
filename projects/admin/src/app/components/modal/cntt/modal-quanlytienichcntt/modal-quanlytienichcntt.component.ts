@@ -113,6 +113,9 @@ export class ModalQuanlytienichcnttComponent implements OnInit {
           });
       }
     }
-
+  }
+  showTrangThai(trangThai: any): string {
+    if (trangThai == 1) { return 'Đã đăng' }
+    return 'Đã xóa'
   }
 }

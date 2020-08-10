@@ -47,4 +47,5 @@ export class PagePostComponent implements OnInit {
       this.TienIch = data.data;
     });
   }
+  
 }
