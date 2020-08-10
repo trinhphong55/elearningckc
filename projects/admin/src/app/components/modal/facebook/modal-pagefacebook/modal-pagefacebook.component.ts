@@ -12,6 +12,8 @@ export class ModalPagefacebookComponent implements OnInit {
 
   searchpage;
   data: any;
+  datatmp:any;
+  mess:any;
   addForm: FormGroup;
   constructor(
     private modalService: ModalService,
@@ -43,6 +45,48 @@ export class ModalPagefacebookComponent implements OnInit {
   }
 
   selectRow(data){
+    this.datatmp = data;
+    this.tenPage.setValue(data.tenPage);
+    this.IDpage.setValue(data.id_Page);
+    this.linkPage.setValue(data.linkPage)
+    this.getAll();
+  }
+
+  Insert(){
+    this.pageFBService.create({
+      tenPage: this.addForm.value.tenPage,
+      id_Page: this.addForm.value.IDpage,
+      linkPage: this.addForm.value.linkPage
+    }).subscribe((ress:any)=>{
+      this.mess = ress.msg;
+      alert(this.mess);
+      console.log(ress);
+      this.getAll();
+    })
+
+  }
+
+  UpdatePage(){
+    this.pageFBService.update(this.datatmp._id,{
+      tenPage: this.addForm.value.tenPage,
+      id_Page: this.addForm.value.IDpage,
+      linkPage: this.addForm.value.linkPage
+    }).subscribe((ress:any)=>{
+      this.mess = ress.msg;
+      alert(this.mess);
+      console.log(ress);
+      this.getAll();
+    })
+
+  }
+
+  DeletePage(d){
+    this.pageFBService.delete(d._id).subscribe((ress:any)=>{
+      this.mess = ress.msg;
+      alert(this.mess);
+      console.log(ress);
+      this.getAll();
+    })
 
   }
 

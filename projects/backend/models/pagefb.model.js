@@ -13,23 +13,19 @@ const pagefbSchema = new Schema({
       type: String,
       required: true,
       unique:true
-  
+
     },
     linkPage: {
       type: String,
       required: true
-  
+
     },
-    accessTokenPage: {
-      type: String,
-      required: true
-  
-    }, 
+
     trangThai: {
       type: Number,
       default: 1,
     },
-    
+
   });
-  
+
   module.exports = mongoose.model("PageFB", pagefbSchema,"PageFB");
