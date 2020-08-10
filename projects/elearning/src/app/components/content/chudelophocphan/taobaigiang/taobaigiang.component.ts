@@ -75,7 +75,7 @@ export class TaobaigiangComponent implements OnInit {
     return day !== 0 && day !== 6;
   };
 
-  saveBaiTap() {
+  saveBaiGiang() {
 
     if (this.uploader.queue.length !== 0) {
       this.uploader.uploadAll();
@@ -100,10 +100,11 @@ export class TaobaigiangComponent implements OnInit {
 
   attachmentList: string[] = [];
 
-  download() {
+  download(filename) {
     // var filename = this.attachmentList[index].uploadname;
-    this._fileService.downloadFile('yasuo.png').subscribe(
-      (data) => saveAs(data, 'yasuo.png'),
+    console.log(filename);
+    this._fileService.downloadFile(filename).subscribe(
+      (data) => saveAs(data, filename),
       (error) => console.error(error)
     );
   }
@@ -144,7 +145,7 @@ export class TaobaigiangComponent implements OnInit {
       nguoiChinhSua:'huy',
 
     }
-    this.saveBaiTap();
+    this.saveBaiGiang();
 
   }
 }

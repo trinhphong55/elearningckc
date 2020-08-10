@@ -1,3 +1,4 @@
+import { saveAs } from 'file-saver';
 import { FormControl } from '@angular/forms';
 import { BinhLuanService } from './../../../../../services/binh-luan.service';
 import { BaiGiang } from '../../../../../models/bai-giang.interface';
@@ -6,6 +7,7 @@ import { ChuDeService } from './../../../../../services/chu-de.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ChuDe } from './../../../../../models/chu-de.interface';
 import { Component, OnInit, Input } from '@angular/core';
+import { FileService } from '../../../../../services/file.service';
 
 @Component({
   selector: 'app-chude2',
@@ -13,6 +15,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./chude2.component.css'],
 })
 export class Chude2Component implements OnInit {
+
   public chuDe: ChuDe;
   public dsBaiGiang: BaiGiang[] = [];
   public maLopHocPhan: number = 1;
@@ -24,7 +27,8 @@ export class Chude2Component implements OnInit {
     private router: Router,
     private chuDeService: ChuDeService,
     private baiGiangService: BaiGiangService,
-    private binhLuanService: BinhLuanService
+    private binhLuanService: BinhLuanService,
+    private _fileService:FileService,
   ) {}
 
   ngOnInit(): void {
@@ -86,5 +90,13 @@ export class Chude2Component implements OnInit {
       nguoiTao: '0306171249',
     };
     this.binhLuanService.themBinhluan(data).subscribe((res) => {});
+  }
+  download(filename) {
+    // var filename = this.attachmentList[index].uploadname;
+    console.log(filename);
+    this._fileService.downloadFileBaiGiang(filename).subscribe(
+      (data) => saveAs(data, filename),
+      (error) => console.log(error)
+    );
   }
 }

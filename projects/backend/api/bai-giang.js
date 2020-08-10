@@ -1,4 +1,5 @@
 const baiGiangModel = require("../models/bai-giang.model");
+var path = require("path");
 
 setBaiGiang = (req) => {
   return {
@@ -31,7 +32,8 @@ exports.them = async (req, res) => {
     // const chuDes = await baiGiangModel.find();
     let nextNumber = 1;
     //get NextNumber
-    await baiGiangModel.findOne({}, {}, { sort: { ngayTao: -1 } })
+    await baiGiangModel
+      .findOne({}, {}, { sort: { ngayTao: -1 } })
       .exec()
       .then((bt) => {
         if (bt !== null) {
@@ -44,13 +46,11 @@ exports.them = async (req, res) => {
     const chuDeMoi = await baiGiangModel.create(setBaiGiang(req.body));
     res.json({ data: chuDeMoi, message: "Thêm thành công", status: 200 });
   } catch (error) {
-    res
-      .status(500)
-      .json({
-        message: "Máy chủ không sữ lý được",
-        errors: error,
-        status: 500,
-      });
+    res.status(500).json({
+      message: "Máy chủ không sữ lý được",
+      errors: error,
+      status: 500,
+    });
   }
 };
 exports.layTheoMaChuDe = async (req, res) => {
@@ -64,13 +64,11 @@ exports.layTheoMaChuDe = async (req, res) => {
       status: 200,
     });
   } catch (error) {
-    res
-      .status(500)
-      .json({
-        message: "Máy chủ không sữ lý được",
-        errors: error,
-        status: 500,
-      });
+    res.status(500).json({
+      message: "Máy chủ không sữ lý được",
+      errors: error,
+      status: 500,
+    });
   }
 };
 exports.layTheo_MaLHP = async (req, res) => {
@@ -130,9 +128,13 @@ exports.upload = function (req, res, next) {
 };
 
 exports.download = function (req, res, next) {
-  filepath =
-    path.join(__dirname, "../uploads/elearning/baitap") +
-    "/" +
-    req.body.filename;
-  res.sendFile(filepath);
+  try {
+    filepath =
+      path.join(__dirname, "../uploads/elearning/baigiang") +
+      "/" +
+      req.body.filename;
+    res.sendFile(filepath);
+  } catch (error) {
+    res.json({err: "Khong tim thay file"});
+  }
 };
