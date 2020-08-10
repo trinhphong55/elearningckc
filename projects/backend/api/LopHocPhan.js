@@ -296,6 +296,9 @@ router.get("/android/malophoc/:maLopHoc", async (req, res) => {
             trangThai: lhp.trangThai,
             tenVietTat: mh.tenVietTat,
             loaiMonHoc: mh.maLoaiMonHoc,
+            maLopHocPhan:lhp.maLopHocPhan,
+            soLuongSV:lhp.soLuongSV,
+            soLuongSVHocGhep:lhp.soLuongSVHocGhep,
           };
         } else {
           allowPush = false;

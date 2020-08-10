@@ -1,5 +1,7 @@
-import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, OnChanges, SimpleChanges } from '@angular/core';
 import { ModalService } from '../../../../services/modal.service';
+import * as XLSX from 'xlsx';
+import { Subject } from 'rxjs';
 
 //Services
 import { MonhocService } from '../../../../services/monhoc.service';
@@ -18,11 +20,18 @@ import { LoaiMonHoc } from '../../../../interfaces/loaimonhoc.interface';
 export class ModalMonhocComponent implements OnInit, OnChanges {
 
   searchMonHoc;
-
   dsMonHoc: MonHoc[];
   dsLoaiMonHoc: LoaiMonHoc[];
   selectedMonHoc: MonHoc;
   trangThai: number = 1;
+
+  //Import Excel variables
+  spinnerEnabled = false;
+  keys: string[];
+  dsMonHocfromExcel: MonHoc[];
+  dataSheet = new Subject;
+  @ViewChild('inputFile') inputFile: ElementRef;
+  isExcelFile: boolean;
 
   getMonHoc() {
     this.monhocService.getMonHocbyTrangThai(this.trangThai).subscribe(data => {
@@ -42,10 +51,10 @@ export class ModalMonhocComponent implements OnInit, OnChanges {
     });
   }
 
-  importExcel() {
-    this.modalService.close('ctdt_monhoc');
-    this.modalService.open('ctdt_importexcelmonhoc');
-  }
+  // importExcel() {
+  //   this.modalService.close('ctdt_monhoc');
+  //   this.modalService.open('ctdt_importexcelmonhoc');
+  // }
 
   postMonHoc() {
     if (this.selectedMonHoc.tenMonHoc.trim() === "") {
@@ -124,6 +133,65 @@ export class ModalMonhocComponent implements OnInit, OnChanges {
     }
   }
 
+  onChange(evt) {
+    let data;
+    const target: DataTransfer = <DataTransfer>(evt.target);
+    this.isExcelFile = !!target.files[0].name.match(/(.xls|.xlsx)/);
+    if (target.files.length > 1) {
+      this.inputFile.nativeElement.value = '';
+    }
+    if (this.isExcelFile) {
+      this.spinnerEnabled = true;
+      const reader: FileReader = new FileReader();
+      reader.onload = (e: any) => {
+        /* read workbook */
+        const bstr: string = e.target.result;
+        const wb: XLSX.WorkBook = XLSX.read(bstr, { type: 'binary' });
+
+        /* grab first sheet */
+        const wsname: string = wb.SheetNames[0];
+        const ws: XLSX.WorkSheet = wb.Sheets[wsname];
+
+        /* save data */
+        data = XLSX.utils.sheet_to_json(ws);
+        this.dsMonHocfromExcel = data;
+      };
+
+      reader.readAsBinaryString(target.files[0]);
+
+      reader.onloadend = (e) => {
+        this.spinnerEnabled = false;
+        this.keys = Object.keys(data[0]);
+        this.dataSheet.next(data);
+      }
+    } else {
+      this.inputFile.nativeElement.value = '';
+    }
+  }
+
+
+  removeData() {
+    this.inputFile.nativeElement.value = '';
+    this.dataSheet.next(null);
+    this.keys = null;
+    this.dsMonHocfromExcel = undefined;
+  }
+
+  importExcel() {
+    this.monhocService.importMonHocFromExcel(this.dsMonHocfromExcel).subscribe(res => {
+      if (res.status === 200) {
+        this.removeData();
+        alert(res.message);
+      } else {
+        alert('Error: ' + res.message);
+      }
+    });
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    // console.log('OnChanges run', { changes });
+  }
+
   closeModal(id: string) {
     this.modalService.close(id)
   }
@@ -132,10 +200,6 @@ export class ModalMonhocComponent implements OnInit, OnChanges {
     private modalService: ModalService,
     private monhocService: MonhocService,
     private loaimonhocService: LoaimonhocService,) {
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    console.log(changes);
   }
 
   ngOnInit(): void {
