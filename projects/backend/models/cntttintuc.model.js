@@ -13,7 +13,7 @@ var schema = new Schema(
     noiDungASCII: { type: String, default: null },
     anhBia: { type: String, default: null },
     nguoiViet: { type: String, default: null },
-    thoiGianDangBai: { type: Date, default: Date.now() },
+    thoiGianDangBai: { type: Date },
     viTriHienThi: { type: Number, default: null },
     crawling: { type: Boolean, default: false },
     crawlURL: { type: String, default: null },

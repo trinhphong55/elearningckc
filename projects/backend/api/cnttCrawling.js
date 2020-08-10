@@ -46,6 +46,7 @@ router.post("/save", async (req, res) => {
       tieuDe: data.title,
       noiDung: data.data,
       trangThai: 2,
+      thoiGianDangBai: Date.now(),
       crawling: true,
       crawlURL: url,
     });
