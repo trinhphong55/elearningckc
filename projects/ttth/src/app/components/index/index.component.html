@@ -1,10 +1,18 @@
 <body>
   <section class="home-banner">
-      <swiper  class="swiper-container">
+      <div  class="swiper-container gallery_home__slider">
           <div class="swiper-wrapper">
-              <div class="swiper-slide" *ngFor="let item of Banner"><img [src]="item.image" alt="slide"></div>
+            <ng-container *ngFor="let item of Banner">
+              <a href="{{item.link}}" class="swiper-slide" ><img [ngStyle]="{'height': '600px'}" [src]="item.image" alt="slide"></a>
+            </ng-container>
           </div>
-      </swiper>
+          <!-- Add Pagination -->
+  <div class="swiper-pagination"></div>
+
+  <!-- Add Arrows -->
+  <div class="swiper-button-next"></div>
+  <div class="swiper-button-prev"></div>
+      </div>
   </section>
   <section class="chuong-trinh-dao-tao mt-100 " >
       <div class="container">
@@ -18,26 +26,22 @@
       <div class="chuong-trinh-dao-tao-content mt-3 p-10 " >
           <div class="container">
               <div class="row text-center "  >
-                  <div class="chuong-trinh-dao-tao-item col-lg-2 col-md-3 col-sm-3 col-6" data-aos="zoom-out" data-aos-duration="2000" ><a href="#"> <p>Đồ họa truyển thông</p><img src="assets/img/ctdt1.png" alt=""></a></div>
-                  <div class="chuong-trinh-dao-tao-item col-lg-2 col-md-3 col-sm-3 col-6" data-aos="zoom-out" data-aos-duration="2000" ><a href="#"><p>Thiết kế website</p><img src="assets/img/ctdt2.png" alt=""></a></div>
-                  <div class="chuong-trinh-dao-tao-item col-lg-2 col-md-3 col-sm-3 col-6" data-aos="zoom-out" data-aos-duration="2000" ><a href="#"><p>Lập trình và CSDL</p><img src="assets/img/ctdt3.png" alt=""></a></div>
-                  <div class="chuong-trinh-dao-tao-item col-lg-2 col-md-3 col-sm-3 col-6" data-aos="zoom-out" data-aos-duration="2000" ><a href="#"><p>Lập trình di động</p><img src="assets/img/ctdt4.png" alt=""></a></div>
-                  <div class="chuong-trinh-dao-tao-item col-lg-2 col-md-3 col-sm-3 col-6" data-aos="zoom-out" data-aos-duration="2000" ><a href="#"><p>Thiết kế giao diện</p><img src="assets/img/ctdt5.png" alt=""></a></div>
-                  <div class="chuong-trinh-dao-tao-item col-lg-2 col-md-3 col-sm-3 col-6" data-aos="zoom-out" data-aos-duration="2000" ><a href="#"><p>Mạng máy tính</p><img src="assets/img/ctdt6.png" alt=""></a></div>
-                  <div class="chuong-trinh-dao-tao-item col-lg-2 col-md-3 col-sm-3 col-6" data-aos="zoom-out" data-aos-duration="2000" ><a href="#"><p>Internet Marketing</p><img src="assets/img/ctdt7.png" alt=""></a></div>
-                  <div class="chuong-trinh-dao-tao-item col-lg-2 col-md-3 col-sm-3 col-6" data-aos="zoom-out" data-aos-duration="2000" ><a href="#"><p>Lập trình cho trẻ em</p><img src="assets/img/ctdt8.png" alt=""></a></div>
-                  <div class="chuong-trinh-dao-tao-item col-lg-2 col-md-3 col-sm-3 col-6" data-aos="zoom-out" data-aos-duration="2000" ><a href="#"><p>Tin học văn phòng</p><img src="assets/img/ctdt9.png" alt=""></a></div>
-                  <div class="chuong-trinh-dao-tao-item col-lg-2 col-md-3 col-sm-3 col-6" data-aos="zoom-out" data-aos-duration="2000" ><a href="#"><p>Tin học văn phòng chuẩn quốc tế (MOS)</p><img src="assets/img/ctdt10.png" alt=""></a></div>
-                  <div class="chuong-trinh-dao-tao-item col-lg-2 col-md-3 col-sm-3 col-6" data-aos="zoom-out" data-aos-duration="2000" ><a href="#"><p>Tin học cho trẻ em</p><img src="assets/img/ctdt11.png" alt=""></a></div>
-                  <div class="chuong-trinh-dao-tao-item col-lg-2 col-md-3 col-sm-3 col-6" data-aos="zoom-out" data-aos-duration="2000" ><a href="#"><p>Đồ họa cho trẻ em</p><img src="assets/img/ctdt12.png" alt=""></a></div>
+                <ng-container *ngFor="let item of KhoaHoc">
+                  <div [ngStyle]="{'background-color': item.color}" class="chuong-trinh-dao-tao-item col-lg-2 col-md-3 col-sm-3 col-6" data-aos="zoom-out" data-aos-duration="2000" >
+                    <a routerLink="/chitietkhoahoc/{{item._id}}" routerLinkActive="router-link-active" >
+                      <p>{{item.tenkhoahoc}}</p>
+                      <img src="{{item.image}}" alt="{{item.image}}">
+                    </a>
+                  </div>
+                </ng-container>
               </div>
           </div>
       </div>
   </section>
   <section class="lich-thi " >
-      <a href="#">
+      <a [routerLink]="['/dangkikhoahoc']" routerLinkActive="router-link-active" >
           <div class="text-center pt-4 pb-4 ">
-              <h2 class="title">lịch thi</h2>
+              <h2 class="title">Đăng kí khóa học</h2>
               <img src="assets/img/line.png" alt="line">
               <br>
               <p>Chứng chỉ tin học quốc gia</p> <span>Dành cho thí sinh tự do</span>
@@ -70,7 +74,7 @@
           <div class="row">
               <div class="col-lg-6 col-md-6 col-12 p-1" *ngFor="let item of TinTucChinh">
                   <div class="main-news">
-                      <a href="#">
+                      <a routerLink="/chitiettintuc/{{item._id}}">
                           <span class="overlay"></span>
                           <img [src]="item.image" [alt]="item.image">
                           <div class="name-new p-3">

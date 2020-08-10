@@ -1,0 +1,93 @@
+<section class="job_home__wrapper bg__caothang__light py-5">
+  <div class="container-fluid">
+    <div class="row justify-content-between align-items-center">
+      <div class="col-md-6 d-flex">
+        <div class="job_home__desc">
+          <div
+            class="job_home__desc__title text-white text-center text-md-left text-uppercase"
+            style="font-weight: 900;"
+          >
+            Cơ hội việc làm
+          </div>
+          <div class="text-justify text-white-50 text-md-left mt-2">
+            MyWork đang nằm trong TOP 3 nhà tuyển dụng trực tuyến tại Việt Nam
+            và hướng đến mục tiêu trở thành đơn vị cung cấp dịch vụ tuyển dụng
+            trực tuyến số 1 trong thời gian tới; trở thành một sàn nghề nghiệp
+            dễ sử dụng, truy cập và là một địa chỉ không thể thiếu cho thị
+            trường lao động Việt Nam.
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-xl-5 mt-3 mt-md-0">
+        <div
+          class="job_home__title text-uppercase text-center font-weight-bold position-relative"
+        >
+          <div
+            class="job_home__desc text-white bg__caothang__light d-none d-md-inline-block px-3"
+          >
+            Việc làm
+          </div>
+          <hr class="m-0" />
+        </div>
+        <div class="job_home__slider swiper-container mt-3 mt-md-2">
+          <div class="swiper-wrapper">
+            <div
+              class="swiper-slide"
+              *ngFor="let itemListCoHoiViecLam of DanhSachCoHoiViecLam"
+            >
+              <div class="job_home__slider__item d-flex">
+                <a
+                  class="job_home__logo_company p-1 p-md-3 d-flex justify-content-center align-items-center border"
+                  routerLink="/bai-viet/{{ itemListCoHoiViecLam._id }}"
+                  ><img
+                    class="swiper-lazy"
+                    [title]="itemListCoHoiViecLam.tieuDe"
+                    data-src="https://localhost:4100/{{
+                      itemListCoHoiViecLam.anhBia
+                    }}"
+                    [alt]="itemListCoHoiViecLam.tieuDe"
+                /></a>
+                <div class="ml-2 ml-md-3">
+                  <a
+                    class="text-white mb-0 job_home__sub_title"
+                    [title]="itemListCoHoiViecLam.tieuDe"
+                    routerLink="/bai-viet/{{ itemListCoHoiViecLam._id }}"
+                    >{{ itemListCoHoiViecLam.tieuDe }}</a
+                  >
+                  <div class="job_home__sub_desc">
+                    {{ itemListCoHoiViecLam.moTaNgan }}
+                  </div>
+                  <div class="small mdi mdi-clock-outline text-white-50">
+                    <span class="ml-1">{{
+                      itemListCoHoiViecLam.thoiGianDangBai
+                    }}</span>
+                  </div>
+                  <!-- <div class="text-white-50 mt-1">
+                  </div> -->
+                  <!-- <div class="text-white-50 mt-1">
+                    Vị trí:
+                    <strong class="text-white">Front End developer</strong>
+                  </div> -->
+                  <!-- <div class="job_home__skill mt-1">
+                    <span class="badge badge-success">Java</span
+                    ><span class="badge badge-success">Phần mềm</span>
+                  </div> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr class="mt-3 mb-0" />
+        <div class="d-flex align-items-center justify-content-between">
+          <a class="text-white-50" routerLink="/" style="font-size: 15px;"
+            >Xem tất cả</a
+          >
+          <div class="job_home__slider__navigation text-white-50">
+            <span class="prev mdi mdi-chevron-left mdi-24px"></span
+            ><span class="next mdi mdi-chevron-right mdi-24px"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -24,6 +24,28 @@ router.post('/login', async(req, res) => {
   res.send(data);
 })
 
+router.post("/change-password", async (req, res) => {
+  const mssv = req.body.mssv;
+  const oldPass = req.body.oldPass;
+  const newPass = req.body.newPass;
+  const newPassConfirm = req.body.newPassConfirm;
+  let result = await userDAO.changePassword(mssv, oldPass, newPass, newPassConfirm);
+  let data = {};
+  if(result != false){
+    data = {
+      'msg': 'Đổi mật khẩu thành công',
+      'status': true
+    };
+  }
+  else {
+    data = {
+      'msg': 'Đổi mật khẩu thất bại',
+      'status': false
+    };
+  }
+  res.send(data);
+})
+
 router.post("/reset-password", async (req, res) => {
   const email = req.body.email;
   let result = await userDAO.resetPassword(email);
@@ -40,7 +62,6 @@ router.post("/reset-password", async (req, res) => {
       'status': false
     };
   }
-  console.log('result', result);
   res.send(data);
 })
 

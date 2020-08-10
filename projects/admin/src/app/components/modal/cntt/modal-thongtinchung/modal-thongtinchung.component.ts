@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ModalService } from '../../../../services/modal.service';
 import { ThongTinChungService } from '../../../../services/cntt/thongtinchung.service';
-import { data } from 'jquery';
 
 @Component({
   selector: 'app-modal-thongtinchung',

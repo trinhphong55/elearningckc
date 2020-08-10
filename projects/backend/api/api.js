@@ -8,6 +8,7 @@ const LopHocPhan = require("./LopHocPhan");
 const LoaiMonHoc = require("./LoaiMonHoc");
 const groupFB = require("../api/groupFB");
 const boMon = require("../api/bomon");
+const cnttHeader = require("./cnttHeader");
 const auth = require("./auth");
 const TKB = require("./TKB");
 const BaiTap = require("./BaiTap");
@@ -24,6 +25,12 @@ const ttthTTWRoute = require("./ttthThongTinWeb");
 const ttthCamOnRoute = require("./ttthCamOn");
 const ttthTienIchRoute = require("./ttthTienIch");
 const ttthKhoaHocRoute = require("./ttthKhoaHoc");
+const ttthLopHocRoute = require("./ttthLopHoc");
+const ttthDangKiKhoaHocRoute = require("./ttthDangKiKhoaHoc");
+const ttthLienHeRoute = require("./ttthLienHe");
+const ttthDotThiRoute = require("./ttthDotThi");
+const ttthDangKiDotThiRoute = require("./ttthDangKiDotThi");
+const ttthDiemThiRoute = require("./ttthDiemThi");
 const cnttLoaiBaiVietRoutes = require("./cnttLoaiBaiViet");
 const cnttSlideShowRoutes = require("./cnttSlideShow");
 const cnttTrangChu = require("./cnttTrangChu");
@@ -31,6 +38,8 @@ const cnttTienIchSinhVien = require("./cnttTienIchSinhVien");
 const cnttDanhMuc = require("./cnttDanhMuc");
 const cnttBoSuuTap = require("./cnttBoSuuTap");
 const cnttThongTinChung = require("./cnttThongTinChung");
+const cnttFooter = require("./cnttFooter");
+const ttthChuDeRoutes = require("./ttthChuDe");
 
 const ctDiemLopHP = require("./ct-diemsv-lhp");
 const ChuDe = require("./chu-de");
@@ -60,6 +69,9 @@ router.use("/cnttTienIchSinhVien", cnttTienIchSinhVien);
 router.use("/danhmuc", cnttDanhMuc);
 router.use("/cnttbosuutap", cnttBoSuuTap);
 router.use("/thongtinchung", cnttThongTinChung);
+router.use("/cnttHeader", cnttHeader);
+router.use("/cnttHeader", cnttHeader);
+router.use("/cnttFooter", cnttFooter);
 //end cntt
 //ttthRoutes
 router.use("/ttthTinTuc", ttthTinTucRoute);
@@ -68,6 +80,13 @@ router.use("/ttthThongTinWeb", ttthTTWRoute);
 router.use("/ttthCamOn", ttthCamOnRoute);
 router.use("/ttthTienIch", ttthTienIchRoute);
 router.use("/ttthKhoaHoc", ttthKhoaHocRoute);
+router.use("/ttthLopHoc", ttthLopHocRoute);
+router.use("/ttthDangKiKhoaHoc", ttthDangKiKhoaHocRoute);
+router.use("/ttthLienHe", ttthLienHeRoute);
+router.use("/ttthDotThi", ttthDotThiRoute);
+router.use("/ttthDangKiDotThi", ttthDangKiDotThiRoute);
+router.use("/ttthDiemThi", ttthDiemThiRoute);
+router.use("/ttth/chude", ttthChuDeRoutes);
 //ttth
 const khoabomonController = require("../api/khoabomon");
 const loaidonviController = require("../api/loaidonvi");
@@ -102,6 +121,8 @@ router.put("/khoabomon/:id", validate, khoabomonController.updateKhoaBoMon);
 
 //lấy danh sách môn học phần của sinh viên theo môn truyền vào
 router.get("/diemsinhvien/:maSinhVien/search", Diemsinhvien.getDiemsinhvien);
+router.get("/diemsinhvien/:maSinhVien/khdt", Diemsinhvien.getDiemSinhVien_maSSV);
+
 
 //Lấy toàn bộ dữ liệu từ KhoaBoMon
 router.get("/bomon", boMon.getKhoaBonMon);
@@ -184,6 +205,8 @@ router.get("/baigiang", baiGiang.layTatCa);
 router.get("/baigiang/:maChuDe", baiGiang.layTheoMaChuDe);
 router.post("/baigiang", baiGiang.them);
 router.get("/baigiang/:maLopHocPhan/lop-hoc-phan", baiGiang.layTheo_MaLHP);
+router.get("/baigiang/:maBaiGiang/ma-bai-giang", baiGiang.layTheo_maBaiGiang);
+
 //========================= Routes BinhLuan ==========================================
 router.get("/binhluan/:loaiBaiViet/baiviet/:maBaiViet", binhLuan.layBinhLuan_theoBaiViet);
 router.post("/binhluan", binhLuan.themBinhLuan);

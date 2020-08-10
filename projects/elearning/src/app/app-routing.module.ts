@@ -8,7 +8,6 @@ import { NavbarTrangchuComponent } from './components/navbar/navbar-trangchu/nav
 import { NavbarHocphanComponent } from './components/navbar/navbar-hocphan/navbar-hocphan.component';
 import { PageLophocphanComponent } from './pages/page-lophocphan/page-lophocphan.component';
 import { NavbarNoneComponent } from './components/navbar/navbar-none/navbar-none.component';
-import { PageBaigiangComponent } from './pages/page-baigiang/page-baigiang.component';
 import { PageMoinguoiComponent } from './pages/page-moinguoi/page-moinguoi.component';
 import { PageChudelophocphanComponent } from './pages/page-chudelophocphan/page-chudelophocphan.component';
 import { PageCotodiemComponent } from './pages/page-cotdiem/page-cotdiem.component';
@@ -22,6 +21,8 @@ import { XembaigiangsvComponent } from './components/content/chudelophocphan/all
 import { XembaitapgvComponent } from './components/content/chudelophocphan/allchude/xembaitapgv/xembaitapgv.component';
 import { XembaiganggvComponent } from './components/content/chudelophocphan/allchude/xembaiganggv/xembaiganggv.component';
 
+import{PageBaigiangComponent} from'./pages/page-baigiang/page-baigiang.component';
+import { from } from 'rxjs';
 const routes: Routes = [
   {
     path: '',
@@ -67,19 +68,29 @@ const routes: Routes = [
     component: PageTongdiemComponent,
   },
   {
-    path:'xembaitapsv',
+    path:'xembaitapsv/:id',
     component:XembaitapsvComponent
   },
   {
-    path:'xembaigiangsv',
+    path:'xembaigiangsv/:id',
     component:XembaigiangsvComponent
   },
   {
-    path:'xembaitapgv',
+    path:'xembaitapgv/:id',
     component:XembaitapgvComponent
+
   },
   {
-    path:'xembaigianggv',
+    path: 'tongdiem/:id',
+    component: PageTongdiemComponent,
+  },
+
+  {
+    path: 'chamdiem/:id',
+    component: PageChamdiemComponent,
+  },
+  {
+    path:'xembaigianggv/:id',
     component:XembaiganggvComponent
   },
   {

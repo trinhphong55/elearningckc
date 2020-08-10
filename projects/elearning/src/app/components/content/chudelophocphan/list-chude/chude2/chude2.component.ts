@@ -41,7 +41,6 @@ export class Chude2Component implements OnInit {
 
     this.binhLuanService.layBinhLuan(LoaiBaiViet, maBaiViet).subscribe(
       (res: any) => {
-
         res.data.forEach((element) => {
           element.ngayTao = new Date(element.ngayTao).toUTCString();
         });

@@ -4,7 +4,7 @@
     class="modal_chucnang__close mdi mdi-chevron-left text-white"
   ></div>
   <div class="container-fluid mt-3">
-    <form [formGroup]="boSuuTapForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="boSuuTapForm">
       <div class="row">
         <div class="col-12">
           <h1 class="text-center text-white">Quản lý Bộ sưu tập</h1>
@@ -12,56 +12,70 @@
         <div class="col-12">
           <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
             <div class="row justify-content-center align-items-center">
-              <div class="col-3">
-                <div class="form-group">
-                  <label>Chọn ảnh</label>
-                  <div class="input-group">
-                    <div class="box-img">
-                      <img id="imgBST" />
-                    </div>
-                    <input
-                      type="file"
-                      onchange="document.getElementById('imgBST').src = window.URL.createObjectURL(this.files[0])"
-                      (change)="chonMaBoSuuTap($event)"
-                      name="image"
-                      ng2FileSelect
-                      [uploader]="uploader"
-                      accept="image/x-png,image/gif,image/jpeg"
-                    />
+              <div class="col-auto">
+                <div class="upload-btn-wrapper text-center">
+                  <div class="box-img">
+                    <img id="imgBST" />
                   </div>
+                  <input
+                    type="file"
+                    id="input_image_BST"
+                    name="image"
+                    (change)="onFileSelected($event)"
+                    onchange="document.getElementById('imgBST').src = window.URL.createObjectURL(this.files[0])"
+                    accept="image/x-png,image/jpeg"
+                  />
+                  <label
+                    for="input_image_BST"
+                    class="btn btn-outline-dark btn-sm btn-block w-100 mb-0 mt-2"
+                  >
+                    Chọn hình ảnh
+                  </label>
                 </div>
               </div>
-              <div class="col-3">
+              <div class="col-4">
                 <div class="form-group">
                   <label>Loại Bộ sưu tập</label>
                   <select
                     class="custom-select form-control"
                     (change)="chonMaBoSuuTap($event.target.value)"
+                    formControlName="maBST"
                   >
-                    <option class="d-none" value="-1"
+                    <option class="d-none" selected value="-1"
                       >Chọn Loại Bộ sưu tập</option
                     >
                     <option value="BST01">
-                      Hình ảnh Sinh Viên
-                    </option>
-                    <option value="BST02">
                       Đơn vị liên kết
                     </option>
+                    <option value="BST02">
+                      Hình ảnh Sinh Viên
+                    </option>
                   </select>
+                  <div
+                    *ngIf="maBST.invalid && (maBST.dirty || maBST.touched)"
+                    class="alert alert-danger"
+                  >
+                    <div *ngIf="maBST.errors.required">
+                      Vui lòng chọn loại BST.
+                    </div>
+                  </div>
                 </div>
-                <div class="form-group">
-                  <label>Nhập tên Bộ sưu tập</label>
-                  <input class="form-control" type="text" formControlName="" />
-                </div>
-              </div>
-              <div class="col-3">
                 <div class="form-group">
                   <label>Nhập alt ảnh</label>
                   <input
                     class="form-control"
                     type="text"
                     formControlName="alt"
+                    required
                   />
+                  <div
+                    *ngIf="alt.invalid && (alt.dirty || alt.touched)"
+                    class="alert alert-danger"
+                  >
+                    <div *ngIf="alt.errors.required">
+                      Vui lòng nhập Alt ảnh.
+                    </div>
+                  </div>
                 </div>
                 <div class="form-group">
                   <label>Nhập đường dẫn ảnh</label>
@@ -79,7 +93,7 @@
                     <button
                       class="modal_chucnang__button btn btn-outline-primary px-4 mx-2"
                       type="submit"
-                      (click)="uploader.uploadAll()"
+                      (click)="onSave()"
                     >
                       <img
                         class="modal_chucnang__button__icon mb-2"

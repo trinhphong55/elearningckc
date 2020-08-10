@@ -1,0 +1,16 @@
+[{
+  "_id": {
+    "$oid": "5f2e475a9d8de52570b9695e"
+  },
+  "maChuDe": "CD00",
+  "tenChuDe": "Thông báo chung",
+  "tenVietTat": "TBC",
+  "trangThai": 1,
+  "createdAt": {
+    "$date": "2020-08-08T06:34:02.843Z"
+  },
+  "updatedAt": {
+    "$date": "2020-08-08T06:34:02.843Z"
+  },
+  "__v": 0
+}]

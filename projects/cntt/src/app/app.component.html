@@ -1,8 +1,15 @@
-<app-header></app-header>
+<app-header
+  [menu]="header"
+  [logo]="logo"
+  [logoMobile]="logoMenuMobile"
+></app-header>
 
 <main>
   <router-outlet></router-outlet>
-  <app-socialmedia></app-socialmedia>
+  <app-socialmedia
+    [facebook]="urlFacebook"
+    [youtube]="urlYoutube"
+  ></app-socialmedia>
 </main>
 
-<app-footer></app-footer>
+<app-footer [footer]="copyRight"></app-footer>

@@ -1,8 +1,8 @@
 [{
   "_id": {
-    "$oid": "5f244c63e2c86b0b40cfa692"
+    "$oid": "5f2d97ab1e95032e5c11ecff"
   },
-  "image": "https://localhost:4100/uploads/cntt/khoa-hoc-data-science-for-marketing-certificate-257.png",
+  "image": "https://localhost:4100/uploads/cntt/slideshow1.png",
   "link": "#",
   "vitri": "1",
   "hienthi": true,
@@ -10,15 +10,15 @@
   "nguoitao": "hieu",
   "nguoisua": "loc",
   "created_at": {
-    "$date": "2020-07-31T16:52:50.985Z"
+    "$date": "2020-08-07T18:04:27.436Z"
   },
   "updated_at": null,
   "__v": 0
 },{
   "_id": {
-    "$oid": "5f244c6ee2c86b0b40cfa693"
+    "$oid": "5f2d97b21e95032e5c11ed00"
   },
-  "image": "https://localhost:4100/uploads/cntt/slide-lap-trinh-android-k259.png",
+  "image": "https://localhost:4100/uploads/cntt/presentation-hackathon-2017.jpg",
   "link": "#",
   "vitri": "2",
   "hienthi": true,
@@ -26,15 +26,15 @@
   "nguoitao": "hieu",
   "nguoisua": "loc",
   "created_at": {
-    "$date": "2020-07-31T16:53:02.037Z"
+    "$date": "2020-08-07T18:04:34.331Z"
   },
   "updated_at": null,
   "__v": 0
 },{
   "_id": {
-    "$oid": "5f244c7de2c86b0b40cfa694"
+    "$oid": "5f2d97b91e95032e5c11ed01"
   },
-  "image": "https://localhost:4100/uploads/cntt/slide-network-K259.png",
+  "image": "https://localhost:4100/uploads/cntt/banner-2020.png",
   "link": "#",
   "vitri": "3",
   "hienthi": true,
@@ -42,23 +42,7 @@
   "nguoitao": "hieu",
   "nguoisua": "loc",
   "created_at": {
-    "$date": "2020-07-31T16:53:17.430Z"
-  },
-  "updated_at": null,
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "5f244c85e2c86b0b40cfa695"
-  },
-  "image": "https://localhost:4100/uploads/cntt/tong-tk.png",
-  "link": "#",
-  "vitri": "4",
-  "hienthi": true,
-  "trangthai": true,
-  "nguoitao": "hieu",
-  "nguoisua": "loc",
-  "created_at": {
-    "$date": "2020-07-31T16:53:25.298Z"
+    "$date": "2020-08-07T18:04:41.916Z"
   },
   "updated_at": null,
   "__v": 0

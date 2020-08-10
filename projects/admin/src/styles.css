@@ -8,7 +8,7 @@ body {
 
 input,
 button {
-  font-weight: inherit;
+  font-weight: inherit !important;
 }
 
 body {
@@ -389,6 +389,26 @@ main {
 
 .sidebar_chucnang__item:nth-of-type(11) .sidebar_chucnang__box {
   background: #f9ca24;
+}
+
+.sidebar_chucnang__item:nth-of-type(12) .sidebar_chucnang__box {
+  background: #ad8de0;
+}
+
+.sidebar_chucnang__item:nth-of-type(13) .sidebar_chucnang__box {
+  background: #f98424;
+}
+
+.sidebar_chucnang__item:nth-of-type(14) .sidebar_chucnang__box {
+  background: #53b9e9;
+}
+
+.sidebar_chucnang__item:nth-of-type(15) .sidebar_chucnang__box {
+  background: #abf16a;
+}
+
+.sidebar_chucnang__item:nth-of-type(16) .sidebar_chucnang__box {
+  background: #f72d48;
 }
 
 .sidebar_chucnang__item:last-of-type .sidebar_chucnang__box {

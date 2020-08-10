@@ -102,6 +102,22 @@ class UserDAO extends MongoDB{
     }
   }
 
+  async changePassword(mssv, oldPass, newPass, newPassConfirm){
+    let result = false;
+    const options = {
+      email: `${mssv}@caothang.edu.vn`,
+      password: md5(oldPass)
+    }
+    const checkAccount = await this.find(options);
+    if(checkAccount.length > 0 && newPass == newPassConfirm){
+      await this.connectDB();
+      await this.conDb.collection(this.collectionName).updateOne({email: options.email}, {$set: {"password": md5(newPass)}});
+      await this.closeDB();
+      result = true;
+    }
+    return result;
+  }
+
 }
 
 module.exports = UserDAO;
