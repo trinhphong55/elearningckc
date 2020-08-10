@@ -34,6 +34,17 @@
         placeholder="Mật khẩu"
       />
     </div>
+    <div class="login_group mt-3">
+      <label for="gender" class="mr-3">Loại tài khoản:</label>
+        <input id="admin" class="mr-1" type="radio" value="1" name="loaiTaiKhoan" formControlName="loaiTaiKhoan" checked>
+        <label for="admin" class="mr-2"> Admin</label>
+
+        <input id="gv" class="mr-1" type="radio" value="2" name="loaiTaiKhoan" formControlName="loaiTaiKhoan">
+        <label for="gv" class="mr-2">Giáo viên</label>
+
+        <input id="sv" class="mr-1" type="radio" value="3" name="loaiTaiKhoan" formControlName="loaiTaiKhoan">
+        <label for="sv" class="mr-2">Sinh viên</label>
+    </div>
     <div class="mt-2 custom-control custom-checkbox text-left">
       <input
         formControlName="remember"

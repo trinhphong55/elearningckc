@@ -20,6 +20,7 @@ export class AppComponent implements OnInit {
     email: new FormControl(),
     password: new FormControl(),
     remember: new FormControl(false),
+    loaiTaiKhoan: new FormControl("3")
   });
 
   ngOnInit(): void {
@@ -45,14 +46,14 @@ export class AppComponent implements OnInit {
         if(response.data != null && response.data.role == 'admin'){
           setCookie('token', response.data.token, '7');
           setCookie('role', response.data.role, '7');
-          setCookie('displayName', response.data.displayName, '7');
+          setCookie('email', response.data.email, '7');
           this.isLogged = true;
         }
 
         if(response.data != null && response.data.role != 'admin'){
           setCookie('token', response.data.token, '7');
           setCookie('role', response.data.role, '7');
-          setCookie('displayName', response.data.displayName, '7');
+          setCookie('email', response.data.email, '7');
           window.location.href = "http://localhost:4400";
         }
 

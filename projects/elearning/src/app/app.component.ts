@@ -8,14 +8,14 @@ import { setCookie, getCookie } from '../../../common/helper';
 export class AppComponent implements OnInit{
   title = 'elearning';
 
-  displayName: string = '';
+  email: string = '';
   constructor(){
     if(getCookie('token')){
       if(getCookie('role') == 'admin'){
         alert('Bạn không có quyền cập vào trang elearning');
         window.location.href = "https://localhost:4200";
       }else{
-        this.displayName = getCookie('displayName');
+        this.email = getCookie('email');
       }
     }
     else{
