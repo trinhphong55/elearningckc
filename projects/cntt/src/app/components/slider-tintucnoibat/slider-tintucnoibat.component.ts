@@ -11,6 +11,7 @@ declare const Swiper: any;
 })
 export class SliderTintucnoibatComponent implements OnInit, AfterViewInit {
   TinTucNoiBat: any[];
+  TinTucMoiNhat: any[];
   @Input() DanhSachTinTucNoiBat: any;
   constructor(private tinTucCnttService: TinTucCnttService) {}
 
@@ -19,14 +20,21 @@ export class SliderTintucnoibatComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     setTimeout(() => {
-      this._slideMoiNhat.update();
+      this._slideNoiBat.update();
       this._slideMoiNhat.update();
     }, 1000);
     this.loadTinTucNoiBat();
   }
+
   loadTinTucNoiBat() {
     this.tinTucCnttService.loadTinTucNoiBat().subscribe((data) => {
       this.TinTucNoiBat = data.data;
+    });
+  }
+
+  loadTinTucMoiNhat() {
+    this.tinTucCnttService.loadTinTucMoiNhat().subscribe((data) => {
+      this.TinTucMoiNhat = data.data;
     });
   }
 

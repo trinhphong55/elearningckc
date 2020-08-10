@@ -157,7 +157,7 @@ router.get("/danhsachtintuckhac", (req, res) => {
       });
     }
     res.json({ message: "Lấy danh sách bài viết thành công.", data: data });
-  }).limit(3);
+  }).limit(5);
 });
 
 router.get("/tintucnoibatcntt", (req, res) => {
@@ -184,6 +184,15 @@ router.get("/danhsachtintuccntt", (req, res) => {
     }
     res.json({ message: "Lấy danh sách bài viết thành công.", data: data });
   });
+});
+
+router.get("/tintucmoinhat", async (req, res) => {
+  const data = await TinTuc.find({ trangThai: 1 })
+    .sort({
+      updatedAt: "desc", // asc || desc
+    })
+    .limit(10);
+  res.json({ message: "Lấy danh sách bài viết thành công.", data: data });
 });
 
 // Get Tintuc by id

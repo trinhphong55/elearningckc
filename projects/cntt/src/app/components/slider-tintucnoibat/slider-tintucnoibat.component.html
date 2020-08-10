@@ -78,12 +78,14 @@
           </div>
           <div class="swiper-container">
             <div class="swiper-wrapper">
-              <div class="swiper-slide" *ngFor="let item of TinTucNoiBat">
+              <div class="swiper-slide" *ngFor="let item of TinTucMoiNhat">
                 <div class="news_home__sub__desc">
                   <div class="news_home__sub__title">
-                    <a href="news-detail.html" title="{{ item.tieuDe }}">{{
-                      item.tieuDe
-                    }}</a>
+                    <a
+                      routerLink="/bai-viet/item._id"
+                      title="{{ item.tieuDe }}"
+                      >{{ item.tieuDe }}</a
+                    >
                   </div>
                   <div class="small mt-2">
                     {{ formatDatetime(item.thoiGianDangBai) }}
