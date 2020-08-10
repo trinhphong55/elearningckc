@@ -78,7 +78,9 @@
                         ><strong>{{ item.nguoiViet || "Admin" }}</strong></span
                       ><span
                         ><span class="mdi mdi-clock mr-1"></span
-                        ><span>{{ item.thoiGianDangBai }}</span></span
+                        ><span>{{
+                          formatDatetime(item.thoiGianDangBai)
+                        }}</span></span
                       >
                     </div>
                     <div class="mt-2">{{ item.moTaNgan }}</div>
