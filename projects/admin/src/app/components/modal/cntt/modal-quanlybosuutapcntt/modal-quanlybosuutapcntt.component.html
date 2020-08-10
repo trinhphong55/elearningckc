@@ -26,7 +26,7 @@
                 <div class="form-group">
                   <label>Loại Bộ sưu tập</label>
                   <select class="custom-select form-control" (change)="chonMaBoSuuTap($event.target.value)"
-                    formControlName="maBST">
+                    formControlName="maBST" required>
                     <option class="d-none" selected value="-1">Chọn Loại Bộ sưu tập</option>
                     <option value="BST01">
                       Đơn vị liên kết
@@ -52,7 +52,12 @@
                 </div>
                 <div class="form-group">
                   <label>Nhập đường dẫn ảnh</label>
-                  <input class="form-control" type="text" formControlName="url" />
+                  <input class="form-control" type="text" formControlName="url" required/>
+                  <div *ngIf="url.invalid && (url.dirty || url.touched)" class="alert alert-danger">
+                    <div *ngIf="url.errors.required">
+                      Vui lòng nhập đường dẫn liên kết 
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="col-auto">

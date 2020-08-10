@@ -150,7 +150,7 @@ router.get("/danhsachtintuckhac", (req, res) => {
   }).limit(3);
 });
 router.get("/tintucnoibatcntt", (req, res) => {
-  TinTuc.find({trangThai:1,viTriHienThi:3 },(error, data) => {
+  TinTuc.find({trangThai:1},(error, data) => {
     if (error) {
       return res.json({
         message: "Lấy danh sách bài viết thành công.",
@@ -159,7 +159,7 @@ router.get("/tintucnoibatcntt", (req, res) => {
       });
     }
     res.json({ message: "Lấy danh sách bài viết thành công.", data: data });
-  }).limit(3);
+  }).sort({_id:-1}).limit(10);
 });
 router.get("/danhsachtintuccntt", (req, res) => {
   TinTuc.find({trangThai: 1},(error, data) => {

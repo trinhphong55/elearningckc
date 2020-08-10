@@ -77,6 +77,7 @@ export class ModalQuanlybosuutapcnttComponent implements OnInit {
   }
   get alt() { return this.boSuuTapForm.get('alt'); }
   get maBST() { return this.boSuuTapForm.get('maBST'); }
+  get url() { return this.boSuuTapForm.get('url'); }
   onXoaItem(_id: string) {
     const anwser = confirm('Nhấn OK để xoá Item này');
     if (anwser) {
@@ -85,7 +86,7 @@ export class ModalQuanlybosuutapcnttComponent implements OnInit {
           _id: _id,
         })
         .subscribe((data) => {
-          this.toastr.success('Xóa bài viết thành công!');
+          this.toastr.success('Xóa Item thành công!');
           this.loadDanhSachBST();
         });
     }
