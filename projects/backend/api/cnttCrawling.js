@@ -50,7 +50,6 @@ router.post("/save", async (req, res) => {
       crawlURL: url,
     });
     await baiViet.save();
-    console.log("Crawling: Luu bai viet thanh cong.");
     res.status(201).json({ message: "Crawling: Lưu bài viết thành công." });
   } catch (error) {
     res.json({ message: "Crawling: Lưu bài viết thất bại.", error: error });

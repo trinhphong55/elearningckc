@@ -8,7 +8,7 @@
           {{ BaiVietDauTien.tieuDe }}
         </div>
         <small class="highlight_home__postedtime important text-muted">
-          {{ BaiVietDauTien.thoiGianDangBai }}
+          {{ formatDatetime(BaiVietDauTien.thoiGianDangBai) }}
         </small>
         <div class="highlight_home__desc important mb-2 mb-lg-3">
           {{ BaiVietDauTien.moTaNgan }}
@@ -43,7 +43,7 @@
                   {{ itemBaiVietQuanTrong.tieuDe }}
                 </div>
                 <small class="highlight_home__postedtime text-muted">{{
-                  itemBaiVietQuanTrong.thoiGianDangBai
+                  formatDatetime(itemBaiVietQuanTrong.thoiGianDangBai)
                 }}</small>
                 <div class="d-none highlight_home__id">
                   {{ itemBaiVietQuanTrong._id }}

@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterViewInit, Input } from '@angular/core';
 import { TinTucCnttService } from '../../services/tintuc.service';
-
+import * as moment from 'moment';
 declare const $: any;
 declare const Swiper: any;
 
@@ -10,9 +10,9 @@ declare const Swiper: any;
   styleUrls: ['./slider-tintucnoibat.component.css'],
 })
 export class SliderTintucnoibatComponent implements OnInit, AfterViewInit {
-  TinTucNoiBat: any[]
+  TinTucNoiBat: any[];
   @Input() DanhSachTinTucNoiBat: any;
-  constructor(private tinTucCnttService: TinTucCnttService) { }
+  constructor(private tinTucCnttService: TinTucCnttService) {}
 
   private _slideNoiBat: any;
   private _slideMoiNhat: any;
@@ -22,7 +22,7 @@ export class SliderTintucnoibatComponent implements OnInit, AfterViewInit {
       this._slideMoiNhat.update();
       this._slideMoiNhat.update();
     }, 1000);
-    this.loadTinTucNoiBat()
+    this.loadTinTucNoiBat();
   }
   loadTinTucNoiBat() {
     this.tinTucCnttService.loadTinTucNoiBat().subscribe((data) => {
@@ -61,5 +61,10 @@ export class SliderTintucnoibatComponent implements OnInit, AfterViewInit {
         prevEl: '.news_home__sub__nav-prev',
       },
     });
+  }
+
+  formatDatetime(time: string): string {
+    time = moment(time).format('HH:mm, DD-MM-YYYY');
+    return time;
   }
 }

@@ -1,129 +1,134 @@
 const router = require("express").Router();
 const TinTuc = require("../models/cntttintuc.model");
 const multer = require("multer");
-const PATH = "./uploads/cntt";
+const convertString = require("../common/convertString");
+const path = require("path");
 
-let Storage = multer.diskStorage({
-  destination: (req, file, callback) => {
-    callback(null, PATH);
+//#region MULTER UPLOAD IMAGE
+// upload file path
+const FILE_PATH = "uploads/cntt/";
+
+// define multer storage configuration
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, FILE_PATH);
   },
-  filename: (req, file, callback) => {
-    let math = ["image/png", "image/jpeg"];
-    if (math.indexOf(file.mimetype) === -1) {
-      let errorMess = `The file <strong>${file.originalname}</strong> is invalid. Only allowed to upload image jpeg or png.`;
-      return callback(errorMess, null);
+  filename: (req, file, cb) => {
+    const filename =
+      file.fieldname + "_" + Date.now() + path.extname(file.originalname);
+    cb(null, filename);
+  },
+});
+
+const upload = multer({
+  storage: storage,
+  limits: {
+    files: 10, // allow up to 10 files per request
+    fieldSize: 5 * 1024 * 1024, // 5MB (max file size)
+  },
+  fileFilter: (req, file, cb) => {
+    // allow images only
+    if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/)) {
+      return cb(new Error("Only image are allowed."), false);
     }
-    let filename = `${file.originalname}`;
-    callback(null, filename);
+    cb(null, true);
   },
 });
-var upload = multer({
-  storage: Storage,
-});
 
-router.post("/uploads", upload.single("image"), function (req, res) {
-  if (!req.file) {
-    console.log("No file is available!");
-    return res.send({
-      success: false,
-    });
-  }
-  console.log("filename:  " + req.file.filename);
-  console.log("File is available!");
-  res.send({
-    success: true,
+function uploadPhotos(req, res, next) {
+  // console.log("run uploadPhotos");
+  upload.single("photos")(req, res, function (error) {
+    try {
+      const photo = req.file;
+      // check if photos are available
+      if (!photo) {
+        res.status(400).json({
+          status: false,
+          message: "No photo is selected.",
+        });
+      } else {
+        req.body.anhBia = photo.destination + photo.filename;
+        next();
+      }
+    } catch (error) {
+      res.status(500).send(error);
+    }
   });
-});
-
-router.post("/taotintuc", (req, res) => {
-  console.log("req.body.anhBia  " + req.body.anhBia);
-  if (req.body.anhBia == null) {
-    console.log("bai viet khong co anh bia")
-    var tintuc = new TinTuc({
-      loaiBaiViet: req.body.loaiBaiViet,
-      maDanhMuc: req.body.maDanhMuc,
-      maBaiViet: req.body.maBaiViet,
-      tieuDe: req.body.tieuDe,
-      moTaNgan: req.body.moTaNgan,
-      noiDung: req.body.noiDung,
-      anhBia: "",
-      viTriHienThi: req.body.viTriHienThi,
-    });
-    console.log(tintuc);
-    tintuc.save((err, data) => {
-      if (err) {
-        return next(err);
-      }
-      res.json(data);
-    });
-  } else {
-    console.log("bai viet co anh bia")
-    var imgName = req.body.anhBia.slice(12);
-    var tintuc = new TinTuc({
-      loaiBaiViet: req.body.loaiBaiViet,
-      maDanhMuc: req.body.maDanhMuc,
-      maBaiViet: req.body.maBaiViet,
-      tieuDe: req.body.tieuDe,
-      moTaNgan: req.body.moTaNgan,
-      noiDung: req.body.noiDung,
-      anhBia: "uploads/cntt/" + imgName,
-      viTriHienThi: req.body.viTriHienThi,
-    });
-    console.log(tintuc);
-    tintuc.save((err, data) => {
-      if (err) {
-        return next(err);
-      }
-      res.json(data);
-    });
-  }
-});
+}
 //#endregion
 
-router.post("/chinhSuaTinTuc", async (req, res) => {
-  console.log(" Chinh sua bai viet");
-  console.log("req.body.anhBia  " + req.body.anhBia);
-  if (req.body.anhBia == null) {
-    console.log("chinh sua khong gom anh bia")
-    console.log(req.body.maBaiViet);
-    await TinTuc.findOneAndUpdate(
-      { _id: req.body._id },
-      {
-        maBaiViet: req.body.maBaiViet,
-        loaiBaiViet: req.body.loaiBaiViet,
-        maDanhMuc: req.body.maDanhMuc,
-        tieuDe: req.body.tieuDe,
-        moTaNgan: req.body.moTaNgan,
-        noiDung: req.body.noiDung,
-        viTriHienThi: req.body.viTriHienThi,
-        trangThai: req.body.trangThai,
-      }
-    );
+router.post("/taotintuc", uploadPhotos, async (req, res) => {
+  try {
+    const _baiVietMoi = new TinTuc(req.body);
+    await _baiVietMoi.save();
     res.json({
-      message: "Chỉnh sửa bài viết thành công",
+      message: "Thêm bài viết mới thành công",
+      code: 200,
     });
-  } else {
-    var imgName = req.body.anhBia.slice(12);
-    console.log(req.body.maBaiViet);
-    await TinTuc.findOneAndUpdate(
-      { _id: req.body._id },
-      {
-        maBaiViet: req.body.maBaiViet,
-        loaiBaiViet: req.body.loaiBaiViet,
-        maDanhMuc: req.body.maDanhMuc,
-        tieuDe: req.body.tieuDe,
-        moTaNgan: req.body.moTaNgan,
-        noiDung: req.body.noiDung,
-        anhBia: "uploads/cntt/" + imgName,
-        viTriHienThi: req.body.viTriHienThi,
-        trangThai: req.body.trangThai,
-      }
-    );
+  } catch (error) {
     res.json({
-      message: "Chỉnh sửa bài viết thành công",
+      message: "Thêm bài viết thất bại",
+      code: 400,
+      error: error,
     });
   }
 });
+
+router.post("/chinhSuaTinTuc", uploadPhotos, async (req, res) => {
+  try {
+    await TinTuc.findOneAndUpdate(
+      { _id: req.body._id },
+      {
+        maBaiViet: req.body.maBaiViet,
+        anhBia: req.body.anhBia,
+        maDanhMuc: req.body.maDanhMuc,
+        loaiBaiViet: req.body.loaiBaiViet,
+        tieuDe: req.body.tieuDe,
+        tieuDeASCII: req.body.tieuDeASCII,
+        moTaNgan: req.body.moTaNgan,
+        noiDung: req.body.noiDung,
+        noiDungASCII: req.body.noiDungASCII,
+        nguoiViet: req.body.nguoiViet,
+        thoiGianDangBai: req.body.thoiGianDangBai,
+        viTriHienThi: req.body.viTriHienThi,
+        trangThai: req.body.trangThai,
+      }
+    );
+    res.json({
+      message: "Chỉnh sửa bài viết thành công",
+      code: 200,
+    });
+  } catch (error) {
+    res.json({
+      message: "Chỉnh sửa bài viết thất bại",
+      code: 400,
+      error: error,
+    });
+  }
+});
+
+// Xoá bài viết
+router.post("/xoatintuc", async (req, res) => {
+  try {
+    await TinTuc.findOneAndUpdate(
+      { maBaiViet: req.body.maBaiViet },
+      {
+        trangThai: 0,
+      }
+    );
+    res.json({
+      message: " Xóa bài viết thành công",
+      code: 200,
+    });
+  } catch (error) {
+    res.json({
+      message: " Xóa bài viết thất bại",
+      code: 200,
+      error: error,
+    });
+  }
+});
+
 // Get All Tintuc
 router.get("/danhsachtintuc", (req, res) => {
   TinTuc.find((error, data) => {
@@ -134,11 +139,16 @@ router.get("/danhsachtintuc", (req, res) => {
         error: error,
       });
     }
-    res.json({ message: "Lấy danh sách bài viết thành công.", data: data });
+    res.json({
+      message: "Lấy danh sách bài viết thành công.",
+      domain: req.headers.host,
+      data: data,
+    });
   });
 });
+
 router.get("/danhsachtintuckhac", (req, res) => {
-  TinTuc.find({trangThai: 1},(error, data) => {
+  TinTuc.find({ trangThai: 1 }, (error, data) => {
     if (error) {
       return res.json({
         message: "Lấy danh sách bài viết thành công.",
@@ -149,8 +159,9 @@ router.get("/danhsachtintuckhac", (req, res) => {
     res.json({ message: "Lấy danh sách bài viết thành công.", data: data });
   }).limit(3);
 });
+
 router.get("/tintucnoibatcntt", (req, res) => {
-  TinTuc.find({trangThai:1,viTriHienThi:3 },(error, data) => {
+  TinTuc.find({ trangThai: 1, viTriHienThi: 3 }, (error, data) => {
     if (error) {
       return res.json({
         message: "Lấy danh sách bài viết thành công.",
@@ -161,8 +172,9 @@ router.get("/tintucnoibatcntt", (req, res) => {
     res.json({ message: "Lấy danh sách bài viết thành công.", data: data });
   }).limit(3);
 });
+
 router.get("/danhsachtintuccntt", (req, res) => {
-  TinTuc.find({trangThai: 1},(error, data) => {
+  TinTuc.find({ trangThai: 1 }, (error, data) => {
     if (error) {
       return res.json({
         message: "Lấy danh sách bài viết thành công.",
@@ -173,6 +185,7 @@ router.get("/danhsachtintuccntt", (req, res) => {
     res.json({ message: "Lấy danh sách bài viết thành công.", data: data });
   });
 });
+
 // Get Tintuc by id
 router.get("/tintuc/:id", (req, res) => {
   TinTuc.findById(req.params.id, (error, data) => {
@@ -180,20 +193,6 @@ router.get("/tintuc/:id", (req, res) => {
       return error;
     }
     res.json({ message: "Lấy bài viết thành công.", data: data });
-  });
-});
-// add Tintuc add
-router.post("/xoatintuc", async (req, res) => {
-  console.log(" Xoa bai viet");
-  console.log(req.body.maBaiViet);
-  await TinTuc.findOneAndUpdate(
-    { maBaiViet: req.body.maBaiViet },
-    {
-      trangThai: 0,
-    }
-  );
-  res.json({
-    message: " Xóa bài viết thành công",
   });
 });
 
@@ -272,13 +271,25 @@ router.get("/:maDanhMuc/:loaiBaiViet", async (req, res) => {
 router.get("/search=:query", async (req, res) => {
   try {
     const newRegExp = (pattern) => new RegExp(`.*${pattern}.*`);
-    const regexQuery = newRegExp(req.params.query);
-    const data = await TinTuc.find({
-      trangThai: 1,
-      tieuDe: { $regex: regexQuery, $options: "i" }, // i: không phân biệt chữ hoa & thường
-    }).sort({
-      updatedAt: "desc", // asc || desc
-    });
+    const ascii = convertString.toASCII(req.params.query, null);
+    const regexQuery = newRegExp(ascii);
+    const data = await TinTuc.find()
+      .or([
+        {
+          tieuDeASCII: { $regex: regexQuery, $options: "i" }, // i: không phân biệt chữ hoa & thường
+        },
+        {
+          noiDungASCII: { $regex: regexQuery, $options: "i" }, // i: không phân biệt chữ hoa & thường
+        },
+      ])
+      .and([
+        {
+          trangThai: 1,
+        },
+      ])
+      .sort({
+        updatedAt: "desc", // asc || desc
+      });
     res.json({
       message: "Tìm bài viết thành công",
       code: 200,

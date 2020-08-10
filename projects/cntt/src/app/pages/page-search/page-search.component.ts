@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { TinTucCnttService } from '../../services/tintuc.service';
+import * as moment from 'moment';
+
 @Component({
   selector: 'app-page-search',
   templateUrl: './page-search.component.html',
@@ -40,5 +42,10 @@ export class PageSearchComponent implements OnInit {
         });
     }
     // this.query.setValue(null);
+  }
+
+  formatDatetime(time: string): string {
+    time = moment(time).format('HH:mm, DD-MM-YYYY');
+    return time;
   }
 }
