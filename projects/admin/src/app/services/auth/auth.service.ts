@@ -6,7 +6,6 @@ import {
   HttpHeaders,
   HttpErrorResponse,
 } from '@angular/common/http';
-import { User } from "../../../models/user";
 import { catchError, retry } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root',
@@ -15,7 +14,7 @@ import { catchError, retry } from 'rxjs/operators';
 export class AuthService {
   constructor (private httpClient: HttpClient) {}
 
-  login(user: User){
+  login(user: any){
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
     };

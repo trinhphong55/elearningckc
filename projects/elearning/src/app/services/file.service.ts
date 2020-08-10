@@ -17,5 +17,12 @@ export class FileService {
 			responseType: 'blob',
 			headers: new HttpHeaders().append('Content-Type', 'application/json')
 		});
+  }
+  downloadFileBaiGiang(file: String) {
+		var body = { filename: file };
+		return this._http.post('https://localhost:4100/api/baigiang/download', body, {
+			responseType: 'blob',
+			headers: new HttpHeaders().append('Content-Type', 'application/json')
+		});
 	}
 }

@@ -47,8 +47,8 @@
         <div class="right">
           <div class="danop_dagiao">
             <ng-container *ngFor="let link of item.dinhKem">
-              <a href="/projects/backend/models/{{link}}" download> <button mat-button>
-                  <p><i class="fas fa-file-archive"></i></p>{{ link }}
+              <a href="/projects/backend/uploads/elearning/baigiang/{{link}}" download (click)="download(link)"> <button mat-button>
+                  <p><i class="fas fa-file-archive"></i></p>
                 </button>
               </a>
             </ng-container>
@@ -119,7 +119,7 @@
   </div>
 </div>
 
-<div class="row">
+<!-- <div class="row">
   <div class="content">
     <div class="thongtin">
       <div class="tt-icon">
@@ -235,4 +235,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->

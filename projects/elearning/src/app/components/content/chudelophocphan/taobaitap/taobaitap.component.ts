@@ -118,11 +118,18 @@ export class TaobaitapComponent implements OnInit {
       this.baitap.file = this.attachmentList;
       this._baiTapService.addBaiTap(this.baitap).subscribe(data => {
         alert(data.message);
+        if (data.status === 200) {
+          alert('Chuan bi cap nhat chuc nang sau khi them thanh cong se clear du lieu cu');
+        }
       })
     }
 
     this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
       this.attachmentList.push(JSON.parse(response));
+    }
+
+    this.uploader.onBeforeUploadItem = (item) => {
+      item.withCredentials = false;
     }
   }
 }
