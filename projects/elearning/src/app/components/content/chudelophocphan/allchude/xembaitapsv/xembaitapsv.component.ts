@@ -6,8 +6,9 @@ import { Component, OnInit } from '@angular/core';
 import { BaiTapService } from '../../../../../services/bai-tap.service';
 import { BaiTapSinhVienService } from '../../../../../services/baiTapSinhVien.service';
 import { CookieService } from 'ngx-cookie-service';
-import { FileSelectDirective, FileUploader} from 'ng2-file-upload';
-import saveAs from 'file-saver';  
+import { FileSelectDirective, FileUploader } from 'ng2-file-upload';
+import { FileService } from '../../../../../services/file.service';
+import saveAs from 'file-saver';
 const uri = 'https://localhost:4100/api/baitap/uploads';
 @Component({
   selector: 'app-xembaitapsv',
@@ -31,13 +32,14 @@ export class XembaitapsvComponent implements OnInit {
   phong: any;
   maHocPhan: any;
   xoaBaiTap: any;
+  tinhTrang:string="Chưa nộp"
   uploader: FileUploader = new FileUploader({
     url: uri,
     maxFileSize: 2048, // Max 2kB
     queueLimit: 3, // Max files can upload
   });
 
-  attachmentList:any = [];
+  attachmentList: any = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -45,17 +47,25 @@ export class XembaitapsvComponent implements OnInit {
     private baiTapService: BaiTapService,
     private binhLuanService: BinhLuanService,
     private BaiTapSinhVienService: BaiTapSinhVienService,
-    private cookie: CookieService,) {
+    private cookie: CookieService,
+    private _fileService: FileService) {
 
   }
 
   ngOnInit(): void {
     this.xem_BaiTap();
     this.hienThiBaiTap();
+
+
     this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
       this.attachmentList.push(JSON.parse(response));
     }
+
+    this.uploader.onBeforeUploadItem = (item) => {
+      item.withCredentials = false;
+    }
   }
+
   public xem_BaiTap() {
     this.route.params.subscribe((params) => {
       this.baiTapService
@@ -105,9 +115,18 @@ export class XembaitapsvComponent implements OnInit {
     this.hasAnotherDropZoneOver = e;
   }
   hienThiBaiTap() {
-    this.BaiTapSinhVienService.layBttheosinhvien(this.cookie.get("displayName"), "1").subscribe(
+    this.BaiTapSinhVienService.getall().subscribe(
       (dsBaiTap) => {
         this.dsBaiTap = dsBaiTap;
+        console.log(this.baiTap.maBaiTap);
+        this.BaiTapSinhVienService.layBttheosinhvien(this.cookie.get("displayName"), this.baiTap.maBaiTap).subscribe(
+          (dsBaiTap) => {
+            this.dsBaiTap = dsBaiTap;
+            if(this.dsBaiTap.length>0)
+            {
+              this.tinhTrang="Đã nộp";
+            }
+          })
       },
       (error) => {
         console.log(error);
@@ -129,51 +148,49 @@ export class XembaitapsvComponent implements OnInit {
       }
     )
   }
- 
+
   //nop bai tap
   themBaiTap() {
-
-
-
     for (let item of this.uploader.queue) {
-
-      this.BaiTapSinhVienService.addbtSV(item).subscribe(data => {
-        alert(data.message);
-      })
-
-      this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
-        this.attachmentList.push(JSON.parse(response));
-      }
+      var maLopHocPhan: any;
+      var maSinhVien: any;
+      var maBaiTap: any;
+      var ChuDe: any;
+      this.data = { maLopHocPhan: "1", maSinhVien: this.cookie.get("displayName"), maBaiTap: this.baiTap.maBaiTap, chuDe: item?.file?.name };
+      this.BaiTapSinhVienService.addBaiTap(this.data).subscribe(
+        (nopBt) => {
+          this.nopBt = nopBt;
+          this.nopBt;
+          this.hienThiBaiTap();
+          this.uploader = new FileUploader({
+            formatDataFunction: async (item) => {
+              return new Promise((resolve, reject) => {
+                resolve({
+                  name: item._file.name,
+                  length: item._file.size,
+                  contentType: item._file.type,
+                  date: new Date(),
+                  maxFileSize: 2048,
+                  queueLimit: 3,
+                });
+                console.log(name)
+              });
+            }
+          });
+        },
+        (error) => {
+          console.log(error);
+        }
+      )
     }
-    // var maLopHocPhan:any;
-    // var maSinhVien:any;
-    // var maBaiTap:any;
-    // var ChuDe:any;
-    // this.data=  {maLopHocPhan:"1",maSinhVien: this.cookie.get("displayName"),maBaiTap:this.baiTap.maBaiTap,chuDe:item?.file?.name};
-    // this.BaiTapSinhVienService.addBaiTap(this.data).subscribe(
-    //   (nopBt) => {
-    //     this.nopBt = nopBt;
-    //     this.nopBt;
-    //     this.hienThiBaiTap();
-    //     this.uploader = new FileUploader({
-    //       formatDataFunction: async (item) => {
-    //         return new Promise((resolve, reject) => {
-    //           resolve({
-    //             name: item._file.name,
-    //             length: item._file.size,
-    //             contentType: item._file.type,
-    //             date: new Date(),
-    //             maxFileSize:2048,
-    //             queueLimit: 3,
-    //           });
-    //           console.log(name)
-    //         });
-    //       }
-    //     });
-    //   },
-    //   (error) => {
-    //     console.log(error);
-    //   }
-    // )
+  }
+  download(index) {
+    var filename = this.attachmentList[index].uploadname;
+
+    this._fileService.downloadFile(filename)
+      .subscribe(
+        data => saveAs(data, filename),
+        error => console.error(error)
+      );
   }
 }

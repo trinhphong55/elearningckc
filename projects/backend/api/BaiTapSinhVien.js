@@ -36,6 +36,20 @@ _router.post("/download", function (req, res, next) {
   res.sendFile(filepath);
 });
 
+_router.get("/:maLopHocPhan/lop-hoc-phan", async (req, res) => {
+  try {
+    const baiTaps = await BaiTap.find({ lopHocPhan: req.params.maLopHocPhan });
+    res.json({
+      count: baiTaps.length,
+      data: baiTaps,
+      message: "Lấy thành công danh sách bài tập",
+      status: 200,
+    });
+  } catch (error) {
+    res.json(error);
+  }
+});
+
 ///lAY DS BT SV
 _router.get("/", async (req, res) => {
   try {
@@ -57,7 +71,6 @@ _router.get("/:maSinhVien/:maBaiTap/baitap", async (req, res) => {
 
 // Add BaiTap
 _router.post("/", async (req, res) => {
-  console.log(req.body)
   let baitap = req.body;
   let nextNumber = 1;
   //get NextNumber
