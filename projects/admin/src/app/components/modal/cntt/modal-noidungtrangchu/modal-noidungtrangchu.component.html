@@ -1,4 +1,4 @@
-<app-modal class="modal_chucnang__wrapper" id="cntt_noidungtrangchu">
+<app-modal class="modal_chucnang__wrapper show" id="cntt_noidungtrangchu">
   <div
     (click)="closeModal('cntt_noidungtrangchu')"
     class="modal_chucnang__close mdi mdi-chevron-left text-white"
@@ -6,7 +6,7 @@
   <div class="container-fluid mt-3">
     <div class="row">
       <div class="col-12">
-        <h1 class="text-center text-white">Nội dung trang chủ</h1>
+        <h1 class="text-center text-white mb-0">Nội dung trang chủ</h1>
         <!-- <button type="button" (click)="onClickLogData()">log</button> -->
       </div>
       <div class="col-12">
@@ -21,23 +21,23 @@
                   <th class="text-center">#</th>
                   <th class="text-center">Ảnh bìa</th>
                   <th>Tiêu đề</th>
-                  <th>Thời gian đăng</th>
-                  <th>Người đăng</th>
+                  <th class="text-center">Thời gian đăng</th>
+                  <th class="text-center">Người đăng</th>
                   <th class="text-center">
-                    <button
+                    <!-- <button
                       title="Thêm bài viết quan trọng mới"
                       class="bg-transparent border-0 p-0"
                     >
                       <span
                         class="modal_chucnang__button__plus mdi mdi-plus mdi-24px"
                       ></span>
-                    </button>
+                    </button> -->
                   </th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let item of listBaiVietQuanTrong; let i = index">
-                  <td style="width: 50px;" class="text-center">{{ i }}</td>
+                  <td style="width: 50px;" class="text-center">{{ i + 1 }}</td>
                   <td style="width: 80px;">
                     <a
                       data-fancybox
@@ -50,26 +50,37 @@
                       />
                     </a>
                   </td>
-                  <td>{{ item.tieuDe }}</td>
-                  <td style="width: 200px;">{{ item.thoiGianDangBai }}</td>
-                  <td style="width: 180px;">
+                  <td>
+                    <a
+                      class="text-reset"
+                      href="http://localhost:4300/bai-viet/{{ item._id }}"
+                      [title]="item.tieuDe"
+                    >
+                      {{ item.tieuDe }}
+                    </a>
+                  </td>
+                  <td style="width: 160px; text-align: center;">
+                    {{ formatDatetime(item.thoiGianDangBai) }}
+                  </td>
+                  <td style="width: 150px; text-align: center;">
                     <div
                       class="text-truncate"
-                      style="width: 180px;"
-                      title="{{ item.nguoiViet || 'Nguyễn Thành Lộc' }}"
+                      style="width: 150px;"
+                      title="{{ item.nguoiViet }}"
                     >
-                      {{ item.nguoiViet || "Chưa có giá trị" }}
+                      {{ item.nguoiViet }} jahsj hasjdh ajshd jashdj ahsdj asjdh
+                      asd
                     </div>
                   </td>
                   <td style="width: 60px;" class="text-center">
-                    <button
+                    <!-- <button
                       title="Ẩn bài viết khỏi mục này"
                       class="bg-transparent border-0 p-0"
                     >
                       <span
                         class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px"
                       ></span>
-                    </button>
+                    </button> -->
                   </td>
                 </tr>
               </tbody>
@@ -89,23 +100,23 @@
                   <th class="text-center">#</th>
                   <th class="text-center">Ảnh bìa</th>
                   <th>Tiêu đề</th>
-                  <th>Thời gian đăng</th>
-                  <th>Người đăng</th>
+                  <th class="text-center">Thời gian đăng</th>
+                  <th class="text-center">Người đăng</th>
                   <th class="text-center">
-                    <button
+                    <!-- <button
                       title="Thêm bài viết quan trọng mới"
                       class="bg-transparent border-0 p-0"
                     >
                       <span
                         class="modal_chucnang__button__plus mdi mdi-plus mdi-24px"
                       ></span>
-                    </button>
+                    </button> -->
                   </th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let item of listCoHoiViecLam; let i = index">
-                  <td style="width: 50px;" class="text-center">{{ i }}</td>
+                  <td style="width: 50px;" class="text-center">{{ i + 1 }}</td>
                   <td style="width: 80px;">
                     <a
                       data-fancybox
@@ -119,25 +130,27 @@
                     </a>
                   </td>
                   <td>{{ item.tieuDe }}</td>
-                  <td style="width: 200px;">{{ item.thoiGianDangBai }}</td>
-                  <td style="width: 180px;">
+                  <td style="width: 160px; text-align: center;">
+                    {{ formatDatetime(item.thoiGianDangBai) }}
+                  </td>
+                  <td style="width: 150px; text-align: center;">
                     <div
                       class="text-truncate"
-                      style="width: 180px;"
-                      title="{{ item.nguoiViet || 'Nguyễn Thành Lộc' }}"
+                      style="width: 150px;"
+                      title="{{ item.nguoiViet }}"
                     >
-                      {{ item.nguoiViet || "Chưa có giá trị" }}
+                      {{ item.nguoiViet }}
                     </div>
                   </td>
                   <td style="width: 60px;" class="text-center">
-                    <button
+                    <!-- <button
                       title="Ẩn bài viết khỏi mục này"
                       class="bg-transparent border-0 p-0"
                     >
                       <span
                         class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px"
                       ></span>
-                    </button>
+                    </button> -->
                   </td>
                 </tr>
               </tbody>
@@ -157,23 +170,23 @@
                   <th class="text-center">#</th>
                   <th class="text-center">Ảnh bìa</th>
                   <th>Tiêu đề</th>
-                  <th>Thời gian đăng</th>
-                  <th>Người đăng</th>
+                  <th class="text-center">Thời gian đăng</th>
+                  <th class="text-center">Người đăng</th>
                   <th class="text-center">
-                    <button
+                    <!-- <button
                       title="Thêm bài viết quan trọng mới"
                       class="bg-transparent border-0 p-0"
                     >
                       <span
                         class="modal_chucnang__button__plus mdi mdi-plus mdi-24px"
                       ></span>
-                    </button>
+                    </button> -->
                   </th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let item of listGioiThieuNgan; let i = index">
-                  <td style="width: 50px;" class="text-center">{{ i }}</td>
+                  <td style="width: 50px;" class="text-center">{{ i + 1 }}</td>
                   <td style="width: 80px;">
                     <a
                       data-fancybox
@@ -187,25 +200,27 @@
                     </a>
                   </td>
                   <td>{{ item.tieuDe }}</td>
-                  <td style="width: 200px;">{{ item.thoiGianDangBai }}</td>
-                  <td style="width: 180px;">
+                  <td style="width: 160px; text-align: center;">
+                    {{ formatDatetime(item.thoiGianDangBai) }}
+                  </td>
+                  <td style="width: 150px; text-align: center;">
                     <div
                       class="text-truncate"
-                      style="width: 180px;"
-                      title="{{ item.nguoiViet || 'Nguyễn Thành Lộc' }}"
+                      style="width: 150px;"
+                      title="{{ item.nguoiViet }}"
                     >
-                      {{ item.nguoiViet || "Chưa có giá trị" }}
+                      {{ item.nguoiViet }}
                     </div>
                   </td>
                   <td style="width: 60px;" class="text-center">
-                    <button
+                    <!-- <button
                       title="Ẩn bài viết khỏi mục này"
                       class="bg-transparent border-0 p-0"
                     >
                       <span
                         class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px"
                       ></span>
-                    </button>
+                    </button> -->
                   </td>
                 </tr>
               </tbody>
@@ -225,17 +240,17 @@
                   <th class="text-center">#</th>
                   <th class="text-center">Ảnh bìa</th>
                   <th>Tiêu đề</th>
-                  <th>Thời gian đăng</th>
-                  <th>Người đăng</th>
+                  <th class="text-center">Thời gian đăng</th>
+                  <th class="text-center">Người đăng</th>
                   <th class="text-center">
-                    <button
+                    <!-- <button
                       title="Thêm bài viết quan trọng mới"
                       class="bg-transparent border-0 p-0"
                     >
                       <span
                         class="modal_chucnang__button__plus mdi mdi-plus mdi-24px"
                       ></span>
-                    </button>
+                    </button> -->
                   </th>
                 </tr>
               </thead>
@@ -255,25 +270,28 @@
                     </a>
                   </td>
                   <td>{{ item.tieuDe }}</td>
-                  <td style="width: 200px;">{{ item.thoiGianDangBai }}</td>
-                  <td style="width: 180px;">
+                  <td style="width: 160px; text-align: center;">
+                    {{ formatDatetime(item.thoiGianDangBai) }}
+                  </td>
+                  <td style="width: 150px; text-align: center;">
                     <div
                       class="text-truncate"
-                      style="width: 180px;"
-                      title="{{ item.nguoiViet || 'Nguyễn Thành Lộc' }}"
+                      style="width: 150px;"
+                      title="{{ item.nguoiViet }}"
                     >
-                      {{ item.nguoiViet || "Chưa có giá trị" }}
+                      {{ item.nguoiViet }} jahsj hasjdh ajshd jashdj ahsdj asjdh
+                      asd
                     </div>
                   </td>
                   <td style="width: 60px;" class="text-center">
-                    <button
+                    <!-- <button
                       title="Ẩn bài viết khỏi mục này"
                       class="bg-transparent border-0 p-0"
                     >
                       <span
                         class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px"
                       ></span>
-                    </button>
+                    </button> -->
                   </td>
                 </tr>
               </tbody>

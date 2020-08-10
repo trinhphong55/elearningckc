@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { ModalService } from '../../../../services/modal.service';
 import { TintucCnttService } from '../../../../services/cntt/tintuc-cntt.service';
+import * as moment from 'moment';
 declare var $: any;
 
 @Component({
@@ -92,5 +93,10 @@ export class ModalNoidungtrangchuComponent
     console.log(this.listGioiThieuNgan);
     console.log('log listTinTucNoiBat');
     console.log(this.listTinTucNoiBat);
+  }
+  
+  formatDatetime(time: string): string {
+    time = moment(time).format('HH:mm, DD-MM-YYYY');
+    return time;
   }
 }
