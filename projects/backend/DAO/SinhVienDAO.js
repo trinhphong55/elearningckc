@@ -22,7 +22,8 @@ class SinhVienDAO extends MongoDB{
         const obj = { id: email, password };
         const token = JWT.sign(obj, '11111');
         const role = 'SV';
-        return { token, role, email};
+        const name = checkUser[0].ho + ' ' + checkUser[0].ten;
+        return { token, role, email, name};
       }
       else {
         return false;

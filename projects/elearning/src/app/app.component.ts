@@ -29,7 +29,9 @@ export class AppComponent implements OnInit{
   onLogout(): void {
     console.log('logout');
     setCookie('token', '', '0');
+    setCookie('email', '', '0');
     setCookie('role', '', '0');
+    setCookie('name', '', '0');
     window.location.href = "https://localhost:4200";
   }
 
