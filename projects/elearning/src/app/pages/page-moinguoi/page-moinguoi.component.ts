@@ -27,6 +27,8 @@ export class PageMoinguoiComponent implements OnInit {
   dsLopHP: any;
   maLopHoc: any;
   soluong:any;
+  quyen:string="";
+  doiTuong:any;
   constructor(public dialog: MatDialog,
     private apiService: ApiService,
     private sinhVienService: SinhVienService,
@@ -41,6 +43,7 @@ export class PageMoinguoiComponent implements OnInit {
       this.danhSachLopHocPhan();
     this.danhSachHocSinh();
     this.moiGiaoVien();
+    this.quyenMoi();
     this.maLophocPhan = this.router.snapshot.paramMap.get('id');
   }
   openMoigv() {
@@ -110,5 +113,16 @@ export class PageMoinguoiComponent implements OnInit {
   //moi giao vien
   moiGiaoVien(){
 
+  }
+
+  //quyen moigv
+  quyenMoi()
+  {
+  
+    this.doiTuong = this.cookie.get("role");
+    if(this.doiTuong== 'SV')
+    {
+      this.quyen='none'
+    }
   }
 }
