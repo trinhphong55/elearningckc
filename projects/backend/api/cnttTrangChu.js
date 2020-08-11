@@ -9,6 +9,7 @@ router.get("/all", async (req, res) => {
         { viTriHienThi: 1 },
         { viTriHienThi: 2 },
         { viTriHienThi: 3 },
+        { viTriHienThi: 4 },
       ],
     });
     res.json({

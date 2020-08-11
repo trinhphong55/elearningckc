@@ -15,4 +15,8 @@ const data = [
     maViTri: 3,
     tenViTri: 'Tin tức nổi bật',
   },
+  {
+    maViTri: 4,
+    tenViTri: 'Mô tả cơ hội việc làm',
+  },
 ];

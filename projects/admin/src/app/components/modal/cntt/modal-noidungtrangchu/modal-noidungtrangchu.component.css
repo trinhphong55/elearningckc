@@ -19,3 +19,13 @@
   max-width: 100%;
   max-height: 100%;
 }
+
+input.index {
+  width: 30px;
+  text-align: center;
+}
+
+input.index:disabled {
+  background: none;
+  border: none;
+}

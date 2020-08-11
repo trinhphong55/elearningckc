@@ -131,21 +131,21 @@ router.post("/xoatintuc", async (req, res) => {
 });
 
 // Get All Tintuc
-router.get("/danhsachtintuc", (req, res) => {
-  TinTuc.find((error, data) => {
-    if (error) {
-      return res.json({
-        message: "Lấy danh sách bài viết thành công.",
-        data: [],
-        error: error,
-      });
-    }
+router.get("/danhsachtintuc", async (req, res) => {
+  try {
+    const data = await TinTuc.find().sort({ maBaiViet: "asc" });
     res.json({
       message: "Lấy danh sách bài viết thành công.",
       domain: req.headers.host,
       data: data,
     });
-  });
+  } catch (error) {
+    res.json({
+      message: "Lấy danh sách bài viết thành công.",
+      data: [],
+      error: error,
+    });
+  }
 });
 
 router.get("/danhsachtintuckhac", (req, res) => {
@@ -162,7 +162,7 @@ router.get("/danhsachtintuckhac", (req, res) => {
 });
 
 router.get("/tintucnoibatcntt", (req, res) => {
-  TinTuc.find({trangThai:1},(error, data) => {
+  TinTuc.find({ trangThai: 1 }, (error, data) => {
     if (error) {
       return res.json({
         message: "Lấy danh sách bài viết thành công.",
@@ -171,7 +171,9 @@ router.get("/tintucnoibatcntt", (req, res) => {
       });
     }
     res.json({ message: "Lấy danh sách bài viết thành công.", data: data });
-  }).sort({_id:-1}).limit(10);
+  })
+    .sort({ _id: -1 })
+    .limit(10);
 });
 
 router.get("/danhsachtintuccntt", (req, res) => {

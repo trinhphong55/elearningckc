@@ -94,7 +94,7 @@ export class ModalNoidungtrangchuComponent
     console.log('log listTinTucNoiBat');
     console.log(this.listTinTucNoiBat);
   }
-  
+
   formatDatetime(time: string): string {
     time = moment(time).format('HH:mm, DD-MM-YYYY');
     return time;

@@ -41,7 +41,7 @@
                   <td colspan="11" class="text-center">Chưa có dữ liệu</td>
                 </tr>
               </tbody> -->
-              <tbody *ngIf="danhSachBaiViet.data.length !== 0">
+              <tbody>
                 <tr *ngFor="let itemBaiViet of danhSachBaiViet.data">
                   <td style="width: 80px; text-align: center;">
                     {{ itemBaiViet.maBaiViet }}
@@ -172,7 +172,6 @@
                   <div class="form-group" style="width: 128px;">
                     <label class="mb-0">Mã bài viết</label>
                     <input
-                      disabled
                       formControlName="maBaiViet"
                       style="width: 128px;"
                       type="text"

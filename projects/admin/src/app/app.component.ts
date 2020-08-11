@@ -13,8 +13,8 @@ export class AppComponent implements OnInit {
   }
 
   // Cờ đã đăng nhập
-  isLogged: Boolean = true;
-  // isLogged: Boolean = false;
+  // isLogged: Boolean = true;
+  isLogged: Boolean = false;
 
   loginForm = new FormGroup({
     email: new FormControl(),
@@ -48,6 +48,7 @@ export class AppComponent implements OnInit {
           setCookie('token', response.data.token, '7');
           setCookie('role', response.data.role, '7');
           setCookie('email', response.data.email, '7');
+          setCookie('displayName', response.data.displayName, '7');
           this.isLogged = true;
         }
 

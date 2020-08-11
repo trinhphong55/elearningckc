@@ -15,7 +15,7 @@ import { TintucCnttService } from '../../../../services/cntt/tintuc-cntt.service
 import { DanhmucService } from '../../../../services/cntt/danhmuc.service';
 import { LoaibaivietService } from '../../../../services/cntt/loaibaiviet.service';
 import { StringCommonService } from '../../../../services/cntt/stringcommon.service';
-
+import { getCookie } from '../../../../../../../common/helper';
 @Component({
   selector: 'app-modal-baiviet',
   templateUrl: './modal-baiviet.component.html',
@@ -31,11 +31,12 @@ export class ModalBaivietComponent implements OnInit, OnDestroy, AfterViewInit {
   ) {}
 
   //#region DataTables
-  @ViewChild(DataTableDirective, { static: false }) _dtElement: DataTableDirective; // @ViewChild(DataTableDirective, { static: false }) _dtElement: DataTableDirective;
+  @ViewChild(DataTableDirective, { static: false })
+  _dtElement: DataTableDirective; // @ViewChild(DataTableDirective, { static: false }) _dtElement: DataTableDirective;
   public dtOptions: DataTables.Settings = {};
   public dtTrigger: Subject<any> = new Subject();
   //#endregion
-
+  private _username: any = getCookie('displayName');
   private _image: any = null;
   private _imageCanChinhSua: any = null;
   public image: any = 'https://localhost:4100/uploads/cntt/128.png';
@@ -109,6 +110,10 @@ export class ModalBaivietComponent implements OnInit, OnDestroy, AfterViewInit {
       maViTri: 3,
       tenViTri: 'Tin tức nổi bật',
     },
+    {
+      maViTri: 4,
+      tenViTri: 'Mô tả cơ hội việc làm',
+    },
   ];
   public trangThaiCuaForm: Number = 0; // 0: Thêm mới, 1: Chỉnh sửa
 
@@ -125,7 +130,7 @@ export class ModalBaivietComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.dtTrigger.next(); // DataTables
+    // this.dtTrigger.next(); // DataTables
   }
 
   ngOnDestroy(): void {
@@ -143,21 +148,21 @@ export class ModalBaivietComponent implements OnInit, OnDestroy, AfterViewInit {
   // DataTables
   reRenderDataTables(): void {
     this._dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
-      this.getDanhSachBaiViet();
-      // Destroy the table first
-      dtInstance.destroy();
-      // Call the dtTrigger to rerender again
-      this.dtTrigger.next();
+      // this.getDanhSachBaiViet();
+      // // Destroy the table first
+      // dtInstance.destroy();
+      // // Call the dtTrigger to rerender again
+      // this.dtTrigger.next();
     });
   }
 
   getDanhSachBaiViet() {
     this.tintucCnttService.danhSachTinTuc().subscribe((data) => {
       this.danhSachBaiViet = data;
-      console.log('danhSachBaiViet');
-      console.log(this.danhSachBaiViet);
+      // console.log('danhSachBaiViet');
+      // console.log(this.danhSachBaiViet);
       this.getMaBaiVietCuoiCung();
-      // this.dtTrigger.next(); // DataTables
+      this.dtTrigger.next(); // DataTables
     });
   }
 
@@ -217,6 +222,8 @@ export class ModalBaivietComponent implements OnInit, OnDestroy, AfterViewInit {
         return 'Giới thiệu ngắn';
       case 3:
         return 'Tin tức nổi bật';
+      case 4:
+        return 'Mô tả cơ hội việc làm';
       default:
         return 'Không hiển thị';
     }
@@ -311,7 +318,7 @@ export class ModalBaivietComponent implements OnInit, OnDestroy, AfterViewInit {
         'noiDungASCII',
         this.formBaiViet.get('noiDungASCII').value
       );
-      formData.append('nguoiViet', this.formBaiViet.get('nguoiViet').value);
+      formData.append('nguoiViet', this._username);
       formData.append(
         'viTriHienThi',
         this.formBaiViet.get('viTriHienThi').value
@@ -371,10 +378,7 @@ export class ModalBaivietComponent implements OnInit, OnDestroy, AfterViewInit {
         'noiDungASCII',
         this.formChinhSuaBaiViet.get('noiDungASCII').value
       );
-      formData.append(
-        'nguoiViet',
-        this.formChinhSuaBaiViet.get('nguoiViet').value
-      );
+      formData.append('nguoiViet', this._username);
       formData.append(
         'viTriHienThi',
         this.formChinhSuaBaiViet.get('viTriHienThi').value
