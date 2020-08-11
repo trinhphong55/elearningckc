@@ -50,16 +50,27 @@ export class ModalBannerComponent implements OnInit  {
    nameImage: any;
    imageSrc: any;
    onFileSelected(event) {
-     if(event.target.files.length > 0)
-      {
-       this.nameImage = event.target.files[0].name;
+    if (event.target.files.length > 0) {
+      this.nameImage = event.target.files[0];
+      console.log(this.nameImage);
+      let img = new Image()
+      img.src = window.URL.createObjectURL(event.target.files[0])
+      img.onload = () => {
+        if(img.width ===2000 && img.height === 600){
+          const file = event.target.files[0];
+          const reader = new FileReader();
+          reader.onload = (e) => (this.imageSrc = reader.result);
+          reader.readAsDataURL(file);
+        }
+        else{
+          this.imageSrc = null;
+          this.toastr.success('Hình ảnh chưa đúng kích thước');
+        }
       }
-     if (event.target.files && event.target.files[0]) {
-     const file = event.target.files[0];
-     const reader = new FileReader();
-     reader.onload = e => this.imageSrc = reader.result;
-     reader.readAsDataURL(file);
-     }
+    };
+    if (event.target.files[0].size > 2097152) {
+      this.toastr.success('File yêu cầu nhỏ hơn 2MB');
+    };
    }
    addBanner(link: string,vitri: string): void {
      console.log(vitri);
@@ -69,7 +80,7 @@ export class ModalBannerComponent implements OnInit  {
      }
      else{
        const newItem: ttthBanner = new ttthBanner();
-       newItem.image = 'https://localhost:4100/uploads/cntt/' + this.nameImage;
+       newItem.image = 'https://localhost:4100/uploads/cntt/' + this.nameImage.name;
        newItem.link = link;
        newItem.vitri = vitri;
        newItem.hienthi = true;
@@ -99,10 +110,10 @@ export class ModalBannerComponent implements OnInit  {
   }
   saveBanner(Banner: ttthBanner):void {
     if (this.nameImage) {
-      Banner.image='https://localhost:4100/uploads/cntt/' + this.nameImage;
+      Banner.image='https://localhost:4100/uploads/cntt/' + this.nameImage.name;
     }
     Banner.updated_at= new Date;
-    Banner.hienthi= this.capnhatHienThi;
+    // Banner.hienthi= this.capnhatHienThi;
     this.bannerService.suaBanner(Banner)
     .subscribe(suaBanner => {
       this.Banner.push(suaBanner);
@@ -111,12 +122,15 @@ export class ModalBannerComponent implements OnInit  {
   }
   //delete
   xoaBanner(Banner: ttthBanner):void {
-    this.bannerService.xoaBanner(Banner)
-    .subscribe(xoaBanner => {
-      this.Banner.push(xoaBanner);
-      setTimeout(() => {}, 0);
-    });
-    this.getBannerfromServices();
-    this.toastr.success('Xóa thành công');
+    var comfirmDel = confirm('Bạn có chắc chắn muốn xóa');
+    if(comfirmDel==true){
+      this.bannerService.xoaBanner(Banner)
+      .subscribe(xoaBanner => {
+        this.Banner.push(xoaBanner);
+        setTimeout(() => {}, 0);
+      });
+      this.getBannerfromServices();
+      this.toastr.success('Xóa thành công');
+    }
   }
 }

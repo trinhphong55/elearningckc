@@ -12,7 +12,7 @@ export class CamonService {
 
   constructor(private http: HttpClient) { }
   get(): Observable<ttthCamOn[]  >{
-    return this.http.get<ttthCamOn[] >('https://localhost:4100/api/ttthCamOn/').pipe(
+    return this.http.get<ttthCamOn[] >('https://localhost:4100/api/ttthCamOn/list').pipe(
     );
   }
   add(newItem: ttthCamOn): Observable<ttthCamOn> {
