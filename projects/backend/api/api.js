@@ -200,7 +200,7 @@ router.get("/baidangfb",baidangfb.getAll);
 router.post("/baidangfb",baidangfb.postToDrawFB);
 //Thêm vào posted
 router.post("/baidangfb/:postID",baidangfb.postedToFB);
-//Update posted 
+//Update posted
 router.put("/baidangfb/:postID",baidangfb.updatePostedFB);
 //Xóa bài post
 router.delete("/baidangfb/:id",baidangfb.deletePostFB);
@@ -235,6 +235,7 @@ router.get("/baigiang/:maLopHocPhan/lop-hoc-phan", baiGiang.layTheo_MaLHP);
 router.get("/baigiang/:maBaiGiang/ma-bai-giang", baiGiang.layTheo_maBaiGiang);
 router.post("/baigiang/upload", baiGiang.upload);
 router.post("/baigiang/download", baiGiang.download);
+router.delete("/baigiang/:maBaiGiang", baiGiang.xoa);
 
 //========================= Routes BinhLuan ==========================================
 router.get("/binhluan/:loaiBaiViet/baiviet/:maBaiViet", binhLuan.layBinhLuan_theoBaiViet);

@@ -142,16 +142,16 @@ exports.download = function (req, res, next) {
 
 exports.xoa =async (req, res) => {
   try {
-    const findBaiGiang = await baiGiangModel.find({trangThai: 1});
-    if(findBaiGiang.length  == 0){
+    const findBaiGiang = await baiGiangModel.findOne({maBaiGiang: req.params.maBaiGiang , trangThai:1});
+    if(!findBaiGiang){
       return res.json('Không tìm thấy Mã bài giảng');
     }
     const baiGiang = await baiGiangModel.updateOne(
-      { maBaiGiang: req.params.maBaiGiang },
+      { maBaiGiang: req.params.maBaiGiang, trangThai:1 },
       { $set: { trangThai: 0 } }
     );
 
-    res.json({message: 'Xóa thành công ' + req.params.maBaiGiang, status:200})
+    res.json({message: 'Xóa thành công ' + findBaiGiang.tieuDe, status:200})
   } catch (error) {
 
   }
