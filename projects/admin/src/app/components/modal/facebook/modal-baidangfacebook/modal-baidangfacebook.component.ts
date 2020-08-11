@@ -34,11 +34,13 @@ export class ModalBaidangfacebookComponent implements OnInit {
     this.getLoai();
     this.getMaLoai();
     this.getTrangThai();
+    this.changedTrangThai();
   }
 
   getAll() {
     this.baiDangService.getAll().subscribe((data) => {
       this.data = data;
+      this.posttams = data;
     });
   }
   getTrangThai() {
@@ -60,11 +62,11 @@ export class ModalBaidangfacebookComponent implements OnInit {
           this.posttams.push(element);
         }
       });
-    } 
+    }
     else{
       this.posttams=this.data;
     }
-    
+
     // if (this.addForm.value.theLoai !== '') {
     //   this.data.forEach((element) => {
     //     if (element.maLoai == this.addForm.value.theLoai) {
@@ -72,7 +74,7 @@ export class ModalBaidangfacebookComponent implements OnInit {
     //     }
     //   });
     // }
-    
+
     console.log(this.posttams);
   }
   getMaLoai() {
