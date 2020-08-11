@@ -81,12 +81,12 @@
                     <input class="form-control" type="text" name="picture" id="picturegr"/>
                   </div>
                 </div>
-                <div class="">
+                <!-- <div class="">
                   <div class="form-group">
                     <label for="">Ảnh/Video</label>
                     <input class="form-control-file border" type="file">
                   </div>
-                </div>
+                </div> -->
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -139,12 +139,12 @@
               <th scope="col" class="text-center">Tác vụ</th>
             </thead>
             <tbody >
-              <tr *ngFor=" let d of lopTams |filter: searchGroup; index as stt" (click)="insertDateforForm(d)">
+              <tr *ngFor=" let d of lopTams |filter: searchGroup; index as stt" >
                 <td class="text-center">{{stt+1}}</td>
                 <td class="text-center">
                   <div class="a" id="maGoup + {{stt}}">{{d.IDGroupFB}}</div>
                 </td>
-                <td class="text-center">
+                <td class="text-center" (click)="insertDateforForm(d)">
                   <label >{{d.tenVietTat}}</label>
                 </td>
                 <td class="text-center">
