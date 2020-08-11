@@ -55,7 +55,7 @@ exports.them = async (req, res) => {
 };
 exports.layTheoMaChuDe = async (req, res) => {
   try {
-    const baiGiangs = await baiGiangModel.find({ maChuDe: req.params.maChuDe });
+    const baiGiangs = await baiGiangModel.find({ maChuDe: req.params.maChuDe, trangThai:1 });
     res.json({
       maChuDe: req.params.maChuDe,
       count: baiGiangs.length,
@@ -75,6 +75,7 @@ exports.layTheo_MaLHP = async (req, res) => {
   try {
     const chuDes = await baiGiangModel.find({
       maLopHocPhan: req.params.maLopHocPhan,
+      trangThai:1
     });
     return res.json({
       count: chuDes.length,
@@ -135,6 +136,24 @@ exports.download = function (req, res, next) {
       req.body.filename;
     res.sendFile(filepath);
   } catch (error) {
-    res.json({err: "Khong tim thay file"});
+    res.json({ err: "Khong tim thay file" });
   }
+};
+
+exports.xoa =async (req, res) => {
+  try {
+    const findBaiGiang = await baiGiangModel.find({trangThai: 1});
+    if(findBaiGiang.length  == 0){
+      return res.json('Không tìm thấy Mã bài giảng');
+    }
+    const baiGiang = await baiGiangModel.updateOne(
+      { maBaiGiang: req.params.maBaiGiang },
+      { $set: { trangThai: 0 } }
+    );
+
+    res.json({message: 'Xóa thành công ' + req.params.maBaiGiang, status:200})
+  } catch (error) {
+
+  }
+
 };
