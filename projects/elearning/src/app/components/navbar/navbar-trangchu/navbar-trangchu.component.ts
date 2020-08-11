@@ -46,6 +46,6 @@ constructor(private bacService:BacService ,
     this.bac=this.formDanhSachLop.get('bac').value
     this.cookie.set("bac",this.bac)
     this.hocKi=this.formDanhSachLop.get('hocKi').value
-    this.cookie.set("hocKi",this.hocKi)
+    this.cookie.set("hocKi",this.hocKi);
   }
 }

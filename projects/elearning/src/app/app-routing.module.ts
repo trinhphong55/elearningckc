@@ -64,7 +64,7 @@ const routes: Routes = [
     component: PageCotodiemComponent,
   },
   {
-    path: 'tongdiem',
+    path: 'tongdiem/:id',
     component: PageTongdiemComponent,
   },
   {
@@ -94,7 +94,7 @@ const routes: Routes = [
     component:XembaiganggvComponent
   },
   {
-    path: 'chamdiem',
+    path: 'chamdiem/:id',
     component: PageChamdiemComponent,
   },
 
@@ -104,7 +104,6 @@ const routes: Routes = [
     outlet: 'navbar',
   },
   {
-
     path: 'lophocphan/:id',
     component: NavbarHocphanComponent,
     outlet: 'navbar',

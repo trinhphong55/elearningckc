@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 const MonHocSchema = new mongoose.Schema({
   maMonHoc: {
+    unique: true,
     type: String,
     required: true
   },

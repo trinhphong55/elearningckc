@@ -13,6 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { FileUploadModule } from 'ng2-file-upload';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { NgxPrintModule } from 'ngx-print';
 import { NgApexchartsModule } from "ng-apexcharts";
 
 import { AppComponent } from './app.component';
@@ -95,6 +96,9 @@ import { ModalDiemthiComponent } from './components/modal/ttth/modal-diemthi/mod
 import { ModalTtthQuanlidiemthiComponent } from './components/modal/ttth/modal-ttth-quanlidiemthi/modal-ttth-quanlidiemthi.component';
 import { ModalTtthchudeComponent } from './components/modal/ttth/modal-ttthchude/modal-ttthchude.component';
 import { ModalThoikhoabieuComponent } from './components/modal/chuongtrinhdaotao/modal-thoikhoabieu/modal-thoikhoabieu.component';
+import { ModalPhonghocComponent } from './components/modal/chuongtrinhdaotao/modal-phonghoc/modal-phonghoc.component';
+import { ModalLichphonghocComponent } from './components/modal/chuongtrinhdaotao/modal-lichphonghoc/modal-lichphonghoc.component';
+import { ModalBaivietComponent } from './components/modal/cntt/modal-baiviet/modal-baiviet.component';
 
 @NgModule({
   declarations: [
@@ -178,7 +182,10 @@ import { ModalThoikhoabieuComponent } from './components/modal/chuongtrinhdaotao
     ModalDiemthiComponent,
     ModalTtthQuanlidiemthiComponent,
     ModalTtthchudeComponent,
-    ModalThoikhoabieuComponent
+    ModalThoikhoabieuComponent,
+    ModalPhonghocComponent,
+    ModalLichphonghocComponent,
+    ModalBaivietComponent
   ],
   imports: [
     BrowserModule,
@@ -194,6 +201,7 @@ import { ModalThoikhoabieuComponent } from './components/modal/chuongtrinhdaotao
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
     FileUploadModule,
+    NgxPrintModule,
     NgApexchartsModule
   ],
   providers: [ApiService, TintucCnttService],

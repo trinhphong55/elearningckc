@@ -24,7 +24,7 @@ export class PageMoinguoiComponent implements OnInit {
   maLophocPhan: any;
   dsGiaoVienLophp: any;
   dsTenHocSinh: any;
-  dsLopHP: any
+  dsLopHP: any;
   maLopHoc: any;
   soluong:any;
   constructor(public dialog: MatDialog,

@@ -19,6 +19,7 @@ const httpsOptions = {
 };
 
 // Connect with MongoDB
+// mongoose.connect("mongodb://127.0.0.1:27017/ttth", {
 mongoose.connect(MONGODB_URI, {
   useNewUrlParser: true,
   useFindAndModify: false,
@@ -40,9 +41,14 @@ app.use(cors());
 //   { credentials: true, origin: "http://localhost:4400" },
 // ));
 
-
 // Make sure you place body-parser before your CRUD handlers!
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(
+  bodyParser.urlencoded({
+    parameterLimit: 10000, // 413 Payload Too Large
+    limit: "50mb", // Fixed 413 Payload Too Large
+    extended: true,
+  })
+);
 app.use(bodyParser.json());
 app.use(morgan("dev"));
 

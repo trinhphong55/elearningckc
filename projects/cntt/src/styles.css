@@ -1642,8 +1642,22 @@ li {
 
 @media screen and (min-width: 992px) {
   .post_page__content {
-    font-size: 24px;
+    font-size: 20px;
   }
+}
+
+.post_page__content table td,
+.post_page__content table th {
+  padding: 16px;
+}
+
+.post_page__content table p {
+  margin-bottom: 0;
+}
+
+.post_page__content table p + p {
+  margin-bottom: 0;
+  margin-top: 16px;
 }
 
 .post_page__content img {
@@ -1674,6 +1688,7 @@ li {
   width: 80px;
   height: 80px;
   overflow: hidden;
+  padding: 4px;
   border-radius: 4px;
 }
 

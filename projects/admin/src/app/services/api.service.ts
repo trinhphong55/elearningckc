@@ -102,6 +102,16 @@ export class ApiService {
       )
       .pipe(catchError(this.handleError));
   }
+
+///dsgv
+  layDanhSachGiaoVienByemail(email:any): Observable<any> {
+   
+    return this.http
+      .get<GiaoVien[]>(
+        'https://localhost:4100/api/giaovien/thong-tin-giao-vien-email/'+email,
+      )
+   
+  }
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       console.error('An error occured: ', error.error.message);

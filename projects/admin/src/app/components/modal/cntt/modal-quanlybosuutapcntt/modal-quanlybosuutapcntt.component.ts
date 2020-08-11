@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalService } from '../../../../services/modal.service';
 import { CnttBoSuuTapService } from '../../../../services/cntt/bosuutap.service'
-import { FormGroup,FormControl, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -26,7 +26,10 @@ export class ModalQuanlybosuutapcnttComponent implements OnInit {
   onFileSelected(event) {
     if (event.target.files.length > 0) {
       this.imgValue = event.target.files[0];
-    }
+    };
+    if (event.target.files[0].size > 2097152) {
+      alert("File yêu cầu nhỏ hơn 2MB");
+    };
   }
 
   public boSuuTapForm = new FormGroup({
@@ -36,22 +39,34 @@ export class ModalQuanlybosuutapcnttComponent implements OnInit {
     alt: new FormControl(),
     trangThai: new FormControl(),
   });
-  
+
   logo: any;
   onSave(): void {
-    const formData = new FormData();
-    formData.append('_id', this._id);
-    formData.append('image', this.imgValue);
-    formData.append('maBST', this.boSuuTapForm.get('maBST').value);
-    formData.append('alt', this.boSuuTapForm.get('alt').value);
-    formData.append('url', this.boSuuTapForm.get('url').value);
-    console.log(this.imgValue);
-    this.cnttBoSuuTapService.onSave(formData).subscribe((data) => {
-      this.loadDanhSachBST();
-      this.toastr.success('Thêm item thành công !');
-    });
+    if (!this.boSuuTapForm.value._id) {
+      const formData = new FormData();
+      formData.append('image', this.imgValue);
+      formData.append('maBST', this.boSuuTapForm.get('maBST').value);
+      formData.append('alt', this.boSuuTapForm.get('alt').value);
+      formData.append('url', this.boSuuTapForm.get('url').value);
+      console.log(this.imgValue);
+      this.cnttBoSuuTapService.onSave(formData).subscribe((data) => {
+        this.loadDanhSachBST();
+        this.toastr.success('Thêm item thành công !');
+      });
+    } else {
+      const formData = new FormData();
+      formData.append('_id', this.boSuuTapForm.value._id);
+      formData.append('image', this.imgValue);
+      formData.append('maBST', this.boSuuTapForm.get('maBST').value);
+      formData.append('alt', this.boSuuTapForm.get('alt').value);
+      formData.append('url', this.boSuuTapForm.get('url').value);
+      console.log(this.imgValue);
+      this.cnttBoSuuTapService.editItemTienIch(formData).subscribe((data) => {
+        this.loadDanhSachBST();
+        this.toastr.success('Edit item thành công !');
+      });
+    }
   }
-
   chonMaBoSuuTap(e) {
     this.boSuuTapForm.get('maBST').setValue(e, {
       onlySelf: true,
@@ -62,6 +77,7 @@ export class ModalQuanlybosuutapcnttComponent implements OnInit {
   }
   get alt() { return this.boSuuTapForm.get('alt'); }
   get maBST() { return this.boSuuTapForm.get('maBST'); }
+  get url() { return this.boSuuTapForm.get('url'); }
   onXoaItem(_id: string) {
     const anwser = confirm('Nhấn OK để xoá Item này');
     if (anwser) {
@@ -70,7 +86,7 @@ export class ModalQuanlybosuutapcnttComponent implements OnInit {
           _id: _id,
         })
         .subscribe((data) => {
-          this.toastr.success('Xóa bài viết thành công!');
+          this.toastr.success('Xóa Item thành công!');
           this.loadDanhSachBST();
         });
     }
@@ -101,6 +117,10 @@ export class ModalQuanlybosuutapcnttComponent implements OnInit {
     this.cnttBoSuuTapService.danhSachItemBST().subscribe((data) => {
       this.BoSuuTap = data.data;
     });
+  }
+  showTrangThai(trangThai: any): string {
+    if (trangThai == 1) { return 'Đã đăng' }
+    return 'Đã xóa'
   }
 
 }
