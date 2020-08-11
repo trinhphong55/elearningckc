@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { FileUploader } from 'ng2-file-upload';
-// import saveAs from 'file-saver';
+import saveAs from 'file-saver';
 
 //Services
 import { FileService } from '../../../../services/file.service';
