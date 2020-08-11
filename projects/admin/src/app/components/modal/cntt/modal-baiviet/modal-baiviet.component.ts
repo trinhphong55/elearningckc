@@ -1,7 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  AfterViewInit, // DataTables
+  ViewChild, // DataTables
+} from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { DataTableDirective } from 'angular-datatables'; // DataTables
 import * as moment from 'moment';
+import { Subject } from 'rxjs'; // DataTables
 import { ModalService } from '../../../../services/modal.service';
 import { TintucCnttService } from '../../../../services/cntt/tintuc-cntt.service';
 import { DanhmucService } from '../../../../services/cntt/danhmuc.service';
@@ -13,7 +21,7 @@ import { StringCommonService } from '../../../../services/cntt/stringcommon.serv
   templateUrl: './modal-baiviet.component.html',
   styleUrls: ['./modal-baiviet.component.css'],
 })
-export class ModalBaivietComponent implements OnInit {
+export class ModalBaivietComponent implements OnInit, OnDestroy, AfterViewInit {
   constructor(
     private modalService: ModalService,
     private tintucCnttService: TintucCnttService,
@@ -21,6 +29,12 @@ export class ModalBaivietComponent implements OnInit {
     private loaiBaiVietService: LoaibaivietService,
     private stringCommonService: StringCommonService
   ) {}
+
+  //#region DataTables
+  @ViewChild(DataTableDirective, { static: false }) _dtElement: DataTableDirective; // @ViewChild(DataTableDirective, { static: false }) _dtElement: DataTableDirective;
+  public dtOptions: DataTables.Settings = {};
+  public dtTrigger: Subject<any> = new Subject();
+  //#endregion
 
   private _image: any = null;
   private _imageCanChinhSua: any = null;
@@ -102,6 +116,20 @@ export class ModalBaivietComponent implements OnInit {
     this.getDanhSachBaiViet();
     this.getDanhSachDanhMuc();
     this.getDanhSachLoaiBaiViet();
+
+    // DataTables
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 5,
+    };
+  }
+
+  ngAfterViewInit(): void {
+    this.dtTrigger.next(); // DataTables
+  }
+
+  ngOnDestroy(): void {
+    this.dtTrigger.unsubscribe(); // DataTables
   }
 
   openModal(id: string) {
@@ -112,10 +140,24 @@ export class ModalBaivietComponent implements OnInit {
     this.modalService.close(id);
   }
 
+  // DataTables
+  reRenderDataTables(): void {
+    this._dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+      this.getDanhSachBaiViet();
+      // Destroy the table first
+      dtInstance.destroy();
+      // Call the dtTrigger to rerender again
+      this.dtTrigger.next();
+    });
+  }
+
   getDanhSachBaiViet() {
     this.tintucCnttService.danhSachTinTuc().subscribe((data) => {
       this.danhSachBaiViet = data;
+      console.log('danhSachBaiViet');
+      console.log(this.danhSachBaiViet);
       this.getMaBaiVietCuoiCung();
+      // this.dtTrigger.next(); // DataTables
     });
   }
 
@@ -254,7 +296,6 @@ export class ModalBaivietComponent implements OnInit {
       this.formBaiViet
         .get('noiDungASCII')
         .setValue(this.stringCommonService.toASCII(noiDungAfterRemoveHTMLTag));
-      // console.log(this._image);
 
       // FORM DATA
       const formData = new FormData();
@@ -280,6 +321,7 @@ export class ModalBaivietComponent implements OnInit {
         this.getDanhSachBaiViet();
         this.onResetForm();
         alert(res.message);
+        this.reRenderDataTables(); // DataTables
       });
     } else {
       alert('Vui lòng nhập đầy đủ các thông tin');
@@ -347,6 +389,7 @@ export class ModalBaivietComponent implements OnInit {
         this.onResetFormChinhSua();
         alert(res.message);
         this.closeModal('cntt_chinhsuabaiviet');
+        this.reRenderDataTables(); // DataTables
       });
     } else {
       alert('Vui lòng nhập đầy đủ các thông tin và chọn hình ảnh mới');
