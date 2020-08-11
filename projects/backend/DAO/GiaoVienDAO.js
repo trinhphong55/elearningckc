@@ -7,8 +7,38 @@ class GiaoVienDAO extends MongoDB{
         this.collectionName = 'GiaoVien';
     }
 
+    async capNhatBoMon(maGV, maBoMon){
+      let result = false;
+      try{
+        await this.connectDB();
+        result = await this.conDb.collection(this.collectionName).updateOne({maGiaoVien: maGV}, {$set:{maBoMon: maBoMon}});
+        await this.closeDB();
+      } catch (error){
+        console.log('error: ', error.message);
+        await this.closeDB();
+      }
+      return result;
+    }
+
     async layDanhSachGiaoVien(){
         return await this.find({trangThai: 1});
+    }
+
+    async layDanhSachGiaoVienTheoTrangThai(trangThai){
+      return await this.find({trangThai: parseInt(trangThai)});
+    }
+
+    async restoreGiaoVien(maGV){
+      let result = false;
+      try{
+        await this.connectDB();
+        result = await this.conDb.collection(this.collectionName).updateOne({maGiaoVien: maGV}, {$set:{trangThai: 1}});
+        await this.closeDB();
+      } catch (error){
+        console.log('error: ', error.message);
+        await this.closeDB();
+      }
+      return result;
     }
 
     async layThongTinGiaoVien(maGV){
