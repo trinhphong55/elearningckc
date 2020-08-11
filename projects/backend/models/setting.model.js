@@ -11,3 +11,4 @@ const settingSchema  = new Schema({
     required:true,
   }
 })
+module.exports = mongoose.model('setting', settingSchema,'setting');

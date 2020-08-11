@@ -23,6 +23,7 @@ export class KHDTService {
 
   getKHDTByHocKiNMaCTDT(maChuongTrinhDaoTao: string, hocKi: string): Observable<KHDT_DiemSinVien[]> {
     const url = `${this.khdtURL}/ctdt/${maChuongTrinhDaoTao}/hocki/${hocKi}`;
+    console.log(url);
     return this.http.get<KHDT_DiemSinVien[]>(url);
   }
 

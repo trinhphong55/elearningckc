@@ -203,7 +203,7 @@ export class PageTrangcanhansvComponent implements OnInit {
         this.ctDiemLHPs = res.data;
         this.ganTenCotDiemCTDiem(this.ctDiemLHPs);
         this.ganTenLopHocPhanCTDiem(this.ctDiemLHPs);
-        console.log(this.ctDiemLHPs);
+
       }
     });
   }
@@ -214,6 +214,7 @@ export class PageTrangcanhansvComponent implements OnInit {
         if(res.data){
           this.diemSinhViens = res.data;
           this.ganTenLopHocPhanDiemSV(this.diemSinhViens);
+
         }
       },
       (err) => console.log(err)
@@ -245,6 +246,7 @@ export class PageTrangcanhansvComponent implements OnInit {
         .getKHDTByHocKiNMaCTDT(maCTDT, hocKi)
         .subscribe((res: any) => {
           this.dsKHDT = res;
+
           this.dsKHDT.forEach((khdt) => {
             this.diemSinhViens.forEach((diem) => {
               if (diem.maDaoTao == khdt.maDaoTao) {
@@ -257,6 +259,7 @@ export class PageTrangcanhansvComponent implements OnInit {
                 khdt.tenMonHoc = res.tenMonHoc;
               });
           });
+
         });
     } else {
       this.dsKHDT = [];
@@ -339,19 +342,7 @@ export class PageTrangcanhansvComponent implements OnInit {
             });
             this.ctDiemLHPs = ChiTietDiem;
           } else {
-            // ChiTietDiem.forEach((ct) => {
-            //   this.lopHocPhans.forEach((lop) => {
-            //     if (ct.maHocPhan == lop.maLopHocPhan) {
-            //       ct.tenLopHocPhan = lop.tenLopHocPhan;
-            //     }
-            //   });
-            // });
-            // ChiTietDiem.forEach((el) => {
-            //   this.chuDeService.layMot(el.maChuDe).subscribe((res: any) => {
-            //     el.tenChuDe = res.data.tenChuDe;
-            //   });
-            // });
-            // console.log(ChiTietDiem);
+
             this.ctDiemLHPs = [];
           }
         }

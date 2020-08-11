@@ -13,6 +13,7 @@ setSinhVien = (req) => {
     nguoiTao: req.nguoiTao,
     nguoiChinhSua: req.nguoiChinhSua,
     email: req.maSinhVien + "@caothang.edu.vn",
+    matKhau:req.matKhau,
 
   };
 };
@@ -71,8 +72,8 @@ exports.Laysinhvientheomalop = async (req, res) => {
 exports.themSinhVien = async (req, res) => {
   try {
     const matkhau = await settingModel.findOne();
-    req.body.matkhau = matkhau.matKhauSinhVien;
-    res.json(matkhau);
+    req.body.matKhau = matkhau.matKhauSinhVien;
+
     const sinhViens = await SinhVienModel.create(setSinhVien(req.body));
     res.json(sinhViens);
   } catch (error) {
