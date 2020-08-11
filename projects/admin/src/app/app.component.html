@@ -9,6 +9,7 @@
   <app-footer></app-footer>
 </section>
 <section *ngIf="!isLogged" class="login_page">
+  <!-- <router-outlet></router-outlet> -->
   <form [formGroup]="loginForm" class="login_form p-5">
     <div class="d-flex align-items-center">
       <img src="../assets/img/logo/it.png" alt="logo khoa" class="login_logo" />
@@ -22,7 +23,7 @@
         formControlName="email"
         class="login_input login_border__radius"
         type="text"
-        placeholder="Email hoặc mã số sinh viên"
+        placeholder="Email"
       />
     </div>
     <div class="login_group mt-3">
@@ -32,6 +33,17 @@
         type="password"
         placeholder="Mật khẩu"
       />
+    </div>
+    <div class="login_group mt-3">
+      <label for="gender" class="mr-3">Loại tài khoản:</label>
+        <input id="admin" class="mr-1" type="radio" value="1" name="loaiTaiKhoan" formControlName="loaiTaiKhoan" checked>
+        <label for="admin" class="mr-2"> Admin</label>
+
+        <input id="gv" class="mr-1" type="radio" value="2" name="loaiTaiKhoan" formControlName="loaiTaiKhoan">
+        <label for="gv" class="mr-2">Giáo viên</label>
+
+        <input id="sv" class="mr-1" type="radio" value="3" name="loaiTaiKhoan" formControlName="loaiTaiKhoan">
+        <label for="sv" class="mr-2">Sinh viên</label>
     </div>
     <div class="mt-2 custom-control custom-checkbox text-left">
       <input
@@ -51,7 +63,11 @@
       Đăng nhập
     </button>
     <div class="mt-3 text-center">
-      <a class="fg_caothang__1" [routerLink]="['/']">Quên mật khẩu?</a>
+      <a
+      class="fg_caothang__1"
+      [routerLink]="['/reset-password']"
+      >Quên mật khẩu?</a
+    >
     </div>
     <div class="mt-3 d-flex justify-content-center">
       <a

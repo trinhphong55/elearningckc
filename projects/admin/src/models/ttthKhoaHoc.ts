@@ -3,6 +3,7 @@ export class ttthKhoaHoc {
   image: String
   makhoahoc: String
   noidung: String
+  color: String
   trangthai: Boolean
   nguoitao: String
   nguoisua: String

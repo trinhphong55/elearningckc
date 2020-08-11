@@ -1,0 +1,371 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 m-auto">
+            <h3 class="p-3 text-center style-title">Danh sách sinh viên</h3>
+                <div class="row mb-2">
+                    <div class="col-md-8">
+
+                    </div>
+                    <div class="col-md-4">
+                        <button type="button" class="btn btn-info">Chấm điểm all</button>
+                        <div class="btn-group ml-2">
+                          <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Nhập từ
+                          </button>
+                          <div class="dropdown-menu">
+                            <input type="file" (change)="onFileChange($event)" multiple="false">
+                            <a class="dropdown-item" >Bài tập</a>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-scroll">
+                    <!--<div class="scrollable">
+                        <div class="table-wrap">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">STT</th>
+                                        <th scope="col">Mã số sinh viên</th>
+                                        <th scope="col">Họ tên</th>
+                                        <th scope="col">Cột điểm 1</th>
+                                        <th scope="col">Cột điểm 2</th>
+                                        <th scope="col">Cột điểm 3</th>
+                                        <th scope="col">Cột điểm 4</th>
+                                        <th scope="col">Cột điểm 5</th>
+                                        <th scope="col">Cột điểm 6</th>
+                                        <th scope="col">Cột điểm 7</th>
+                                        <th scope="col">Cột điểm 8</th>
+                                        <th scope="col">Điểm tổng kết</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>030617151</td>
+                                        <td>Nguyễn Quang Huy</td>
+                                        <td><form>
+                                          <div class="form-group p-0 m-0">
+
+                                            <input type="email" class="form-control border-top-0 border-right-0 border-left-0 rounded-0" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="điểm">
+                                          </div>
+
+
+                                        </form></td>
+                                        <td><form>
+                                          <div class="form-group p-0 m-0">
+
+                                            <input type="email" class="form-control border-top-0 border-right-0 border-left-0 rounded-0" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="điểm">
+                                          </div>
+
+
+                                        </form></td>
+                                        <td><form>
+                                          <div class="form-group p-0 m-0">
+
+                                            <input type="email" class="form-control border-top-0 border-right-0 border-left-0 rounded-0" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="điểm">
+                                          </div>
+
+
+                                        </form></td>
+                                        <td><form>
+                                          <div class="form-group p-0 m-0">
+
+                                            <input type="email" class="form-control border-top-0 border-right-0 border-left-0 rounded-0" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="điểm">
+                                          </div>
+
+
+                                        </form></td>
+                                        <td><form>
+                                          <div class="form-group p-0 m-0">
+
+                                            <input type="email" class="form-control border-top-0 border-right-0 border-left-0 rounded-0" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="điểm">
+                                          </div>
+
+
+                                        </form></td>
+                                        <td><form>
+                                          <div class="form-group p-0 m-0">
+
+                                            <input type="email" class="form-control border-top-0 border-right-0 border-left-0 rounded-0" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="điểm">
+                                          </div>
+
+
+                                        </form></td>
+                                        <td><form>
+                                          <div class="form-group p-0 m-0">
+
+                                            <input type="email" class="form-control border-top-0 border-right-0 border-left-0 rounded-0" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="điểm">
+                                          </div>
+
+
+                                        </form></td>
+                                        <td><form>
+                                          <div class="form-group p-0 m-0">
+
+                                            <input type="email" class="form-control border-top-0 border-right-0 border-left-0 rounded-0" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="điểm">
+                                          </div>
+
+
+                                        </form></td>
+                                        <td>
+                                            <form>
+                                                <div class="form-group p-0 m-0">
+
+                                                  <input type="email" class="form-control border-top-0 border-right-0 border-left-0 rounded-0" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="nhập điểm">
+                                                </div>
+
+
+                                              </form>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>030617151</td>
+                                        <td>Nguyễn Quang Huy</td>
+                                        <td>7</td>
+                                        <td>8</td>
+                                        <td>9</td>
+                                        <td>10</td>
+                                        <td>9</td>
+                                        <td>10</td>
+                                        <td>10</td>
+                                        <td>9</td>
+                                        <td>
+                                            <form>
+                                                <div class="form-group p-0 m-0">
+
+                                                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="nhập điểm">
+                                                </div>
+
+
+                                              </form>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>030617151</td>
+                                        <td>Nguyễn Quang Huy</td>
+                                        <td>7</td>
+                                        <td>8</td>
+                                        <td>9</td>
+                                        <td>10</td>
+                                        <td>9</td>
+                                        <td>10</td>
+                                        <td>10</td>
+                                        <td>9</td>
+                                        <td>
+                                            <form>
+                                                <div class="form-group p-0 m-0">
+
+                                                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="nhập điểm">
+                                                </div>
+
+
+                                              </form>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>030617151</td>
+                                        <td>Nguyễn Quang Huy</td>
+                                        <td>7</td>
+                                        <td>8</td>
+                                        <td>9</td>
+                                        <td>10</td>
+                                        <td>9</td>
+                                        <td>10</td>
+                                        <td>10</td>
+                                        <td>9</td>
+                                        <td>
+                                            <form>
+                                                <div class="form-group p-0 m-0">
+
+                                                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="nhập điểm">
+                                                </div>
+
+
+                                              </form>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>030617151</td>
+                                        <td>Nguyễn Quang Huy</td>
+                                        <td>7</td>
+                                        <td>8</td>
+                                        <td>9</td>
+                                        <td>10</td>
+                                        <td>9</td>
+                                        <td>10</td>
+                                        <td>10</td>
+                                        <td>9</td>
+                                        <td>
+                                            <form>
+                                                <div class="form-group p-0 m-0">
+
+                                                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="nhập điểm">
+                                                </div>
+
+
+                                              </form>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>030617151</td>
+                                        <td>Nguyễn Quang Huy</td>
+                                        <td>7</td>
+                                        <td>8</td>
+                                        <td>9</td>
+                                        <td>10</td>
+                                        <td>9</td>
+                                        <td>10</td>
+                                        <td>10</td>
+                                        <td>9</td>
+                                        <td>
+                                            <form>
+                                                <div class="form-group p-0 m-0">
+
+                                                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="nhập điểm">
+                                                </div>
+
+
+                                              </form>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>030617151</td>
+                                        <td>Nguyễn Quang Huy</td>
+                                        <td>7</td>
+                                        <td>8</td>
+                                        <td>9</td>
+                                        <td>10</td>
+                                        <td>9</td>
+                                        <td>10</td>
+                                        <td>10</td>
+                                        <td>9</td>
+                                        <td>
+                                            <form>
+                                                <div class="form-group p-0 m-0">
+
+                                                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="nhập điểm">
+                                                </div>
+
+
+                                              </form>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>030617151</td>
+                                        <td>Nguyễn Quang Huy</td>
+                                        <td>7</td>
+                                        <td>8</td>
+                                        <td>9</td>
+                                        <td>10</td>
+                                        <td>9</td>
+                                        <td>10</td>
+                                        <td>10</td>
+                                        <td>9</td>
+                                        <td>
+                                            <form>
+                                                <div class="form-group p-0 m-0">
+
+                                                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="nhập điểm">
+                                                </div>
+
+
+                                              </form>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>030617151</td>
+                                        <td>Nguyễn Quang Huy</td>
+                                        <td>7</td>
+                                        <td>8</td>
+                                        <td>9</td>
+                                        <td>10</td>
+                                        <td>9</td>
+                                        <td>10</td>
+                                        <td>10</td>
+                                        <td>9</td>
+                                        <td>
+                                            <form>
+                                                <div class="form-group p-0 m-0">
+
+                                                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="nhập điểm">
+                                                </div>
+
+
+                                              </form>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>030617151</td>
+                                        <td>Nguyễn Quang Huy</td>
+                                        <td>7</td>
+                                        <td>8</td>
+                                        <td>9</td>
+                                        <td>10</td>
+                                        <td>9</td>
+                                        <td>10</td>
+                                        <td>10</td>
+                                        <td>9</td>
+                                        <td>
+                                            <form>
+                                                <div class="form-group p-0 m-0">
+
+                                                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="nhập điểm">
+                                                </div>
+
+
+                                              </form>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>-->
+                    <div class="scrollable">
+                      <div class="table-wrap">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr *ngFor="let row of data">
+                                    <td *ngFor="let cell of row">
+                                        {{cell}}
+                                    </td>
+                                </tr>
+                                <tr *ngFor="let hs of dsHocSinh">
+                                    <td>{{hs.maSinhVien}}</td>
+                                    <td>{{hs.ho}}</td>
+                                    <td>{{hs.ten}}</td>
+                                </tr>
+                            </thead>
+                          </table>
+                      </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <form>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                            <label class="form-check-label" for="exampleRadios1">
+                              Cho xem điểm
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                            <label class="form-check-label" for="exampleRadios2">
+                               Không cho xem điểm
+                            </label>
+                          </div>
+                        <button type="submit" class="btn btn-info">Lưu</button>
+                      </form>
+                </div>
+        </div>
+    </div>
+</div>

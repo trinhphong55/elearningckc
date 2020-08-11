@@ -1,26 +1,37 @@
+
+<form [formGroup]="formDanhSachLop">
 <nav class="header_navbar">
     <div class="header_navbar__item flex-column p-0">
       <span>Khoá học</span>
-      <select class="custom-select text-white text-center bg-transparent border-0 py-0 px-3">
+      <select class="custom-select text-white text-center bg-transparent border-0 py-0 px-3" formControlName="khoa" (change)="onFilter()">
         <option class="bg__caothang" value="-1">-- Chọn khoá học --</option>
-        <option class="bg__caothang" value="0">16</option>
-        <option class="bg__caothang" value="1">17</option>
+        <option class="bg__caothang" value="16">16</option>
+        <option class="bg__caothang" value="17">17</option>
+        <option class="bg__caothang" value="18">18</option>
+        <option class="bg__caothang" value="19">19</option>
+        <option class="bg__caothang" value="20">20</option>
+        <option class="bg__caothang" value="21">21</option>
       </select>
     </div>
-    <div class="header_navbar__item flex-column p-0">
+    <div class="header_navbar__item flex-column p-0" >
       <span>Bậc</span>
-      <select class="custom-select text-white text-center bg-transparent border-0 py-0 px-3">
+      <select class="custom-select text-white text-center bg-transparent border-0 py-0 px-3" formControlName="bac" (change)="onFilter()">
         <option class="bg__caothang" value="-1">-- Chọn bậc --</option>
-        <option class="bg__caothang" value="0">16</option>
-        <option class="bg__caothang" value="1">17</option>
+        <option *ngFor="let b of dsBac" class="bg__caothang" value="{{b.maBac}}">{{b.tenBac}}</option>
       </select>
+      
     </div>
     <div class="header_navbar__item flex-column p-0">
       <span>Học kì</span>
-      <select class="custom-select text-white text-center bg-transparent border-0 py-0 px-3">
-        <option class="bg__caothang" value="-1">-- Chọn học kì --</option>
-        <option class="bg__caothang" value="0">16</option>
-        <option class="bg__caothang" value="1">17</option>
+      <select class="custom-select text-white text-center bg-transparent border-0 py-0 px-3" formControlName="hocKi" (change)="onFilter()">
+        <option class="bg__caothang" value="1">-- Chọn học kì --</option>
+        <option class="bg__caothang" value="1">Hoc kì 1</option>
+        <option class="bg__caothang" value="2">Hoc kì 2</option>
+        <option class="bg__caothang" value="3">Hoc kì 3</option>
+        <option class="bg__caothang" value="4">Hoc kì 4</option>
+        <option class="bg__caothang" value="5">Hoc kì 5</option>
+        <option class="bg__caothang" value="6">Hoc kì 6</option>
       </select>
     </div>
   </nav>
+</form>

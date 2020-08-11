@@ -1,0 +1,117 @@
+<div class="container-fluid mt-5">
+  <div class="row" style="border-bottom:solid 0.5px black;padding-bottom: 20px;">
+    <div class="col-2">
+      <div mat-dialog-actions>
+        <button mat-button mat-dialog-close><i class="fas fa-times"></i></button>
+        <span style="margin-left: 5px;">Bài giảng</span>
+      </div>
+
+    </div>
+    <div class="col-8">
+
+    </div>
+    <div class="col-2">
+      <div>
+        <button mat-button (click)="onClickThem()">Đăng</button>
+        <button mat-button [matMenuTriggerFor]="menu"><i class="fas fa-angle-down"></i></button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>Giao bài</button>
+          <button mat-menu-item>Lên lịch</button>
+          <button mat-menu-item>Lưu bản nháp</button>
+          <button mat-menu-item>Hủy bản nháp</button>
+        </mat-menu>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <div class="row">
+        <div class="col-12" style="padding-top:10px">
+          <form class="example-form">
+            <mat-form-field class="example-full-width" style="width:100%">
+              <mat-label>Tiêu đề</mat-label>
+              <input matInput placeholder="Tiêu đề" [formControl]="inputTieuDe">
+            </mat-form-field>
+          </form>
+        </div>
+        <div class="col-md-12">
+          <form>
+            <div class="form-group">
+              <label for="exampleFormControlTextarea1">Mô tả</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [formControl]="textMoTa"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="col-md-12">
+          <div class="col-sm-12">
+            <h4>Đính kèm tệp</h4>
+            <div id="fileSelector">
+              <input type="file" name="fileUplaod" id="fileUpload" multiple ng2FileSelect [uploader]="uploader">
+            </div>
+            <div>
+              <div class="row uploadList" *ngFor="let item of uploader.queue">
+                <div class="col-sm-2">{{item.file.name}}</div>
+                <div class="col-sm-4">
+                  <div class="progress">
+                    <div class="progress-bar bg-success" [ngStyle]="{'width':item.progress+'%'}"></div>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <!-- <button type="button" class="btn btn-dark" (click)="item.upload()">Upload</button>  -->
+                  <button type="button" class="btn btn-danger" (click)="item.remove()">Bỏ</button>
+                </div>
+              </div>
+            </div>
+            <!-- <div class="row" *ngIf="uploader?.queue?.length > 0">
+                      <button type="button" class="btn btn-primary" (click)="uploader.uploadAll()">Upload All</button>
+                    </div> -->
+          </div>
+        </div>
+        <div class="col-md-4 ">
+          <button mat-button [matMenuTriggerFor]="menuthem">Thêm</button>
+          <mat-menu #menuthem="matMenu">
+            <button mat-menu-item><i class="fab fa-google-drive style-icon"></i>Google Drive</button>
+            <button mat-menu-item><i class="fas fa-link style-icon"></i>Liên kết</button>
+            <button mat-menu-item><i class="fas fa-folder-open style-icon"></i>Tệp</button>
+            <button mat-menu-item><i class="fab fa-youtube style-icon"></i>Youtube</button>
+          </mat-menu>
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      <mat-label>Dành cho</mat-label>
+      <form class="example-form">
+        <mat-form-field class="example-full-width">
+          <mat-label>Chọn tên lớp</mat-label>
+          <mat-select [formControl]="lopHoc" >
+            <ng-container *ngFor="let ds of dsLopHocPhan">
+              <mat-option [value]="ds.maLopHocPhan">{{ ds.tenLopHocPhan}} </mat-option>
+            </ng-container>
+          </mat-select>
+        </mat-form-field>
+        <!-- <mat-form-field class="example-full-width">
+                    <mat-label>Chọn tất cả học viên</mat-label>
+                    <mat-select multiple>
+                        <mat-option>Tất cả học viên </mat-option>
+                        <mat-option>Tên tài khoản</mat-option>
+                    </mat-select>
+                </mat-form-field> -->
+      </form>
+      <mat-label>Chủ đề </mat-label>
+      <form class="example-form">
+        <!-- <mat-form-field class="example-full-width">
+                    <mat-label>tạo chủ đề</mat-label>
+                    <input matInput placeholder="Tạo chủ đề">
+                </mat-form-field> -->
+        <mat-form-field class="example-full-width">
+          <mat-label>Chọn chủ đề</mat-label>
+          <mat-select [formControl]="chuDe">
+            <ng-container *ngFor="let item of dsChuDe">
+              <mat-option [value]="item.maChuDe">{{ item.tenChuDe }}</mat-option>
+            </ng-container>
+          </mat-select>
+        </mat-form-field>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+
+  <section class="mt-4">
+    <div class="container">
+        <div class="row">
+                <div class="col-12">
+                        <div class="breadcrumbs">
+                            <a class="breadcrumb__step breadcrumb__step--active" routerLink="/">Trang chủ</a>
+                            <a class="breadcrumb__step" >Khóa học</a>
+                        </div>
+                </div>
+        </div>
+    </div>
+</section>
+<section class="news-detail mt-40 mb-40">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="post-wrap">
+                    <h2 class="sub-title">{{Khoahoc.tenkhoahoc}}</h2>
+                    <div *ngIf="Khoahoc.updated_at!=null" class="posted"><i class="far fa-clock"></i>{{Khoahoc.updated_at}}</div>
+                    <div *ngIf="Khoahoc.updated_at==null" class="posted"><i class="far fa-clock"></i>{{Khoahoc.created_at}}</div>
+                    <div class="post-content" [innerHTML]="Khoahoc.noidung" >
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="other-news">
+                    <h3 class="sub-title">KHÓA HỌC KHÁC</h3>
+                    <div class="sub-news mb-3" *ngFor="let item of KhoahocKhac">
+                        <div class="img-wrap"></div><a class="sub-title" href="/chitietkhoahoc/{{item._id}}">{{item.tenkhoahoc}}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+

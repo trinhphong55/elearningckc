@@ -1,5 +1,11 @@
 const router = require('express').Router();
 const MonHoc = require('../models/MonHoc.model');
+const LopHocPhan = require('../models/LopHocPhan.model');
+const KHDT = require('../models/KeHoachDaoTao.model');
+const GVLHP = require('../models/GiaoVienLopHocPhan.model');
+const GiaoVienDAO = require('../DAO/GiaoVienDAO');
+const giaoVienDAO = new GiaoVienDAO();
+
 
 const {
   getNextNumber, isNameExist,
@@ -12,9 +18,62 @@ router.get('/', async (req, res) => {
     const dsMonHoc = await MonHoc.find( {trangThai: { $ne: 0 }} );
     return res.json(dsMonHoc);
   } catch (err) {
-    return res.json({message: err});
+    return res.json({ message: err });
   }
 })
+
+router.get('/trangthai/:trangThai', async (req, res) => {
+  const trangThai = req.params.trangThai;
+  await MonHoc.find({trangThai}, {}, { sort: { 'created_at' : -1 } })
+    .then(dsMonHoc => {
+      return res.status(200).json(dsMonHoc)
+    })
+    .catch(err => {
+      return res.status(500).json({
+        status: 500,
+        message: err,
+      })
+    })
+})
+
+router.get('/malophoc/:maLopHoc/hocki/:hocKi', async (req, res) => {
+  const maLopHoc = req.params.maLopHoc;
+  const hocKi = req.params.hocKi;
+  let dsLHP;
+  let dsMonHoc= [];
+
+  await LopHocPhan.find({ maLopHoc, hocKi, trangThai: { $ne: 0 } }).sort({ tenLopHocPhan: 1 }).then(ds => {
+    dsLHP = ds;
+  });
+
+  await asyncForEach(dsLHP, async (lhp, index) => {
+    let maMonHoc = lhp.maDaoTao.slice(lhp.maDaoTao.length - 4);
+    let tenMonHocVietTat = lhp.tenVietTatLopHocPhan.split("-")[1].trim();
+    let maGiaoVien = "null";
+    let DVHT = 0;
+    let tenGiaoVien = "null"
+    await KHDT.findOne({ maDaoTao: lhp.maDaoTao })
+      .then(khdt => {
+        DVHT = khdt.donViHocTrinh;
+      });
+    await GVLHP.findOne({ maLopHocPhan: lhp.maLopHocPhan, trangThai: { $ne: 0 } })
+      .then(gvlhp => {
+        if (gvlhp === null) {
+          tenGiaoVien = "Chưa có GVLHP";
+        } else {
+          maGiaoVien = gvlhp.maGiaoVien;
+        }
+      });
+    if (maGiaoVien !== "null") {
+      await giaoVienDAO.layThongTinGiaoVien(maGiaoVien).then(gv => {
+        tenGiaoVien = gv[0].ho + " " + gv[0].ten;
+      })
+    }
+    let tenMonHoc = tenMonHocVietTat + " / " + `${DVHT}` + " - " + tenGiaoVien;
+    dsMonHoc.push({ maMonHoc, tenMonHoc });
+  });
+  return res.json(dsMonHoc);
+});
 
 //IMPORT EXCEL
 router.post('/importexcel', async (req, res) => {
@@ -57,12 +116,15 @@ router.post('/', async (req, res) => {
   }
 
   maMonHoc = await getNextNumber();
-  const { tenMonHoc, tenVietTat, maLoaiMonHoc, tenTiengAnh, tenVietTatTiengAnh } = req.body;
-  const monHoc = new MonHoc({ maMonHoc, tenMonHoc, tenVietTat, maLoaiMonHoc, tenTiengAnh, tenVietTatTiengAnh });
+  const { tenMonHoc, tenVietTat, maLoaiMonHoc } = req.body;
+  const monHoc = new MonHoc({ maMonHoc, tenMonHoc, tenVietTat, maLoaiMonHoc });
   monHoc.save().then(() => {
     return res.json({ success: "added MonHoc" });
   }).catch(err => {
-    return res.json( {message: err});
+    return res.status(500).json({
+      status: 500,
+      message: err,
+    })
   });
 });
 
@@ -77,7 +139,10 @@ router.get('/:maMonHoc', async (req, res) => {
       return res.json(item);
     }
   } catch (err) {
-    return res.json({message: err});
+    return res.status(500).json({
+      status: 500,
+      message: err,
+    })
   }
 })
 
@@ -90,7 +155,10 @@ router.get('maLoaiMonHoc/:maMonHoc', async (req, res) => {
       return res.json(item.maLoaiMonHoc);
     }
   } catch (err) {
-    return res.json({message: err});
+    return res.status(500).json({
+      status: 500,
+      message: err,
+    })
   }
 })
 
@@ -98,46 +166,72 @@ router.get('maLoaiMonHoc/:maMonHoc', async (req, res) => {
 router.delete('/:maMonHoc', async (req, res) => {
   isExisted = await isExistedInKHDT(req.params.maMonHoc);
   if (isExisted) {
-    return res.json({ error: 'Mon hoc nay da ton tai rong KHDT'});
+    return res.json({
+      status: 401,
+      message: "Mon hoc nay da co trong KHDT, khong duoc xoa de tranh sai sot",
+    });
   }
   await MonHoc.updateOne(
       { maMonHoc: req.params.maMonHoc },
       { $set: { trangThai: 0 } })
-    .then(removedMonhoc => {
-      console.log(removedMonhoc);
-      return res.json(removedMonhoc);
+    .then(() => {
+      return res.status(200).json({
+        status: 200,
+        message: "Xoa mon hoc thanh cong",
+      });
     })
     .catch(err => {
-      return res.json( {message: err} );
+      return res.status(500).json({
+        status: 500,
+        message: err,
+      })
     })
-
 })
 
 //UPDATE MONHOC
 router.put('/:maMonHoc', async (req, res) => {
-  console.log('du lieu chua update', req.body);
+  isExisted = await isExistedInKHDT(req.params.maMonHoc);
+  if (isExisted) {
+    return res.json({
+      status: 401,
+      message: "Mon hoc nay da co trong KHDT, khong duoc chinh sua de tranh sai sot",
+    });
+  }
   const { maMonHoc } = req.params;
-  const { tenMonHoc, tenVietTat, maLoaiMonHoc, tenTiengAnh, tenVietTatTiengAnh } = req.body;
+  const { tenMonHoc, tenVietTat, maLoaiMonHoc } = req.body;
   await MonHoc.updateOne(
       { maMonHoc: maMonHoc },
-      { $set: { tenMonHoc, tenVietTat, maLoaiMonHoc, tenTiengAnh, tenVietTatTiengAnh } }
+      { $set: { tenMonHoc, tenVietTat, maLoaiMonHoc } }
   ).then(() => {
-    return res.json({ success: "updated MonHoc" });
+    return res.status(200).json({
+      status: 200,
+      message: "Cap nhat thanh cong",
+    });
   }).catch(err => {
-    return res.json({ message: err });
+    return res.status(500).json({
+      status: 500,
+      message: err,
+    })
   });
 })
-// router.patch('/:maMonHoc', async (req, res) => {
-//   console.log(req.body);
-//   try {
-//     const updatedMonhoc = await MonHoc.updateOne(
-//       { maMonHoc: req.params.maMonHoc },
-//       { $set: { tenMonHoc: req.body.tenMonHoc } }
-//     );
-//     res.json(updatedMonhoc);
-//   } catch (error) {
-//     res.json({ message: error });
-//   }
-// })
+
+//RESTORE MONHOC
+router.put('/settrangthai/:maMonHoc', async (req, res) => {
+  const maMonHoc = req.params.maMonHoc;
+  await MonHoc.updateOne(
+      { maMonHoc: maMonHoc },
+      { $set: { trangThai: 1 } }
+  ).then(() => {
+    return res.status(200).json({
+      status: 200,
+      message: "Phuc hoi thanh cong",
+    });
+  }).catch(err => {
+    return res.status(500).json({
+      status: 500,
+      message: err,
+    })
+  });
+})
 
 module.exports = router;

@@ -38,7 +38,7 @@ export class ModalKhoahocComponent implements OnInit {
   }
 
   getdanhsach(): void {
-    this.khoahocService.get().subscribe((data) => this.KhoaHoc = data);
+    this.khoahocService.get().subscribe((data) => {this.KhoaHoc = data;});
   }
 
   // add
@@ -63,7 +63,7 @@ export class ModalKhoahocComponent implements OnInit {
     reader.readAsDataURL(file);
     }
   }
-  add(tenkhoahoc: string,makhoahoc: string): void {
+  add(tenkhoahoc: string,makhoahoc: string,color: string): void {
     tenkhoahoc = tenkhoahoc.trim();
     makhoahoc = makhoahoc.trim();
     const newItem: ttthKhoaHoc = new ttthKhoaHoc();
@@ -71,6 +71,7 @@ export class ModalKhoahocComponent implements OnInit {
     newItem.image = 'https://localhost:4100/uploads/cntt/' + this.nameImage;
     newItem.makhoahoc = makhoahoc;
     newItem.noidung = this.CK;
+    newItem.color = color;
     newItem.trangthai = true;
     newItem.nguoitao = 'hieu';
     newItem.nguoisua = 'loc';
@@ -79,6 +80,7 @@ export class ModalKhoahocComponent implements OnInit {
     this.khoahocService.add(newItem)
       .subscribe(data => {
         this.KhoaHoc.push(data);
+        setTimeout(() => {}, 0);
       });
     this.getdanhsach();
     this.toastr.success('Thêm thành công');
@@ -104,9 +106,13 @@ export class ModalKhoahocComponent implements OnInit {
     this.khoahocService.delete(KhoaHoc)
     .subscribe(data => {
       this.KhoaHoc.push(data);
+      setTimeout(() => {}, 0);
     });
     this.getdanhsach();
     // window.location.reload();
     this.toastr.success('Xóa thành công');
+  }
+  reset():void{
+    this.selectedItem=null;
   }
 }

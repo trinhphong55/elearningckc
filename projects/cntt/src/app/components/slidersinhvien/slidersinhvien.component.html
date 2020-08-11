@@ -1,0 +1,21 @@
+<section class="gallery_home__wrapper bg__image__1 py-5">
+  <div
+    class="container-fluid"
+    data-aos="zoom-in"
+    data-aos-delay="300"
+    data-aos-duration="1500"
+  >
+    <section class="gallery_home__slider swiper-container">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide" *ngFor="let item of Item">
+          <img
+            class="w-100"
+            src="https://localhost:4100/{{ item.src }}"
+            alt="{{ item.alt }}"
+          />
+        </div>
+      </div>
+    </section>
+    <div class="gallery_home__slider__pagination text-center"></div>
+  </div>
+</section>

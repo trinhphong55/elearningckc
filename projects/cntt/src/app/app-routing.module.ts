@@ -7,37 +7,74 @@ import { PageContactComponent } from './pages/page-contact/page-contact.componen
 import { PageSearchComponent } from './pages/page-search/page-search.component';
 import { PageDocumentComponent } from './pages/page-document/page-document.component';
 import { PageJobComponent } from './pages/page-job/page-job.component';
-import { PageJobDetailComponent } from './pages/page-job-detail/page-job-detail.component';
+import { PageDanhsachtintucComponent } from './pages/page-danhsachtintuc/page-danhsachtintuc.component';
+import { PageBaivietComponent } from './pages/page-baiviet/page-baiviet.component';
 
 const routes: Routes = [
   {
-    path: '', component: PageTrangchuComponent, pathMatch: 'full'
+    path: '',
+    component: PageTrangchuComponent,
+    pathMatch: 'full',
   },
   {
-    path: 'post', component: PagePostComponent
+    path: 'lien-he',
+    component: PageContactComponent,
+    data: {
+      breadcrumb: 'Liên hệ',
+    },
   },
   {
-    path: 'contact', component: PageContactComponent
+    path: 'tim-kiem',
+    component: PageSearchComponent,
+    data: {
+      breadcrumb: 'Tìm kiếm',
+    },
   },
   {
-    path: 'search', component: PageSearchComponent
+    path: 'tai-lieu',
+    component: PageDocumentComponent,
+    data: {
+      breadcrumb: 'Tài liệu',
+    },
   },
   {
-    path: 'document', component: PageDocumentComponent
+    path: 'viec-lam',
+    component: PageJobComponent,
+    data: {
+      breadcrumb: 'Việc làm',
+    },
   },
   {
-    path: 'job', component: PageJobComponent
+    path: 'bai-viet',
+    component: PageBaivietComponent,
+    data: {
+      breadcrumb: 'Bài viết',
+    },
+    children: [
+      {
+        path: '',
+        component: PageDanhsachtintucComponent,
+        data: {
+          breadcrumb: '',
+        },
+      },
+      {
+        path: ':id',
+        component: PagePostComponent,
+        data: {
+          breadcrumb: '',
+        },
+      },
+    ],
   },
   {
-    path: 'job-detail', component: PageJobDetailComponent
+    path: '**',
+    component: PageNotfoundComponent,
   },
-  {
-    path: '**', component: PageNotfoundComponent
-  }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

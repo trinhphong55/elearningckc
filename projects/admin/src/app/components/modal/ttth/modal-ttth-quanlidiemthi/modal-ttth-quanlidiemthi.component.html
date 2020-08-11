@@ -1,0 +1,143 @@
+<app-modal class="modal_chucnang__wrapper " id="ttth-quanlydiemthi">
+  <div (click)="closeModal('ttth-quanlydiemthi')" class="modal_chucnang__close mdi mdi-chevron-left text-white"></div>
+  <div class="container-fluid mt-3">
+    <div class="row">
+      <div class="col-12">
+        <h1 class="text-center text-white">Quản lý điểm thi</h1>
+      </div>
+      <div class="col-12" *ngIf="selectedItem">
+        <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
+          <div class="row justify-content-center align-items-center">
+            <div class="col-auto">
+              <div class="form-group">
+                <label>Họ tên</label>
+                <input type="text" class="form-control"  [(ngModel)]="selectedItem.hoten">
+              </div>
+              <div class="form-group">
+                <label>MSSV</label>
+                <input type="text" class="form-control" [(ngModel)]="selectedItem.mssv">
+              </div>
+              <div class="form-group">
+                <label>Ngày sinh</label>
+                <input type="text" class="form-control"  [(ngModel)]="selectedItem.ngaysinh">
+              </div>
+            </div>
+            <div class="col-auto">
+              <div class="form-group">
+                <label>Số báo danh</label>
+                <input type="text" class="form-control"  [(ngModel)]="selectedItem.sobaodanh">
+              </div>
+              <div class="form-group">
+                <label>Nơi sinh</label>
+                <input type="text" class="form-control" [(ngModel)]="selectedItem.noisinh">
+              </div>
+              <div class="form-group">
+                <label>Lớp</label>
+                <input type="text" class="form-control"  [(ngModel)]="selectedItem.lop">
+              </div>
+            </div>
+            <div class="col-auto">
+              <div class="form-group">
+                <label>Tổng điểm</label>
+                <input type="text" class="form-control"  [(ngModel)]="selectedItem.tongdiem">
+              </div>
+              <div class="form-group">
+                <label>Xếp loại</label>
+                <input type="text" class="form-control"  [(ngModel)]="selectedItem.xeploai">
+              </div>
+              <div class="form-group">
+                <label>Ngày thi</label>
+                <input type="text" class="form-control"  [(ngModel)]="selectedItem.ngaythi">
+              </div>
+            </div>
+            <div class="col-auto">
+              <div class="form-group">
+                <label>Giờ thi</label>
+                <input type="text" class="form-control"  [(ngModel)]="selectedItem.giothi">
+              </div>
+              <div class="form-group">
+                <label>Phòng thi</label>
+                <input type="text" class="form-control"  [(ngModel)]="selectedItem.phongthi">
+              </div>
+              <div class="form-group">
+                <label>Lập trình C++</label>
+                <input type="text" class="form-control"  [(ngModel)]="selectedItem.laptrinhc">
+              </div>
+            </div>
+            <div class="col-auto">
+              <div class="form-group">
+                <label>MS Word</label>
+                <input type="text" class="form-control"  [(ngModel)]="selectedItem.msword">
+              </div>
+              <div class="form-group">
+                <label>MS Excel</label>
+                <input type="text" class="form-control"  [(ngModel)]="selectedItem.msexcel">
+              </div>
+              <div class="form-group">
+                <label>MS Powerpoint</label>
+                <input type="text" class="form-control"  [(ngModel)]="selectedItem.mspowerpoint">
+              </div>
+            </div>
+            <div class="col-auto">
+              <div class="modal_chucnang__group__button">
+                <button class="modal_chucnang__button btn btn-outline-success px-4 mx-2"
+                  (click)="update(selectedItem)"><img class="modal_chucnang__button__icon mb-2"
+                    src="assets/img/icons/upgrade.png" alt="image icon">
+                  <div>Cập nhật</div>
+                </button>
+                <button  (click)="reset()"  type="reset"  class="btn btn-outline-dark px-4 mx-2">
+                  <img class="modal_chucnang__button__icon mb-2"
+                  src="assets/img/icons/error.png"    alt="image icon"  />
+                  <div>Huỷ bỏ</div>
+              </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
+          <table class="modal_chucnang__table table table-hover"  *ngIf="DiemThi" datatable="ng">
+            <thead class="bg__caothang text-white">
+              <tr>
+                <th>#</th>
+                <th scope="col">Họ tên</th>
+                <th scope="col">MSSV</th>
+                <th scope="col">SBD</th>
+                <th scope="col">Lớp</th>
+                <th scope="col">Tổng điểm</th>
+                <th scope="col">Xếp loại</th>
+                <th scope="col">Lập trình C++</th>
+                <th scope="col">MS Word</th>
+                <th scope="col">MS Excel</th>
+                <th scope="col">MS Powerpoint</th>
+                <th class="text-center" scope="col"><span
+                    class="modal_chucnang__button__save mdi mdi-content-save-outline mdi-24px"></span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of DiemThi; let i = index">
+                <td style="max-width: 50px">{{i + 1}}</td>
+                <td>{{item.hoten}}</td>
+                <td>{{item.mssv}}</td>
+                <td>{{item.sobaodanh}}</td>
+                <td>{{item.lop}}</td>
+                <td>{{item.tongdiem}}</td>
+                <td>{{item.xeploai}}</td>
+                <td>{{item.laptrinhc}}</td>
+                <td>{{item.msword}}</td>
+                <td>{{item.msexcel}}</td>
+                <td>{{item.mspowerpoint}}</td>
+                <td class="text-center">
+                  <span class="modal_chucnang__button__delete mdi mdi-file-document-edit-outline mdi-24px  mr-2"
+                    (click)="onSelect(item)"></span>
+                  <span class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px" (click)="delete(item)"></span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-modal>

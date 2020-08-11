@@ -13,6 +13,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { FileUploadModule } from 'ng2-file-upload';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { NgxPrintModule } from 'ngx-print';
+import { NgApexchartsModule } from "ng-apexcharts";
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -29,6 +31,7 @@ import { PageBaocaoquyetdinhComponent } from './pages/page-baocaoquyetdinh/page-
 import { PageElearningComponent } from './pages/page-elearning/page-elearning.component';
 import { PageCnttComponent } from './pages/page-cntt/page-cntt.component';
 import { PageDiemComponent } from './pages/page-diem/page-diem.component';
+import { PageResetPasswordComponent } from "./pages/page-resetPassword/page-resetPassword.component";
 import { PageChuongtrinhdaotaoComponent } from './pages/page-chuongtrinhdaotao/page-chuongtrinhdaotao.component';
 import { PageDashboardComponent } from './pages/page-dashboard/page-dashboard.component';
 import { ModalLichdaotaoComponent } from './components/modal/chuongtrinhdaotao/modal-lichdaotao/modal-lichdaotao.component';
@@ -68,7 +71,6 @@ import { ModalDangkikhoahocComponent } from './components/modal/ttth/modal-dangk
 import { ModalHomeCamonComponent } from './components/modal/ttth/modal-home-camon/modal-home-camon.component';
 import { ModalHomeTienichComponent } from './components/modal/ttth/modal-home-tienich/modal-home-tienich.component';
 import { ModalKhoahocComponent } from './components/modal/ttth/modal-khoahoc/modal-khoahoc.component';
-import { ModalLichkhaigiangComponent } from './components/modal/ttth/modal-lichkhaigiang/modal-lichkhaigiang.component';
 import { ModalLienheComponent } from './components/modal/ttth/modal-lienhe/modal-lienhe.component';
 import { ModalMenuComponent } from './components/modal/ttth/modal-menu/modal-menu.component';
 import { ModalHomeChuongtrinhdaotaoComponent } from './components/modal/ttth/modal-home-chuongtrinhdaotao/modal-home-chuongtrinhdaotao.component';
@@ -87,6 +89,15 @@ import { ModalQuanlytienichcnttComponent } from './components/modal/cntt/modal-q
 import { ModalDanhmucbaivietComponent } from './components/modal/cntt/modal-danhmucbaiviet/modal-danhmucbaiviet.component';
 import { ModalQuanlybosuutapcnttComponent } from './components/modal/cntt/modal-quanlybosuutapcntt/modal-quanlybosuutapcntt.component';
 import { ModalThongtinchungComponent } from './components/modal/cntt/modal-thongtinchung/modal-thongtinchung.component';
+import { ModalTtthLophocComponent } from './components/modal/ttth/modal-ttth-lophoc/modal-ttth-lophoc.component';
+import { ModelTtthDotthiComponent } from './components/modal/ttth/model-ttth-dotthi/model-ttth-dotthi.component';
+import { ModalDangkidotthiComponent } from './components/modal/ttth/modal-dangkidotthi/modal-dangkidotthi.component';
+import { ModalDiemthiComponent } from './components/modal/ttth/modal-diemthi/modal-diemthi.component';
+import { ModalTtthQuanlidiemthiComponent } from './components/modal/ttth/modal-ttth-quanlidiemthi/modal-ttth-quanlidiemthi.component';
+import { ModalTtthchudeComponent } from './components/modal/ttth/modal-ttthchude/modal-ttthchude.component';
+import { ModalThoikhoabieuComponent } from './components/modal/chuongtrinhdaotao/modal-thoikhoabieu/modal-thoikhoabieu.component';
+import { ModalPhonghocComponent } from './components/modal/chuongtrinhdaotao/modal-phonghoc/modal-phonghoc.component';
+import { ModalLichphonghocComponent } from './components/modal/chuongtrinhdaotao/modal-lichphonghoc/modal-lichphonghoc.component';
 
 @NgModule({
   declarations: [
@@ -100,6 +111,7 @@ import { ModalThongtinchungComponent } from './components/modal/cntt/modal-thong
     SidebarElearningComponent,
     SidebarBaocaoquyetdinhComponent,
     SidebarFacebookComponent,
+    PageResetPasswordComponent,
     PageFacebookComponent,
     PageBaocaoquyetdinhComponent,
     PageElearningComponent,
@@ -143,7 +155,6 @@ import { ModalThongtinchungComponent } from './components/modal/cntt/modal-thong
     ModalHomeCamonComponent,
     ModalHomeTienichComponent,
     ModalKhoahocComponent,
-    ModalLichkhaigiangComponent,
     ModalLienheComponent,
     ModalMenuComponent,
     ModalHomeChuongtrinhdaotaoComponent,
@@ -163,7 +174,16 @@ import { ModalThongtinchungComponent } from './components/modal/cntt/modal-thong
     ModalQuanlytienichcnttComponent,
     ModalDanhmucbaivietComponent,
     ModalQuanlybosuutapcnttComponent,
-    ModalThongtinchungComponent
+    ModalThongtinchungComponent,
+    ModalTtthLophocComponent,
+    ModelTtthDotthiComponent,
+    ModalDangkidotthiComponent,
+    ModalDiemthiComponent,
+    ModalTtthQuanlidiemthiComponent,
+    ModalTtthchudeComponent,
+    ModalThoikhoabieuComponent,
+    ModalPhonghocComponent,
+    ModalLichphonghocComponent
   ],
   imports: [
     BrowserModule,
@@ -179,6 +199,8 @@ import { ModalThongtinchungComponent } from './components/modal/cntt/modal-thong
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
     FileUploadModule,
+    NgxPrintModule,
+    NgApexchartsModule
   ],
   providers: [ApiService, TintucCnttService],
   bootstrap: [AppComponent]

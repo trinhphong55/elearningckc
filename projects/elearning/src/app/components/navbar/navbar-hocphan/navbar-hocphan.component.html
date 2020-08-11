@@ -1,20 +1,20 @@
 <nav class="header_navbar">
-  <a class="header_navbar__item flex-column" [routerLink]="'/lophocphan'" routerLinkActive="active">
+  <a class="header_navbar__item flex-column" [routerLink]="lophocphan" routerLinkActive="active">
     <span>Luồng</span>
   </a>
-  <a class="header_navbar__item flex-column" [routerLink]="'/baigiang'" routerLinkActive="active">
+  <a class="header_navbar__item flex-column" [routerLink]="baigiang" routerLinkActive="active">
     <span>Bài giảng</span>
   </a>
-  <a class="header_navbar__item flex-column" [routerLink]="'/moinguoi'" routerLinkActive="active">
+  <a class="header_navbar__item flex-column" [routerLink]="moinguoi" routerLinkActive="active">
     <span>Mọi người</span>
   </a>
-  <a class="header_navbar__item flex-column" [routerLink]="'/sodiem'" routerLinkActive="active">
-    <span>Sổ điểm</span>
+  <a class="header_navbar__item flex-column" [ngStyle]="{'display':quyen}" [routerLink]="cotdiem" routerLinkActive="active">
+    <span>Cột điểm</span>
   </a>
-  <a class="header_navbar__item flex-column" [routerLink]="'/huongdan'" routerLinkActive="active">
-    <span>Hướng dẫn</span>
+  <a class="header_navbar__item flex-column" [ngStyle]="{'display':quyen}" [routerLink]="chamdiem" routerLinkActive="active">
+    <span>Chấm điểm</span>
   </a>
-  <a class="header_navbar__item flex-column" [routerLink]="'/baitapgv'" routerLinkActive="active">
-    <span>Bài tập giáo viên</span>
+  <a class="header_navbar__item flex-column" [ngStyle]="{'display':quyen}" [routerLink]="tongdiem" routerLinkActive="active">
+    <span>Tổng điểm</span>
   </a>
 </nav>

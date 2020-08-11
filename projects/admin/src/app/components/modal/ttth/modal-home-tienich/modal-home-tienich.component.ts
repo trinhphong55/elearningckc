@@ -36,6 +36,7 @@ export class ModalHomeTienichComponent implements OnInit {
 
   getdanhsach(): void {
     this.tienichService.get().subscribe((data) => {this.TienIch = data;
+      setTimeout(() => {}, 0);
     });
   }
 
@@ -104,5 +105,8 @@ export class ModalHomeTienichComponent implements OnInit {
     this.getdanhsach();
     window.location.reload();
     this.toastr.success('Xóa thành công');
+  }
+  reset():void{
+    this.selectedItem=null;
   }
 }

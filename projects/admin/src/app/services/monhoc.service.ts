@@ -3,8 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MonHoc } from '../interfaces/monhoc.interface';
 
 //Get data asynchronously with Observable
-import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -21,6 +20,16 @@ export class MonhocService {
 
   getMonHoc(): Observable<MonHoc[]> {
     return this.http.get<MonHoc[]>(this.monHocURL);
+  }
+
+  getMonHocbyTrangThai(trangThai: number): Observable<MonHoc[]> {
+    let url = `${this.monHocURL}/trangthai/${trangThai}`;
+    return this.http.get<MonHoc[]>(url);
+  }
+
+  getDSMonHocbymaLopHocNhocKi(maLopHoc: string, hocKi: number): Observable<MonHoc[]> {
+    let url = `${ this.monHocURL }/malophoc/${ maLopHoc }/hocki/${ hocKi }`;
+    return this.http.get<MonHoc[]>(url);
   }
 
   //Import MonHoc from Excel
@@ -44,7 +53,12 @@ export class MonhocService {
     return this.http.put<any>(`${this.monHocURL}/${monHoc.maMonHoc}`, monHoc, httpOptions);
   }
 
-  //Xoa vinh vien 1 mon hoc
+  //Set trang thai 1 mon hoc
+  setTrangThai(maMonHoc: string): Observable<any> {
+    let url = `${this.monHocURL}/settrangthai/${maMonHoc}`;
+    return this.http.put<any>(url, "", httpOptions);
+  }
+  //Xoa 1 mon hoc
   deleteMonHoc(maMonHoc: string): Observable<any> {
     return this.http.delete(`${this.monHocURL}/${maMonHoc}`, httpOptions);
   }

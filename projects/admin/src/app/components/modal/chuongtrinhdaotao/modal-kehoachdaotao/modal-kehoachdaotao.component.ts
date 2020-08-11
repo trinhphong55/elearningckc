@@ -48,13 +48,35 @@ export class ModalKehoachdaotaoComponent implements OnInit {
     return item.maBac + item.maNganhNghe + item.khoaHoc + item.maLoaiHinhDaoTao;
   }
 
-  select() {
+  private loadKHDT() {
+    this.maChuongTrinhDaoTao = this.convertToMaChuongTrinhDaoTao(this.ctdt);
+    this.monhocService.getMonHoc().subscribe(dsmonhoc => this.dsMonHoc = dsmonhoc);
+    this.khdtService.getKHDTByHocKiNMaCTDT(this.maChuongTrinhDaoTao,"1").subscribe(dskhdt => this.dsKHDT = dskhdt);
+  }
+
+  private checkChange() {
     if (this.isChanged) {
       let a = confirm("may da thay doi, co muon luu khong?");
       if (a) {
         this.saveKHDT();
       }
     }
+  }
+
+  selectBac() {
+    this.checkChange();
+    let maBac = parseInt(this.ctdt.maBac);
+    this.nganhNgheService.getNganhNghebymaBac(maBac).subscribe(dsnn => {
+      this.dsNganhNghe = dsnn;
+      if (dsnn.length !== 0) {
+        this.ctdt.maNganhNghe = dsnn[0].maNganhNghe;
+      }
+      this.loadKHDT();
+    });
+  }
+
+  select() {
+    this.checkChange();
     this.maChuongTrinhDaoTao = this.convertToMaChuongTrinhDaoTao(this.ctdt);
     this.khdtService.getKHDTByHocKiNMaCTDT(this.maChuongTrinhDaoTao, this.hocKi)
     .subscribe(dskhdt => this.dsKHDT = dskhdt);
@@ -86,17 +108,11 @@ export class ModalKehoachdaotaoComponent implements OnInit {
   }
 
   saveKHDT() {
-    this.khdtService.addDSKHDT(this.ctdt, this.dsKHDT).subscribe(status => {
+    this.khdtService.addDSKHDT(this.ctdt, this.dsKHDT, this.hocKi).subscribe(data => {
       // console.log(status);
-      if (status.success) {
-        alert(status.success);
+      if (data.status === 200) {
+        alert(data.message);
         this.isChanged = false;
-      }
-      else if (status.error) {
-        alert(status.error);
-      }
-      else {
-        alert(status);
       }
     })
   }
@@ -104,10 +120,8 @@ export class ModalKehoachdaotaoComponent implements OnInit {
   ngOnInit(): void {
     this.bacService.getBac().subscribe(dsbac => this.dsBac = dsbac);
     this.lhdtService.getLHDT().subscribe(dslhdt => this.dsLoaiHinhDaoTao = dslhdt);
-    this.nganhNgheService.getNganhnghe().subscribe(dsnn => this.dsNganhNghe = dsnn);
-    this.maChuongTrinhDaoTao = this.convertToMaChuongTrinhDaoTao(this.ctdt);
-    this.monhocService.getMonHoc().subscribe(dsmonhoc => this.dsMonHoc = dsmonhoc);
-    this.khdtService.getKHDTByHocKiNMaCTDT(this.maChuongTrinhDaoTao,"1").subscribe(dskhdt => this.dsKHDT = dskhdt);
+    this.nganhNgheService.getNganhNghebymaBac(parseInt(this.ctdt.maBac)).subscribe(dsnn => this.dsNganhNghe = dsnn);
+    this.loadKHDT();
   }
 
   constructor(
