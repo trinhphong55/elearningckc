@@ -23,7 +23,9 @@ class SinhVienDAO extends MongoDB{
         const token = JWT.sign(obj, '11111');
         const role = 'SV';
         const name = checkUser[0].ho + ' ' + checkUser[0].ten;
-        return { token, role, email, name};
+        const mssv = checkUser[0].maSinhVien;
+        const maLopHoc = checkUser[0].maLopHoc;
+        return { token, role, email, name, mssv, maLopHoc};
       }
       else {
         return false;
