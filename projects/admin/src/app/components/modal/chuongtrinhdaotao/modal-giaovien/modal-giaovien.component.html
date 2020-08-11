@@ -137,6 +137,7 @@
                 <th scope="col">Bộ môn</th>
                 <th scope="col">Trình độ</th>
                 <th scope="col">Địa chỉ </th>
+                <th scope="col">Danh sách lớp giảng dạy</th>
               </thead>
               <tbody>
                 <tr *ngFor="let giaoVien of danhSachGiaoVien | filter:textSearch">
@@ -195,6 +196,11 @@
                   </td>
                   <td>
                     <input class="form-control" disabled value={{giaoVien.diaChiThuongTru}}>
+                  </td>
+                  <td>
+                    <select class="form-control">
+                      <option *ngFor="let lhp of giaoVien.danhSachLopHocPhan">{{ lhp }}</option>
+                    </select>
                   </td>
                 </tr>
               </tbody>
