@@ -11,6 +11,14 @@ router.get('/', async (req, res) => {
     res.json([]);
   }
 })
+router.get('/list', async (req, res) => {
+  try {
+    const danhsach = await ttthCamOn.find().sort({created_at: -1});
+    res.json(danhsach);
+  } catch (error) {
+    res.json([]);
+  }
+})
 // add
 router.post('/add', (req, res) => {
   var banner = new ttthCamOn({

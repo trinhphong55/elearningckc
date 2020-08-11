@@ -1,7 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  AfterViewInit, // DataTables
+  ViewChild, // DataTables
+} from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { DataTableDirective } from 'angular-datatables'; // DataTables
 import * as moment from 'moment';
+import { Subject } from 'rxjs'; // DataTables
 import { ModalService } from '../../../../services/modal.service';
 import { TintucCnttService } from '../../../../services/cntt/tintuc-cntt.service';
 import { DanhmucService } from '../../../../services/cntt/danhmuc.service';
@@ -13,7 +21,7 @@ import { StringCommonService } from '../../../../services/cntt/stringcommon.serv
   templateUrl: './modal-baiviet.component.html',
   styleUrls: ['./modal-baiviet.component.css'],
 })
-export class ModalBaivietComponent implements OnInit {
+export class ModalBaivietComponent implements OnInit, OnDestroy, AfterViewInit {
   constructor(
     private modalService: ModalService,
     private tintucCnttService: TintucCnttService,
@@ -22,11 +30,36 @@ export class ModalBaivietComponent implements OnInit {
     private stringCommonService: StringCommonService
   ) {}
 
+  //#region DataTables
+  @ViewChild(DataTableDirective, { static: false }) _dtElement: DataTableDirective; // @ViewChild(DataTableDirective, { static: false }) _dtElement: DataTableDirective;
+  public dtOptions: DataTables.Settings = {};
+  public dtTrigger: Subject<any> = new Subject();
+  //#endregion
+
   private _image: any = null;
-  public image: any = null;
-  // private _maBaiViet: any = null;
+  private _imageCanChinhSua: any = null;
+  public image: any = 'https://localhost:4100/uploads/cntt/128.png';
+  public baiVietCanChinhSua: any;
+  public imageCuaBaiVietCanChinhSua: any =
+    'https://localhost:4100/uploads/cntt/128.png';
   public Editor = ClassicEditor;
   public formBaiViet = new FormGroup({
+    _id: new FormControl(null),
+    maBaiViet: new FormControl(null, Validators.required),
+    anhBia: new FormControl(null),
+    maDanhMuc: new FormControl(-1),
+    loaiBaiViet: new FormControl(-1),
+    tieuDe: new FormControl(null, Validators.required),
+    tieuDeASCII: new FormControl(null),
+    moTaNgan: new FormControl(null),
+    noiDung: new FormControl(null, Validators.required),
+    noiDungASCII: new FormControl(null),
+    nguoiViet: new FormControl(null),
+    thoiGianDangBai: new FormControl(),
+    viTriHienThi: new FormControl(-1),
+    trangThai: new FormControl(1),
+  });
+  public formChinhSuaBaiViet = new FormGroup({
     _id: new FormControl(null),
     maBaiViet: new FormControl(null, Validators.required),
     anhBia: new FormControl(null),
@@ -46,6 +79,10 @@ export class ModalBaivietComponent implements OnInit {
   public danhSachLoaiBaiViet: any = [];
   public danhSachBaiViet: any = [];
   public danhSachTrangThai: any = [
+    {
+      maTrangThai: 0,
+      tenTrangThai: 'Đã xoá',
+    },
     {
       maTrangThai: 1,
       tenTrangThai: 'Đăng ngay',
@@ -79,16 +116,48 @@ export class ModalBaivietComponent implements OnInit {
     this.getDanhSachBaiViet();
     this.getDanhSachDanhMuc();
     this.getDanhSachLoaiBaiViet();
+
+    // DataTables
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 5,
+    };
+  }
+
+  ngAfterViewInit(): void {
+    this.dtTrigger.next(); // DataTables
+  }
+
+  ngOnDestroy(): void {
+    this.dtTrigger.unsubscribe(); // DataTables
+  }
+
+  openModal(id: string) {
+    this.modalService.open(id);
   }
 
   closeModal(id: string) {
     this.modalService.close(id);
   }
 
+  // DataTables
+  reRenderDataTables(): void {
+    this._dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+      this.getDanhSachBaiViet();
+      // Destroy the table first
+      dtInstance.destroy();
+      // Call the dtTrigger to rerender again
+      this.dtTrigger.next();
+    });
+  }
+
   getDanhSachBaiViet() {
     this.tintucCnttService.danhSachTinTuc().subscribe((data) => {
       this.danhSachBaiViet = data;
+      console.log('danhSachBaiViet');
+      console.log(this.danhSachBaiViet);
       this.getMaBaiVietCuoiCung();
+      // this.dtTrigger.next(); // DataTables
     });
   }
 
@@ -129,6 +198,12 @@ export class ModalBaivietComponent implements OnInit {
     if (event.target.files.length > 0) {
       this._image = event.target.files[0];
       // console.log(this._image);
+    }
+  }
+
+  onFileSelected2(event) {
+    if (event.target.files.length > 0) {
+      this._imageCanChinhSua = event.target.files[0];
     }
   }
 
@@ -182,10 +257,11 @@ export class ModalBaivietComponent implements OnInit {
     }
   }
 
-  displayBaiVietCanChinhSua(baiViet: any, image: any): void {
-    this.formBaiViet.patchValue(baiViet);
-    this.image = image;
+  displayBaiVietCanChinhSua(baiViet: any): void {
+    this.formChinhSuaBaiViet.patchValue(baiViet);
     this.trangThaiCuaForm = 1;
+    this.imageCuaBaiVietCanChinhSua =
+      'https://' + this.danhSachBaiViet.domain + '/' + baiViet.anhBia;
   }
 
   formatDatetime(time: string): string {
@@ -196,7 +272,14 @@ export class ModalBaivietComponent implements OnInit {
   onResetForm(): void {
     this.formBaiViet.reset();
     this._image = null;
-    this.trangThaiCuaForm = 0;
+    this.image = 'https://localhost:4100/uploads/cntt/128.png';
+  }
+
+  onResetFormChinhSua(): void {
+    this.formChinhSuaBaiViet.reset();
+    this._imageCanChinhSua = null;
+    this.imageCuaBaiVietCanChinhSua =
+      'https://localhost:4100/uploads/cntt/128.png';
   }
 
   saveBaiViet(): void {
@@ -213,16 +296,11 @@ export class ModalBaivietComponent implements OnInit {
       this.formBaiViet
         .get('noiDungASCII')
         .setValue(this.stringCommonService.toASCII(noiDungAfterRemoveHTMLTag));
-      // console.log(this._image);
 
       // FORM DATA
       const formData = new FormData();
       formData.append('maBaiViet', this.formBaiViet.get('maBaiViet').value);
       formData.append('photos', this._image);
-      // formData.append(
-      //   'thoiGianDangBai',
-      //   this.formBaiViet.get('thoiGianDangBai').value
-      // );
       formData.append('maDanhMuc', this.formBaiViet.get('maDanhMuc').value);
       formData.append('loaiBaiViet', this.formBaiViet.get('loaiBaiViet').value);
       formData.append('tieuDe', this.formBaiViet.get('tieuDe').value);
@@ -239,24 +317,82 @@ export class ModalBaivietComponent implements OnInit {
         this.formBaiViet.get('viTriHienThi').value
       );
       formData.append('trangThai', this.formBaiViet.get('trangThai').value);
-
-      if (this.trangThaiCuaForm === 0) {
-        this.tintucCnttService.themTinTuc(formData).subscribe((res) => {
-          this.getDanhSachBaiViet();
-          this.onResetForm();
-          alert(res.message);
-        });
-      }
-      if (this.trangThaiCuaForm === 1) {
-        formData.append('_id', this.formBaiViet.get('_id').value);
-        this.tintucCnttService.editTinTuc(formData).subscribe((res) => {
-          this.getDanhSachBaiViet();
-          this.onResetForm();
-          alert(res.message);
-        });
-      }
+      this.tintucCnttService.themTinTuc(formData).subscribe((res) => {
+        this.getDanhSachBaiViet();
+        this.onResetForm();
+        alert(res.message);
+        this.reRenderDataTables(); // DataTables
+      });
     } else {
       alert('Vui lòng nhập đầy đủ các thông tin');
+    }
+  }
+
+  saveEditBaiViet(): void {
+    if (this.formChinhSuaBaiViet.valid && this._imageCanChinhSua !== null) {
+      const tieuDeAfterRemoveHTMLTag = this.stringCommonService.removeSpaceAndHTMLTag(
+        this.formChinhSuaBaiViet.get('tieuDe').value
+      );
+      const noiDungAfterRemoveHTMLTag = this.stringCommonService.removeSpaceAndHTMLTag(
+        this.formChinhSuaBaiViet.get('noiDung').value
+      );
+      this.formChinhSuaBaiViet
+        .get('tieuDeASCII')
+        .setValue(this.stringCommonService.toASCII(tieuDeAfterRemoveHTMLTag));
+      this.formChinhSuaBaiViet
+        .get('noiDungASCII')
+        .setValue(this.stringCommonService.toASCII(noiDungAfterRemoveHTMLTag));
+      // FORM DATA
+      const formData = new FormData();
+      formData.append(
+        'maBaiViet',
+        this.formChinhSuaBaiViet.get('maBaiViet').value
+      );
+      formData.append('photos', this._imageCanChinhSua);
+      formData.append(
+        'maDanhMuc',
+        this.formChinhSuaBaiViet.get('maDanhMuc').value
+      );
+      formData.append(
+        'loaiBaiViet',
+        this.formChinhSuaBaiViet.get('loaiBaiViet').value
+      );
+      formData.append('tieuDe', this.formChinhSuaBaiViet.get('tieuDe').value);
+      formData.append(
+        'tieuDeASCII',
+        this.formChinhSuaBaiViet.get('tieuDeASCII').value
+      );
+      formData.append(
+        'moTaNgan',
+        this.formChinhSuaBaiViet.get('moTaNgan').value
+      );
+      formData.append('noiDung', this.formChinhSuaBaiViet.get('noiDung').value);
+      formData.append(
+        'noiDungASCII',
+        this.formChinhSuaBaiViet.get('noiDungASCII').value
+      );
+      formData.append(
+        'nguoiViet',
+        this.formChinhSuaBaiViet.get('nguoiViet').value
+      );
+      formData.append(
+        'viTriHienThi',
+        this.formChinhSuaBaiViet.get('viTriHienThi').value
+      );
+      formData.append(
+        'trangThai',
+        this.formChinhSuaBaiViet.get('trangThai').value
+      );
+      formData.append('_id', this.formChinhSuaBaiViet.get('_id').value);
+      this.tintucCnttService.editTinTuc(formData).subscribe((res) => {
+        this.getDanhSachBaiViet();
+        this.onResetFormChinhSua();
+        alert(res.message);
+        this.closeModal('cntt_chinhsuabaiviet');
+        this.reRenderDataTables(); // DataTables
+      });
+    } else {
+      alert('Vui lòng nhập đầy đủ các thông tin và chọn hình ảnh mới');
     }
   }
 

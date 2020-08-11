@@ -21,7 +21,7 @@ export class ModalHomeCamonComponent implements OnInit {
     this.modalService.close(id)
   }
   getdanhsach(): void {
-    this.camonService.get().subscribe((data) => {this.CamOn = data; setTimeout(() => {}, 0);});
+    this.camonService.get().subscribe((data) => {this.CamOn = data; setTimeout(() => {}, 500);});
   }
    addCamOn(tieudechinh: string,tieudephu: string,icon: string): void {
       tieudechinh = tieudechinh.trim();
@@ -58,12 +58,15 @@ export class ModalHomeCamonComponent implements OnInit {
   }
   //delete
   xoaCamOn(CamOn: ttthCamOn):void {
-    this.camonService.delete(CamOn)
-    .subscribe(data => {
-      this.CamOn.push(data);
-    });
-    this.toastr.success('Xóa thành công');
-    window.location.reload();
+    var comfirmDel = confirm('Bạn có chắc chắn muốn xóa');
+    if(comfirmDel==true){
+      this.camonService.delete(CamOn)
+      .subscribe(data => {
+        this.CamOn.push(data);
+        setTimeout(() => {}, 500);
+      });
+      this.toastr.success('Xóa thành công');
+    }
   }
   reset():void{
     this.selectedItem=null;

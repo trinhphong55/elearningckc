@@ -11,6 +11,14 @@ router.get('/ttthdanhsachbanner', async (req, res) => {
     res.json([]);
   }
 })
+router.get('/', async (req, res) => {
+  try {
+    const danhsach = await ttthBanner.find().sort({vitri : 1});
+    res.json(danhsach);
+  } catch (error) {
+    res.json([]);
+  }
+})
 // add
 router.post('/ttththembanner', (req, res) => {
   var banner = new ttthBanner({

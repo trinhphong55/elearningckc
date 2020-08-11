@@ -8,13 +8,19 @@
       <div class="col-12" *ngFor="let item of ThongTinWeb">
         <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
           <div class="row justify-content-left align-items-center">
-            <div class="col-3">
+            <div class="col-auto">
               <div class="form-group">
-                <label>Logo</label>
-                <input type="file" name="image" class="form-control-file" (change)="onFileSelected($event)"
-                  ng2FileSelect [uploader]="uploader" accept="image/x-png,image/gif,image/jpeg">
-                  <img style="width:180px;height:180px" id="blah" [src]="imageSrc || item.logo"
-                  alt="image" />
+                <label>Logo (900x400)</label>
+                  <div class="upload-btn-wrapper text-center">
+                    <div class="box-img">
+                      <img [src]="imageSrc || item.logo"/>
+                    </div>
+                    <input type="file" id="logo" name="image1" ng2FileSelect [uploader]="uploader" (change)="onFileSelected($event)"
+                      accept="image/x-png|image/gif|image/jpeg|image/jpg"/>
+                    <label for="logo" class="btn btn-outline-dark btn-sm btn-block w-100 mb-0 mt-2">
+                      Chọn hình ảnh
+                    </label>
+                  </div>
               </div>
             </div>
             <div class="col-3">
@@ -46,14 +52,12 @@
             <div class="col-12">
               <div class="row">
                 <div class="col-12">
-                  <label>Liên kết mạng xã hội</label>
+                  <label>Liên kết mạng xã hội( theo thứ tự ngoài website)</label>
                 </div>
                 <div class="col-3"*ngFor="let mxh of item.mxh">
                   <div class="form-group" >
-                    <input type="text" class="form-control" [(ngModel)]="mxh.icon">
-                    <small class="form-text text-muted">Icon (FontAweSome)</small>
-                    <input type="text" class="form-control" [(ngModel)]="mxh.link">
                     <small class="form-text text-muted">Link</small>
+                    <input type="text" class="form-control" [(ngModel)]="mxh.link">
                   </div>
                 </div>
               </div>

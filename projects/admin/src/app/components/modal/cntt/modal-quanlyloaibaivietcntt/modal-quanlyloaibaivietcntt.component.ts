@@ -123,6 +123,4 @@ export class ModalQuanlyloaibaivietcnttComponent implements OnInit {
       tenVietTat: '',
     });
   }
-  get tenLoaiBaiViet() { return this.loaiBaiVietForm.get('tenLoaiBaiViet'); }
-  get tenVietTat() { return this.loaiBaiVietForm.get('tenVietTat'); }
 }

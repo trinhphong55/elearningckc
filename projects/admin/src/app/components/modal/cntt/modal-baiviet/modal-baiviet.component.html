@@ -1,11 +1,125 @@
-<app-modal class="modal_chucnang__wrapper" id="cntt_baiviet">
+<app-modal class="modal_chucnang__wrapper show" id="cntt_baiviet">
   <div
     (click)="closeModal('cntt_baiviet')"
     class="modal_chucnang__close mdi mdi-chevron-left text-white"
   ></div>
   <div class="container-fluid mt-3">
     <div class="row">
+      <button type="button" (click)="reRenderDataTables()">rerender</button>
       <h1 class="col-12 text-center text-white">Quản lý bài viết</h1>
+      <div class="col-12">
+        <div class="modal_chucnang__box border rounded p-4 mt-4 bg-white">
+          <div class="table-responsive">
+            <table
+              datatable
+              [dtOptions]="dtOptions"
+              [dtTrigger]="dtTrigger"
+              class="modal_chucnang__table table table-hover table-bordered"
+            >
+              <thead class="bg__caothang text-white">
+                <tr>
+                  <th class="text-center" scope="col">Mã</th>
+                  <th class="text-center" scope="col">Ảnh bìa</th>
+                  <th class="text-center" scope="col">Danh mục</th>
+                  <th class="text-center" scope="col">Loại bài viết</th>
+                  <th scope="col">Tiêu đề</th>
+                  <th scope="col">Mô tả ngắn</th>
+                  <th class="text-center" scope="col">Người viết</th>
+                  <th class="text-center" scope="col">Thời gian đăng</th>
+                  <th class="text-center" scope="col">Vị trí hiện thị</th>
+                  <th class="text-center" scope="col">Trạng thái</th>
+                  <th class="text-center" scope="col">
+                    <span
+                      (click)="openModal('cntt_thembaiviet')"
+                      class="modal_chucnang__button__save mdi mdi-plus mdi-24px"
+                    ></span>
+                  </th>
+                </tr>
+              </thead>
+              <!-- <tbody *ngIf="danhSachBaiViet.data.length === 0">
+                <tr>
+                  <td colspan="11" class="text-center">Chưa có dữ liệu</td>
+                </tr>
+              </tbody> -->
+              <tbody *ngIf="danhSachBaiViet.data.length !== 0">
+                <tr *ngFor="let itemBaiViet of danhSachBaiViet.data">
+                  <td style="width: 80px; text-align: center;">
+                    {{ itemBaiViet.maBaiViet }}
+                  </td>
+                  <td>
+                    <div class="box-img box-anhdaidien bg-white">
+                      <img
+                        src="https://{{ danhSachBaiViet.domain }}/{{
+                          itemBaiViet.anhBia
+                        }}"
+                      />
+                    </div>
+                  </td>
+                  <td class="text-center">
+                    {{ displayTenDanhMuc(itemBaiViet.maDanhMuc) }}
+                  </td>
+                  <td class="text-center">
+                    {{ displayLoaiBaiViet(itemBaiViet.loaiBaiViet) }}
+                  </td>
+                  <td style="width: 300px;">
+                    <a
+                      class="text-reset line2row"
+                      target="_blank"
+                      [title]="itemBaiViet.tieuDe"
+                      href="https://cntt.elearningckc.com/bai-viet/{{
+                        itemBaiViet._id
+                      }}"
+                    >
+                      {{ itemBaiViet.tieuDe }}
+                    </a>
+                  </td>
+                  <td style="width: 200px;">
+                    <div class="line2row" [title]="itemBaiViet.moTaNgan">
+                      {{ itemBaiViet.moTaNgan }}
+                    </div>
+                  </td>
+                  <td class="text-center">{{ itemBaiViet.nguoiViet }}</td>
+                  <td class="text-center">
+                    {{ formatDatetime(itemBaiViet.thoiGianDangBai) }}
+                  </td>
+                  <td style="width: 90px; text-align: center;">
+                    {{ displayViTriHienThi(itemBaiViet.viTriHienThi) }}
+                  </td>
+                  <td class="text-nowrap text-center">
+                    {{ displayTrangThai(itemBaiViet.trangThai) }}
+                  </td>
+                  <td class="text-center">
+                    <span
+                      (click)="
+                        displayBaiVietCanChinhSua(itemBaiViet);
+                        openModal('cntt_chinhsuabaiviet')
+                      "
+                      class="modal_chucnang__button__edit mdi mdi-file-document-edit-outline mdi-24px"
+                    ></span>
+                    <span
+                      (click)="xoaBaiViet(itemBaiViet.maBaiViet)"
+                      class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px"
+                    ></span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-modal>
+
+<!-- Them bai viet -->
+<app-modal class="modal_chucnang__wrapper" id="cntt_thembaiviet">
+  <div
+    (click)="closeModal('cntt_thembaiviet')"
+    class="modal_chucnang__close mdi mdi-chevron-left text-white"
+  ></div>
+  <div class="container-fluid mt-3 pb-4">
+    <div class="row">
+      <h1 class="col-12 text-center text-white">Thêm bài viết mới</h1>
       <div class="col-12">
         <div class="modal_chucnang__box border rounded p-4 mt-3 bg-white">
           <form [formGroup]="formBaiViet" class="row">
@@ -15,16 +129,7 @@
                   <div class="upload-btn-wrapper text-center">
                     <div>Ảnh đại diện</div>
                     <div class="box-img">
-                      <img
-                        *ngIf="trangThaiCuaForm === 0"
-                        src=""
-                        id="preview_image_thembaiviet"
-                      />
-                      <img
-                        *ngIf="trangThaiCuaForm === 1"
-                        [src]="image"
-                        id="preview_image_thembaiviet"
-                      />
+                      <img [src]="image" id="preview_image_thembaiviet" />
                     </div>
                     <input
                       type="file"
@@ -67,6 +172,7 @@
                   <div class="form-group" style="width: 128px;">
                     <label class="mb-0">Mã bài viết</label>
                     <input
+                      disabled
                       formControlName="maBaiViet"
                       style="width: 128px;"
                       type="text"
@@ -77,16 +183,6 @@
                 </div>
                 <div class="col">
                   <div class="row">
-                    <!-- <div class="col-12">
-                      <div class="form-group">
-                        <label class="mb-0">Thời gian đăng bài</label>
-                        <input
-                          formControlName="thoiGianDangBai"
-                          type="datetime-local"
-                          class="form-control"
-                        />
-                      </div>
-                    </div> -->
                     <div class="col-6">
                       <div class="form-group">
                         <label class="mb-0">Danh mục</label>
@@ -170,7 +266,6 @@
                 >
                   <div class="modal_chucnang__group__button mt-3">
                     <button
-                      *ngIf="trangThaiCuaForm === 0"
                       type="button"
                       (click)="saveBaiViet()"
                       class="modal_chucnang__button btn btn-outline-primary px-4 mx-2"
@@ -183,8 +278,186 @@
                       <div>Thêm mới</div>
                     </button>
                     <button
-                      *ngIf="trangThaiCuaForm === 1"
-                      (click)="saveBaiViet()"
+                      (click)="onResetForm(); closeModal('cntt_thembaiviet')"
+                      class="modal_chucnang__button btn btn-outline-dark px-4 mx-2"
+                      type="button"
+                    >
+                      <img
+                        class="modal_chucnang__button__icon mb-2"
+                        src="assets/img/icons/error.png"
+                        alt="image icon"
+                      />
+                      <div>Đóng</div>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-modal>
+
+<!-- Chinh sua bai viet -->
+<app-modal class="modal_chucnang__wrapper" id="cntt_chinhsuabaiviet">
+  <div
+    (click)="closeModal('cntt_chinhsuabaiviet')"
+    class="modal_chucnang__close mdi mdi-chevron-left text-white"
+  ></div>
+  <div class="container-fluid mt-3 pb-4">
+    <div class="row">
+      <h1 class="col-12 text-center text-white">Chỉnh sửa bài viết</h1>
+      <div class="col-12">
+        <div class="modal_chucnang__box border rounded p-4 mt-3 bg-white">
+          <form [formGroup]="formChinhSuaBaiViet" class="row">
+            <div class="col-10 mx-auto">
+              <div class="row">
+                <div class="col-auto">
+                  <div class="upload-btn-wrapper text-center">
+                    <div>Ảnh đại diện</div>
+                    <div class="box-img">
+                      <img
+                        [src]="imageCuaBaiVietCanChinhSua"
+                        id="preview_image_chinhsuabaiviet"
+                      />
+                    </div>
+                    <input
+                      type="file"
+                      id="input_image_chinhsuabaiviet"
+                      (change)="onFileSelected2($event)"
+                      onchange="document.getElementById('preview_image_chinhsuabaiviet').src = window.URL.createObjectURL(this.files[0])"
+                      accept="image/x-png, image/jpeg"
+                    />
+                    <label
+                      for="input_image_chinhsuabaiviet"
+                      class="btn btn-outline-dark btn-sm btn-block mb-0 mt-2"
+                    >
+                      Chọn hình ảnh
+                    </label>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-group">
+                    <label class="mb-0">Tiêu đề</label>
+                    <input
+                      formControlName="tieuDe"
+                      type="text"
+                      class="form-control"
+                      placeholder="Tiêu đề bài viết"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label class="mb-0">Mô tả ngắn</label>
+                    <textarea
+                      formControlName="moTaNgan"
+                      style="min-height: 90px;"
+                      class="form-control"
+                      placeholder="Mô tả ngắn"
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-auto">
+                  <div class="form-group" style="width: 128px;">
+                    <label class="mb-0">Mã bài viết</label>
+                    <input
+                      formControlName="maBaiViet"
+                      style="width: 128px;"
+                      type="text"
+                      class="form-control"
+                      placeholder="Mã bài viết"
+                    />
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="row">
+                    <div class="col-6">
+                      <div class="form-group">
+                        <label class="mb-0">Danh mục</label>
+                        <select
+                          formControlName="maDanhMuc"
+                          class="form-control"
+                        >
+                          <option value="-1" class="d-none"
+                            >Loại danh mục</option
+                          >
+                          <option
+                            *ngFor="let itemDanhMuc of danhSachDanhMuc"
+                            [value]="itemDanhMuc.maDanhMuc"
+                          >
+                            {{ itemDanhMuc.tenDanhMuc }}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="form-group">
+                        <label class="mb-0">Loại bài viết</label>
+                        <select
+                          formControlName="loaiBaiViet"
+                          class="form-control"
+                        >
+                          <option value="-1" class="d-none"
+                            >Loại bài viết</option
+                          >
+                          <option
+                            *ngFor="let itemLoaiBaiViet of danhSachLoaiBaiViet"
+                            [value]="itemLoaiBaiViet.maLoaiBaiViet"
+                          >
+                            {{ itemLoaiBaiViet.tenLoaiBaiViet }}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="form-group">
+                        <label class="mb-0">Trạng thái bài viết</label>
+                        <select
+                          formControlName="trangThai"
+                          class="form-control"
+                        >
+                          <option
+                            *ngFor="let itemTrangThai of danhSachTrangThai"
+                            [value]="itemTrangThai.maTrangThai"
+                            >{{ itemTrangThai.tenTrangThai }}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="form-group">
+                        <label class="mb-0">Hiển thị lên trang chủ</label>
+                        <select
+                          formControlName="viTriHienThi"
+                          class="form-control"
+                        >
+                          <option value="-1">Không hiển thị</option>
+                          <option
+                            *ngFor="let itemViTri of viTriHienThi"
+                            [value]="itemViTri.maViTri"
+                            >{{ itemViTri.tenViTri }}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <ckeditor
+                  class="col-12"
+                  formControlName="noiDung"
+                  [editor]="Editor"
+                ></ckeditor>
+                <div
+                  class="col-12 d-flex justify-content-center align-items-center"
+                >
+                  <div class="modal_chucnang__group__button mt-3">
+                    <button
+                      (click)="saveEditBaiViet()"
                       class="modal_chucnang__button btn btn-outline-danger px-4 mx-2"
                       type="button"
                     >
@@ -196,7 +469,10 @@
                       <div>Cập nhật</div>
                     </button>
                     <button
-                      (click)="onResetForm()"
+                      (click)="
+                        onResetFormChinhSua();
+                        closeModal('cntt_chinhsuabaiviet')
+                      "
                       class="modal_chucnang__button btn btn-outline-dark px-4 mx-2"
                       type="button"
                     >
@@ -205,107 +481,13 @@
                         src="assets/img/icons/error.png"
                         alt="image icon"
                       />
-                      <div>Huỷ</div>
+                      <div>Đóng</div>
                     </button>
                   </div>
                 </div>
               </div>
             </div>
           </form>
-        </div>
-      </div>
-      <div class="col-12">
-        <div class="modal_chucnang__box border rounded p-4 mt-4 bg-white">
-          <div class="table-responsive">
-            <table
-              class="modal_chucnang__table table table-hover table-bordered"
-            >
-              <thead class="bg__caothang text-white">
-                <tr>
-                  <th class="text-center" scope="col">Mã</th>
-                  <th class="text-center" scope="col">Ảnh bìa</th>
-                  <th class="text-center" scope="col">Danh mục</th>
-                  <th class="text-center" scope="col">Loại bài viết</th>
-                  <th scope="col">Tiêu đề</th>
-                  <th scope="col">Mô tả ngắn</th>
-                  <th class="text-center" scope="col">Người viết</th>
-                  <th class="text-center" scope="col">Thời gian đăng</th>
-                  <th class="text-center" scope="col">Vị trí hiện thị</th>
-                  <th class="text-center" scope="col">Trạng thái</th>
-                  <th class="text-center" scope="col">
-                    <span class="mdi mdi-cog mdi-24px"></span>
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let itemBaiViet of danhSachBaiViet.data">
-                  <td style="width: 80px; text-align: center;">
-                    {{ itemBaiViet.maBaiViet }}
-                  </td>
-                  <td>
-                    <div class="box-img box-anhdaidien bg-white">
-                      <img
-                        src="https://{{ danhSachBaiViet.domain }}/{{
-                          itemBaiViet.anhBia
-                        }}"
-                      />
-                    </div>
-                  </td>
-                  <td class="text-center">
-                    {{ displayTenDanhMuc(itemBaiViet.maDanhMuc) }}
-                  </td>
-                  <td class="text-center">
-                    {{ displayLoaiBaiViet(itemBaiViet.loaiBaiViet) }}
-                  </td>
-                  <td style="width: 300px;">
-                    <a
-                      class="text-reset line2row"
-                      target="_blank"
-                      [title]="itemBaiViet.tieuDe"
-                      href="https://cntt.elearningckc.com/bai-viet/{{
-                        itemBaiViet._id
-                      }}"
-                    >
-                      {{ itemBaiViet.tieuDe }}
-                    </a>
-                  </td>
-                  <td style="width: 200px;">
-                    <div class="line2row" [title]="itemBaiViet.moTaNgan">
-                      {{ itemBaiViet.moTaNgan }}
-                    </div>
-                  </td>
-                  <td class="text-center">{{ itemBaiViet.nguoiViet }}</td>
-                  <td class="text-center">
-                    {{ formatDatetime(itemBaiViet.thoiGianDangBai) }}
-                  </td>
-                  <td style="width: 90px; text-align: center;">
-                    {{ displayViTriHienThi(itemBaiViet.viTriHienThi) }}
-                  </td>
-                  <td class="text-nowrap text-center">
-                    {{ displayTrangThai(itemBaiViet.trangThai) }}
-                  </td>
-                  <td class="text-center">
-                    <span
-                      (click)="
-                        displayBaiVietCanChinhSua(
-                          itemBaiViet,
-                          'https://' +
-                            danhSachBaiViet.domain +
-                            '/' +
-                            itemBaiViet.anhBia
-                        )
-                      "
-                      class="modal_chucnang__button__edit mdi mdi-file-document-edit-outline mdi-24px"
-                    ></span>
-                    <span
-                      (click)="xoaBaiViet(itemBaiViet.maBaiViet)"
-                      class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px"
-                    ></span>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
         </div>
       </div>
     </div>

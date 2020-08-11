@@ -14,26 +14,20 @@ router.get('/ttthdanhsachthongtinweb', async (req, res) => {
 // File upload settings
 
 const PATH = './uploads/cntt';
-
+var linkImg;
 let Storage = multer.diskStorage({
   destination: (req, file, callback) => {
     callback(null, PATH);
   },
   filename: (req, file, callback) => {
-    let math = ["image/png", "image/jpeg"];
-    if (math.indexOf(file.mimetype) === -1) {
-      let errorMess = `The file <strong>${file.originalname}</strong> is invalid. Only allowed to upload image jpeg or png.`;
-      return callback(errorMess, null);
-    }
-    let filename = `${file.originalname}`;
+    const filename =`${Date.now()}${file.originalname}`
     callback(null, filename);
   }
 });
 var upload = multer({
   storage: Storage
 })
-router.post('/uploads', upload.single('image'), function (req, res) {
-
+router.post('/uploads', upload.single('image'), function (req, res ,next) {
   if (!req.file) {
     return res.send({
       success: false
@@ -41,14 +35,17 @@ router.post('/uploads', upload.single('image'), function (req, res) {
   }
   res.send({
     success: true,
-  })
+  });
+  linkImg = req.file;
+  console.log(linkImg);
 });
 // sua
 router.post('/ttthsuathongtinweb', async (req, res) => {
+  console.log(linkImg);
   await ttthThongTinWeb.findOneAndUpdate({
     _id: req.body._id
   }, {
-    logo: req.body.logo,
+    logo:"uploads/cntt/" + linkImg,
     diachi: req.body.diachi,
     giolamviec: req.body.giolamviec,
     hotline: req.body.hotline,

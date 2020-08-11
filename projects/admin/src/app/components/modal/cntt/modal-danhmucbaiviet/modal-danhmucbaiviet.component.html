@@ -1,5 +1,5 @@
 <app-modal class="modal_chucnang__wrapper" id="cntt_quanlydanhmuc">
-    <div (click)="closeModal('cntt_quanlydanhmuc')" class="modal_chucnang__close mdi mdi-chevron-left text-white"></div>
+    <!-- <div (click)="closeModal('cntt_quanlydanhmuc')" class="modal_chucnang__close mdi mdi-chevron-left text-white"></div>
     <div class="container-fluid mt-3">
         <div class="row">
             <div class="col-12">
@@ -94,7 +94,33 @@
                                 </tr>
                             </tbody>
                         </table>
-                    </section>
+                    </section> -->
+    <div (click)="closeModal('cntt_quanlydanhmuc')" class="modal_chucnang__close mdi mdi-chevron-left text-white"></div>
+    <div class="container-fluid mt-3">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="text-center text-white">Quản lý danh mục</h1>
+            </div>
+            <div class="col-12">
+                <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
+                    <form [formGroup]="danhMucForm">
+                        <div class="row justify-content-center align-items-center">
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label>Tên danh mục</label>
+                                    <input formControlName="tenDanhMuc" type="text" class="form-control"
+                                        placeholder="Nhập tên danh mục mới" />
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label>Tên viết tắt</label>
+                                    <input formControlName="tenVietTat" type="text" class="form-control"
+                                        placeholder="Nhập tên viết tắt mới" />
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
