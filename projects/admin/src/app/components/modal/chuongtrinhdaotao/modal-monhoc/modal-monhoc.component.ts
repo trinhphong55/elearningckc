@@ -51,11 +51,6 @@ export class ModalMonhocComponent implements OnInit, OnChanges {
     });
   }
 
-  // importExcel() {
-  //   this.modalService.close('ctdt_monhoc');
-  //   this.modalService.open('ctdt_importexcelmonhoc');
-  // }
-
   postMonHoc() {
     if (this.selectedMonHoc.tenMonHoc.trim() === "") {
       alert('Oke fine, nhap thong tin mon hoc di ban ey');
@@ -180,6 +175,7 @@ export class ModalMonhocComponent implements OnInit, OnChanges {
   importExcel() {
     this.monhocService.importMonHocFromExcel(this.dsMonHocfromExcel).subscribe(res => {
       if (res.status === 200) {
+        this.getMonHoc();
         this.removeData();
         alert(res.message);
       } else {
