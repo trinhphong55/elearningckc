@@ -81,7 +81,6 @@ export class ModalGiaovienComponent implements OnInit {
             }
           )
         })
-        console.log('dsgv', this.danhSachGiaoVien);
       }
     );
   }
@@ -102,7 +101,24 @@ export class ModalGiaovienComponent implements OnInit {
 
   layDanhSachGiaoVienTheoTrangThai():void {
     this.apiService.layDanhSachGiaoVienTheoTrangThai(this.trangThai).subscribe(
-      data => this.danhSachGiaoVien = data,
+      data => {
+        this.danhSachGiaoVien = data;
+        this.danhSachGiaoVien.map(gv => {
+          gv.danhSachLopHocPhan = [];
+          this.gvLHPService.timGiaoVienLHPTheoMaGV(gv.maGiaoVien).subscribe(
+            (res) => {
+              const danhSachLHP = res;
+              danhSachLHP.map(lhp => {
+                this.lopHocPhanService.getLopHocPhanbyMaLopHocPhan(lhp.maLopHocPhan).subscribe(
+                  (response) => {
+                    gv.danhSachLopHocPhan.push(response[0].tenLopHocPhan);
+                  }
+                )
+              })
+            }
+          )
+        })
+      }
     );
   }
 
