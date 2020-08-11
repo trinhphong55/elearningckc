@@ -1,102 +1,251 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>Quản Lý Hệ Thống - Trường Cao Đẳng Kỹ Thuật Cao Thắng</title>
-    <base href="/" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/x-icon" href="favicon.ico" />
 
-    <!-- SCRIPT FACEBOOK -->
+<head>
+  <meta charset="utf-8">
+  <title>Quản Lý Hệ Thống - Trường Cao Đẳng Kỹ Thuật Cao Thắng</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
 
-    <!-- Script để sử dụng social plugin facebook -->
-    <script
-      async
-      defer
-      crossorigin="anonymous"
-      src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v7.0&appId=726531241502023&autoLogAppEvents=1"
-      nonce="i06wgSqK"
-    ></script>
+  <!-- SCRIPT FACEBOOK -->
 
-    <!-- Script những thành phần quan trọng để sử dụng API facebook -->
-    <script>
-      var AppId = "726531241502023";
-      var accesstoken = "";
-      var FBLoaded = false;
-      window.fbAsyncInit = function () {
-        FB.init({
-          appId: AppId,
-          cookie: true,
-          xfbml: true,
-          version: "v7.0",
-        });
-        FB.AppEvents.logPageView();
-        FBLoaded = true;
-        // Kiểm tra trạng thái người dùng
-        FB.getLoginStatus(function (response) {
-          statusChangeCallback(response);
-        });
-      };
+  <!-- Script để sử dụng social plugin facebook -->
+  <script async defer crossorigin="anonymous"
+    src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v7.0&appId=726531241502023&autoLogAppEvents=1"
+    nonce="i06wgSqK">
+  </script>
 
-      //Yêu cầu login Facebook và cấp quyền
-      function RequestLoginFB() {
-        window.location =
-          "http://graph.facebook.com/oauth/authorize?client_id=726531241502023&scope=pages_manage_posts,pages_manage_engagement,pages_manage_ads,pages_manage_metadata,pages_read_engagement,pages_read_user_content,pages_show_list,public_profile,email,user_likes,user_birthday,user_posts,user_photos,user_location,publish_to_groups&redirect_uri=https://localhost:4200/facebook/";
-      }
-    </script>
+  <!-- Script những thành phần quan trọng để sử dụng API facebook -->
+  <script>
+    var AppId='726531241502023';
+    var FBLoaded=false;
+    var accessToken = '';
+    var idGroup = '';
+    var ms = '';
+    var url='';
 
-    <script>
-      // Xử lý trạng thái đăng nhập
-      function statusChangeCallback(response) {
-        //User đã login facebook và login ứng dụng
-        if (response.status === "connected") {
-          showWelcome();
+    window.fbAsyncInit = function () {
+      FB.init({
+        appId: AppId,
+        cookie: true,
+        xfbml: true,
+        version: 'v7.0'
+      });
+      FB.AppEvents.logPageView();
+      FBLoaded = true;
+      // Kiểm tra trạng thái người dùng
+      FB.getLoginStatus(function (response) {
+        statusChangeCallback(response);
+      });
+
+    };
+
+     //Yêu cầu login Facebook và cấp quyền
+     function RequestLoginFB() {
+            window.location = 'http://graph.facebook.com/oauth/authorize?client_id=726531241502023&scope=pages_manage_posts,pages_manage_engagement,pages_manage_ads,pages_manage_metadata,pages_read_engagement,pages_read_user_content,pages_show_list,public_profile,email,user_likes,user_birthday,user_posts,user_photos,user_location,publish_to_groups&redirect_uri=https://admin.elearningckc.com/facebook';
         }
-        //User đã login facebook nhưng chưa login ứng dụng hoặc chưa login facebook
-        else {
-          ShowLoginButton();
-        }
-      }
+  </script>
 
-      // Hiển thị nút đăng nhập
-      function ShowLoginButton() {
+  <script>
+    // Xử lý trạng thái đăng nhập
+    function statusChangeCallback(response) {
+      //User đã login facebook và login ứng dụng
+      if (response.status === 'connected') {
+        showWelcome();
+        getAvatarProf();
+
+      }
+    }
+
+    // Hiển thị nút đăng nhập
+    function ShowLoginButton() {
+      document
+        .getElementById("btnLoginFB")
+        .setAttribute("style", "display:block");
+      document.getElementById("status").setAttribute("style", "display:none");
+    }
+
+    //Hàm welcome sử dụng API sau khi login
+    function showWelcome() {
+      FB.api("/me", function (response) {
         document
           .getElementById("btnLoginFB")
+          .setAttribute("style", "display:none");
+        console.log(response.name + " access granted");
+        document.getElementById("status").innerHTML = response.name;
+        document
+          .getElementById("status")
           .setAttribute("style", "display:block");
-        document.getElementById("status").setAttribute("style", "display:none");
+      });
+    }
+
+  // Hiển thị nút đăng nhập
+  function ShowLoginButton() {
+          document.getElementById('btnLoginFB').setAttribute('style', 'display:block');
+          document.getElementById('status').setAttribute('style', 'display:none');
       }
 
-      //Hàm welcome sử dụng API sau khi login
-      function showWelcome() {
-        FB.api("/me", function (response) {
-          document
-            .getElementById("btnLoginFB")
-            .setAttribute("style", "display:none");
-          console.log(response.name + " access granted");
-          document.getElementById("status").innerHTML = response.name;
-          document
-            .getElementById("status")
-            .setAttribute("style", "display:block");
-        });
-      }
-    </script>
+    //Hàm welcome sử dụng API sau khi login
+    function showWelcome() {
+      FB.api('/me', function(response) {
+        document.getElementById('btnLoginFB').setAttribute('style', 'display:none');
+        console.log(response.name + ' access granted');
+        document.getElementById('username').innerHTML =response.name;
+        document.getElementById('status').setAttribute('style', 'display:block');
+      });
+    }
 
-    <script>
-      (function (d, s, id) {
-        var js,
-          fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {
-          return;
+    //Get profile's avatar
+    function getAvatarProf(){
+      FB.api('/me',{fields: 'picture'},function (response){
+          source = response.picture.data.url;
+          $('#avatar').attr("src",source);
+      })
+    };
+
+    //API Group
+     function getIDGroup(ctr){
+       idGroup = ctr.data;
+       console.log(idGroup);
+      FB.api('/'+ctr.data,{fields: 'member_count'},function (response){
+        gMemCount=response.member_count;
+          document.getElementById('soMem').innerText = gMemCount;
+      });
+      FB.api('/'+ctr.data,{fields: 'member_request_count'},function (response){
+        gMemReqCount=response.member_request_count;
+        document.getElementById('memRes').innerText = gMemReqCount;
+      });
+      FB.api('/'+ctr.data,{fields: 'privacy'},function (response){
+        gPri=response.privacy;
+        document.getElementById('privacyGr').innerText = gPri;
+      });
+      FB.api('/'+ctr.data,{fields: 'created_time'},function (response){
+        var gCreDate=response.created_time;
+        document.getElementById('createDay').innerText = gCreDate;
+      });
+      FB.api('/'+ctr.data,{fields: 'description'},function (response){
+        gDes=response.description;
+        if(!gDes){
+          document.getElementById('Des').innerText = 'Không có';
         }
-        js = d.createElement(s);
-        js.id = id;
-        js.src = "https://connect.facebook.net/en_US/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-      })(document, "script", "facebook-jssdk");
-    </script>
-  </head>
+        document.getElementById('Des').innerText = gDes;
+      })
+      }
+    //get accessToken
+    function getAccessToken(ac){
+      FB.api('/'+ac.data,{fields: 'access_token'},function (response){
+        accessToken = response.access_token;
+          console.log(accessToken);
+      });
+    }
+    //Post lên Page message
+    function POSTPageMess() {
 
-  <body>
-    <app-root></app-root>
-  </body>
+        var ms = document.getElementById('message').value;
+                FB.api('me/feed', 'post', { message: ms, access_token: accessToken }, function (response) {
+                    if (!response || response.error) {
+                        alert('Có lỗi khi POST bài: ');
+                        console.log(response);
+                    } else {
+                        alert('ĐÃ POST THÀNH CÔNG');
+                    }
+                });
+
+    }
+    //Post lên Page picture by url
+    function POSTPagePictureUrl() {
+        var ms = document.getElementById('message').value;
+        var url=document.getElementById('picture').value;
+                FB.api('me/photos', 'post', { message: ms, url:url, access_token: accessToken }, function (response) {
+                    if (!response || response.error) {
+                        alert('Có lỗi khi POST bài: ');
+                        console.log(response);
+                    } else {
+                        alert('ĐÃ POST THÀNH CÔNG');
+                    }
+                });
+    }
+
+    //Post lên page theo yêu cầu
+    function PostByRequest(){
+      let a = $('#picture').val().trim();
+      if(FBLoaded){
+        if (a === "") {
+        POSTPageMess();
+        }
+        else{
+        POSTPagePictureUrl();
+        }
+      }else{
+        setTimeout("PostByRequest()",100);
+      }
+    }
+    //post zô group
+    function POSTGroupMess() {
+        var ms = document.getElementById('messagegr').value;
+                FB.api('/410650836564717/feed', 'post', { message: ms }, function (response) {
+                    if (!response || response.error) {
+                        alert('Có lỗi khi POST bài: ');
+                        console.log(response);
+                    } else {
+                        alert('ĐÃ POST THÀNH CÔNG');
+                    }
+                });
+    }
+    // //GROUP API
+    // //Lấy số member trong group
+    // function getMemberCountOfGroup(){
+    //   FB.api('/410650836564717',{fields: 'member_count'},function (response){
+    //     gMemCount=response.member_count;
+    //       console.log(gMemCount);
+    //   })
+    // };
+    // //Lấy số member request trong group
+    // function getMemberCountOfGroup(){
+    //   FB.api('/410650836564717',{fields: 'member_request_count'},function (response){
+    //     gMemReqCount=response.member_request_count;
+    //       console.log(gMemReqCount);
+    //   })
+    // };
+    // //Lấy Privacy của group
+    // function getMemberCountOfGroup(){
+    //   FB.api('/410650836564717',{fields: 'privacy'},function (response){
+    //     gPri=response.privacy;
+    //       console.log(gPri);
+    //   })
+    // };
+    // //Lấy ra ngày tạo group
+    // function getCreateDate(){
+    //   FB.api('/410650836564717',{fields: 'created_time'},function (response){
+    //     gCreDate=response.created_time;
+    //       console.log(gCreDate);
+    //   })
+    // };
+    // //Lấy ra Description của group
+    // function getDescription(){
+    //   FB.api('/410650836564717',{fields: 'description'},function (response){
+    //     gDes=response.description;
+    //       console.log(gDes);
+    //   })
+    // };
+  </script>
+
+  <script>
+    (function (d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) { return; }
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
+
+
+</head>
+
+<body>
+  <app-root></app-root>
+</body>
+
 </html>

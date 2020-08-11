@@ -12,10 +12,10 @@ export class GroupfbService {
   getAll() {
     return this.http.get(baseUrl);
   }
+  
   get(id) {
     return this.http.get(`${baseUrl}/${id}`);
   }
-
   create(data) {
     return this.http.post(baseUrl, data);
   }
@@ -31,4 +31,5 @@ export class GroupfbService {
   deleteAll() {
     return this.http.delete(baseUrl);
   }
+  
 }

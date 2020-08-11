@@ -116,4 +116,8 @@ export class ModalDanhmucbaivietComponent implements OnInit {
       tenVietTat: '',
     });
   }
+  showTrangThai(trangThai: any): string {
+    if (trangThai == 1) { return 'Đã đăng' }
+    return 'Đã xóa'
+  }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
+import * as moment from 'moment';
 declare var $: any;
 declare var Swiper: any;
 
@@ -63,5 +64,10 @@ export class SliderHighlightComponent implements OnInit, AfterViewInit {
         },
       },
     });
+  }
+
+  formatDatetime(time: string): string {
+    time = moment(time).format('HH:mm, DD-MM-YYYY');
+    return time;
   }
 }

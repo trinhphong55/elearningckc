@@ -88,14 +88,7 @@ class UserDAO extends MongoDB{
       const obj = { id: email, password };
       const token = JWT.sign(obj, '11111');
       const role = checkUser[0].role;
-      const displayName = checkUser[0].displayName;
-      let mssv, maLopHoc;
-      if(role == 'SV'){
-        mssv = (checkUser[0].email).slice(0, 10);
-        maLopHoc = (await this.getMaLopHoc(mssv))[0].maLopHoc;
-        return {token, mssv, maLopHoc, role, displayName}
-      }
-      return { token, role, displayName};
+      return { token, role, email};
     }
     else {
       return false;

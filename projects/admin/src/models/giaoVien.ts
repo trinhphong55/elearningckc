@@ -9,6 +9,6 @@ export interface GiaoVien{
     sdt: string,
     email: string,
     trinhDoChuyenMon: string,
-    matKhauBanDau: string,
+    password: string,
     trangThai: number
 }

@@ -1,4 +1,5 @@
 const MongoDB = require('../MongoDB');
+const JWT = require('jsonwebtoken');
 const md5 = require('md5');
 class GiaoVienDAO extends MongoDB{
     constructor(){
@@ -6,8 +7,38 @@ class GiaoVienDAO extends MongoDB{
         this.collectionName = 'GiaoVien';
     }
 
+    async capNhatBoMon(maGV, maBoMon){
+      let result = false;
+      try{
+        await this.connectDB();
+        result = await this.conDb.collection(this.collectionName).updateOne({maGiaoVien: maGV}, {$set:{maBoMon: maBoMon}});
+        await this.closeDB();
+      } catch (error){
+        console.log('error: ', error.message);
+        await this.closeDB();
+      }
+      return result;
+    }
+
     async layDanhSachGiaoVien(){
         return await this.find({trangThai: 1});
+    }
+
+    async layDanhSachGiaoVienTheoTrangThai(trangThai){
+      return await this.find({trangThai: parseInt(trangThai)});
+    }
+
+    async restoreGiaoVien(maGV){
+      let result = false;
+      try{
+        await this.connectDB();
+        result = await this.conDb.collection(this.collectionName).updateOne({maGiaoVien: maGV}, {$set:{trangThai: 1}});
+        await this.closeDB();
+      } catch (error){
+        console.log('error: ', error.message);
+        await this.closeDB();
+      }
+      return result;
     }
 
     async layThongTinGiaoVien(maGV){
@@ -60,7 +91,7 @@ class GiaoVienDAO extends MongoDB{
           let isExist = await this.layThongTinGiaoVien(data[i].maGiaoVien);
           if(isExist.length == 0){
             data[i].trangThai = 1;
-            data[i].matKhauBanDau = md5('123456');
+            data[i].password = md5('123456');
             filterData.push(data[i]);
           }
         }
@@ -74,6 +105,29 @@ class GiaoVienDAO extends MongoDB{
         await this.closeDB();
       }
       return result;
+    }
+
+    async getUser(email, password) {
+      const list = await this.find({
+        email,
+        password: md5(password),
+        trangThai: 1
+      });
+      return list;
+    }
+
+    async login(email, password) {
+      const checkUser = await this.getUser(email, password);
+      if (checkUser && checkUser.length) {
+        const obj = { id: email, password };
+        const token = JWT.sign(obj, '11111');
+        const role = 'GV';
+        const name = checkUser[0].ho + ' ' + checkUser[0].ten;
+        return { token, role, email, name};
+      }
+      else {
+        return false;
+      }
     }
 }
 module.exports = GiaoVienDAO;

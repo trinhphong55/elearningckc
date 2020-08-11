@@ -1,18 +1,21 @@
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { catchError, map, retry } from 'rxjs/operators';
-import { HttpClient, HttpParams, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { cnttTinTuc } from '../../../models/cnttTinTuc'
+import { catchError } from 'rxjs/operators';
+import {
+  HttpClient,
+  HttpHeaders,
+  HttpErrorResponse,
+} from '@angular/common/http';
+import { cnttTinTuc } from '../../../models/cnttTinTuc';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TintucCnttService {
-
   baseUri: string = 'https://localhost:4100/api/cnttTinTuc';
-  headers = new HttpHeaders().set('Content-Type', 'application/json')
+  headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
   danhSachTinTuc(): Observable<any> {
     return this.http
       .get<any>(`${this.baseUri}/danhsachtintuc`, {
@@ -30,17 +33,12 @@ export class TintucCnttService {
   //add tin tuc
   themTinTuc(data): Observable<any> {
     let url = `${this.baseUri}/taotintuc`;
-    return this.http.post(url, data)
-      .pipe(
-        catchError(this.errorMgmt)
-      )
+    return this.http.post(url, data).pipe(catchError(this.errorMgmt));
   }
   //edit tintuc
-  editTinTuc(data): Observable<cnttTinTuc> {
+  editTinTuc(data): Observable<any> {
     return this.http
-      .post<cnttTinTuc>(this.baseUri + '/chinhSuaTinTuc', data, {
-        headers: this.headers,
-      })
+      .post<any>(this.baseUri + '/chinhSuaTinTuc', data)
       .pipe(catchError(this.errorMgmt));
   }
   // Error handling
@@ -53,8 +51,6 @@ export class TintucCnttService {
       // Get server-side error
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
-    console.log(errorMessage);
     return throwError(errorMessage);
   }
-
 }
