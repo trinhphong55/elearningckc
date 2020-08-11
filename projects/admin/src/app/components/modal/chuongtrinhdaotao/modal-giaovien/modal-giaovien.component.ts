@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ModalService } from '../../../../services/modal.service';
 import { ApiService } from '../../../../services/api.service';
 import { BomonService } from '../../../../services/khoa-bomons/bomon.service';
+import { GvlhpService } from '../../../../services/gvlhp.service';
+import { LopHocPhanService } from '../../../../services/lophocphan.service';
+
 import { GiaoVien } from '../../../../../models/giaoVien';
 import * as XLSX from 'xlsx';
 @Component({
@@ -39,7 +42,12 @@ export class ModalGiaovienComponent implements OnInit {
   }
 
   dsBoMon: any;
-  constructor(private modalService: ModalService, private apiService:ApiService, private boMonService:BomonService) {
+  dsgvLHP: any;
+  constructor(private modalService: ModalService,
+    private apiService:ApiService,
+    private boMonService:BomonService,
+    private gvLHPService: GvlhpService,
+    private lopHocPhanService: LopHocPhanService) {
     this.boMonService.getAll().subscribe(
       data => {
         this.dsBoMon = data
@@ -56,7 +64,25 @@ export class ModalGiaovienComponent implements OnInit {
   layDanhSachGiaoVien():void {
     this.trangThai = 1;
     this.apiService.layDanhSachGiaoVien().subscribe(
-      data => this.danhSachGiaoVien = data,
+      data => {
+        this.danhSachGiaoVien = data;
+        this.danhSachGiaoVien.map(gv => {
+          gv.danhSachLopHocPhan = [];
+          this.gvLHPService.timGiaoVienLHPTheoMaGV(gv.maGiaoVien).subscribe(
+            (res) => {
+              const danhSachLHP = res;
+              danhSachLHP.map(lhp => {
+                this.lopHocPhanService.getLopHocPhanbyMaLopHocPhan(lhp.maLopHocPhan).subscribe(
+                  (response) => {
+                    gv.danhSachLopHocPhan.push(response[0].tenLopHocPhan);
+                  }
+                )
+              })
+            }
+          )
+        })
+        console.log('dsgv', this.danhSachGiaoVien);
+      }
     );
   }
 
@@ -67,7 +93,7 @@ export class ModalGiaovienComponent implements OnInit {
           alert(response.msg);
           if(response.status == true){
             this.setDefaultValue();
-            this.layDanhSachGiaoVien();
+            this.layDanhSachGiaoVienTheoTrangThai();
           }
         }
       )
