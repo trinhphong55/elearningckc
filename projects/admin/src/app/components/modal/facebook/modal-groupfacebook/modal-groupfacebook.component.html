@@ -1,4 +1,4 @@
-<app-modal class="modal_chucnang__wrapper" id="fb_quanlygroupfacebook">
+<app-modal class="modal_chucnang__wrapper " id="fb_quanlygroupfacebook">
   <div (click)="closeModal('fb_quanlygroupfacebook')" class="modal_chucnang__close mdi mdi-chevron-left text-white"></div>
   <div class="container-fluid mt-3">
     <div class="row">
@@ -8,53 +8,49 @@
       <div class="col-12">
         <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
            <div class="row justify-content-center align-items-center">
-            <div class="col-3">
+            <div class="col-4" >
               <div class="form-group">
                 <label> Tên Group</label>
-                <input class="form-control" placeholder="Tên Group..." >
+                <input class="form-control" type="text" [formControl]="tenGroup" >
+              </div>
+              <div class="form-group">
                 <label> Link Group</label>
-                <input class="form-control" placeholder="Link Group...">
-                <label> ID Group</label>
-                <input class="form-control" placeholder="ID Group...">
+                <input class="form-control" [formControl]="linkGroup">
               </div>
             </div>
-            <div class="col-3">
+            <div class="col-4">
               <div class="form-group">
-                <label>Bậc</label>
-                <select class="form-control">
-                  <option>Trung cấp</option>
-                  <option>Cao đẳng</option>
-                  <option>Đại học</option>
-                </select>
+                <label> ID Group</label>
+                <input class="form-control" [formControl]="IDGroup">
+              </div>
+              <div class="form-group">
+                <label>Lớp</label>
+                <input class="form-control" [formControl]="tenLop">
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="row no-gutters">
+                <div class="form-group col-3 " >
+                  <label>Khoá</label>
+                  <input class="form-control" type="number" [formControl]="khoa" >
+                </div>
+                <div class="form-group col ml-3">
+                  <label>Bậc</label>
+                  <input class="form-control" [formControl]="maBac" >
+                </div>
               </div>
               <div class="form-group">
                 <label>Ngành</label>
-                <select class="modal_chucnang__select2 form-control">
-                  <option>Ngành CNTT</option>
-                  <option>Cơ khí</option>
-                </select>
+                <input class="form-control"  [formControl]="maNganh">
               </div>
             </div>
-            <div class="col-3">
-              <div class="form-group">
-                <label>Loại hình đào tạo</label>
-                <select class="form-control">
-                  <option>Chính quy</option>
-                  <option>Liên thông</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label>Khoá</label>
-                <input class="form-control" type="number" min="15" value="15">
-              </div>
-            </div>
-            <div class="col-3">
+            <div class="">
               <div class="col-auto">
                 <div class="modal_chucnang__group__button">
-                  <button class="modal_chucnang__button btn btn-outline-primary px-4 mx-2"><img
-                      class="modal_chucnang__button__icon mb-2" src="assets/img/icons/add.png" alt="image icon">
-                    <div>Thêm mới</div>
-                  </button>
+                  <button class="modal_chucnang__button btn btn-outline-success px-4 mx-2" (click)="update()"><img
+                    class="modal_chucnang__button__icon mb-2" src="assets/img/icons/upgrade.png" alt="image icon">
+                  <div>Cập nhật</div>
+                </button>
                 </div>
               </div>
             </div>
@@ -62,46 +58,113 @@
         </div>
       </div>
       <div class="col-12">
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="">
+                  <div class="form-group">
+                    <label>Message</label>
+                    <textarea class="form-control" type="text" name="message" id="messagegr" ></textarea>
+                  </div>
+                </div>
+                <div class="">
+                  <div class="form-group">
+                    <label>Url picture</label>
+                    <input class="form-control" type="text" name="picture" id="picturegr"/>
+                  </div>
+                </div>
+                <div class="">
+                  <div class="form-group">
+                    <label for="">Ảnh/Video</label>
+                    <input class="form-control-file border" type="file">
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="PostByRequest()">Đăng</button>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
-          <div class="d-flex align-items-center mb-2">
-            <label class="mb-0 d-flex align-items-center"><span class="text-nowrap">Hiển thị &nbsp;</span>
-              <select class="custom-select custom-select-sm form-control">
-                <option>10</option>
-                <option>25</option>
-                <option>50</option>
-              </select><span class="text-nowrap">&nbsp; hàng</span>
-            </label>
-            <label class="ml-auto mb-0 d-flex align-items-center"><span class="text-nowrap">Tìm kiếm: &nbsp;</span>
-              <input class="form-control form-control-sm" placeholder="Tìm kiếm" [(ngModel)]="searchGroup">
-            </label>
+          <div  class="row">
+            <div class="col-8 form-inline">
+              <form [formGroup]="addForm" >
+                <div class="form-group">
+                  <label for="bac">Bậc </label>
+                  <select id="bac" class="form-control ml-4 mb-1" formControlName="TenB" (change)="changedBac($event)" >
+                    <option value="">Select...</option>
+                    <option *ngFor="let b of bactamlist" [ngValue]=b.maBac > {{b.tenBac }}</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="nganh" class="col-form-label">Ngành </label>
+                  <select id="nganh" class="form-control ml-2" formControlName="TenN" (change)="changedNganh($event)" >
+                    <option value="">Select..</option>
+                    <option *ngFor="let n of nganhs" [ngValue]=n.maNganhNghe > {{n.tenNganhNghe }}</option>
+                  </select>
+                </div>
+              </form>
+            </div>
+            <div class="col-3 ml-auto">
+              <label class=" d-flex align-items-center"><span class="text-nowrap">Tìm kiếm: &nbsp;</span>
+                <input class="form-control form-control-sm" placeholder="Tìm kiếm" [(ngModel)]="searchGroup">
+              </label>
+              <label class=" d-flex align-items-center"><span class="text-nowrap">Hiển thị: &nbsp;</span>
+                <select class="custom-select custom-select-sm form-control">
+                  <option> 10 hàng</option>
+                  <option> 25 hàng</option>
+                  <option> 50 hàng</option>
+                </select>
+              </label>
+            </div>
           </div>
           <table class="modal_chucnang__table table table-hover" id="">
             <thead class="bg__caothang text-white">
-              <th scope="col" class="text-center">ID</th>
-              <th scope="col" class="text-center">Tên Gourp</th>
+              <th scope="col" class="text-center">STT</th>
+              <th scope="col" class="text-center">ID Group</th>
+              <th scope="col" class="text-center">Tên Lớp</th>
               <th scope="col" class="text-center">Link</th>
-              <th scope="col" class="text-center">Số lượng bài viết</th>
+              <th scope="col" class="text-center">Người tạo</th>
+              <th scope="col" class="text-center">Khóa</th>
               <th scope="col" class="text-center">Tác vụ</th>
             </thead>
-            <tbody *ngFor="let d of data |filter: searchGroup">
-              <tr>
+            <tbody >
+              <tr *ngFor=" let d of lopTams |filter: searchGroup; index as stt" (click)="insertDateforForm(d)">
+                <td class="text-center">{{stt+1}}</td>
                 <td class="text-center">
-                  <label >{{d.id_Group}}</label>
+                  <div class="a" id="maGoup + {{stt}}">{{d.IDGroupFB}}</div>
                 </td>
                 <td class="text-center">
-                  <label >{{d.linkGroup}}</label>
+                  <label >{{d.tenVietTat}}</label>
                 </td>
                 <td class="text-center">
-                  <label >{{d.tenGroup}}</label>
+                  <label >{{d.linkFBLopHoc}}</label>
                 </td>
                 <td class="text-center">
-                  <label>{{d.soLuongBaiViet}}</label>
+                  <label >{{d.nguoiTao}}</label>
                 </td>
                 <td class="text-center">
+                  <label>{{d.khoa}}</label>
+                </td>
+                <td class="text-center">
+                  <div class="mb-1">
+                    <!-- Button trigger modal -->
+                    <button type="button" class="modal_chucnang__button btn btn-outline-success" data-toggle="modal" data-target="#exampleModalLong" onclick="getIDGroup(this)" data="{{d.IDGroupFB}}" >
+                      Đăng Bài
+                    </button>
+                  </div>
                   <div class="form-group">
-                    <span class="modal_chucnang__button__edit mdi mdi-file-document-edit-outline mdi-24px"></span>
-                    <span class="modal_chucnang__button__delete ml-2 mdi mdi-delete-outline mdi-24px"></span>
-                    <span class="modal_chucnang__button__plus ml-2 mdi mdi-plus mdi-24px"></span>
+                    <button class="modal_chucnang__button btn btn-outline-success px-4 mx-2" (click)="openDetail(d)" onclick="getIDGroup(this)" data="{{d.IDGroupFB}}">View</button>
                   </div>
                 </td>
               </tr>
@@ -111,4 +174,5 @@
       </div>
     </div>
   </div>
+
 </app-modal>

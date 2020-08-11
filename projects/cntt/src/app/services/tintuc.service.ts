@@ -42,6 +42,17 @@ export class TinTucCnttService {
       catchError(this.errorMgmt)
     );
   }
+
+  loadTinTucMoiNhat(): Observable<any> {
+    let url = `${this.baseUri}/tintucmoinhat`;
+    return this.http.get(url, { headers: this.headers }).pipe(
+      map((res: Response) => {
+        return res || {};
+      }),
+      catchError(this.errorMgmt)
+    );
+  }
+
   loadTinTucCntt(): Observable<any> {
     let url = `${this.baseUri}/danhsachtintuccntt`;
     return this.http.get(url, { headers: this.headers }).pipe(

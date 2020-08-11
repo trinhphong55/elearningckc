@@ -7,12 +7,15 @@ const LoaiHinhDaoTao = require("./LoaiHinhDaoTao");
 const LopHocPhan = require("./LopHocPhan");
 const LoaiMonHoc = require("./LoaiMonHoc");
 const groupFB = require("../api/groupFB");
+const pagefb=require("../api/pagefb");
+const baidangfb=require("../api/baidangfb");
 const boMon = require("../api/bomon");
 const cnttHeader = require("./cnttHeader");
 const auth = require("./auth");
 const TKB = require("./TKB");
 const BaiTap = require("./BaiTap");
 const BaiTapSinhVien = require("./BaiTapSinhVien");
+const activity = require("./activity");
 
 const sinhVien = require("./sinh-vien");
 const Diemsinhvien = require("./diemsinhvien");
@@ -61,6 +64,7 @@ router.use("/tkb", TKB);
 //Elearning routes
 router.use("/baitap", BaiTap);
 router.use("/baitapSinhVien", BaiTapSinhVien);
+router.use("/activity", activity);
 //cnttRoute
 router.use("/slideshow", cnttSlideShowRoutes);
 router.use("/cnttTinTuc", cnttTinTucRoute);
@@ -103,6 +107,10 @@ const NganhNgheRoutes = require("./NganhNghe");
 const BacRoutes = require("./Bac");
 const diemsinhvienModel = require("../models/diemsinhvien.model");
 const { route } = require("./GiaoVien");
+
+
+const verifyToken = require('../middleware/accountAuth')
+
 //nganhnghe
 router.use("/", NganhNgheRoutes);
 //bac
@@ -176,11 +184,30 @@ router.get("/lophoc/:tienTo/tiento", LopHoc.timLopTheoTienTo);
 
 //-----------------------------Routes LoaiDonVi
 router.get("/loaidonvi", loaidonviController.getLoaiDonVi);
-//-----------------------------Routes groupFB
+//-----------------------------Routes FB--------------------------------------------
 router.get("/groupfb", groupFB.getAll);
-
+//Lấy tất cả từ PageFB
+router.get("/pagefb",pagefb.getAll);
+//Thêm 1 page vào PageFB
+router.post("/pagefb",pagefb.postPageFB);
+//Update 1 page trong PageFB
+router.put("/pagefb/:id",pagefb.updatePageFB);
+//Delete 1 page trong PageFB
+router.delete("/pagefb/:id",pagefb.deletePageFB);
+//Lấy tất cả từ db QlBaiDangFB
+router.get("/baidangfb",baidangfb.getAll);
+//Thêm vào draw
+router.post("/baidangfb",baidangfb.postToDrawFB);
+//Thêm vào posted
+router.post("/baidangfb/:postID",baidangfb.postedToFB);
+//Update posted 
+router.put("/baidangfb/:postID",baidangfb.updatePostedFB);
+//Xóa bài post
+router.delete("/baidangfb/:id",baidangfb.deletePostFB);
+//Update từ draw sang posted
+router.put("/baidangfbv2/:id",baidangfb.updateDrawToPosted);
 //----------------------------Routes SinhVien------------
-router.get("/sinhvien", sinhVien.layTatCaSinhVien);
+router.get("/sinhvien", verifyToken,sinhVien.layTatCaSinhVien);
 router.get("/sinhvien/:maLopHoc/malop", sinhVien.Laysinhvientheomalop);
 router.post("/sinhvien", sinhVien.themSinhVien);
 router.get("/sinhvien/:maSV", sinhVien.layThongtinSinhVien);
