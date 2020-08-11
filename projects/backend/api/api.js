@@ -132,7 +132,7 @@ router.put("/khoabomon/:id", validate, khoabomonController.updateKhoaBoMon);
 //lấy danh sách môn học phần của sinh viên theo môn truyền vào
 router.get("/diemsinhvien/:maSinhVien/search", Diemsinhvien.getDiemsinhvien);
 router.get("/diemsinhvien/:maSinhVien/khdt", Diemsinhvien.getDiemSinhVien_maSSV);
-
+router.get("/diemsinhvien/:maLopHocPhan/laytongdiem", Diemsinhvien.LayTONGDIEM);
 
 //Lấy toàn bộ dữ liệu từ KhoaBoMon
 router.get("/bomon", boMon.getKhoaBonMon);

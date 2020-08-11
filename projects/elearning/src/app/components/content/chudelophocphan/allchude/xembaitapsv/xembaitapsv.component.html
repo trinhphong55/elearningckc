@@ -117,51 +117,52 @@
     <div class="col-md-4">
       <div class="row">
         <div class="col-md-10 style-element">
-          <div class="el-header"   >
-            <h5>Bài tập của bạn</h5>
-            <ng-template *ngFor="let ten of dsBaiTap" [ngIf]="ten.chuDe==''">
-              <span>Chưa nộp</span>
-            </ng-template>
-            <ng-template *ngFor="let ten of dsBaiTap" [ngIf]="ten.chuDe!=''">
-              <span>Đã nộp</span>
-            </ng-template>
+          <div class="el-header">
+            <h5>Bài tập của bạn</h5>  
+              <span>{{tinhTrang}}</span>
           </div>
           <div class="el-content">
             <table class="table">
-              <tr  *ngFor="let ten of dsBaiTap">
-                <td><strong>{{ten.chuDe}}</strong></td>
-                <td nowrap>
-                  <button type="button" class="btn btn-danger btn-xs" (click)="xoabaitap(ten)">
-                    <span class="glyphicon glyphicon-trash"></span> Remove
-                  </button>
-                </td>
+              <div>
+                <div class="row uploadList" *ngFor="let i of dsBaiTap">
+                
+                    <div class="col-sm-8">{{i.chuDe}}</div>
+                    <div class="col-sm-2">
+                      <button type="button" class="btn btn-danger" (click)="xoabaitap(i)">X</button>
+                    </div>
+              
+                </div>
+              </div>
             </table>
             <table class="table">
-              <tr *ngFor="let item of uploader.queue">
-                <td><strong>{{ item?.file?.name }}</strong></td>
-                <!-- <td *ngIf="uploader.options.isHTML5" nowrap>{{ item?.file?.size/1024/1024 | number:'.2' }} MB</td>
-                <td *ngIf="uploader.options.isHTML5">
-                  <div class="progress" style="margin-bottom: 0;">
-                    <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"></div>
+              <div>
+                <div class="row uploadList" *ngFor="let item of uploader.queue">
+                  <div class="col-sm-4">{{item.file.name}}</div>
+                  <div class="col-sm-4">
+                    <div class="progress">
+                      <div class="progress-bar bg-success" [ngStyle]="{'width':item.progress+'%'}"></div>
+                    </div>
                   </div>
-                </td> -->
-                <td nowrap>
-                  <button type="button" class="btn btn-danger btn-xs" (click)="item.remove()">
-                    <span class="glyphicon glyphicon-trash"></span> Remove
-                  </button>
-                </td>
+                  <div class="col-sm-2">
+                    <button type="button" class="btn btn-danger" (click)="item.remove()">X</button>
+                  </div>
+                </div>
+              </div>
             </table>
-            <button mat-button [matMenuTriggerFor]="themhoactao" ><i class="fas fa-plus"></i> Thêm hoặc tạo</button>
+            <button mat-button [matMenuTriggerFor]="themhoactao"><i class="fas fa-plus"></i> Thêm hoặc tạo</button>
             <mat-menu #themhoactao="matMenu">
-              <button mat-menu-item> <input type="file" ng2FileSelect [uploader]="uploader" /><br /><i class="fas fa-file-import"></i>Tệp </button>
+              <button mat-menu-item> <input type="file" ng2FileSelect [uploader]="uploader" /><br /><i
+                  class="fas fa-file-import"></i>Tệp </button>
               <!-- <button mat-menu-item><i class="fas fa-link"></i><i class="fas fa-link"></i>Liên kết</button>
               <button mat-menu-item><i class="fab fa-google-drive"></i>GG Drive</button> -->
             </mat-menu>
           </div>
           <div class="el-danhau">
             <div class="col-md-2" style="margin-bottom: 40px">
-          </div>
-            <button *ngFor="let item of uploader.queue" type="button" class="danhdau" (click)="themBaiTap()" (click)="item.remove()" >Đánh dấu là hoàn tất</button>
+            </div>
+            <div class="row" *ngIf="uploader?.queue?.length > 0">
+              <button type="button" class="danhdau" (click)="uploader.uploadAll()" (click)="themBaiTap()">Đánh dấu là hoàn tất</button>
+            </div>
           </div>
         </div>
         <div class="col-md-10 style-element">

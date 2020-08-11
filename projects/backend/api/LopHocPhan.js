@@ -229,6 +229,25 @@ router.get("/:email/giaovienlophocphan", async (req, res) => {
     res.json(error);
   }
 });
+///tim lop hoc phan theo email sinhvien
+//magv=> lopHp
+router.get("/:email/sinhvienlophocphan", async (req, res) => {
+  try {
+    let result = await SINHVIEN.find({email:req.params.email});
+    var data = await LopHocPhan.find();
+    var a = [];
+    result.forEach(async x => {
+        data.forEach(async y => {
+            if (x.maLopHoc == y.maLopHoc) {
+              a.push(y);
+            }
+      });
+    })
+    res.json(a);
+  } catch (error) {
+    res.json(error);
+  }
+});
 //tim mssv =>lophp //trinhphong
 router.get("/:maSinhVien/sinhvien", async (req, res) => {
   try {
@@ -239,6 +258,8 @@ router.get("/:maSinhVien/sinhvien", async (req, res) => {
     res.json(error);
   }
 });
+
+///ti
 
 // ***  API for team App Android  ***
 
@@ -275,6 +296,9 @@ router.get("/android/malophoc/:maLopHoc", async (req, res) => {
             trangThai: lhp.trangThai,
             tenVietTat: mh.tenVietTat,
             loaiMonHoc: mh.maLoaiMonHoc,
+            maLopHocPhan:lhp.maLopHocPhan,
+            soLuongSV:lhp.soLuongSV,
+            soLuongSVHocGhep:lhp.soLuongSVHocGhep,
           };
         } else {
           allowPush = false;

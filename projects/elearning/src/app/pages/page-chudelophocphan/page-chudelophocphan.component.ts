@@ -12,7 +12,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { TaochudeComponent } from '../../components/content/chudelophocphan/taochude/taochude.component';
 import { TaobaigiangComponent } from '../../components/content/chudelophocphan/taobaigiang/taobaigiang.component';
 import { BaiTapService } from '../../services/bai-tap.service';
-
+import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-page-chudelophocphan',
   templateUrl: './page-chudelophocphan.component.html',
@@ -25,7 +25,8 @@ export class PageChudelophocphanComponent implements OnInit {
   public maLopHocPhan: number = 1;
   public dsBinhLuan_baiGiang: any[] = [];
   public dsBinhLuan_baiTap:any [] = [];
-
+  quyen:string="";
+  doiTuong:any;
   // @Output  dsBaiGiang: BaiGiang[] = [];
 
   constructor(
@@ -35,12 +36,23 @@ export class PageChudelophocphanComponent implements OnInit {
     private chuDeService: ChuDeService,
     private baiGiangService: BaiGiangService,
     private binhLuanService: BinhLuanService,
-    private baiTapService: BaiTapService
+    private baiTapService: BaiTapService,
+    private cookie: CookieService,
   ) {}
   ngOnInit(): void {
     this.layDS_BaiGiang();
     this.layDS_ChuDe();
     this.layDS_BaiTap();
+    //
+    this.quyenTao();
+  }
+  //quuyen tao bai tap chu de
+  quyenTao(){
+    this.doiTuong = this.cookie.get("role");
+    if(this.doiTuong== 'SV')
+    {
+      this.quyen='none'
+    }
   }
   public layDS_BaiTap() {
     this.baiTapService.layDS_theoLopHocPhan(1).subscribe((res) => {
