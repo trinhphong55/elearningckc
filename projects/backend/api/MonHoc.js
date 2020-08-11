@@ -56,7 +56,7 @@ router.get('/malophoc/:maLopHoc/hocki/:hocKi', async (req, res) => {
       .then(khdt => {
         DVHT = khdt.donViHocTrinh;
       });
-    await GVLHP.findOne({ maLopHocPhan: lhp.maLopHocPhan, trangThai: { $ne: 0 } })
+    await GVLHP.findOne({ maLopHocPhan: lhp.maLopHocPhan, maGiaoVien: { $ne: "null" } })
       .then(gvlhp => {
         if (gvlhp === null) {
           tenGiaoVien = "Chưa có GVLHP";
@@ -66,7 +66,6 @@ router.get('/malophoc/:maLopHoc/hocki/:hocKi', async (req, res) => {
       });
     if (maGiaoVien !== "null") {
       await giaoVienDAO.layThongTinGiaoVien(maGiaoVien).then(gv => {
-        console.log('gv', gv);
         tenGiaoVien = gv[0].ho + " " + gv[0].ten;
       })
     }
@@ -87,11 +86,11 @@ router.post('/importexcel', async (req, res) => {
 
   await asyncForEach(items, async (mh, index) => {
     await MonHoc.findOne({ tenMonHoc: mh.tenMonHoc }).exec().then((data) => {
-      console.log(data);
       if (data === null) {
         let stringMaMonHoc = "000" + numMaMonHoc;
         mh.maMonHoc = stringMaMonHoc.slice(stringMaMonHoc.length - 4, stringMaMonHoc.length);
         numMaMonHoc++;
+        monHoc = new MonHoc(mh);
         filterItems.push(mh);
       }
     });
