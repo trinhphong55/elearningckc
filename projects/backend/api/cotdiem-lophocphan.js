@@ -19,3 +19,12 @@ exports.layDiemLHPtheoMaLHP = async (req, res) => {
     res.json(error);
   }
 };
+//lay cot diem theo ma lop hp trinh phong
+exports.layCotDiemTheoMaLopHp = async (req, res) => {
+  try {
+    const cotdiem = await cotdiemLophocphanModel.find({maLopHocPhan: req.params.maLopHocPhan});
+    res.json(cotdiem);
+  } catch (error) {
+    res.json(error);
+  }
+};
