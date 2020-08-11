@@ -44,16 +44,17 @@ export class ModalLogoComponent implements OnInit {
       let img = new Image()
       img.src = window.URL.createObjectURL(event.target.files[0])
       img.onload = () => {
-        console.log(img.width);
-        console.log(img.height);
-      if(img.width < 900 && img.height < 400){
-        this.imageSrc = event.target.files[0];
+        if(img.width < 900 && img.height < 400){
+          const file = event.target.files[0];
+          const reader = new FileReader();
+          reader.onload = (e) => (this.imageSrc = reader.result);
+          reader.readAsDataURL(file);
+        }
+        else{
+          this.imageSrc = null;
+          this.toastr.success('Hình ảnh chưa đúng kích thước');
+        }
       }
-      else{
-        this.imageSrc = null;
-        this.toastr.success('Hình ảnh chưa đúng kích thước');
-      }
-    }
     };
     if (event.target.files[0].size > 2097152) {
       this.toastr.success('File yêu cầu nhỏ hơn 2MB');
@@ -61,9 +62,9 @@ export class ModalLogoComponent implements OnInit {
    }
   ///edit
   saveThongTinWeb(ThongTinWeb: ttthThongTinWeb):void {
-    if (this.nameImage) {
-      ThongTinWeb.logo='https://localhost:4100/uploads/cntt/' + this.nameImage.name;
-    }
+    // if (this.nameImage) {
+    //   ThongTinWeb.logo=this.nameImage.name;
+    // }
     ThongTinWeb.updated_at= new Date;
     this.thongtinwebService.suaThongTinWeb(ThongTinWeb)
     .subscribe(suaThongTinWeb => {
