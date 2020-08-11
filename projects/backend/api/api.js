@@ -200,7 +200,7 @@ router.get("/baidangfb",baidangfb.getAll);
 router.post("/baidangfb",baidangfb.postToDrawFB);
 //Thêm vào posted
 router.post("/baidangfb/:postID",baidangfb.postedToFB);
-//Update posted 
+//Update posted
 router.put("/baidangfb/:postID",baidangfb.updatePostedFB);
 //Xóa bài post
 router.delete("/baidangfb/:id",baidangfb.deletePostFB);
@@ -218,6 +218,7 @@ router.get("/sinhvien/:maLopHoc/siso", sinhVien.tinhTongSinhVien);
 //========================= Routes CotDiemLopHocPhan ===================================
 router.get("/cotdiemlhp", cotDiemLHP.layDiemLHP);
 router.get("/cotdiemlhp/:maLopHocPhan", cotDiemLHP.layDiemLHPtheoMaLHP);
+router.get("/cotdiemlhp/lophocphan/:maLopHocPhan", cotDiemLHP.layDiemLHPtheoMaLHP);
 
 //======================= Routes ChitietDiemSVLopHocPhan ==================================
 router.get("/ct-diemsv-lophocphan/:masv", ctDiemLopHP.layCTDiemLopHPtheoMaSV);

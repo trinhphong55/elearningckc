@@ -16,4 +16,7 @@ export class CotDiemSinhVienLopHocPhanService {
   public layCTtheoMaSV(maSv:String){
     return this.http.get(`${this.baseUrl}/${maSv}`);
   }
+  public layDanhSachCotDiemTheoMaLHP(maLHP: string){
+    return this.http.get(`${this.baseUrl}/lophocphan/${maLHP}`);
+  }
 }
