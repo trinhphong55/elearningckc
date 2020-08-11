@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { ChuDe } from '../models/chu-de.interface';
 
 
 
@@ -19,9 +21,8 @@ export class ChuDeService {
   public them(data){
     return this.http.post(`${this.baseUrl}`,data);
   }
-  public layTheo_maLopHocPhan(maLopHocPhan){
-    return this.http.get(`${this.baseUrl}/${maLopHocPhan}/lop-hoc-phan/`);
-
+  public layTheo_maLopHocPhan(maLopHocPhan): Observable<any>{
+    return this.http.get<ChuDe[]>(`${this.baseUrl}/${maLopHocPhan}/lop-hoc-phan/`);
   }
 
 }

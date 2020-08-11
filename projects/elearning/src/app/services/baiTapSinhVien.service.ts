@@ -21,7 +21,7 @@ export class BaiTapSinhVienService {
         return this.http.put<any>(this.baiTapURL+`/${id}/xoabaitap`, httpOptions);
     }
     addbtSV(baitapsv: any): Observable<any> {
-        return this.http.post<any>(this.baiTapURL, baitapsv, httpOptions);
+        return this.http.post<any>(this.baiTapURL+`/uploads`, baitapsv, httpOptions);
       }
     addBaiTap(baitap: any): Observable<any> {
         return this.http.post<any>(this.baiTapURL, baitap, httpOptions);

@@ -28,5 +28,8 @@ export class SinhVienService {
   public getonesv(masv){
     return this.http.get(`${this.baseUrl}/${masv}`);
   }
-
+//tim sinh vien theo lop hoc phan
+public layDsSvByLopHP(maLopHocPhan:any){
+  return this.http.get(`${this.baseUrl}/${maLopHocPhan}/lophocphan`);
+}
   }

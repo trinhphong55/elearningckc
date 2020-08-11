@@ -1,6 +1,9 @@
 const Diemsinhvien = require("../models/diemsinhvien.model");
 const KeHoachDaoTao = require("../models/KeHoachDaoTao.model");
 const monHoc = require("../models/MonHoc.model");
+const COTDIEMLOPHP = require("../models/cotdiem-lophocphan.model");
+const CTDIEMLHP = require("../models/ct-diemsv-lhp.model");
+const SINHVIEN = require("../models/sinh-vien.model");
 const setData = (req) => {
   return {
     maSinhVien: req.body.maSinhVien,
@@ -20,9 +23,9 @@ exports.getDiemsinhvien = async (req, res) => {
     const diemsinhvien = await Diemsinhvien.find({
       maSinhVien: req.params.maSinhVien,
     });
-    res.json({code: 200, message: "Lấy điểm thành công", data:diemsinhvien});
+    res.json({ code: 200, message: "Lấy điểm thành công", data: diemsinhvien });
   } catch (error) {
-    res.json({code: 400, message: error, data: null});
+    res.json({ code: 400, message: error, data: null });
   }
 };
 
@@ -58,7 +61,7 @@ exports.getDiemSinhVien_maSSV = async (req, res) => {
     });
     res.json({ code: 200, message: "Lấy điểm thành công", data: khdt_ten });
   } catch (error) {
-    res.json({code: 400, message: error, data: null});
+    res.json({ code: 400, message: error, data: null });
   }
 };
 let result = (req) => {
@@ -82,4 +85,33 @@ let result = (req) => {
     ngayChinhSua: req.ngayChinhSua,
     ngayTao: req.ngayTao,
   };
+};
+
+//lấy thong tin diem sinh vien theo malop hoc phan
+exports.LayTONGDIEM = async (req, res) => {
+  var sinhvien = await SINHVIEN.find({maLopHocPhan:req.params.maLopHocPhan});
+  var diem = await Diemsinhvien.find({ maLopHocPhan:req.params.maLopHocPhan});
+  var cotDiemHP = await COTDIEMLOPHP.find();
+  var ctDiem = await CTDIEMLHP.find();
+  var data = [];
+  var beta = [];
+  var ceta = [];
+  var tongDiem = [];
+  sinhvien.forEach(async s => {
+    diem.forEach(async x => {
+      ctDiem.forEach(async y => {
+        cotDiemHP.forEach(async z => {
+          if (s.maSinhVien == x.maSinhVien) {
+            if (x.maSinhVien == y.maSinhVien) {
+              if (z.maCotDiem == y.maCotDiem) {
+                data.push({ho:s.ho,ten:s.ten, maSinhVien: x.maSinhVien, diem: y.diem, tenCotDiem: z.tenCotDiem,tongDiem:x.diem});
+              }
+            }
+          }
+        })
+      })
+    })
+  })
+  res.json(data);
+
 };

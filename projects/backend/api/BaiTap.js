@@ -80,8 +80,8 @@ _router.post("/", async (req, res) => {
   const newBaiTap = new BaiTap(baitap);
   await newBaiTap
     .save()
-    .then(() => {
-      return res.status(200).json({ status: 200, message: "Them thanh cong" });
+    .then((bt) => {
+      return res.status(200).json({ status: 200, maDoiTuong: bt.maBaiTap , message: "Them thanh cong" });
     })
     .catch((err) => {
       return res.status(501).json({
