@@ -8,6 +8,8 @@ import { GvlhpService } from '../../../../../admin/src/app/services/gvlhp.servic
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { LopHocPhanService } from '../../../../../admin/src/app/services/lophocphan.service';
 import { LopHocService } from '../../../../../admin/src/app/services/lop-hoc.service';
+import { CotDiemLopHocPhanService } from '../../../../../admin/src/app/services/cotDiemLopHP.service';
+import { chiTietDiemSVLopHocPhanService } from '../../../../../admin/src/app/services/chiTietDiemSVLHP.service';
 import { from } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 @Component({
@@ -25,7 +27,9 @@ export class PageTongdiemComponent implements OnInit {
   dsTenHocSinh: any;
   dsLopHP: any;
   maLopHoc: any;
-  soluong:any;
+  soluong: any;
+  cotDiemHP: any;
+  ctDiem: any;
   constructor(public dialog: MatDialog,
     private apiService: ApiService,
     private sinhVienService: SinhVienService,
@@ -33,10 +37,14 @@ export class PageTongdiemComponent implements OnInit {
     private router: ActivatedRoute, private route: Router,
     private lopHocPhanService: LopHocPhanService,
     private lopHocService: LopHocService,
-    private cookie:CookieService) { }
+    private cookie: CookieService,
+    private cotDiemLopHocPhanService: CotDiemLopHocPhanService,
+    private chiTietDiemSVLopHocPhanService: chiTietDiemSVLopHocPhanService) { }
 
   ngOnInit(): void {
-      this.danhSachLopHocPhan();
+    this.danhSachSinhVien();
+    this.danhSachCotDiemLopHP();
+    this.chiTietDiemSinhVien();
     this.maLophocPhan = this.router.snapshot.paramMap.get('id');
   }
   danhSachGVLHP() {
@@ -53,17 +61,17 @@ export class PageTongdiemComponent implements OnInit {
       }
     );
   }
-  onFileChange(evt : any) {
+  onFileChange(evt: any) {
     const target: DataTransfer = <DataTransfer>(evt.target);
-    if(target.files.length!==1) throw new Error ('Không mở được file');
+    if (target.files.length !== 1) throw new Error('Không mở được file');
     const reader: FileReader = new FileReader();
-    reader.onload=(e: any)=>{
-      const bstr:string = e.target.result;
-      const wb:XLSX.WorkBook =XLSX.read(bstr,{type:'binary'});
-      const wsname:string=wb.SheetNames[0];
-      const ws:XLSX.WorkSheet=wb.Sheets[wsname];
+    reader.onload = (e: any) => {
+      const bstr: string = e.target.result;
+      const wb: XLSX.WorkBook = XLSX.read(bstr, { type: 'binary' });
+      const wsname: string = wb.SheetNames[0];
+      const ws: XLSX.WorkSheet = wb.Sheets[wsname];
       console.log(ws);
-      this.data=(XLSX.utils.sheet_to_json(ws,{header:1}));
+      this.data = (XLSX.utils.sheet_to_json(ws, { header: 1 }));
       console.log(this.data[0]);
     };
     reader.readAsBinaryString(target.files[0]);
@@ -71,21 +79,35 @@ export class PageTongdiemComponent implements OnInit {
 
 
   //ds lop hoc phan
-  danhSachLopHocPhan() {
-    this.lopHocPhanService.getLopHocPhan().subscribe(
-      dsLopHP => {
-        this.dsLopHP = dsLopHP
-        this.dsLopHP = this.dsLopHP.filter(x => {
-          if (x.maLopHocPhan == this.maLophocPhan)
-            this.maLopHoc = x.maLopHoc;
-          return x;
-        })
-        this.sinhVienService.laysinhvien(this.maLopHoc).subscribe(
-          dsHocSinh => {
-            this.dsHocSinh = dsHocSinh;
-            this.soluong=this.dsHocSinh.length;
-          }
-        )
+  danhSachSinhVien() {
+    this.sinhVienService.layDsSvByLopHP(this.router.snapshot.paramMap.get('id')).subscribe(
+      (dsTenHocSinh) => {
+        this.dsTenHocSinh = dsTenHocSinh
+      },
+
+      (error) => {
+        console.log(error);
+      }
+    )
+  }
+  ////
+  danhSachCotDiemLopHP() {
+    this.cotDiemLopHocPhanService.layCotDiemByMaLopHP(this.router.snapshot.paramMap.get('id')).subscribe(
+      cotDiemHP => {
+        this.cotDiemHP = cotDiemHP;
+        console.log(cotDiemHP)
+      },
+      (error) => {
+        console.log(error);
+      }
+    )
+  }
+  ///chi tiết diem sinh vien lop hp
+  chiTietDiemSinhVien() {
+    this.chiTietDiemSVLopHocPhanService.layCotDiemByMaLopHP(this.router.snapshot.paramMap.get('id')).subscribe(
+      ctDiem => {
+        this.ctDiem = ctDiem;
+        console.log(ctDiem)
       },
       (error) => {
         console.log(error);
