@@ -1,4 +1,5 @@
 const SinhVienModel = require("../models/sinh-vien.model");
+const settingModel = require("../models/setting.model");
 const { check, validationResult } = require("express-validator");
 
 setSinhVien = (req) => {
@@ -12,6 +13,7 @@ setSinhVien = (req) => {
     nguoiTao: req.nguoiTao,
     nguoiChinhSua: req.nguoiChinhSua,
     email: req.maSinhVien + "@caothang.edu.vn",
+
   };
 };
 setSinhVienUpdate = (req) => {
@@ -68,6 +70,9 @@ exports.Laysinhvientheomalop = async (req, res) => {
 
 exports.themSinhVien = async (req, res) => {
   try {
+    const matkhau = await settingModel.findOne();
+    req.body.matkhau = matkhau.matKhauSinhVien;
+    res.json(matkhau);
     const sinhViens = await SinhVienModel.create(setSinhVien(req.body));
     res.json(sinhViens);
   } catch (error) {
