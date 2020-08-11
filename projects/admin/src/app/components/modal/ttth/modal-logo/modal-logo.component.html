@@ -13,11 +13,11 @@
                 <label>Logo (900x400)</label>
                   <div class="upload-btn-wrapper text-center">
                     <div class="box-img">
-                      <img id="imglogo" [src]="imageSrc || item.logo"/>
+                      <img [src]="imageSrc || item.logo"/>
                     </div>
-                    <input type="file" id="input_image_BST" name="image" ng2FileSelect [uploader]="uploader" (change)="onFileSelected($event)"
-                      accept="image/x-png|image/gif|image/jpeg"/>
-                    <label for="input_image_BST" class="btn btn-outline-dark btn-sm btn-block w-100 mb-0 mt-2">
+                    <input type="file" id="logo" name="image1" ng2FileSelect [uploader]="uploader" (change)="onFileSelected($event)"
+                      accept="image/x-png|image/gif|image/jpeg|image/jpg"/>
+                    <label for="logo" class="btn btn-outline-dark btn-sm btn-block w-100 mb-0 mt-2">
                       Chọn hình ảnh
                     </label>
                   </div>

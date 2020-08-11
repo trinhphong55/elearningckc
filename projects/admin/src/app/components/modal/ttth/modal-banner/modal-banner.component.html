@@ -3,17 +3,25 @@
   <div class="container-fluid mt-3">
     <div class="row">
       <div class="col-12">
-        <h1 class="text-center text-white">Quản lý banner</h1>
+        <h1 class="text-center text-white">Quản lý slideshow</h1>
       </div>
       <div class="col-12" [ngClass]="{ 'd-none': selectedItem }">
         <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
           <div class="row justify-content-center align-items-center">
-            <div class="col-3">
-              <label for="exampleFormControlFile1">Tải hình ảnh (2000x600)</label>
-              <input type="file" name="image" class="form-control-file" (change)="onFileSelected($event)"
-                ng2FileSelect [uploader]="uploader" accept="image/x-png,image/gif,image/jpeg">
-                <img style="width:180px;height:180px" id="blah" [src]="imageSrc || 'http://placehold.it/180'"
-                alt="image" />
+            <div class="col-auto">
+              <div class="form-group">
+                <label>Tải hình ảnh (2000x600)</label>
+                  <div class="upload-btn-wrapper text-center">
+                    <div class="box-img">
+                      <img  [src]="imageSrc"/>
+                    </div>
+                    <input type="file" id="slide" name="image" ng2FileSelect [uploader]="uploader" (change)="onFileSelected($event)"
+                      accept="image/x-png|image/gif|image/jpeg|image/jpg"/>
+                    <label for="slide" class="btn btn-outline-dark btn-sm btn-block w-100 mb-0 mt-2">
+                      Chọn hình ảnh
+                    </label>
+                  </div>
+              </div>
             </div>
             <div class="col-3">
               <div class="form-group">
@@ -40,12 +48,20 @@
       <div class="col-12" *ngIf="selectedItem">
         <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
           <div class="row justify-content-center align-items-center">
-            <div class="col-3">
-              <label for="exampleFormControlFile1">Tải hình ảnh (2000x600)</label>
-              <input type="file" name="image" class="form-control-file" (change)="onFileSelected($event)"
-                ng2FileSelect [uploader]="uploader" accept="image/x-png,image/gif,image/jpeg">
-                <img style="width:180px;height:180px" id="blah" [src]="imageSrc || selectedItem.image"
-                alt="image" />
+            <div class="col-auto">
+              <div class="form-group">
+                <label>Tải hình ảnh (2000x600)</label>
+                  <div class="upload-btn-wrapper text-center">
+                    <div class="box-img">
+                      <img  [src]="imageSrc ||selectedItem.image"/>
+                    </div>
+                    <input type="file" id="slide" name="image" ng2FileSelect [uploader]="uploader" (change)="onFileSelected($event)"
+                      accept="image/x-png|image/gif|image/jpeg|image/jpg"/>
+                    <label for="slide" class="btn btn-outline-dark btn-sm btn-block w-100 mb-0 mt-2">
+                      Chọn hình ảnh
+                    </label>
+                  </div>
+              </div>
             </div>
             <div class="col-3">
               <div class="form-group">
@@ -56,13 +72,13 @@
                 <label>Vị trí</label>
                 <input type="number" class="form-control" [(ngModel)]="selectedItem.vitri">
               </div>
-              <div class="form-group">
+              <!-- <div class="form-group">
                 <label>Hiển thị</label>
                   <div class="form-check">
                     <input class="form-check-input" (change)="getValueCheckBox($event)"  *ngIf="selectedItem.hienthi == true" type="checkbox" checked>
                     <input class="form-check-input" (change)="getValueCheckBox($event)"  *ngIf="selectedItem.hienthi == false" type="checkbox">
                   </div>
-              </div>
+              </div> -->
             </div>
             <div class="col-auto">
               <div class="modal_chucnang__group__button">
@@ -90,9 +106,9 @@
                 <th scope="col">Image</th>
                 <th scope="col">Link</th>
                 <th scope="col">Vị trí</th>
-                <th scope="col">Hiển thị</th>
                 <th scope="col">Người tạo</th>
                 <th scope="col">Người sửa</th>
+                <th scope="col">Trạng thái</th>
                 <th class="text-center" scope="col"><span
                     class="modal_chucnang__button__save mdi mdi-content-save-outline mdi-24px"></span></th>
                   </tr>
@@ -101,19 +117,16 @@
               <tr *ngFor="let item of Banner; let i = index">
                 <td style="max-width: 50px">{{i + 1}}</td>
                 <td style="max-width: 100px">
-                  <img style="width: 60px;height: 60px;" src="{{item.image}}" alt="">
+                  <div class="box-img box-anhdaidien bg-white">
+                    <img src="{{item.image}}"/>
+                  </div>
                 </td>
                 <td>{{item.link}}</td>
                 <td>{{item.vitri}}</td>
-                <td>
-                  <div class="custom-control custom-checkbox">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" [checked]="item.hienthi">
-                    </div>
-                  </div>
-                </td>
                 <td>{{item.nguoitao}}</td>
                 <td>{{item.nguoisua}}</td>
+                <td *ngIf="item.trangthai==false">Đã xóa</td>
+                <td *ngIf="item.trangthai==true">Hiển thị</td>
                 <td class="text-center">
                   <span class="modal_chucnang__button__delete mdi mdi-file-document-edit-outline  mdi-24px  mr-2" (click)="onSelect(item);imageSrc=null"></span>
                   <span class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px" (click)="xoaBanner(item)"></span>
