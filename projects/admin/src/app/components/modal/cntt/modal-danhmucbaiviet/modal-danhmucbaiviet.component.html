@@ -21,6 +21,17 @@
                     class="form-control"
                     placeholder="Nhập tên danh mục mới"
                   />
+                  <div
+                    *ngIf="
+                      tenDanhMuc.invalid &&
+                      (tenDanhMuc.dirty || tenDanhMuc.touched)
+                    "
+                    class="alert alert-danger"
+                  >
+                    <div *ngIf="tenDanhMuc.errors.required">
+                      Nhập Tên danh mục.
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="col-4">
@@ -32,6 +43,17 @@
                     class="form-control"
                     placeholder="Nhập tên viết tắt mới"
                   />
+                  <div
+                    *ngIf="
+                      tenVietTat.invalid &&
+                      (tenVietTat.dirty || tenVietTat.touched)
+                    "
+                    class="alert alert-danger"
+                  >
+                    <div *ngIf="tenVietTat.errors.required">
+                      Nhập tên viết tắt mới.
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="col-auto">

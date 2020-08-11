@@ -12,7 +12,7 @@ export class ModalDanhmucbaivietComponent implements OnInit {
   constructor(
     private modalService: ModalService,
     private danhMucService: DanhmucService
-  ) {}
+  ) { }
 
   private _danhSachDanhMuc: {
     message: string;
@@ -120,4 +120,6 @@ export class ModalDanhmucbaivietComponent implements OnInit {
     if (trangThai == 1) { return 'Đã đăng' }
     return 'Đã xóa'
   }
+  get tenDanhMuc() { return this.danhMucForm.get('tenDanhMuc'); }
+  get tenVietTat() { return this.danhMucForm.get('tenVietTat'); }
 }

@@ -30,6 +30,16 @@ export class ModalQuanlybosuutapcnttComponent implements OnInit {
     if (event.target.files[0].size > 2097152) {
       alert("File yêu cầu nhỏ hơn 2MB");
     };
+    // let img = new Image()
+    // img.src = window.URL.createObjectURL(event.target.files[0])
+    // img.onload = () => {
+    //   if (img.width === 100 && img.height === 100) {
+    //     alert("Correct size");
+    //     return true;
+    //   }
+    //   alert("Incorrect size");
+    //   return true;
+    // }
   }
 
   public boSuuTapForm = new FormGroup({
@@ -51,6 +61,7 @@ export class ModalQuanlybosuutapcnttComponent implements OnInit {
       console.log(this.imgValue);
       this.cnttBoSuuTapService.onSave(formData).subscribe((data) => {
         this.loadDanhSachBST();
+        this.onResetForm()
         this.toastr.success('Thêm item thành công !');
       });
     } else {
@@ -63,6 +74,7 @@ export class ModalQuanlybosuutapcnttComponent implements OnInit {
       console.log(this.imgValue);
       this.cnttBoSuuTapService.editItemTienIch(formData).subscribe((data) => {
         this.loadDanhSachBST();
+        this.onResetForm();
         this.toastr.success('Edit item thành công !');
       });
     }
@@ -122,5 +134,8 @@ export class ModalQuanlybosuutapcnttComponent implements OnInit {
     if (trangThai == 1) { return 'Đã đăng' }
     return 'Đã xóa'
   }
-
+  onResetForm(): void {
+    this.boSuuTapForm.reset();
+    this.imgValue = null;
+  }
 }
