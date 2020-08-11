@@ -54,7 +54,7 @@ export class PageTrangchuComponent implements OnInit {
     this.danhSachGVLHP();
     this.danhSachLopGV();
     this.filterDsLop;
-    
+
   }
   // lay cookie
   layCookie() {
@@ -62,7 +62,7 @@ export class PageTrangchuComponent implements OnInit {
     this.maBac = this.cookie.get("bac")
     this.hocKi = this.cookie.get("hocKi")
     this.Doituong = this.cookie.get("role");
-    this.thongtin = this.cookie.get("displayName");
+    this.thongtin = this.cookie.get("email");
   }
   ///hien thi ds lop
   danhSachLop() {
@@ -87,7 +87,7 @@ export class PageTrangchuComponent implements OnInit {
       }
     );
   }
-  //danh sach lop hoc phan 
+  //danh sach lop hoc phan
   LaySachLopHocPhan() {
 
     this.lopHocPhanService.getLopHocPhan().subscribe(
@@ -127,7 +127,7 @@ export class PageTrangchuComponent implements OnInit {
   danhSachLopGV() {
     if (this.Doituong == 'GV') {
       try {
-        this.thongtin = this.cookie.get("displayName") + '@caothang.edu.vn';
+        this.thongtin = this.cookie.get("email");
         this.lopHocPhanService.getLopHocPhanbyemail(this.thongtin).subscribe(
           dsGiaoVienBymaGv => {
             this.dsGiaoVienBymaGv = dsGiaoVienBymaGv;
@@ -143,7 +143,7 @@ export class PageTrangchuComponent implements OnInit {
                   this.filterDsLop = this.dsGiaoVienBymaGv
                 }
               })
-             
+
             });
           },
           (error) => {
@@ -160,10 +160,10 @@ export class PageTrangchuComponent implements OnInit {
   danhSachLopHocPhan() {
     this.layCookie();
     if (this.Doituong == 'SV') {
-      this.lopHocPhanService.getLopHocPhanbyMssv(this.thongtin).subscribe(
+      this.lopHocPhanService.getLopHocPhanbyemailSinhvien(this.thongtin).subscribe(
         dsLopHP => {
           this.layCookie();
-        
+
           this.dsLopHP = dsLopHP;
           this.filterDsLop = []
           this.filterDsLop = this.dsLopHP.filter(x => {

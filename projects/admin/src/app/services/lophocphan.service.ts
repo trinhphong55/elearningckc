@@ -48,6 +48,10 @@ export class LopHocPhanService {
     let url = `${this.lophocphanURL}/${email}/giaovienlophocphan`;
     return this.http.get<LopHocPhan>(url);
   }
+  getLopHocPhanbyemailSinhvien(email: string): Observable<LopHocPhan> {
+    let url = `${this.lophocphanURL}/${email}/sinhvienlophocphan`;
+    return this.http.get<LopHocPhan>(url);
+  }
   constructor(
     private http: HttpClient,
   ) { }

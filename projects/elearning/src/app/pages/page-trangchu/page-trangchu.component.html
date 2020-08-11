@@ -10,8 +10,9 @@
                 <div class="name--menu">
                     <div class="name-class">
                         <div>
-                            <a     [routerLink]="[{ outlets: { primary: ['lophocphan',l.maLopHocPhan], navbar: ['lophocphan',l.maLopHocPhan] } }]">{{l.tenLopHocPhan}}</a>
-                     
+                        <ng-template *ngFor="let lop of dsLop" [ngIf]="l.maLopHoc == lop.maLopHoc">
+                                <a [routerLink]="[{ outlets: { primary: ['lophocphan',l.maLopHocPhan], navbar: ['lophocphan',l.maLopHocPhan] } }]">{{l.tenLopHocPhan}}</a>
+                        </ng-template>
                     </div>
                         <div>
                             <span>Số Lượng:{{l.soLuongSV}}</span>
