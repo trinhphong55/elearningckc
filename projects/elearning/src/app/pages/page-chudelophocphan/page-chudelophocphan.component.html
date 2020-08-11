@@ -1,6 +1,6 @@
 <div class="row">
-  <div class="col-md-4">
-    <button mat-button [matMenuTriggerFor]="menu"> <i class="fas fa-plus"></i> Tạo</button>
+  <div class="col-md-4" [ngStyle]="{'display':quyen}">
+    <button mat-button [matMenuTriggerFor]="menu" > <i class="fas fa-plus"></i> Tạo</button>
     <mat-menu #menu="matMenu">
       <button mat-menu-item (click)="openTaobaitap()">Bài tập</button>
       <button mat-menu-item (click)="openTaotailieu()">Bài giảng</button>

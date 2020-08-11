@@ -12,5 +12,8 @@ export class DiemSinhVienService  {
   getAllFor(maSinhvien) {
     return this.http.get(`${baseUrl}/${maSinhvien}/search`);
   }
-
+  ///thong tin diem sinh vien 
+  layThongTinDiemSVByLHP(maLopHOcPhan:any) {
+    return this.http.get(`${baseUrl}/${maLopHOcPhan}/laytongdiem`);
+  }
 }
