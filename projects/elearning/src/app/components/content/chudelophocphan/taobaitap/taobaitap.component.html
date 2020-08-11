@@ -73,7 +73,7 @@
       <form class="example-form">
         <mat-form-field class="example-full-width">
           <mat-label>Chọn tên lớp</mat-label>
-          <mat-select multiple [(ngModel)]="baitap.lopHocPhan" name="selectedLHP">
+          <mat-select [(ngModel)]="baitap.lopHocPhan" name="selectedLHP">
             <mat-option *ngFor="let lhp of dsLHP" [value]="lhp.maLopHocPhan">{{ lhp.tenLopHocPhan }} </mat-option>
           </mat-select>
         </mat-form-field>

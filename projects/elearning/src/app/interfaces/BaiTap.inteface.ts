@@ -6,7 +6,7 @@ interface LHP {
 export interface BaiTap {
   tieuDe: string,
   huongDan: string,
-  lopHocPhan?: LHP[],
+  lopHocPhan?: string,
   diem: number,
   deadLine: string,
   chuDeMoi?: string,

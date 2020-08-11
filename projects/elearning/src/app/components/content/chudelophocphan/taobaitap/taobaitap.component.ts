@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { FileUploader } from 'ng2-file-upload';
-import saveAs from 'file-saver';
+// import saveAs from 'file-saver';
 
 //Services
 import { FileService } from '../../../../services/file.service';
@@ -9,6 +9,7 @@ import { BaiTapService } from '../../../../services/bai-tap.service';
 
 //Interfaces
 import { BaiTap } from '../../../../interfaces/BaiTap.inteface';
+import { ActivityService } from '../../../../services/activity.service';
 
 interface LHP {
   tenLopHocPhan: string,
@@ -31,11 +32,11 @@ const uri = 'https://localhost:4100/api/baitap/uploads';
 export class TaobaitapComponent implements OnInit {
 
   public baitap: BaiTap = {
-    tieuDe: "test tieuDe",
-    huongDan: "test huongDan",
+    tieuDe: "",
+    huongDan: "",
     deadLine: "null",
     diem: 10,
-    lopHocPhan: [],
+    lopHocPhan: "null",
     file: [],
     chuDe: "null",
   }
@@ -62,6 +63,9 @@ export class TaobaitapComponent implements OnInit {
   toppings = new FormControl();
 
   EndDateChange(today: any) {
+    if (today.value === null) {
+      return;
+    }
     let dd = String(today.value.getDate()).padStart(2, '0');
     let mm = String(today.value.getMonth() + 1).padStart(2, '0');
     let yyyy = today.value.getFullYear();
@@ -74,17 +78,19 @@ export class TaobaitapComponent implements OnInit {
     return day !== 0 && day !== 6;
   }
 
-
+  private _setActivity(maDoiTuong) {
+    this._activityService.themActivity(this.baitap.lopHocPhan, maDoiTuong, "BT", this.baitap.tieuDe, "đăng").subscribe(res => {
+      console.log(res);
+    })
+  }
 
   saveBaiTap() {
     if (this.uploader.queue.length !== 0) {
       this.uploader.uploadAll();
     } else {
-      this._baiTapService.addBaiTap(this.baitap).subscribe(data => {
-        alert(data.message);
-        // if (data.status === 200) {
-
-        // }
+      this._baiTapService.addBaiTap(this.baitap).subscribe(res => {
+        alert(res.message);
+        this._setActivity(res.maDoiTuong);
       })
     }
   }
@@ -110,16 +116,17 @@ export class TaobaitapComponent implements OnInit {
 
   constructor(
     private _fileService: FileService,
-    private _baiTapService: BaiTapService) {
+    private _baiTapService: BaiTapService,
+    private _activityService: ActivityService) {
   }
 
   ngOnInit(): void {
     this.uploader.onCompleteAll = () => {
       this.baitap.file = this.attachmentList;
-      this._baiTapService.addBaiTap(this.baitap).subscribe(data => {
-        alert(data.message);
-        if (data.status === 200) {
+      this._baiTapService.addBaiTap(this.baitap).subscribe(res => {
+        if (res.status === 200) {
           alert('Chuan bi cap nhat chuc nang sau khi them thanh cong se clear du lieu cu');
+          this._setActivity(res.maDoiTuong);
         }
       })
     }
