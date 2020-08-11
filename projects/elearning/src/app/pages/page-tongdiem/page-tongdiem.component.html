@@ -339,12 +339,22 @@
                                         {{cell}}
                                     </td>
                                 </tr>
-                                <tr *ngFor="let hs of dsHocSinh">
-                                    <td>{{hs.maSinhVien}}</td>
-                                    <td>{{hs.ho}}</td>
-                                    <td>{{hs.ten}}</td>
+                                <tr>
+                                  <td>STT</td>
+                                  <td>Mã sinh viên</td>
+                                  <td>Họ</td>
+                                  <td>Tên</td>
                                 </tr>
+                                
                             </thead>
+                            <tbody>
+                              <tr *ngFor="let hs of dsHocSinh;index as i">
+                                <td scope="row">{{ i + 1 }}</td>
+                                <td>{{hs.maSinhVien}}</td>
+                                <td>{{hs.ho}}</td>
+                                <td>{{hs.ten}}</td>
+                            </tr>
+                            </tbody>
                           </table>
                       </div>
                     </div>

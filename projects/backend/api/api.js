@@ -132,7 +132,7 @@ router.put("/khoabomon/:id", validate, khoabomonController.updateKhoaBoMon);
 //lấy danh sách môn học phần của sinh viên theo môn truyền vào
 router.get("/diemsinhvien/:maSinhVien/search", Diemsinhvien.getDiemsinhvien);
 router.get("/diemsinhvien/:maSinhVien/khdt", Diemsinhvien.getDiemSinhVien_maSSV);
-
+router.get("/diemsinhvien/:maLopHocPhan/laytongdiem", Diemsinhvien.LayTONGDIEM);
 
 //Lấy toàn bộ dữ liệu từ KhoaBoMon
 router.get("/bomon", boMon.getKhoaBonMon);
@@ -200,7 +200,7 @@ router.get("/baidangfb",baidangfb.getAll);
 router.post("/baidangfb",baidangfb.postToDrawFB);
 //Thêm vào posted
 router.post("/baidangfb/:postID",baidangfb.postedToFB);
-//Update posted 
+//Update posted
 router.put("/baidangfb/:postID",baidangfb.updatePostedFB);
 //Xóa bài post
 router.delete("/baidangfb/:id",baidangfb.deletePostFB);
@@ -218,6 +218,7 @@ router.get("/sinhvien/:maLopHoc/siso", sinhVien.tinhTongSinhVien);
 //========================= Routes CotDiemLopHocPhan ===================================
 router.get("/cotdiemlhp", cotDiemLHP.layDiemLHP);
 router.get("/cotdiemlhp/:maLopHocPhan", cotDiemLHP.layDiemLHPtheoMaLHP);
+router.get("/cotdiemlhp/lophocphan/:maLopHocPhan", cotDiemLHP.layDiemLHPtheoMaLHP);
 
 //======================= Routes ChitietDiemSVLopHocPhan ==================================
 router.get("/ct-diemsv-lophocphan/:masv", ctDiemLopHP.layCTDiemLopHPtheoMaSV);

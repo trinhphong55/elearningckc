@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +10,7 @@ export class ActivityService {
   constructor(private http: HttpClient) {}
 
   loaiActivityLHP = 1;
-  public layDanhSachActivityCuaLHP(maLHP: Number) {
+  public layDanhSachActivityCuaLHP(maLHP: string): Observable<any> {
     //Mã LHP lấy từ url
     return this.http.get(`${this.baseUrl}/${this.loaiActivityLHP}/lophocphan/${maLHP}`);
     // https://localhost:4100/api/activity/1/lophocphan/1

@@ -1,3 +1,58 @@
+.scrollable{
+  height: 400px;
+  overflow-y:scroll;
+  overflow-x: hidden;
+}
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background:#007b83;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #007b83;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background:#007b83;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #007b83;
+}
+
+.clone thead, .clone tfoot{background:transparent;}
+::-webkit-scrollbar{
+  height: 6px;
+  width: 4px;
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:horizontal{
+  background: #007b83;
+  border-radius: 10px;
+}
+
 .container-fluid{
     margin-top: 30px;
 }
@@ -54,7 +109,7 @@
     margin: 0;
  }
 .style-mat-card button:hover{
-    
+
     color: #00CCCC;
 }
 .example-header-image {
@@ -137,7 +192,7 @@ form.ng-untouched.ng-pristine.ng-valid {
 .title-icon{
     width: 100%;
     display: flex;
-    flex-wrap: wrap; 
+    flex-wrap: wrap;
     color: #007b83;
     border-bottom: 1.5px solid #007b83;
 }
@@ -159,7 +214,7 @@ form.ng-untouched.ng-pristine.ng-valid {
 
 
 .content-gv{
-    width: 96%;
+    width: 95%;
     border: solid 1px #e0e0e0;
     border-radius: 7px;
     margin: 0 auto;
@@ -207,8 +262,8 @@ form.ng-untouched.ng-pristine.ng-valid {
     font-weight: 500;
     text-overflow: ellipsis;
     overflow: hidden;
-    white-space: nowrap; 
-    width: 400px; 
+    white-space: nowrap;
+    width: 400px;
 }
 .thongtin .tt-dealine{
     width: 25%;
@@ -274,7 +329,7 @@ form.ng-untouched.ng-pristine.ng-valid {
 }
 .danop_dagiao button p{
     font-size: 2rem;
-  
+
 }
 .content-gv .nhanxet{
     border-bottom: solid 1px #e0e0e0;
@@ -298,7 +353,7 @@ form.ng-untouched.ng-pristine.ng-valid {
 .nhanxet .nx-show .nx-showimg div{
     width: 40%;
     margin: 0 auto;
-   
+
 }
 .nhanxet .nx-show .nx-showimg div img{
     width: 100%;
@@ -327,7 +382,7 @@ form.ng-untouched.ng-pristine.ng-valid {
 .comment .cm-show .cm-showimg div{
     width: 40%;
     margin: 0 auto;
-   
+
 }
 .comment .cm-show .cm-showimg div img{
     width: 100%;
@@ -344,7 +399,7 @@ form.ng-untouched.ng-pristine.ng-valid {
     width: 100%;
     margin-bottom: 15px;
     position: relative;
-} 
+}
 .comment .input-container .btn{
     position: absolute;
     right: 0;
@@ -368,7 +423,7 @@ form.ng-untouched.ng-pristine.ng-valid {
   }
   .input-field:focus {
     border: 2px solid #006666;
-   
+
   }
 
 
@@ -423,8 +478,8 @@ form.ng-untouched.ng-pristine.ng-valid {
     font-weight: 500;
     text-overflow: ellipsis;
     overflow: hidden;
-    white-space: nowrap; 
-    width: 400px; 
+    white-space: nowrap;
+    width: 400px;
 }
 .content-sv .thongtin .tt-dealine{
     width: 25%;
@@ -490,7 +545,7 @@ form.ng-untouched.ng-pristine.ng-valid {
 }
 .content-sv .danop_dagiao button p{
     font-size: 2rem;
-  
+
 }
 .content-sv .content-gv .nhanxet{
     border-bottom: solid 1px #e0e0e0;
@@ -514,7 +569,7 @@ form.ng-untouched.ng-pristine.ng-valid {
 .content-sv .nhanxet .nx-show .nx-showimg div{
     width: 40%;
     margin: 0 auto;
-   
+
 }
 .content-sv .nhanxet .nx-show .nx-showimg div img{
     width: 100%;
@@ -543,7 +598,7 @@ form.ng-untouched.ng-pristine.ng-valid {
 .content-sv .comment .cm-show .cm-showimg div{
     width: 40%;
     margin: 0 auto;
-   
+
 }
 .content-sv .comment .cm-show .cm-showimg div img{
     width: 100%;
@@ -560,7 +615,7 @@ form.ng-untouched.ng-pristine.ng-valid {
     width: 100%;
     margin-bottom: 15px;
     position: relative;
-} 
+}
 .content-sv .comment .input-container .btn{
     position: absolute;
     right: 0;
@@ -584,7 +639,7 @@ form.ng-untouched.ng-pristine.ng-valid {
   }
   .input-field:focus {
     border: 2px solid #006666;
-   
+
   }
 
 
@@ -618,8 +673,8 @@ form.ng-untouched.ng-pristine.ng-valid {
         font-weight: 300;
         text-overflow: ellipsis;
         overflow: hidden;
-        white-space: nowrap; 
-        width: 200px; 
+        white-space: nowrap;
+        width: 200px;
     }
     .content-sv .thongtin .tt-client div{
         padding-top: 20px;
@@ -627,8 +682,8 @@ form.ng-untouched.ng-pristine.ng-valid {
         font-weight: 500;
         text-overflow: ellipsis;
         overflow: hidden;
-        white-space: nowrap; 
-        width: 200px; 
+        white-space: nowrap;
+        width: 200px;
     }
     .thongtin .tt-dealine{
        display: none;
@@ -659,7 +714,7 @@ form.ng-untouched.ng-pristine.ng-valid {
     .comment .cm-show .cm-showimg div{
         width: 60%;
         margin: 0 auto;
-       
+
     }
     .comment .cm-show .cm-showimg div img{
         width: 100%;
@@ -680,7 +735,7 @@ form.ng-untouched.ng-pristine.ng-valid {
     .content-sv .thongtin .tt-client div{
         font-size: 0.875rem;
         font-weight: 300;
-        width: 155px; 
+        width: 155px;
     }
     .content-sv .nhanxet .nx-show .nx-showimg {
         width: 22%;
@@ -694,5 +749,19 @@ form.ng-untouched.ng-pristine.ng-valid {
     .content-sv .comment .cm-show .cm-showcomment{
         width: 75%;
     }
-   
+
+    .input-field {
+
+        padding: 5px;
+        margin-top: 5px;
+        font-size: 0.775rem;
+    }
+    .comment .input-container .btn {
+        position: absolute;
+        right: 0;
+        top: 2px;
+        border-radius: 50px;
+        outline: none;
+    }
+
 }

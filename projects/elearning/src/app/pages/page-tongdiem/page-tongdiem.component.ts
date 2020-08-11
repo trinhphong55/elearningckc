@@ -1,15 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import * as XLSX from 'xlsx';
 import { MatDialog } from '@angular/material/dialog';
-import { MoisvComponent } from '../../components/content/pageMoinguoi/moisv/moisv.component';
 import { ApiService } from '../../../../../admin/src/app/services/api.service';
 import { SinhVienService } from '../../../../../admin/src/app/services/sinh-vien.service';
-import { GvlhpService } from '../../../../../admin/src/app/services/gvlhp.service';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { LopHocPhanService } from '../../../../../admin/src/app/services/lophocphan.service';
-import { LopHocService } from '../../../../../admin/src/app/services/lop-hoc.service';
-import { from } from 'rxjs';
-import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-page-tongdiem',
   templateUrl: './page-tongdiem.component.html',
@@ -17,41 +12,19 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class PageTongdiemComponent implements OnInit {
   data: [][]
-  dsGiaoVien: any;
   dsHocSinh: any;
-  dsGiaoVienhp: any;
   maLophocPhan: any;
-  dsGiaoVienLophp: any;
   dsTenHocSinh: any;
   dsLopHP: any;
   maLopHoc: any;
-  soluong:any;
   constructor(public dialog: MatDialog,
-    private apiService: ApiService,
     private sinhVienService: SinhVienService,
-    private gvlhpService: GvlhpService,
     private router: ActivatedRoute, private route: Router,
-    private lopHocPhanService: LopHocPhanService,
-    private lopHocService: LopHocService,
-    private cookie:CookieService) { }
+    private lopHocPhanService: LopHocPhanService,) { }
 
   ngOnInit(): void {
       this.danhSachLopHocPhan();
     this.maLophocPhan = this.router.snapshot.paramMap.get('id');
-  }
-  danhSachGVLHP() {
-    this.gvlhpService.getall().subscribe(
-      dsGiaoVienhp => {
-        this.dsGiaoVienhp = dsGiaoVienhp;
-        this.dsGiaoVienLophp = this.dsGiaoVienhp.filter(x => {
-          if (x.maLopHocPhan == this.maLophocPhan)
-            return x;
-        })
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
   }
   onFileChange(evt : any) {
     const target: DataTransfer = <DataTransfer>(evt.target);
@@ -83,7 +56,6 @@ export class PageTongdiemComponent implements OnInit {
         this.sinhVienService.laysinhvien(this.maLopHoc).subscribe(
           dsHocSinh => {
             this.dsHocSinh = dsHocSinh;
-            this.soluong=this.dsHocSinh.length;
           }
         )
       },

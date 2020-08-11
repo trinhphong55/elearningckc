@@ -160,7 +160,7 @@ export class PageTrangchuComponent implements OnInit {
   danhSachLopHocPhan() {
     this.layCookie();
     if (this.Doituong == 'SV') {
-      this.lopHocPhanService.getLopHocPhanbyemail(this.thongtin).subscribe(
+      this.lopHocPhanService.getLopHocPhanbyemailSinhvien(this.thongtin).subscribe(
         dsLopHP => {
           this.layCookie();
 
