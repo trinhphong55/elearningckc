@@ -219,6 +219,7 @@ router.get("/sinhvien/:maLopHocPhan/lophocphan", sinhVien.laySinhVienLopHocPhan)
 //========================= Routes CotDiemLopHocPhan ===================================
 router.get("/cotdiemlhp", cotDiemLHP.layDiemLHP);
 router.get("/cotdiemlhp/:maLopHocPhan", cotDiemLHP.layDiemLHPtheoMaLHP);
+router.get("/cotdiemlhp/lophocphan/:maLopHocPhan", cotDiemLHP.layDiemLHPtheoMaLHP);
 router.get("/cotdiemlophocphan/:maLopHocPhan", cotDiemLHP.layCotDiemTheoMaLopHp);
 
 //======================= Routes ChitietDiemSVLopHocPhan ==================================

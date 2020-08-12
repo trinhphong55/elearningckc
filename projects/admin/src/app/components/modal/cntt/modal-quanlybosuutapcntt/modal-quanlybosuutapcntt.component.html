@@ -16,7 +16,7 @@
                   </div>
                   <input type="file" id="input_image_BST" name="image" (change)="onFileSelected($event)"
                     onchange="document.getElementById('imgBST').src = window.URL.createObjectURL(this.files[0])"
-                    accept="image/x-png,image/gif,image/jpeg"/>
+                    accept="image/x-png|image/gif|image/jpeg"/>
                   <label for="input_image_BST" class="btn btn-outline-dark btn-sm btn-block w-100 mb-0 mt-2">
                     Chọn hình ảnh
                   </label>
@@ -55,7 +55,7 @@
                   <input class="form-control" type="text" formControlName="url" required/>
                   <div *ngIf="url.invalid && (url.dirty || url.touched)" class="alert alert-danger">
                     <div *ngIf="url.errors.required">
-                      Vui lòng nhập đường dẫn liên kết 
+                      Vui lòng nhập đường dẫn liên kết
                     </div>
                   </div>
                 </div>

@@ -1,14 +1,12 @@
 <div class="container-fluid mt-5">
-  <div class="row" style="border-bottom:solid 0.5px black;padding-bottom: 20px;">
-    <div class="col-md-2">
+  <div class="row style-magintop" style="border-bottom:solid 0.5px black;padding-bottom: 20px;">
+    <div class="col-md-6 mt-4">
       <div mat-dialog-actions>
         <button mat-button mat-dialog-close><i class="fas fa-times"></i></button>
         <span style="margin-left: 5px;">Bài tập</span>
       </div>
     </div>
-    <div class="col-md-8">
-    </div>
-    <div class="col-md-2">
+    <div class="col-md-6 mt-4">
       <div>
         <button mat-button (click)="saveBaiTap()">Giao bài</button>
         <button mat-button [matMenuTriggerFor]="menu"><i class="fas fa-angle-down"></i></button>

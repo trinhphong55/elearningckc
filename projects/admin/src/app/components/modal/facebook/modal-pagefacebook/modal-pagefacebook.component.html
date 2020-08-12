@@ -10,14 +10,14 @@
           <div class="row justify-content-center align-items-center">
             <div class="col-4">
               <div class="form-group">
-                <label for="">Tên Page</label>
-                <input type="text" class="form-control" [formControl]="tenPage">
+                <label for="">ID Page</label>
+                <input type="text" class="form-control" [formControl]="IDpage">
               </div>
             </div>
             <div class="col-4">
               <div class="form-group">
-                <label for="">ID Page</label>
-                <input type="text" class="form-control" [formControl]="IDpage">
+                <label for="">Tên Page</label>
+                <input type="text" class="form-control" [formControl]="tenPage">
               </div>
             </div>
             <div class="col-4">
@@ -43,7 +43,7 @@
       </div>
       <div class="col-12">
         <!-- Modal -->
-        <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal fade" id="exampleModalLongpage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
@@ -65,12 +65,12 @@
                     <input class="form-control" type="text" name="picture" id="picture"/>
                   </div>
                 </div>
-                <div class="">
+                <!-- <div class="">
                   <div class="form-group">
                     <label for="">Ảnh/Video</label>
                     <input class="form-control-file border" type="file">
                   </div>
-                </div>
+                </div> -->
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -115,7 +115,7 @@
                 <td class="text-center">
                   <div class="mb-1">
                     <!-- Button trigger modal -->
-                    <button type="button" class="modal_chucnang__button btn btn-outline-success" data-toggle="modal" data-target="#exampleModalLong" onclick="getAccessToken(this)" data="{{d.id_Page}}">
+                    <button type="button" class="modal_chucnang__button btn btn-outline-success" data-toggle="modal" data-target="#exampleModalLongpage" onclick="getAccessToken(this)" data="{{d.id_Page}}">
                       Đăng Bài
                     </button>
                   </div>

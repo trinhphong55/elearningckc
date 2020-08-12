@@ -39,6 +39,39 @@ export class ApiService {
       )
       .pipe(catchError(this.handleError));
   }
+
+  capNhatBoMon(maGV:string, maBoMon:string): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    };
+    return this.http
+      .post<any>(
+        'https://localhost:4100/api/giaovien/cap-nhat-bo-mon',
+        {maGV, maBoMon},
+        httpOptions
+      )
+      .pipe(catchError(this.handleError));
+  }
+
+  setTrangThai(maGiaoVien: string): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    };
+    let url = `https://localhost:4100/api/giaovien/setTrangThai/${maGiaoVien}`;
+    return this.http.put<any>(url, "", httpOptions);
+  }
+
+  layDanhSachGiaoVienTheoTrangThai(trangThai: any): Observable<GiaoVien[]>{
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    };
+    return this.http
+      .get<GiaoVien[]>(
+        `https://localhost:4100/api/giaovien/danh-sach-giao-vien-theo-trang-thai/${trangThai}`,
+        httpOptions
+      )
+      .pipe(catchError(this.handleError));
+  }
   layDanhSachGiaoVien(): Observable<GiaoVien[]> {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -105,12 +138,12 @@ export class ApiService {
 
 ///dsgv
   layDanhSachGiaoVienByemail(email:any): Observable<any> {
-   
+
     return this.http
       .get<GiaoVien[]>(
         'https://localhost:4100/api/giaovien/thong-tin-giao-vien-email/'+email,
       )
-   
+
   }
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {

@@ -7,6 +7,8 @@
 }
 .row{
     margin-bottom: 20px;
+    margin-right: 0;
+    margin-left: 0;
 }
 .mat-button{
     outline: none;
@@ -20,7 +22,7 @@
     margin-top: 40px;
 }
 .title-icon .title{
-    width: 70%;
+    width: 69%;
 
 }
 .title-icon .title h3{
@@ -35,7 +37,6 @@
 .list-gv {
     display: flex;
     width: 100%;
-    flex-wrap: wrap;
     margin-top: 10px;
     padding: 5px;
 }
@@ -93,7 +94,6 @@
 .list-sv {
     display: flex;
     width: 100%;
-    flex-wrap: wrap;
     margin-top: 10px;
     cursor: pointer;
     padding: 7px 0 0  0;
@@ -133,13 +133,36 @@
     .container{
         margin-top: 50px;
     }
+    .title-icon[_ngcontent-trp-c120] {
+        width: 100%;
+        display: flex;
+        flex-wrap: nowrap;
+        color: #007b83;
+        border-bottom: 1.5px solid #007b83;
+        margin-top: 40px;
+    }
+    .list-gv .nx-showimg{
+        width: 20%;
+    }
+    .list-sv .nx-showimg {
+        width: 20%;
+    }
+    .title-icon-sv .title-sv {
+        width: 60%;
+    }
+    .title-icon .title{
+        width: 50%;
+    }
     .title-icon .add button{
         margin-left: 84px;
     }
     .content-people {
-        margin-left: 40px;
+        margin-left: 20px;
     }
     .list-sv .nx-showname{
-        width: 76%;
+        width: 55%;
+    }
+    .w-50 {
+        width: 100%!important;
     }
   }
