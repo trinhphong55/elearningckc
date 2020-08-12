@@ -35,9 +35,9 @@ export class TaobaitapComponent implements OnInit {
     huongDan: "",
     deadLine: "null",
     diem: 10,
-    lopHocPhan: "null",
+    lopHocPhan: -1,
     file: [],
-    chuDe: "null",
+    chuDe: -1,
   }
 
   checked: boolean = false;
@@ -67,14 +67,42 @@ export class TaobaitapComponent implements OnInit {
   }
 
   saveBaiTap() {
-    if (this.uploader.queue.length !== 0) {
-      this.uploader.uploadAll();
-    } else {
-      this._baiTapService.addBaiTap(this.baitap).subscribe(res => {
-        alert(res.message);
-        this._setActivity(res.maDoiTuong);
-      })
+    this._validate(() => {
+      if (this.uploader.queue.length !== 0) {
+        this.uploader.uploadAll();
+      } else {
+        this._baiTapService.addBaiTap(this.baitap).subscribe(res => {
+          alert(res.message);
+          this._setActivity(res.maDoiTuong);
+          this._clearBaiTap();
+        })
+      }
+    });
+  }
+
+  private _clearBaiTap() {
+    this.baitap = {
+      tieuDe: "",
+      huongDan: "",
+      deadLine: "null",
+      diem: 10,
+      lopHocPhan: -1,
+      file: [],
+      chuDe: -1,
     }
+    this.uploader.queue = [];
+  }
+
+  private _validate(save: Function) {
+    if (this.baitap.tieuDe.trim() === "") {
+      alert("Nhap tieu de");
+      return;
+    }
+    if (this.baitap.lopHocPhan === -1) {
+      alert("Chon lop hoc phan");
+      return;
+    }
+    save();
   }
 
   private _setActivity(maDoiTuong) {
@@ -109,7 +137,7 @@ export class TaobaitapComponent implements OnInit {
     private _activityService: ActivityService,
     private _lopHocPhanService: LopHocPhanService,
     private _router: Router,) {
-      this._maLopHocPhan = parseInt(this._router.url.split('/')[2][0]);
+    this._maLopHocPhan = parseInt(this._router.url.split('/')[2][0]);
   }
 
   ngOnInit(): void {
@@ -118,13 +146,16 @@ export class TaobaitapComponent implements OnInit {
     })
 
     this.uploader.onCompleteAll = () => {
-      this.baitap.file = this.attachmentList;
-      this._baiTapService.addBaiTap(this.baitap).subscribe(res => {
-        if (res.status === 200) {
-          alert('Chuan bi cap nhat chuc nang sau khi them thanh cong se clear du lieu cu');
-          this._setActivity(res.maDoiTuong);
-        }
-      })
+      this._validate(() => {
+        this.baitap.file = this.attachmentList;
+        this._baiTapService.addBaiTap(this.baitap).subscribe(res => {
+          if (res.status === 200) {
+            alert(res.message);
+            this._setActivity(res.maDoiTuong);
+            this._clearBaiTap();
+          }
+        })
+      });
     }
 
     this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {

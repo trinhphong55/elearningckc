@@ -1,10 +1,10 @@
 export interface BaiTap {
   tieuDe: string,
   huongDan: string,
-  lopHocPhan?: string,
+  lopHocPhan?: number,
   diem: number,
   deadLine: string,
-  chuDe?: string,
+  chuDe?: number,
   file?: string[],
   tieuchiChamDiem?: string,
 }

@@ -28,6 +28,9 @@
     padding-bottom: 5px;
 
 }
+.mat-content {
+    padding: 5px;
+}
 .col-md-8 .row .col-md-4 button i{
     padding-right: 10px;
 }
@@ -73,5 +76,8 @@ button{
         margin-top: 0px;
         margin-left: 0px;
         margin-bottom: 20px;
+    }
+    .mat-expansion-panel-header {
+        height: 0;
     }
 }

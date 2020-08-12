@@ -7,6 +7,7 @@ import { setCookie, getCookie } from '../../../common/helper';
 })
 export class AppComponent implements OnInit{
   title = 'elearning';
+  tenTaiKhoan:any
 
   email: string = '';
   constructor(){
@@ -23,7 +24,7 @@ export class AppComponent implements OnInit{
     }
   }
   ngOnInit(): void {
-
+       this.tenTaiKhoan = getCookie('name')
   }
 
   onLogout(): void {
