@@ -4,7 +4,7 @@ const GVLHP = require("../models/GiaoVienLopHocPhan.model");
 
 //trinh phong
 router.get("/", async (req, res) => {
-  var data = await GVLHP.find()
+  var data = await GVLHP.find({trangThai:1})
   res.json(data);
 });
 

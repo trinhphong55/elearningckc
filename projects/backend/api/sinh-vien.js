@@ -1,4 +1,8 @@
 const SinhVienModel = require("../models/sinh-vien.model");
+const settingModel = require("../models/setting.model");
+const lopHoc = require("../models/LopHoc.model");
+const lopHocPhan = require("../models/LopHocPhan.model");
+const diemSV = require("../models/diemsinhvien.model");
 const { check, validationResult } = require("express-validator");
 
 setSinhVien = (req) => {
@@ -12,6 +16,8 @@ setSinhVien = (req) => {
     nguoiTao: req.nguoiTao,
     nguoiChinhSua: req.nguoiChinhSua,
     email: req.maSinhVien + "@caothang.edu.vn",
+    matKhau:req.matKhau,
+
   };
 };
 setSinhVienUpdate = (req) => {
@@ -68,6 +74,9 @@ exports.Laysinhvientheomalop = async (req, res) => {
 
 exports.themSinhVien = async (req, res) => {
   try {
+    const matkhau = await settingModel.findOne();
+    req.body.matKhau = matkhau.matKhauSinhVien;
+
     const sinhViens = await SinhVienModel.create(setSinhVien(req.body));
     res.json(sinhViens);
   } catch (error) {
@@ -183,6 +192,33 @@ exports.tinhTongSinhVien = async (req, res) => {
     res.json(error);
   }
 };
+
+///lay thong tin sinh vien tu ma LOP hoc phan
+exports.laySinhVienLopHocPhan = async (req, res) => {
+  try {
+    var lopHP = await lopHocPhan.find({ maLopHocPhan: req.params.maLopHocPhan });
+    var sinhvien = await SinhVienModel.find();
+    var diemSinhVien = await diemSV.find({ maLopHocPhan:req.params.maLopHocPhan});
+    var data=[]
+    lopHP.forEach(async x => {
+        sinhvien.forEach(async y => {
+          diemSinhVien.forEach(async z => {
+            if(x.maLopHoc==y.maLopHoc)
+            {
+              if(y.maSinhVien==z.maSinhVien)
+              {
+                data.push({ho:y.ho,ten:y.ten,maSinhVien:y.maSinhVien,maLopHocPhan:z.maLopHocPhan,diem:z.diem})
+              }
+            }
+          })
+        })
+      })
+    res.json(data)
+  } catch (error) {
+    res.json(error);
+  }
+};
+
 exports.checkValidate = () => {
   return [
     check("sdt", "Số điện thoại phải 10 số").isLength({ max: 10, min: 10 }),

@@ -25,28 +25,19 @@ export class LopHocPhanService {
     return this.http.get<LopHocPhan[]>(this.lophocphanURL);
   }
 
-  // getLopHocPhanChuaPhanCong(hocKi: number): Observable<LopHocPhan[]> {
-  //   const url = `${this.lophocphanURL}/chuaphancong/${hocKi}`
-  //   return this.http.get<LopHocPhan[]>(url);
-  // }
-
-  // getLopHocPhanbyHocKi(hocKi: number): Observable<LopHocPhan[]> {
-  //   return this.http.get<LopHocPhan[]>(this.lophocphanURL+`/${hocKi}`);
-  // }
-
-  // getLHPDaPhanCongbyGiaoVienGiangDay(maGiaoVien: string, hocKi: number) {
-  //   const url = `https://localhost:4100/api/gvlhp/gvdd/${maGiaoVien}/hocKi/${hocKi}`;
-  //   return this.http.get<LopHocPhan[]>(url);
-  // }
-
   addDSLopHocPhan(maNTenLopHoc: Object[], hocKi: string): Observable<any> {
     return this.http.post<any>(this.lophocphanURL, [hocKi, maNTenLopHoc], httpOptions);
   }
-  layLopHocPhantheoMaLop(maLopHoc:string):Observable<LopHocPhan[]>{
+  layLopHocPhantheoMaLop(maLopHoc: string): Observable<LopHocPhan[]> {
     return this.http.get<any>(`${this.lophocphanURL}/${maLopHoc}/search`);
   }
-  layLopHocPhanTheoMaLHP(maLopHocPhan:String){
+  layLopHocPhanTheoMaLHP(maLopHocPhan: String) {
     return this.http.get<any>(`${this.lophocphanURL}/${maLopHocPhan}/malhp`);
+  }
+
+  layLopHocPhanCungGV(maLopHocPhan: number): Observable<LopHocPhan[]> {
+    const url = `${this.lophocphanURL}/cunggiaovien/malophocphan/${maLopHocPhan}`;
+    return this.http.get<LopHocPhan[]>(url);
   }
   constructor(
     private http: HttpClient,

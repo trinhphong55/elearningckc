@@ -214,15 +214,17 @@ router.get("/sinhvien/:maSV", sinhVien.layThongtinSinhVien);
 router.put("/sinhvien", sinhVien.capNhatSinhVien);
 router.delete("/sinhvien", sinhVien.removeAll);
 router.get("/sinhvien/:maLopHoc/siso", sinhVien.tinhTongSinhVien);
+router.get("/sinhvien/:maLopHocPhan/lophocphan", sinhVien.laySinhVienLopHocPhan);
 
 //========================= Routes CotDiemLopHocPhan ===================================
 router.get("/cotdiemlhp", cotDiemLHP.layDiemLHP);
 router.get("/cotdiemlhp/:maLopHocPhan", cotDiemLHP.layDiemLHPtheoMaLHP);
 router.get("/cotdiemlhp/lophocphan/:maLopHocPhan", cotDiemLHP.layDiemLHPtheoMaLHP);
+router.get("/cotdiemlophocphan/:maLopHocPhan", cotDiemLHP.layCotDiemTheoMaLopHp);
 
 //======================= Routes ChitietDiemSVLopHocPhan ==================================
 router.get("/ct-diemsv-lophocphan/:masv", ctDiemLopHP.layCTDiemLopHPtheoMaSV);
-
+router.get("/ct-diemsv-lophocphan/:maHocPhan/lophocphan", ctDiemLopHP.layCTDiemLopHPtheoMaLopHP);
 //=========================== Routes ChuDe =============================================
 router.get("/chude", ChuDe.layTatCa);
 router.get("/chude/:maChuDe", ChuDe.layMot);
@@ -236,6 +238,7 @@ router.get("/baigiang/:maLopHocPhan/lop-hoc-phan", baiGiang.layTheo_MaLHP);
 router.get("/baigiang/:maBaiGiang/ma-bai-giang", baiGiang.layTheo_maBaiGiang);
 router.post("/baigiang/upload", baiGiang.upload);
 router.post("/baigiang/download", baiGiang.download);
+router.delete("/baigiang/:maBaiGiang", baiGiang.xoa);
 
 //========================= Routes BinhLuan ==========================================
 router.get("/binhluan/:loaiBaiViet/baiviet/:maBaiViet", binhLuan.layBinhLuan_theoBaiViet);

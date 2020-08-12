@@ -32,10 +32,12 @@ router.post('/them', async (req, res) => {
   newActivity = new Activity(req.body);
   newActivity.save().then(() => {
     return res.status(200).json({
+      status: 200,
       message: "add activity oke",
     })
   }).catch(err => {
     return res.status(500).json({
+      status: 500,
       message: err,
     })
   })

@@ -115,6 +115,10 @@ export class ModalThoikhoabieuComponent implements OnInit {
     })
   }
 
+  printTKB() {
+    window.print();
+  }
+
   constructor(
     private modalService: ModalService,
     private lhdtService: LHDTService,
