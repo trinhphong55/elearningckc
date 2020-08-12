@@ -45,12 +45,12 @@
                   <td>{{hs.maSinhVien}}</td>
                   <td>{{hs.ho}} {{hs.ten}}</td>
                   <ng-template *ngFor="let ct of ctDiem" [ngIf]="hs.maSinhVien== ct.maSinhVien">
-                  <ng-template *ngFor="let t of cotDiemHP" [ngIf]="ct.maCotDiem == t.maCotDiem">
-                  <td>
-                    {{ct.diem}}
-                  </td>
-                </ng-template>
-              </ng-template>
+                    <ng-template *ngFor="let t of cotDiemHP" [ngIf]="ct.maCotDiem == t.maCotDiem">
+                        <td >
+                          {{ct.diem}}
+                        </td>
+                    </ng-template>
+                  </ng-template>
                   <td>{{hs.diem}}</td>
                 </tr>
               </tbody>
