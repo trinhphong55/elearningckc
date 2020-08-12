@@ -1,3 +1,4 @@
+import { BaiDangfbService } from './../../../../services/baidangfb.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { PagefbService } from './../../../../services/pagefb.service';
 import { Component, OnInit } from '@angular/core';
@@ -15,17 +16,21 @@ export class ModalPagefacebookComponent implements OnInit {
   datatmp:any;
   mess:any;
   addForm: FormGroup;
+  getloai: any;
   constructor(
     private modalService: ModalService,
-    private pageFBService: PagefbService
+    private pageFBService: PagefbService,
+    private baiDangFBService: BaiDangfbService,
     ) { }
 
   ngOnInit(): void {
     this.getAll();
+    this. getLoai();
     this.addForm = new FormGroup({
       tenPage: new FormControl(),
       IDpage: new FormControl(),
-      linkPage: new FormControl()
+      linkPage: new FormControl(),
+      linkStatus: new FormControl()
     })
   }
   get tenPage() {
@@ -36,6 +41,9 @@ export class ModalPagefacebookComponent implements OnInit {
   }
   get linkPage() {
     return this.addForm.get('linkPage');
+  }
+  get linkStatus(){
+    return this.addForm.get('linkStatus');
   }
 
   getAll(){
@@ -87,7 +95,18 @@ export class ModalPagefacebookComponent implements OnInit {
       console.log(ress);
       this.getAll();
     })
+  }
 
+  getLoai() {
+    this.baiDangFBService.getAll().subscribe((getloai) => {
+      this.getloai = getloai;
+      console.log(this.getloai);
+    });
+  }
+
+  getlinkstt(){
+    let link = $('#linkstt').val();
+    console.log(link);
   }
 
   openDetailpage() {

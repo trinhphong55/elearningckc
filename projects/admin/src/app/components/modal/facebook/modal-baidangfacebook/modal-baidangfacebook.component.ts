@@ -89,6 +89,7 @@ export class ModalBaidangfacebookComponent implements OnInit {
       this.loaitamlist = this.loai;
     });
   }
+
   closeModal(id: string) {
     this.modalService.close(id);
   }

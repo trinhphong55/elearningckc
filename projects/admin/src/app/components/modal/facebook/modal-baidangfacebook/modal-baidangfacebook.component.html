@@ -6,40 +6,125 @@
         <h1 class="text-center text-white">Quản lý các bài đăng</h1>
       </div>
       <div class="col-12">
+        <!-- Modal -->
+        <div class="modal fade" id="PostGroup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Đăng bài cho Group</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="">
+                  <div class="form-group">
+                    <label>Message</label>
+                    <textarea class="form-control" type="text" name="message" id="messagegr1" ></textarea>
+                  </div>
+                </div>
+                <div class="">
+                  <div class="form-group">
+                    <label>Url picture</label>
+                    <input class="form-control" type="text" name="picture" id="picturegr1"/>
+                  </div>
+                </div>
+                <!-- <div class="">
+                  <div class="form-group">
+                    <label for="">Ảnh/Video</label>
+                    <input class="form-control-file border" type="file">
+                  </div>
+                </div> -->
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="PostByRequest()">Đăng</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="PostPage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Đăng bài cho page</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="">
+                  <div class="form-group">
+                    <label>Message</label>
+                    <textarea class="form-control" type="text" name="message" id="messagep1" ></textarea>
+                  </div>
+                </div>
+                <div class="">
+                  <div class="form-group">
+                    <label>Url picture</label>
+                    <input class="form-control" type="text" name="picture" id="picturep1"/>
+                  </div>
+                </div>
+                <div class="">
+                  <div class="form-group">
+                    <label for="">Chọn Page</label>
+                    <select class="mul-select" >
+                      <option value="1">a</option>
+                      <option value="2">b</option>
+                      <option value="3">c</option>
+                      <option value="4">d</option>
+                      <option value="5">e</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-success" >Lưu nháp</button>
+                <button type="button" class="btn btn-primary" >Đăng</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
           <div class="row justify-content-center align-items-center">
-              <!-- <div class="col-4">
+              <div class="col-4">
+                <div class="form-group">
+                  <label>Post ID</label>
+                  <input class="form-control" type="text" id="postid" />
+                </div>
+              </div>
+              <div class="col-4">
                 <div class="form-group">
                   <label>Message</label>
-                  <input class="form-control" type="text" name="message" id="message" />
+                  <input class="form-control" type="text" id="messageupdate"/>
                 </div>
               </div>
               <div class="col-4">
                 <div class="form-group">
-                  <label>Url picture</label>
-                  <input class="form-control" type="text" name="picture" id="picture"/>
+                  <label for="">Ảnh (URL)</label>
+                  <input class="form-control" type="text" id="pictureupdate">
                 </div>
               </div>
-              <div class="col-4">
-                <div class="form-group">
-                  <label for="">Ảnh/Video</label>
-                  <input class="form-control-file border" type="file">
-                </div>
-              </div> -->
             <div class="">
               <div class="col-auto">
                 <div class="modal_chucnang__group__button">
-                  <button class="modal_chucnang__button btn btn-outline-primary px-4 mx-2" ><img
-                    class="modal_chucnang__button__icon mb-2" src="assets/img/icons/add.png" alt="image icon">
-                  <div>Thêm mới</div>
-                </button>
-                <button class="modal_chucnang__button btn btn-outline-success px-4 mx-2"><img
-                  class="modal_chucnang__button__icon mb-2" src="assets/img/icons/upgrade.png" alt="image icon">
-                <div>Cập nhật</div>
-              </button>
+                  <button class="modal_chucnang__button btn btn-outline-success px-4 mx-2" ><img
+                    class="modal_chucnang__button__icon mb-2" src="assets/img/icons/upgrade.png" alt="image icon">
+                    <div>Cập nhật</div>
+                  </button>
                 </div>
               </div>
             </div>
+          </div>
+          <div class="modal_chucnang__group__button">
+            <button class="modal_chucnang__button btn btn-outline-primary px-2 mx-1" data-toggle="modal" data-target="#PostGroup">
+            <div>Đăng bài cho Group</div>
+            </button>
+            <button class="modal_chucnang__button btn btn-outline-success px-2 mx-1" data-toggle="modal" data-target="#PostPage">
+            <div>Đăng bài cho Page</div>
+            </button>
           </div>
         </div>
       </div>
@@ -109,7 +194,7 @@
                   <div>{{d.thuoc}}</div>
                 </td>
                 <td class="text-center">
-                  <div>{{d.trangthai}}</div>
+                  <div>{{d.trangThai}}</div>
                 </td>
                 <td class="text-center">
                   <div class="form-group">

@@ -24,7 +24,7 @@
     var idGroup = '';
     var ms = '';
     var url='';
-
+    var postid='';
     window.fbAsyncInit = function () {
       FB.init({
         appId: AppId,
@@ -43,7 +43,7 @@
 
      //Yêu cầu login Facebook và cấp quyền
      function RequestLoginFB() {
-            window.location = 'http://graph.facebook.com/oauth/authorize?client_id=726531241502023&scope=pages_manage_posts,pages_manage_engagement,pages_manage_ads,pages_manage_metadata,pages_read_engagement,pages_read_user_content,pages_show_list,public_profile,email,user_likes,user_birthday,user_posts,user_photos,user_location,publish_to_groups&redirect_uri=https://admin.elearningckc.com/facebook';
+            window.location = 'http://graph.facebook.com/oauth/authorize?client_id=726531241502023&scope=pages_manage_posts,pages_manage_engagement,pages_manage_ads,pages_manage_metadata,pages_read_engagement,pages_read_user_content,pages_show_list,public_profile,email,user_likes,user_birthday,user_posts,user_photos,user_location,publish_to_groups&redirect_uri=https://localhost:4200/facebook';
         }
   </script>
 
@@ -148,10 +148,20 @@
                         alert('Có lỗi khi POST bài: ');
                         console.log(response);
                     } else {
+                      console.log(response);
+                       postid = response.id;
+                        console.log(postid);
+                        getPostLink();
                         alert('ĐÃ POST THÀNH CÔNG');
                     }
                 });
 
+    }
+    function getPostLink(){
+      FB.api('/'+postid,{fields: 'permalink_url'}, function (response) {
+        var linkstt =response.permalink_url;
+              document.getElementById('linkstt').value = linkstt;
+            });
     }
     //Post lên Page picture by url
     function POSTPagePictureUrl() {

@@ -65,15 +65,18 @@
                     <input class="form-control" type="text" name="picture" id="picture"/>
                   </div>
                 </div>
-                <!-- <div class="">
+                <input type="text" value="" id="linkstt" hidden>
+                <div class="">
                   <div class="form-group">
-                    <label for="">Ảnh/Video</label>
-                    <input class="form-control-file border" type="file">
+                    <label for="">Loại</label>
+                    <select name="" id="">
+                      <option *ngFor="let l of getloai" [ngValue]="l.maLoai">{{l.loai}}</option>
+                    </select>
                   </div>
-                </div> -->
+                </div>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" (click)="getlinkstt()">Lưu</button>
                 <button type="button" class="btn btn-primary" onclick="PostByRequest()">Đăng</button>
               </div>
             </div>
