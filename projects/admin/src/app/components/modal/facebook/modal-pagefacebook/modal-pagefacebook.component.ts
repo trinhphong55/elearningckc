@@ -1,4 +1,5 @@
-import { LoaibaivietService } from './../../../../services/cntt/loaibaiviet.service';
+import { TrangThaifbService } from './../../../../services/trangthaifb.service';
+import { LoaifbService } from './../../../../services/loaifb.service';
 import { BaiDangfbService } from './../../../../services/baidangfb.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { PagefbService } from './../../../../services/pagefb.service';
@@ -18,16 +19,18 @@ export class ModalPagefacebookComponent implements OnInit {
   mess:any;
   addForm: FormGroup;
   getloai: any;
+  gettt: any;
   constructor(
     private modalService: ModalService,
     private pageFBService: PagefbService,
     private baiDangFBService: BaiDangfbService,
-    private loaifbService: LoaibaivietService,
+    private loaifbService: LoaifbService,
+    private trangthaiFBService: TrangThaifbService
     ) { }
 
   ngOnInit(): void {
     this.getAll();
-    this. getLoai();
+    this.getLoai();
     this.addForm = new FormGroup({
       tenPage: new FormControl(),
       IDpage: new FormControl(),
@@ -100,9 +103,16 @@ export class ModalPagefacebookComponent implements OnInit {
   }
 
   getLoai() {
-    this.baiDangFBService.getAll().subscribe((getloai) => {
+    this.loaifbService.getAll().subscribe((getloai) => {
       this.getloai = getloai;
       console.log(this.getloai);
+    });
+  }
+
+  getTrangThai(){
+    this.trangthaiFBService.getAll().subscribe((gettt) => {
+      this.gettt = gettt;
+      console.log(this.gettt);
     });
   }
 
