@@ -39,7 +39,6 @@ router.post('/nganhnghe', async (req, res) => {
     const nganh = new NganhNghe(req.body);
       var data = await nganh.save();
       res.status(201).json({ data });
-      // res.status(400).json({ message:"lỗi" });
    }
    else  {
     res.status(500).json({ message:"lỗi trùng dữ liệu" });
