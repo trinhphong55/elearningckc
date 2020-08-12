@@ -37,6 +37,7 @@ export class AppComponent implements OnInit {
     setCookie('token', '', '0');
     setCookie('email', '', '0');
     setCookie('role', '', '0');
+    setCookie('name', '', '0');
     window.location.href = "https://localhost:4200";
   }
 
@@ -46,6 +47,7 @@ export class AppComponent implements OnInit {
         if(response.data != null && response.data.role == 'admin'){
           setCookie('token', response.data.token, '7');
           setCookie('role', response.data.role, '7');
+          setCookie('name', response.data.displayName, '7');
           setCookie('email', response.data.email, '7');
           this.isLogged = true;
         }
