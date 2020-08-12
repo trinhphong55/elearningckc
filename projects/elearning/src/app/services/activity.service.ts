@@ -28,7 +28,7 @@ export class ActivityService {
     return `${this.name} đã ${hanhDong} ${dsDoiTuong[loaiDoiTuong]} "${noiDung}"`;
   }
 
-  public themActivity(maLHP: string, maDoiTuong: number, loaiDoiTuong: string, noiDung: string, hanhDong: string): Observable<any> {
+  public themActivity(maLHP: number, maDoiTuong: number, loaiDoiTuong: string, noiDung: string, hanhDong: string): Observable<any> {
     const data = {
       'loaiActivity': this.loaiActivityLHP,
       'maLopHocPhan': maLHP,

@@ -1,4 +1,5 @@
 const SinhVienModel = require("../models/sinh-vien.model");
+const settingModel = require("../models/setting.model");
 const lopHoc = require("../models/LopHoc.model");
 const lopHocPhan = require("../models/LopHocPhan.model");
 const diemSV = require("../models/diemsinhvien.model");
@@ -15,6 +16,8 @@ setSinhVien = (req) => {
     nguoiTao: req.nguoiTao,
     nguoiChinhSua: req.nguoiChinhSua,
     email: req.maSinhVien + "@caothang.edu.vn",
+    matKhau:req.matKhau,
+
   };
 };
 setSinhVienUpdate = (req) => {
@@ -71,6 +74,9 @@ exports.Laysinhvientheomalop = async (req, res) => {
 
 exports.themSinhVien = async (req, res) => {
   try {
+    const matkhau = await settingModel.findOne();
+    req.body.matKhau = matkhau.matKhauSinhVien;
+
     const sinhViens = await SinhVienModel.create(setSinhVien(req.body));
     res.json(sinhViens);
   } catch (error) {

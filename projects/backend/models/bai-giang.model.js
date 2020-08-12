@@ -13,18 +13,18 @@ const BaiGiangSchema = new Schema({
 
   },
   maBaiGiang:{
-    type:String,
+    type:Number,
     required:true,
     unique:true
 
   },
   maChuDe:{
-    type:String,
+    type:Number,
     required:true,
 
   },
   maLopHocPhan:{
-    type:String,
+    type:Number,
     required:true,
 
   },

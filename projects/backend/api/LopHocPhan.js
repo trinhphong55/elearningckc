@@ -4,7 +4,6 @@ const KHDT = require("../models/KeHoachDaoTao.model");
 const MonHoc = require("../models/MonHoc.model");
 const GVLHP = require("../models/GiaoVienLopHocPhan.model");
 const SINHVIEN = require("../models/sinh-vien.model");
-const LOPHOC =require("../models/LopHoc.model");
 const GiaoVienDAO = require('../DAO/GiaoVienDAO');
 const giaoVienDAO = new GiaoVienDAO();
 
@@ -181,6 +180,55 @@ router.get("/malophocphan/:maLopHocPhan", async (req, res) => {
     res.json(error);
   }
 });
+
+router.get("/cunggiaovien/malophocphan/:maLopHocPhan", async (req, res) => {
+  const maLopHocPhan = parseInt(req.params.maLopHocPhan);
+  let maGiaoVien = "null";
+  let dsGVLHPbymaGiaoVien;
+  let dsLHP = [];
+
+  await GVLHP.findOne({ maLopHocPhan, maGiaoVien: { $ne: "null" } })
+    .then(gvlhp => {
+      if (gvlhp !== null) {
+        maGiaoVien = gvlhp.maGiaoVien;
+      }
+    }).catch(err => {
+      return res.status(501).json({
+        message: err,
+        status: 501,
+      })
+    });
+
+  if (maGiaoVien === "null") {
+    return res.status(401).json({
+      message: "Lop hoc phan nay khong co that trong database",
+      status: 401
+    })
+  }
+
+  await GVLHP.find({ maGiaoVien, status: { $ne: 0 } }).then(data => {
+    dsGVLHPbymaGiaoVien = data;
+  })
+
+  await asyncForEach(dsGVLHPbymaGiaoVien, async gvlhp => {
+    await LopHocPhan.findOne({ maLopHocPhan: gvlhp.maLopHocPhan, trangThai: { $ne: 0 } })
+      .then(lhp => {
+        console.log(lhp.maLopHocPhan);
+        if (lhp.length !== 0) {
+          dsLHP.push(lhp);
+        }
+      })
+      .catch(err => {
+        return res.status(501).json({
+          message: err,
+          status: 501,
+        })
+      })
+  })
+
+  return res.status(200).json(dsLHP);
+})
+
 //SEARCH theo maNganh
 router.get("/:maLop/search", async (req, res) => {
   try {
@@ -221,7 +269,7 @@ router.get("/:email/giaovienlophocphan", async (req, res) => {
               a.push(y);
             }
           }
-          });
+        });
       });
     })
     res.json(a);
@@ -237,10 +285,10 @@ router.get("/:email/sinhvienlophocphan", async (req, res) => {
     var data = await LopHocPhan.find({trangThai:1});
     var a = [];
     result.forEach(async x => {
-        data.forEach(async y => {
-            if (x.maLopHoc == y.maLopHoc) {
-              a.push(y);
-            }
+      data.forEach(async y => {
+        if (x.maLopHoc == y.maLopHoc) {
+          a.push(y);
+        }
       });
     })
     res.json(a);
@@ -296,9 +344,9 @@ router.get("/android/malophoc/:maLopHoc", async (req, res) => {
             trangThai: lhp.trangThai,
             tenVietTat: mh.tenVietTat,
             loaiMonHoc: mh.maLoaiMonHoc,
-            maLopHocPhan:lhp.maLopHocPhan,
-            soLuongSV:lhp.soLuongSV,
-            soLuongSVHocGhep:lhp.soLuongSVHocGhep,
+            maLopHocPhan: lhp.maLopHocPhan,
+            soLuongSV: lhp.soLuongSV,
+            soLuongSVHocGhep: lhp.soLuongSVHocGhep,
           };
         } else {
           allowPush = false;

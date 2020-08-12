@@ -120,10 +120,10 @@
                   <input class="form-control" disabled value="{{ tienich.iconClassTienIch }} " />
                 </td>
                 <td>
-                  <input class="form-control" disabled value="{{ tienich.maMauTienIch }} " />
+                  <div height="100px" [style.background]="tienich.maMauTienIch">{{ tienich.maMauTienIch }}</div>
                 </td>
                 <td>
-                  <input class="form-control" disabled value="{{ tienich.trangThai }} " />
+                  <input class="form-control" disabled value="{{ showTrangThai(tienich.trangThai) }} " />
                 </td>
                 <td class="text-center">
                   <span class="modal_chucnang__button__edit mdi mdi-file-document-edit-outline mdi-24px"

@@ -79,6 +79,8 @@ import { ModalQuanlytintuccnttComponent } from './components/modal/cntt/modal-qu
 import { ModalThemtintuccnttComponent } from './components/modal/cntt/modal-themtintuccntt/modal-themtintuccntt.component';
 import { ModalChinhsuatintuccnttComponent } from './components/modal/cntt/modal-chinhsuatintuccntt/modal-chinhsuatintuccntt.component';
 import { ModalImportExcelKhoabomonComponent } from './components/modal/chuongtrinhdaotao/modal-import-excel-khoabomon/modal-import-excel-khoabomon.component';
+import { DetailGroupfacebookComponent } from './components/modal/facebook/details/detail-groupfacebook/detail-groupfacebook.component';
+import { DetailPagefacebookComponent } from './components/modal/facebook/details/detail-pagefacebook/detail-pagefacebook.component';
 import { ModalTintucComponent } from './components/modal/ttth/modal-tintuc/modal-tintuc.component';
 import { ModalQuanlyloaibaivietcnttComponent } from './components/modal/cntt/modal-quanlyloaibaivietcntt/modal-quanlyloaibaivietcntt.component';
 import { ModalCrawlingComponent } from './components/modal/cntt/modal-crawling/modal-crawling.component';
@@ -96,6 +98,7 @@ import { ModalTtthchudeComponent } from './components/modal/ttth/modal-ttthchude
 import { ModalThoikhoabieuComponent } from './components/modal/chuongtrinhdaotao/modal-thoikhoabieu/modal-thoikhoabieu.component';
 import { ModalPhonghocComponent } from './components/modal/chuongtrinhdaotao/modal-phonghoc/modal-phonghoc.component';
 import { ModalLichphonghocComponent } from './components/modal/chuongtrinhdaotao/modal-lichphonghoc/modal-lichphonghoc.component';
+import { ModalBaivietComponent } from './components/modal/cntt/modal-baiviet/modal-baiviet.component';
 
 @NgModule({
   declarations: [
@@ -162,6 +165,9 @@ import { ModalLichphonghocComponent } from './components/modal/chuongtrinhdaotao
     ModalChinhsuatintuccnttComponent,
     ModalHomeChuongtrinhdaotaoComponent,
     ModalImportExcelKhoabomonComponent,
+    DetailGroupfacebookComponent,
+    DetailPagefacebookComponent,
+    ModalImportExcelKhoabomonComponent,
     ModalTintucComponent,
     ModalCrawlingComponent,
     ModalQuanlyloaibaivietcnttComponent,
@@ -178,7 +184,8 @@ import { ModalLichphonghocComponent } from './components/modal/chuongtrinhdaotao
     ModalTtthchudeComponent,
     ModalThoikhoabieuComponent,
     ModalPhonghocComponent,
-    ModalLichphonghocComponent
+    ModalLichphonghocComponent,
+    ModalBaivietComponent
   ],
   imports: [
     BrowserModule,

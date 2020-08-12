@@ -10,10 +10,11 @@ declare var Swiper: any;
 export class SlidersinhvienComponent implements OnInit, AfterViewInit {
   Item: any = [];
 
-  constructor(private cnttBoSuuTapService: CnttBoSuuTapService) {}
+  constructor(private cnttBoSuuTapService: CnttBoSuuTapService) {
+    this.loadDanhSachItemSlider();
+  }
 
   ngOnInit(): void {
-    this.loadDanhSachItemSlider();
   }
 
   _slider: any;

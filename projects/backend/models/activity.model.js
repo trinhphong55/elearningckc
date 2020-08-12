@@ -16,7 +16,7 @@ const ActivitySchema = new mongoose.Schema({
   },
   maLopHocPhan: {
     required: true,
-    type: String,
+    type: Number,
   },
   loaiDoiTuong: {
     type: String,

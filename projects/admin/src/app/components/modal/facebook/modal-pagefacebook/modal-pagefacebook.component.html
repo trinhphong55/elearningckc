@@ -8,38 +8,77 @@
       <div class="col-12">
         <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
           <div class="row justify-content-center align-items-center">
-            <div class="col-3">
+            <div class="col-4">
               <div class="form-group">
                 <label for="">Tên Page</label>
-                <input type="text" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="">Link</label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" [formControl]="tenPage">
               </div>
             </div>
-            <div class="col-3">
+            <div class="col-4">
               <div class="form-group">
                 <label for="">ID Page</label>
-                <input type="text" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="">Access Token Page</label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" [formControl]="IDpage">
               </div>
             </div>
-            <div class="col-3">
+            <div class="col-4">
+              <div class="form-group">
+                <label for="">Link</label>
+                <input type="text" class="form-control" [formControl]="linkPage">
+              </div>
+            </div>
+            <div class="">
               <div class="modal_chucnang__group__button">
-                <button class="modal_chucnang__button btn btn-outline-primary px-4 mx-2"><img
+                <button class="modal_chucnang__button btn btn-outline-primary px-4 mx-2" (click)="Insert()"><img
                     class="modal_chucnang__button__icon mb-2" src="assets/img/icons/add.png" alt="image icon">
                   <div>Thêm mới</div>
                 </button>
+                <button class="modal_chucnang__button btn btn-outline-success px-4 mx-2" (click)="UpdatePage()"><img
+                  class="modal_chucnang__button__icon mb-2" src="assets/img/icons/upgrade.png" alt="image icon">
+                <div>Cập nhật</div>
+              </button>
               </div>
             </div>
           </div>
         </div>
       </div>
       <div class="col-12">
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="">
+                  <div class="form-group">
+                    <label>Message</label>
+                    <textarea class="form-control" type="text" name="message" id="message" ></textarea>
+                  </div>
+                </div>
+                <div class="">
+                  <div class="form-group">
+                    <label>Url picture</label>
+                    <input class="form-control" type="text" name="picture" id="picture"/>
+                  </div>
+                </div>
+                <div class="">
+                  <div class="form-group">
+                    <label for="">Ảnh/Video</label>
+                    <input class="form-control-file border" type="file">
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="PostByRequest()">Đăng</button>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
           <div class="d-flex align-items-center mb-2">
             <label class="mb-0 d-flex align-items-center"><span class="text-nowrap">Hiển thị &nbsp;</span>
@@ -50,41 +89,43 @@
               </select><span class="text-nowrap">&nbsp; hàng</span>
             </label>
             <label class="ml-auto mb-0 d-flex align-items-center"><span class="text-nowrap">Tìm kiếm: &nbsp;</span>
-              <input class="form-control form-control-sm" placeholder="Tìm kiếm">
+              <input class="form-control form-control-sm" placeholder="Tìm kiếm" [(ngModel)]="searchpage">
             </label>
           </div>
           <table class="modal_chucnang__table table table-hover" id="">
             <thead class="bg__caothang text-white">
+              <th class="text-center">STT</th>
               <th scope="col" class="text-center">id</th>
               <th scope="col" class="text-center">Tên Page</th>
               <th scope="col" class="text-center">Link</th>
-              <th scope="col" class="text-center">Số Lượng Like</th>
-              <th scope="col" class="text-center">Số lượng bài viết</th>
               <th scope="col" class="text-center">Tác vụ</th>
             </thead>
             <tbody>
-              <tr>
+              <tr *ngFor=" let d of data |filter: searchpage; index as stt" >
+                <td >{{stt+1}}</td>
                 <td class="text-center">
-                  1000
+                  <div>{{d.id_Page}}</div>
+                </td>
+                <td class="text-center" (click)="selectRow(d)">
+                  <div>{{d.tenPage}}</div>
                 </td>
                 <td class="text-center">
-                  Information Technology CKC
+                  <div>{{d.linkPage}}</div>
                 </td>
                 <td class="text-center">
-                  http://facebook.com/IT-CKC
-                </td>
-                <td class="text-center">
-                  185.234
-                </td>
-                <td class="text-center">
-                  500
-                </td>
-                <td class="text-center">
-                  <div class="form-group">
-                    <span class="modal_chucnang__button__edit mdi mdi-file-document-edit-outline mdi-24px"></span>
-                    <span class="modal_chucnang__button__delete ml-2 mdi mdi-delete-outline mdi-24px"></span>
-                    <span class="modal_chucnang__button__plus ml-2 mdi mdi-plus mdi-24px"></span>
+                  <div class="mb-1">
+                    <!-- Button trigger modal -->
+                    <button type="button" class="modal_chucnang__button btn btn-outline-success" data-toggle="modal" data-target="#exampleModalLong" onclick="getAccessToken(this)" data="{{d.id_Page}}">
+                      Đăng Bài
+                    </button>
                   </div>
+                  <div class="mb-1">
+                    <button class="modal_chucnang__button btn btn-outline-success px-4 mx-2" (click)="openDetailpage()">View</button>
+                  </div>
+                  <div class="mb-1">
+                    <button class="modal_chucnang__button btn btn-outline-success  px-4 mx-2" (click)="DeletePage(d)">Xóa</button>
+                  </div>
+
                 </td>
               </tr>
             </tbody>

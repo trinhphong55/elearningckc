@@ -7,6 +7,8 @@ const LoaiHinhDaoTao = require("./LoaiHinhDaoTao");
 const LopHocPhan = require("./LopHocPhan");
 const LoaiMonHoc = require("./LoaiMonHoc");
 const groupFB = require("../api/groupFB");
+const pagefb=require("../api/pagefb");
+const baidangfb=require("../api/baidangfb");
 const boMon = require("../api/bomon");
 const cnttHeader = require("./cnttHeader");
 const auth = require("./auth");
@@ -182,9 +184,28 @@ router.get("/lophoc/:tienTo/tiento", LopHoc.timLopTheoTienTo);
 
 //-----------------------------Routes LoaiDonVi
 router.get("/loaidonvi", loaidonviController.getLoaiDonVi);
-//-----------------------------Routes groupFB
+//-----------------------------Routes FB--------------------------------------------
 router.get("/groupfb", groupFB.getAll);
-
+//Lấy tất cả từ PageFB
+router.get("/pagefb",pagefb.getAll);
+//Thêm 1 page vào PageFB
+router.post("/pagefb",pagefb.postPageFB);
+//Update 1 page trong PageFB
+router.put("/pagefb/:id",pagefb.updatePageFB);
+//Delete 1 page trong PageFB
+router.delete("/pagefb/:id",pagefb.deletePageFB);
+//Lấy tất cả từ db QlBaiDangFB
+router.get("/baidangfb",baidangfb.getAll);
+//Thêm vào draw
+router.post("/baidangfb",baidangfb.postToDrawFB);
+//Thêm vào posted
+router.post("/baidangfb/:postID",baidangfb.postedToFB);
+//Update posted
+router.put("/baidangfb/:postID",baidangfb.updatePostedFB);
+//Xóa bài post
+router.delete("/baidangfb/:id",baidangfb.deletePostFB);
+//Update từ draw sang posted
+router.put("/baidangfbv2/:id",baidangfb.updateDrawToPosted);
 //----------------------------Routes SinhVien------------
 router.get("/sinhvien", verifyToken,sinhVien.layTatCaSinhVien);
 router.get("/sinhvien/:maLopHoc/malop", sinhVien.Laysinhvientheomalop);
@@ -216,6 +237,7 @@ router.get("/baigiang/:maLopHocPhan/lop-hoc-phan", baiGiang.layTheo_MaLHP);
 router.get("/baigiang/:maBaiGiang/ma-bai-giang", baiGiang.layTheo_maBaiGiang);
 router.post("/baigiang/upload", baiGiang.upload);
 router.post("/baigiang/download", baiGiang.download);
+router.delete("/baigiang/:maBaiGiang", baiGiang.xoa);
 
 //========================= Routes BinhLuan ==========================================
 router.get("/binhluan/:loaiBaiViet/baiviet/:maBaiViet", binhLuan.layBinhLuan_theoBaiViet);

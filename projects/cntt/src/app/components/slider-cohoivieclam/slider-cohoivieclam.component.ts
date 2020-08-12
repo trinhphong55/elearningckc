@@ -1,4 +1,6 @@
 import { Component, OnInit, AfterViewInit, Input } from '@angular/core';
+import * as moment from 'moment';
+
 declare var $: any;
 declare var Swiper: any;
 
@@ -38,5 +40,10 @@ export class SliderCohoivieclamComponent implements OnInit, AfterViewInit {
         prevEl: '.job_home__slider__navigation .prev',
       },
     });
+  }
+
+  formatDatetime(time: string): string {
+    time = moment(time).format('HH:mm, DD-MM-YYYY');
+    return time;
   }
 }

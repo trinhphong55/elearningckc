@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
 import { BaiTap } from '../../../../../models/bai-tap.interface';
 import { BaiTapService } from '../../../../../services/bai-tap.service';
 import { BinhLuanService } from '../../../../../services/binh-luan.service';
-
+import { FileService } from '../../../../../services/file.service';
+import { saveAs } from 'file-saver';
 @Component({
   selector: 'app-xembaigiangsv',
   templateUrl: './xembaigiangsv.component.html',
@@ -21,11 +22,13 @@ export class XembaigiangsvComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private baiGiangService: BaiGiangService,
-    private binhLuanService: BinhLuanService
+    private binhLuanService: BinhLuanService,
+    private _fileService:FileService
   ) {}
 
   ngOnInit(): void {
     this.xem_baiGiang();
+    console.log(this.baiGiang);
   }
   public xem_baiGiang() {
     this.route.params.subscribe((params) => {
@@ -65,5 +68,12 @@ export class XembaigiangsvComponent implements OnInit {
     };
     this.binhLuanService.themBinhluan(data).subscribe((res) => {});
   }
-
+  download(filename) {
+    // var filename = this.attachmentList[index].uploadname;
+    console.log(filename);
+    this._fileService.downloadFileBaiGiang(filename).subscribe(
+      (data) => saveAs(data, filename),
+      (error) => console.log(error)
+    );
+  }
 }
