@@ -11,7 +11,7 @@
             <div class="col-3">
               <div class="form-group">
                 <label>Chọn khóa học</label>
-                <select class="form-control" #makhoahoc>
+                <select class="modal_chucnang__select2 form-control" #makhoahoc>
                   <option></option>
                   <ng-container *ngFor="let item of MaKhoaHoc">
                     <option value="{{item.makhoahoc}}">{{item.tenkhoahoc}}</option>
@@ -62,8 +62,8 @@
           <div class="row justify-content-center align-items-center">
             <div class="col-3">
               <div class="form-group">
-                <label>Chọn mã khóa học</label>
-                <select class="form-control" [(ngModel)]="selectedItem.makhoahoc">
+                <label>Chọn khóa học</label>
+                <select class="modal_chucnang__select2 form-control" [(ngModel)]="selectedItem.makhoahoc">
                   <ng-container *ngFor="let item of MaKhoaHoc">
                     <option value="{{item.makhoahoc}}">{{item.tenkhoahoc}}</option>
                   </ng-container>
@@ -126,7 +126,6 @@
                 <th scope="col">Giờ học</th>
                 <th scope="col">Ngày khai giảng</th>
                 <th scope="col">Học phí</th>
-                <th scope="col">Nhap diem</th>
                 <th scope="col">Người tạo</th>
                 <th scope="col">Người sửa</th>
                 <th scope="col">Trạng thái</th>
@@ -143,7 +142,6 @@
                 <td>{{item.giohoc}}</td>
                 <td>{{item.ngaykhaigiang | date:'dd/MM/yyyy'}}</td>
                 <td>{{item.hocphi}}</td>
-                <td>{{item.nhapdiem}}</td>
                 <td>{{item.nguoitao}}</td>
                 <td>{{item.nguoisua}}</td>
                 <td *ngIf="item.trangthai==false">Đã xóa</td>

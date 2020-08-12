@@ -3,10 +3,29 @@
   <div class="container-fluid mt-3">
     <div class="row">
       <div class="col-12">
-        <h1 class="text-center text-white">Nhập điểm thi</h1>
+        <h1 class="text-center text-white">Nhập điểm đợt thi</h1>
       </div>
       <div class="col-12">
         <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
+          <div class="col-3">
+            <div class="form-group">
+              <label>Chọn đợt thi</label>
+              <select class="form-control" (change)="onChangeDotThi($event.target.value)">
+                  <option value=""></option>
+                <ng-container *ngFor="let item of DotThi">
+                  <option value="{{item.tendot}}">{{item.tendot}}</option>
+                </ng-container>
+                <ng-container *ngFor="let item of LopHoc">
+                  <option *ngIf="item.nhapdiem=='Nhập chung'" value="{{item.makhoahoc}}-{{item.lop}}-{{item.dot}}">{{item.makhoahoc}}-{{item.lop}}-{{item.dot}}</option>
+                </ng-container>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
+          <label>Chọn thư mục excel</label>
           <div  class="custom-file">
             <input type="file" (change)="onChange($event)" #inputFile>
           </div>

@@ -16,7 +16,10 @@
                 <th scope="col">Ngày sinh</th>
                 <th scope="col">Nơi sinh</th>
                 <th scope="col">Số điện thoại</th>
-                <th scope="col">Lớp học</th>
+                <th scope="col">Tên đợt thi</th>
+                <th scope="col">Ngày thi</th>
+                <th scope="col">Giờ thi</th>
+                <th scope="col">Phòng thi</th>
                 <th class="text-center" scope="col"><span
                     class="modal_chucnang__button__save mdi mdi-content-save-outline mdi-24px"></span></th>
               </tr>
@@ -29,7 +32,10 @@
                 <td>{{item.ngaysinh}}</td>
                 <td>{{item.noisinh}}</td>
                 <td>{{item.sodienthoai}}</td>
-                <td>{{item.lophoc}}</td>
+                <td>{{item.tendot}}</td>
+                <td>{{item.ngaythi}}</td>
+                <td>{{item.giothi}}</td>
+                <td>{{item.phongthi}}</td>
                 <td class="text-center">
                   <!-- <span class="modal_chucnang__button__delete mdi mdi-wrench-outline mdi-24px  mr-2"></span> -->
                   <span class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px" (click)="delete(item)"></span>

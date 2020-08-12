@@ -17,6 +17,12 @@ export class LophocService {
       catchError(error => of([]))
     );
   }
+  getfilter(): Observable<ttthLopHoc[]  >{
+    return this.http.get<ttthLopHoc[] >('https://localhost:4100/api/ttthLopHoc/').pipe(
+      retry(1),
+      catchError(error => of([]))
+    );
+  }
   add(newItem: ttthLopHoc): Observable<ttthLopHoc> {
     return this.http.post<ttthLopHoc>('https://localhost:4100/api/ttthLopHoc/add', newItem, httpOptions).pipe(
     );

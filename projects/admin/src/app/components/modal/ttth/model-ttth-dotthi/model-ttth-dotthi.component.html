@@ -18,10 +18,20 @@
                 <input type="date" class="form-control" #ngaythi>
               </div>
             </div>
+            <div class="col-4">
+              <div class="form-group">
+                <label>Giờ thi</label>
+                <input type="text" class="form-control" #giothi>
+              </div>
+              <div class="form-group">
+                <label>Phòng thi</label>
+                <input type="text" class="form-control" #phongthi>
+              </div>
+            </div>
             <div class="col-auto">
               <div class="modal_chucnang__group__button">
-                <button class="modal_chucnang__button btn btn-outline-primary px-4 mx-2" [disabled]="!tendot.value  || !ngaythi.value "
-                  (click)="add(tendot.value,ngaythi.value);tendot.value=''; ngaythi.value=''"><img
+                <button class="modal_chucnang__button btn btn-outline-primary px-4 mx-2" [disabled]="!tendot.value  || !ngaythi.value|| !giothi.value|| !phongthi.value "
+                  (click)="add(tendot.value,ngaythi.value,giothi.value,phongthi.value);tendot.value=''; ngaythi.value=''; giothi.value=''; phongthi.value=''"><img
                     class="modal_chucnang__button__icon mb-2" src="assets/img/icons/add.png" alt="image icon">
                   <div>Thêm mới</div>
                 </button>
@@ -41,6 +51,16 @@
               <div class="form-group">
                 <label>Ngày thi</label>
                 <input type="date" class="form-control" [(ngModel)]="selectedItem.ngaythi">
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="form-group">
+                <label>Giờ thi </label>
+                <input type="text" class="form-control"  [(ngModel)]="selectedItem.giothi">
+              </div>
+              <div class="form-group">
+                <label>Phòng thi</label>
+                <input type="date" class="form-control" [(ngModel)]="selectedItem.phongthi">
               </div>
             </div>
             <div class="col-auto">
@@ -68,6 +88,8 @@
                 <th>#</th>
                 <th scope="col">Tên đợt thi</th>
                 <th scope="col">Ngày thi</th>
+                <th scope="col">Giờ thi</th>
+                <th scope="col">Phòng thi</th>
                 <th scope="col">Người tạo</th>
                 <th scope="col">Người sửa</th>
                 <th scope="col">Trạng thái</th>
@@ -79,7 +101,9 @@
               <tr *ngFor="let item of DotThi; let i = index">
                 <td style="max-width: 50px">{{i + 1}}</td>
                 <td>{{item.tendot}}</td>
-                <td>{{item.ngaythi | date:'dd/MM/yyyy'}}</td>
+                <td>{{item.ngaythi}}</td>
+                <td>{{item.giothi}}</td>
+                <td>{{item.phongthi}}</td>
                 <td>{{item.nguoitao}}</td>
                 <td>{{item.nguoisua}}</td>
                 <td *ngIf="item.trangthai==false">Đã xóa</td>

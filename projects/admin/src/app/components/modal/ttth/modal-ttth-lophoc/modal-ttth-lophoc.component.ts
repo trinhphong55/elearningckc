@@ -14,7 +14,6 @@ export class ModalTtthLophocComponent implements OnInit {
   constructor(private modalService: ModalService,private lophocService: LophocService,private khoahocService: KhoahocService ,private toastr: ToastrService) { }
   LopHoc: ttthLopHoc[];
   MaKhoaHoc: any[];
-  private NhapDiem: 'ádsad';
   private _username: any = getCookie('displayName');
   getYear = new Date().getFullYear();
   ngOnInit(): void {
@@ -34,10 +33,10 @@ export class ModalTtthLophocComponent implements OnInit {
     this.selectedItem=null;
   }
   add(makhoahoc: string,dot: string,giaovien: string,buoihoc: string,giohoc: string,ngaykhaigiang: string,hocphi: string): void {
+    let NhapDiem: any;
     this.MaKhoaHoc.forEach(function (value) {
       if (makhoahoc==value.makhoahoc) {
-        // this.NhapDiem = value.nhapdiem;
-        alert(this.NhapDiem)
+        NhapDiem = value.nhapdiem;
       }
     });
     const newItem: ttthLopHoc = new ttthLopHoc();
@@ -49,7 +48,7 @@ export class ModalTtthLophocComponent implements OnInit {
     newItem.ngaykhaigiang = ngaykhaigiang;
     newItem.hocphi = hocphi;
     newItem.giaovien = giaovien;
-    newItem.nhapdiem = this.NhapDiem;
+    newItem.nhapdiem = NhapDiem;
     newItem.trangthai = true;
     newItem.nguoitao = this._username;
     newItem.nguoisua = null;
@@ -59,7 +58,6 @@ export class ModalTtthLophocComponent implements OnInit {
       .subscribe(data => {
         this.LopHoc.push(data);
         this.getdanhsach();
-
       });
     this.toastr.success('Thêm thành công');
   }
@@ -69,6 +67,13 @@ export class ModalTtthLophocComponent implements OnInit {
     this.selectedItem= LopHoc;
   }
   update(LopHoc: ttthLopHoc):void {
+    let NhapDiem: any;
+    this.MaKhoaHoc.forEach(function (value) {
+      if (LopHoc.makhoahoc==value.makhoahoc) {
+        NhapDiem = value.nhapdiem;
+      }
+    });
+    LopHoc.nhapdiem=NhapDiem;
     LopHoc.updated_at= new Date;
     LopHoc.nguoisua= this._username;
     this.lophocService.update(LopHoc)
@@ -88,7 +93,6 @@ export class ModalTtthLophocComponent implements OnInit {
       .subscribe(data => {
         this.LopHoc.push(data);
       this.getdanhsach();
-
       });
       this.toastr.success('Xóa thành công');
     }

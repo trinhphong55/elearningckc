@@ -28,10 +28,12 @@ export class ModelTtthDotthiComponent implements OnInit {
     this.selectedItem=null;
   }
   // add
-  add(tendot: string,ngaythi: Date): void {
+  add(tendot: string,ngaythi: string,giothi: string,phongthi: string): void {
     const newItem: ttthDotThi = new ttthDotThi();
     newItem.tendot = tendot;
     newItem.ngaythi = ngaythi;
+    newItem.giothi = giothi;
+    newItem.phongthi = phongthi;
     newItem.trangthai = true;
     newItem.nguoitao = this._username;
     newItem.nguoisua = null;
