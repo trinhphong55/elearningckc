@@ -46,11 +46,11 @@ router.post("/save", async (req, res) => {
       tieuDe: data.title,
       noiDung: data.data,
       trangThai: 2,
+      thoiGianDangBai: Date.now(),
       crawling: true,
       crawlURL: url,
     });
     await baiViet.save();
-    console.log("Crawling: Luu bai viet thanh cong.");
     res.status(201).json({ message: "Crawling: Lưu bài viết thành công." });
   } catch (error) {
     res.json({ message: "Crawling: Lưu bài viết thất bại.", error: error });

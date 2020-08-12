@@ -1,3 +1,4 @@
+import { LoaibaivietService } from './../../../../services/cntt/loaibaiviet.service';
 import { BaiDangfbService } from './../../../../services/baidangfb.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { PagefbService } from './../../../../services/pagefb.service';
@@ -21,6 +22,7 @@ export class ModalPagefacebookComponent implements OnInit {
     private modalService: ModalService,
     private pageFBService: PagefbService,
     private baiDangFBService: BaiDangfbService,
+    private loaifbService: LoaibaivietService,
     ) { }
 
   ngOnInit(): void {

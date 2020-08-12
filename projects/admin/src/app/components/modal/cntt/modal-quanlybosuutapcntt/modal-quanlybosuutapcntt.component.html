@@ -1,8 +1,5 @@
 <app-modal class="modal_chucnang__wrapper" id="cntt_quanlybosuutap">
-  <div
-    (click)="closeModal('cntt_quanlybosuutap')"
-    class="modal_chucnang__close mdi mdi-chevron-left text-white"
-  ></div>
+  <div (click)="closeModal('cntt_quanlybosuutap')" class="modal_chucnang__close mdi mdi-chevron-left text-white"></div>
   <div class="container-fluid mt-3">
     <form [formGroup]="boSuuTapForm">
       <div class="row">
@@ -17,18 +14,10 @@
                   <div class="box-img">
                     <img id="imgBST" />
                   </div>
-                  <input
-                    type="file"
-                    id="input_image_BST"
-                    name="image"
-                    (change)="onFileSelected($event)"
+                  <input type="file" id="input_image_BST" name="image" (change)="onFileSelected($event)"
                     onchange="document.getElementById('imgBST').src = window.URL.createObjectURL(this.files[0])"
-                    accept="image/x-png,image/jpeg"
-                  />
-                  <label
-                    for="input_image_BST"
-                    class="btn btn-outline-dark btn-sm btn-block w-100 mb-0 mt-2"
-                  >
+                    accept="image/x-png,image/gif,image/jpeg"/>
+                  <label for="input_image_BST" class="btn btn-outline-dark btn-sm btn-block w-100 mb-0 mt-2">
                     Chọn hình ảnh
                   </label>
                 </div>
@@ -36,14 +25,9 @@
               <div class="col-4">
                 <div class="form-group">
                   <label>Loại Bộ sưu tập</label>
-                  <select
-                    class="custom-select form-control"
-                    (change)="chonMaBoSuuTap($event.target.value)"
-                    formControlName="maBST"
-                  >
-                    <option class="d-none" selected value="-1"
-                      >Chọn Loại Bộ sưu tập</option
-                    >
+                  <select class="custom-select form-control" (change)="chonMaBoSuuTap($event.target.value)"
+                    formControlName="maBST" required>
+                    <option class="d-none" selected value="-1">Chọn Loại Bộ sưu tập</option>
                     <option value="BST01">
                       Đơn vị liên kết
                     </option>
@@ -51,10 +35,7 @@
                       Hình ảnh Sinh Viên
                     </option>
                   </select>
-                  <div
-                    *ngIf="maBST.invalid && (maBST.dirty || maBST.touched)"
-                    class="alert alert-danger"
-                  >
+                  <div *ngIf="maBST.invalid && (maBST.dirty || maBST.touched)" class="alert alert-danger">
                     <div *ngIf="maBST.errors.required">
                       Vui lòng chọn loại BST.
                     </div>
@@ -62,16 +43,8 @@
                 </div>
                 <div class="form-group">
                   <label>Nhập alt ảnh</label>
-                  <input
-                    class="form-control"
-                    type="text"
-                    formControlName="alt"
-                    required
-                  />
-                  <div
-                    *ngIf="alt.invalid && (alt.dirty || alt.touched)"
-                    class="alert alert-danger"
-                  >
+                  <input class="form-control" type="text" formControlName="alt" required />
+                  <div *ngIf="alt.invalid && (alt.dirty || alt.touched)" class="alert alert-danger">
                     <div *ngIf="alt.errors.required">
                       Vui lòng nhập Alt ảnh.
                     </div>
@@ -79,38 +52,26 @@
                 </div>
                 <div class="form-group">
                   <label>Nhập đường dẫn ảnh</label>
-                  <input
-                    class="form-control"
-                    type="text"
-                    formControlName="url"
-                  />
+                  <input class="form-control" type="text" formControlName="url" required/>
+                  <div *ngIf="url.invalid && (url.dirty || url.touched)" class="alert alert-danger">
+                    <div *ngIf="url.errors.required">
+                      Vui lòng nhập đường dẫn liên kết 
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="col-auto">
                 <div class="form-group"></div>
                 <div class="form-group">
                   <div class="modal_chucnang__group__button">
-                    <button
-                      class="modal_chucnang__button btn btn-outline-primary px-4 mx-2"
-                      type="submit"
-                      (click)="onSave()"
-                    >
-                      <img
-                        class="modal_chucnang__button__icon mb-2"
-                        src="assets/img/icons/add.png"
-                        alt="image icon"
-                      />
+                    <button class="modal_chucnang__button btn btn-outline-primary px-4 mx-2" type="submit"
+                      (click)="onSave()">
+                      <img class="modal_chucnang__button__icon mb-2" src="assets/img/icons/add.png" alt="image icon" />
                       <div>Lưu</div>
                     </button>
-                    <button
-                      class="modal_chucnang__button btn btn-outline-danger px-4 mx-2"
-                      type="reset"
-                    >
-                      <img
-                        class="modal_chucnang__button__icon mb-2"
-                        src="assets/img/icons/error.png"
-                        alt="image icon"
-                      />
+                    <button class="modal_chucnang__button btn btn-outline-danger px-4 mx-2" type="reset">
+                      <img class="modal_chucnang__button__icon mb-2" src="assets/img/icons/error.png"
+                        alt="image icon" />
                       <div>Huỷ</div>
                     </button>
                   </div>
@@ -124,13 +85,8 @@
     <div class="row">
       <div class="col-12">
         <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
-          <table
-            datatable="ng"
-            *ngIf="showContent"
-            [dtOptions]="dtOptions"
-            class="modal_chucnang__table row-border hover table-bordered"
-            datatable
-          >
+          <table datatable="ng" *ngIf="showContent" [dtOptions]="dtOptions"
+            class="modal_chucnang__table row-border hover table-bordered" datatable>
             <thead class="bg__caothang text-white">
               <tr>
                 <th scope="col">Mã Bộ sưu tập</th>
@@ -139,58 +95,33 @@
                 <th scope="col">Alt ảnh</th>
                 <th scope="col">Trạng thái</th>
                 <th class="text-center" scope="col">
-                  <span
-                    class="modal_chucnang__button__save mdi mdi-content-save-outline mdi-24px"
-                  ></span>
+                  <span class="modal_chucnang__button__save mdi mdi-content-save-outline mdi-24px"></span>
                 </th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let boSuuTap of BoSuuTap; let i = index">
                 <td style="max-width: 100px;">
-                  <input
-                    class="form-control"
-                    value="{{ boSuuTap.maBST }}"
-                    disabled
-                  />
+                  <input class="form-control" value="{{ boSuuTap.maBST }}" disabled />
                 </td>
                 <td>
-                  <input
-                    class="form-control"
-                    value="{{ boSuuTap.url }}"
-                    disabled
-                  />
+                  <input class="form-control" value="{{ boSuuTap.url }}" disabled />
+                </td>
+                <td width="128px" height="128px">
+                  <img class="w-100" src="https://localhost:4100/{{boSuuTap.src}}">
+                  <input class="form-control" value="{{ boSuuTap.src }}" disabled />
                 </td>
                 <td>
-                  <input
-                    class="form-control"
-                    value="{{ boSuuTap.src }} "
-                    disabled
-                  />
+                  <input class="form-control" value="{{ boSuuTap.alt }} " disabled />
                 </td>
                 <td>
-                  <input
-                    class="form-control"
-                    value="{{ boSuuTap.alt }} "
-                    disabled
-                  />
-                </td>
-                <td>
-                  <input
-                    class="form-control"
-                    value="{{ boSuuTap.trangThai }} "
-                    disabled
-                  />
+                  <input class="form-control" value="{{showTrangThai(boSuuTap.trangThai )}} " disabled />
                 </td>
                 <td class="text-center">
-                  <span
-                    class="modal_chucnang__button__edit mdi mdi-file-document-edit-outline mdi-24px"
-                    (click)="editBoSuuTap(boSuuTap)"
-                  ></span>
-                  <span
-                    class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px"
-                    (click)="onXoaItem(boSuuTap._id)"
-                  ></span>
+                  <span class="modal_chucnang__button__edit mdi mdi-file-document-edit-outline mdi-24px"
+                    (click)="editBoSuuTap(boSuuTap)"></span>
+                  <span class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px"
+                    (click)="onXoaItem(boSuuTap._id)"></span>
                 </td>
               </tr>
             </tbody>

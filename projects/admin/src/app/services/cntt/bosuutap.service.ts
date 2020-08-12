@@ -29,9 +29,14 @@ export class CnttBoSuuTapService {
       .pipe(catchError(this.errorMgmt));
   }
   //   //edit tintuc
-  editItemTienIch(data): Observable<cnttBoSuuTap> {
+  // editItemTienIch(data): Observable<cnttBoSuuTap> {
+  //   return this.http
+  //     .post<cnttBoSuuTap>(this.baseUri + '/chinhsuabst', data)
+  //     .pipe(catchError(this.errorMgmt));
+  // }
+  editItemTienIch(formData: FormData): Observable<any> {
     return this.http
-      .post<cnttBoSuuTap>(this.baseUri + '/chinhsuabst', data)
+      .post(this.baseUri + '/chinhsuabst', formData)
       .pipe(catchError(this.errorMgmt));
   }
   // Error handling
