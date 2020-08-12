@@ -28,7 +28,7 @@ export class XembaigiangsvComponent implements OnInit {
 
   ngOnInit(): void {
     this.xem_baiGiang();
-    console.log(this.baiGiang);
+
   }
   public xem_baiGiang() {
     this.route.params.subscribe((params) => {
@@ -70,7 +70,7 @@ export class XembaigiangsvComponent implements OnInit {
   }
   download(filename) {
     // var filename = this.attachmentList[index].uploadname;
-    console.log(filename);
+
     this._fileService.downloadFileBaiGiang(filename).subscribe(
       (data) => saveAs(data, filename),
       (error) => console.log(error)

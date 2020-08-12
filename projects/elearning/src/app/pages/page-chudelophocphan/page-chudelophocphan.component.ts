@@ -21,6 +21,8 @@ import { CookieService } from 'ngx-cookie-service';
 export class PageChudelophocphanComponent implements OnInit {
   public dsChuDe: ChuDe[] = [];
   public dsBaiGiang: BaiGiang[] = [];
+  public dsBaiGiangTam: BaiGiang[] = [];
+
   public dsBaiTap: BaiTap[] = [];
   public maLopHocPhan: number = 1;
   public dsBinhLuan_baiGiang: any[] = [];
@@ -55,6 +57,7 @@ export class PageChudelophocphanComponent implements OnInit {
   }
   public layDS_BaiTap() {
     this.baiTapService.layDS_theoLopHocPhan(1).subscribe((res) => {
+      this.dsBaiTap = [];
       this.dsBaiTap = res.data;
       this.dsBaiTap.forEach((bt) => {
         bt.ngayChinhSua =
@@ -66,7 +69,6 @@ export class PageChudelophocphanComponent implements OnInit {
     });
   }
   public layDS_ChuDe() {
-
     this.chuDeService.layTheo_maLopHocPhan(this.maLopHocPhan).subscribe(
       (res: any) => {
         if (res.data) {
@@ -80,12 +82,11 @@ export class PageChudelophocphanComponent implements OnInit {
     );
   }
   public layDS_BaiGiang() {
-
     this.baiGiangService.layTatCa().subscribe(
       (res: any) => {
         if (res.data) {
-          this.dsBaiGiang = [];
-          this.dsBaiGiang = res.data;
+          this.dsBaiGiangTam = res.data;
+          this.dsBaiGiang = this.dsBaiGiangTam;
           this.dsBaiGiang.forEach((el) => {
             // el.ngayChinhSua = new Date(el.ngayChinhSua);
             el.ngayChinhSua =
@@ -118,11 +119,20 @@ export class PageChudelophocphanComponent implements OnInit {
     );
   }
   onClickXoaBaiGiang(maBaiGiang) {
+    // this.dsBaiGiang = [];
     this.baiGiangService.xoa(maBaiGiang).subscribe((res: any) => {
-      this.layDS_ChuDe();
-      this.layDS_BaiGiang();
-      console.log(this.dsBaiGiang);
-      console.log(res);
+      //this.layDS_ChuDe();
+      this.baiGiangService.layTatCa().subscribe((res: any) => {
+        this.dsBaiGiang = res.data;
+        this.dsBaiGiang.forEach((el) => {
+          // el.ngayChinhSua = new Date(el.ngayChinhSua);
+          el.ngayChinhSua =
+            new Date(el.ngayChinhSua).toLocaleDateString() +
+            ' : ' +
+            new Date(el.ngayChinhSua).toLocaleTimeString();
+
+        });
+      });
     });
   }
   onClickXoaChuDe(maChuDe) {
