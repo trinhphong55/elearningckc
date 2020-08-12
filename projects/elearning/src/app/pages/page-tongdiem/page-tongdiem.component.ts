@@ -95,7 +95,6 @@ export class PageTongdiemComponent implements OnInit {
     this.cotDiemLopHocPhanService.layCotDiemByMaLopHP(this.router.snapshot.paramMap.get('id')).subscribe(
       cotDiemHP => {
         this.cotDiemHP = cotDiemHP;
-        console.log(cotDiemHP)
       },
       (error) => {
         console.log(error);
@@ -107,7 +106,6 @@ export class PageTongdiemComponent implements OnInit {
     this.chiTietDiemSVLopHocPhanService.layCotDiemByMaLopHP(this.router.snapshot.paramMap.get('id')).subscribe(
       ctDiem => {
         this.ctDiem = ctDiem;
-        console.log(ctDiem)
       },
       (error) => {
         console.log(error);
