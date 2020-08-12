@@ -20,6 +20,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { LopHocPhan } from '../../models/lophocphan.interface';
 import { MonHoc } from '../../models/monhoc.interface';
+import { CookieService } from 'ngx-cookie-service';
+
 
 @Component({
   selector: 'app-page-trangcanhansv',
@@ -27,13 +29,7 @@ import { MonHoc } from '../../models/monhoc.interface';
   styleUrls: ['./page-trangcanhansv.component.css'],
 })
 export class PageTrangcanhansvComponent implements OnInit {
-  public taiKhoan = {
-    displayName: '0306171004',
-    email: '0306171004@caothang.edu.vn',
-    password: '12345',
-    role: 'SV',
-    isValid: true,
-  };
+  public taiKhoan:any;
   public sinhVien: SinhVien;
   public sinhViens: SinhVien[] = [];
 
@@ -95,10 +91,12 @@ export class PageTrangcanhansvComponent implements OnInit {
     private monHocService: MonhocService,
     private chuDeService: ChuDeService,
     private thoiKhoaBieu: ThoiKhoaBieuService,
-    private lophocService:LopHocService
+    private lophocService:LopHocService,
+    private cookieService:CookieService,
   ) {}
 
   ngOnInit(): void {
+    this.setTaiKhoan();
     this.layThongTinSV(this.taiKhoan.displayName);
     this.layDiemSinhVien(this.taiKhoan.displayName);
     // this.layLopHocPhan();
@@ -163,6 +161,11 @@ export class PageTrangcanhansvComponent implements OnInit {
     return this.locBangDiemFormGroup.get('chonLop');
   }
   //######################### Lay Thong Tin ##########################
+  public setTaiKhoan(){
+    this.taiKhoan = this.cookieService.getAll();
+    this.taiKhoan.displayName = this.cookieService.get('email').slice(0,10);
+    console.log(this.taiKhoan);
+  }
   public layThongTinSV(maSV: string) {
     this.sinhVienService.getonesv(maSV).subscribe(
       (sv) => {

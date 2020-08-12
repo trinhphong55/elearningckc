@@ -21,12 +21,14 @@ import { CookieService } from 'ngx-cookie-service';
 export class PageChudelophocphanComponent implements OnInit {
   public dsChuDe: ChuDe[] = [];
   public dsBaiGiang: BaiGiang[] = [];
+  public dsBaiGiangTam: BaiGiang[] = [];
+
   public dsBaiTap: BaiTap[] = [];
   public maLopHocPhan: number = 1;
   public dsBinhLuan_baiGiang: any[] = [];
-  public dsBinhLuan_baiTap:any [] = [];
-  quyen:string="";
-  doiTuong:any;
+  public dsBinhLuan_baiTap: any[] = [];
+  quyen: string = '';
+  doiTuong: any;
   // @Output  dsBaiGiang: BaiGiang[] = [];
 
   constructor(
@@ -37,7 +39,7 @@ export class PageChudelophocphanComponent implements OnInit {
     private baiGiangService: BaiGiangService,
     private binhLuanService: BinhLuanService,
     private baiTapService: BaiTapService,
-    private cookie: CookieService,
+    private cookie: CookieService
   ) {}
   ngOnInit(): void {
     this.layDS_BaiGiang();
@@ -47,22 +49,22 @@ export class PageChudelophocphanComponent implements OnInit {
     this.quyenTao();
   }
   //quuyen tao bai tap chu de
-  quyenTao(){
-    this.doiTuong = this.cookie.get("role");
-    if(this.doiTuong== 'SV')
-    {
-      this.quyen='none'
+  quyenTao() {
+    this.doiTuong = this.cookie.get('role');
+    if (this.doiTuong == 'SV') {
+      this.quyen = 'none';
     }
   }
   public layDS_BaiTap() {
     this.baiTapService.layDS_theoLopHocPhan(1).subscribe((res) => {
+      this.dsBaiTap = [];
       this.dsBaiTap = res.data;
       this.dsBaiTap.forEach((bt) => {
         bt.ngayChinhSua =
           new Date(bt.ngayChinhSua).toLocaleDateString() +
           ' : ' +
           new Date(bt.ngayChinhSua).toLocaleTimeString();
-          this.layDS_BinhLuan(2, bt.maBaiTap);
+        this.layDS_BinhLuan(2, bt.maBaiTap);
       });
     });
   }
@@ -70,6 +72,7 @@ export class PageChudelophocphanComponent implements OnInit {
     this.chuDeService.layTheo_maLopHocPhan(this.maLopHocPhan).subscribe(
       (res: any) => {
         if (res.data) {
+          this.dsChuDe = [];
           this.dsChuDe = res.data;
         } else {
           console.log(res);
@@ -82,7 +85,8 @@ export class PageChudelophocphanComponent implements OnInit {
     this.baiGiangService.layTatCa().subscribe(
       (res: any) => {
         if (res.data) {
-          this.dsBaiGiang = res.data;
+          this.dsBaiGiangTam = res.data;
+          this.dsBaiGiang = this.dsBaiGiangTam;
           this.dsBaiGiang.forEach((el) => {
             // el.ngayChinhSua = new Date(el.ngayChinhSua);
             el.ngayChinhSua =
@@ -105,15 +109,37 @@ export class PageChudelophocphanComponent implements OnInit {
             ' : ' +
             new Date(element.ngayTao).toLocaleTimeString();
         });
-        if(LoaiBaiViet == 1){
+        if (LoaiBaiViet == 1) {
           this.dsBinhLuan_baiGiang.push(res);
-
-        }else{
+        } else {
           this.dsBinhLuan_baiTap.push(res);
         }
       },
       (err) => console.log(err)
     );
+  }
+  onClickXoaBaiGiang(maBaiGiang) {
+    // this.dsBaiGiang = [];
+    this.baiGiangService.xoa(maBaiGiang).subscribe((res: any) => {
+      //this.layDS_ChuDe();
+      this.baiGiangService.layTatCa().subscribe((res: any) => {
+        this.dsBaiGiang = res.data;
+        this.dsBaiGiang.forEach((el) => {
+          // el.ngayChinhSua = new Date(el.ngayChinhSua);
+          el.ngayChinhSua =
+            new Date(el.ngayChinhSua).toLocaleDateString() +
+            ' : ' +
+            new Date(el.ngayChinhSua).toLocaleTimeString();
+
+        });
+      });
+    });
+  }
+  onClickXoaChuDe(maChuDe) {
+    this.chuDeService.xoa(maChuDe).subscribe((res: any) => {
+      this.layDS_ChuDe();
+      console.log(res);
+    });
   }
   openTaobaitap() {
     this.dialog.open(TaobaitapComponent, {

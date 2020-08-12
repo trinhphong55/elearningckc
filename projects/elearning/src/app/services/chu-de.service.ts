@@ -24,5 +24,8 @@ export class ChuDeService {
   public layTheo_maLopHocPhan(maLopHocPhan): Observable<any>{
     return this.http.get<ChuDe[]>(`${this.baseUrl}/${maLopHocPhan}/lop-hoc-phan/`);
   }
+  public xoa(maChuDe){
+    return this.http.delete<any>(`${this.baseUrl}/${maChuDe}`);
+  }
 
 }

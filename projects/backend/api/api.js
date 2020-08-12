@@ -230,6 +230,8 @@ router.get("/chude", ChuDe.layTatCa);
 router.get("/chude/:maChuDe", ChuDe.layMot);
 router.get("/chude/:maLopHocPhan/lop-hoc-phan", ChuDe.layTheo_MaLHP);
 router.post("/chude", ChuDe.them);
+router.delete("/chude/:maChuDe", ChuDe.xoaTheo_maChuDe);
+
 //=========================== Routes BaiGiang =============================================
 router.get("/baigiang", baiGiang.layTatCa);
 router.get("/baigiang/:maChuDe", baiGiang.layTheoMaChuDe);

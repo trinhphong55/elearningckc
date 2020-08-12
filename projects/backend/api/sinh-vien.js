@@ -108,7 +108,7 @@ exports.layThongtinSinhVien = async (req, res) => {
 
 exports.capNhatSinhVien = async (req, res) => {
   try {
-
+    console.log(req.body);
     // const err = validationResult(req);
     // if(!err.isEmpty()){
     //   res.status(422).json(err.errors);
