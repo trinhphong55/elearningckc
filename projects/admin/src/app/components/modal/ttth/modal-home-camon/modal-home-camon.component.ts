@@ -3,6 +3,8 @@ import { ModalService } from '../../../../services/modal.service';
 import { ToastrService } from 'ngx-toastr';
 import { CamonService } from '../../../../services/ttth/camon.service';
 import { ttthCamOn } from '../../../../../models/ttthCamOn';
+import { getCookie } from '../../../../../../../common/helper';
+
 const URL = 'https://localhost:4100/api/ttthCamOn/uploads';
 @Component({
   selector: 'app-modal-home-camon',
@@ -11,6 +13,8 @@ const URL = 'https://localhost:4100/api/ttthCamOn/uploads';
 })
 export class ModalHomeCamonComponent implements OnInit {
   CamOn: ttthCamOn[];
+  private _username: any = getCookie('displayName');
+
   constructor(private modalService: ModalService,private camonService: CamonService,private toastr: ToastrService) { }
 
   ngOnInit(): void {
@@ -32,15 +36,16 @@ export class ModalHomeCamonComponent implements OnInit {
        newItem.tieudechinh = tieudechinh;
        newItem.tieudephu = tieudephu;
        newItem.trangthai = true;
-       newItem.nguoitao = 'hieu';
-       newItem.nguoisua = 'loc';
+       newItem.nguoitao = this._username;
+       newItem.nguoisua = null;
        newItem.created_at = (new Date);
        newItem.updated_at = null;
        this.camonService.add(newItem)
          .subscribe(data => {
            this.CamOn.push(data);
-         });
         this.getdanhsach();
+
+         });
        this.toastr.success('Thêm thành công');
    }
   ///edit
@@ -50,9 +55,13 @@ export class ModalHomeCamonComponent implements OnInit {
   }
   saveCamOn(CamOn: ttthCamOn):void {
     CamOn.updated_at= new Date;
+    CamOn.nguoisua= this._username;
+
     this.camonService.update(CamOn)
     .subscribe(data => {
       this.CamOn.push(data);
+    this.getdanhsach();
+
     });
     this.toastr.success('Sửa thành công');
   }
@@ -60,10 +69,12 @@ export class ModalHomeCamonComponent implements OnInit {
   xoaCamOn(CamOn: ttthCamOn):void {
     var comfirmDel = confirm('Bạn có chắc chắn muốn xóa');
     if(comfirmDel==true){
+      CamOn.nguoisua= this._username;
       this.camonService.delete(CamOn)
       .subscribe(data => {
         this.CamOn.push(data);
-        setTimeout(() => {}, 500);
+      this.getdanhsach();
+
       });
       this.toastr.success('Xóa thành công');
     }

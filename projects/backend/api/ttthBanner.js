@@ -91,7 +91,8 @@ router.post('/ttthxoabanner', async (req, res) => {
   await ttthBanner.findOneAndUpdate({
     _id: req.body._id
   }, {
-    trangthai: false
+    trangthai: false,
+    nguoisua: req.body.nguoisua,
   });
 })
 module.exports = router

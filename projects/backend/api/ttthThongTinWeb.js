@@ -20,7 +20,8 @@ let Storage = multer.diskStorage({
     callback(null, PATH);
   },
   filename: (req, file, callback) => {
-    const filename =`${Date.now()}${file.originalname}`
+    // const filename =`${Date.now()}${file.originalname}`
+    const filename =`${file.originalname}`
     callback(null, filename);
   }
 });
@@ -36,8 +37,6 @@ router.post('/uploads', upload.single('image'), function (req, res ,next) {
   res.send({
     success: true,
   });
-  linkImg = req.file;
-  console.log(linkImg);
 });
 // sua
 router.post('/ttthsuathongtinweb', async (req, res) => {
@@ -45,7 +44,7 @@ router.post('/ttthsuathongtinweb', async (req, res) => {
   await ttthThongTinWeb.findOneAndUpdate({
     _id: req.body._id
   }, {
-    logo:"uploads/cntt/" + linkImg,
+    logo:req.body.logo,
     diachi: req.body.diachi,
     giolamviec: req.body.giolamviec,
     hotline: req.body.hotline,

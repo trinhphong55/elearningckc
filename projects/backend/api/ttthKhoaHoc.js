@@ -12,6 +12,15 @@ router.get('/', async (req, res) => {
     res.json([]);
   }
 })
+router.get('/list', async (req, res) => {
+
+  try {
+    const danhsach = await ttthkhoahoc.find().sort({created_at: -1});
+    res.json(danhsach);
+  } catch (error) {
+    res.json([]);
+  }
+})
 // add tin tuc
 router.post('/add', (req, res) => {
   var add = new ttthkhoahoc({
@@ -20,6 +29,7 @@ router.post('/add', (req, res) => {
     makhoahoc: req.body.makhoahoc,
     noidung: req.body.noidung,
     color: req.body.color,
+    nhapdiem: req.body.nhapdiem,
     trangthai: req.body.trangthai,
     nguoitao: req.body.nguoitao,
     nguoisua: req.body.nguoisua,
@@ -111,6 +121,7 @@ router.post('/update', async (req, res) => {
     makhoahoc: req.body.makhoahoc,
     noidung: req.body.noidung,
     color: req.body.color,
+    nhapdiem: req.body.nhapdiem,
     trangthai: req.body.trangthai,
     nguoitao: req.body.nguoitao,
     nguoisua: req.body.nguoisua,
@@ -123,6 +134,7 @@ router.post('/delete', async (req, res) => {
   await ttthkhoahoc.findOneAndUpdate({
     _id: req.body._id
   }, {
+    nguoisua: req.body.nguoisua,
     trangthai: false
   });
 })

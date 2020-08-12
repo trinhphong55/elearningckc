@@ -10,6 +10,7 @@ var schema = new Schema({
   ngaykhaigiang: { type: String },
   hocphi: { type: String },
   giaovien: { type: String },
+  nhapdiem: { type: String },
   trangthai: { type: Boolean },
   nguoitao: { type: String },
   nguoisua: { type: String },

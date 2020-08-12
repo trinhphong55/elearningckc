@@ -11,6 +11,14 @@ router.get('/', async (req, res) => {
     res.json([]);
   }
 })
+router.get('/list', async (req, res) => {
+  try {
+    const danhsach = await ttthlophoc.find().sort({created_at: -1});
+    res.json(danhsach);
+  } catch (error) {
+    res.json([]);
+  }
+})
 // add
 router.post('/add', (req, res) => {
   var add = new ttthlophoc({
@@ -22,6 +30,7 @@ router.post('/add', (req, res) => {
     ngaykhaigiang: req.body.ngaykhaigiang,
     hocphi: req.body.hocphi,
     giaovien: req.body.giaovien,
+    nhapdiem: req.body.nhapdiem,
     trangthai: req.body.trangthai,
     nguoitao: req.body.nguoitao,
     nguoisua: req.body.nguoisua,
@@ -49,6 +58,7 @@ router.post('/update', async (req, res) => {
     ngaykhaigiang: req.body.ngaykhaigiang,
     hocphi: req.body.hocphi,
     giaovien: req.body.giaovien,
+    nhapdiem: req.body.nhapdiem,
     trangthai: req.body.trangthai,
     nguoitao: req.body.nguoitao,
     nguoisua: req.body.nguoisua,

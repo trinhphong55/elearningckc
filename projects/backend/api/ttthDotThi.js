@@ -12,6 +12,15 @@ router.get('/', async (req, res) => {
     res.json([]);
   }
 })
+router.get('/list', async (req, res) => {
+
+  try {
+    const danhsach = await ttthdotthi.find().sort({created_at: -1});
+    res.json(danhsach);
+  } catch (error) {
+    res.json([]);
+  }
+})
 // add
 router.post('/add', (req, res) => {
   var add = new ttthdotthi({
@@ -52,6 +61,7 @@ router.post('/delete', async (req, res) => {
   await ttthdotthi.findOneAndUpdate({
     _id: req.body._id
   }, {
+    nguoisua: req.body.nguoisua,
     trangthai: false
   });
 })

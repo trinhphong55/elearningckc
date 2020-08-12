@@ -5,6 +5,7 @@ import { FileUploader } from 'ng2-file-upload';
 import { ToastrService } from 'ngx-toastr';
 import { BannerService } from '../../../../services/ttth/banner.service';
 import { ttthBanner } from '../../../../../models/ttthBanner';
+import { getCookie } from '../../../../../../../common/helper';
 const URL = 'https://localhost:4100/api/ttthBanner/uploads';
 declare var $: any;
 @Component({
@@ -14,6 +15,7 @@ declare var $: any;
 })
 export class ModalBannerComponent implements OnInit  {
   Banner: ttthBanner[];
+  private _username: any = getCookie('displayName');
   constructor(private modalService: ModalService,private bannerService: BannerService,private toastr: ToastrService) { }
 
   ngOnInit(): void {
@@ -35,7 +37,7 @@ export class ModalBannerComponent implements OnInit  {
   //ckEditor
   public Editor = ClassicEditor;
   getBannerfromServices(): void {
-    this.bannerService.getBanner().subscribe(data => this.Banner = data);
+    this.bannerService.getBanner().subscribe(data => {this.Banner = data; setTimeout(() => {}, 500);});
   }
   //file upload
   public uploader: FileUploader = new FileUploader({
@@ -85,16 +87,16 @@ export class ModalBannerComponent implements OnInit  {
        newItem.vitri = vitri;
        newItem.hienthi = true;
        newItem.trangthai = true;
-       newItem.nguoitao = 'hieu';
-       newItem.nguoisua = 'loc';
+       newItem.nguoitao = this._username;
+       newItem.nguoisua = null;
        newItem.created_at = (new Date);
        newItem.updated_at = null;
        this.bannerService.addBanner(newItem)
          .subscribe(addBanner => {
            this.Banner.push(addBanner);
-           setTimeout(() => {}, 0);
-         });
         this.getBannerfromServices();
+
+         });
        this.toastr.success('Thêm thành công');
      }
    }
@@ -113,7 +115,7 @@ export class ModalBannerComponent implements OnInit  {
       Banner.image='https://localhost:4100/uploads/cntt/' + this.nameImage.name;
     }
     Banner.updated_at= new Date;
-    // Banner.hienthi= this.capnhatHienThi;
+    Banner.nguoisua= this._username;
     this.bannerService.suaBanner(Banner)
     .subscribe(suaBanner => {
       this.Banner.push(suaBanner);
@@ -124,12 +126,13 @@ export class ModalBannerComponent implements OnInit  {
   xoaBanner(Banner: ttthBanner):void {
     var comfirmDel = confirm('Bạn có chắc chắn muốn xóa');
     if(comfirmDel==true){
+      Banner.nguoisua=this._username;
       this.bannerService.xoaBanner(Banner)
       .subscribe(xoaBanner => {
         this.Banner.push(xoaBanner);
-        setTimeout(() => {}, 0);
-      });
       this.getBannerfromServices();
+
+      });
       this.toastr.success('Xóa thành công');
     }
   }

@@ -5,6 +5,7 @@ import { FileUploader } from 'ng2-file-upload';
 import { ToastrService } from 'ngx-toastr';
 import { ThongtinwebService } from '../../../../services/ttth/thongtinweb.service';
 import { ttthThongTinWeb } from '../../../../../models/ttthThongTinWeb';
+import { getCookie } from '../../../../../../../common/helper';
 const URL = 'https://localhost:4100/api/ttthThongTinWeb/uploads';
 declare var $: any;
 @Component({
@@ -14,6 +15,7 @@ declare var $: any;
 })
 export class ModalLogoComponent implements OnInit {
   ThongTinWeb: ttthThongTinWeb[];
+  private _username: any = getCookie('displayName');
   constructor(private modalService: ModalService,private thongtinwebService: ThongtinwebService,private toastr: ToastrService) { }
 
   ngOnInit(): void {
@@ -62,10 +64,11 @@ export class ModalLogoComponent implements OnInit {
    }
   ///edit
   saveThongTinWeb(ThongTinWeb: ttthThongTinWeb):void {
-    // if (this.nameImage) {
-    //   ThongTinWeb.logo=this.nameImage.name;
-    // }
+    if (this.nameImage) {
+      ThongTinWeb.logo='https://localhost:4100/uploads/cntt/' + this.nameImage.name;
+    }
     ThongTinWeb.updated_at= new Date;
+    ThongTinWeb.nguoisua= this._username;
     this.thongtinwebService.suaThongTinWeb(ThongTinWeb)
     .subscribe(suaThongTinWeb => {
       this.ThongTinWeb.push(suaThongTinWeb);

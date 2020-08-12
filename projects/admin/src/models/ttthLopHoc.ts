@@ -7,6 +7,7 @@ export class ttthLopHoc {
   ngaykhaigiang: String
   hocphi: String
   giaovien: String
+  nhapdiem: String
   trangthai: Boolean
   nguoitao: String
   nguoisua: String

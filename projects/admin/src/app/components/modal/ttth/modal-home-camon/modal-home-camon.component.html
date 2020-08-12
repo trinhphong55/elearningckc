@@ -3,7 +3,7 @@
   <div class="container-fluid mt-3">
     <div class="row">
       <div class="col-12">
-        <h1 class="text-center text-white">Quản lý mục cảm ơn ở trang chủ</h1>
+        <h1 class="text-center text-white">Quản lý mục cảm ơn</h1>
         <p class="text-center text-white">Hiển thị tối đa 4 mục</p>
       </div>
       <div class="col-12" [ngClass]="{ 'd-none': selectedItem }">
@@ -43,8 +43,6 @@
                 <label>Icon</label>
                 <input type="text" class="form-control" [(ngModel)]="selectedItem.icon" >
               </div>
-            </div>
-            <div class="col-3">
               <div class="form-group">
                 <label>Tiêu đề chính</label>
                 <input type="text" class="form-control" [(ngModel)]="selectedItem.tieudechinh" >

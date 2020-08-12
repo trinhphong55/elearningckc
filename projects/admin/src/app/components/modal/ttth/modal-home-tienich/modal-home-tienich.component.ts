@@ -4,6 +4,8 @@ import { TienichService } from '../../../../services/ttth/tienich.service';
 import { ttthTienIch } from '../../../../../models/ttthTienIch';
 import { FileUploader } from 'ng2-file-upload';
 import { ToastrService } from 'ngx-toastr';
+import { getCookie } from '../../../../../../../common/helper';
+
 const URL = 'https://localhost:4100/api/ttthTintuc/uploads';
 @Component({
   selector: 'app-modal-home-tienich',
@@ -13,7 +15,7 @@ const URL = 'https://localhost:4100/api/ttthTintuc/uploads';
 export class ModalHomeTienichComponent implements OnInit {
   constructor(private modalService: ModalService,private tienichService: TienichService ,private toastr: ToastrService) { }
   TienIch: ttthTienIch[];
-
+  private _username: any = getCookie('displayName');
   ngOnInit(): void {
     this.getdanhsach();
     this.uploader.onAfterAddingFile = (file) => {
@@ -36,7 +38,7 @@ export class ModalHomeTienichComponent implements OnInit {
 
   getdanhsach(): void {
     this.tienichService.get().subscribe((data) => {this.TienIch = data;
-      setTimeout(() => {}, 0);
+      setTimeout(() => {}, 500);
     });
   }
 
@@ -44,17 +46,27 @@ export class ModalHomeTienichComponent implements OnInit {
   nameImage: any;
   imageSrc: any;
   onFileSelected(event) {
-    if(event.target.files.length > 0)
-     {
-      this.nameImage = event.target.files[0].name;
-     }
-    if (event.target.files && event.target.files[0]) {
-    const file = event.target.files[0];
-    const reader = new FileReader();
-    reader.onload = e => this.imageSrc = reader.result;
-    reader.readAsDataURL(file);
-    }
-  }
+    if (event.target.files.length > 0) {
+      this.nameImage = event.target.files[0];
+      let img = new Image()
+      img.src = window.URL.createObjectURL(event.target.files[0])
+      img.onload = () => {
+        if(img.width === 512 && img.height === 512){
+          const file = event.target.files[0];
+          const reader = new FileReader();
+          reader.onload = (e) => (this.imageSrc = reader.result);
+          reader.readAsDataURL(file);
+        }
+        else{
+          this.imageSrc = null;
+          this.toastr.success('Hình ảnh chưa đúng kích thước');
+        }
+      }
+    };
+    if (event.target.files[0].size > 2097152) {
+      this.toastr.success('File yêu cầu nhỏ hơn 2MB');
+    };
+   }
   add(ten: string,mota: string, link:string): void {
     ten = ten.trim();
     mota = mota.trim();
@@ -62,18 +74,19 @@ export class ModalHomeTienichComponent implements OnInit {
     const newTinTuc: ttthTienIch = new ttthTienIch();
     newTinTuc.ten = ten;
     newTinTuc.mota = mota;
-    newTinTuc.image = 'https://localhost:4100/uploads/cntt/' + this.nameImage;
+    newTinTuc.image = 'https://localhost:4100/uploads/cntt/' + this.nameImage.name;
     newTinTuc.link = link;
     newTinTuc.trangthai = true;
-    newTinTuc.nguoitao = 'hieu';
-    newTinTuc.nguoisua = 'loc';
+    newTinTuc.nguoitao = this._username;
+    newTinTuc.nguoisua = null;
     newTinTuc.created_at = (new Date);
     newTinTuc.updated_at = null;
     this.tienichService.add(newTinTuc)
       .subscribe(data => {
         this.TienIch.push(data);
-      });
     this.getdanhsach();
+
+      });
     this.toastr.success('Thêm thành công');
   }
   ///edit
@@ -87,9 +100,10 @@ export class ModalHomeTienichComponent implements OnInit {
   }
   update(TienIch: ttthTienIch):void {
     if (this.nameImage) {
-      TienIch.image='https://localhost:4100/uploads/cntt/' + this.nameImage;
+      TienIch.image='https://localhost:4100/uploads/cntt/' + this.nameImage.name;
     }
     TienIch.updated_at= new Date;
+    TienIch.nguoisua= this._username;
     this.tienichService.update(TienIch)
     .subscribe(data => {
       this.TienIch.push(data);
@@ -98,13 +112,17 @@ export class ModalHomeTienichComponent implements OnInit {
   }
   //delete
   delete(TienIch: ttthTienIch):void {
-    this.tienichService.delete(TienIch)
-    .subscribe(data => {
-      this.TienIch.push(data);
-    });
-    this.getdanhsach();
-    window.location.reload();
-    this.toastr.success('Xóa thành công');
+    var comfirmDel = confirm('Bạn có chắc chắn muốn xóa');
+      if(comfirmDel==true){
+      TienIch.nguoisua= this._username;
+      this.tienichService.delete(TienIch)
+      .subscribe(data => {
+        this.TienIch.push(data);
+      this.getdanhsach();
+
+      });
+      this.toastr.success('Xóa thành công');
+    }
   }
   reset():void{
     this.selectedItem=null;

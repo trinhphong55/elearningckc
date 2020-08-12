@@ -5,7 +5,7 @@ const multer = require('multer')
 // get
 router.get('/', async (req, res) => {
   try {
-    const danhsach = await ttthCamOn.find({ trangthai: true }).sort({created_at: -1});
+    const danhsach = await ttthCamOn.find({ trangthai: true }).sort({created_at: -1}).limit(4);
     res.json(danhsach);
   } catch (error) {
     res.json([]);
@@ -49,7 +49,6 @@ router.post('/update', async (req, res) => {
     tieudechinh: req.body.tieudechinh,
     tieudephu: req.body.tieudephu,
     trangthai: req.body.trangthai,
-    nguoitao: req.body.nguoitao,
     nguoisua: req.body.nguoisua,
     updated_at: req.body.updated_at,
   });
@@ -59,7 +58,8 @@ router.post('/delete', async (req, res) => {
   await ttthCamOn.findOneAndUpdate({
     _id: req.body._id
   }, {
-    trangthai: false
+    trangthai: false,
+    nguoisua: req.body.nguoisua,
   });
 })
 module.exports = router
