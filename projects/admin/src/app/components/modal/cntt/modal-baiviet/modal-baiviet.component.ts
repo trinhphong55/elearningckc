@@ -413,4 +413,20 @@ export class ModalBaivietComponent implements OnInit, OnDestroy, AfterViewInit {
         });
     }
   }
+//form them
+  get maDanhMuc() { return this.formBaiViet.get('maDanhMuc'); }
+  get moTaNgan() { return this.formBaiViet.get('moTaNgan'); }
+  get loaiBaiViet() { return this.formBaiViet.get('loaiBaiViet'); }
+  get tieuDe() { return this.formBaiViet.get('tieuDe'); }
+  get noiDung() { return this.formBaiViet.get('noiDung'); }
+  get ViTriHienThi() { return this.formBaiViet.get('viTriHienThi'); }
+  get trangThai() { return this.formBaiViet.get('trangThai'); }
+//form edit
+  get maDanhMuc2() { return this.formChinhSuaBaiViet.get('maDanhMuc'); }
+  get moTaNgan2() { return this.formChinhSuaBaiViet.get('moTaNgan'); }
+  get loaiBaiViet2() { return this.formChinhSuaBaiViet.get('loaiBaiViet'); }
+  get tieuDe2() { return this.formChinhSuaBaiViet.get('tieuDe'); }
+  get noiDung2() { return this.formChinhSuaBaiViet.get('noiDung'); }
+  get ViTriHienThi2() { return this.formChinhSuaBaiViet.get('viTriHienThi'); }
+  get trangThai2() { return this.formChinhSuaBaiViet.get('trangThai'); }
 }
