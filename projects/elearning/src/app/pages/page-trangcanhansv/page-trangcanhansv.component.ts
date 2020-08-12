@@ -163,6 +163,7 @@ export class PageTrangcanhansvComponent implements OnInit {
   //######################### Lay Thong Tin ##########################
   public setTaiKhoan(){
     this.taiKhoan = this.cookieService.getAll();
+    this.taiKhoan.displayName = this.cookieService.get('email').slice(0,10);
     console.log(this.taiKhoan);
   }
   public layThongTinSV(maSV: string) {

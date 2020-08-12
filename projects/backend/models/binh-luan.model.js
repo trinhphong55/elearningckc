@@ -13,7 +13,7 @@ const BinhLuanSchema = new Schema({
     required:true,
   },
   maBaiViet:{
-    type:String,
+    type:Number,
     required:true
   },
   noiDung:{
