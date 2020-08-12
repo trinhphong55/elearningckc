@@ -47,11 +47,21 @@
                   <ng-template *ngFor="let ct of ctDiem" [ngIf]="hs.maSinhVien== ct.maSinhVien">
                     <ng-template *ngFor="let t of cotDiemHP" [ngIf]="ct.maCotDiem == t.maCotDiem">
                         <td >
-                          {{ct.diem}}
+                          <form>
+                            <div class="form-group">
+                              <input type="text" class="form-control" id="diemsv" placeholder="{{ct.diem}}">
+                            </div>
+                          </form>
                         </td>
                     </ng-template>
                   </ng-template>
-                  <td>{{hs.diem}}</td>
+                  <td>
+                    <form>
+                        <div class="form-group">
+                          <input type="text" class="form-control" id="diemsv" placeholder="{{hs.diem}}">
+                        </div>
+                    </form>
+                  </td>
                 </tr>
               </tbody>
             </table>
