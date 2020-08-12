@@ -91,8 +91,8 @@ let result = (req) => {
 exports.LayTONGDIEM = async (req, res) => {
   var sinhvien = await SINHVIEN.find({maLopHocPhan:req.params.maLopHocPhan});
   var diem = await Diemsinhvien.find({ maLopHocPhan:req.params.maLopHocPhan});
-  var cotDiemHP = await COTDIEMLOPHP.find();
-  var ctDiem = await CTDIEMLHP.find();
+  var cotDiemHP = await COTDIEMLOPHP.find({trangThai:1});
+  var ctDiem = await CTDIEMLHP.find({trangThai:1});
   var data = [];
   var beta = [];
   var ceta = [];

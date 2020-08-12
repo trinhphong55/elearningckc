@@ -61,7 +61,7 @@ router.get("/ctdt/:maCTDT/hocKi/:hocKi", async (req, res) => {
 
 //trịnh phong sua
 router.get("/", async (req, res) => {
-  var data = await LopHocPhan.find().exec();
+  var data = await LopHocPhan.find({trangThai:1}).exec();
   res.json(data);
 });
 
@@ -210,8 +210,8 @@ router.get("/:maLopHocPhan/malhp", async (req, res) => {
 router.get("/:email/giaovienlophocphan", async (req, res) => {
   try {
     let result = await giaoVienDAO.layThongTinGiaoVienTheoEmail(req.params.email);
-    var dt = await GVLHP.find();
-    var data = await LopHocPhan.find();
+    var dt = await GVLHP.find({trangThai:1});
+    var data = await LopHocPhan.find({trangThai:1});
     var a = [];
     result.forEach(async z => {
       dt.forEach(async x => {
@@ -234,7 +234,7 @@ router.get("/:email/giaovienlophocphan", async (req, res) => {
 router.get("/:email/sinhvienlophocphan", async (req, res) => {
   try {
     let result = await SINHVIEN.find({email:req.params.email});
-    var data = await LopHocPhan.find();
+    var data = await LopHocPhan.find({trangThai:1});
     var a = [];
     result.forEach(async x => {
         data.forEach(async y => {
