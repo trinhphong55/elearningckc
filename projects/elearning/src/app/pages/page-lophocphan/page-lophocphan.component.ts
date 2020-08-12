@@ -11,11 +11,11 @@ import { getCookie } from '../../../../../common/helper';
 })
 export class PageLophocphanComponent implements OnInit {
 
-  maLHP:string = '';
+  maLHP:number;
   role:any = getCookie('role').toLocaleLowerCase();
   dsActivity: any;
   constructor(public dialog:MatDialog, private router :ActivatedRoute, private activityService:ActivityService) {
-    this.maLHP = this.router.snapshot.paramMap.get('id');
+    this.maLHP = parseInt(this.router.snapshot.paramMap.get('id'));
     this.activityService.layDanhSachActivityCuaLHP(this.maLHP).subscribe(
       (res) => {
         this.dsActivity = res.data;
