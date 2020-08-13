@@ -1,21 +1,21 @@
 const mongoose = require('mongoose');
 
 const BaiTapSinhVienSchema = new mongoose.Schema({
-    maSinhVien: {
+    email: {
         type: String,
-        required: true
+        default: "null",
     },
     maBaiTap: {
         type: String,
-        required: true
+        default: "null",
     },
     maLopHocPhan: {
         type: String,
-        required: true,
+        default: "null",
     },
     tieuDe: {
         type: String,
-        trim: true,
+        default: "null",
     },
     deadLine: {
         type: String,

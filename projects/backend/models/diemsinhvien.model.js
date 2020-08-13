@@ -5,11 +5,9 @@ const Schema = mongoose.Schema;
 const diemsinhvienSchema = new Schema({
   maSinhVien: {
     type: String,
-    reqired: true,
   },
   maDaoTao: {
     type: String,
-    required: true,
 
   },
   diem: {
@@ -18,19 +16,16 @@ const diemsinhvienSchema = new Schema({
   },
   maLopHocPhan: {
     type: String,
-    required: true,
   },
   ghiChu: {
     type:String,
   },
   nguoiTao: {
     type: String,
-    required: true
 
   },
   nguoiChinhSua: {
     type: String,
-    required: true
 
   },
   ngayChinhSua: {

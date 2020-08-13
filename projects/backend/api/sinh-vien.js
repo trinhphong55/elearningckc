@@ -197,7 +197,7 @@ exports.tinhTongSinhVien = async (req, res) => {
 exports.laySinhVienLopHocPhan = async (req, res) => {
   try {
     var lopHP = await lopHocPhan.find({ maLopHocPhan: req.params.maLopHocPhan });
-    var sinhvien = await SinhVienModel.find();
+    var sinhvien = await SinhVienModel.find({trangThai:1});
     var diemSinhVien = await diemSV.find({ maLopHocPhan:req.params.maLopHocPhan});
     var data=[]
     lopHP.forEach(async x => {
