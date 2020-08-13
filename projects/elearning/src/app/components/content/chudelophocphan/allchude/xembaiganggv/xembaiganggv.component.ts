@@ -10,6 +10,7 @@ import { BinhLuanService } from '../../../../../services/binh-luan.service';
 import { ActivityService } from '../../../../../services/activity.service';
 import { FileService } from '../../../../../services/file.service';
 import { getCookie } from '../../../../../../../../common/helper';
+import saveAs from 'file-saver';
 @Component({
   selector: 'app-xembaiganggv',
   templateUrl: './xembaiganggv.component.html',
