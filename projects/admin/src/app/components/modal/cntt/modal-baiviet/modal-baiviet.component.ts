@@ -61,6 +61,7 @@ export class ModalBaivietComponent implements OnInit, OnDestroy, AfterViewInit {
     nguoiViet: new FormControl(null),
     thoiGianDangBai: new FormControl(),
     viTriHienThi: new FormControl(-1),
+    thuTuHienThi: new FormControl(999),
     trangThai: new FormControl(1),
   });
   public formChinhSuaBaiViet = new FormGroup({
@@ -77,6 +78,7 @@ export class ModalBaivietComponent implements OnInit, OnDestroy, AfterViewInit {
     nguoiViet: new FormControl(null),
     thoiGianDangBai: new FormControl(),
     viTriHienThi: new FormControl(-1),
+    thuTuHienThi: new FormControl(999),
     trangThai: new FormControl(1),
   });
   public danhSachDanhMuc: any = [];
@@ -338,6 +340,10 @@ export class ModalBaivietComponent implements OnInit, OnDestroy, AfterViewInit {
         'viTriHienThi',
         this.formBaiViet.get('viTriHienThi').value
       );
+      formData.append(
+        'thuTuHienThi',
+        this.formBaiViet.get('thuTuHienThi').value
+      );
       formData.append('trangThai', this.formBaiViet.get('trangThai').value);
       this.tintucCnttService.themTinTuc(formData).subscribe((res) => {
         this.getDanhSachBaiViet();
@@ -399,6 +405,10 @@ export class ModalBaivietComponent implements OnInit, OnDestroy, AfterViewInit {
         this.formChinhSuaBaiViet.get('viTriHienThi').value
       );
       formData.append(
+        'thuTuHienThi',
+        this.formChinhSuaBaiViet.get('thuTuHienThi').value
+      );
+      formData.append(
         'trangThai',
         this.formChinhSuaBaiViet.get('trangThai').value
       );
@@ -428,6 +438,7 @@ export class ModalBaivietComponent implements OnInit, OnDestroy, AfterViewInit {
         });
     }
   }
+
   //form them
   get maDanhMuc() {
     return this.formBaiViet.get('maDanhMuc');

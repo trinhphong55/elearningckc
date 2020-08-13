@@ -93,6 +93,7 @@ router.post("/chinhSuaTinTuc", uploadPhotos, async (req, res) => {
         noiDungASCII: req.body.noiDungASCII,
         nguoiViet: req.body.nguoiViet,
         viTriHienThi: req.body.viTriHienThi,
+        thuTuHienThi: req.body.thuTuHienThi,
         trangThai: req.body.trangThai,
       }
     );

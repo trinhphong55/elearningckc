@@ -15,6 +15,7 @@ var schema = new Schema(
     nguoiViet: { type: String, default: null },
     thoiGianDangBai: { type: Date },
     viTriHienThi: { type: Number, default: null },
+    thuTuHienThi: { type: Number, default: 999 },
     crawling: { type: Boolean, default: false },
     crawlURL: { type: String, default: null },
     trangThai: { type: Number, default: 1 },

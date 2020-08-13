@@ -11,7 +11,7 @@ router.get("/all", async (req, res) => {
         { viTriHienThi: 3 },
         { viTriHienThi: 4 },
       ],
-    });
+    }).sort({ thuTuHienThi: "asc" });
     res.json({
       message: "Lấy bài viết cần hiển thị lên Trang chủ thành công.",
       code: 200,
