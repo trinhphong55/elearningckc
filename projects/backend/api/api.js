@@ -221,6 +221,9 @@ router.get("/cotdiemlhp", cotDiemLHP.layDiemLHP);
 router.get("/cotdiemlhp/:maLopHocPhan", cotDiemLHP.layDiemLHPtheoMaLHP);
 router.get("/cotdiemlhp/lophocphan/:maLopHocPhan", cotDiemLHP.layDiemLHPtheoMaLHP);
 router.get("/cotdiemlophocphan/:maLopHocPhan", cotDiemLHP.layCotDiemTheoMaLopHp);
+router.post("/cotdiemlophocphan", cotDiemLHP.themCotDiem);
+router.put("/suacotdiemlophocphan/:maCotDiem",cotDiemLHP.suaCotDiem);
+router.get("/cotdiemlophocphan/:maCotDiem/chitiet", cotDiemLHP.layCotDiemTheoMaCotDiem);
 
 //======================= Routes ChitietDiemSVLopHocPhan ==================================
 router.get("/ct-diemsv-lophocphan/:masv", ctDiemLopHP.layCTDiemLopHPtheoMaSV);

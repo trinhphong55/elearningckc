@@ -95,7 +95,8 @@ export class PageTongdiemComponent implements OnInit {
   danhSachSinhVien() {
     this.sinhVienService.layDsSvByLopHP(this.router.snapshot.paramMap.get('id')).subscribe(
       (dsTenHocSinh) => {
-        this.dsTenHocSinh = dsTenHocSinh
+        this.dsTenHocSinh = dsTenHocSinh;
+        console.log(dsTenHocSinh)
       },
 
       (error) => {
