@@ -13,6 +13,7 @@ import { TaochudeComponent } from '../../components/content/chudelophocphan/taoc
 import { TaobaigiangComponent } from '../../components/content/chudelophocphan/taobaigiang/taobaigiang.component';
 import { BaiTapService } from '../../services/bai-tap.service';
 import { CookieService } from 'ngx-cookie-service';
+import { getCookie } from '../../../../../common/helper';
 @Component({
   selector: 'app-page-chudelophocphan',
   templateUrl: './page-chudelophocphan.component.html',
@@ -24,11 +25,14 @@ export class PageChudelophocphanComponent implements OnInit {
   public dsBaiGiangTam: BaiGiang[] = [];
 
   public dsBaiTap: BaiTap[] = [];
-  public maLopHocPhan: number = 1;
+  public maLopHocPhan: any;
   public dsBinhLuan_baiGiang: any[] = [];
   public dsBinhLuan_baiTap: any[] = [];
   quyen: string = '';
   doiTuong: any;
+  role:any = getCookie('role').toLocaleLowerCase();
+  routeBaiGiang: string = `/xembaigiang${this.role}`;
+  routeBaiTap: string = `/xembaitap${this.role}`;
   // @Output  dsBaiGiang: BaiGiang[] = [];
 
   constructor(
@@ -40,7 +44,9 @@ export class PageChudelophocphanComponent implements OnInit {
     private binhLuanService: BinhLuanService,
     private baiTapService: BaiTapService,
     private cookie: CookieService
-  ) {}
+  ) {
+    this.maLopHocPhan = this.route.snapshot.paramMap.get('id');
+  }
   ngOnInit(): void {
     this.layDS_BaiGiang();
     this.layDS_ChuDe();
@@ -56,9 +62,11 @@ export class PageChudelophocphanComponent implements OnInit {
     }
   }
   public layDS_BaiTap() {
-    this.baiTapService.layDS_theoLopHocPhan(1).subscribe((res) => {
+    this.baiTapService.layDS_theoLopHocPhan(this.maLopHocPhan).subscribe((res) => {
+      console.log('maLHP', this.maLopHocPhan);
       this.dsBaiTap = [];
       this.dsBaiTap = res.data;
+      console.log('ds bài tập', this.dsBaiTap);
       this.dsBaiTap.forEach((bt) => {
         bt.ngayChinhSua =
           new Date(bt.ngayChinhSua).toLocaleDateString() +
@@ -142,24 +150,33 @@ export class PageChudelophocphanComponent implements OnInit {
     });
   }
   openTaobaitap() {
-    this.dialog.open(TaobaitapComponent, {
+    let dialog = this.dialog.open(TaobaitapComponent, {
       width: '100%',
       height: '100vh',
       maxWidth: '90vw',
+    });
+    dialog.afterClosed().subscribe((res) => {
+      // this.layDS_BaiTap();
+      window.location.reload();
     });
   }
   opentaochude() {
     let dialog = this.dialog.open(TaochudeComponent, { width: '250px' });
     dialog.afterClosed().subscribe((res) => {
-      this.layDS_ChuDe();
+      // this.layDS_ChuDe();
+      window.location.reload();
       //this.layDS_BaiGiang();
     });
   }
   openTaotailieu() {
-    this.dialog.open(TaobaigiangComponent, {
+    let dialog = this.dialog.open(TaobaigiangComponent, {
       width: '100%',
       height: '100vh',
       maxWidth: '90vw',
+    });
+    dialog.afterClosed().subscribe((res) => {
+      // this.layDS_BaiGiang();
+      window.location.reload();
     });
   }
 }
