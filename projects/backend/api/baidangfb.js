@@ -73,15 +73,16 @@ exports.deletePostFB = async (req, res) => {
 };
 //Thêm vào posted
 exports.postedToFB = async (req, res) => {
+  console.log(req.body)
   try {
     const err = validationResult(req);
     if(!err.isEmpty()){
       res.status(422).json(err.errors);
     }
-
+    
       const postedtofbs = new baidangfb({
         ID:req.body.ID,
-        postID: req.params.postID,
+        postID: req.body.postID,
         link:req.body.link,
         message: req.body.message,
         url: req.body.url,

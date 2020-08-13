@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 const baseUrl = 'https://localhost:4100/api/baidangfb';
-const baseUrl2='https://localhost:4100/api/baidangfbv2'
+const baseUrl2='https://localhost:4100/api/baidangfbv2';
+const baseUrl3='https://localhost:4100/api/baidangfb/all';
 @Injectable({
   providedIn: 'root'
 })
@@ -12,7 +13,7 @@ export class BaiDangfbService {
         return this.http.get(baseUrl);
     }
     create(data) {
-        return this.http.post(baseUrl, data);
+        return this.http.post(baseUrl3, data);
     }
     createDraw(data) {
         return this.http.post(baseUrl, data);

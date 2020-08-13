@@ -201,7 +201,7 @@ router.get("/baidangfb",baidangfb.getAll);
 //Thêm vào draw
 router.post("/baidangfb",baidangfb.postToDrawFB);
 //Thêm vào posted
-router.post("/baidangfb",baidangfb.postedToFB);
+router.post("/baidangfb/all",baidangfb.postedToFB);
 //Update posted 
 router.put("/baidangfb/:postID",baidangfb.updatePostedFB);
 //Xóa bài post
