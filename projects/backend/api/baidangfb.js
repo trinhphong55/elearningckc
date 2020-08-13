@@ -35,7 +35,7 @@ exports.postToDrawFB = async (req, res) => {
         msg: "Thêm thành công vào draw",
         data: savePostToDraw,
       });
-  }catch{
+  }catch(error){
     console.log(res.json.error);
     res.json(error);
   }
