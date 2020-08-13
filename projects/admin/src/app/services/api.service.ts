@@ -123,7 +123,6 @@ export class ApiService {
   }
 
   themDSGiaoVienExcel(dsGiaoVienExcel: any): Observable<any> {
-    console.log('dsGiaoVien', dsGiaoVienExcel);
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
     };

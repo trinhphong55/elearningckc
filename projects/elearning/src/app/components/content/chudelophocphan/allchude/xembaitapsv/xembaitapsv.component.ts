@@ -117,7 +117,7 @@ export class XembaitapsvComponent implements OnInit {
       if(typeof res.data == 'object'){
         //mã bài viết là mã bài tập
         this.baiTapService.layBaiTap_theoMaBaiTap(data.maBaiViet).subscribe((res:any) => {
-          this.maLHP = res.data.maLopHocPhan;
+          this.maLHP = res.data.lopHocPhan;
           this.themActivity(data.maBaiViet, res.data.tieuDe);
         })
       }

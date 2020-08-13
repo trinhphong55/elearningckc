@@ -63,10 +63,8 @@ export class PageChudelophocphanComponent implements OnInit {
   }
   public layDS_BaiTap() {
     this.baiTapService.layDS_theoLopHocPhan(this.maLopHocPhan).subscribe((res) => {
-      console.log('maLHP', this.maLopHocPhan);
       this.dsBaiTap = [];
       this.dsBaiTap = res.data;
-      console.log('ds bài tập', this.dsBaiTap);
       this.dsBaiTap.forEach((bt) => {
         bt.ngayChinhSua =
           new Date(bt.ngayChinhSua).toLocaleDateString() +
