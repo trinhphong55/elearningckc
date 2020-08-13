@@ -79,7 +79,7 @@ exports.postedToFB = async (req, res) => {
       res.status(422).json(err.errors);
     }
 
-      const posedttofbs = new baidangfb({
+      const postedtofbs = new baidangfb({
         ID:req.body.ID,
         postID: req.params.postID,
         link:req.body.link,
@@ -90,7 +90,7 @@ exports.postedToFB = async (req, res) => {
         thuoc:req.body.thuoc,
         trangThai:2
       });
-      const savePosted = await posedttofbs.save();
+      const savePosted = await postedtofbs.save();
       res.json({
         status: 200,
         ok:true,
