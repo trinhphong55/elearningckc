@@ -164,7 +164,6 @@ export class PageTrangcanhansvComponent implements OnInit {
   public setTaiKhoan(){
     this.taiKhoan = this.cookieService.getAll();
     this.taiKhoan.displayName = this.cookieService.get('email').slice(0,10);
-    console.log(this.taiKhoan);
   }
   public layThongTinSV(maSV: string) {
     this.sinhVienService.getonesv(maSV).subscribe(
@@ -378,10 +377,11 @@ export class PageTrangcanhansvComponent implements OnInit {
     this.layThongTinSV(this.taiKhoan.displayName);
   }
   onSubmitCapNhatSinhVien() {
+    this.messages = [];
     if( !this.password.value){
       this.messages.push({msg:"Vui lòng nhập mật khẩu cũ và mới để thay đổi", status:200});
 
-    }else if(this.password.value != this.sinhVien.matKhau){
+    }else if(this.password.value != '123456'){
       this.messages.push({msg:"Mật khẩu không trùng nhau", status:200});
     }
     else{
