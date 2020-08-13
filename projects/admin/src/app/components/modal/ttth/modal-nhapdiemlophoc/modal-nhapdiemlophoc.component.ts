@@ -8,33 +8,24 @@ import { ttthDiemThi } from '../../../../../models/ttthDiemThi';
 import { DotthiService } from '../../../../services/ttth/dotthi.service';
 import { LophocService } from '../../../../services/ttth/lophoc.service';
 import { getCookie } from '../../../../../../../common/helper';
-import { exit } from 'process';
-
-
 @Component({
-  selector: 'app-modal-diemthi',
-  templateUrl: './modal-diemthi.component.html',
-  styleUrls: ['./modal-diemthi.component.css']
+  selector: 'app-modal-nhapdiemlophoc',
+  templateUrl: './modal-nhapdiemlophoc.component.html',
+  styleUrls: ['./modal-nhapdiemlophoc.component.css']
 })
-export class ModalDiemthiComponent implements OnInit {
-
+export class ModalNhapdiemlophocComponent implements OnInit {
   constructor(private modalService: ModalService,private DiemthiService: DiemthiService,private DotthiService: DotthiService,private LophocService: LophocService,private toastr: ToastrService) { }
   spinnerEnabled = false;
   keys: string[];
   DiemThi : ttthDiemThi[];
-  DotThi : any[];
   LopHoc : any[];
-  selectDotThi: any;
+  selectLopHoc: any;
   private _username: any = getCookie('displayName');
   dataSheet = new Subject;
   @ViewChild('inputFile') inputFile: ElementRef;
   isExcelFile: boolean;
   ngOnInit(): void {
-    this.getdanhsachdotthi();
     this.getdanhsachlophoc();
-  }
-  getdanhsachdotthi(): void {
-    this.DotthiService.get().subscribe((data) => {this.DotThi = data;  setTimeout(() => {}, 500);});
   }
   getdanhsachlophoc(): void {
     this.LophocService.getfilter().subscribe((data) => {this.LopHoc = data ;setTimeout(() => {}, 500);});
@@ -42,8 +33,8 @@ export class ModalDiemthiComponent implements OnInit {
   closeModal(id: string) {
     this.modalService.close(id)
   }
-  onChangeDotThi(value) {
-    this.selectDotThi=value;
+  onChangeLopHoc(value) {
+    this.selectLopHoc=value;
   }
   onChange(evt) {
     let data;
@@ -86,54 +77,16 @@ export class ModalDiemthiComponent implements OnInit {
     this.keys = null;
     this.DiemThi = undefined;
   }
-  checkboxDotThi: any;
-  checkboxKhoaHoc: any;
-
-  getValueCheckBoxDotThi(e){
-    this.checkboxDotThi= e.target.checked;
-    if (this.checkboxDotThi === true) {
-      let value = false;
-      this.checkboxKhoaHoc= value;
-    }
-    else{
-      let value = true;
-      this.checkboxKhoaHoc= value;
-    }
-  }
-  getValueCheckBoxKhoaHoc(e){
-    this.checkboxKhoaHoc= e.target.checked;
-    if (this.checkboxKhoaHoc === true) {
-      let value = false;
-      this.checkboxDotThi= value;
-    }
-    else{
-      let value = true;
-      this.checkboxDotThi= value;
-    }
-  }
   importExcel() {
-    let ngaythi: any;
-    let giothi: any;
-    let phongthi: any;
-    let dotthi = this.selectDotThi;
+    let lop = this.selectLopHoc;
     let nguoitao = this._username;
-    this.DotThi.forEach(function (value) {
-      if (dotthi==value.tendot) {
-        ngaythi = value.ngaythi;
-        giothi = value.giothi;
-        phongthi = value.phongthi;
-      }
-    });
     this.DiemThi.forEach(function (value) {
-      value.ngaythi = ngaythi;
-      value.giothi = giothi;
-      value.phongthi = phongthi;
+      value.lop = lop;
       value.nguoitao = nguoitao;
-      value.loaidiem = 'Điểm thi';
+      value.loaidiem = 'Điểm lớp học';
     });
     this.DiemthiService.importDiemThi(this.DiemThi).subscribe(data => { this.DiemThi.push(data);
     });
     this.toastr.success('Import thành công');
-
   }
 }

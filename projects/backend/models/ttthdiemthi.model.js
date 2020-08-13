@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var schema = new Schema({
+  loaidiem: { type: String },
   hoten: { type: String },
   mssv: { type: String },
   ngaysinh: { type: String },
@@ -18,8 +19,8 @@ var schema = new Schema({
   msexcel: { type: String },
   mspowerpoint: { type: String },
   trangthai:{ type: Boolean , default: true},
-  nguoitao: { type: String , default: 'Giáo viên A'},
-  nguoisua: { type: String , default: 'Giáo viên B'},
+  nguoitao: { type: String},
+  nguoisua: { type: String ,default: null},
   created_at: { type: Date ,default: Date.now},
   updated_at: { type: Date ,default: null}
 })

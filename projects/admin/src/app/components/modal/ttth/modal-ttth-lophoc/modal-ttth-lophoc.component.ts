@@ -42,13 +42,14 @@ export class ModalTtthLophocComponent implements OnInit {
     const newItem: ttthLopHoc = new ttthLopHoc();
     newItem.makhoahoc = makhoahoc;
     newItem.dot = dot;
-    newItem.lop =  String(this.getYear);
     newItem.buoihoc = buoihoc;
     newItem.giohoc = giohoc;
     newItem.ngaykhaigiang = ngaykhaigiang;
+    newItem.tenlop = makhoahoc + '-' + String(this.getYear) + '-' + dot;
     newItem.hocphi = hocphi;
     newItem.giaovien = giaovien;
     newItem.nhapdiem = NhapDiem;
+    newItem.nam =  String(this.getYear);
     newItem.trangthai = true;
     newItem.nguoitao = this._username;
     newItem.nguoisua = null;
@@ -73,6 +74,8 @@ export class ModalTtthLophocComponent implements OnInit {
         NhapDiem = value.nhapdiem;
       }
     });
+    LopHoc.tenlop = LopHoc.makhoahoc + '-' + String(this.getYear) + '-' + LopHoc.dot;
+    LopHoc.nam =  String(this.getYear);
     LopHoc.nhapdiem=NhapDiem;
     LopHoc.updated_at= new Date;
     LopHoc.nguoisua= this._username;
@@ -80,7 +83,6 @@ export class ModalTtthLophocComponent implements OnInit {
     .subscribe(data => {
       this.LopHoc.push(data);
     this.getdanhsach();
-
     });
     this.toastr.success('Sửa thành công');
   }

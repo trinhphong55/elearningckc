@@ -4,10 +4,11 @@ var Schema = mongoose.Schema;
 var schema = new Schema({
   makhoahoc: { type: String },
   dot: { type: String },
-  lop: { type: String },
+  tenlop: { type: String },
   buoihoc: { type: String },
   giohoc: { type: String },
   ngaykhaigiang: { type: String },
+  nam: { type: String },
   hocphi: { type: String },
   giaovien: { type: String },
   nhapdiem: { type: String },

@@ -20,7 +20,7 @@
               </div>
               <div class="form-group">
                 <label>Đợt</label>
-                <input type="text" class="form-control" #dot>
+                <input type="text" class="form-control" #dot placeholder="VD: Đợt 1, Đợt 2 ,...">
               </div>
               <div class="form-group">
                 <label>Giáo viên</label>
@@ -28,7 +28,7 @@
               </div>
               <div class="form-group">
                 <label>Buổi học</label>
-                <input type="text" class="form-control" #buoihoc>
+                <input type="text" class="form-control" #buoihoc placeholder="VD: 246, 357 ,...">
               </div>
             </div>
             <div class="col-3">
@@ -38,7 +38,7 @@
               </div>
               <div class="form-group">
                 <label>Ngày khai giảng</label>
-                <input type="date" class="form-control" #ngaykhaigiang>
+                <input type="date" class="form-control" #ngaykhaigiang placeholder="VD: 20/11/2020">
               </div>
               <div class="form-group">
                 <label>Học phí</label>
@@ -71,7 +71,7 @@
               </div>
               <div class="form-group">
                 <label>Đợt </label>
-                <input type="text" class="form-control"  [(ngModel)]="selectedItem.dot">
+                <input type="text" class="form-control"  [(ngModel)]="selectedItem.dot" placeholder="VD: Đợt 1, Đợt 2 ,...">
               </div>
               <div class="form-group">
                 <label>Giáo viên</label>
@@ -79,7 +79,7 @@
               </div>
               <div class="form-group">
                 <label>Buổi học</label>
-                <input type="text" class="form-control"  [(ngModel)]="selectedItem.buoihoc">
+                <input type="text" class="form-control"  [(ngModel)]="selectedItem.buoihoc"  placeholder="VD: 246, 357 ,...">
               </div>
 
             </div>
@@ -90,7 +90,7 @@
               </div>
               <div class="form-group">
                 <label>Ngày khai giảng</label>
-                <input type="date" class="form-control" [(ngModel)]="selectedItem.ngaykhaigiang">
+                <input type="date" class="form-control" [(ngModel)]="selectedItem.ngaykhaigiang"  placeholder="VD: 20/11/2020">
               </div>
               <div class="form-group">
                 <label>Học phí</label>
@@ -129,6 +129,8 @@
                 <th scope="col">Người tạo</th>
                 <th scope="col">Người sửa</th>
                 <th scope="col">Trạng thái</th>
+                <th scope="col">Ngày tạo</th>
+                <th scope="col">Ngày sửa</th>
                 <th class="text-center" scope="col"><span
                     class="modal_chucnang__button__save mdi mdi-content-save-outline mdi-24px"></span></th>
               </tr>
@@ -146,6 +148,8 @@
                 <td>{{item.nguoisua}}</td>
                 <td *ngIf="item.trangthai==false">Đã xóa</td>
                 <td *ngIf="item.trangthai==true">Hiển thị</td>
+                <td>{{item.created_at | date:'dd/MM/yyyy'}}</td>
+                <td>{{item.updated_at | date:'dd/MM/yyyy'}}</td>
                 <td class="text-center">
                   <span class="modal_chucnang__button__delete mdi mdi-file-document-edit-outline  mdi-24px  mr-2"
                     (click)="onSelect(item);imageSrc=null"></span>

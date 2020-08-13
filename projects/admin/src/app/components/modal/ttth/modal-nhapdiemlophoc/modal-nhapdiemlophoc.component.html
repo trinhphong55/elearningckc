@@ -1,0 +1,52 @@
+<app-modal class="modal_chucnang__wrapper" id="ttth-diemlophoc">
+  <div (click)="closeModal('ttth-diemlophoc')" class="modal_chucnang__close mdi mdi-chevron-left text-white"></div>
+  <div class="container-fluid mt-3">
+    <div class="row">
+      <div class="col-12">
+        <h1 class="text-center text-white">Nhập điểm lớp học</h1>
+      </div>
+      <div class="col-12">
+        <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
+          <div class="col-3">
+            <div class="form-group">
+              <label>Chọn lớp học</label>
+              <select class="form-control" (change)="onChangeLopHoc($event.target.value)">
+                  <option value=""></option>
+                <ng-container *ngFor="let item of LopHoc">
+                  <option *ngIf="item.nhapdiem=='Nhập riêng'" value="{{item.tenlop}}">{{item.tenlop}}</option>
+                </ng-container>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
+          <label>Chọn thư mục excel</label>
+          <div  class="custom-file">
+            <input type="file" (change)="onChange($event)" #inputFile>
+          </div>
+            <div *ngIf="isExcelFile === false">
+              This is not an Excel file
+            </div>
+            <button class="btn btn-danger mr-2" (click)="removeData()">Remove Data</button>
+            <button  class="btn btn-success " (click)="importExcel()" *ngIf="DiemThi!== undefined">Import</button>
+            <table class="modal_chucnang__table table table-hover">
+              <thead class="bg__caothang text-white">
+                <tr>
+                  <th *ngFor="let key of keys" scope="col">{{key}}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of dataSheet | async">
+                  <td *ngFor="let key of keys">
+                    {{item[key]}}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-modal>

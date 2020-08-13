@@ -19,6 +19,7 @@ router.get("/tracuudiem=:query", async (req, res) => {
     const regexQuery = newRegExp(req.params.query);
     const data = await ttthdiemthi.find({
       mssv: { $regex: regexQuery, $options: "i" }, // i: không phân biệt chữ hoa & thường
+      trangthai : true
     }).limit(1);
     res.json(data);
   } catch (error) {
@@ -34,7 +35,14 @@ router.get('/', async (req, res) => {
     res.json([]);
   }
 });
-
+router.get('/list', async (req, res) => {
+  try {
+    const danhsach = await ttthdiemthi.find().sort({created_at: -1});
+    res.json(danhsach);
+  } catch (error) {
+    res.json([]);
+  }
+});
 // update
 router.post('/update', async (req, res) => {
   await ttthdiemthi.findOneAndUpdate({
@@ -67,6 +75,8 @@ router.post('/delete', async (req, res) => {
   await ttthdiemthi.findOneAndUpdate({
     _id: req.body._id
   }, {
+    nguoisua: req.body.nguoisua,
+    updated_at: req.body.updated_at,
     trangthai: false
   });
 })

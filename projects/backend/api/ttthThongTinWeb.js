@@ -1,7 +1,8 @@
 const router = require('express').Router()
 const ttthThongTinWeb = require('../models/ttththongtinweb.model');
 const multer = require('multer')
-
+const convertString = require("../common/convertString");
+const path = require("path");
 // get
 router.get('/ttthdanhsachthongtinweb', async (req, res) => {
   ttthThongTinWeb.find((error, data) => {
@@ -11,49 +12,93 @@ router.get('/ttthdanhsachthongtinweb', async (req, res) => {
     res.json(data)
   })
 })
-// File upload settings
 
-const PATH = './uploads/cntt';
-var linkImg;
-let Storage = multer.diskStorage({
-  destination: (req, file, callback) => {
-    callback(null, PATH);
+//#region MULTER UPLOAD IMAGE
+// upload file path
+const FILE_PATH = "uploads/cntt/";
+
+// define multer storage configuration
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, FILE_PATH);
   },
-  filename: (req, file, callback) => {
-    // const filename =`${Date.now()}${file.originalname}`
-    const filename =`${file.originalname}`
-    callback(null, filename);
-  }
+  filename: (req, file, cb) => {
+    const filename =
+      file.fieldname + "_" + Date.now() + path.extname(file.originalname);
+    cb(null, filename);
+  },
 });
-var upload = multer({
-  storage: Storage
-})
-router.post('/uploads', upload.single('image'), function (req, res ,next) {
-  if (!req.file) {
-    return res.send({
-      success: false
+
+const upload = multer({
+  storage: storage,
+  limits: {
+    files: 10, // allow up to 10 files per request
+    fieldSize: 5 * 1024 * 1024, // 5MB (max file size)
+  },
+  fileFilter: (req, file, cb) => {
+    // allow images only
+    if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/)) {
+      return cb(new Error("Only image are allowed."), false);
+    }
+    cb(null, true);
+  },
+});
+
+async function uploadPhotos(req, res, next) {
+  // console.log("run uploadPhotos");
+  upload.single("image")(req, res, function (error) {
+    try {
+      const photo = req.file;
+      // check if photos are available
+      if (!photo) {
+        res.status(400).json({
+          status: false,
+          message: "No photo is selected.",
+        });
+      } else {
+        req.body.anhBia = photo.destination + photo.filename;
+        next();
+      }
+    } catch (error) {
+      res.status(500).send(error);
+    }
+  });
+}
+//#endregion
+// sua
+
+router.post("/ttthsuathongtinweb", uploadPhotos, async (req, res) => {
+  try {
+    console.log(req.body);
+    // await TinTuc.findOneAndUpdate(
+    //   { _id: req.body._id },
+    //   {
+    //     maBaiViet: req.body.maBaiViet,
+    //     anhBia: req.body.anhBia,
+    //     maDanhMuc: req.body.maDanhMuc,
+    //     loaiBaiViet: req.body.loaiBaiViet,
+    //     tieuDe: req.body.tieuDe,
+    //     tieuDeASCII: req.body.tieuDeASCII,
+    //     moTaNgan: req.body.moTaNgan,
+    //     noiDung: req.body.noiDung,
+    //     noiDungASCII: req.body.noiDungASCII,
+    //     nguoiViet: req.body.nguoiViet,
+    //     viTriHienThi: req.body.viTriHienThi,
+    //     trangThai: req.body.trangThai,
+    //   }
+    // );
+    res.json({
+      message: "Chỉnh sửa bài viết thành công",
+      code: 200,
+    });
+  } catch (error) {
+    res.json({
+      message: "Chỉnh sửa bài viết thất bại",
+      code: 400,
+      error: error,
     });
   }
-  res.send({
-    success: true,
-  });
 });
-// sua
-router.post('/ttthsuathongtinweb', async (req, res) => {
-  console.log(linkImg);
-  await ttthThongTinWeb.findOneAndUpdate({
-    _id: req.body._id
-  }, {
-    logo:req.body.logo,
-    diachi: req.body.diachi,
-    giolamviec: req.body.giolamviec,
-    hotline: req.body.hotline,
-    email: req.body.email,
-    copyright: req.body.copyright,
-    mxh: req.body.mxh,
-    nguoisua: req.body.nguoisua,
-    updated_at: req.body.updated_at,
-  });
-})
+
 
 module.exports = router

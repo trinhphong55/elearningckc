@@ -7,7 +7,7 @@
       </div>
       <div class="col-12" *ngIf="selectedItem">
         <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
-          <div class="row justify-content-center align-items-center">
+          <div class="row justify-content-center align-items-center" *ngIf="selectedItem.sobaodanh">
             <div class="col-auto">
               <div class="form-group">
                 <label>Họ tên</label>
@@ -93,6 +93,50 @@
               </div>
             </div>
           </div>
+          <div class="row justify-content-center align-items-center" *ngIf="!selectedItem.sobaodanh">
+            <div class="col-auto">
+              <div class="form-group">
+                <label>Họ tên</label>
+                <input type="text" class="form-control"  [(ngModel)]="selectedItem.hoten">
+              </div>
+              <div class="form-group">
+                <label>MSSV</label>
+                <input type="text" class="form-control" [(ngModel)]="selectedItem.mssv">
+              </div>
+              <div class="form-group">
+                <label>Ngày sinh</label>
+                <input type="text" class="form-control"  [(ngModel)]="selectedItem.ngaysinh">
+              </div>
+            </div>
+            <div class="col-auto">
+              <div class="form-group">
+                <label>Nơi sinh</label>
+                <input type="text" class="form-control" [(ngModel)]="selectedItem.noisinh">
+              </div>
+              <div class="form-group">
+                <label>Lớp</label>
+                <input type="text" class="form-control"  [(ngModel)]="selectedItem.lop">
+              </div>
+              <div class="form-group">
+                <label>Điểm</label>
+                <input type="text" class="form-control"  [(ngModel)]="selectedItem.tongdiem">
+              </div>
+            </div>
+            <div class="col-auto">
+              <div class="modal_chucnang__group__button">
+                <button class="modal_chucnang__button btn btn-outline-success px-4 mx-2"
+                  (click)="update(selectedItem)"><img class="modal_chucnang__button__icon mb-2"
+                    src="assets/img/icons/upgrade.png" alt="image icon">
+                  <div>Cập nhật</div>
+                </button>
+                <button  (click)="reset()"  type="reset"  class="btn btn-outline-dark px-4 mx-2">
+                  <img class="modal_chucnang__button__icon mb-2"
+                  src="assets/img/icons/error.png"    alt="image icon"  />
+                  <div>Huỷ bỏ</div>
+              </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="col-12">
@@ -101,6 +145,7 @@
             <thead class="bg__caothang text-white">
               <tr>
                 <th>#</th>
+                <th scope="col">Loại điểm</th>
                 <th scope="col">Họ tên</th>
                 <th scope="col">MSSV</th>
                 <th scope="col">SBD</th>
@@ -111,6 +156,9 @@
                 <th scope="col">MS Word</th>
                 <th scope="col">MS Excel</th>
                 <th scope="col">MS Powerpoint</th>
+                <th scope="col">Người tạo</th>
+                <th scope="col">Người sửa</th>
+                <th scope="col">Trạng thái</th>
                 <th class="text-center" scope="col"><span
                     class="modal_chucnang__button__save mdi mdi-content-save-outline mdi-24px"></span></th>
               </tr>
@@ -118,6 +166,7 @@
             <tbody>
               <tr *ngFor="let item of DiemThi; let i = index">
                 <td style="max-width: 50px">{{i + 1}}</td>
+                <td>{{item.loaidiem}}</td>
                 <td>{{item.hoten}}</td>
                 <td>{{item.mssv}}</td>
                 <td>{{item.sobaodanh}}</td>
@@ -128,6 +177,10 @@
                 <td>{{item.msword}}</td>
                 <td>{{item.msexcel}}</td>
                 <td>{{item.mspowerpoint}}</td>
+                <td>{{item.nguoitao}}</td>
+                <td>{{item.nguoisua}}</td>
+                <td *ngIf="item.trangthai==false">Đã xóa</td>
+                <td *ngIf="item.trangthai==true">Hiển thị</td>
                 <td class="text-center">
                   <span class="modal_chucnang__button__delete mdi mdi-file-document-edit-outline mdi-24px  mr-2"
                     (click)="onSelect(item)"></span>

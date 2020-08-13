@@ -24,10 +24,11 @@ router.post('/add', (req, res) => {
   var add = new ttthlophoc({
     makhoahoc: req.body.makhoahoc,
     dot: req.body.dot,
-    lop: req.body.lop,
+    tenlop: req.body.tenlop,
     buoihoc: req.body.buoihoc,
     giohoc: req.body.giohoc,
     ngaykhaigiang: req.body.ngaykhaigiang,
+    nam: req.body.nam,
     hocphi: req.body.hocphi,
     giaovien: req.body.giaovien,
     nhapdiem: req.body.nhapdiem,
@@ -52,10 +53,11 @@ router.post('/update', async (req, res) => {
   }, {
     makhoahoc: req.body.makhoahoc,
     dot: req.body.dot,
-    lop: req.body.lop,
+    tenlop: req.body.tenlop,
     buoihoc: req.body.buoihoc,
     giohoc: req.body.giohoc,
     ngaykhaigiang: req.body.ngaykhaigiang,
+    nam: req.body.nam,
     hocphi: req.body.hocphi,
     giaovien: req.body.giaovien,
     nhapdiem: req.body.nhapdiem,
@@ -71,6 +73,8 @@ router.post('/delete', async (req, res) => {
   await ttthlophoc.findOneAndUpdate({
     _id: req.body._id
   }, {
+    nguoisua: req.body.nguoisua,
+    updated_at: req.body.updated_at,
     trangthai: false
   });
 })

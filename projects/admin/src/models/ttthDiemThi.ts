@@ -1,4 +1,5 @@
 export class ttthDiemThi {
+  loaidiem: String
   hoten: String
   mssv: String
   ngaysinh: String

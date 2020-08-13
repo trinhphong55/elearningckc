@@ -6,7 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ThongtinwebService } from '../../../../services/ttth/thongtinweb.service';
 import { ttthThongTinWeb } from '../../../../../models/ttthThongTinWeb';
 import { getCookie } from '../../../../../../../common/helper';
-const URL = 'https://localhost:4100/api/ttthThongTinWeb/uploads';
+const URL = 'https://localhost:4100/api/ttthThongTinWeb/ttthsuathongtinweb';
 declare var $: any;
 @Component({
   selector: 'app-modal-logo',
@@ -38,11 +38,11 @@ export class ModalLogoComponent implements OnInit {
     url: URL,
     itemAlias: 'image'
   });
-   nameImage: any;
+  //  nameImage: any;
    imageSrc: any;
    onFileSelected(event) {
     if (event.target.files.length > 0) {
-      this.nameImage = event.target.files[0];
+      // this.nameImage = event.target.files[0];
       let img = new Image()
       img.src = window.URL.createObjectURL(event.target.files[0])
       img.onload = () => {
@@ -64,9 +64,9 @@ export class ModalLogoComponent implements OnInit {
    }
   ///edit
   saveThongTinWeb(ThongTinWeb: ttthThongTinWeb):void {
-    if (this.nameImage) {
-      ThongTinWeb.logo='https://localhost:4100/uploads/cntt/' + this.nameImage.name;
-    }
+    // if (this.nameImage) {
+    //   ThongTinWeb.logo='https://localhost:4100/uploads/cntt/' + this.nameImage.name;
+    // }
     ThongTinWeb.updated_at= new Date;
     ThongTinWeb.nguoisua= this._username;
     this.thongtinwebService.suaThongTinWeb(ThongTinWeb)
