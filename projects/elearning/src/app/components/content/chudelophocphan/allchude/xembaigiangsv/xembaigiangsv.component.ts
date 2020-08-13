@@ -46,6 +46,7 @@ export class XembaigiangsvComponent implements OnInit {
         .layTheo_maBaiGiang(params.id)
         .subscribe((res: any) => {
           if (res.data) {
+            console.log('res', res.data);
             this.baiGiang = res.data;
             this.layDS_binhLuan_baiGiang(1, this.baiGiang.maBaiGiang);
           }
