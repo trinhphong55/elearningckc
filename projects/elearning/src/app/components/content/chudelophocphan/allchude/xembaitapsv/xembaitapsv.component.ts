@@ -9,6 +9,8 @@ import { CookieService } from 'ngx-cookie-service';
 import { FileSelectDirective, FileUploader } from 'ng2-file-upload';
 import { FileService } from '../../../../../services/file.service';
 import saveAs from 'file-saver';
+import { ActivityService } from '../../../../../services/activity.service';
+import { getCookie } from '../../../../../../../../common/helper';
 const uri = 'https://localhost:4100/api/baitap/uploads';
 @Component({
   selector: 'app-xembaitapsv',
@@ -18,6 +20,8 @@ const uri = 'https://localhost:4100/api/baitap/uploads';
 export class XembaitapsvComponent implements OnInit {
   public baiTap: BaiTap;
   public dsBinhLuan: any;
+  public maLHP: any;
+  public mssv = getCookie('email').slice(0, 10);
   public binhLuan = new FormControl('');
   //uplpadfile trinh phong
   hasBaseDropZoneOver: boolean;
@@ -48,7 +52,8 @@ export class XembaitapsvComponent implements OnInit {
     private binhLuanService: BinhLuanService,
     private BaiTapSinhVienService: BaiTapSinhVienService,
     private cookie: CookieService,
-    private _fileService: FileService) {
+    private _fileService: FileService,
+    private activityService:ActivityService) {
 
   }
 
@@ -64,6 +69,12 @@ export class XembaitapsvComponent implements OnInit {
     this.uploader.onBeforeUploadItem = (item) => {
       item.withCredentials = false;
     }
+  }
+
+  private themActivity(maDoiTuong, noiDung) {
+    this.activityService.themActivity(this.maLHP, maDoiTuong, "BL-BT", noiDung, "bình luận").subscribe(res => {
+      console.log(res);
+    })
   }
 
   public xem_BaiTap() {
@@ -100,9 +111,17 @@ export class XembaitapsvComponent implements OnInit {
       loaiBaiViet: '2',
       maBaiViet: maBaiGiang,
       noiDung: this.binhLuan.value,
-      nguoiTao: '0306171249',
+      nguoiTao: this.mssv,
     };
-    this.binhLuanService.themBinhluan(data).subscribe((res) => { });
+    this.binhLuanService.themBinhluan(data).subscribe((res:any) => {
+      if(typeof res.data == 'object'){
+        //mã bài viết là mã bài tập
+        this.baiTapService.layBaiTap_theoMaBaiTap(data.maBaiViet).subscribe((res:any) => {
+          this.maLHP = res.data.maLopHocPhan;
+          this.themActivity(data.maBaiViet, res.data.tieuDe);
+        })
+      }
+    });
   }
 
 
