@@ -5,7 +5,7 @@ var schema = new Schema(
   {
     loaiBaiViet: { type: String, default: null },
     maDanhMuc: { type: String, default: null },
-    maBaiViet: { type: String },
+    maBaiViet: { type: String, default: null },
     tieuDe: { type: String, default: null },
     tieuDeASCII: { type: String, default: null },
     moTaNgan: { type: String, default: null },

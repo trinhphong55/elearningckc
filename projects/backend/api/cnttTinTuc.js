@@ -3,6 +3,7 @@ const TinTuc = require("../models/cntttintuc.model");
 const multer = require("multer");
 const convertString = require("../common/convertString");
 const path = require("path");
+const { async } = require("rxjs");
 
 //#region MULTER UPLOAD IMAGE
 // upload file path
@@ -127,6 +128,23 @@ router.post("/xoatintuc", async (req, res) => {
       code: 200,
       error: error,
     });
+  }
+});
+
+// kiểm tra trùng mã bài viết
+router.get("/maBaiViet=:maBaiViet", async (req, res) => {
+  try {
+    const danhSachBaiViet = await TinTuc.find();
+    const result = danhSachBaiViet.filter(
+      (x) => x.maBaiViet === req.params.maBaiViet
+    );
+    if (result.length > 0) {
+      res.json({ code: 400, message: "Đã tồn tại" });
+    } else {
+      res.json({ code: 200, message: "Có thể sử dụng mã bài viết này" });
+    }
+  } catch (error) {
+    res.json({ code: 400, data: [] });
   }
 });
 

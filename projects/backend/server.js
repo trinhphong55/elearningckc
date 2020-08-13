@@ -19,8 +19,8 @@ const httpsOptions = {
 };
 
 // Connect with MongoDB
-mongoose.connect("mongodb://127.0.0.1:27017/ttth", {
-// mongoose.connect(MONGODB_URI, {
+// mongoose.connect("mongodb://127.0.0.1:27017/ttth", {
+mongoose.connect(MONGODB_URI, {
   useNewUrlParser: true,
   useFindAndModify: false,
   useCreateIndex: true,
@@ -37,9 +37,6 @@ mongoose.connection.once("open", () => {
 
 // enable CORS
 app.use(cors());
-// app.use(cors(
-//   { credentials: true, origin: "http://localhost:4400" },
-// ));
 
 // Make sure you place body-parser before your CRUD handlers!
 app.use(

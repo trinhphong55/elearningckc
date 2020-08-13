@@ -36,11 +36,14 @@ export class ModalBaivietComponent implements OnInit, OnDestroy, AfterViewInit {
   public dtOptions: DataTables.Settings = {};
   public dtTrigger: Subject<any> = new Subject();
   //#endregion
+  private _maBaiVietMoiNhat: any;
   private _username: any = getCookie('displayName');
   private _image: any = null;
   private _imageCanChinhSua: any = null;
   public image: any = 'https://localhost:4100/uploads/cntt/128.png';
-  public baiVietCanChinhSua: any;
+  public baiVietCanChinhSua: any = {
+    maBaiViet: null,
+  };
   public imageCuaBaiVietCanChinhSua: any =
     'https://localhost:4100/uploads/cntt/128.png';
   public Editor = ClassicEditor;
@@ -150,9 +153,9 @@ export class ModalBaivietComponent implements OnInit, OnDestroy, AfterViewInit {
     this._dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
       // this.getDanhSachBaiViet();
       // // Destroy the table first
-      // dtInstance.destroy();
-      // // Call the dtTrigger to rerender again
-      // this.dtTrigger.next();
+      dtInstance.destroy();
+      // Call the dtTrigger to rerender again
+      this.dtTrigger.next();
     });
   }
 
@@ -161,8 +164,10 @@ export class ModalBaivietComponent implements OnInit, OnDestroy, AfterViewInit {
       this.danhSachBaiViet = data;
       // console.log('danhSachBaiViet');
       // console.log(this.danhSachBaiViet);
-      this.getMaBaiVietCuoiCung();
+      // this.getMaBaiVietCuoiCung();
+      this.setMaBaiVietVaoFormBaiViet();
       this.dtTrigger.next(); // DataTables
+      // this.reRenderDataTables();
     });
   }
 
@@ -180,23 +185,31 @@ export class ModalBaivietComponent implements OnInit, OnDestroy, AfterViewInit {
 
   getMaBaiVietCuoiCung(): void {
     const obj = this.danhSachBaiViet.data;
-    let _maBaiViet: string;
     if (obj.length > 0) {
-      _maBaiViet = obj[obj.length - 1].maBaiViet;
-      if (_maBaiViet !== undefined) {
-        const index = parseInt(_maBaiViet.substr(2, _maBaiViet.length));
+      this._maBaiVietMoiNhat = obj[obj.length - 1].maBaiViet;
+      if (this._maBaiVietMoiNhat !== undefined) {
+        const index = parseInt(
+          this._maBaiVietMoiNhat.substr(2, this._maBaiVietMoiNhat.length)
+        );
         if (index < 10) {
-          _maBaiViet = 'BV0' + (index + 1);
+          this._maBaiVietMoiNhat = 'BV0' + (index + 1);
         } else {
-          _maBaiViet = 'BV' + (index + 1);
+          this._maBaiVietMoiNhat = 'BV' + (index + 1);
         }
       }
     } else {
-      _maBaiViet = 'BV01';
+      this._maBaiVietMoiNhat = 'BV01';
     }
-    this.formBaiViet.patchValue({
-      maBaiViet: _maBaiViet,
-    });
+  }
+
+  setMaBaiVietVaoFormBaiViet(): void {
+    this.getMaBaiVietCuoiCung();
+    this.formBaiViet.get('maBaiViet').setValue(this._maBaiVietMoiNhat);
+  }
+
+  setMaBaiVietVaoFormBaiVietChinhSua(): void {
+    this.getMaBaiVietCuoiCung();
+    this.formChinhSuaBaiViet.get('maBaiViet').setValue(this._maBaiVietMoiNhat);
   }
 
   onFileSelected(event) {
@@ -266,6 +279,8 @@ export class ModalBaivietComponent implements OnInit, OnDestroy, AfterViewInit {
 
   displayBaiVietCanChinhSua(baiViet: any): void {
     this.formChinhSuaBaiViet.patchValue(baiViet);
+    this.baiVietCanChinhSua = baiViet;
+    console.log(this.baiVietCanChinhSua);
     this.trangThaiCuaForm = 1;
     this.imageCuaBaiVietCanChinhSua =
       'https://' + this.danhSachBaiViet.domain + '/' + baiViet.anhBia;
@@ -413,20 +428,48 @@ export class ModalBaivietComponent implements OnInit, OnDestroy, AfterViewInit {
         });
     }
   }
-//form them
-  get maDanhMuc() { return this.formBaiViet.get('maDanhMuc'); }
-  get moTaNgan() { return this.formBaiViet.get('moTaNgan'); }
-  get loaiBaiViet() { return this.formBaiViet.get('loaiBaiViet'); }
-  get tieuDe() { return this.formBaiViet.get('tieuDe'); }
-  get noiDung() { return this.formBaiViet.get('noiDung'); }
-  get ViTriHienThi() { return this.formBaiViet.get('viTriHienThi'); }
-  get trangThai() { return this.formBaiViet.get('trangThai'); }
-//form edit
-  get maDanhMuc2() { return this.formChinhSuaBaiViet.get('maDanhMuc'); }
-  get moTaNgan2() { return this.formChinhSuaBaiViet.get('moTaNgan'); }
-  get loaiBaiViet2() { return this.formChinhSuaBaiViet.get('loaiBaiViet'); }
-  get tieuDe2() { return this.formChinhSuaBaiViet.get('tieuDe'); }
-  get noiDung2() { return this.formChinhSuaBaiViet.get('noiDung'); }
-  get ViTriHienThi2() { return this.formChinhSuaBaiViet.get('viTriHienThi'); }
-  get trangThai2() { return this.formChinhSuaBaiViet.get('trangThai'); }
+  //form them
+  get maDanhMuc() {
+    return this.formBaiViet.get('maDanhMuc');
+  }
+  get moTaNgan() {
+    return this.formBaiViet.get('moTaNgan');
+  }
+  get loaiBaiViet() {
+    return this.formBaiViet.get('loaiBaiViet');
+  }
+  get tieuDe() {
+    return this.formBaiViet.get('tieuDe');
+  }
+  get noiDung() {
+    return this.formBaiViet.get('noiDung');
+  }
+  get ViTriHienThi() {
+    return this.formBaiViet.get('viTriHienThi');
+  }
+  get trangThai() {
+    return this.formBaiViet.get('trangThai');
+  }
+  //form edit
+  get maDanhMuc2() {
+    return this.formChinhSuaBaiViet.get('maDanhMuc');
+  }
+  get moTaNgan2() {
+    return this.formChinhSuaBaiViet.get('moTaNgan');
+  }
+  get loaiBaiViet2() {
+    return this.formChinhSuaBaiViet.get('loaiBaiViet');
+  }
+  get tieuDe2() {
+    return this.formChinhSuaBaiViet.get('tieuDe');
+  }
+  get noiDung2() {
+    return this.formChinhSuaBaiViet.get('noiDung');
+  }
+  get ViTriHienThi2() {
+    return this.formChinhSuaBaiViet.get('viTriHienThi');
+  }
+  get trangThai2() {
+    return this.formChinhSuaBaiViet.get('trangThai');
+  }
 }

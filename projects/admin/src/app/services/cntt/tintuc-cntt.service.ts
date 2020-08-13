@@ -6,7 +6,6 @@ import {
   HttpHeaders,
   HttpErrorResponse,
 } from '@angular/common/http';
-import { cnttTinTuc } from '../../../models/cnttTinTuc';
 
 @Injectable({
   providedIn: 'root',
@@ -30,6 +29,13 @@ export class TintucCnttService {
       })
       .pipe(catchError(this.errorMgmt));
   }
+
+  kiemTraTrungMaBaiViet(maBaiViet: string): Observable<any> {
+    return this.http
+      .get(this.baseUri + '/maBaiViet=' + maBaiViet)
+      .pipe(catchError(this.errorMgmt));
+  }
+
   //add tin tuc
   themTinTuc(data): Observable<any> {
     let url = `${this.baseUri}/taotintuc`;
