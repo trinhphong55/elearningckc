@@ -25,6 +25,7 @@
     var ms = '';
     var url='';
     var postid='';
+    var idPage='';
     window.fbAsyncInit = function () {
       FB.init({
         appId: AppId,
@@ -134,6 +135,8 @@
       }
     //get accessToken
     function getAccessToken(ac){
+      idPage = ac.data;
+      document.getElementById('getidpage').value = idPage;
       FB.api('/'+ac.data,{fields: 'access_token'},function (response){
         accessToken = response.access_token;
           console.log(accessToken);
@@ -161,8 +164,24 @@
       FB.api('/'+postid,{fields: 'permalink_url'}, function (response) {
         var linkstt =response.permalink_url;
               document.getElementById('linkstt').value = linkstt;
+              document.getElementById('postid').value = postid;
             });
     }
+    // [7] Delete status đã lên page
+    function DELETE() {
+            if (FBLoaded) {
+                var postid = document.getElementById('postid').value;
+                FB.api(postid, 'delete', { access_token : accessToken }, function (response) {
+                    if (!response || response.error) {
+                        alert('Có lỗi khi xóa bài');
+                    } else {
+                        alert('Đã xóa thành công');
+                    }
+                });
+            } else {
+                setTimeout("DELETE()", 100);
+            }
+        }
     //Post lên Page picture by url
     function POSTPagePictureUrl() {
         var ms = document.getElementById('message').value;

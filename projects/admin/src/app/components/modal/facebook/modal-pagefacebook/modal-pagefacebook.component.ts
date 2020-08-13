@@ -1,3 +1,5 @@
+import { ChangeDetialFB } from './../../../../services/changeDetailFB.service';
+import { filter } from 'rxjs/operators';
 import { TrangThaifbService } from './../../../../services/trangthaifb.service';
 import { LoaifbService } from './../../../../services/loaifb.service';
 import { BaiDangfbService } from './../../../../services/baidangfb.service';
@@ -20,12 +22,21 @@ export class ModalPagefacebookComponent implements OnInit {
   addForm: FormGroup;
   getloai: any;
   gettt: any;
+  idPage:any;
+  loaistt :any;
+  idpage :any;
+  messa :any;
+  urlImg :any;
+  MaLoai :any;
+  tenpage:any;
+  text: '';
   constructor(
     private modalService: ModalService,
     private pageFBService: PagefbService,
     private baiDangFBService: BaiDangfbService,
     private loaifbService: LoaifbService,
-    private trangthaiFBService: TrangThaifbService
+    private trangthaiFBService: TrangThaifbService,
+    private _changeDetailFB: ChangeDetialFB
     ) { }
 
   ngOnInit(): void {
@@ -35,7 +46,10 @@ export class ModalPagefacebookComponent implements OnInit {
       tenPage: new FormControl(),
       IDpage: new FormControl(),
       linkPage: new FormControl(),
-      linkStatus: new FormControl()
+      linkStatus: new FormControl(),
+      getLoaistt: new FormControl(),
+      getURLimg: new FormControl(),
+      getMessage: new FormControl()
     })
   }
   get tenPage() {
@@ -49,6 +63,16 @@ export class ModalPagefacebookComponent implements OnInit {
   }
   get linkStatus(){
     return this.addForm.get('linkStatus');
+  }
+  get getLoaistt(){
+    return this.addForm.get('getLoaistt');
+  }
+  get getURLimg(){
+    return this.addForm.get('getURLimg');
+  }
+
+  get getMessage(){
+    return this.addForm.get('getMessage');
   }
 
   getAll(){
@@ -105,7 +129,6 @@ export class ModalPagefacebookComponent implements OnInit {
   getLoai() {
     this.loaifbService.getAll().subscribe((getloai) => {
       this.getloai = getloai;
-      console.log(this.getloai);
     });
   }
 
@@ -116,13 +139,93 @@ export class ModalPagefacebookComponent implements OnInit {
     });
   }
 
-  getlinkstt(){
-    let link = $('#linkstt').val();
-    console.log(link);
+  delay(ms: number) {
+    return new Promise( resolve => setTimeout(resolve, ms) );
+}
+
+  insertTobd(){
+    this.delay(3000).then(any=>{
+      //your task after delay.
+      this.loaistt = this.addForm.value.getLoaistt;
+      this.idpage = $('#getidpage').val();
+      this.messa = this.addForm.value.getMessage;
+      this.urlImg = this.addForm.value.getURLimg;
+      this.data.filter((item)=>{
+        if(item.id_Page === this.idpage){
+          this.tenpage = item.tenPage;
+        }
+      })
+      this.getloai.filter((item)=>{
+        if(item.loai === this.loaistt){
+          this.MaLoai = item.maLoai;
+        }
+      })
+      let linkpost = $('#linkstt').val();
+      let Post_idd = $('#postid').val();
+      console.log(linkpost);
+      console.log(Post_idd);
+      console.log(this.idpage);
+      console.log(this.loaistt);
+      console.log(this.messa);
+      console.log(this.urlImg);
+      console.log(this.tenpage);
+      console.log(this.MaLoai);
+      this.baiDangFBService.create({
+        ID: this.idpage,
+        postID: Post_idd,
+        link: linkpost,
+        message: this.messa,
+        url: this.urlImg,
+        maLoai: this.MaLoai,
+        loai: this.loaistt,
+        thuoc: this.tenpage
+      }).subscribe((ress:any)=>{
+        this.mess = ress.msg;
+        alert(this.mess);
+        console.log(ress);
+      })
+    });
+  }
+  insertDraft(){
+    this.loaistt = this.addForm.value.getLoaistt;
+    this.getloai.filter((item)=>{
+      if(item.loai === this.loaistt){
+        this.MaLoai = item.maLoai;
+      }
+    })
+
+    this.idpage = $('#getidpage').val();
+    this.messa = this.addForm.value.getMessage;
+    this.urlImg = this.addForm.value.getURLimg;
+    this.data.filter((item)=>{
+      if(item.id_Page === this.idpage){
+          this.tenpage = item.tenPage;
+      }
+    })
+
+    this.baiDangFBService.createDraw({
+      ID: this.idpage,
+      message: this.messa,
+      url: this.urlImg,
+      maLoai: this.MaLoai,
+      loai: this.loaistt,
+      thuoc: this.tenpage
+    }).subscribe((ress:any)=>{
+      this.mess = ress.msg;
+      alert(this.mess);
+      console.log(ress);
+    })
   }
 
-  openDetailpage() {
+  changeTitle(d){
+   document.getElementById('title').innerText = "Đăng bài cho "+ d;
+  }
+
+  openDetailpage(detail) {
     this.modalService.open('detail-pagefb');
+    this.text = detail.tenPage;
+    this._changeDetailFB.setTitleFormPageFB(this.text);
+    $('#id_P').val(detail.id_Page);
   }
   closeModal(id: string) {
     this.modalService.close(id)

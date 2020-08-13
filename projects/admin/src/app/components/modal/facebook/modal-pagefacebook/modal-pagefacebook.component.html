@@ -28,7 +28,7 @@
             </div>
             <div class="">
               <div class="modal_chucnang__group__button">
-                <button class="modal_chucnang__button btn btn-outline-primary px-4 mx-2" (click)="Insert()"><img
+                <button class="modal_chucnang__button btn btn-outline-primary px-4 mx-2" (click)="Insert()" ><img
                     class="modal_chucnang__button__icon mb-2" src="assets/img/icons/add.png" alt="image icon">
                   <div>Thêm mới</div>
                 </button>
@@ -47,7 +47,8 @@
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                <div class="modal-title" id="exampleModalLongTitle"></div>
+                <h5 id="title" ></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -56,28 +57,31 @@
                 <div class="">
                   <div class="form-group">
                     <label>Message</label>
-                    <textarea class="form-control" type="text" name="message" id="message" ></textarea>
+                    <textarea class="form-control" type="text" name="message" id="message" [formControl]="getMessage" ></textarea>
                   </div>
                 </div>
                 <div class="">
                   <div class="form-group">
                     <label>Url picture</label>
-                    <input class="form-control" type="text" name="picture" id="picture"/>
+                    <input class="form-control" type="text" name="picture" id="picture" [formControl]="getURLimg"/>
                   </div>
                 </div>
                 <input type="text" value="" id="linkstt" hidden>
+                <input type="text" value="" id="getidpage" hidden>
+                <input type="text" value="" id="postid" hidden>
                 <div class="">
                   <div class="form-group">
                     <label for="">Loại</label>
-                    <select name="" id="">
-                      <option *ngFor="let l of getloai" [ngValue]="l.maLoai">{{l.loai}}</option>
+                    <select name="" [formControl]="getLoaistt" class="col-6 form-control">
+                      <option>Chọn..</option>
+                      <option *ngFor="let l of getloai" class="form-control">{{l.loai}}</option>
                     </select>
                   </div>
                 </div>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" (click)="getlinkstt()">Lưu</button>
-                <button type="button" class="btn btn-primary" onclick="PostByRequest()">Đăng</button>
+                <button type="button" class="btn btn-secondary" (click)="insertDraft()">Lưu</button>
+                <button type="button" class="btn btn-primary" onclick="PostByRequest()" (click)="insertTobd()">Đăng</button>
               </div>
             </div>
           </div>
@@ -113,17 +117,17 @@
                   <div>{{d.tenPage}}</div>
                 </td>
                 <td class="text-center">
-                  <div>{{d.linkPage}}</div>
+                  <a href="{{d.linkPage}}" target="_blank">Đi đến Page</a>
                 </td>
                 <td class="text-center">
                   <div class="mb-1">
                     <!-- Button trigger modal -->
-                    <button type="button" class="modal_chucnang__button btn btn-outline-success" data-toggle="modal" data-target="#exampleModalLongpage" onclick="getAccessToken(this)" data="{{d.id_Page}}">
+                    <button type="button" class="modal_chucnang__button btn btn-outline-success" data-toggle="modal" data-target="#exampleModalLongpage" (click)="changeTitle(d.tenPage)" onclick="getAccessToken(this)" data="{{d.id_Page}}">
                       Đăng Bài
                     </button>
                   </div>
                   <div class="mb-1">
-                    <button class="modal_chucnang__button btn btn-outline-success px-4 mx-2" (click)="openDetailpage()">View</button>
+                    <button class="modal_chucnang__button btn btn-outline-success px-4 mx-2" (click)="openDetailpage(d)">View</button>
                   </div>
                   <div class="mb-1">
                     <button class="modal_chucnang__button btn btn-outline-success  px-4 mx-2" (click)="DeletePage(d)">Xóa</button>

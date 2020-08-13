@@ -16,17 +16,16 @@ exports.postToDrawFB = async (req, res) => {
     const err = validationResult(req);
     if(!err.isEmpty()){
       res.status(422).json(err.errors);
-    } 
-   
+    }
+
       const posttodrawfbs = new baidangfb({
         ID:req.body.ID,
-        link:req.body.link,
         message: req.body.message,
         url: req.body.url,
         maLoai:req.body.maLoai,
         loai:req.body.loai,
         thuoc:req.body.thuoc
-        
+
       });
       const savePostToDraw = await posttodrawfbs.save();
       res.json({
@@ -79,7 +78,7 @@ exports.postedToFB = async (req, res) => {
     if(!err.isEmpty()){
       res.status(422).json(err.errors);
     }
-   
+
       const posedttofbs = new baidangfb({
         ID:req.body.ID,
         postID: req.params.postID,
@@ -182,4 +181,4 @@ exports.updateDrawToPosted = async (req, res) => {
     res.json(error);
   }
 };
-  
+
