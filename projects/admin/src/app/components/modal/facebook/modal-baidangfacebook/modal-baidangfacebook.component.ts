@@ -13,6 +13,7 @@ export class ModalBaidangfacebookComponent implements OnInit {
   data: any;
   trangthai: any;
   setTrangthai: any;
+  mess:any;
   //Khai báo list
   public posttams: any;
   public addForm: FormGroup;
@@ -30,7 +31,6 @@ export class ModalBaidangfacebookComponent implements OnInit {
     this.getAll();
     this.getTrangthai();
     this.changedTrangThai();
-    this.changeTrangthai();
   }
 
   getAll() {
@@ -46,8 +46,13 @@ export class ModalBaidangfacebookComponent implements OnInit {
     });
   }
 
-  changeTrangthai(){
-
+  changeTrangthai(d){
+    this.baiDangService.delete(d._id).subscribe((ress:any)=>{
+      this.mess = ress.msg;
+      alert(this.mess);
+      console.log(ress);
+      this.getAll();
+    })
   }
 
   //bắt sự kiện show post theo trạng thái

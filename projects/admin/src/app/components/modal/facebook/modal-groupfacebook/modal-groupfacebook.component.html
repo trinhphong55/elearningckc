@@ -72,25 +72,32 @@
                 <div class="">
                   <div class="form-group">
                     <label>Message</label>
-                    <textarea class="form-control" type="text" name="message" id="messagegr" ></textarea>
+                    <textarea class="form-control" type="text" [formControl]="getMessageGrp" id="messagegr" ></textarea>
                   </div>
                 </div>
                 <div class="">
                   <div class="form-group">
                     <label>Url picture</label>
-                    <input class="form-control" type="text" name="picture" id="picturegr"/>
+                    <input class="form-control" type="text" [formControl]="getURLimgGrp" id="picturegr"/>
                   </div>
                 </div>
-                <!-- <div class="">
+                <div class="">
                   <div class="form-group">
-                    <label for="">Ảnh/Video</label>
-                    <input class="form-control-file border" type="file">
+                    <label for="">Loại</label>
+                    <select name="" [formControl]="getLoaisttGrp" class="col-6 form-control">
+                      <option> </option>
+                      <option *ngFor="let l of getloai" class="form-control">{{l.loai}}</option>
+                    </select>
                   </div>
-                </div> -->
+                </div>
+                <input type="text" value="" id="linksttGrp" hidden>
+                <input type="text" value="" id="getidGrp" hidden>
+                <input type="text" value="" id="postidGrp" hidden>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" onclick="PostByRequest()">Đăng</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" (click)="insertDraftGrp()">Lưu Nháp</button>
+                <button type="button" class="btn btn-primary" onclick="PostGrpByRequest()" (click)="insertTobdGrp()">Đăng</button>
               </div>
             </div>
           </div>

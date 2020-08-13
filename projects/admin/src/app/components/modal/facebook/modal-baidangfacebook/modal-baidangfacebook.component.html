@@ -194,10 +194,10 @@
                 </td>
                 <td class="text-center">
                   <div class="mb-1">
-                    <button class="modal_chucnang__button btn btn-outline-success px-4 mx-2" >View</button>
+                    <button class="modal_chucnang__button btn btn-outline-success px-4 mx-2" >Đăng bài</button>
                   </div>
                   <div class="mb-1">
-                    <button class="modal_chucnang__button btn btn-outline-success  px-4 mx-2">Xóa</button>
+                    <button class="modal_chucnang__button btn btn-outline-success  px-4 mx-2" (click)="changeTrangthai(d)" onclick="DELETE(this)" data="{{d.postID}}">Xóa</button>
                   </div>
                 </td>
               </tr>
