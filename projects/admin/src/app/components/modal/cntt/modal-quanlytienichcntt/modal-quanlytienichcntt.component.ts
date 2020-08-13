@@ -90,13 +90,13 @@ export class ModalQuanlytienichcnttComponent implements OnInit {
       this.maTienIchCuoiCung = 'TI01';
     }
     this.tienIchForm.get('maTienIch').setValue(this.maTienIchCuoiCung);
-    console.log(this.maTienIchCuoiCung);
+    // console.log(this.maTienIchCuoiCung);
   }
 
   loadDanhSachTienIch() {
     this.tienIchSinhVienCnttService.danhSachTienIch().subscribe((data) => {
       this.TienIch = data.data;
-      console.log(this.TienIch);
+      // console.log(this.TienIch);
       this.getMaTienIchCuoiCung();
     });
   }

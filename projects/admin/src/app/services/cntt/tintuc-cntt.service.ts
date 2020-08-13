@@ -17,7 +17,7 @@ export class TintucCnttService {
   constructor(private http: HttpClient) {}
   danhSachTinTuc(): Observable<any> {
     return this.http
-      .get<any>(`${this.baseUri}/danhsachtintuc`, {
+      .get<any>(`${this.baseUri}/danhsachtintuctheothutuhienthi`, {
         headers: this.headers,
       })
       .pipe(catchError(this.errorMgmt));

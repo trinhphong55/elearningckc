@@ -23,7 +23,7 @@
                   <th>Tiêu đề</th>
                   <th class="text-center">Thời gian đăng</th>
                   <th class="text-center">Người đăng</th>
-                  <th class="text-center">
+                  <!-- <th class="text-center">
                     <button
                       title="Lưu thay đổi"
                       class="bg-transparent border-0 p-0"
@@ -32,13 +32,14 @@
                         class="modal_chucnang__button__plus mdi mdi-content-save-outline mdi-24px"
                       ></span>
                     </button>
-                  </th>
+                  </th> -->
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let item of listBaiVietQuanTrong; let i = index">
+                <tr *ngFor="let item of listBaiVietQuanTrong">
                   <td style="width: 50px;" class="text-center">
-                    <input class="index" type="text" [value]="i" />
+                    <!-- <input class="index" type="text" [value]="i" /> -->
+                    {{ item.thuTuHienThi }}
                   </td>
                   <td style="width: 80px;">
                     <a
@@ -75,7 +76,7 @@
                       {{ item.nguoiViet }}
                     </div>
                   </td>
-                  <td style="width: 60px;" class="text-center">
+                  <!-- <td style="width: 60px;" class="text-center">
                     <button
                       title="Chỉnh sửa thứ tự hiển thị"
                       class="bg-transparent border-0 p-0"
@@ -84,7 +85,7 @@
                         class="modal_chucnang__button__save mdi mdi-file-document-edit-outline mdi-24px"
                       ></span>
                     </button>
-                  </td>
+                  </td> -->
                 </tr>
               </tbody>
             </table>
@@ -118,8 +119,10 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let item of listCoHoiViecLam; let i = index">
-                  <td style="width: 50px;" class="text-center">{{ i + 1 }}</td>
+                <tr *ngFor="let item of listCoHoiViecLam">
+                  <td style="width: 50px;" class="text-center">
+                    {{ item.thuTuHienThi }}
+                  </td>
                   <td style="width: 80px;">
                     <a
                       data-fancybox
@@ -198,8 +201,10 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let item of listGioiThieuNgan; let i = index">
-                  <td style="width: 50px;" class="text-center">{{ i + 1 }}</td>
+                <tr *ngFor="let item of listGioiThieuNgan">
+                  <td style="width: 50px;" class="text-center">
+                    {{ item.thuTuHienThi }}
+                  </td>
                   <td style="width: 80px;">
                     <a
                       data-fancybox
@@ -278,8 +283,8 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let item of listTinTucNoiBat; let i = index">
-                  <td style="width: 50px;" class="text-center">{{ i }}</td>
+                <tr *ngFor="let item of listTinTucNoiBat">
+                  <td style="width: 50px;" class="text-center">{{ item.thuTuHienThi }}</td>
                   <td style="width: 80px;">
                     <a
                       data-fancybox

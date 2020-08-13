@@ -167,6 +167,23 @@ router.get("/danhsachtintuc", async (req, res) => {
   }
 });
 
+router.get("/danhsachtintuctheothutuhienthi", async (req, res) => {
+  try {
+    const data = await TinTuc.find().sort({ thuTuHienThi: "asc" });
+    res.json({
+      message: "Lấy danh sách bài viết thành công.",
+      domain: req.headers.host,
+      data: data,
+    });
+  } catch (error) {
+    res.json({
+      message: "Lấy danh sách bài viết thành công.",
+      data: [],
+      error: error,
+    });
+  }
+});
+
 router.get("/danhsachtintuckhac", (req, res) => {
   TinTuc.find({ trangThai: 1 }, (error, data) => {
     if (error) {
