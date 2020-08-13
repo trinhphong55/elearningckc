@@ -203,7 +203,6 @@ export class ModalGroupfacebookComponent implements OnInit {
     this.modalService.open('detail-groupfb');
     this.text = detail.tenGroupFB;
     this._changeDetailFB.setTitleFormGroupFB(this.text);
-    document.getElementById('tenDetail').textContent = (this.text);
   }
 
   closeModal(id: string) {
