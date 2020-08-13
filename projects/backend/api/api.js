@@ -204,8 +204,12 @@ router.post("/baidangfb",baidangfb.postToDrawFB);
 router.post("/baidangfb/all",baidangfb.postedToFB);
 //Update posted 
 router.put("/baidangfb/:postID",baidangfb.updatePostedFB);
+//Update draw
+router.put("/baidangfbraw/:id",baidangfb.updateDrawFB);
 //Xóa bài post
-router.delete("/baidangfb/:id",baidangfb.deletePostFB);
+router.delete("/baidangfb/:postID",baidangfb.deletePostFB);
+//Xóa bản lưu nháp
+router.delete("/baidangfbraw/:id",baidangfb.deleteDrawFB);
 //Update từ draw sang posted
 router.put("/baidangfbv2/:id",baidangfb.updateDrawToPosted);
 //Get mọi thứ trong Trạng thái

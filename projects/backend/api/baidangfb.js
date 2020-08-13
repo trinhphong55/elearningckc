@@ -44,7 +44,7 @@ exports.deletePostFB = async (req, res) => {
   try {
 
     const updatePosted = await baidangfb.updateOne(
-      { _id: req.params.id },
+      { postID: req.params.postID },
       {
         $set: {
           trangThai: 0,
@@ -58,12 +58,12 @@ exports.deletePostFB = async (req, res) => {
     if (updatePosted.nModified === 0) {
       result = {
         status: false,
-        msg: "Xóa thất bại",
+        msg: "Xóa đã post thất bại",
       };
     } else {
       result = {
         status: true,
-        msg: "Xóa thành công ",
+        msg: "Xóa đã post thành công ",
       };
     }
     res.status(200).json(result);
@@ -113,14 +113,15 @@ exports.updatePostedFB = async (req, res) => {
     console.log(req.body);
 
     const updatePosted = await baidangfb.update(
-      { postID: req.params.id },
+      { postID: req.params.postID },
       {
         $set: {
           link: req.body.link,
           message: req.body.message,
           url: req.body.url,
           maLoai:req.body.maLoai,
-          loai:req.body.loai
+          loai:req.body.loai,
+          thuoc:req.body.thuoc
         },
       }
     );
@@ -182,4 +183,77 @@ exports.updateDrawToPosted = async (req, res) => {
     res.json(error);
   }
 };
+//Delete draw
+exports.deleteDrawFB = async (req, res) => {
+  try {
 
+    const updateDrawed = await baidangfb.updateOne(
+      { _id: req.params.id },
+      {
+        $set: {
+          trangThai: 0,
+        },
+      }
+    );
+
+    let  result = {
+    };
+
+    if (updateDrawed.nModified === 0) {
+      result = {
+        status: false,
+        msg: "Xóa bản lưu thất bại",
+      };
+    } else {
+      result = {
+        status: true,
+        msg: "Xóa bản lưu thành công ",
+      };
+    }
+    res.status(200).json(result);
+  } catch (error) {
+    res.json(error);
+  }
+};
+// Update draw 
+exports.updateDrawFB = async (req, res) => {
+  try {
+
+    const err = validationResult(req);
+    if(!err.isEmpty()){
+      res.status(422).json(err.errors);
+    }
+    console.log(req.body);
+
+    const updateDrawed = await baidangfb.update(
+      { _id: req.params.id },
+      {
+        $set: {
+          link: req.body.link,
+          message: req.body.message,
+          url: req.body.url,
+          maLoai:req.body.maLoai,
+          loai:req.body.loai
+        },
+      }
+    );
+
+    let  result = {
+      status: 200,
+      ok: false,
+      msg: "",
+    };
+
+    if (updateDrawed.nModified === 0) {
+      result.msg = "Chưa được cập nhật trong bản lưu nháp";
+
+    } else {
+      result.ok = true;
+      result.msg ="Cập nhật thành công trong bản lưu nháp";
+
+    }
+    res.status(200).json(result);
+  } catch (error) {
+    res.json(error);
+  }
+};
