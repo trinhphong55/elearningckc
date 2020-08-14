@@ -1,5 +1,7 @@
 const BoMon = require("../models/bomon.model");
+const keHoachDaoTaoModel = require("../models/KeHoachDaoTao.model");
 const { check, validationResult } = require("express-validator");
+const bomonModel = require("../models/bomon.model");
 
 let idIsExist = 0;
 let nameIsExist = 0;
@@ -14,7 +16,6 @@ const setData = (req) => {
     maLoai: req.body.maLoai,
   };
 };
-
 
 exports.getKhoaBonMon = async (req, res) => {
   try {
@@ -34,11 +35,9 @@ exports.getOneKhoaBoMon = async (req, res) => {
   }
 };
 exports.postKhoaBoMon = async (req, res) => {
-
-
   try {
     const err = validationResult(req);
-    if(!err.isEmpty()){
+    if (!err.isEmpty()) {
       res.status(422).json(err.errors);
     }
     const khoabomon = await BoMon.find();
@@ -55,13 +54,13 @@ exports.postKhoaBoMon = async (req, res) => {
     if (idIsExist > 0) {
       res.json({
         status: 200,
-        ok:false,
+        ok: false,
         msg: "Mã khoa này đã tồn tại",
       });
     } else if (nameIsExist > 0) {
       res.json({
         status: 200,
-        ok:false,
+        ok: false,
         msg: "Tên này đã tồn tại",
       });
     } else {
@@ -69,7 +68,7 @@ exports.postKhoaBoMon = async (req, res) => {
       const saveKhoa = await khoaBoMon.save();
       res.json({
         status: 200,
-        ok:true,
+        ok: true,
         msg: "Thêm thành công Khoa-Bộ môn vào danh sách",
         data: saveKhoa,
       });
@@ -91,6 +90,14 @@ exports.deleteKhoaBoMon = async (req, res) => {
   // }
 
   try {
+    const bomon = await bomonModel.findOne({ _id: req.params.id });
+    const khdt = await keHoachDaoTaoModel.findOne({ maBoMon: bomon.maBoMon });
+    if (khdt) {
+      return res.json({
+        status: false,
+        msg: "Xóa thất bại liên quan tới kế hoạch đào tạo",
+      });
+    }
     const updateKhoa = await BoMon.updateOne(
       { _id: req.params.id },
       {
@@ -124,12 +131,18 @@ exports.deleteKhoaBoMon = async (req, res) => {
 exports.checkValidate = () => {
   return [
     check("maKhoa", "MA BO MON is required").notEmpty(),
-    check("maKhoa", "MA BO MON is must be at least 10 chars long").isLength({ max: 50}),
+    check("maKhoa", "MA BO MON is must be at least 10 chars long").isLength({
+      max: 50,
+    }),
 
-    check("tenKhoa", "TEN BO MON is must be at most 50 chars long ").isLength({ max: 50}),
+    check("tenKhoa", "TEN BO MON is must be at most 50 chars long ").isLength({
+      max: 50,
+    }),
     check("tenKhoa", "TEN BO MON is required").notEmpty(),
 
-    check("tenVietTat", "TEN VIET TAT must be at most 15 char long").isLength({ max: 15 }),
+    check("tenVietTat", "TEN VIET TAT must be at most 15 char long").isLength({
+      max: 15,
+    }),
     check("tenVietTat", "TEN VIET TAT is required").notEmpty(),
 
     check("nguoiTao", "NGUOI TAO is required").notEmpty(),
@@ -144,7 +157,7 @@ exports.checkValidate = () => {
 exports.updateKhoaBoMon = async (req, res) => {
   try {
     const err = validationResult(req);
-    if(!err.isEmpty()){
+    if (!err.isEmpty()) {
       res.status(422).json(err.errors);
     }
     const updateKhoa = await BoMon.updateOne(
@@ -154,18 +167,16 @@ exports.updateKhoaBoMon = async (req, res) => {
       }
     );
 
-    let  result = {
+    let result = {
       status: 200,
       ok: false,
       msg: "",
     };
     if (updateKhoa.nModified === 0) {
       result.msg = "Chưa được cập nhật";
-
     } else {
       result.ok = true;
-      result.msg ="Cập nhật thành công Khoa-Bộ môn";
-
+      result.msg = "Cập nhật thành công Khoa-Bộ môn";
     }
 
     res.status(200).json(result);
