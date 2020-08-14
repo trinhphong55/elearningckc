@@ -247,7 +247,6 @@ export class ModalChitieudaotaoComponent implements OnInit {
   loadNganh() {
 
     this.layChiTieuTuTienTo();
-    this.setChiTieuTheoTienTo();
     this.nganhtamlist = [];
     if (
       this.addForm.value.bac &&
@@ -355,6 +354,7 @@ export class ModalChitieudaotaoComponent implements OnInit {
     this.lopHocService.filterLopTheoTienTo(maTienTo).subscribe((res) => {
       this.soChiTieu.push(res);
       this.soChiTieuTams = this.soChiTieu.map((el) => el);
+      this.setChiTieuTheoTienTo();
     });
   }
 
@@ -486,14 +486,11 @@ export class ModalChitieudaotaoComponent implements OnInit {
       this.addForm.value.loaiHinhDaoTao
     );
     this.lopHocService.xoaTheoTienTo(ma).subscribe(
-      (data) => {
-        this.xepLoptheoMaNganh(ma);
+      (data:any) => {
+        //this.xepLoptheoMaNganh(ma);
+        console.log(data);
         this.msgList.push({
-          msg: `Xóa thành công lớp học của  ${this.convertToTenBac(
-            maBac
-          )} "${this.convertToTenNganh(maNganh)} " khóa 20${
-            this.addForm.value.khoa
-          } `,
+          msg: data.msg
         });
       },
       (error) => console.log(error)

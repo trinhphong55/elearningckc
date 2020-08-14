@@ -91,7 +91,16 @@ exports.deleteTheoTienTo = async (req, res) => {
   try {
     let TienTo = req.params.tienTo;
     TienTo = TienTo.slice(0, 7);
+
     if (TienTo.length >= 7) {
+      const sv = await sinhVienModel.findOne({ maLopHoc: { $regex: TienTo + ".*" },});
+      if(sv){
+        return res.status(200).json({
+          status: 200,
+          msg: "Xóa thất bại, lớp có chứa sinh viên",
+          tienTo: TienTo,
+        });
+      }
       let LopHocs = await LopHoc.deleteMany({
         maLopHoc: { $regex: TienTo + ".*" },
       });
@@ -114,7 +123,7 @@ exports.deleteTheoTienTo = async (req, res) => {
     } else {
       res.status(200).json({
         status: 200,
-        msg: "Tiền tố truyền vào thiếu thông tin",
+        msg: "Mã chương trình sai",
         tienTo: TienTo,
       });
     }

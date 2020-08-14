@@ -33,11 +33,11 @@
               <div class="form-group">
                 <label for="khoa" class="col-sm-2 mr-sm-2 col-form-label">Khoá </label>
                 <div class="col-sm-4">
-                  <input class="form-control" id="khoa" formControlName="khoa" (blur)="onChangeKhoaHoc()" type="number"
+                  <input class="form-control" id="khoa" formControlName="khoa" (change)="onChangeKhoaHoc()" type="number"
                     min="14" value="15">
                 </div>
               </div>
-              <button type="button" class="btn btn-success" (click)="onChangeKhoaHoc()">Lọc</button>
+
             </form>
           </div>
         </div>
