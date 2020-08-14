@@ -32,7 +32,9 @@ export class XembaitapsvComponent implements OnInit {
   phong: any;
   maHocPhan: any;
   xoaBaiTap: any;
-  tinhTrang:string="Chưa nộp"
+  tinhTrang: string = "Chưa nộp";
+  quyen: string;
+  doituong: any;
   uploader: FileUploader = new FileUploader({
     url: uri,
     maxFileSize: 2048, // Max 2kB
@@ -53,6 +55,7 @@ export class XembaitapsvComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.quyenNopBai();
     this.xem_BaiTap();
     this.hienThiBaiTap();
 
@@ -65,7 +68,12 @@ export class XembaitapsvComponent implements OnInit {
       item.withCredentials = false;
     }
   }
-
+  quyenNopBai() {
+    this.doituong = this.cookie.get("role");
+    if (this.doituong == 'GV') {
+      this.quyen = 'none'
+    }
+  }
   public xem_BaiTap() {
     this.route.params.subscribe((params) => {
       this.baiTapService
@@ -114,17 +122,16 @@ export class XembaitapsvComponent implements OnInit {
   public fileOverAnother(e: any): void {
     this.hasAnotherDropZoneOver = e;
   }
-  hienThiBaiTap() {
+  hienThiBaiTap() { 
     this.BaiTapSinhVienService.getall().subscribe(
       (dsBaiTap) => {
         this.dsBaiTap = dsBaiTap;
-        console.log(this.baiTap.maBaiTap);
-        this.BaiTapSinhVienService.layBttheosinhvien(this.cookie.get("displayName"), this.baiTap.maBaiTap).subscribe(
+        this.BaiTapSinhVienService.layBttheosinhvien(this.cookie.get("email"), this.baiTap.maBaiTap).subscribe(
           (dsBaiTap) => {
             this.dsBaiTap = dsBaiTap;
-            if(this.dsBaiTap.length>0)
-            {
-              this.tinhTrang="Đã nộp";
+            if (dsBaiTap != "") {
+              this.tinhTrang = "Đã nộp";
+              
             }
           })
       },
@@ -156,11 +163,11 @@ export class XembaitapsvComponent implements OnInit {
       var maSinhVien: any;
       var maBaiTap: any;
       var ChuDe: any;
-      this.data = { maLopHocPhan: "1", maSinhVien: this.cookie.get("displayName"), maBaiTap: this.baiTap.maBaiTap, chuDe: item?.file?.name };
+      this.data = { maLopHocPhan:this.baiTap.lopHocPhan, email: this.cookie.get("email"), maBaiTap: this.baiTap.maBaiTap, chuDe: item?.file?.name };
+      console.log(this.data)
       this.BaiTapSinhVienService.addBaiTap(this.data).subscribe(
         (nopBt) => {
           this.nopBt = nopBt;
-          this.nopBt;
           this.hienThiBaiTap();
           this.uploader = new FileUploader({
             formatDataFunction: async (item) => {
