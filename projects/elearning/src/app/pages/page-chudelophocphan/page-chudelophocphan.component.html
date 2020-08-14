@@ -8,7 +8,7 @@
     </mat-menu>
   </div>
   <div class="col-md-8">
-    <a href="#" target="_bank"> <i class="far fa-calendar-minus"></i>Xem điểm tổng kết</a>
+    <a href="" target="_bank"> <i class="far fa-calendar-minus"></i>Xem điểm tổng kết</a>
     <a href="#" target="_bank"><i class="fas fa-folder"></i> Thư mục Drive của lớp học</a>
   </div>
 </div>
@@ -23,11 +23,11 @@
           </div>
         </div>
         <div class="right">
-          <div class="menu">
+          <div class="menu"*ngIf="taiKhoan?.role==='GV'">
             <button mat-button [matMenuTriggerFor]="menu3"><i class="fas fa-ellipsis-v"></i></button>
-            <mat-menu #menu3="matMenu">
+            <mat-menu #menu3="matMenu"  >
               <button mat-menu-item>Đổi tên</button>
-              <button mat-menu-item (click)="onClickXoaChuDe(item.maChuDe)" >Xóa</button>
+              <button mat-menu-item  (click)="onClickXoaChuDe(item.maChuDe)" >Xóa</button>
               <button mat-menu-item>Di chuyển lên</button>
               <button mat-menu-item>Di chuyển xuống</button>
             </mat-menu>
@@ -49,11 +49,11 @@
                     <mat-panel-description>
                       Đăng lúc: {{ baigiang.ngayChinhSua }}
                     </mat-panel-description>
-                    <div class="menu">
+                    <div class="menu" *ngIf="taiKhoan?.role==='GV'">
                       <button mat-button [matMenuTriggerFor]="menu2"><i class="fas fa-ellipsis-v"></i></button>
                       <mat-menu #menu2="matMenu">
                         <button mat-menu-item>Chỉnh sửa</button>
-                        <button mat-menu-item (click)="onClickXoaBaiGiang(baigiang.maBaiGiang)">Xóa</button>
+                        <button mat-menu-item   (click)="onClickXoaBaiGiang(baigiang.maBaiGiang)">Xóa</button>
                       </mat-menu>
                     </div>
                   </mat-expansion-panel-header>
@@ -100,11 +100,11 @@
                     <mat-panel-description>
                       Đăng lúc: {{ bt.ngayChinhSua}}
                     </mat-panel-description>
-                    <div class="menu">
+                    <div class="menu"  *ngIf="taiKhoan?.role==='GV'">
                       <button mat-button [matMenuTriggerFor]="menu2"><i class="fas fa-ellipsis-v"></i></button>
                       <mat-menu #menu2="matMenu">
                         <button mat-menu-item>Chỉnh sửa</button>
-                        <button mat-menu-item>Xóa</button>
+                        <button mat-menu-item  >Xóa</button>
                       </mat-menu>
                     </div>
                   </mat-expansion-panel-header>

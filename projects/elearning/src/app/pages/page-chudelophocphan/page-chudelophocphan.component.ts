@@ -22,7 +22,7 @@ export class PageChudelophocphanComponent implements OnInit {
   public dsChuDe: ChuDe[] = [];
   public dsBaiGiang: BaiGiang[] = [];
   public dsBaiGiangTam: BaiGiang[] = [];
-
+  public taiKhoan;
   public dsBaiTap: BaiTap[] = [];
   public maLopHocPhan: number = 1;
   public dsBinhLuan_baiGiang: any[] = [];
@@ -45,6 +45,7 @@ export class PageChudelophocphanComponent implements OnInit {
     this.layDS_BaiGiang();
     this.layDS_ChuDe();
     this.layDS_BaiTap();
+    this.setTaiKhoan();
     //
     this.quyenTao();
   }
@@ -161,5 +162,9 @@ export class PageChudelophocphanComponent implements OnInit {
       height: '100vh',
       maxWidth: '90vw',
     });
+  }
+  public setTaiKhoan(){
+    this.taiKhoan = this.cookie.getAll();
+    this.taiKhoan.displayName = this.cookie.get('email').slice(0,10);
   }
 }
