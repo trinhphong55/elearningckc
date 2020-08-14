@@ -14,7 +14,11 @@ const httpOptions = {
 export class BaiTapService {
 
   private baiTapURL = "https://localhost:4100/api/baitap";
-
+  private dsBTURL="https://localhost:4100/api/baitap/baitap/ds";
+  
+  public layTatCa() {
+    return this.http.get(`${this.dsBTURL}`);
+  }
   addBaiTap(baitap: BaiTap): Observable<any> {
     return this.http.post<any>(this.baiTapURL, baitap, httpOptions);
   }
