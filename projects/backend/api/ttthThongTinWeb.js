@@ -44,49 +44,45 @@ const upload = multer({
   },
 });
 
-async function uploadPhotos(req, res, next) {
-  // console.log("run uploadPhotos");
-  upload.single("image")(req, res, function (error) {
-    try {
-      const photo = req.file;
-      // check if photos are available
-      if (!photo) {
-        res.status(400).json({
-          status: false,
-          message: "No photo is selected.",
-        });
-      } else {
-        req.body.anhBia = photo.destination + photo.filename;
-        next();
-      }
-    } catch (error) {
-      res.status(500).send(error);
-    }
-  });
+function uploadPhotos(req, res, next) {
+  console.log(req.body);
+  // upload.single("photos")(req, res, function (error) {
+  //   try {
+  //     const photo = req.file;
+  //     // check if photos are available
+  //     if (!photo) {
+  //       res.status(400).json({
+  //         status: false,
+  //         message: "No photo is selected.",
+  //       });
+  //     } else {
+  //       req.body.anhBia = photo.destination + photo.filename;
+  //       next();
+  //     }
+  //   } catch (error) {
+  //     res.status(500).send(error);
+  //   }
+  // });
 }
 //#endregion
 // sua
 
 router.post("/ttthsuathongtinweb", uploadPhotos, async (req, res) => {
   try {
-    console.log(req.body);
-    // await TinTuc.findOneAndUpdate(
-    //   { _id: req.body._id },
-    //   {
-    //     maBaiViet: req.body.maBaiViet,
-    //     anhBia: req.body.anhBia,
-    //     maDanhMuc: req.body.maDanhMuc,
-    //     loaiBaiViet: req.body.loaiBaiViet,
-    //     tieuDe: req.body.tieuDe,
-    //     tieuDeASCII: req.body.tieuDeASCII,
-    //     moTaNgan: req.body.moTaNgan,
-    //     noiDung: req.body.noiDung,
-    //     noiDungASCII: req.body.noiDungASCII,
-    //     nguoiViet: req.body.nguoiViet,
-    //     viTriHienThi: req.body.viTriHienThi,
-    //     trangThai: req.body.trangThai,
-    //   }
-    // );
+    // console.log(req.body);
+    await ttthThongTinWeb.findOneAndUpdate({
+      _id: req.body._id
+    }, {
+      logo:req.body.logo,
+      diachi: req.body.diachi,
+      giolamviec: req.body.giolamviec,
+      hotline: req.body.hotline,
+      email: req.body.email,
+      copyright: req.body.copyright,
+      mxh: req.body.mxh,
+      nguoisua: req.body.nguoisua,
+      updated_at: req.body.updated_at,
+    });
     res.json({
       message: "Chỉnh sửa bài viết thành công",
       code: 200,

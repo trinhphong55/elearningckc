@@ -16,7 +16,7 @@ export class ThongtinwebService {
     return this.http.get<ttthThongTinWeb[] >('https://localhost:4100/api/ttthThongTinWeb/ttthdanhsachthongtinweb').pipe(
     );
   }
-  suaThongTinWeb(updateThongTinWeb): Observable<ttthThongTinWeb> {
+  suaThongTinWeb(updateThongTinWeb): Observable<any> {
     return this.http.post<any>('https://localhost:4100/api/ttthThongTinWeb/ttthsuathongtinweb', updateThongTinWeb, httpOptions).pipe(
     );
   }

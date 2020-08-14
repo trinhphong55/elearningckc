@@ -12,13 +12,66 @@ export class PageTracuudiemComponent implements OnInit {
   ngOnInit(): void {
   }
   DiemThi: any[];
+  DiemThiTheoSBD: any[];
   mssv: any;
+  masosinhvien: any;
+  sobaodanh: any;
+  tukhoatimkiemmssv: any;
+  tukhoatimkiemsbd: any;
+  alertnull:any;
   TraCuuDiem(mssv): void {
-    if (mssv !== null) {
+    if (mssv == '') {
+      this.alertnull='Vui lòng nhập mã số sinh viên!';
+    }else{
       this.DiemthiService.TraCuuDiem(mssv).subscribe((data) => {
-          this.DiemThi = data;
-          // console.log(this.DiemThi.length);
-        });
+        this.DiemThi = data;
+        this.DiemThiTheoSBD = null;
+        this.tukhoatimkiemmssv=mssv;
+        this.alertnull=null;
+      });
     }
+  }
+  TraCuuDiemTheoSBD(sbd): void {
+    if (sbd == '') {
+      this.alertnull='Vui lòng nhập số báo danh!';
+    }
+    else{
+      this.DiemthiService.TraCuuDiemTheoSBD(sbd).subscribe((data) => {
+        this.DiemThiTheoSBD = data;
+        this.DiemThi = null;
+        this.tukhoatimkiemsbd=sbd;
+      });
+    }
+  }
+  traCuuTheoMssv(e){
+    this.masosinhvien= e.target.checked;
+    if (this.masosinhvien === true) {
+      let value = false;
+      this.sobaodanh= value;
+
+    }
+    else{
+      let value = true;
+      this.sobaodanh= value;
+    }
+    this.DiemThi=null;
+    this.DiemThiTheoSBD=null;
+    this.tukhoatimkiemmssv=null;
+    this.tukhoatimkiemsbd=null;
+  }
+  traCuuTheoSBD(e){
+    this.sobaodanh= e.target.checked;
+    if (this.sobaodanh === true) {
+      let value = false;
+      this.masosinhvien= value;
+    }
+    else{
+      let value = true;
+      this.masosinhvien= value;
+    }
+    this.DiemThi=null;
+    this.DiemThiTheoSBD=null;
+    this.tukhoatimkiemmssv=null;
+    this.tukhoatimkiemsbd=null;
   }
 }

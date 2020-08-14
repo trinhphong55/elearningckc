@@ -26,6 +26,19 @@ router.get("/tracuudiem=:query", async (req, res) => {
 
   }
 });
+router.get("/tracuudiemtheosbd=:query", async (req, res) => {
+  try {
+    const newRegExp = (pattern) => new RegExp(`.*${pattern}.*`);
+    const regexQuery = newRegExp(req.params.query);
+    const data = await ttthdiemthi.find({
+      sobaodanh: { $regex: regexQuery, $options: "i" }, // i: không phân biệt chữ hoa & thường
+      trangthai : true
+    }).limit(1);
+    res.json(data);
+  } catch (error) {
+
+  }
+});
 // get
 router.get('/', async (req, res) => {
   try {
