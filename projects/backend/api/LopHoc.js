@@ -1,5 +1,6 @@
- const LopHoc = require("../models/LopHoc.model");
+const LopHoc = require("../models/LopHoc.model");
 const { check, validationResult } = require("express-validator");
+const sinhVienModel = require("../models/sinh-vien.model");
 
 // "maLopHoc": "mã Bậc + mã Ngành Nghề + Khoá Học + mã Loại Hình Đào Tạo + Số thứ tự",
 // "tenLop": "kiểu String",
@@ -25,13 +26,35 @@ const setLopHoc = (req) => {
     khoa: req.body.khoa,
   };
 };
+const view = (req) => {
+  return {
+    maLopHoc: req.maLopHoc,
+    tenLop: req.tenLop,
+    tenVietTat: req.tenVietTat,
+    linkFBLopHoc: req.linkFBLopHoc,
+    nguoiTao: req.nguoiTao,
+    nguoiChinhSua: req.nguoiChinhSua,
+    ngayChinhSua: req.ngayChinhSua,
+    maNganh: req.maNganh,
+    maBac: req.maBac,
+    khoa: req.khoa,
+    siSo: req.siSo,
+  };
+};
+
 exports.getAll = async (req, res) => {
   try {
     const LopHocs = await LopHoc.find({ trangThai: 1 }).sort({
-      maNganh: "asc",
+      maLopHoc: "asc",
     });
-
-    res.json(LopHocs);
+    let result = [];
+    result = await LopHocs.map(async (lop) => {
+      const total = await sinhVienModel.count({ maLopHoc: lop.maLopHoc });
+      lop.siSo = total;
+      return view(lop);
+    });
+    const kq = await Promise.all(result);
+    res.json(kq);
   } catch (error) {
     res.json(error);
   }
@@ -291,27 +314,25 @@ exports.capNhatThongTinFaceBook = async (req, res) => {
   }
 };
 
-
 //trinhphong
-exports.timLopTheoMaBac=  async (req, res) => {
-
+exports.timLopTheoMaBac = async (req, res) => {
   var bac = parseInt(req.params.maBac);
   try {
-    var data = await LopHoc.find({maBac:bac}).exec();
+    var data = await LopHoc.find({ maBac: bac }).exec();
     res.json(data);
   } catch (error) {
     res.json({ message: error });
   }
-}
+};
 
 //Yasuo fam linh 100 con trong 10 phut
 exports.getDSLopHocbymaCTDT = async (req, res) => {
   const maCTDT = req.params.maCTDT;
   await LopHoc.find({ maLopHoc: { $regex: maCTDT }, trangThai: { $ne: 0 } })
-    .then(ds => {
+    .then((ds) => {
       return res.json(ds);
     })
-    .catch(err => {
+    .catch((err) => {
       return res.json({ message: err });
-    })
-}
+    });
+};
