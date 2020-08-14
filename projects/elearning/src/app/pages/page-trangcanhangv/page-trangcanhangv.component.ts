@@ -114,7 +114,7 @@ export class PageTrangcanhangvComponent implements OnInit {
             this.dsGiaoVienBymaGv = dsGiaoVienBymaGv;
             this.filterDsLop = []
             this.dsLop.forEach(lop => {
-              this.dsGiaoVienBymaGv.find(p => {
+              this.dsGiaoVienBymaGv.find(p => {        
                 if (p.maLopHoc == lop.maLopHoc && p.hocKi==this.formDanhSachLop.get('hocKi').value && lop.maBac== this.formDanhSachLop.get('bac').value) {
                   console.log()
                   this.filterDsLop.push(p)
