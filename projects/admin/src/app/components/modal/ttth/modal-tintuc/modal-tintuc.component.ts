@@ -1,12 +1,12 @@
-import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ModalService } from '../../../../services/modal.service';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { ChuDeService } from '../../../../services/ttth/chude.service';
 import { TintucService } from '../../../../services/ttth/tintuc.service';
-import { ttthTinTuc } from '../../../../../models/ttthTinTuc';
-import { FileUploader } from 'ng2-file-upload';
-import { ToastrService } from 'ngx-toastr';
-const URL = 'https://localhost:4100/api/ttthTintuc/uploads';
+import { getCookie } from '../../../../../../../common/helper';
+import { StringCommonService } from '../../../../services/cntt/stringcommon.service';
+import * as moment from 'moment';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-modal-tintuc',
@@ -16,138 +16,278 @@ const URL = 'https://localhost:4100/api/ttthTintuc/uploads';
 export class ModalTintucComponent implements OnInit {
   constructor(
     private modalService: ModalService,
-    private tintucService: TintucService,
+    private baiVietService: TintucService,
     private chuDeService: ChuDeService,
-    private toastr: ToastrService
+    private stringCommonService: StringCommonService
   ) {}
-  TinTuc: ttthTinTuc[];
 
-  public danhSachChuDe: any = []; // Loc code
-
-  ngOnInit(): void {
-    this.getTinTucfromServices();
-    this.getDanhSachChuDe();
-    this.uploader.onAfterAddingFile = (file) => {
-      file.withCredentials = false;
-    };
-    this.uploader.onCompleteItem = (item: any, status: any) => {
-      this.toastr.success('Tải hình ảnh thành công');
-    };
-  }
-
-  //ckEditor
-  public Editor = ClassicEditor;
-
-  //file upload
-  public uploader: FileUploader = new FileUploader({
-    url: URL,
-    itemAlias: 'image',
+  //#region Khai báo biến
+  private _hinhAnhBaiViet: any = null;
+  private _hinhAnhKhiChinhSua: any = null;
+  private _idBaiVietChinhSua: any;
+  public danhSachBaiViet: any = [];
+  public danhSachLoaiBaiViet: any = [];
+  public danhSachTrangThai: any = [
+    { maTrangThai: true, tenTrangThai: 'Hiển thị' },
+    { maTrangThai: false, tenTrangThai: 'Đã xoá' },
+  ];
+  public CKEditor = ClassicEditor;
+  public formTaoBaiViet = new FormGroup({
+    id_loaitintuc: new FormControl(-1, Validators.required),
+    tentintuc: new FormControl(null, Validators.required),
+    tentintucASCII: new FormControl(null),
+    description: new FormControl(null, Validators.required),
+    noidung: new FormControl(null, Validators.required),
+    noidungASCII: new FormControl(null),
+    thuTuHienThi: new FormControl(999),
+    trangthai: new FormControl(true),
+  });
+  public formChinhSuaBaiViet = new FormGroup({
+    id_loaitintuc: new FormControl(null),
+    image: new FormControl(null),
+    tentintuc: new FormControl(null),
+    tentintucASCII: new FormControl(null),
+    description: new FormControl(null),
+    noidung: new FormControl(null),
+    noidungASCII: new FormControl(null),
+    thuTuHienThi: new FormControl(null),
+    trangthai: new FormControl(null),
   });
 
+  public get image(): string {
+    return this.formChinhSuaBaiViet.get('image').value;
+  }
+
+  //#endregion
+
+  ngOnInit(): void {
+    this.getDanhSachBaiViet();
+    this.getDanhSachLoaiBaiViet();
+  }
+
+  //#region Các hàm xử lý HTML
   closeModal(id: string) {
     this.modalService.close(id);
   }
 
-  // Loc code
-  getDanhSachChuDe(): void {
-    this.chuDeService.getDanhSachChuDe().subscribe((data) => {
-      this.danhSachChuDe = data.data;
-    });
-  } // end
-
-  getTinTucfromServices(): void {
-    this.tintucService.getTinTuc().subscribe((data) => {
-      this.TinTuc = data;
-      setTimeout(() => {}, 0);
-    });
+  openModal(id: string) {
+    this.modalService.open(id);
   }
 
-  // add tintuc
-  CK: any;
-  public onChange(event: ClassicEditor.EventInfo) {
-    this.CK = event.editor.getData();
-  }
-  nameImage: any;
-  imageSrc: any;
-  onFileSelected(event) {
+  // formTaoBaiViet
+  onChangeInputFile(event) {
     if (event.target.files.length > 0) {
-      this.nameImage = event.target.files[0].name;
-    }
-    if (event.target.files && event.target.files[0]) {
-      const file = event.target.files[0];
-      const reader = new FileReader();
-      reader.onload = (e) => (this.imageSrc = reader.result);
-      reader.readAsDataURL(file);
+      this._hinhAnhBaiViet = event.target.files[0];
     }
   }
-  addTinTuc(
-    id_loaitintuc: string,
-    tentintuc: string,
-    description: string
-  ): void {
-    tentintuc = tentintuc.trim();
-    if (
-      !id_loaitintuc ||
-      !tentintuc ||
-      !description ||
-      !this.CK ||
-      !this.nameImage
-    ) {
-      this.toastr.success('Vui lòng nhập đủ thông tin');
-    } else {
-      const newTinTuc: ttthTinTuc = new ttthTinTuc();
-      newTinTuc.id_loaitintuc = id_loaitintuc;
-      newTinTuc.image = 'https://localhost:4100/uploads/cntt/' + this.nameImage;
-      newTinTuc.tentintuc = tentintuc;
-      newTinTuc.slug = 'slug';
-      newTinTuc.description = description;
-      newTinTuc.noidung = this.CK;
-      newTinTuc.hienthi = true;
-      newTinTuc.trangthai = true;
-      newTinTuc.nguoitao = 'hieu';
-      newTinTuc.nguoisua = 'loc';
-      newTinTuc.created_at = new Date();
-      newTinTuc.updated_at = null;
-      this.tintucService.addTinTuc(newTinTuc).subscribe((data) => {
-        this.TinTuc.push(data);
-        setTimeout(() => {}, 0);
+
+  // formChinhSuaBaiViet
+  onChangeInputFile2(event) {
+    if (event.target.files.length > 0) {
+      this._hinhAnhKhiChinhSua = event.target.files[0];
+    }
+  }
+
+  formatDatetime(time: string): string {
+    if (time) {
+      time = moment(time).format('HH:mm, DD-MM-YYYY');
+      return time;
+    }
+    return '';
+  }
+
+  displayLoaiBaiViet(maLoaiBaiViet: string): string {
+    try {
+      const loaiBaiViet = this.danhSachLoaiBaiViet.filter(
+        (x) => x.maChuDe === maLoaiBaiViet
+      );
+      return loaiBaiViet[0].tenChuDe;
+    } catch (error) {
+      return '-1';
+    }
+  }
+
+  displayTrangThai(maTrangThai: any): string {
+    switch (maTrangThai) {
+      case false:
+        return 'Đã xoá';
+      case true:
+        return 'Đã đăng';
+      default:
+        return 'Sai trạng thái';
+    }
+  }
+
+  displayBaiVietVaoFormChinhSua(baiViet: any): void {
+    this.formChinhSuaBaiViet.patchValue({
+      id_loaitintuc: baiViet.id_loaitintuc,
+      image: baiViet.image,
+      tentintuc: baiViet.tentintuc,
+      tentintucASCII: baiViet.tentintucASCII,
+      description: baiViet.description,
+      noidung: baiViet.noidung,
+      noidungASCII: baiViet.noidungASCII,
+      thuTuHienThi: baiViet.thuTuHienThi,
+      trangthai: baiViet.trangthai,
+    });
+    this._idBaiVietChinhSua = baiViet._id;
+  }
+  //#endregion
+
+  //#region Các hàm lấy dữ liệu
+  getDanhSachBaiViet(): void {
+    this.baiVietService.getTinTuc().subscribe((res) => {
+      this.danhSachBaiViet = res;
+      // console.log(this.danhSachBaiViet);
+    });
+  }
+  getDanhSachLoaiBaiViet(): void {
+    this.chuDeService.getDanhSachChuDe().subscribe((data) => {
+      this.danhSachLoaiBaiViet = data.data;
+      // console.log(this.danhSachLoaiBaiViet);
+    });
+  }
+  //#endregion
+
+  //#region Các hàm xử lý dữ liệu
+  luuBaiViet(): void {
+    this.formTaoBaiViet
+      .get('tentintucASCII')
+      .setValue(
+        this.stringCommonService.toASCII(
+          this.stringCommonService.removeSpaceAndHTMLTag(
+            this.formTaoBaiViet.get('tentintuc').value
+          )
+        )
+      );
+    this.formTaoBaiViet
+      .get('noidungASCII')
+      .setValue(
+        this.stringCommonService.toASCII(
+          this.stringCommonService.removeSpaceAndHTMLTag(
+            this.formTaoBaiViet.get('noidung').value
+          )
+        )
+      );
+    if (this.formTaoBaiViet.valid && this._hinhAnhBaiViet !== null) {
+      //#region FORMDATA
+      const _formData = new FormData();
+      _formData.append(
+        'id_loaitintuc',
+        this.formTaoBaiViet.get('id_loaitintuc').value
+      );
+      _formData.append('photos', this._hinhAnhBaiViet);
+      _formData.append('tentintuc', this.formTaoBaiViet.get('tentintuc').value);
+      _formData.append(
+        'tentintucASCII',
+        this.formTaoBaiViet.get('tentintucASCII').value
+      );
+      _formData.append(
+        'description',
+        this.formTaoBaiViet.get('description').value
+      );
+      _formData.append('noidung', this.formTaoBaiViet.get('noidung').value);
+      _formData.append(
+        'noidungASCII',
+        this.formTaoBaiViet.get('noidungASCII').value
+      );
+      _formData.append(
+        'thuTuHienThi',
+        this.formTaoBaiViet.get('thuTuHienThi').value
+      );
+      _formData.append('trangthai', this.formTaoBaiViet.get('trangthai').value);
+      _formData.append('nguoitao', getCookie('displayName'));
+      //#endregion
+
+      // new Response(_formData).text().then(console.log); // log form-data
+
+      this.baiVietService.addTinTuc(_formData).subscribe((res) => {
+        alert(res.message);
+        this.getDanhSachBaiViet();
       });
-      this.getTinTucfromServices();
-      this.toastr.success('Thêm thành công');
+    } else {
+      alert('Vui lòng chọn hình ảnh và nhập đầy đủ các thông tin bài viết');
     }
   }
-  ///edit
-  selectedItem: ttthTinTuc;
-  onSelect(TinTuc: ttthTinTuc): void {
-    this.selectedItem = TinTuc;
-    // console.log(`selectedItem = ${JSON.stringify(this.selectedItem)}`);
-    this.capnhatHienThi = this.selectedItem.hienthi;
-  }
-  capnhatHienThi: any;
-  getValueCheckBox(e) {
-    this.capnhatHienThi = e.target.checked;
-  }
-  saveTinTuc(TinTuc: ttthTinTuc): void {
-    if (this.nameImage) {
-      TinTuc.image = 'https://localhost:4100/uploads/cntt/' + this.nameImage;
+
+  chinhSuaBaiViet(): void {
+    this.formChinhSuaBaiViet
+      .get('tentintucASCII')
+      .setValue(
+        this.stringCommonService.toASCII(
+          this.stringCommonService.removeSpaceAndHTMLTag(
+            this.formChinhSuaBaiViet.get('tentintuc').value
+          )
+        )
+      );
+    this.formChinhSuaBaiViet
+      .get('noidungASCII')
+      .setValue(
+        this.stringCommonService.toASCII(
+          this.stringCommonService.removeSpaceAndHTMLTag(
+            this.formChinhSuaBaiViet.get('noidung').value
+          )
+        )
+      );
+    if (this.formChinhSuaBaiViet.valid && this._hinhAnhKhiChinhSua !== null) {
+      //#region FORMDATA
+      const _formData = new FormData();
+      _formData.append('_id', this._idBaiVietChinhSua);
+      _formData.append(
+        'id_loaitintuc',
+        this.formChinhSuaBaiViet.get('id_loaitintuc').value
+      );
+      _formData.append('photos', this._hinhAnhKhiChinhSua);
+      _formData.append(
+        'tentintuc',
+        this.formChinhSuaBaiViet.get('tentintuc').value
+      );
+      _formData.append(
+        'tentintucASCII',
+        this.formChinhSuaBaiViet.get('tentintucASCII').value
+      );
+      _formData.append(
+        'description',
+        this.formChinhSuaBaiViet.get('description').value
+      );
+      _formData.append(
+        'noidung',
+        this.formChinhSuaBaiViet.get('noidung').value
+      );
+      _formData.append(
+        'noidungASCII',
+        this.formChinhSuaBaiViet.get('noidungASCII').value
+      );
+      _formData.append(
+        'thuTuHienThi',
+        this.formChinhSuaBaiViet.get('thuTuHienThi').value
+      );
+      _formData.append(
+        'trangthai',
+        this.formChinhSuaBaiViet.get('trangthai').value
+      );
+      _formData.append('nguoisua', getCookie('displayName'));
+      //#endregion
+
+      // new Response(_formData).text().then(console.log); // log form-data
+
+      this.baiVietService.suaTinTuc(_formData).subscribe((res) => {
+        alert(res.message);
+        this.getDanhSachBaiViet();
+      });
+    } else {
+      alert('Vui lòng chọn hình ảnh mới và nhập đầy đủ các thông tin bài viết');
     }
-    TinTuc.updated_at = new Date();
-    TinTuc.hienthi = this.capnhatHienThi;
-    this.tintucService.suaTinTuc(TinTuc).subscribe((data) => {
-      this.TinTuc.push(data);
-    });
-    this.toastr.success('Sửa thành công');
   }
-  //delete
-  xoaTinTuc(TinTuc: ttthTinTuc): void {
-    this.tintucService.xoaTinTuc(TinTuc).subscribe((data) => {
-      this.TinTuc.push(data);
-      setTimeout(() => {}, 0);
-    });
-    this.getTinTucfromServices();
-    this.toastr.success('Xóa thành công');
+
+  xoaBaiViet(_id: string): void {
+    const anwser = confirm('Nhấn OK để xoá bài viết này');
+    if (anwser) {
+      this.baiVietService.xoaTinTuc(_id).subscribe((res) => {
+        alert(res.message);
+        this.getDanhSachBaiViet();
+      });
+    }
   }
-  reset():void{
-    this.selectedItem=null;
-  }
+  //#endregion
 }

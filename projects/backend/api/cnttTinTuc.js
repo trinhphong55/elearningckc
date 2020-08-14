@@ -3,7 +3,6 @@ const TinTuc = require("../models/cntttintuc.model");
 const multer = require("multer");
 const convertString = require("../common/convertString");
 const path = require("path");
-const { async } = require("rxjs");
 
 //#region MULTER UPLOAD IMAGE
 // upload file path
