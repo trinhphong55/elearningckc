@@ -75,7 +75,7 @@
                     </div>
                   </div>
                   <button mat-button>{{ dsbl.count }} nhận xét của lớp học</button>
-                  <p style="border-top: solid 1px black;"><a class="btn btn-light mt-2" [routerLink]="['/xembaigiangsv', baigiang.maBaiGiang]"
+                  <p style="border-top: solid 1px black;"><a class="btn btn-light mt-2" [routerLink]="[routeBaiGiang, baigiang.maBaiGiang]"
                       routerLinkActive="active">
                       <span>Xem bài giảng</span>
                     </a></p>
@@ -129,7 +129,7 @@
                     </div>
                   </div>
                   <button mat-button>{{ dsbl.count}} nhận xét của lớp học</button>
-                  <p style="border-top: solid 1px black;"><a class="btn btn-light mt-2" [routerLink]="['/xembaitapsv', bt.maBaiTap]"
+                  <p style="border-top: solid 1px black;"><a class="btn btn-light mt-2" [routerLink]="[routeBaiTap, bt.maBaiTap]"
                       routerLinkActive="active">
                       <span>Xem bài tập</span>
                     </a></p>
