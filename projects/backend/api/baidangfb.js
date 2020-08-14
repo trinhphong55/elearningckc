@@ -4,7 +4,7 @@ const { check, validationResult } = require("express-validator");
 // get tất cả trong db QLBaiDangFB
 exports.getAll= async (req,res)=>{
   try {
-      const data = await baidangfb.find();
+      const data = await baidangfb.find({trangThai:1,trangThai:2});
       res.json(data);
     } catch (error) {
       res.json({message: err});
