@@ -8,9 +8,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 
-  <!-- SCRIPT FACEBOOK -->
-  <!-- Script những thành phần quan trọng để sử dụng API facebook -->
   <script>
+
+  //SCRIPT FACEBOOK
+  //Script những thành phần quan trọng để sử dụng API facebook
     var AppId='726531241502023';
     var FBLoaded=false;
     var accessToken = '';
@@ -149,12 +150,12 @@
     function POSTGrpPictureUrl() {
       var ms = document.getElementById('messagegr').value;
       var url = document.getElementById('picturegr').value;
-      FB.api('' + idGroup + '/photos', 'post', { message: ms, url: url, access_token: accessToken }, function (response) {
+      FB.api('' + idGroup + '/photos', 'post', { message: ms, url: url}, function (response) {
         if (!response || response.error) {
           alert('Có lỗi khi POST bài: ');
           console.log(response);
         } else {
-          postid = response.id;
+          postid = response.post_id;
           console.log(postid);
           getPostLinkGrp();
           alert('ĐÃ POST THÀNH CÔNG');
@@ -164,7 +165,7 @@
 
     //Nút Đăng bài vào Group
     function PostGrpByRequest() {
-      let a = $('#picture').val().trim();
+      let a = $('#picturegr').val().trim();
       if (FBLoaded) {
         if (a === "") {
           POSTGroupMess();
@@ -212,7 +213,8 @@
           alert('Có lỗi khi POST bài: ');
           console.log(response);
         } else {
-          postid = response.id;
+          console.log(response);
+          postid = response.post_id;
           console.log(postid);
           getPostLink();
           alert('ĐÃ POST THÀNH CÔNG');
@@ -239,37 +241,151 @@
     function getPostLink(){
       FB.api('/'+postid,{fields: 'permalink_url'}, function (response) {
         var linkstt =response.permalink_url;
+        console.log(response);
             document.getElementById('linkstt').value = linkstt;
             document.getElementById('postid').value = postid;
       });
     }
 
     //Delete bài viết đã đăng lên page
-    function DELETE(Pid) {
+    function DeletePostedPage(pid) {
+      postid = pid.data;
+      idPage = pid.data2;
+      console.log(pid.data2);
+
       if (FBLoaded) {
-        postid = Pid.data;
-        FB.api(postid, 'delete', function (response) {
-            if (!response || response.error) {
-                alert('Có lỗi khi xóa bài');
-            } else {
-                alert('Đã xóa thành công');
-            }
+        FB.api('/'+idPage,{fields: 'access_token'},function (response){
+          accessToken = response.access_token;
+            console.log(accessToken);
+        });
+        FB.api('/'+postid, 'delete', { access_token : accessToken}, function (response) {
+          if (!response || response.error) {
+              alert('Có lỗi khi xóa bài');
+          } else {
+              alert('Đã xóa thành công');
+          }
         });
       } else {
-          setTimeout("DELETE()", 100);
+          setTimeout("DeletePostedPage()", 100);
       }
     }
 
+    // Danh sách group id cần post
+      var _List;
+    // Index của group đã post
+        var _ListIndex = -1;
+    // Nội dung cần post
+        var _message = '';
+    // Url hình ảnh
+      var _picture = '';
+    // Object monitor
+      var _monitor;
+    // Thời gian chờ giữa 2 lần gửi
+      var _wait_time = 60000*2;
+
+    // Hàm bắt đầu post (Sau khi lấy các giá trị từ màn hình nhập vào, hàm sẽ chạy hàm _AutoCall sau 1s)
+    function _StartPost() {
+        _picture = document.getElementById('picturegr1').value;
+        _message = document.getElementById('messagegr1').value;
+        _List = document.getElementById('groupsgr1').value.split(';');
+        _ListIndex = -1;
+        console.log(_picture);
+        console.log(_message);
+        console.log(_List);
+        // setTimeout('_AutoCall()', 1000);
+    }
+
+    // Tự gọi lại sau mỗi giây
+    function _AutoCall() {
+      //Tạo 1 flat để dừng post
+      var CanContinue = true;
+
+      //Nếu thời gian chờ == 0 thì chạy hàm post còn khác 0 thì giảm thời gian chờ đi 1 đơn vị rồi hiển thị lên monitor
+      if (_wait_time == 0) {
+          //Nếu _wait_time== 0 thì sẽ reset thời gian chờ
+            //_wait_time=parseInt(document.getElementById('time').value);
+            console.log(_wait_time);
+          //Sau đó tăng biến đếm index các group đã post
+            _ListIndex++;
+
+          //So sánh nếu danh sách các group đã post < độ dài của các group id cần post thì chạy hàm post
+          if (_ListIndex < _List.length) {
+              PostGrpByRequestBD(_List[_ListIndex]);
+          } else {
+              //Khi đã hết các group cần post bài thì flat có giá trị fales
+              CanContinue = false;
+          }
+      } else {
+          _wait_time--;
+      }
+
+      // Tự gọi lại chính nó sau 1 giây
+      if (CanContinue) {
+          setTimeout('_AutoCall()', 1000);
+      } else {
+          // var _p = document.createElement('p');
+          // _p.innerHTML = '*** ĐÃ HẾT NHÓM CẦN POST';
+          // _monitor.appendChild(_p);
+          console.log('Đã Đăng hết');
+      }
+    }
+
+    //post vào Group
+    function POSTGroupMessBD(idG) {
+      FB.api('/' + idG + '/feed', 'post', { message: _message }, function (response) {
+        if (!response || response.error) {
+          alert('Có lỗi khi POST bài: ');
+          console.log(response);
+        } else {
+          postid = response.id;
+          console.log(postid);
+          getPostLinkGrp();
+          alert('ĐÃ POST THÀNH CÔNG');
+        }
+      });
+    }
+
+    //Post vào Group với picture by url của Bài Đăng
+    function POSTGrpPictureUrlBD(idG) {
+      FB.api('' + idG + '/photos', 'post', { message: _message, url: _picture}, function (response) {
+        if (!response || response.error) {
+          alert('Có lỗi khi POST bài: ');
+          console.log(response);
+        } else {
+          postid = response.post_id;
+          console.log(postid);
+          getPostLinkGrp();
+          alert('ĐÃ POST THÀNH CÔNG');
+        }
+      });
+    }
+
+    //Nút Đăng bài vào Group của modal bài đăng
+    function PostGrpByRequestBD(data) {
+      let a = $('#pictureBD').val().trim();
+      if (FBLoaded) {
+        if (a === "") {
+          POSTGroupMessBD(data);
+        }
+        else {
+          POSTGrpPictureUrlBD(data);
+        }
+      } else {
+        setTimeout("PostGrpByRequestBD()", 100);
+      }
+    }
+
+
+
+
+
   </script>
 
-  <script>
-
-  </script>
-
-
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
-<body>
+<body class="mat-typography">
   <app-root></app-root>
 </body>
 

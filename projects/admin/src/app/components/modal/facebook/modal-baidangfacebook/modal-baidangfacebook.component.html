@@ -1,5 +1,8 @@
 <app-modal class="modal_chucnang__wrapper" id="fb_quanlybaidangfacebook">
-  <div (click)="closeModal('fb_quanlybaidangfacebook')" class="modal_chucnang__close mdi mdi-chevron-left text-white"></div>
+  <div
+    (click)="closeModal('fb_quanlybaidangfacebook')"
+    class="modal_chucnang__close mdi mdi-chevron-left text-white"
+  ></div>
   <div class="container-fluid mt-3">
     <div class="row">
       <div class="col-12">
@@ -7,12 +10,26 @@
       </div>
       <div class="col-12">
         <!-- Modal -->
-        <div class="modal fade" id="PostGroup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div
+          class="modal fade"
+          id="PostGroup"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="exampleModalLongTitle"
+          aria-hidden="true"
+        >
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Đăng bài cho Group</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <h5 class="modal-title" id="exampleModalLongTitle">
+                  Đăng bài cho Group
+                </h5>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
@@ -20,36 +37,80 @@
                 <div class="">
                   <div class="form-group">
                     <label>Message</label>
-                    <textarea class="form-control" type="text" name="message" id="messagegr1" ></textarea>
+                    <textarea
+                      class="form-control"
+                      type="text"
+                      name="message"
+                      id="messagegr1"
+                    ></textarea>
                   </div>
                 </div>
                 <div class="">
                   <div class="form-group">
                     <label>Url picture</label>
-                    <input class="form-control" type="text" name="picture" id="picturegr1"/>
+                    <input
+                      class="form-control"
+                      type="text"
+                      name="picture"
+                      id="picturegr1"
+                    />
                   </div>
                 </div>
-                <!-- <div class="">
-                  <div class="form-group">
-                    <label for="">Ảnh/Video</label>
-                    <input class="form-control-file border" type="file">
-                  </div>
-                </div> -->
+                <div class="">
+
+                    <label for="">Chọn Group</label><br>
+                    <ng-select [items]="cities2"
+                              bindLabel="name"
+                              bindValue="id"
+                              [multiple]="true"
+                              placeholder="Chọn"
+                              [(ngModel)]="selectedCityIds">
+                    </ng-select>
+                    <p>
+                        Selected cities: {{selectedCityIds}}
+                    </p>
+                </div>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" onclick="PostByRequest()">Đăng</button>
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-dismiss="modal"
+                >
+                  Đóng
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  onclick="_StartPost()"
+                >
+                  Đăng
+                </button>
               </div>
             </div>
           </div>
         </div>
         <!-- Modal -->
-        <div class="modal fade" id="PostPage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div
+          class="modal fade"
+          id="PostPage"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="exampleModalLongTitle"
+          aria-hidden="true"
+        >
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Đăng bài cho page</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <h5 class="modal-title" id="exampleModalLongTitle">
+                  Đăng bài cho page
+                </h5>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
@@ -57,19 +118,29 @@
                 <div class="">
                   <div class="form-group">
                     <label>Message</label>
-                    <textarea class="form-control" type="text" name="message" id="messagep1" ></textarea>
+                    <textarea
+                      class="form-control"
+                      type="text"
+                      name="message"
+                      id="messagep1"
+                    ></textarea>
                   </div>
                 </div>
                 <div class="">
                   <div class="form-group">
                     <label>Url picture</label>
-                    <input class="form-control" type="text" name="picture" id="picturep1"/>
+                    <input
+                      class="form-control"
+                      type="text"
+                      name="picture"
+                      id="picturep1"
+                    />
                   </div>
                 </div>
                 <div class="">
                   <div class="form-group">
                     <label for="">Chọn Page</label>
-                    <select class="mul-select" >
+                    <select class="mul-select">
                       <option value="1">a</option>
                       <option value="2">b</option>
                       <option value="3">c</option>
@@ -80,38 +151,44 @@
                 </div>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-success" >Lưu nháp</button>
-                <button type="button" class="btn btn-primary" >Đăng</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-success">Lưu nháp</button>
+                <button type="button" class="btn btn-primary">Đăng</button>
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-dismiss="modal"
+                >
+                  Close
+                </button>
               </div>
             </div>
           </div>
         </div>
         <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
           <div class="row justify-content-center align-items-center">
-              <div class="col-4">
-                <div class="form-group">
-                  <label>Post ID</label>
-                  <input class="form-control" type="text" id="postiD" />
-                </div>
+            <div class="col-4">
+              <div class="form-group">
+                <label>Message</label>
+                <input class="form-control" type="text" id="messageupdate" />
               </div>
-              <div class="col-4">
-                <div class="form-group">
-                  <label>Message</label>
-                  <input class="form-control" type="text" id="messageupdate"/>
-                </div>
+            </div>
+            <div class="col-4">
+              <div class="form-group">
+                <label for="">Ảnh (URL)</label>
+                <input class="form-control" type="text" id="pictureupdate" />
               </div>
-              <div class="col-4">
-                <div class="form-group">
-                  <label for="">Ảnh (URL)</label>
-                  <input class="form-control" type="text" id="pictureupdate">
-                </div>
-              </div>
+            </div>
             <div class="">
               <div class="col-auto">
                 <div class="modal_chucnang__group__button">
-                  <button class="modal_chucnang__button btn btn-outline-success px-4 mx-2" ><img
-                    class="modal_chucnang__button__icon mb-2" src="assets/img/icons/upgrade.png" alt="image icon">
+                  <button
+                    class="modal_chucnang__button btn btn-outline-success px-4 mx-2"
+                  >
+                    <img
+                      class="modal_chucnang__button__icon mb-2"
+                      src="assets/img/icons/upgrade.png"
+                      alt="image icon"
+                    />
                     <div>Cập nhật</div>
                   </button>
                 </div>
@@ -119,35 +196,50 @@
             </div>
           </div>
           <div class="modal_chucnang__group__button">
-            <button class="modal_chucnang__button btn btn-outline-primary px-2 mx-1" data-toggle="modal" data-target="#PostGroup">
-            <div>Đăng bài cho Group</div>
+            <button
+              class="modal_chucnang__button btn btn-outline-primary px-2 mx-1"
+              data-toggle="modal"
+              data-target="#PostGroup"
+            >
+              <div>Đăng bài cho Group</div>
             </button>
-            <button class="modal_chucnang__button btn btn-outline-success px-2 mx-1" data-toggle="modal" data-target="#PostPage">
-            <div>Đăng bài cho Page</div>
+            <button
+              class="modal_chucnang__button btn btn-outline-success px-2 mx-1"
+              data-toggle="modal"
+              data-target="#PostPage"
+            >
+              <div>Đăng bài cho Page</div>
             </button>
           </div>
         </div>
       </div>
       <div class="col-12">
-        <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white" >
-          <div class="d-flex align-items-center mb-2" >
-            <label class="mb-0 d-flex align-items-center"><span class="text-nowrap">Hiển thị &nbsp;</span>
+        <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
+          <div class="d-flex align-items-center mb-2">
+            <label class="mb-0 d-flex align-items-center"
+              ><span class="text-nowrap">Hiển thị &nbsp;</span>
               <select class="custom-select custom-select-sm form-control">
                 <option>10</option>
                 <option>25</option>
-                <option>50</option>
-              </select><span class="text-nowrap">&nbsp; hàng</span>
+                <option>50</option> </select
+              ><span class="text-nowrap">&nbsp; hàng</span>
             </label>
             <ng-container [formGroup]="addForm">
-            <div class="align-items-center ml-4 ">
-              <label class="mb-0 d-flex align-items-center"><span class="text-nowrap">Trạng thái  &nbsp;</span>
-                <select class="custom-select custom-select-sm form-control" id="tinhtrang" formControlName="trangThai" (change)="changedTrangThai()" >
-                  <option value="">Tất cả</option>
-                  <option value="1">Chưa đăng</option>
-                  <option value="2">Đã đăng</option>
-                </select>
-              </label>
-            </div>
+              <div class="align-items-center ml-4">
+                <label class="mb-0 d-flex align-items-center"
+                  ><span class="text-nowrap">Trạng thái &nbsp;</span>
+                  <select
+                    class="custom-select custom-select-sm form-control"
+                    id="tinhtrang"
+                    formControlName="trangThai"
+                    (change)="changedTrangThai()"
+                  >
+                    <option value="">Tất cả</option>
+                    <option value="1">Chưa đăng</option>
+                    <option value="2">Đã đăng</option>
+                  </select>
+                </label>
+              </div>
               <!-- <div>
                 <span>Theo loại</span>
                 <select id="loai" formControlName="theLoai" (change)="changedTrangThai()">
@@ -159,8 +251,13 @@
               </div> -->
             </ng-container>
 
-            <label class="ml-auto mb-0 d-flex align-items-center"><span class="text-nowrap">Tìm kiếm: &nbsp;</span>
-              <input class="form-control form-control-sm" placeholder="Tìm kiếm" [(ngModel)]="searchpage">
+            <label class="ml-auto mb-0 d-flex align-items-center"
+              ><span class="text-nowrap">Tìm kiếm: &nbsp;</span>
+              <input
+                class="form-control form-control-sm"
+                placeholder="Tìm kiếm"
+                [(ngModel)]="searchpage"
+              />
             </label>
           </div>
 
@@ -175,29 +272,48 @@
               <th scope="col" class="text-center">Tác vụ</th>
             </thead>
             <tbody>
-              <tr *ngFor=" let d of posttams |filter: searchpage; index as stt">
-                <td>{{stt+1}}</td>
+              <tr *ngFor="let d of posttams | filter: searchpage; index as stt">
+                <td class="text-center">{{ stt + 1 }}</td>
                 <td class="text-center">
-                  <div>{{d.message}}</div>
+                  <div>{{ d.message }}</div>
                 </td>
                 <td class="text-center">
-                  <a href="{{d.link}}" target="_blank">Click để đi đến bài viết</a>
+                  <div [hidden]="d.link === '' ">
+                    <a [href]="d.link" target="_blank"
+                    >Click để đi đến bài viết</a
+                  >
+                  </div>
                 </td>
                 <td class="text-center">
-                  <div>{{d.loai}}</div>
+                  <div>{{ d.loai }}</div>
                 </td>
                 <td class="text-center">
-                  <div>{{d.thuoc}}</div>
+                  <div>{{ d.thuoc }}</div>
                 </td>
-                <td class="text-center">
-                  <div>{{d.trangThai}}</div>
-                </td>
+                <ng-container *ngFor="let item of trangthai">
+                  <td class="text-center" *ngIf="item.trangThai == d.trangThai">
+                    <div>{{ item.tenTrangThai }}</div>
+                  </td>
+                </ng-container>
+
                 <td class="text-center">
                   <div class="mb-1">
-                    <button class="modal_chucnang__button btn btn-outline-success px-4 mx-2" >Đăng bài</button>
+                    <button [hidden]="d.trangThai === 2"
+                      class="modal_chucnang__button btn btn-outline-success"
+                    >
+                      Đăng bài
+                    </button>
                   </div>
                   <div class="mb-1">
-                    <button class="modal_chucnang__button btn btn-outline-success  px-4 mx-2" (click)="changeTrangthai(d)" onclick="DELETE(this)" data="{{d.postID}}">Xóa</button>
+                    <button
+                      class="modal_chucnang__button btn btn-outline-secondary"
+                      onclick="DeletePostedPage(this)"
+                      data="{{d.postID}}"
+                      data2="{{d.ID}}"
+                      (click)="changeTrangthai(d)"
+                    >
+                      Xóa
+                    </button>
                   </div>
                 </td>
               </tr>

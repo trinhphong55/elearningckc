@@ -561,3 +561,6 @@ main {
 .modal_chucnang__table__giaovien table td:not(:first-of-type) {
   min-width: 200px;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

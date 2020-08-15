@@ -1,3 +1,4 @@
+import { NgSelectModule } from '@ng-select/ng-select';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
@@ -202,7 +203,8 @@ import { ModalBaivietComponent } from './components/modal/cntt/modal-baiviet/mod
     ToastrModule.forRoot(), // ToastrModule added
     FileUploadModule,
     NgxPrintModule,
-    NgApexchartsModule
+    NgApexchartsModule,
+    NgSelectModule,
   ],
   providers: [ApiService, TintucCnttService],
   bootstrap: [AppComponent]

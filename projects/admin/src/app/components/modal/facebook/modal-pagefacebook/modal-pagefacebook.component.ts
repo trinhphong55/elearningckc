@@ -1,11 +1,11 @@
+import { DetailPagefacebookComponent } from './../details/detail-pagefacebook/detail-pagefacebook.component';
 import { ChangeDetialFB } from './../../../../services/changeDetailFB.service';
-import { filter } from 'rxjs/operators';
 import { TrangThaifbService } from './../../../../services/trangthaifb.service';
 import { LoaifbService } from './../../../../services/loaifb.service';
 import { BaiDangfbService } from './../../../../services/baidangfb.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { PagefbService } from './../../../../services/pagefb.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { ModalService } from '../../../../services/modal.service';
 
 @Component({
@@ -15,6 +15,7 @@ import { ModalService } from '../../../../services/modal.service';
 })
 export class ModalPagefacebookComponent implements OnInit {
 
+  @ViewChild(DetailPagefacebookComponent) myDetail: DetailPagefacebookComponent;
   searchpage;
   data: any;
   datatmp:any;
@@ -30,6 +31,7 @@ export class ModalPagefacebookComponent implements OnInit {
   MaLoai :any;
   tenpage:any;
   text: '';
+  getidss:any;
   constructor(
     private modalService: ModalService,
     private pageFBService: PagefbService,
@@ -39,6 +41,9 @@ export class ModalPagefacebookComponent implements OnInit {
     private _changeDetailFB: ChangeDetialFB
     ) { }
 
+     AfterViewInit
+      ngAfterViewInit(): void{
+    }
   ngOnInit(): void {
     this.getAll();
     this.getLoai();
@@ -214,24 +219,24 @@ export class ModalPagefacebookComponent implements OnInit {
     }else{
 
 
-    this.baiDangFBService.createDraw({
-      ID: this.idpage,
-      message: this.messa,
-      url: this.urlImg,
-      maLoai: this.MaLoai,
-      loai: this.loaistt,
-      thuoc: this.tenpage
-    }).subscribe((ress:any)=>{
-      this.mess = ress.msg;
-      alert(this.mess);
-      console.log(ress);
-    })
-    this.delay(1000).then(any=>{
+      this.baiDangFBService.createDraw({
+        ID: this.idpage,
+        message: this.messa,
+        url: this.urlImg,
+        maLoai: this.MaLoai,
+        loai: this.loaistt,
+        thuoc: this.tenpage
+      }).subscribe((ress:any)=>{
+        this.mess = ress.msg;
+        alert(this.mess);
+        console.log(ress);
+      })
+      this.delay(1000).then(any=>{
 
-      this.getMessage.setValue('');
-      this.getLoaistt.setValue('');
-      this.getURLimg.setValue('');
-    });
+        this.getMessage.setValue('');
+        this.getLoaistt.setValue('');
+        this.getURLimg.setValue('');
+      });
     }
 
     this.baiDangFBService.createDraw({
@@ -255,14 +260,16 @@ export class ModalPagefacebookComponent implements OnInit {
   }
 
   changeTitle(d){
-   document.getElementById('title').innerText = "Đăng bài cho "+ d;
+   document.getElementById('title').innerText = "Đăng bài cho Trang"+ d;
   }
 
   openDetailpage(detail) {
     this.modalService.open('detail-pagefb');
     this.text = detail.tenPage;
+    this.getidss = detail.id_Page;
     this._changeDetailFB.setTitleFormPageFB(this.text);
     $('#id_P').val(detail.id_Page);
+    this.myDetail.selectBaiDang(this.getidss);
   }
   closeModal(id: string) {
     this.modalService.close(id)

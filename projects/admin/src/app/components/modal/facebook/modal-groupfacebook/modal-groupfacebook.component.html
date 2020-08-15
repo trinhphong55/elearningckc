@@ -1,3 +1,4 @@
+<app-detail-groupfacebook></app-detail-groupfacebook>
 <app-modal class="modal_chucnang__wrapper " id="fb_quanlygroupfacebook">
   <div (click)="closeModal('fb_quanlygroupfacebook')" class="modal_chucnang__close mdi mdi-chevron-left text-white"></div>
   <div class="container-fluid mt-3">
@@ -149,7 +150,7 @@
               <tr *ngFor=" let d of lopTams |filter: searchGroup; index as stt" >
                 <td class="text-center">{{stt+1}}</td>
                 <td class="text-center">
-                  <div class="a" id="maGoup + {{stt}}">{{d.IDGroupFB}}</div>
+                  <div>{{d.IDGroupFB}}</div>
                 </td>
                 <td class="text-center" (click)="insertDateforForm(d)">
                   <label >{{d.tenVietTat}}</label>

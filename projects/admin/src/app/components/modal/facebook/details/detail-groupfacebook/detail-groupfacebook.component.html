@@ -3,7 +3,7 @@
   <div class="container-fluid mt-3">
     <div class="row">
       <div class="col-12">
-        <h1 class="text-center text-white" >Chi Tiết Group {{titleFormGroup}}</h1>
+        <h1 class="text-center text-white" >Các bài viết đã đăng trong nhóm <br> {{titleFormGroup}}</h1>
       </div>
       <div class="col-12">
         <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white" >
@@ -44,7 +44,47 @@
       </div>
       <div class="col-12">
         <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
-            BÀI VIẾT ĐÃ ĐĂNG
+          <div class="d-flex align-items-center mb-2" >
+            <label class="mb-0 d-flex align-items-center"><span class="text-nowrap">Hiển thị &nbsp;</span>
+              <select class="custom-select custom-select-sm form-control">
+                <option>10</option>
+                <option>25</option>
+                <option>50</option>
+              </select><span class="text-nowrap">&nbsp; hàng</span>
+            </label>
+            <label class="ml-auto mb-0 d-flex align-items-center"><span class="text-nowrap">Tìm kiếm: &nbsp;</span>
+              <input class="form-control form-control-sm" placeholder="Tìm kiếm" [(ngModel)]="search">
+            </label>
+          </div>
+
+          <table class="modal_chucnang__table table table-hover" id="">
+            <thead class="bg__caothang text-white">
+              <th class="text-center">STT</th>
+              <th scope="col" class="text-center">Mô tả</th>
+              <th scope="col" class="text-center">Link</th>
+              <th scope="col" class="text-center">Loại</th>
+              <th scope="col" class="text-center">Trạng Thái</th>
+            </thead>
+            <tbody>
+              <tr *ngFor=" let d of baiDangtmp |filter: search; index as stt">
+                <td class="text-center">{{stt+1}}</td>
+                <td class="text-center">
+                  <div>{{d.message}}</div>
+                </td>
+                <td class="text-center">
+                  <a href="{{d.link}}" target="_blank">Click để đi đến bài viết</a>
+                </td>
+                <td class="text-center">
+                  <div>{{d.loai}}</div>
+                </td>
+                <ng-container *ngFor="let item of gettt">
+                  <td class="text-center" *ngIf="item.trangThai == d.trangThai">
+                    <div>{{ item.tenTrangThai }}</div>
+                  </td>
+                </ng-container>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

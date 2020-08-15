@@ -2,7 +2,7 @@ import { BaiDangfbService } from './../../../../services/baidangfb.service';
 import { LoaifbService } from './../../../../services/loaifb.service';
 import { ChangeDetialFB } from './../../../../services/changeDetailFB.service';
 import { LopHocService } from './../../../../services/lop-hoc.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ModalService } from '../../../../services/modal.service';
 import { NganhNgheService } from '../../../../services/NganhNghe.service';
 import {
@@ -11,6 +11,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { BacService } from '../../../../services/Bac.service';
+import { DetailGroupfacebookComponent } from '../details/detail-groupfacebook/detail-groupfacebook.component';
 
 @Component({
   selector: 'app-modal-groupfacebook',
@@ -18,6 +19,7 @@ import { BacService } from '../../../../services/Bac.service';
   styleUrls: ['./modal-groupfacebook.component.css'],
 })
 export class ModalGroupfacebookComponent implements OnInit {
+  @ViewChild(DetailGroupfacebookComponent) myDetailGrp: DetailGroupfacebookComponent;
   datatmp: any;
   data: any;
   bac: any;
@@ -238,7 +240,7 @@ export class ModalGroupfacebookComponent implements OnInit {
 }
 
   insertTobdGrp(){
-    this.delay(3000).then(any=>{
+    this.delay(4000).then(any=>{
       //your task after delay.
       this.loaistt = this.addForm.value.getLoaisttGrp;
       this.idgroup = $('#getidGrp').val();
@@ -340,9 +342,11 @@ export class ModalGroupfacebookComponent implements OnInit {
     }
   }
   openDetail(detail) {
+    console.log(detail);
     this.modalService.open('detail-groupfb');
     this.text = detail.tenGroupFB;
     this._changeDetailFB.setTitleFormGroupFB(this.text);
+    this.myDetailGrp.selectBaiDangGrp(detail.IDGroupFB);
   }
 
   closeModal(id: string) {
