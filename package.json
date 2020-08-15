@@ -42,6 +42,7 @@
     "@mdi/font": "^5.3.45",
     "@ng-bootstrap/ng-bootstrap": "^7.0.0",
     "angular-datatables": "^9.0.2",
+    "angular-md5": "^0.1.10",
     "aos": "^2.3.4",
     "apexcharts": "^3.20.0",
     "axios": "^0.19.2",
@@ -67,6 +68,7 @@
     "rxjs": "~6.6.0",
     "select2": "^4.0.13",
     "swiper": "^6.0.2",
+    "ts-md5": "^1.2.7",
     "tslib": "^2.0.0",
     "vanilla-lazyload": "^17.1.0",
     "zone.js": "~0.10.3"
