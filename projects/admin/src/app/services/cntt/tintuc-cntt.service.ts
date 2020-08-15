@@ -22,6 +22,13 @@ export class TintucCnttService {
       })
       .pipe(catchError(this.errorMgmt));
   }
+  danhSachTinTucSapXepTheoMaBaiViet(): Observable<any> {
+    return this.http
+      .get<any>(`${this.baseUri}/danhsachtintuc`, {
+        headers: this.headers,
+      })
+      .pipe(catchError(this.errorMgmt));
+  }
   deleteTinTuc(body: any): Observable<any> {
     return this.http
       .post<any>(`${this.baseUri}/xoatintuc`, body, {

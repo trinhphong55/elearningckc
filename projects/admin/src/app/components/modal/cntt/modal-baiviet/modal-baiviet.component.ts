@@ -162,15 +162,17 @@ export class ModalBaivietComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   getDanhSachBaiViet() {
-    this.tintucCnttService.danhSachTinTuc().subscribe((data) => {
-      this.danhSachBaiViet = data;
-      // console.log('danhSachBaiViet');
-      // console.log(this.danhSachBaiViet);
-      // this.getMaBaiVietCuoiCung();
-      this.setMaBaiVietVaoFormBaiViet();
-      this.dtTrigger.next(); // DataTables
-      // this.reRenderDataTables();
-    });
+    this.tintucCnttService
+      .danhSachTinTucSapXepTheoMaBaiViet()
+      .subscribe((data) => {
+        this.danhSachBaiViet = data;
+        // console.log('danhSachBaiViet');
+        console.log(this.danhSachBaiViet);
+        // this.getMaBaiVietCuoiCung();
+        this.setMaBaiVietVaoFormBaiViet();
+        this.dtTrigger.next(); // DataTables
+        // this.reRenderDataTables();
+      });
   }
 
   getDanhSachDanhMuc(): void {
