@@ -150,17 +150,6 @@ export class ModalBaivietComponent implements OnInit, OnDestroy, AfterViewInit {
     this.modalService.close(id);
   }
 
-  // DataTables
-  reRenderDataTables(): void {
-    this._dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
-      // this.getDanhSachBaiViet();
-      // // Destroy the table first
-      dtInstance.destroy();
-      // Call the dtTrigger to rerender again
-      this.dtTrigger.next();
-    });
-  }
-
   getDanhSachBaiViet() {
     this.tintucCnttService
       .danhSachTinTucSapXepTheoMaBaiViet()
@@ -170,7 +159,7 @@ export class ModalBaivietComponent implements OnInit, OnDestroy, AfterViewInit {
         console.log(this.danhSachBaiViet);
         // this.getMaBaiVietCuoiCung();
         this.setMaBaiVietVaoFormBaiViet();
-        this.dtTrigger.next(); // DataTables
+        // this.dtTrigger.next(); // DataTables
         // this.reRenderDataTables();
       });
   }
@@ -291,13 +280,16 @@ export class ModalBaivietComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   formatDatetime(time: string): string {
-    time = moment(time).format('HH:mm, DD-MM-YYYY');
-    return time;
+    if (time) {
+      time = moment(time).format('HH:mm, DD-MM-YYYY');
+      return time;
+    }
+    return '';
   }
 
   onResetForm(): void {
     this.formBaiViet.reset();
-    this._image = null;
+    // this._image = null;
     this.image = 'https://localhost:4100/uploads/cntt/128.png';
   }
 
@@ -309,6 +301,8 @@ export class ModalBaivietComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   saveBaiViet(): void {
+    console.log(this.formBaiViet.value);
+    console.log(this._image);
     if (this.formBaiViet.valid && this._image !== null) {
       const tieuDeAfterRemoveHTMLTag = this.stringCommonService.removeSpaceAndHTMLTag(
         this.formBaiViet.get('tieuDe').value
@@ -351,7 +345,7 @@ export class ModalBaivietComponent implements OnInit, OnDestroy, AfterViewInit {
         this.getDanhSachBaiViet();
         this.onResetForm();
         alert(res.message);
-        this.reRenderDataTables(); // DataTables
+        // this.reRenderDataTables(); // DataTables
       });
     } else {
       alert('Vui lòng nhập đầy đủ các thông tin');
@@ -420,7 +414,7 @@ export class ModalBaivietComponent implements OnInit, OnDestroy, AfterViewInit {
         this.onResetFormChinhSua();
         alert(res.message);
         this.closeModal('cntt_chinhsuabaiviet');
-        this.reRenderDataTables(); // DataTables
+        // this.reRenderDataTables(); // DataTables
       });
     } else {
       alert('Vui lòng nhập đầy đủ các thông tin và chọn hình ảnh mới');
