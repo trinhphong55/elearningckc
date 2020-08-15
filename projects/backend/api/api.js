@@ -111,9 +111,6 @@ const validate = khoabomonController.checkValidate();
 //nganhnghe bac
 const NganhNgheRoutes = require("./NganhNghe");
 const BacRoutes = require("./Bac");
-
-
-
 //nganhnghe
 router.use("/", NganhNgheRoutes);
 //bac
@@ -233,6 +230,8 @@ router.get("/cotdiemlophocphan/:maCotDiem/chitiet",verifyToken, cotDiemLHP.layCo
 //======================= Routes ChitietDiemSVLopHocPhan ==================================
 router.get("/ct-diemsv-lophocphan/:masv",verifyToken, ctDiemLopHP.layCTDiemLopHPtheoMaSV);
 router.get("/ct-diemsv-lophocphan/:maHocPhan/lophocphan",verifyToken, ctDiemLopHP.layCTDiemLopHPtheoMaLopHP);
+router.get("/ct-diemsv-lophocphan/:maCotDiem/sinhvienlophocphan",verifyToken, ctDiemLopHP.dsChamDiemSinhVien);
+router.put("/ct-diemsv-lophocphan/:id/chamdiem",verifyToken, ctDiemLopHP.chamdiemsinhvienlophocphan);
 //=========================== Routes ChuDe =============================================
 router.get("/chude",verifyToken, ChuDe.layTatCa);
 router.get("/chude/:maChuDe",verifyToken, ChuDe.layMot);

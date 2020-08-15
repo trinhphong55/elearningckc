@@ -9,9 +9,10 @@ import { CookieService } from 'ngx-cookie-service';
 import { FileSelectDirective, FileUploader } from 'ng2-file-upload';
 import { FileService } from '../../../../../services/file.service';
 import saveAs from 'file-saver';
+const uri_bt = 'https://localhost:4100/api/baitap/uploads';
+const uri = 'https://localhost:4100/api/baitapsinhvien/uploads';
 import { ActivityService } from '../../../../../services/activity.service';
 import { getCookie } from '../../../../../../../../common/helper';
-const uri = 'https://localhost:4100/api/baitap/uploads';
 @Component({
   selector: 'app-xembaitapsv',
   templateUrl: './xembaitapsv.component.html',
@@ -40,7 +41,7 @@ export class XembaitapsvComponent implements OnInit {
   quyen: string;
   doituong: any;
   uploader: FileUploader = new FileUploader({
-    url: uri,
+    url: uri_bt,
     maxFileSize: 2048, // Max 2kB
     queueLimit: 3, // Max files can upload
   });

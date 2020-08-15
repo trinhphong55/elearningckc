@@ -1,4 +1,5 @@
 const ctDiemsvLhpModel = require("../models/ct-diemsv-lhp.model");
+const SINHVIEN = require("../models/sinh-vien.model");
 const LopHocPhan = require("../models/LopHocPhan.model");
 const cotdiemLophocphanModel = require("../models/cotdiem-lophocphan.model");
 const BaiTap = require("../models/BaiTap.model");
