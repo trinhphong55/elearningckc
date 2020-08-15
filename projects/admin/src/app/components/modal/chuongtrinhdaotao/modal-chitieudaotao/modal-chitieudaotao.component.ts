@@ -475,9 +475,9 @@ export class ModalChitieudaotaoComponent implements OnInit {
           )
         );
       }
-      this.getLopHoc();
-      this.lopTams = [];
     });
+    this.getLopHoc();
+    this.lopTams = [];
   }
   deleteLopHoc(maNganh: string, maBac: string) {
     let ma = this.taoTienTo(
@@ -504,10 +504,10 @@ export class ModalChitieudaotaoComponent implements OnInit {
   //Thao tac voi servce################################################################
   addLopHoc(data) {
     this.lopHocService.create(data).subscribe(
-      (res) => {
-        console.log(res);
-        // let { msg, status} = res;
-        //this.msgList.push(data.tenLop);
+      (res: any) => {
+        if (res.msg) {
+          this.msgList.push({ msg: res.msg });
+        }
       },
       (err) => {
         console.log(err);

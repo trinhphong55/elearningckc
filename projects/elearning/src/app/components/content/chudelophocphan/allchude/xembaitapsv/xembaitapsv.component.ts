@@ -9,13 +9,9 @@ import { CookieService } from 'ngx-cookie-service';
 import { FileSelectDirective, FileUploader } from 'ng2-file-upload';
 import { FileService } from '../../../../../services/file.service';
 import saveAs from 'file-saver';
-<<<<<<< HEAD
 import { ActivityService } from '../../../../../services/activity.service';
 import { getCookie } from '../../../../../../../../common/helper';
 const uri = 'https://localhost:4100/api/baitap/uploads';
-=======
-const uri = 'https://localhost:4100/api/baitapsinhvien/uploads';
->>>>>>> elearning
 @Component({
   selector: 'app-xembaitapsv',
   templateUrl: './xembaitapsv.component.html',
@@ -151,7 +147,7 @@ export class XembaitapsvComponent implements OnInit {
   public fileOverAnother(e: any): void {
     this.hasAnotherDropZoneOver = e;
   }
-  hienThiBaiTap() { 
+  hienThiBaiTap() {
     this.BaiTapSinhVienService.getall().subscribe(
       (dsBaiTap) => {
         this.dsBaiTap = dsBaiTap;
@@ -160,7 +156,7 @@ export class XembaitapsvComponent implements OnInit {
             this.dsBaiTap = dsBaiTap;
             if (dsBaiTap != "") {
               this.tinhTrang = "Đã nộp";
-              
+
             }
           })
       },

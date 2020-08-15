@@ -95,7 +95,6 @@ _router.post("/", async (req, res) => {
       });
     });
 });
-<<<<<<< HEAD
  ///danh sach bai tap 1 lop hoc phan
  _router.get("/danhsachbaitap/:maLopHocPhan", async (req, res) => {
    try {
@@ -110,7 +109,7 @@ _router.post("/", async (req, res) => {
           {
             if(y.maBaiTap==z.maBaiTap)
             {
-             
+
              data.push({tieuDe:y.tieuDe,tenChuDe:x.tenChuDe,cotDiem:z.tenCotDiem,maCotDiem:z.maCotDiem})
             }
           }
@@ -118,14 +117,13 @@ _router.post("/", async (req, res) => {
       })
     })
     return res.status(200).json(data);
-   } catch (err) { 
+   } catch (err) {
     return res.status(501).json({
       status: 501,
       message: err,
     });
    }
   });
-=======
 // lay all cua bai tap
 _router.get("/baitap/ds", async (req, res) => {
   try {
@@ -135,6 +133,5 @@ _router.get("/baitap/ds", async (req, res) => {
     res.json(error);
   }
 });
->>>>>>> elearning-2
 module.exports = _router;
 
