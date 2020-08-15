@@ -31,12 +31,16 @@ exports.postToDrawFB = async (req, res) => {
       res.json({
         status: 200,
         ok:true,
-        msg: "Thêm thành công vào draw",
+        msg: "Thêm thành công vào nháp",
         data: savePostToDraw,
       });
-  }catch(error){
-    console.log(res.json.error);
-    res.json(error);
+  }catch{
+    res.json({
+      status: 200,
+      ok:true,
+      msg: "Thêm không thành công vào nháp",
+      data: savePostToDraw,
+    });
   }
 };
 //Delete bai post
@@ -58,12 +62,12 @@ exports.deletePostFB = async (req, res) => {
     if (updatePosted.nModified === 0) {
       result = {
         status: false,
-        msg: "Xóa đã post thất bại",
+        msg: "Xóa bài viết đã đăng thất bại",
       };
     } else {
       result = {
         status: true,
-        msg: "Xóa đã post thành công ",
+        msg: "Xóa bài viết đã đăng thành công ",
       };
     }
     res.status(200).json(result);
@@ -95,7 +99,7 @@ exports.postedToFB = async (req, res) => {
       res.json({
         status: 200,
         ok:true,
-        msg: "Thêm thành công vào post",
+        msg: "Thêm thành công vào bài đã đăng",
         data: savePosted,
       });
   }catch{
@@ -133,11 +137,11 @@ exports.updatePostedFB = async (req, res) => {
     };
 
     if (updatePosted.nModified === 0) {
-      result.msg = "Chưa được cập nhật trong posted";
+      result.msg = "Chưa được cập nhật trong bài đã đăng";
 
     } else {
       result.ok = true;
-      result.msg ="Cập nhật thành công posted to Facebook";
+      result.msg ="Cập nhật thành công bài đã đăng";
 
     }
     res.status(200).json(result);
@@ -171,11 +175,11 @@ exports.updateDrawToPosted = async (req, res) => {
     };
 
     if (updatePosted.nModified === 0) {
-      result.msg = "Cập nhật từ draw to posted không thành công";
+      result.msg = "Cập nhật từ nháp sang đã đăng không thành công";
 
     } else {
       result.ok = true;
-      result.msg ="Cập nhật thành công từ draw to posted";
+      result.msg ="Cập nhật thành công từ nháp sang đã đăng";
 
     }
     res.status(200).json(result);

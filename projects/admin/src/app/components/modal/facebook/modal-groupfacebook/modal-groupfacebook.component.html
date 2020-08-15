@@ -4,7 +4,7 @@
   <div class="container-fluid mt-3">
     <div class="row">
       <div class="col-12">
-        <h1 class="text-center text-white">Quản lý Group Facebook</h1>
+        <h1 class="text-center text-white">Quản lý nhóm Facebook</h1>
       </div>
       <div class="col-12">
         <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
@@ -64,7 +64,7 @@
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+              <h1 id="titlegrp"></h1>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -72,13 +72,13 @@
               <div class="modal-body">
                 <div class="">
                   <div class="form-group">
-                    <label>Message</label>
+                    <label>Nội dung</label>
                     <textarea class="form-control" type="text" [formControl]="getMessageGrp" id="messagegr" ></textarea>
                   </div>
                 </div>
                 <div class="">
                   <div class="form-group">
-                    <label>Url picture</label>
+                    <label>Url hình ảnh</label>
                     <input class="form-control" type="text" [formControl]="getURLimgGrp" id="picturegr"/>
                   </div>
                 </div>
@@ -96,9 +96,10 @@
                 <input type="text" value="" id="postidGrp" hidden>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-success" onclick="PostGrpByRequest()" (click)="insertTobdGrp()">Đăng</button>
                 <button type="button" class="btn btn-secondary" (click)="insertDraftGrp()">Lưu Nháp</button>
-                <button type="button" class="btn btn-primary" onclick="PostGrpByRequest()" (click)="insertTobdGrp()">Đăng</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+
               </div>
             </div>
           </div>
@@ -172,7 +173,7 @@
                     </button>
                   </div>
                   <div class="form-group">
-                    <button class="modal_chucnang__button btn btn-outline-success px-4 mx-2" (click)="openDetail(d)" onclick="getIDGroup(this)" data="{{d.IDGroupFB}}">View</button>
+                    <button class="modal_chucnang__button btn btn-outline-success px-4 mx-2" (click)="openDetail(d)" onclick="getIDGroup(this)" data="{{d.IDGroupFB}}">Chi tiết</button>
                   </div>
                 </td>
               </tr>

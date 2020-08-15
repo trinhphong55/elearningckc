@@ -12,6 +12,7 @@ import {
 } from '@angular/forms';
 import { BacService } from '../../../../services/Bac.service';
 import { DetailGroupfacebookComponent } from '../details/detail-groupfacebook/detail-groupfacebook.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-modal-groupfacebook',
@@ -41,6 +42,7 @@ export class ModalGroupfacebookComponent implements OnInit {
   urlImg :any;
   MaLoai :any;
   tengroup:any;
+  mess:any
   //Khai báo list
   public bactamlist = [];
   public bacList: any;
@@ -56,7 +58,7 @@ export class ModalGroupfacebookComponent implements OnInit {
     private _changeDetailFB: ChangeDetialFB,
     private loaifbService: LoaifbService,
     private baiDangFBService: BaiDangfbService,
-
+    private toastr:ToastrService
 
   ) {}
   searchGroup;
@@ -220,7 +222,8 @@ export class ModalGroupfacebookComponent implements OnInit {
     this.linkGroup.setValue(data.linkGroupFB);
   }
   update() {
-    this.lopService
+    try{
+      this.lopService
       .updateFB(this.datatmp.maLopHoc, {
         tenGroupFB: this.addForm.value.tenGroup,
         IDGroupFB: this.addForm.value.IDGroup,
@@ -229,10 +232,21 @@ export class ModalGroupfacebookComponent implements OnInit {
 
       .subscribe((res:any) => {
         this.mss = res.msg;
-        alert(this.mss);
+        this.toastr.info(this.mss,'Thông báo',{
+          timeOut:2000,
+          positionClass:'toast-bottom-right',
+        });
       }
 
       );
+    }catch{
+      this.mess = 'Không được để trống thông tin';
+      this.toastr.warning(this.mess, 'Nhắc nhở', {
+        timeOut: 2000,
+        positionClass: 'toast-bottom-right',
+      });
+    }
+    
   }
 
   delay(ms: number) {
@@ -267,7 +281,10 @@ export class ModalGroupfacebookComponent implements OnInit {
       console.log(this.tengroup);
       console.log(this.MaLoai);
       if(this.messa == '' || this.loaistt == ''){
-        alert('Không được để trống Nội dunng và Loại bài viết');
+        this.toastr.warning('Không được để trống Nội dung và Loại bài viết','Nhắc nhở',{
+          timeOut:2000,
+          positionClass:'toast-bottom-right',
+        });
       }else{
 
         this.baiDangFBService.create({
@@ -281,7 +298,10 @@ export class ModalGroupfacebookComponent implements OnInit {
           thuoc: this.tengroup
         }).subscribe((ress:any)=>{
           this.mss = ress.msg;
-          alert(this.mss);
+          this.toastr.info(this.mss,'Thông báo',{
+            timeOut:2000,
+            positionClass:'toast-bottom-right',
+          });
           console.log(ress);
         })
         this.delay(1000).then(any=>{
@@ -317,8 +337,11 @@ export class ModalGroupfacebookComponent implements OnInit {
     console.log(this.tengroup);
     console.log(this.idgroup);
 
-    if(this.messa == '' || this.loaistt == ''){
-       alert('Không được để trống Nội dunng và Loại bài viết');
+    if(this.messa === '' || this.loaistt === ''){
+       this.toastr.warning('Không được để trống Nội dung và Loại bài viết','Nhắc nhở',{
+         timeOut:2000,
+         positionClass:'toast-bottom-right',
+       });
     }else{
 
       this.baiDangFBService.createDraw({
@@ -330,7 +353,10 @@ export class ModalGroupfacebookComponent implements OnInit {
         thuoc: this.tengroup
       }).subscribe((ress:any)=>{
         this.mss = ress.msg;
-        alert(this.mss);
+        this.toastr.info(this.mss,'Thông báo',{
+          timeOut:2000,
+          positionClass:'toast-bottom-right',
+        });
         console.log(ress);
       })
       this.delay(1000).then(any=>{
@@ -340,6 +366,9 @@ export class ModalGroupfacebookComponent implements OnInit {
         this.getURLimgGrp.setValue('');
       });
     }
+  }
+  changeTitleGrp(d) {
+    document.getElementById('titlegrp').innerText = 'Đăng bài cho nhóm' + d;
   }
   openDetail(detail) {
     console.log(detail);

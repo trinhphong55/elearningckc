@@ -282,7 +282,7 @@ exports.capNhatThongTinFaceBook = async (req, res) => {
       result.msg = "Cập nhật thành công, không có gì thay đổi";
     } else {
       result.ok = true;
-      result.msg = "Cập nhật thành công Lớp học";
+      result.msg = "Cập nhật thành công vào Lớp học";
     }
 
     res.status(200).json(result);

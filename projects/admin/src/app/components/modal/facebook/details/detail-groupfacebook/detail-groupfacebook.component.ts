@@ -3,6 +3,7 @@ import { BaiDangfbService } from './../../../../../services/baidangfb.service';
 import { ChangeDetialFB } from './../../../../../services/changeDetailFB.service';
 import { ModalService } from './../../../../../services/modal.service';
 import { Component, OnInit, Input } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-detail-groupfacebook',
@@ -21,7 +22,8 @@ export class DetailGroupfacebookComponent implements OnInit {
     private modalService: ModalService,
     private _changeDetailFB: ChangeDetialFB,
     private baiDangSv: BaiDangfbService,
-    private trangthaiSV: TrangThaifbService
+    private trangthaiSV: TrangThaifbService,
+    
   ) { }
 
   ngOnInit(): void {
@@ -45,8 +47,9 @@ export class DetailGroupfacebookComponent implements OnInit {
   selectBaiDangGrp(val){
     console.log(val);
     this.baiDangtmp = [];
+  
     this.data.forEach(element => {
-      if(element.IDGroupFB == val && element.trangThai == 2){
+      if(element.ID == val && element.trangThai == 2){
         this.baiDangtmp.push(element);
       }
     });
