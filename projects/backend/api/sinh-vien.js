@@ -4,6 +4,7 @@ const lopHoc = require("../models/LopHoc.model");
 const lopHocPhan = require("../models/LopHocPhan.model");
 const diemSV = require("../models/diemsinhvien.model");
 const { check, validationResult } = require("express-validator");
+const LopHocModel = require("../models/LopHoc.model");
 
 setSinhVien = (req) => {
   return {
@@ -16,8 +17,7 @@ setSinhVien = (req) => {
     nguoiTao: req.nguoiTao,
     nguoiChinhSua: req.nguoiChinhSua,
     email: req.maSinhVien + "@caothang.edu.vn",
-    matKhau:req.matKhau,
-
+    matKhau: req.matKhau,
   };
 };
 setSinhVienUpdate = (req) => {
@@ -108,7 +108,7 @@ exports.layThongtinSinhVien = async (req, res) => {
 
 exports.capNhatSinhVien = async (req, res) => {
   try {
-
+    console.log(req.body);
     // const err = validationResult(req);
     // if(!err.isEmpty()){
     //   res.status(422).json(err.errors);
@@ -186,8 +186,13 @@ exports.removeAll = async (req, res) => {
 exports.tinhTongSinhVien = async (req, res) => {
   try {
     const total = await SinhVienModel.find({ maLopHoc: req.params.maLopHoc });
+    const lophoc = await LopHocModel.findOne({ maLopHoc: req.params.maLopHoc });
     // const lopHoc = await LopHocModel.findOne({ maLopHoc: req.params.maLopHoc });
-    res.json({ maLopHoc: req.params.maLopHoc, siSo: total.length });
+    res.json({
+      maLopHoc: req.params.maLopHoc,
+      siSo: total.length,
+      data: lophoc,
+    });
   } catch (error) {
     res.json(error);
   }
@@ -212,7 +217,21 @@ exports.laySinhVienLopHocPhan = async (req, res) => {
     res.json({error,status:500});
   }
 };
+exports.layDSLopHocPhan = async (req, res) => {
+  try {
+   const total = await SinhVienModel.find({ maLopHoc: req.params.maLopHoc });
 
+    const dsLopHP_Update = await lopHocPhan.updateMany(
+      { maLopHoc: req.params.maLopHoc },
+      { $set: { soLuongSV: total.length } }
+    );
+    const dsLopHP = await lopHocPhan.find({ maLopHoc: req.params.maLopHoc });
+
+    res.json({count:dsLopHP.length, data: dsLopHP, message: 'Cập nhật sỉ số thành công'});
+  } catch (error) {
+    res.json(error);
+  }
+};
 exports.checkValidate = () => {
   return [
     check("sdt", "Số điện thoại phải 10 số").isLength({ max: 10, min: 10 }),

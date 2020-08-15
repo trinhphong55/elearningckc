@@ -42,7 +42,7 @@ _router.post("/download", function (req, res, next) {
 
 _router.get("/:maLopHocPhan/lop-hoc-phan", async (req, res) => {
   try {
-    const baiTaps = await BaiTap.find({ lopHocPhan: req.params.maLopHocPhan });
+    const baiTaps = await BaiTap.find({ lopHocPhan: parseInt(req.params.maLopHocPhan) });
     res.json({
       count: baiTaps.length,
       data: baiTaps,
@@ -55,7 +55,7 @@ _router.get("/:maLopHocPhan/lop-hoc-phan", async (req, res) => {
 });
 _router.get("/:maBaiTap", async (req, res) => {
   try {
-    const baiTaps = await BaiTap.findOne({ maBaiTap: req.params.maBaiTap });
+    const baiTaps = await BaiTap.findOne({ maBaiTap: parseInt(req.params.maBaiTap) });
     res.json({
       id:req.params.maBaiTap,
       data: baiTaps,

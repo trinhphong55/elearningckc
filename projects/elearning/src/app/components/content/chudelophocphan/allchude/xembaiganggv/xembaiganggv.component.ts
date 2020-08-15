@@ -7,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
 import { BaiTap } from '../../../../../models/bai-tap.interface';
 import { BaiTapService } from '../../../../../services/bai-tap.service';
 import { BinhLuanService } from '../../../../../services/binh-luan.service';
+import { ActivityService } from '../../../../../services/activity.service';
+import { FileService } from '../../../../../services/file.service';
+import { getCookie } from '../../../../../../../../common/helper';
+import saveAs from 'file-saver';
 @Component({
   selector: 'app-xembaiganggv',
   templateUrl: './xembaiganggv.component.html',
@@ -16,12 +20,15 @@ export class XembaiganggvComponent implements OnInit {
 
   public baiGiang?: BaiGiang;
   public dsBinhLuan: any;
+  public maLHP: any;
   public binhLuan = new FormControl('');
-
+  public email: any = getCookie('email');
   constructor(
     private route: ActivatedRoute,
     private baiGiangService: BaiGiangService,
-    private binhLuanService: BinhLuanService
+    private binhLuanService: BinhLuanService,
+    private _fileService: FileService,
+    private activityService:ActivityService
   ) {}
 
   ngOnInit(): void {
@@ -61,9 +68,31 @@ export class XembaiganggvComponent implements OnInit {
       loaiBaiViet: '1',
       maBaiViet: maBaiGiang,
       noiDung: this.binhLuan.value,
-      nguoiTao: '0306171249',
+      nguoiTao: this.email,
     };
-    this.binhLuanService.themBinhluan(data).subscribe((res) => {});
+    this.binhLuanService.themBinhluan(data).subscribe((res:any) => {
+      if(typeof res.data == 'object'){
+        //mã bài viết là mã bài giảng
+        this.baiGiangService.layTheo_maBaiGiang(data.maBaiViet).subscribe((res:any) => {
+          this.maLHP = res.data.maLopHocPhan;
+          this.themActivity(data.maBaiViet, res.data.tieuDe);
+        })
+      }
+    });
   }
 
+  private themActivity(maDoiTuong, noiDung) {
+    this.activityService.themActivity(this.maLHP, maDoiTuong, "BL-BG", noiDung, "bình luận").subscribe(res => {
+      console.log(res);
+    })
+  }
+
+  download(filename) {
+    // var filename = this.attachmentList[index].uploadname;
+
+    this._fileService.downloadFileBaiGiang(filename).subscribe(
+      (data) => saveAs(data, filename),
+      (error) => console.log(error)
+    );
+  }
 }

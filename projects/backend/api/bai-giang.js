@@ -33,10 +33,11 @@ exports.them = async (req, res) => {
     let nextNumber = 1;
     //get NextNumber
     await baiGiangModel
-      .findOne({}, {}, { sort: { ngayTao: -1 } })
+      .findOne({}, {}, { sort: { thuTu: -1 } })
       .exec()
       .then((bt) => {
         if (bt !== null) {
+
           nextNumber = bt.maBaiGiang + 1;
         }
       });

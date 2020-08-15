@@ -763,5 +763,7 @@ form.ng-untouched.ng-pristine.ng-valid {
         border-radius: 50px;
         outline: none;
     }
-
+    .content-gv {
+        margin-bottom: 10px;
+    }
 }

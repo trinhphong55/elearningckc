@@ -24,5 +24,8 @@ export class BaiGiangService {
     return this.http.get(`${this.baseUrl}/${maBaiGiang}/ma-bai-giang`);
 
   }
+  public xoa(maBaiGiang){
+    return this.http.delete(`${this.baseUrl}/${maBaiGiang}`);
+  }
 
 }

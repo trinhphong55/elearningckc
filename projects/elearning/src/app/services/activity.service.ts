@@ -24,6 +24,8 @@ export class ActivityService {
     const dsDoiTuong = {
       "BT": "bài tập",
       "BG": "bài giảng",
+      "BL-BT": "vào bài tập",
+      "BL-BG": "vào bài giảng"
     }
     return `${this.name} đã ${hanhDong} ${dsDoiTuong[loaiDoiTuong]} "${noiDung}"`;
   }
