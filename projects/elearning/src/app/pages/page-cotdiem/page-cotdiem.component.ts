@@ -99,7 +99,7 @@ export class PageCotodiemComponent implements OnInit {
 
 
   themDanhSachCotDiem() {
-    if (this.formCotDiem.get('tenCotDiem').value == '' || this.formCotDiem.get('heSo').value == '' || this.formCotDiem.get('moTa').value == '' ||  this.formCotDiem.get('maBaiTap').value == null) {
+    if (this.formCotDiem.get('tenCotDiem').value == ''||this.formCotDiem.get('tenCotDiem').value == null || this.formCotDiem.get('heSo').value == '' || this.formCotDiem.get('moTa').value == '' ||  this.formCotDiem.get('maBaiTap').value == null) {
         this.err="Dữ Liệu Không Được Để Trống";
     }
     else {
@@ -133,9 +133,11 @@ export class PageCotodiemComponent implements OnInit {
         this.err="";
         this.quyenSua = "none";
         this.quyenThem = ''
+        
       },
       (error) => {
         console.log(error);
+        this.err="có lỗi xảy ra";
       }
     )
   }

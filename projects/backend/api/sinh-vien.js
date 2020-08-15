@@ -198,19 +198,13 @@ exports.laySinhVienLopHocPhan = async (req, res) => {
   try {
     var lopHP = await lopHocPhan.find({ maLopHocPhan: req.params.maLopHocPhan });
     var sinhvien = await SinhVienModel.find({trangThai:1});
-    var diemSinhVien = await diemSV.find({ maLopHocPhan:req.params.maLopHocPhan});
     var data=[]
     lopHP.forEach(async x => {
         sinhvien.forEach(async y => {
-          diemSinhVien.forEach(async z => {
             if(x.maLopHoc==y.maLopHoc)
             {
-              if(y.maSinhVien==z.maSinhVien)
-              {
-                data.push({ho:y.ho,ten:y.ten,maSinhVien:y.maSinhVien,maLopHocPhan:z.maLopHocPhan,diem:z.diem})
-              }
+                data.push({ho:y.ho,ten:y.ten,maSinhVien:y.maSinhVien})
             }
-          })
         })
       })
     res.json(data)

@@ -13,4 +13,17 @@ export class chiTietDiemSVLopHocPhanService  {
   layCotDiemByMaLopHP(maLopHocPhan:any) {
     return this.http.get(`${baseUrl}/${maLopHocPhan}/lophocphan`);
   }
+  //
+  layDanhSachSvChamDiemTheoMaCotDiem(maCotDiem:any) {
+    return this.http.get(`${baseUrl}/${maCotDiem}/sinhvienlophocphan`);
+  }
+
+  //cham diem
+  chamDiem(id:any,diem:any){
+    try {
+      return this.http.put<any>(`${baseUrl}/${id}/chamdiem`,diem)
+    } catch (error) {
+      return error;
+    }
+  }
 }

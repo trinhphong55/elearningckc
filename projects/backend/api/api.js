@@ -224,10 +224,11 @@ router.get("/cotdiemlophocphan/:maLopHocPhan", cotDiemLHP.layCotDiemTheoMaLopHp)
 router.post("/cotdiemlophocphan", cotDiemLHP.themCotDiem);
 router.put("/suacotdiemlophocphan/:maCotDiem",cotDiemLHP.suaCotDiem);
 router.get("/cotdiemlophocphan/:maCotDiem/chitiet", cotDiemLHP.layCotDiemTheoMaCotDiem);
-
 //======================= Routes ChitietDiemSVLopHocPhan ==================================
 router.get("/ct-diemsv-lophocphan/:masv", ctDiemLopHP.layCTDiemLopHPtheoMaSV);
 router.get("/ct-diemsv-lophocphan/:maHocPhan/lophocphan", ctDiemLopHP.layCTDiemLopHPtheoMaLopHP);
+router.get("/ct-diemsv-lophocphan/:maCotDiem/sinhvienlophocphan", ctDiemLopHP.dsChamDiemSinhVien);
+router.put("/ct-diemsv-lophocphan/:id/chamdiem", ctDiemLopHP.chamdiemsinhvienlophocphan);
 //=========================== Routes ChuDe =============================================
 router.get("/chude", ChuDe.layTatCa);
 router.get("/chude/:maChuDe", ChuDe.layMot);

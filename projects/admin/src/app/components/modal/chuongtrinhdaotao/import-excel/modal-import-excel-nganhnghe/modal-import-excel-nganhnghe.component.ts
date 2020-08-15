@@ -82,6 +82,7 @@ export class ModalImportExcelNganhNgheComponent implements OnInit, OnChanges {
         alert(status.success);
         this.getdata();
         this.modalService.close('ctdt_import_excel_nganhnghe');
+        location.reload();
         this.modalService.open('ctdt_nganhnghe');
       } else {
         if (status.error) {

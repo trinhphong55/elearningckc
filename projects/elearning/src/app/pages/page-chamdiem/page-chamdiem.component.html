@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12 m-auto">
-            <h3 class="p-3 style-title text-center">Danh sách bài tập một lớp học phần</h3>
+            <h3 class="p-3 style-title text-center">Danh sách bài tập </h3>
             <div class="scrollable">
                 <table class="table table-bordered">
                     <thead>
@@ -13,15 +13,16 @@
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody *ngFor="let bt of dsBaiTap; index as stt">
                         <tr>
-                            <th scope="row">1</th>
-                            <td>Tên bài tập 1</td>
-                            <td>Tên chủ đề 1</td>
-                            <td>Kiểm tra 15p</td>
+                            <th scope="row">{{stt+1}}</th>
+                            <td>{{bt.tieuDe}}</td>
+                            <td>{{bt.tenChuDe}}</td>
+                            <td>{{bt.cotDiem}}</td>
                             <td>
-                                <a class="style-chitietcotdiem" data-toggle="modal" data-target="#chamdiem">Chấm
-                                    điểm</a> 
+                                <a class="style-chitietcotdiem" data-toggle="modal" (click)="danhSachChamDiem(bt)"
+                                    data-target="#chamdiem">Chấm
+                                    điểm</a>
                                 <div class="modal fade" id="chamdiem" tabindex="-1" role="dialog"
                                     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -38,151 +39,24 @@
                                                             <thead>
                                                                 <tr>
                                                                     <th scope="col">STT</th>
-                                                                    <th scope="col">Mã số sinh viên</th>
+                                                                    <th scope="col">MSSV</th>
                                                                     <th scope="col">Tên sinh viên</th>
                                                                     <th scope="col">Điểm</th>
                                                                 </tr>
                                                             </thead>
-                                                            <tbody>
+                                                            <tbody *ngFor="let sv of dsSv;index as stt">
                                                                 <tr>
-                                                                    <th scope="row">1</th>
-                                                                    <td>Nguyễn Quang Huy</td>
-                                                                    <td>030617151</td>
-                                                                    <td>
+                                                                    <th scope="row">{{stt+1}}</th>
+                                                                    <td>{{sv.maSinhVien}}</td>
+                                                                    <td>{{sv.ho}} {{sv.ten}}</td>
+                                                                    <td (change)="chamDiemSinhVien(sv)">
                                                                         <div class="row w-100 m-auto">
-                                                                            <form class="form-inline">
+                                                                            <form class="form-inline"[formGroup]="formChamDiem">
                                                                                 <div class="form-group mx-sm-1">
-                                                                                    <input type="text"
+                                                                                    <input type="number"   formControlName="chamDiemSV"
                                                                                         class="form-control" id="diemsv"
-                                                                                        placeholder="nhập điểm">
-                                                                                </div>
-                                                                            </form>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th scope="row">1</th>
-                                                                    <td>Nguyễn Quang Huy</td>
-                                                                    <td>030617151</td>
-                                                                    <td>
-                                                                        <div class="row w-100 m-auto">
-                                                                            <form class="form-inline">
-                                                                                <div class="form-group mx-sm-1">
-                                                                                    <input type="text"
-                                                                                        class="form-control" id="diemsv"
-                                                                                        placeholder="nhập điểm">
-                                                                                </div>
-                                                                            </form>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th scope="row">1</th>
-                                                                    <td>Nguyễn Quang Huy</td>
-                                                                    <td>030617151</td>
-                                                                    <td>
-                                                                        <div class="row w-100 m-auto">
-                                                                            <form class="form-inline">
-                                                                                <div class="form-group mx-sm-1">
-                                                                                    <input type="text"
-                                                                                        class="form-control" id="diemsv"
-                                                                                        placeholder="nhập điểm">
-                                                                                </div>
-                                                                            </form>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th scope="row">1</th>
-                                                                    <td>Nguyễn Quang Huy</td>
-                                                                    <td>030617151</td>
-                                                                    <td>
-                                                                        <div class="row w-100 m-auto">
-                                                                            <form class="form-inline">
-                                                                                <div class="form-group mx-sm-1">
-                                                                                    <input type="text"
-                                                                                        class="form-control" id="diemsv"
-                                                                                        placeholder="nhập điểm">
-                                                                                </div>
-                                                                            </form>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th scope="row">1</th>
-                                                                    <td>Nguyễn Quang Huy</td>
-                                                                    <td>030617151</td>
-                                                                    <td>
-                                                                        <div class="row w-100 m-auto">
-                                                                            <form class="form-inline">
-                                                                                <div class="form-group mx-sm-1">
-                                                                                    <input type="text"
-                                                                                        class="form-control" id="diemsv"
-                                                                                        placeholder="nhập điểm">
-                                                                                </div>
-                                                                            </form>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th scope="row">1</th>
-                                                                    <td>Nguyễn Quang Huy</td>
-                                                                    <td>030617151</td>
-                                                                    <td>
-                                                                        <div class="row w-100 m-auto">
-                                                                            <form class="form-inline">
-                                                                                <div class="form-group mx-sm-1">
-                                                                                    <input type="text"
-                                                                                        class="form-control" id="diemsv"
-                                                                                        placeholder="nhập điểm">
-                                                                                </div>
-                                                                            </form>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th scope="row">1</th>
-                                                                    <td>Nguyễn Quang Huy</td>
-                                                                    <td>030617151</td>
-                                                                    <td>
-                                                                        <div class="row w-100 m-auto">
-                                                                            <form class="form-inline">
-                                                                                <div class="form-group mx-sm-1">
-                                                                                    <input type="text"
-                                                                                        class="form-control" id="diemsv"
-                                                                                        placeholder="nhập điểm">
-                                                                                </div>
-                                                                            </form>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th scope="row">1</th>
-                                                                    <td>Nguyễn Quang Huy</td>
-                                                                    <td>030617151</td>
-                                                                    <td>
-                                                                        <div class="row w-100 m-auto">
-                                                                            <form class="form-inline">
-                                                                                <div class="form-group mx-sm-1">
-                                                                                    <input type="text"
-                                                                                        class="form-control" id="diemsv"
-                                                                                        placeholder="nhập điểm">
-                                                                                </div>
-                                                                            </form>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th scope="row">1</th>
-                                                                    <td>Nguyễn Quang Huy</td>
-                                                                    <td>030617151</td>
-                                                                    <td>
-                                                                        <div class="row w-100 m-auto">
-                                                                            <form class="form-inline">
-                                                                                <div class="form-group mx-sm-1">
-                                                                                    <input type="text"
-                                                                                        class="form-control" id="diemsv"
-                                                                                        placeholder="nhập điểm">
+                                                                                       value="{{chamDiemSV}}"
+                                                                                        placeholder="{{sv.diem}}">
                                                                                 </div>
                                                                             </form>
                                                                         </div>
@@ -194,19 +68,23 @@
                                                     <div class="row">
                                                         <form>
                                                             <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                                                                <input class="form-check-input" type="radio"
+                                                                    name="exampleRadios" id="exampleRadios1"
+                                                                    value="option1" checked>
                                                                 <label class="form-check-label" for="exampleRadios1">
-                                                                  Cho xem điểm
+                                                                    Cho xem điểm
                                                                 </label>
-                                                              </div>
-                                                              <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                                                            </div>
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="radio"
+                                                                    name="exampleRadios" id="exampleRadios2"
+                                                                    value="option2">
                                                                 <label class="form-check-label" for="exampleRadios2">
-                                                                   Không cho xem điểm
+                                                                    Không cho xem điểm
                                                                 </label>
-                                                              </div>
+                                                            </div>
                                                             <button type="submit" class="btn btn-primary">Lưu</button>
-                                                          </form>
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>
