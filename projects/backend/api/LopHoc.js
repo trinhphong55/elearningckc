@@ -49,7 +49,7 @@ exports.getAll = async (req, res) => {
     });
     let result = [];
     result = await LopHocs.map(async (lop) => {
-      const total = await sinhVienModel.count({ maLopHoc: lop.maLopHoc });
+      const total = await sinhVienModel.countDocuments({ maLopHoc: lop.maLopHoc });
       lop.siSo = total;
       return view(lop);
     });

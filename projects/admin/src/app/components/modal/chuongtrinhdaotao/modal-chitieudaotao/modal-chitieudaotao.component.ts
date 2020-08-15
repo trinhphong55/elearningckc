@@ -220,8 +220,12 @@ export class ModalChitieudaotaoComponent implements OnInit {
    */
   tenNganhXepLop: String;
   maNganhXepLop: string;
+  public maNganh;
+  public maBac;
 
   public onClickLopTheoNganh(maNganh: string, maBac: string) {
+    this.maBac = maBac;
+    this.maNganh = maNganh;
     let maTienTo = this.taoTienTo(
       maNganh,
       maBac,
@@ -559,10 +563,11 @@ export class ModalChitieudaotaoComponent implements OnInit {
     if (this.dsSinhVien) {
       this.msg = 'Danh sách sinh viên';
       this.importExcel();
-      console.log(this.maLopThem);
       this.capNhat_SLSinhVien_LopHocPhan(this.maLopThem);
       // this.getSiSo();
       this.getLopHoc();
+
+
 
     } else {
       this.msg =
@@ -572,7 +577,13 @@ export class ModalChitieudaotaoComponent implements OnInit {
 
   public capNhat_SLSinhVien_LopHocPhan(maLopHoc){
     this.SinhVienService.capNhatSiSoLopHocPhan(maLopHoc).subscribe((res)=> {
-      console.log(res);
+      let maCT = this.taoTienTo(
+        this.maNganh,
+        this.maBac,
+        this.addForm.value.khoa,
+        this.addForm.value.loaiHinhDaoTao
+      );
+      this.xepLoptheoMaNganh(maCT);
     })
   }
 
