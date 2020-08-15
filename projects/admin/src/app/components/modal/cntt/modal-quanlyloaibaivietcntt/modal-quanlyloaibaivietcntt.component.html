@@ -15,6 +15,14 @@
                   <label>Tên loại bài viết</label>
                   <input formControlName="tenLoaiBaiViet" type="text" class="form-control"
                     placeholder="Nhập tên loại bài viết mới" />
+                  <div *ngIf="
+                    tenLoaiBaiViet.invalid &&
+                    (tenLoaiBaiViet.dirty || tenLoaiBaiViet.touched)
+                  " class="alert alert-danger">
+                    <div *ngIf="tenLoaiBaiViet.errors.required">
+                      Nhập tên Loại bài viết mới.
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="col-4">
@@ -22,6 +30,14 @@
                   <label>Tên viết tắt</label>
                   <input formControlName="tenVietTat" type="text" class="form-control"
                     placeholder="Nhập tên viết tắt mới" />
+                    <div *ngIf="
+                    tenVietTat.invalid &&
+                    (tenVietTat.dirty || tenVietTat.touched)
+                  " class="alert alert-danger">
+                    <div *ngIf="tenVietTat.errors.required">
+                      Nhập tên viết tắt.
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="col-auto">
