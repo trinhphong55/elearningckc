@@ -31,7 +31,7 @@ export class LopHocPhanService {
   layLopHocPhantheoMaLop(maLopHoc: string): Observable<LopHocPhan[]> {
     return this.http.get<any>(`${this.lophocphanURL}/${maLopHoc}/search`);
   }
-  layLopHocPhanTheoMaLHP(maLopHocPhan: String) {
+  layLopHocPhanTheoMaLHP(maLopHocPhan: any) {
     return this.http.get<any>(`${this.lophocphanURL}/${maLopHocPhan}/malhp`);
   }
 
