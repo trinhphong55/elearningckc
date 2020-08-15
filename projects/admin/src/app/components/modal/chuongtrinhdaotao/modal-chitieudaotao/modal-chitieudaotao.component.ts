@@ -209,11 +209,9 @@ export class ModalChitieudaotaoComponent implements OnInit {
       this.msg = 'Danh sách lớp được tạo trong cơ sở dữ liệu';
     }
   }
-  onClickResetLopHoc(maNganh: string, maBac:string) {
+  onClickResetLopHoc(maNganh: string, maBac: string) {
     this.msgList = [];
     this.deleteLopHoc(maNganh, maBac);
-    this.getLopHoc();
-    this.lopTams = [];
   }
   /**
    * XepLopTheoMaNganh
@@ -249,7 +247,6 @@ export class ModalChitieudaotaoComponent implements OnInit {
     this.loadNganh();
   }
   loadNganh() {
-
     this.layChiTieuTuTienTo();
     this.nganhtamlist = [];
     if (
@@ -331,7 +328,7 @@ export class ModalChitieudaotaoComponent implements OnInit {
             trangThai: true,
             tienTo: ma,
           });
-        } else if(dataArray.count == 0) {
+        } else if (dataArray.count == 0) {
           this.msgList.push({
             msg:
               `${this.convertToTenBac(maBac)} "${this.convertToTenNganh(
@@ -490,12 +487,16 @@ export class ModalChitieudaotaoComponent implements OnInit {
       this.addForm.value.loaiHinhDaoTao
     );
     this.lopHocService.xoaTheoTienTo(ma).subscribe(
-      (data:any) => {
+      (data: any) => {
         //this.xepLoptheoMaNganh(ma);
-        console.log(data);
+        //console.log(data);
         this.msgList.push({
-          msg: data.msg
+          msg: data.msg,
         });
+        this.getLopHoc();
+        this.lopTams = [];
+        this.layChiTieuTuTienTo();
+        this.setChiTieuTheoTienTo();
       },
       (error) => console.log(error)
     );
@@ -535,19 +536,17 @@ export class ModalChitieudaotaoComponent implements OnInit {
       // let maHopLe = this.convertToMaLopHopLe(sv.maLopHoc);
       // let maSv = sv.maSinhVien.slice(0, 7);
       this.SinhVienService.themSinhVien(sv).subscribe(
-        (response:any) => {
+        (response: any) => {
           this.msgList.push({
             msg: `Thêm thành công sinh viên tên "${sv.ten}" có mã số [${sv.maSinhVien}]`,
             status: true,
           });
-
         },
         (error) => {
           this.msgList.push({
             msg: `Thêm thất bại sinh viên tên "${sv.ten}" có mã số [${sv.maSinhVien}]`,
             status: false,
           });
-
         }
       );
     });
@@ -566,17 +565,14 @@ export class ModalChitieudaotaoComponent implements OnInit {
       this.capNhat_SLSinhVien_LopHocPhan(this.maLopThem);
       // this.getSiSo();
       this.getLopHoc();
-
-
-
     } else {
       this.msg =
         'Danh sách sinh viên trống, không có sinh viên nào được thêm vào';
     }
   }
 
-  public capNhat_SLSinhVien_LopHocPhan(maLopHoc){
-    this.SinhVienService.capNhatSiSoLopHocPhan(maLopHoc).subscribe((res)=> {
+  public capNhat_SLSinhVien_LopHocPhan(maLopHoc) {
+    this.SinhVienService.capNhatSiSoLopHocPhan(maLopHoc).subscribe((res) => {
       let maCT = this.taoTienTo(
         this.maNganh,
         this.maBac,
@@ -584,7 +580,6 @@ export class ModalChitieudaotaoComponent implements OnInit {
         this.addForm.value.loaiHinhDaoTao
       );
       this.xepLoptheoMaNganh(maCT);
-    })
+    });
   }
-
 }
