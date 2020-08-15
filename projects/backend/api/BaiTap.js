@@ -53,6 +53,7 @@ _router.get("/:maLopHocPhan/lop-hoc-phan", async (req, res) => {
     res.json(error);
   }
 });
+
 _router.get("/:maBaiTap", async (req, res) => {
   try {
     const baiTaps = await BaiTap.findOne({ maBaiTap: parseInt(req.params.maBaiTap) });
@@ -94,6 +95,7 @@ _router.post("/", async (req, res) => {
       });
     });
 });
+<<<<<<< HEAD
  ///danh sach bai tap 1 lop hoc phan
  _router.get("/danhsachbaitap/:maLopHocPhan", async (req, res) => {
    try {
@@ -123,4 +125,16 @@ _router.post("/", async (req, res) => {
     });
    }
   });
+=======
+// lay all cua bai tap
+_router.get("/baitap/ds", async (req, res) => {
+  try {
+    const baiTaps = await BaiTap.find({trangThai:1});
+    res.json(baiTaps);
+  } catch (error) {
+    res.json(error);
+  }
+});
+>>>>>>> elearning-2
 module.exports = _router;
+
