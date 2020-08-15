@@ -22,19 +22,20 @@ import { LopHocPhan } from '../../models/lophocphan.interface';
 import { MonHoc } from '../../models/monhoc.interface';
 import { CookieService } from 'ngx-cookie-service';
 
-
 @Component({
   selector: 'app-page-trangcanhansv',
   templateUrl: './page-trangcanhansv.component.html',
   styleUrls: ['./page-trangcanhansv.component.css'],
 })
 export class PageTrangcanhansvComponent implements OnInit {
-  public taiKhoan:any;
+  public taiKhoan: any;
   public sinhVien: SinhVien;
   public sinhViens: SinhVien[] = [];
 
   public ctDiemLHP: ChiTietDiemSVLHP;
   public ctDiemLHPs: ChiTietDiemSVLHP[] = [];
+  public ctDiemLHPsTmp: ChiTietDiemSVLHP[] = [];
+
 
   public lopHocPhan: LopHocPhan;
   public lopHocPhans: LopHocPhan[] = [];
@@ -91,8 +92,8 @@ export class PageTrangcanhansvComponent implements OnInit {
     private monHocService: MonhocService,
     private chuDeService: ChuDeService,
     private thoiKhoaBieu: ThoiKhoaBieuService,
-    private lophocService:LopHocService,
-    private cookieService:CookieService,
+    private lophocService: LopHocService,
+    private cookieService: CookieService
   ) {}
 
   ngOnInit(): void {
@@ -102,12 +103,12 @@ export class PageTrangcanhansvComponent implements OnInit {
     // this.layLopHocPhan();
     // this.layCotDiemSinhVienLHP();
     this.sinhVienFormGroup = new FormGroup({
-      mssv: new FormControl({value:'', disabled: true}),
-      gioiTinh: new FormControl({value:'', disabled: true}),
-      ho: new FormControl({value:'', disabled: true}),
-      ten: new FormControl({value:'', disabled: true}),
-      email:new FormControl({value:'', disabled: true}),
-      ngaySinh: new FormControl({value:'', disabled: true}),
+      mssv: new FormControl({ value: '', disabled: true }),
+      gioiTinh: new FormControl({ value: '', disabled: true }),
+      ho: new FormControl({ value: '', disabled: true }),
+      ten: new FormControl({ value: '', disabled: true }),
+      email: new FormControl({ value: '', disabled: true }),
+      ngaySinh: new FormControl({ value: '', disabled: true }),
       sdt: new FormControl(''),
       password: new FormControl(''),
       cofirmPassword: new FormControl(''),
@@ -161,9 +162,10 @@ export class PageTrangcanhansvComponent implements OnInit {
     return this.locBangDiemFormGroup.get('chonLop');
   }
   //######################### Lay Thong Tin ##########################
-  public setTaiKhoan(){
+  public setTaiKhoan() {
     this.taiKhoan = this.cookieService.getAll();
-    this.taiKhoan.displayName = this.cookieService.get('email').slice(0,10);
+    this.taiKhoan.displayName = this.cookieService.get('email').slice(0, 10);
+    console.log(this.taiKhoan);
   }
   public layThongTinSV(maSV: string) {
     this.sinhVienService.getonesv(maSV).subscribe(
@@ -174,9 +176,11 @@ export class PageTrangcanhansvComponent implements OnInit {
           this.layCTDT_theoHocKi(this.chonHocKiBD.value, maCT);
           this.layThoiKhoaBieu_theoLop(this.sinhVien.maLopHoc, 1);
           this.setValueSinhVienFormGroup(this.sinhVien);
-          this.lophocService.get(this.sinhVien.maLopHoc).subscribe((res:any) => {
-            this.sinhVien.tenLopHoc = res.tenLop;
-          })
+          this.lophocService
+            .get(this.sinhVien.maLopHoc)
+            .subscribe((res: any) => {
+              this.sinhVien.tenLopHoc = res.tenLop;
+            });
           this.sinhViens.push(this.sinhVien);
         }
       },
@@ -191,21 +195,24 @@ export class PageTrangcanhansvComponent implements OnInit {
     this.sinhVienService.capNhatSinhVien(data).subscribe(
       (res: any) => {
         this.messages.push({ msg: res.message, status: res.status });
-
       },
       (err: any) => {
-        this.messages.push({ msg: "Máy chủ không sữ lý được", status: err.status });
-
+        this.messages.push({
+          msg: 'Máy chủ không sữ lý được',
+          status: err.status,
+        });
       }
     );
   }
-  public layThongTinDiemLHP(maSv: string) {
+  public layCTDiemLHP(maSv: string) {
     this.ctDiemsvLhpService.layCTtheoMaSV(maSv).subscribe((res: any) => {
       if (res.data) {
-        this.ctDiemLHPs = res.data;
-        this.ganTenCotDiemCTDiem(this.ctDiemLHPs);
-        this.ganTenLopHocPhanCTDiem(this.ctDiemLHPs);
-
+        this.ctDiemLHPs = [];
+        this.ctDiemLHPsTmp = res.data;
+        this.ctDiemLHPs = this.ctDiemLHPsTmp;
+        this.ganTenLopHocPhanCTDiem();
+        this.ctDiemLHPs = this.loc_CTDiem_LopHocPhan(this.ctDiemLHPsTmp);
+        console.log(this.ctDiemLHPs);
       }
     });
   }
@@ -213,10 +220,9 @@ export class PageTrangcanhansvComponent implements OnInit {
   public layDiemSinhVien(maSinhVien: string) {
     this.diemSinhVienService.getAllFor(maSinhVien).subscribe(
       (res: any) => {
-        if(res.data){
+        if (res.data) {
           this.diemSinhViens = res.data;
           this.ganTenLopHocPhanDiemSV(this.diemSinhViens);
-
         }
       },
       (err) => console.log(err)
@@ -224,7 +230,7 @@ export class PageTrangcanhansvComponent implements OnInit {
   }
   public setValueSinhVienFormGroup(sinhVien: SinhVien) {
     this.mssv.setValue(sinhVien.maSinhVien);
-    this.gioiTinh.setValue(sinhVien.gioiTinh==0?'Nam':'Nữ');
+    this.gioiTinh.setValue(sinhVien.gioiTinh == 0 ? 'Nam' : 'Nữ');
     this.ho.setValue(sinhVien.ho);
     this.ten.setValue(sinhVien.ten);
     this.ngaySinh.setValue(sinhVien.ngaySinh);
@@ -261,7 +267,6 @@ export class PageTrangcanhansvComponent implements OnInit {
                 khdt.tenMonHoc = res.tenMonHoc;
               });
           });
-
         });
     } else {
       this.dsKHDT = [];
@@ -279,7 +284,7 @@ export class PageTrangcanhansvComponent implements OnInit {
   public layMonHoc_tuMaMonHoc(dsMaMonHoc) {
     this.monHocService.getMonHoc().subscribe((res: any) => {
       this.dsMonHoc = res;
-      this.dsThoiKhoaBieu.TKB =[[]];
+      this.dsThoiKhoaBieu.TKB = [[]];
       this.dsThoiKhoaBieu.TKB.pop();
       dsMaMonHoc.forEach((el) => {
         let tiet_tmp = [];
@@ -291,14 +296,14 @@ export class PageTrangcanhansvComponent implements OnInit {
             }
           });
         });
-        if (tiet_tmp.length < 7) {
-          for (let i = 0; i < 7; i++) {
-            if (tiet_tmp.length < 7) {
+        if (tiet_tmp.length < 6) {
+          for (let i = 0; i < 6; i++) {
+            if (tiet_tmp.length < 6) {
               tiet_tmp.push('trống');
             }
           }
         }
-        if(tiet_tmp.length !== 0){
+        if (tiet_tmp.length !== 0) {
           this.dsThoiKhoaBieu.TKB.push(tiet_tmp);
         }
       });
@@ -322,31 +327,12 @@ export class PageTrangcanhansvComponent implements OnInit {
       }
     });
   }
-  public ganTenLopHocPhanCTDiem(ChiTietDiem: ChiTietDiemSVLHP[]) {
+  public ganTenLopHocPhanCTDiem() {
     this.LopHocPhanService.getLopHocPhan().subscribe(
       (res) => {
         if (res) {
           this.lopHocPhans = res;
           this.lopHocPhans = this.locMaLopHocPhanTheoHocKi(this.lopHocPhans);
-          if (this.lopHocPhans.length > 0) {
-            ChiTietDiem = this.loc_CTDiem_LopHocPhan(this.ctDiemLHPs);
-            ChiTietDiem.forEach((ct) => {
-              this.lopHocPhans.forEach((lop) => {
-                if (ct.maHocPhan == lop.maLopHocPhan) {
-                  ct.tenLopHocPhan = lop.tenLopHocPhan;
-                }
-              });
-            });
-            ChiTietDiem.forEach((el) => {
-              this.chuDeService.layMot(el.maChuDe).subscribe((res: any) => {
-                el.tenChuDe = res.data.tenChuDe;
-              });
-            });
-            this.ctDiemLHPs = ChiTietDiem;
-          } else {
-
-            this.ctDiemLHPs = [];
-          }
         }
       },
       (err) => console.log(err)
@@ -369,7 +355,10 @@ export class PageTrangcanhansvComponent implements OnInit {
   //################################# Xu ly su kien ##################################
   onChangeDanhSachCotDiem() {
     this.layThongTinSV(this.taiKhoan.displayName);
-    this.layThongTinDiemLHP(this.taiKhoan.displayName);
+    this.layCTDiemLHP(this.taiKhoan.displayName);
+    console.log(this.chonHocKi.value);
+    console.log(this.chonLop.value);
+
   }
   onChangBangDiem() {
     this.chonHocKi.setValue('');
@@ -378,41 +367,38 @@ export class PageTrangcanhansvComponent implements OnInit {
   }
   onSubmitCapNhatSinhVien() {
     this.messages = [];
-    if( !this.password.value){
-      this.messages.push({msg:"Vui lòng nhập mật khẩu cũ và mới để thay đổi", status:200});
-
-    }else if(this.password.value != '123456'){
-      this.messages.push({msg:"Mật khẩu không trùng nhau", status:200});
-    }
-    else{
-      // this.sinhVien.matKhau = this.password.value;
-      // this.sinhVien.nguoiChinhSua = this.taiKhoan.displayName;
-      // this.sinhVien.sdt = this.sdt.value;
+    if (!this.password.value) {
+      this.messages.push({
+        msg: 'Vui lòng nhập mật khẩu cũ và mới để thay đổi',
+        status: 200,
+      });
+    } else if (this.password.value != '123456') {
+      this.messages.push({ msg: 'Mật khẩu không trùng nhau', status: 200 });
+    } else {
       const req = {
         maSinhVien: this.sinhVien.maSinhVien,
         tokens: '12341234',
         role: this.taiKhoan.role,
         sdt: this.sdt.value,
-        nguoiChinhSua:this.taiKhoan.displayName,
+        nguoiChinhSua: this.taiKhoan.displayName,
       };
       this.capNhatSinhVien(req);
     }
-
   }
   //################################ Xu ly loc #######################################
-  public loc_CTDiem_LopHocPhan(
-    ChiTietDiems: ChiTietDiemSVLHP[]
-  ): ChiTietDiemSVLHP[] {
-    let tmp = ChiTietDiems;
-    ChiTietDiems = [];
+  public loc_CTDiem_LopHocPhan(ChiTietDiem) {
     if (this.chonLop.value && this.chonHocKi.value) {
+      let tmp = ChiTietDiem;
+      ChiTietDiem = [];
       tmp.forEach((ct) => {
         if (ct.maHocPhan == this.chonLop.value) {
-          ChiTietDiems.push(ct);
+          ChiTietDiem.push(ct);
         }
       });
+    }else{
+      return [];
     }
-    return ChiTietDiems;
+    return ChiTietDiem;
   }
   public locMaLopHocPhanTheoHocKi(lopHocPhans: LopHocPhan[]) {
     let tmp = lopHocPhans;
@@ -433,7 +419,7 @@ export class PageTrangcanhansvComponent implements OnInit {
 
     return lopHocPhans;
   }
-  public loc_Theo_LopHocPhan(diemSV:any[]) {
+  public loc_Theo_LopHocPhan(diemSV: any[]) {
     let diems = [];
     diemSV.forEach((diem) => {
       this.lopHocPhans.forEach((lop) => {
