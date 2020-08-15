@@ -9,7 +9,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { FileSelectDirective, FileUploader } from 'ng2-file-upload';
 import { FileService } from '../../../../../services/file.service';
 import saveAs from 'file-saver';
-const uri = 'https://localhost:4100/api/baitap/uploads';
+const uri = 'https://localhost:4100/api/baitapsinhvien/uploads';
 @Component({
   selector: 'app-xembaitapsv',
   templateUrl: './xembaitapsv.component.html',
@@ -53,6 +53,11 @@ export class XembaitapsvComponent implements OnInit {
     private _fileService: FileService) {
 
   }
+  public asyncSettings = {
+    saveUrl: 'https://aspnetmvc.syncfusion.com/services/api/uploadbox/Save',
+    removeUrl: 'https://aspnetmvc.syncfusion.com/services/api/uploadbox/Remove'
+  };
+  public autoUpload = false;
 
   ngOnInit(): void {
     this.quyenNopBai();
@@ -164,7 +169,6 @@ export class XembaitapsvComponent implements OnInit {
       var maBaiTap: any;
       var ChuDe: any;
       this.data = { maLopHocPhan:this.baiTap.lopHocPhan, email: this.cookie.get("email"), maBaiTap: this.baiTap.maBaiTap, chuDe: item?.file?.name };
-      console.log(this.data)
       this.BaiTapSinhVienService.addBaiTap(this.data).subscribe(
         (nopBt) => {
           this.nopBt = nopBt;
@@ -176,11 +180,9 @@ export class XembaitapsvComponent implements OnInit {
                   name: item._file.name,
                   length: item._file.size,
                   contentType: item._file.type,
-                  date: new Date(),
                   maxFileSize: 2048,
                   queueLimit: 3,
                 });
-                console.log(name)
               });
             }
           });

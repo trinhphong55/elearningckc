@@ -207,9 +207,9 @@ exports.laySinhVienLopHocPhan = async (req, res) => {
             }
         })
       })
-    res.json(data)
+    res.status(200).json(data)
   } catch (error) {
-    res.json(error);
+    res.json({error,status:500});
   }
 };
 
