@@ -22,6 +22,11 @@ export class PhonghocService {
     return this._http.get<PhongHoc[]>(url);
   }
 
+  getPhongHoc(): Observable<PhongHoc[]> {
+    let url = `${this._phongHocURL}`;
+    return this._http.get<PhongHoc[]>(url);
+  }
+
   getOnePhongHoc(maPH: number): Observable<PhongHoc> {
     let url = `${this._phongHocURL}/getone/${maPH}`;
     return this._http.get<PhongHoc>(url);

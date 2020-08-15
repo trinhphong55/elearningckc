@@ -79,3 +79,39 @@ exports.layCTDiemLopHPtheoMaSV = async (req, res) => {
     res.json(error);
   }
 };
+
+//hien thi diem sinh vien theo bt
+exports.dsChamDiemSinhVien = async (req, res) => {
+  try {
+     diemsinhvien = await ctDiemsvLhpModel.find({maCotDiem:req.params.maCotDiem,trangThai:1});
+     sinhvien = await SINHVIEN.find({trangThai:1,});
+     var data=[]
+     diemsinhvien.forEach(async x => {
+      sinhvien.forEach(async y => {
+        if(x.maSinhVien==y.maSinhVien)
+        {
+          data.push({ho:y.ho,ten:y.ten,diem:x.diem,maSinhVien:x.maSinhVien,_id:x._id})
+        }
+     });
+    });
+    res.json( data);
+  } catch (error) {
+    res.json(error);
+  }
+};
+/// cham diem sinh vien
+exports.chamdiemsinhvienlophocphan = async (req, res) => {
+    try {
+    const { diem } = req.body;
+    await ctDiemsvLhpModel.updateOne(
+      { _id: req.params.id},
+      { $set: { diem} }
+    ).then(() => {
+      res.json({ status: "success" });
+    }).catch(err => {
+      res.json({ message: err });
+    });
+  } catch (error) {
+    res.json(error);
+  }
+};

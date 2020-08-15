@@ -19,6 +19,7 @@ const BaiTap = require("./BaiTap");
 const BaiTapSinhVien = require("./BaiTapSinhVien");
 const activity = require("./activity");
 const PhongHoc = require("./PhongHoc");
+const LichPhongHoc = require("./LichPhongHoc");
 
 const sinhVien = require("./sinh-vien");
 const Diemsinhvien = require("./diemsinhvien");
@@ -64,6 +65,7 @@ router.use("/lophocphan", LopHocPhan);
 router.use("/gvlhp", GiaoVienLopHocPhan);
 router.use("/tkb", TKB);
 router.use("/phonghoc", PhongHoc);
+router.use("/lichphonghoc", LichPhongHoc);
 
 //Elearning routes
 router.use("/baitap", BaiTap);

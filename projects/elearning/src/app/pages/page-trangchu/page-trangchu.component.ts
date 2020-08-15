@@ -7,6 +7,7 @@ import { GvlhpService } from '../../../../../admin/src/app/services/gvlhp.servic
 import { ApiService } from '../../../../../admin/src/app/services/api.service';
 import { SinhVienService } from '../../../../../admin/src/app/services//sinh-vien.service';
 import { CookieService } from 'ngx-cookie-service';
+import { BaiTapService } from '../../services/bai-tap.service';
 import { GVLHP } from '../../../../../admin/src/app/interfaces/gvlhp.interface'
 import { from } from 'rxjs';
 import { publish } from 'rxjs/operators';
@@ -34,6 +35,7 @@ export class PageTrangchuComponent implements OnInit {
   test: any
   maGiaoVien: string;
   dsGiaoVienBymaGv: any;
+  dsBT:any;
 
   constructor(
     private lopHocPhanService: LopHocPhanService,
@@ -42,6 +44,7 @@ export class PageTrangchuComponent implements OnInit {
     private apiService: ApiService,
     private SinhVienService: SinhVienService,
     private cookie: CookieService,
+    private BaiTapService:BaiTapService,
   ) {}
 
   ngOnInit(): void {
@@ -54,6 +57,7 @@ export class PageTrangchuComponent implements OnInit {
     this.danhSachGVLHP();
     this.danhSachLopGV();
     this.filterDsLop;
+    this.laydsBaiTap();
 
   }
   // lay cookie
@@ -176,6 +180,10 @@ export class PageTrangchuComponent implements OnInit {
           console.log(error)
         });
     }
+  }
+  //lay ds bai tap
+  laydsBaiTap()
+  {
   }
   //hien thi danh sach danh sach lop
 }
