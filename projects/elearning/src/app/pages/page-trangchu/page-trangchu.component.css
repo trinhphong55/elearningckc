@@ -211,4 +211,10 @@
     .lophoc-container{
         margin-top: 100px;
     }
+    #timkiem{
+        display: block;
+        position: fixed;
+        left: 65%;
+        top: 18%;
+    }
   }
