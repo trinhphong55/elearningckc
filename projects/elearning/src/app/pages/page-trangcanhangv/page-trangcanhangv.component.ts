@@ -12,6 +12,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { GVLHP } from '../../../../../admin/src/app/interfaces/gvlhp.interface'
 import { from } from 'rxjs';
 import { publish } from 'rxjs/operators';
+import {GiaoVienService} from '../../services/giao-vien.service';
 import { BacService } from '../../../../../admin/src/app/services/Bac.service';
 @Component({
   selector: 'app-page-trangcanhangv',
@@ -31,19 +32,31 @@ export class PageTrangcanhangvComponent implements OnInit {
   dsLop: any;
   dsLopHP;
   dsLopHPGV: any;
+  giaovien:any;
   dsBac: any;
   bac: any;
   dsBaiGiangLHP:any;
   dsBaiTapLHP:any
   dsGiaoVienBymaGv: any;
   filterDsLop: any = [];
+  capnhapttGV:any;
+  sodienthoai:any;
+  newpassword:any;
+  maGiaoVien:any;
+  sdt:any;
+  newgiaovien:any;
+  public giaoVienFormGroup: FormGroup;
   objectKeys = Object.keys;
 
   formDanhSachLop = new FormGroup({
     bac: new FormControl("-1"),
     hocKi: new FormControl("-1"),
   })
-
+  formCapnhapGV= new FormGroup({
+    sodienthoai: new FormControl(),
+    newpassword: new FormControl(),
+    maGiaoVien:new FormControl(),
+  })
   constructor(
 
     //trang ca nhan gv
@@ -55,7 +68,8 @@ export class PageTrangcanhangvComponent implements OnInit {
     private cookie: CookieService,
     private baiGiangService: BaiGiangService,
     private baiTapService: BaiTapService,
-    private bacService: BacService
+    private bacService: BacService,
+    private giaoVienService:GiaoVienService
   ) { }
 
   ngOnInit(): void {
@@ -66,10 +80,10 @@ export class PageTrangcanhangvComponent implements OnInit {
     this.layCookie();
     this.LaySachLopHocPhan();
     this.danhSachLopGV();
-    // this. danhSachBaiGiangLHP();
-    // this.danhSachBaiTapLHP();
+    this.layThongtinGV();
     this.layDanhSachBac();
   }
+ 
   //trang  ca nhan gv
   // lay cookie
   layCookie() {
@@ -168,5 +182,40 @@ export class PageTrangcanhangvComponent implements OnInit {
       }
     )
   }
-  
+  public layThongtinGV(){
+    this.giaoVienService.Laythongtingiaovien(this.thongtin).subscribe(
+
+      giaovien =>{
+        this.giaovien=giaovien;
+        this.giaovien.filter(x=>{
+          this.formCapnhapGV= new FormGroup({
+            sodienthoai: new FormControl(x.sdt),
+            newpassword: new FormControl(x.password),
+            maGiaoVien: new  FormControl(x.maGiaoVien)
+          })
+        })
+      },
+      (error) => {
+        console.log(error)
+      }
+    );
+  }
+  public capnhapGV(){
+    if((this.formCapnhapGV.get("sodienthoai").value)==''||(this.formCapnhapGV.get("newpassword").value)==''){
+      alert("cập nhập thất bại ! số điện thoại hoặc mật khẩu không được để trống");
+    }else{
+      this.capnhapttGV={maGiaoVien:(this.formCapnhapGV.get("maGiaoVien").value),sdt:(this.formCapnhapGV.get("sodienthoai").value),password:(this.formCapnhapGV.get("newpassword").value)}
+      this.giaoVienService.CapNhapgv(this.capnhapttGV).subscribe(
+        newgiaovien=>{
+          this.newgiaovien=newgiaovien;
+          this.layThongtinGV();
+           alert("cập nhập thành công");
+    },
+      (error) => {
+        console.log(error)
+
+      }
+    );
+    }
+  }
 }
