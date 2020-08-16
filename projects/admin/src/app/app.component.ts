@@ -45,9 +45,8 @@ export class AppComponent implements OnInit {
       if (response.data != null && response.data.role == 'admin') {
         setCookie('token', response.data.token, '7');
         setCookie('role', response.data.role, '7');
-        setCookie('name', response.data.displayName, '7');
+        setCookie('name', response.data.name, '7');
         setCookie('email', response.data.email, '7');
-        setCookie('displayName', response.data.displayName, '7');
         this.isLogged = true;
       }
 
