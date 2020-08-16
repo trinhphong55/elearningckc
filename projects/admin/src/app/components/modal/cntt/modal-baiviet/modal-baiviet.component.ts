@@ -40,12 +40,12 @@ export class ModalBaivietComponent implements OnInit, OnDestroy, AfterViewInit {
   private _username: any = getCookie('displayName');
   private _image: any = null;
   private _imageCanChinhSua: any = null;
-  public image: any = 'https://localhost:4100/uploads/cntt/128.png';
+  public image: any = '../../../../../assets/img/background/128.png';
   public baiVietCanChinhSua: any = {
     maBaiViet: null,
   };
   public imageCuaBaiVietCanChinhSua: any =
-    'https://localhost:4100/uploads/cntt/128.png';
+    '../../../../../assets/img/background/128.png';
   public Editor = ClassicEditor;
   public formBaiViet = new FormGroup({
     _id: new FormControl(null),
@@ -156,7 +156,7 @@ export class ModalBaivietComponent implements OnInit, OnDestroy, AfterViewInit {
       .subscribe((data) => {
         this.danhSachBaiViet = data;
         // console.log('danhSachBaiViet');
-        console.log(this.danhSachBaiViet);
+        // console.log(this.danhSachBaiViet);
         // this.getMaBaiVietCuoiCung();
         this.setMaBaiVietVaoFormBaiViet();
         // this.dtTrigger.next(); // DataTables
@@ -290,14 +290,14 @@ export class ModalBaivietComponent implements OnInit, OnDestroy, AfterViewInit {
   onResetForm(): void {
     this.formBaiViet.reset();
     // this._image = null;
-    this.image = 'https://localhost:4100/uploads/cntt/128.png';
+    this.image = '../../../../../assets/img/background/128.png';
   }
 
   onResetFormChinhSua(): void {
     this.formChinhSuaBaiViet.reset();
     this._imageCanChinhSua = null;
     this.imageCuaBaiVietCanChinhSua =
-      'https://localhost:4100/uploads/cntt/128.png';
+      '../../../../../assets/img/background/128.png';
   }
 
   saveBaiViet(): void {
