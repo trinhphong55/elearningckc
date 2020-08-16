@@ -70,11 +70,14 @@
                 <input type="text" value="" id="linkstt" hidden>
                 <input type="text" value="" id="getidpage" hidden>
                 <input type="text" value="" id="postid" hidden>
+                <input type="text" value="" id="returnloaip2"name=""hidden>
+                <input type="text" value="" id="returnerrorpicturePage"name=""hidden>
+
                 <div class="">
                   <div class="form-group">
                     <label for="">Loại</label>
-                    <select name="" [formControl]="getLoaistt" class="col-6 form-control">
-                      <option>Chọn..</option>
+                    <select id="loaip2" [formControl]="getLoaistt" class="col-6 form-control">
+                      <option [value]="null">Chọn..</option>
                       <option *ngFor="let l of getloai" class="form-control">{{l.loai}}</option>
                     </select>
                   </div>

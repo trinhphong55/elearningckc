@@ -192,14 +192,17 @@
       var ms = document.getElementById('message').value;
       FB.api('me/feed', 'post', { message: ms, access_token: accessToken }, function (response) {
           if (!response || response.error){
-            alert('Có lỗi khi POST bài: ');
+            //alert('Có lỗi khi POST bài: ');
+            document.getElementById('returnerrorpicturePage').value = 'Có lỗi khi POST bài: ';
             console.log(response);
           }else {
             console.log(response);
             postid = response.id;
             console.log(postid);
             getPostLink();
-            alert('ĐÃ POST THÀNH CÔNG');
+            //alert('ĐÃ POST THÀNH CÔNG');
+            document.getElementById('returnerrorpicturePage').value = '';
+
           }
       });
     }
@@ -210,30 +213,45 @@
       var url = document.getElementById('picture').value;
       FB.api('me/photos', 'post', { message: ms, url: url, access_token: accessToken }, function (response) {
         if (!response || response.error) {
-          alert('Có lỗi khi POST bài: ');
+          //alert('Có lỗi khi POST bài: ');
+
+          document.getElementById('returnerrorpicturePage').value = 'Có lỗi khi POST bài: ';
           console.log(response);
         } else {
           console.log(response);
           postid = response.post_id;
           console.log(postid);
           getPostLink();
-          alert('ĐÃ POST THÀNH CÔNG');
+          //alert('ĐÃ POST THÀNH CÔNG');
+          document.getElementById('returnerrorpicturePage').value = '';
         }
       });
     }
 
     //Nút Đăng bài lên Page
     function PostByRequest(){
-      let a = $('#picture').val().trim();
-      if(FBLoaded){
-        if (a === "") {
-        POSTPageMess();
-        }
-        else{
-        POSTPagePictureUrl();
-        }
+      var getloai = $('#loaip2').val();
+      var ms = document.getElementById('message').value;
+      console.log(getloai);
+      if(getloai === 'null' || ms == ''){
+        //truyền gtri cho input hidden theo đúng id
+        document.getElementById('returnloaip2').value = 'Không được để trống!!';
+        document.getElementById('loaip2').value = 'null';
+        console.log('Không được để trống!!')
       }else{
-        setTimeout("PostByRequest()",100);
+          document.getElementById('returnloaip2').value = '';
+          console.log('do some think..');
+          let a = $('#picture').val().trim();
+          if(FBLoaded){
+            if (a === "") {
+            POSTPageMess();
+            }
+            else{
+            POSTPagePictureUrl();
+            }
+          }else{
+            setTimeout("PostByRequest()",100);
+          }
       }
     }
 
@@ -272,6 +290,7 @@
 
     // Danh sách group id cần post
       var _List;
+      var _list2;
     // Index của group đã post
         var _ListIndex = -1;
     // Nội dung cần post
@@ -281,18 +300,24 @@
     // Object monitor
       var _monitor;
     // Thời gian chờ giữa 2 lần gửi
-      var _wait_time = 60000*2;
+      var _wait_time = 0;
 
     // Hàm bắt đầu post (Sau khi lấy các giá trị từ màn hình nhập vào, hàm sẽ chạy hàm _AutoCall sau 1s)
-    function _StartPost() {
-        _picture = document.getElementById('picturegr1').value;
+    function getinF(){
+      _picture = document.getElementById('picturegr1').value;
         _message = document.getElementById('messagegr1').value;
-        _List = document.getElementById('groupsgr1').value.split(';');
-        _ListIndex = -1;
+        _List2 =(_List = document.getElementById('listidgrp').value).split(',');
+        _wait_time=20;
+
         console.log(_picture);
         console.log(_message);
-        console.log(_List);
-        // setTimeout('_AutoCall()', 1000);
+        console.log(_List2);
+    }
+    function _StartPost() {
+
+      setTimeout(function(){ getinF()},500);
+
+      setTimeout(function(){ _AutoCall()}, 1000);
     }
 
     // Tự gọi lại sau mỗi giây
@@ -302,30 +327,34 @@
 
       //Nếu thời gian chờ == 0 thì chạy hàm post còn khác 0 thì giảm thời gian chờ đi 1 đơn vị rồi hiển thị lên monitor
       if (_wait_time == 0) {
-          //Nếu _wait_time== 0 thì sẽ reset thời gian chờ
-            //_wait_time=parseInt(document.getElementById('time').value);
-            console.log(_wait_time);
+
+           //Nếu _wait_time== 0 thì sẽ reset thời gian chờ
+        _wait_time=20;
           //Sau đó tăng biến đếm index các group đã post
             _ListIndex++;
+            console.log(_ListIndex);
 
           //So sánh nếu danh sách các group đã post < độ dài của các group id cần post thì chạy hàm post
-          if (_ListIndex < _List.length) {
-              PostGrpByRequestBD(_List[_ListIndex]);
+          if (_ListIndex < _List2.length) {
+
+              PostGrpByRequestBD(_List2[_ListIndex]);
+
+
           } else {
               //Khi đã hết các group cần post bài thì flat có giá trị fales
               CanContinue = false;
           }
+
       } else {
-          _wait_time--;
+        _wait_time--;
+
       }
 
       // Tự gọi lại chính nó sau 1 giây
       if (CanContinue) {
-          setTimeout('_AutoCall()', 1000);
+          setTimeout(function(){ _AutoCall()}, 1000);
       } else {
-          // var _p = document.createElement('p');
-          // _p.innerHTML = '*** ĐÃ HẾT NHÓM CẦN POST';
-          // _monitor.appendChild(_p);
+
           console.log('Đã Đăng hết');
       }
     }
@@ -362,7 +391,7 @@
 
     //Nút Đăng bài vào Group của modal bài đăng
     function PostGrpByRequestBD(data) {
-      let a = $('#pictureBD').val().trim();
+      let a = $('#picturegr1').val().trim();
       if (FBLoaded) {
         if (a === "") {
           POSTGroupMessBD(data);
@@ -375,6 +404,134 @@
       }
     }
 
+    //-----------------------------PAGE-----------------------------------//
+    var _listaccess = [];
+    function getAccessTokenBD(ac){
+      FB.api('/'+ac,{fields: 'access_token'},function (response){
+        accessToken = (response.access_token).split(',');
+       _listaccess = accessToken.concat(_listaccess);
+          console.log(_listaccess);
+      });
+    }
+
+    // Hàm bắt đầu post (Sau khi lấy các giá trị từ màn hình nhập vào, hàm sẽ chạy hàm _AutoCall sau 1s)
+    function getinFoPage(){
+      _monitor = document.getElementById('responsep1');
+      _picture = document.getElementById('picturep1').value;
+        _message = document.getElementById('messagep1').value;
+        _List2 =(_List = document.getElementById('listidpage').value).split(',');
+        _List2.forEach(idp => {
+          getAccessTokenBD(idp);
+        });
+
+        console.log(_picture);
+        console.log(_message);
+        console.log(_List2);
+    }
+    function _StartPostPage() {
+      _wait_time=20;
+      document.getElementById('addtime').value = _wait_time;
+      var getloai = $('#getloaip1').val();
+      console.log(getloai);
+      if(getloai === 'null'){
+        document.getElementById('returnloaip1').value = 'Không được để trống!!';
+        console.log('Không được để trống!!')
+      }else{
+        document.getElementById('returnloaip1').value = '';
+          console.log('do some think..');
+        //setTimeout(function(){ getinFoPage()},500);
+
+        //setTimeout(function(){ _AutoCallPage()}, 1000);
+      }
+    }
+
+    // Tự gọi lại sau mỗi giây
+    function _AutoCallPage() {
+      //Tạo 1 flat để dừng post
+      var CanContinue = true;
+
+      //Nếu thời gian chờ == 0 thì chạy hàm post còn khác 0 thì giảm thời gian chờ đi 1 đơn vị rồi hiển thị lên monitor
+      if (_wait_time == 0) {
+
+        _wait_time=20;
+          //Sau đó tăng biến đếm index các group đã post
+            _ListIndex++;
+            console.log(_ListIndex);
+
+          //So sánh nếu danh sách các group đã post < độ dài của các group id cần post thì chạy hàm post
+          if (_ListIndex < _listaccess.length) {
+
+              PostByRequestBD(_listaccess[_ListIndex]);
+
+
+          } else {
+              //Khi đã hết các group cần post bài thì flat có giá trị fales
+              CanContinue = false;
+          }
+
+      } else {
+        //Nếu _wait_time== 0 thì sẽ reset thời gian chờ
+
+        _wait_time--;
+
+      }
+
+      // Tự gọi lại chính nó sau 1 giây
+      if (CanContinue) {
+          setTimeout(function(){ _AutoCallPage()}, 1000);
+      } else {
+
+
+          console.log('Đã Đăng hết');
+      }
+    }
+
+    //Post lên Page message
+    function POSTPageMessBD(d) {
+      FB.api('me/feed', 'post', { message: _message, access_token: d }, function (response) {
+          if (!response || response.error){
+            alert('Có lỗi khi POST bài: ');
+            console.log(response);
+          }else {
+            console.log(response);
+            postid = response.id;
+            console.log(postid);
+            getPostLink();
+            alert('ĐÃ POST THÀNH CÔNG');
+          }
+      });
+    }
+
+    //Post lên Page picture by url
+    function POSTPagePictureUrlBD(d) {
+      FB.api('me/photos', 'post', { message: _message, url: _picture, access_token: d }, function (response) {
+        if (!response || response.error) {
+          alert('Có lỗi khi POST bài: ');
+          console.log(response);
+        } else {
+          console.log(response);
+          postid = response.post_id;
+          console.log(postid);
+          getPostLink();
+          alert('ĐÃ POST THÀNH CÔNG');
+        }
+      });
+    }
+
+    //Nút Đăng bài lên Page
+    function PostByRequestBD(d){
+      let a = _picture.trim();
+      if(FBLoaded){
+        if (a === "") {
+        POSTPageMessBD(d);
+        }
+        else{
+        POSTPagePictureUrlBD(d);
+        }
+      }else{
+        setTimeout("PostByRequestBD()",100);
+      }
+    }
 
 
 

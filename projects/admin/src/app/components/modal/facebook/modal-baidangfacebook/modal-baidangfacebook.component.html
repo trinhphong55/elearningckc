@@ -6,7 +6,7 @@
   <div class="container-fluid mt-3">
     <div class="row">
       <div class="col-12">
-        <h1 class="text-center text-white">Quản lý các bài đăng</h1>
+        <h1 class="text-center text-white">QUẢN LÝ CÁC BÀI ĐĂNG</h1>
       </div>
       <div class="col-12">
         <!-- Modal -->
@@ -21,9 +21,9 @@
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">
-                  Đăng bài cho Group
-                </h5>
+                <h1 class="modal-title" id="exampleModalLongTitle">
+                  Đăng bài cho các nhóm
+                </h1>
                 <button
                   type="button"
                   class="close"
@@ -36,7 +36,7 @@
               <div class="modal-body">
                 <div class="">
                   <div class="form-group">
-                    <label>Message</label>
+                    <label>Nội dung</label>
                     <textarea
                       class="form-control"
                       type="text"
@@ -47,7 +47,7 @@
                 </div>
                 <div class="">
                   <div class="form-group">
-                    <label>Url picture</label>
+                    <label>Đường dẫn hình ảnh (URL)</label>
                     <input
                       class="form-control"
                       type="text"
@@ -57,34 +57,49 @@
                   </div>
                 </div>
                 <div class="">
-
-                    <label for="">Chọn Group</label><br>
-                    <ng-select [items]="cities2"
-                              bindLabel="name"
-                              bindValue="id"
+                  <div class="form-group">
+                    <label for="">Loại bài viết</label>
+                    <select [formControl]="getLoaisTT" class="col-6 form-control">
+                      <option [value]="null">Chọn loại..</option>
+                      <option *ngFor="let l of layloaifb" class="form-control">{{l.loai}}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="">
+                  <div class="form-group">
+                    <label for="">Chọn Nhóm</label>
+                    <ng-select id="groupsgr1" style="font-size: 1rem;" [items]="lopHoc"
+                              bindLabel="tenGroupFB"
+                              bindValue="IDGroupFB"
                               [multiple]="true"
-                              placeholder="Chọn"
+                              placeholder="Chọn..."
                               [(ngModel)]="selectedCityIds">
                     </ng-select>
-                    <p>
-                        Selected cities: {{selectedCityIds}}
-                    </p>
+                    <input id="listidgrp"value="" type="text" name="" hidden>
+                  </div>
                 </div>
               </div>
               <div class="modal-footer">
+
+                <button
+                  class="btn btn-success"
+                  (click)="fixInput()" onclick="_StartPost()"
+                >
+                  Đăng
+                </button>
                 <button
                   type="button"
                   class="btn btn-secondary"
                   data-dismiss="modal"
                 >
-                  Đóng
+                  Lưu nháp
                 </button>
                 <button
                   type="button"
-                  class="btn btn-primary"
-                  onclick="_StartPost()"
+                  class="btn btn-danger"
+                  data-dismiss="modal"
                 >
-                  Đăng
+                  Đóng
                 </button>
               </div>
             </div>
@@ -102,9 +117,9 @@
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">
-                  Đăng bài cho page
-                </h5>
+                <h1 class="modal-title" id="exampleModalLongTitle">
+                  Đăng bài cho các trang
+                </h1>
                 <button
                   type="button"
                   class="close"
@@ -117,8 +132,9 @@
               <div class="modal-body">
                 <div class="">
                   <div class="form-group">
-                    <label>Message</label>
+                    <label>Nội dung</label>
                     <textarea
+                      [formControl]="conTent"
                       class="form-control"
                       type="text"
                       name="message"
@@ -128,8 +144,9 @@
                 </div>
                 <div class="">
                   <div class="form-group">
-                    <label>Url picture</label>
+                    <label>Đường dẫn hình ảnh (URL)</label>
                     <input
+                      [formControl]="urlimg"
                       class="form-control"
                       type="text"
                       name="picture"
@@ -139,26 +156,39 @@
                 </div>
                 <div class="">
                   <div class="form-group">
-                    <label for="">Chọn Page</label>
-                    <select class="mul-select">
-                      <option value="1">a</option>
-                      <option value="2">b</option>
-                      <option value="3">c</option>
-                      <option value="4">d</option>
-                      <option value="5">e</option>
+                    <label for="">Loại bài viết</label>
+                    <select [formControl]="getLoaisTT" class="col-6 form-control" id="getloaip1">
+                      <option [value]="null">Chọn loại..</option>
+                      <option *ngFor="let l of layloaifb" class="form-control">{{l.loai}}</option>
                     </select>
                   </div>
                 </div>
+                <div class="">
+                  <div class="form-group">
+                    <label for="">Chọn trang</label>
+                    <ng-select id="page1" style="font-size: 1rem;" [items]="getpg"
+                              bindLabel="tenPage"
+                              bindValue="id_Page"
+                              [multiple]="true"
+                              placeholder="Chọn..."
+                              [(ngModel)]="selectedPgae">
+                    </ng-select>
+                  </div>
+                  <input id="listidpage"value="" type="text" name="" hidden>
+                  <input id="returnloaip1"value="" type="text" name="" hidden>
+                  <input id="addtime" value="" type="text" hidden>
+                </div>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-success">Lưu nháp</button>
-                <button type="button" class="btn btn-primary">Đăng</button>
+                <button type="button" class="btn btn-success" onclick="_StartPostPage()" (click)="transIDpage()">Đăng</button>
+                <button type="button" class="btn btn-secondary">Lưu nháp</button>
+
                 <button
                   type="button"
-                  class="btn btn-secondary"
+                  class="btn btn-danger"
                   data-dismiss="modal"
                 >
-                  Close
+                  Đóng
                 </button>
               </div>
             </div>
@@ -168,13 +198,13 @@
           <div class="row justify-content-center align-items-center">
             <div class="col-4">
               <div class="form-group">
-                <label>Message</label>
+                <label>Nội dung</label>
                 <input class="form-control" type="text" id="messageupdate" />
               </div>
             </div>
             <div class="col-4">
               <div class="form-group">
-                <label for="">Ảnh (URL)</label>
+                <label for="">Đường dẫn hình ảnh (URL)</label>
                 <input class="form-control" type="text" id="pictureupdate" />
               </div>
             </div>
@@ -240,15 +270,6 @@
                   </select>
                 </label>
               </div>
-              <!-- <div>
-                <span>Theo loại</span>
-                <select id="loai" formControlName="theLoai" (change)="changedTrangThai()">
-                 <option value="">Select...</option>
-                 <option value="1">Thông báo</option>
-                 <option value="2">Tin tức</option>
-                 <option value="3">Hỏi đáp</option>
-                </select>
-              </div> -->
             </ng-container>
 
             <label class="ml-auto mb-0 d-flex align-items-center"
@@ -265,8 +286,8 @@
             <thead class="bg__caothang text-white">
               <th class="text-center">STT</th>
               <th scope="col" class="text-center">Mô tả</th>
-              <th scope="col" class="text-center">Link</th>
-              <th scope="col" class="text-center">Loại</th>
+              <th scope="col" class="text-center">Đường dẫn</th>
+              <th scope="col" class="text-center">Loại bài viết</th>
               <th scope="col" class="text-center">Thuộc</th>
               <th scope="col" class="text-center">Trạng Thái</th>
               <th scope="col" class="text-center">Tác vụ</th>
@@ -280,7 +301,7 @@
                 <td class="text-center">
                   <div [hidden]="d.link === '' ">
                     <a [href]="d.link" target="_blank"
-                    >Click để đi đến bài viết</a
+                    >Nhấn để đi đến bài viết</a
                   >
                   </div>
                 </td>

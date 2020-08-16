@@ -136,9 +136,9 @@ export class ModalPagefacebookComponent implements OnInit {
             positionClass: 'toast-bottom-right',
           });
         }
-        
-        
-      
+
+
+
         console.log(ress);
         this.getAll();
       });
@@ -200,7 +200,7 @@ export class ModalPagefacebookComponent implements OnInit {
   }
 
   insertTobd() {
-    this.delay(3000).then((any) => {
+    this.delay(1000).then((any) => {
       //your task after delay.
       this.loaistt = this.addForm.value.getLoaistt;
       this.idpage = $('#getidpage').val();
@@ -226,41 +226,46 @@ export class ModalPagefacebookComponent implements OnInit {
       console.log(this.urlImg);
       console.log(this.tenpage);
       console.log(this.MaLoai);
-      if (this.messa == '' || this.loaistt == '') {
-        this.toastr.warning(
-          'Không được để trống Nội dung và Loại bài viết',
-          'Nhắc nhở',
-          {
-            timeOut: 2000,
-            positionClass: 'toast-bottom-right',
-          }
-        );
-      } else {
-        this.baiDangFBService
-          .create({
-            ID: this.idpage,
-            postID: Post_idd,
-            link: linkpost,
-            message: this.messa,
-            url: this.urlImg,
-            maLoai: this.MaLoai,
-            loai: this.loaistt,
-            thuoc: this.tenpage,
-          })
-          .subscribe((ress: any) => {
-            this.mess = ress.msg;
-            this.toastr.info(this.mess, 'Thông báo', {
-              timeOut: 2000,
-              positionClass: 'toast-bottom-right',
+      this.delay(500).then(any=>{
+        var nofi = $('#returnloaip2').val();
+          if(nofi !== ''){
+            alert(nofi);
+          }else{
+            var errpage = $('#returnerrorpicturePage').val();
+            if(errpage !== ''){
+              alert(errpage);
+            }
+            else{
+              alert('Đăng thành công!');
+              this.baiDangFBService
+              .create({
+                ID: this.idpage,
+                postID: Post_idd,
+                link: linkpost,
+                message: this.messa,
+                url: this.urlImg,
+                maLoai: this.MaLoai,
+                loai: this.loaistt,
+                thuoc: this.tenpage,
+              })
+              .subscribe((ress: any) => {
+                this.mess = ress.msg;
+                this.toastr.info(this.mess, 'Thông báo', {
+                  timeOut: 2000,
+                  positionClass: 'toast-bottom-right',
+                });
+                console.log(ress);
+              });
+            console.log('do some think');
+            this.delay(1000).then((any) => {
+              this.getMessage.setValue('');
+              this.getLoaistt.setValue('');
+              this.getURLimg.setValue('');
             });
-            console.log(ress);
-          });
-        this.delay(1000).then((any) => {
-          this.getMessage.setValue('');
-          this.getLoaistt.setValue('');
-          this.getURLimg.setValue('');
-        });
-      }
+            }
+
+          }
+      });
     });
   }
   insertDraft() {
@@ -315,7 +320,7 @@ export class ModalPagefacebookComponent implements OnInit {
   }
 
   changeTitle(d) {
-    document.getElementById('title').innerText = 'Đăng bài cho Trang' + d;
+    document.getElementById('title').innerText = 'Đăng bài cho Trang ' + d;
   }
 
   openDetailpage(detail) {
