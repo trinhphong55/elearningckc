@@ -332,25 +332,26 @@ export class PageTrangcanhansvComponent implements OnInit {
       (res) => {
         if (res) {
           this.lopHocPhans = res;
+          //this.ctDiemLHPs = [];
           this.lopHocPhans = this.locMaLopHocPhanTheoHocKi(this.lopHocPhans);
         }
       },
       (err) => console.log(err)
     );
   }
-  public ganTenCotDiemCTDiem(ChiTiemDiems: ChiTietDiemSVLHP[]) {
-    this.cotDiemService.layTatCa().subscribe((res: any) => {
-      this.cotDiems = res;
-      ChiTiemDiems.forEach((ct) => {
-        this.cotDiems.forEach((lop) => {
-          if (ct.maCotDiem == lop.maCotDiem) {
-            ct.tenCotDiem = lop.tenCotDiem;
-            ct.heSo = lop.heSo;
-          }
-        });
-      });
-    });
-  }
+  // public ganTenCotDiemCTDiem(ChiTiemDiems: ChiTietDiemSVLHP[]) {
+  //   this.cotDiemService.layTatCa().subscribe((res: any) => {
+  //     this.cotDiems = res;
+  //     ChiTiemDiems.forEach((ct) => {
+  //       this.cotDiems.forEach((lop) => {
+  //         if (ct.maCotDiem == lop.maCotDiem) {
+  //           ct.tenCotDiem = lop.tenCotDiem;
+  //           ct.heSo = lop.heSo;
+  //         }
+  //       });
+  //     });
+  //   });
+  // }
 
   //################################# Xu ly su kien ##################################
   onChangeDanhSachCotDiem() {
@@ -358,6 +359,11 @@ export class PageTrangcanhansvComponent implements OnInit {
     this.layCTDiemLHP(this.taiKhoan.displayName);
 
 
+  }
+  onChangeChonHocKi(){
+    this.layThongTinSV(this.taiKhoan.displayName);
+    this.layCTDiemLHP(this.taiKhoan.displayName);
+    this.chonLop.setValue('');
   }
   onChangBangDiem() {
     this.chonHocKi.setValue('');
@@ -386,6 +392,7 @@ export class PageTrangcanhansvComponent implements OnInit {
   }
   //################################ Xu ly loc #######################################
   public loc_CTDiem_LopHocPhan(ChiTietDiem) {
+
     if (this.chonLop.value && this.chonHocKi.value) {
       let tmp = ChiTietDiem;
       ChiTietDiem = [];

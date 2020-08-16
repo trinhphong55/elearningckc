@@ -550,6 +550,7 @@ export class ModalChitieudaotaoComponent implements OnInit {
         }
       );
     });
+    this.capNhat_SLSinhVien_LopHocPhan(this.maLopThem);
   }
   removeData() {
     this.inputFile.nativeElement.value = '';
@@ -562,7 +563,6 @@ export class ModalChitieudaotaoComponent implements OnInit {
     if (this.dsSinhVien) {
       this.msg = 'Danh sách sinh viên';
       this.importExcel();
-      this.capNhat_SLSinhVien_LopHocPhan(this.maLopThem);
       // this.getSiSo();
       this.getLopHoc();
     } else {
@@ -573,6 +573,7 @@ export class ModalChitieudaotaoComponent implements OnInit {
 
   public capNhat_SLSinhVien_LopHocPhan(maLopHoc) {
     this.SinhVienService.capNhatSiSoLopHocPhan(maLopHoc).subscribe((res) => {
+      console.log(res);
       let maCT = this.taoTienTo(
         this.maNganh,
         this.maBac,
