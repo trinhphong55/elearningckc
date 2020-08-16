@@ -6,7 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { BannerService } from '../../../../services/ttth/banner.service';
 import { ttthBanner } from '../../../../../models/ttthBanner';
 import { getCookie } from '../../../../../../../common/helper';
-const URL = 'https://api.cnttckc.edu.vn/api/ttthBanner/uploads';
+const URL = 'https://localhost:4100/api/ttthBanner/uploads';
 declare var $: any;
 @Component({
   selector: 'app-modal-banner',
@@ -82,7 +82,7 @@ export class ModalBannerComponent implements OnInit  {
      }
      else{
        const newItem: ttthBanner = new ttthBanner();
-       newItem.image = 'https://api.cnttckc.edu.vn/uploads/cntt/' + 'slideshow_' + this.nameImage.name;
+       newItem.image = 'https://localhost:4100/uploads/cntt/' + 'slideshow_' + this.nameImage.name;
        newItem.link = link;
        newItem.vitri = vitri;
        newItem.hienthi = true;
@@ -112,7 +112,7 @@ export class ModalBannerComponent implements OnInit  {
   }
   saveBanner(Banner: ttthBanner):void {
     if (this.nameImage) {
-      Banner.image='https://api.cnttckc.edu.vn/uploads/cntt/' + 'slideshow_' + this.nameImage.name;
+      Banner.image='https://localhost:4100/uploads/cntt/' + 'slideshow_' + this.nameImage.name;
     }
     Banner.updated_at= new Date;
     Banner.nguoisua= this._username;
