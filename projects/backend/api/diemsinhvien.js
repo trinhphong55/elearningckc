@@ -89,27 +89,20 @@ let result = (req) => {
 
 //lấy thong tin diem sinh vien theo malop hoc phan
 exports.LayTONGDIEM = async (req, res) => {
+  var sinhvien = await SINHVIEN.find({trangThai:1});
   var diem = await Diemsinhvien.find({ maLopHocPhan:req.params.maLopHocPhan});
-  var sinhvien = await SINHVIEN.find();
-  var cotDiemHP = await COTDIEMLOPHP.find();
-  var ctDiem = await CTDIEMLHP.find();
+  var cotDiemHP = await COTDIEMLOPHP.find({trangThai:1});
+  var ctDiem = await CTDIEMLHP.find({trangThai:1});
   var data = [];
   var beta = [];
   var ceta = [];
   var tongDiem = [];
   sinhvien.forEach(async s => {
     diem.forEach(async x => {
-      ctDiem.forEach(async y => {
-        cotDiemHP.forEach(async z => {
-          if (s.maSinhVien == x.maSinhVien) {
-            if (x.maSinhVien == y.maSinhVien) {
-              if (z.maCotDiem == y.maCotDiem) {
-                data.push({ho:s.ho,ten:s.ten, maSinhVien: x.maSinhVien, diem: y.diem, tenCotDiem: z.tenCotDiem,tongDiem:x.diem});
-              }
-            }
-          }
-        })
-      })
+     if(s.maSinhVien==x.maSinhVien)
+     {
+      data.push({ho:s.ho,ten:s.ten, maSinhVien: x.maSinhVien,tongDiem:x.diem});
+     }
     })
   })
   res.json(data);

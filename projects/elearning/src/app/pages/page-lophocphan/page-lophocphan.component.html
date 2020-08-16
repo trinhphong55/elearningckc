@@ -4,20 +4,16 @@
       <div class="row">
         <div class="col-md-12 luong-title">
           <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-12">
               <div class="name-classrom">
-                <h3>{{maLHP}}</h3>
+                <h3>{{tenLHP}}</h3>
               </div>
               <div class="soluong">
-                <span>2</span>
+                <span>Số lượng sinh viên: {{soLuongSV}}</span>
               </div>
-              <div class="malop">
+              <!-- <div class="malop">
                 <p>Mã lớp <span>kunhuy</span><button mat-button>chỉnh sửa</button></p>
-              </div>
-            </div>
-            <div class="col-md-6">
-            </div>
-            <div class="col-md-3 right-chude">
+              </div> -->
             </div>
           </div>
         </div>
@@ -43,7 +39,7 @@
               </div>
               <div class="tt-dealine">
                 <div>
-                  {{activity.ngayTao | date:'dd-MM-yyyy HH:mm:ss'}}
+                  {{activity.ngayTao | date:'dd-MM-yyyy'}}
                 </div>
               </div>
             </a>

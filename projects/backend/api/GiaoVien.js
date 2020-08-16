@@ -109,7 +109,25 @@ router.post('/cap-nhat-giao-vien', async (req, res) => {
     });
   }
 })
-
+router.post('/cap-nhat-giao-vien-new-tt', async (req, res) => {
+  var data = {
+    sdt:req.body.sdt,
+    password:md5(req.body.password)
+  }
+  let result = await giaoVienDAO.updateOrInsertOne({maGiaoVien: req.body.maGiaoVien}, data, 'GiaoVien');
+  if(result != false){
+    res.send({
+      'msg': 'Cập nhật thành công',
+      'status': true
+    });
+  }
+  else{
+    res.send({
+      'msg': 'Cập nhật thất bại',
+      'status': false
+    });
+  }
+})
 router.post('/cap-nhat-bo-mon', async(req, res) => {
   const maGV = req.body.maGV;
   const maBoMon = req.body.maBoMon;

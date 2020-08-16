@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
 router.get('/:loaiActivity/lophocphan/:maLopHocPhan', async (req, res) => {
   const loaiActivity = req.params.loaiActivity;
   const maLopHocPhan = req.params.maLopHocPhan;
-  await Activity.find({ loaiActivity, maLopHocPhan })
+  await Activity.find({ loaiActivity, maLopHocPhan }).sort({"ngayTao": -1})
     .then(dsActi => {
       return res.status(200).json({
         message: "Lay thanh cong",
@@ -32,10 +32,12 @@ router.post('/them', async (req, res) => {
   newActivity = new Activity(req.body);
   newActivity.save().then(() => {
     return res.status(200).json({
+      status: 200,
       message: "add activity oke",
     })
   }).catch(err => {
     return res.status(500).json({
+      status: 500,
       message: err,
     })
   })

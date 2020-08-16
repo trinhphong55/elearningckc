@@ -6,7 +6,7 @@ const BaiTapSchema = new mongoose.Schema({
     required: true
   },
   lopHocPhan: {
-    type: [],
+    type: Number,
     required: true,
   },
   tieuDe: {
@@ -26,8 +26,8 @@ const BaiTapSchema = new mongoose.Schema({
     default: [],
   },
   chuDe: {
-    type: String,
-    default: "null",
+    type: Number,
+    default: -1,
   },
   nguoiTao: {
     type: String,

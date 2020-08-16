@@ -16,6 +16,7 @@ const TKB = require("./TKB");
 const BaiTap = require("./BaiTap");
 const BaiTapSinhVien = require("./BaiTapSinhVien");
 const activity = require("./activity");
+const PhongHoc = require("./PhongHoc");
 
 const sinhVien = require("./sinh-vien");
 const Diemsinhvien = require("./diemsinhvien");
@@ -60,6 +61,7 @@ router.use("/lhdt", LoaiHinhDaoTao);
 router.use("/lophocphan", LopHocPhan);
 router.use("/gvlhp", GiaoVienLopHocPhan);
 router.use("/tkb", TKB);
+router.use("/phonghoc", PhongHoc);
 
 //Elearning routes
 router.use("/baitap", BaiTap);
@@ -105,8 +107,6 @@ const validate = khoabomonController.checkValidate();
 //nganhnghe bac
 const NganhNgheRoutes = require("./NganhNghe");
 const BacRoutes = require("./Bac");
-const diemsinhvienModel = require("../models/diemsinhvien.model");
-const { route } = require("./GiaoVien");
 
 
 const verifyToken = require('../middleware/accountAuth')
@@ -214,20 +214,27 @@ router.get("/sinhvien/:maSV", sinhVien.layThongtinSinhVien);
 router.put("/sinhvien", sinhVien.capNhatSinhVien);
 router.delete("/sinhvien", sinhVien.removeAll);
 router.get("/sinhvien/:maLopHoc/siso", sinhVien.tinhTongSinhVien);
+router.get("/sinhvien/:maLopHocPhan/lophocphan", sinhVien.laySinhVienLopHocPhan);
 
 //========================= Routes CotDiemLopHocPhan ===================================
 router.get("/cotdiemlhp", cotDiemLHP.layDiemLHP);
 router.get("/cotdiemlhp/:maLopHocPhan", cotDiemLHP.layDiemLHPtheoMaLHP);
 router.get("/cotdiemlhp/lophocphan/:maLopHocPhan", cotDiemLHP.layDiemLHPtheoMaLHP);
+router.get("/cotdiemlophocphan/:maLopHocPhan", cotDiemLHP.layCotDiemTheoMaLopHp);
+router.post("/cotdiemlophocphan", cotDiemLHP.themCotDiem);
+router.put("/suacotdiemlophocphan/:maCotDiem",cotDiemLHP.suaCotDiem);
+router.get("/cotdiemlophocphan/:maCotDiem/chitiet", cotDiemLHP.layCotDiemTheoMaCotDiem);
 
 //======================= Routes ChitietDiemSVLopHocPhan ==================================
 router.get("/ct-diemsv-lophocphan/:masv", ctDiemLopHP.layCTDiemLopHPtheoMaSV);
-
+router.get("/ct-diemsv-lophocphan/:maHocPhan/lophocphan", ctDiemLopHP.layCTDiemLopHPtheoMaLopHP);
 //=========================== Routes ChuDe =============================================
 router.get("/chude", ChuDe.layTatCa);
 router.get("/chude/:maChuDe", ChuDe.layMot);
 router.get("/chude/:maLopHocPhan/lop-hoc-phan", ChuDe.layTheo_MaLHP);
 router.post("/chude", ChuDe.them);
+router.delete("/chude/:maChuDe", ChuDe.xoaTheo_maChuDe);
+
 //=========================== Routes BaiGiang =============================================
 router.get("/baigiang", baiGiang.layTatCa);
 router.get("/baigiang/:maChuDe", baiGiang.layTheoMaChuDe);
@@ -236,6 +243,7 @@ router.get("/baigiang/:maLopHocPhan/lop-hoc-phan", baiGiang.layTheo_MaLHP);
 router.get("/baigiang/:maBaiGiang/ma-bai-giang", baiGiang.layTheo_maBaiGiang);
 router.post("/baigiang/upload", baiGiang.upload);
 router.post("/baigiang/download", baiGiang.download);
+router.delete("/baigiang/:maBaiGiang", baiGiang.xoa);
 
 //========================= Routes BinhLuan ==========================================
 router.get("/binhluan/:loaiBaiViet/baiviet/:maBaiViet", binhLuan.layBinhLuan_theoBaiViet);

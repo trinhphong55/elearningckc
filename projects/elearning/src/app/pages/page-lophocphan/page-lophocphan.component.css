@@ -1,5 +1,5 @@
 .scrollable{
-  height: 400px;
+ max-height: 400px;
   overflow-y:scroll;
   overflow-x: hidden;
 }
@@ -218,7 +218,7 @@ form.ng-untouched.ng-pristine.ng-valid {
     border: solid 1px #e0e0e0;
     border-radius: 7px;
     margin: 0 auto;
-    margin-bottom: 20px;
+    margin-bottom: 0px;
 }
 .content-gv .thongtin{
     width: 100%;
@@ -763,5 +763,7 @@ form.ng-untouched.ng-pristine.ng-valid {
         border-radius: 50px;
         outline: none;
     }
-
+    .content-gv {
+        margin-bottom: 10px;
+    }
 }

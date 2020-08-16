@@ -184,7 +184,6 @@
 .comment .cm-show{
     width: 100%;
     display: flex;
-    flex-wrap: wrap;
 }
 .comment .cm-show .cm-showimg{
     width: 10%;
@@ -275,7 +274,23 @@
     .thongtin .tt-dealine {
       display: none;
     }
+    .nhanxet .nx-show .nx-showimg {
+        width: 20%;
+    }
+    .nhanxet .nx-show .nx-showimg div {
+        width: 60%;
+        margin: 0 auto;
+    }
     .nhanxet .nx-show .nx-showname {
-        width: 70%;
+        width: 60%;
+    }
+    .comment .cm-show .cm-showimg {
+        width: 20%;
+    }
+    .comment .cm-show .cm-showimg div {
+        width: 60%;
+    }
+    .comment .cm-show .cm-showcomment {
+        width: 75%;
     }
   }

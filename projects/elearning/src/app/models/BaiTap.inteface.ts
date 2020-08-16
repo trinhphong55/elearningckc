@@ -1,16 +1,10 @@
-interface LHP {
-  tenLopHocPhan: string,
-  maLopHocPhan: string,
-}
-
 export interface BaiTap {
   tieuDe: string,
   huongDan: string,
-  lopHocPhan?: LHP[],
+  lopHocPhan?: number,
   diem: number,
   deadLine: string,
-  chuDeMoi?: string,
-  chuDe?: string,
+  chuDe?: number,
   file?: string[],
   tieuchiChamDiem?: string,
 }

@@ -9,6 +9,8 @@ import { CookieService } from 'ngx-cookie-service';
 import { FileSelectDirective, FileUploader } from 'ng2-file-upload';
 import { FileService } from '../../../../../services/file.service';
 import saveAs from 'file-saver';
+import { ActivityService } from '../../../../../services/activity.service';
+import { getCookie } from '../../../../../../../../common/helper';
 const uri = 'https://localhost:4100/api/baitap/uploads';
 @Component({
   selector: 'app-xembaitapsv',
@@ -18,6 +20,8 @@ const uri = 'https://localhost:4100/api/baitap/uploads';
 export class XembaitapsvComponent implements OnInit {
   public baiTap: BaiTap;
   public dsBinhLuan: any;
+  public maLHP: any;
+  public mssv = getCookie('email').slice(0, 10);
   public binhLuan = new FormControl('');
   //uplpadfile trinh phong
   hasBaseDropZoneOver: boolean;
@@ -32,7 +36,9 @@ export class XembaitapsvComponent implements OnInit {
   phong: any;
   maHocPhan: any;
   xoaBaiTap: any;
-  tinhTrang:string="Chưa nộp"
+  tinhTrang: string = "Chưa nộp";
+  quyen: string;
+  doituong: any;
   uploader: FileUploader = new FileUploader({
     url: uri,
     maxFileSize: 2048, // Max 2kB
@@ -48,11 +54,13 @@ export class XembaitapsvComponent implements OnInit {
     private binhLuanService: BinhLuanService,
     private BaiTapSinhVienService: BaiTapSinhVienService,
     private cookie: CookieService,
-    private _fileService: FileService) {
+    private _fileService: FileService,
+    private activityService:ActivityService) {
 
   }
 
   ngOnInit(): void {
+    this.quyenNopBai();
     this.xem_BaiTap();
     this.hienThiBaiTap();
 
@@ -66,6 +74,18 @@ export class XembaitapsvComponent implements OnInit {
     }
   }
 
+  private themActivity(maDoiTuong, noiDung) {
+    this.activityService.themActivity(this.maLHP, maDoiTuong, "BL-BT", noiDung, "bình luận").subscribe(res => {
+      console.log(res);
+    })
+  }
+
+  quyenNopBai() {
+    this.doituong = this.cookie.get("role");
+    if (this.doituong == 'GV') {
+      this.quyen = 'none'
+    }
+  }
   public xem_BaiTap() {
     this.route.params.subscribe((params) => {
       this.baiTapService
@@ -100,9 +120,17 @@ export class XembaitapsvComponent implements OnInit {
       loaiBaiViet: '2',
       maBaiViet: maBaiGiang,
       noiDung: this.binhLuan.value,
-      nguoiTao: '0306171249',
+      nguoiTao: this.mssv,
     };
-    this.binhLuanService.themBinhluan(data).subscribe((res) => { });
+    this.binhLuanService.themBinhluan(data).subscribe((res:any) => {
+      if(typeof res.data == 'object'){
+        //mã bài viết là mã bài tập
+        this.baiTapService.layBaiTap_theoMaBaiTap(data.maBaiViet).subscribe((res:any) => {
+          this.maLHP = res.data.lopHocPhan;
+          this.themActivity(data.maBaiViet, res.data.tieuDe);
+        })
+      }
+    });
   }
 
 
@@ -114,17 +142,16 @@ export class XembaitapsvComponent implements OnInit {
   public fileOverAnother(e: any): void {
     this.hasAnotherDropZoneOver = e;
   }
-  hienThiBaiTap() {
+  hienThiBaiTap() { 
     this.BaiTapSinhVienService.getall().subscribe(
       (dsBaiTap) => {
         this.dsBaiTap = dsBaiTap;
-        console.log(this.baiTap.maBaiTap);
-        this.BaiTapSinhVienService.layBttheosinhvien(this.cookie.get("displayName"), this.baiTap.maBaiTap).subscribe(
+        this.BaiTapSinhVienService.layBttheosinhvien(this.cookie.get("email"), this.baiTap.maBaiTap).subscribe(
           (dsBaiTap) => {
             this.dsBaiTap = dsBaiTap;
-            if(this.dsBaiTap.length>0)
-            {
-              this.tinhTrang="Đã nộp";
+            if (dsBaiTap != "") {
+              this.tinhTrang = "Đã nộp";
+              
             }
           })
       },
@@ -156,11 +183,11 @@ export class XembaitapsvComponent implements OnInit {
       var maSinhVien: any;
       var maBaiTap: any;
       var ChuDe: any;
-      this.data = { maLopHocPhan: "1", maSinhVien: this.cookie.get("displayName"), maBaiTap: this.baiTap.maBaiTap, chuDe: item?.file?.name };
+      this.data = { maLopHocPhan:this.baiTap.lopHocPhan, email: this.cookie.get("email"), maBaiTap: this.baiTap.maBaiTap, chuDe: item?.file?.name };
+      console.log(this.data)
       this.BaiTapSinhVienService.addBaiTap(this.data).subscribe(
         (nopBt) => {
           this.nopBt = nopBt;
-          this.nopBt;
           this.hienThiBaiTap();
           this.uploader = new FileUploader({
             formatDataFunction: async (item) => {

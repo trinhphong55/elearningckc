@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import saveAs from 'file-saver';
 
 //Services
 import { ModalService } from '../../../../services/modal.service';
@@ -9,6 +10,7 @@ import { NganhNgheService } from '../../../../services/NganhNghe.service';
 import { LopHocService } from '../../../../services/lop-hoc.service';
 import { MonhocService } from '../../../../services/monhoc.service';
 import { ThoikhoabieuService } from '../../../../services/thoikhoabieu.service';
+import { FileService } from '../../../../../../../elearning/src/app/services/file.service';
 
 //interfaces
 import { CTDT } from '../../../../interfaces/ctdt.interface';
@@ -32,6 +34,7 @@ export class ModalThoikhoabieuComponent implements OnInit {
   tuanBatDau: number;
   tuanKetThuc: number;
   TKB: [];
+  disabelImportExcel = false;
 
   dsLoaiHinhDaoTao: LHDT[];
   dsLH: LopHoc[];
@@ -115,6 +118,29 @@ export class ModalThoikhoabieuComponent implements OnInit {
     })
   }
 
+  exportExcel() {
+    if (this.maLopHoc === "null") {
+      alert('Chon lop hoc');
+      return;
+    }
+    this.disabelImportExcel = true;
+    this.fileService.exportExcelTKB(this.maLopHoc, this.tenLopHoc, parseInt(this.hocKi)).subscribe(
+      data => {
+        if (data.type === "application/json") {
+          alert('Chua co gi trong TKB');
+        }
+        if (data.type === "application/octet-stream"){
+          saveAs(data, `TKB_${this.maLopHoc}_${this.tenLopHoc}_HK${this.hocKi}.xlsx`)
+        }
+        this.disabelImportExcel = false;
+      },
+      error => console.error(error));
+  }
+
+  printTKB() {
+    window.print();
+  }
+
   constructor(
     private modalService: ModalService,
     private lhdtService: LHDTService,
@@ -122,7 +148,8 @@ export class ModalThoikhoabieuComponent implements OnInit {
     private nganhNgheService: NganhNgheService,
     private lopHocService: LopHocService,
     private monhocService: MonhocService,
-    private thoikhoabieuService: ThoikhoabieuService,) {
+    private thoikhoabieuService: ThoikhoabieuService,
+    private fileService: FileService) {
   }
 
   ngOnInit(): void {

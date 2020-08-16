@@ -11,14 +11,16 @@ import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 export class PageBaigiangComponent implements OnInit {
 
   public dsChuDe :ChuDe[] = [];
-  public maLopHocPhan:number = 1;
+  public maLopHocPhan:any;
 
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private chuDeService: ChuDeService
-  ) {}
+  ) {
+    this.maLopHocPhan = this.route.snapshot.paramMap.get('id');
+  }
 
   ngOnInit(): void {
     this.layDS_ChuDe();
@@ -39,6 +41,6 @@ export class PageBaigiangComponent implements OnInit {
 
   }
   showAllchude() {
-    this.router.navigate(['all'], { relativeTo: this.route });
+    this.router.navigate(['baigiang', this.maLopHocPhan]);
   }
 }
