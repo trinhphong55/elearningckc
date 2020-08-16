@@ -3,11 +3,8 @@ var _router = express.Router();
 var multer = require("multer");
 var path = require("path");
 const BaiTap = require("../models/BaiTap.model");
-const { Date } = require("mongoose");
 var CHUDE =require("../models/chu-de.model");
 var COTDIEM = require("../models/cotdiem-lophocphan.model");
-const { zip } = require("rxjs");
-
 
 const PATH = "./uploads/elearning/baitap";
 
@@ -108,7 +105,7 @@ _router.post("/", async (req, res) => {
           {
             if(y.maBaiTap==z.maBaiTap)
             {
-             
+
              data.push({tieuDe:y.tieuDe,tenChuDe:x.tenChuDe,cotDiem:z.tenCotDiem,maCotDiem:z.maCotDiem})
             }
           }
@@ -116,7 +113,7 @@ _router.post("/", async (req, res) => {
       })
     })
     return res.status(200).json(data);
-   } catch (err) { 
+   } catch (err) {
     return res.status(501).json({
       status: 501,
       message: err,
