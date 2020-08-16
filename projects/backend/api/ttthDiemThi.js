@@ -6,7 +6,6 @@ const ttthdotthi = require('../models/ttthdotthi.model');
 
 //IMPORT EXCEL
 router.post('/importdiemthi', async (req, res) => {
-  console.log(req.body);
   var items = req.body;
   if (items.length > 0) {
     ttthdiemthi.insertMany(items).then(() => {
