@@ -9,7 +9,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { FileSelectDirective, FileUploader } from 'ng2-file-upload';
 import { FileService } from '../../../../../services/file.service';
 import saveAs from 'file-saver';
-const uri = 'https://localhost:4100/api/baitapsinhvien/uploads';
+const uri = 'https://localhost:4100/api/baitap/uploads';
 import { ActivityService } from '../../../../../services/activity.service';
 import { getCookie } from '../../../../../../../../common/helper';
 @Component({

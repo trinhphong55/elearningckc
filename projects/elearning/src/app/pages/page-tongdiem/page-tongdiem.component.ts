@@ -9,7 +9,9 @@ import { LopHocService } from '../../../../../admin/src/app/services/lop-hoc.ser
 import { CotDiemLopHocPhanService } from '../../../../../admin/src/app/services/cotDiemLopHP.service';
 import { chiTietDiemSVLopHocPhanService } from '../../../../../admin/src/app/services/chiTietDiemSVLHP.service';
 import { GvlhpService } from '../../../../../admin/src/app/services/gvlhp.service';
+import { DiemSinhVienService } from '../../../../../admin/src/app/services/diem-sinh-vien.service';
 import { from } from 'rxjs';
+
 import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-page-tongdiem',
@@ -27,7 +29,8 @@ export class PageTongdiemComponent implements OnInit {
   cotDiemHP: any;
   ctDiem: any;
   dsGiaoVienhp: any;
-  dsGiaoVienLophp:any;
+  dsGiaoVienLophp: any;
+  excel:any;
   constructor(public dialog: MatDialog,
     private sinhVienService: SinhVienService,
     private router: ActivatedRoute, private route: Router,
@@ -36,7 +39,8 @@ export class PageTongdiemComponent implements OnInit {
     private cookie: CookieService,
     private cotDiemLopHocPhanService: CotDiemLopHocPhanService,
     private chiTietDiemSVLopHocPhanService: chiTietDiemSVLopHocPhanService,
-    private gvlhpService: GvlhpService) { }
+    private gvlhpService: GvlhpService,
+    private diemSinhVienServiceL: DiemSinhVienService) { }
 
   ngOnInit(): void {
     this.danhSachSinhVien();
@@ -91,12 +95,12 @@ export class PageTongdiemComponent implements OnInit {
           }
         )
       }
-    )}
+    )
+  }
   danhSachSinhVien() {
-    this.sinhVienService.layDsSvByLopHP(this.router.snapshot.paramMap.get('id')).subscribe(
+    this.diemSinhVienServiceL.layThongTinDiemSVByLHP(this.router.snapshot.paramMap.get('id')).subscribe(
       (dsTenHocSinh) => {
         this.dsTenHocSinh = dsTenHocSinh;
-        console.log(dsTenHocSinh)
       },
 
       (error) => {
@@ -120,6 +124,22 @@ export class PageTongdiemComponent implements OnInit {
     this.chiTietDiemSVLopHocPhanService.layCotDiemByMaLopHP(this.router.snapshot.paramMap.get('id')).subscribe(
       ctDiem => {
         this.ctDiem = ctDiem;
+      },
+      (error) => {
+        console.log(error);
+      }
+    )
+  }
+
+  exPortExcel() {
+    this.diemSinhVienServiceL.layThongTinDiemSVByLHP(this.router.snapshot.paramMap.get('id')).subscribe(
+      (dsTenHocSinh) => {
+        this.dsTenHocSinh = dsTenHocSinh;
+        this.excel=[];
+        this.dsTenHocSinh.filter(x=>{
+          this.excel.push({HO:x.ho,ten:x.ten,masosinhvien:x.mssv,DTB:x.diemTongKet})
+        })
+        this.chiTietDiemSVLopHocPhanService.exportAsExcelFile(this.excel,"diemtongket")
       },
       (error) => {
         console.log(error);
