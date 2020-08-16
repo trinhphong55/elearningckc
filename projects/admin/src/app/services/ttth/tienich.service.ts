@@ -11,7 +11,7 @@ const httpOptions = {
 export class TienichService {
   constructor(private http: HttpClient) { }
   get(): Observable<ttthTienIch[]  >{
-    return this.http.get<ttthTienIch[] >('https://localhost:4100/api/ttthTienIch/').pipe(
+    return this.http.get<ttthTienIch[] >('https://localhost:4100/api/ttthTienIch/list').pipe(
     );
   }
   add(newItem: ttthTienIch): Observable<ttthTienIch> {

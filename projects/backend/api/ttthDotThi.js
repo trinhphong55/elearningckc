@@ -4,9 +4,17 @@ const multer = require('multer')
 
 // get
 router.get('/', async (req, res) => {
+  try {
+    const danhsach = await ttthdotthi.find({ trangthai: {$ne:0}}).sort({created_at: -1});
+    res.json(danhsach);
+  } catch (error) {
+    res.json([]);
+  }
+})
+router.get('/list', async (req, res) => {
 
   try {
-    const danhsach = await ttthdotthi.find({ trangthai: true }).sort({created_at: -1});
+    const danhsach = await ttthdotthi.find().sort({created_at: -1});
     res.json(danhsach);
   } catch (error) {
     res.json([]);
@@ -18,6 +26,8 @@ router.post('/add', (req, res) => {
     tendot: req.body.tendot,
     lophoc: req.body.lophoc,
     ngaythi: req.body.ngaythi,
+    giothi: req.body.giothi,
+    phongthi: req.body.phongthi,
     trangthai: req.body.trangthai,
     nguoitao: req.body.nguoitao,
     nguoisua: req.body.nguoisua,
@@ -40,6 +50,8 @@ router.post('/update', async (req, res) => {
     tendot: req.body.tendot,
     lophoc: req.body.lophoc,
     ngaythi: req.body.ngaythi,
+    giothi: req.body.giothi,
+    phongthi: req.body.phongthi,
     trangthai: req.body.trangthai,
     nguoitao: req.body.nguoitao,
     nguoisua: req.body.nguoisua,
@@ -52,7 +64,8 @@ router.post('/delete', async (req, res) => {
   await ttthdotthi.findOneAndUpdate({
     _id: req.body._id
   }, {
-    trangthai: false
+    nguoisua: req.body.nguoisua,
+    trangthai: 0
   });
 })
 module.exports = router

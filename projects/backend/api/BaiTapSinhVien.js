@@ -2,10 +2,11 @@ var express = require("express");
 var _router = express.Router();
 var multer = require("multer");
 var path = require("path");
-const BaiTapSinhVien = require("../models//BaiTapSinhVien.model");
+const BaiTapSinhVien = require("../models/BaiTapSinhVien.model");
+const SINHVIEN = require("../models/sinh-vien.model");
+const { combineLatest } = require("rxjs");
 
-
-const PATH = "./uploads/elearning/baitapsinhvien";
+const PATH = "./uploads/elearning/nopbaitap";
 
 var store = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -36,19 +37,34 @@ _router.post("/download", function (req, res, next) {
   res.sendFile(filepath);
 });
 
+_router.get("/:maLopHocPhan/lop-hoc-phan", async (req, res) => {
+  try {
+    const baiTaps = await BaiTap.find({ lopHocPhan: req.params.maLopHocPhan });
+    res.json({
+      count: baiTaps.length,
+      data: baiTaps,
+      message: "Lấy thành công danh sách bài tập",
+      status: 200,
+    });
+  } catch (error) {
+    res.json(error);
+  }
+});
+
 ///lAY DS BT SV
 _router.get("/", async (req, res) => {
   try {
-    const baiTap = await BaiTapSinhVien.find({trangThai:1});
+    const baiTap = await BaiTapSinhVien.find({ trangThai: 1 });
     res.json(baiTap);
   } catch (error) {
     res.json(error);
   }
 })
 ///BT THEO MHP
-_router.get("/:maSinhVien/:maBaiTap/baitap", async (req, res) => {
+_router.get("/:email/:maBaiTap/baitap", async (req, res) => {
   try {
-    const baiTap = await BaiTapSinhVien.find({maSinhVien:req.params.maSinhVien,maBaiTap:req.params.maBaiTap});
+    console.log(req.params)
+    const baiTap = await BaiTapSinhVien.find({ email: req.params.email, maBaiTap: req.params.maBaiTap, trangThai: 1 });
     res.json(baiTap);
   } catch (error) {
     res.json(error);
@@ -57,35 +73,19 @@ _router.get("/:maSinhVien/:maBaiTap/baitap", async (req, res) => {
 
 // Add BaiTap
 _router.post("/", async (req, res) => {
-  let baitap = req.body;
-  let nextNumber = 1;
-  //get NextNumber
-  await BaiTapSinhVien.findOne({}, {}, { sort: { ngayTao: -1 } })
-    .exec()
-    .then((bt) => {
-      if (bt !== null) {
-        nextNumber = bt.maBaiTap + 1;
-      }
-    });
-
-    BaiTapSinhVien.maBaiTap = nextNumber;
-  const newBaiTap = new BaiTapSinhVien(baitap);
-  await newBaiTap
-    .save()
-    .then(() => {
-      return res.status(200).json({ status: 200, message: "Them thanh cong" });
-    })
-    .catch((err) => {
-      return res.status(501).json({
-        status: 501,
-        message: err,
-      });
-    });
+  try {
+    const bt = new BaiTapSinhVien(req.body);
+    var data = await bt.save();
+    res.status(201).json({ data });
+  } catch (error) {
+    res.json(error)
+  }
 });
+
 //xoa bt
 _router.put('/:id/xoabaitap', async (req, res) => {
   try {
-    var data = await BaiTapSinhVien.findByIdAndUpdate(req.params.id, {trangThai: 0 }, req.params.idoptions, req.params.id.callback)
+    var data = await BaiTapSinhVien.findByIdAndUpdate(req.params.id, { trangThai: 0 }, req.params.idoptions, req.params.id.callback)
     res.json(data);
   } catch (error) {
     res.json({ message: error });

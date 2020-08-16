@@ -1,8 +1,6 @@
 <app-modal class="modal_chucnang__wrapper" id="cntt_quanlyloaibaiviet">
-  <div
-    (click)="closeModal('cntt_quanlyloaibaiviet')"
-    class="modal_chucnang__close mdi mdi-chevron-left text-white"
-  ></div>
+  <div (click)="closeModal('cntt_quanlyloaibaiviet')" class="modal_chucnang__close mdi mdi-chevron-left text-white">
+  </div>
   <div class="container-fluid mt-3">
     <div class="row">
       <div class="col-12">
@@ -15,61 +13,46 @@
               <div class="col-4">
                 <div class="form-group">
                   <label>Tên loại bài viết</label>
-                  <input
-                    formControlName="tenLoaiBaiViet"
-                    type="text"
-                    class="form-control"
-                    placeholder="Nhập tên loại bài viết mới"
-                  />
+                  <input formControlName="tenLoaiBaiViet" type="text" class="form-control"
+                    placeholder="Nhập tên loại bài viết mới" />
+                  <div *ngIf="
+                    tenLoaiBaiViet.invalid &&
+                    (tenLoaiBaiViet.dirty || tenLoaiBaiViet.touched)
+                  " class="alert alert-danger">
+                    <div *ngIf="tenLoaiBaiViet.errors.required">
+                      Nhập tên Loại bài viết mới.
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="col-4">
                 <div class="form-group">
                   <label>Tên viết tắt</label>
-                  <input
-                    formControlName="tenVietTat"
-                    type="text"
-                    class="form-control"
-                    placeholder="Nhập tên viết tắt mới"
-                  />
+                  <input formControlName="tenVietTat" type="text" class="form-control"
+                    placeholder="Nhập tên viết tắt mới" />
+                    <div *ngIf="
+                    tenVietTat.invalid &&
+                    (tenVietTat.dirty || tenVietTat.touched)
+                  " class="alert alert-danger">
+                    <div *ngIf="tenVietTat.errors.required">
+                      Nhập tên viết tắt.
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="col-auto">
-                <button
-                  [ngClass]="{ 'd-none': !hideButtonChinhSua }"
-                  [disabled]="!loaiBaiVietForm.valid"
-                  (click)="onThemLoaiBaiViet()"
-                  class="btn btn-outline-primary px-4 mx-2"
-                >
-                  <img
-                    class="modal_chucnang__button__icon mb-2"
-                    src="assets/img/icons/add.png"
-                    alt="image icon"
-                  />
+                <button [ngClass]="{ 'd-none': !hideButtonChinhSua }" [disabled]="!loaiBaiVietForm.valid"
+                  (click)="onThemLoaiBaiViet()" class="btn btn-outline-primary px-4 mx-2">
+                  <img class="modal_chucnang__button__icon mb-2" src="assets/img/icons/add.png" alt="image icon" />
                   <div>Thêm mới</div>
                 </button>
-                <button
-                  (click)="onSuaLoaiBaiViet()"
-                  [ngClass]="{ 'd-none': hideButtonChinhSua }"
-                  class="btn btn-outline-danger px-4 mx-2"
-                >
-                  <img
-                    class="modal_chucnang__button__icon mb-2"
-                    src="assets/img/icons/upgrade.png"
-                    alt="image icon"
-                  />
+                <button (click)="onSuaLoaiBaiViet()" [ngClass]="{ 'd-none': hideButtonChinhSua }"
+                  class="btn btn-outline-danger px-4 mx-2">
+                  <img class="modal_chucnang__button__icon mb-2" src="assets/img/icons/upgrade.png" alt="image icon" />
                   <div>Lưu chỉnh sửa</div>
                 </button>
-                <button
-                  (click)="onResetFormValue()"
-                  type="reset"
-                  class="btn btn-outline-dark px-4 mx-2"
-                >
-                  <img
-                    class="modal_chucnang__button__icon mb-2"
-                    src="assets/img/icons/error.png"
-                    alt="image icon"
-                  />
+                <button (click)="onResetFormValue()" type="reset" class="btn btn-outline-dark px-4 mx-2">
+                  <img class="modal_chucnang__button__icon mb-2" src="assets/img/icons/error.png" alt="image icon" />
                   <div>Huỷ bỏ</div>
                 </button>
               </div>
@@ -84,20 +67,15 @@
           </h5>
           <section *ngIf="danhSachLoaiBaiViet.length > 0">
             <div class="d-flex align-items-center mb-2">
-              <label class="mb-0 d-flex align-items-center"
-                ><span class="text-nowrap">Hiển thị &nbsp;</span>
+              <label class="mb-0 d-flex align-items-center"><span class="text-nowrap">Hiển thị &nbsp;</span>
                 <select class="custom-select custom-select-sm form-control">
                   <option>10</option>
                   <option>25</option>
-                  <option>50</option> </select
-                ><span class="text-nowrap">&nbsp; hàng</span>
+                  <option>50</option>
+                </select><span class="text-nowrap">&nbsp; hàng</span>
               </label>
-              <label class="ml-auto mb-0 d-flex align-items-center"
-                ><span class="text-nowrap">Tìm kiếm: &nbsp;</span>
-                <input
-                  class="form-control form-control-sm"
-                  placeholder="Tìm kiếm"
-                />
+              <label class="ml-auto mb-0 d-flex align-items-center"><span class="text-nowrap">Tìm kiếm: &nbsp;</span>
+                <input class="form-control form-control-sm" placeholder="Tìm kiếm" />
               </label>
             </div>
             <table class="modal_chucnang__table table table-hover">
@@ -115,16 +93,10 @@
                   <td>{{ item.tenLoaiBaiViet }}</td>
                   <td>{{ item.tenVietTat }}</td>
                   <td class="text-center">
-                    <span
-                      title="Chỉnh sửa"
-                      (click)="getInfoLoaiBaiVietCanSua(item)"
-                      class="mx-1 modal_chucnang__button__edit mdi mdi-file-document-edit-outline mdi-24px"
-                    ></span>
-                    <span
-                      (click)="onXoaLoaiBaiViet(item.maLoaiBaiViet)"
-                      title="Xoá"
-                      class="mx-1 modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px"
-                    ></span>
+                    <span title="Chỉnh sửa" (click)="getInfoLoaiBaiVietCanSua(item)"
+                      class="mx-1 modal_chucnang__button__edit mdi mdi-file-document-edit-outline mdi-24px"></span>
+                    <span (click)="onXoaLoaiBaiViet(item.maLoaiBaiViet)" title="Xoá"
+                      class="mx-1 modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px"></span>
                   </td>
                 </tr>
               </tbody>

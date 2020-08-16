@@ -8,7 +8,7 @@ const ChuDeSchema = new Schema({
 
   },
   maChuDe:{
-    type:String,
+    type:Number,
     required:true,
 
   },
@@ -18,7 +18,7 @@ const ChuDeSchema = new Schema({
 
   },
   maLopHocPhan:{
-    type:String,
+    type:Number,
     required:true,
   },
   trangThai:{

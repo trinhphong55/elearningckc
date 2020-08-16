@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { BaiTap } from '../interfaces/BaiTap.inteface';
+import { BaiTap } from '../models/BaiTap.inteface';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -14,7 +14,11 @@ const httpOptions = {
 export class BaiTapService {
 
   private baiTapURL = "https://localhost:4100/api/baitap";
-
+  private dsBTURL="https://localhost:4100/api/baitap/baitap/ds";
+  
+  public layTatCa() {
+    return this.http.get(`${this.dsBTURL}`);
+  }
   addBaiTap(baitap: BaiTap): Observable<any> {
     return this.http.post<any>(this.baiTapURL, baitap, httpOptions);
   }

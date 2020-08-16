@@ -118,7 +118,7 @@
                 <label class="font-weight-bold text-dark text-2 required">Đợt thi</label>
                 <select class="form-control ttth__select2" #lophoc>
                   <ng-container *ngFor="let item of DotThi">
-                    <option value="{{item.lophoc}}">{{item.tendot}} - {{item.lophoc}} - {{item.ngaythi | date:'dd/MM/yyyy'}}</option>
+                    <option value="{{item.tendot}} - {{item.ngaythi | date:'dd/MM/yyyy'}} - {{item.giothi}} - {{item.phongthi}}">{{item.tendot}} - {{item.ngaythi | date:'dd/MM/yyyy'}} - {{item.giothi}} - {{item.phongthi}}</option>
                   </ng-container>
                 </select>
             </div>

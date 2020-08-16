@@ -1,16 +1,13 @@
 <div class="container-fluid mt-5">
-  <div class="row" style="border-bottom:solid 0.5px black;padding-bottom: 20px;">
-    <div class="col-2">
+  <div class="row style-magintop" style="border-bottom:solid 0.5px black;padding-bottom: 20px;">
+    <div class="col-md-6 mt-3">
       <div mat-dialog-actions>
         <button mat-button mat-dialog-close><i class="fas fa-times"></i></button>
-        <span style="margin-left: 5px;">Bài giảng</span>
+        <span style="margin-left: 5px;" class="style-none">Bài giảng</span>
       </div>
 
     </div>
-    <div class="col-8">
-
-    </div>
-    <div class="col-2">
+    <div class="col-md-6 mt-3">
       <div>
         <button mat-button (click)="onClickThem()">Đăng</button>
         <button mat-button [matMenuTriggerFor]="menu"><i class="fas fa-angle-down"></i></button>

@@ -1,392 +1,52 @@
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-md-12 luong">
-            <div class="row">
-                <div class="col-md-12 luong-title">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="name-classrom">
-                                <h3>{{data}}</h3>
-                            </div>
-                            <div class="soluong">
-                                <span>2</span>
-                            </div>
-                            <div class="malop">
-                                <p>Mã lớp <span>kunhuy</span><button mat-button>chỉnh sửa</button></p>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                        </div>
-                        <div class="col-md-3 right-chude">
-                        </div>
-                    </div>
-                </div>
+  <div class="row">
+    <div class="col-md-12 luong">
+      <div class="row">
+        <div class="col-md-12 luong-title">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="name-classrom">
+                <h3>{{tenLHP}}</h3>
+              </div>
+              <div class="soluong">
+                <span>Số lượng sinh viên: {{soLuongSV}}</span>
+              </div>
+              <!-- <div class="malop">
+                <p>Mã lớp <span>kunhuy</span><button mat-button>chỉnh sửa</button></p>
+              </div> -->
             </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <mat-card class="example-card">
-                        <mat-card-header>
-                            <mat-card-title>Sắp hết hạn</mat-card-title>
-                        </mat-card-header>
-                        <mat-card-content>
-                            <p>
-                                Hên quá không có bài tập sắp hết hạn
-                            </p>
-                        </mat-card-content>
-                        <mat-card-actions>
-                            <button mat-button>Xem tất cả</button>
-                        </mat-card-actions>
-                    </mat-card>
-                </div>
-                <div class="col-md-8">
-                    <div class="row">
-                        <div class="col-md-12 chise">
-                            <mat-card class="example-card style-mat-card">
-                                <mat-card-header>
-                                    <button mat-raised-button (click)="openDialog()">
-                                        <div mat-card-avatar class="example-header-image"><span class="chiasetext">Chia
-                                                sẻ đôi điều với lớp học...</span> </div>
-                                    </button>
-                                </mat-card-header>
-                            </mat-card>
-
-                        </div>
-                        <div class="col-md-12 chise">
-                            <div class="row row-comment">
-                                <div class="content-gv">
-                                    <div class="thongtin" [routerLink]="'/xembaitapgv'">
-                                        <div class="tt-icon">
-                                            <div>
-                                                <i class="far fa-calendar-minus"></i>
-                                            </div>
-    
-                                        </div>
-                                        <div class="tt-client">
-                                            <div>
-                                                Huy Nguyễn đã đăng 1 bài tập mới : Bài tập 1
-                                            </div>
-                                        </div>
-                                        <div class="tt-dealine">
-                                            <div>
-                                                đến hạn:23:59, 27 thg 7 2020
-                                            </div>
-                                        </div>
-                                        <div class="tt-menu">
-                                            <button mat-button [matMenuTriggerFor]="menu"><i
-                                                    class="fas fa-ellipsis-v"></i></button>
-                                            <mat-menu #menu="matMenu">
-                                                <button mat-menu-item >Item 1</button>
-                                                <button mat-menu-item>Item 2</button>
-                                            </mat-menu>
-                                        </div>
-                                    </div>
-                                    <div class="nhanxet">
-                                        <div class="nx-main">
-                                            <div class="nx-number">
-                                                <button mat-button>3 nhận xét về lớp học</button>
-                                            </div>
-                                            <div class="nx-show">
-                                                <div class="nx-showimg">
-                                                    <div>
-                                                        <img class="gb_Ka gbii"
-                                                            src="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo"
-                                                            srcset="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo 1x, https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s64-c-mo 2x "
-                                                            alt="" aria-hidden="true" data-noaft="">
-                                                    </div>
-                                                </div>
-                                                <div class="nx-showname">
-                                                    <h6>Huy Nguyễn <span>13:30</span></h6>
-                                                    <p>oke e ơi</p>
-                                                </div>
-                                                <div class="nx-menu">
-                                                    <button mat-button [matMenuTriggerFor]="menunx"><i
-                                                            class="fas fa-ellipsis-v"></i></button>
-                                                    <mat-menu #menunx="matMenu">
-                                                        <button mat-menu-item>Chỉnh sửa</button>
-                                                        <button mat-menu-item>Xóa</button>
-                                                    </mat-menu>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="comment">
-                                        <div class="cm-main">
-                                            <div class="cm-show">
-                                                <div class="cm-showimg">
-                                                    <div><img class="gb_Ka gbii"
-                                                            src="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo"
-                                                            srcset="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo 1x, https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s64-c-mo 2x "
-                                                            alt="" aria-hidden="true" data-noaft="">
-    
-                                                    </div>
-                                                </div>
-                                                <div class="cm-showcomment">
-                                                    <form>
-                                                        <div class="input-container">
-                                                            <button type="submit" class="btn"><i
-                                                                    class="fas fa-paper-plane"></i></button>
-                                                            <input class="input-field" type="text"
-                                                                placeholder="Thêm nhập xét của lớp học" name="usrnm">
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="content-gv ">
-                                    <div class="thongtin" [routerLink]="'/xembaigianggv'">
-                                        <div class="tt-icon">
-                                            <div>
-                                                <i class="far fa-calendar-minus"></i>
-                                            </div>
-    
-                                        </div>
-                                        <div class="tt-client">
-                                            <div>
-                                                Huy Nguyễn đã đăng 1 bai giảng mới
-                                            </div>
-                                        </div>
-                                        <div class="tt-dealine">
-                                            <div>
-                                                ngày đăng 30 thg 1 2020
-                                            </div>
-                                        </div>
-                                        <div class="tt-menu">
-                                            <button mat-button [matMenuTriggerFor]="menu"><i
-                                                    class="fas fa-ellipsis-v"></i></button>
-                                            <mat-menu #menu="matMenu">
-                                                <button mat-menu-item >Item 1</button>
-                                                <button mat-menu-item>Item 2</button>
-                                            </mat-menu>
-                                        </div>
-                                    </div>
-                                    <div class="nhanxet">
-                                        <div class="nx-main">
-                                            <div class="nx-number">
-                                                <button mat-button>3 nhận xét về lớp học</button>
-                                            </div>
-                                            <div class="nx-show">
-                                                <div class="nx-showimg">
-                                                    <div>
-                                                        <img class="gb_Ka gbii"
-                                                            src="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo"
-                                                            srcset="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo 1x, https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s64-c-mo 2x "
-                                                            alt="" aria-hidden="true" data-noaft="">
-                                                    </div>
-                                                </div>
-                                                <div class="nx-showname">
-                                                    <h6>Huy Nguyễn <span>13:30</span></h6>
-                                                    <p>oke e ơi</p>
-                                                </div>
-                                                <div class="nx-menu">
-                                                    <button mat-button [matMenuTriggerFor]="menunx"><i
-                                                            class="fas fa-ellipsis-v"></i></button>
-                                                    <mat-menu #menunx="matMenu">
-                                                        <button mat-menu-item>Chỉnh sửa</button>
-                                                        <button mat-menu-item>Xóa</button>
-                                                    </mat-menu>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="comment">
-                                        <div class="cm-main">
-                                            <div class="cm-show">
-                                                <div class="cm-showimg">
-                                                    <div><img class="gb_Ka gbii"
-                                                            src="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo"
-                                                            srcset="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo 1x, https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s64-c-mo 2x "
-                                                            alt="" aria-hidden="true" data-noaft="">
-    
-                                                    </div>
-                                                </div>
-                                                <div class="cm-showcomment">
-                                                    <form>
-                                                        <div class="input-container">
-                                                            <button type="submit" class="btn"><i
-                                                                    class="fas fa-paper-plane"></i></button>
-                                                            <input class="input-field" type="text"
-                                                                placeholder="Thêm nhập xét của lớp học" name="usrnm">
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12 chise">
-                            <div class="row row-comment">
-                                <div class="content-sv">
-                                    <div class="thongtin" [routerLink]="'/xembaitapsv'">
-                                        <div class="tt-icon">
-                                            <div>
-                                                <i class="far fa-calendar-minus"></i>
-                                            </div>
-    
-                                        </div>
-                                        <div class="tt-client">
-                                            <div>
-                                                Huy Nguyễn đã đăng 1 bài tập mới : Bài tập 1
-                                            </div>
-                                        </div>
-                                        <div class="tt-dealine">
-                                            <div>
-                                                đến hạn:23:59, 27 thg 7 2020
-                                            </div>
-                                        </div>
-                                        <div class="tt-menu">
-                                            <button mat-button [matMenuTriggerFor]="menu"><i
-                                                    class="fas fa-ellipsis-v"></i></button>
-                                            <mat-menu #menu="matMenu">
-                                                <button mat-menu-item >Item 1</button>
-                                                <button mat-menu-item>Item 2</button>
-                                            </mat-menu>
-                                        </div>
-                                    </div>
-                                    <div class="nhanxet">
-                                        <div class="nx-main">
-                                            <div class="nx-number">
-                                                <button mat-button>3 nhận xét về lớp học</button>
-                                            </div>
-                                            <div class="nx-show">
-                                                <div class="nx-showimg">
-                                                    <div>
-                                                        <img class="gb_Ka gbii"
-                                                            src="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo"
-                                                            srcset="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo 1x, https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s64-c-mo 2x "
-                                                            alt="" aria-hidden="true" data-noaft="">
-                                                    </div>
-                                                </div>
-                                                <div class="nx-showname">
-                                                    <h6>Huy Nguyễn <span>13:30</span></h6>
-                                                    <p>oke e ơi</p>
-                                                </div>
-                                                <div class="nx-menu">
-                                                    <button mat-button [matMenuTriggerFor]="menunx"><i
-                                                            class="fas fa-ellipsis-v"></i></button>
-                                                    <mat-menu #menunx="matMenu">
-                                                        <button mat-menu-item>Chỉnh sửa</button>
-                                                        <button mat-menu-item>Xóa</button>
-                                                    </mat-menu>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="comment">
-                                        <div class="cm-main">
-                                            <div class="cm-show">
-                                                <div class="cm-showimg">
-                                                    <div><img class="gb_Ka gbii"
-                                                            src="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo"
-                                                            srcset="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo 1x, https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s64-c-mo 2x "
-                                                            alt="" aria-hidden="true" data-noaft="">
-    
-                                                    </div>
-                                                </div>
-                                                <div class="cm-showcomment">
-                                                    <form>
-                                                        <div class="input-container">
-                                                            <button type="submit" class="btn"><i
-                                                                    class="fas fa-paper-plane"></i></button>
-                                                            <input class="input-field" type="text"
-                                                                placeholder="Thêm nhập xét của lớp học" name="usrnm">
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="content-sv ">
-                                    <div class="thongtin" [routerLink]="'/xembaigiangsv'">
-                                        <div class="tt-icon">
-                                            <div>
-                                                <i class="far fa-calendar-minus"></i>
-                                            </div>
-    
-                                        </div>
-                                        <div class="tt-client">
-                                            <div>
-                                                Huy Nguyễn đã đăng 1 tài liệu mới
-                                            </div>
-                                        </div>
-                                        <div class="tt-dealine">
-                                            <div>
-                                                ngày đăng 30 thg 1 2020
-                                            </div>
-                                        </div>
-                                        <div class="tt-menu">
-                                            <button mat-button [matMenuTriggerFor]="menu"><i
-                                                    class="fas fa-ellipsis-v"></i></button>
-                                            <mat-menu #menu="matMenu">
-                                                <button mat-menu-item >Item 1</button>
-                                                <button mat-menu-item>Item 2</button>
-                                            </mat-menu>
-                                        </div>
-                                    </div>
-                                    <div class="nhanxet">
-                                        <div class="nx-main">
-                                            <div class="nx-number">
-                                                <button mat-button>3 nhận xét về lớp học</button>
-                                            </div>
-                                            <div class="nx-show">
-                                                <div class="nx-showimg">
-                                                    <div>
-                                                        <img class="gb_Ka gbii"
-                                                            src="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo"
-                                                            srcset="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo 1x, https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s64-c-mo 2x "
-                                                            alt="" aria-hidden="true" data-noaft="">
-                                                    </div>
-                                                </div>
-                                                <div class="nx-showname">
-                                                    <h6>Huy Nguyễn <span>13:30</span></h6>
-                                                    <p>oke e ơi</p>
-                                                </div>
-                                                <div class="nx-menu">
-                                                    <button mat-button [matMenuTriggerFor]="menunx"><i
-                                                            class="fas fa-ellipsis-v"></i></button>
-                                                    <mat-menu #menunx="matMenu">
-                                                        <button mat-menu-item>Chỉnh sửa</button>
-                                                        <button mat-menu-item>Xóa</button>
-                                                    </mat-menu>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="comment">
-                                        <div class="cm-main">
-                                            <div class="cm-show">
-                                                <div class="cm-showimg">
-                                                    <div><img class="gb_Ka gbii"
-                                                            src="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo"
-                                                            srcset="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo 1x, https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s64-c-mo 2x "
-                                                            alt="" aria-hidden="true" data-noaft="">
-    
-                                                    </div>
-                                                </div>
-                                                <div class="cm-showcomment">
-                                                    <form>
-                                                        <div class="input-container">
-                                                            <button type="submit" class="btn"><i
-                                                                    class="fas fa-paper-plane"></i></button>
-                                                            <input class="input-field" type="text"
-                                                                placeholder="Thêm nhập xét của lớp học" name="usrnm">
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+          </div>
         </div>
+      </div>
+      <!-- List thông báo scroll -->
     </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 chise">
+      <div class="scrollable">
+        <div class="row row-comment" *ngFor="let activity of dsActivity">
+          <div class="content-gv">
+            <a class=" thongtin" [routerLink]="[activity.route]">
+              <div class="tt-icon">
+                <div>
+                  <i class="far fa-calendar-minus"></i>
+                </div>
+              </div>
+              <div class="tt-client">
+                <div>
+                  {{activity.noiDung}}
+                </div>
+              </div>
+              <div class="tt-dealine">
+                <div>
+                  {{activity.ngayTao | date:'dd-MM-yyyy'}}
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </div>

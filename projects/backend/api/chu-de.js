@@ -1,4 +1,5 @@
 const chuDeModel = require("../models/chu-de.model");
+const baiGiangModel = require("../models/bai-giang.model");
 
 setChuDe = (req) => {
   return {
@@ -35,7 +36,7 @@ exports.them = async (req, res) => {
 
 exports.layMot = async(req, res) => {
   try {
-    const chuDes = await chuDeModel.findOne({ maChuDe:req.params.maChuDe });
+    const chuDes = await chuDeModel.findOne({ maChuDe:req.params.maChuDe, trangThai:1 });
     return res.json({data: chuDes, message: "Lấy thành công", status: 200 });
   } catch (error) {
     res.json(error);
@@ -43,9 +44,28 @@ exports.layMot = async(req, res) => {
 }
 exports.layTheo_MaLHP = async (req, res) => {
   try {
-    const chuDes = await chuDeModel.find({ maLopHocPhan:req.params.maLopHocPhan });
+    const chuDes = await chuDeModel.find({ maLopHocPhan:req.params.maLopHocPhan, trangThai:1 });
     return res.json({count:chuDes.length,data: chuDes, message: "Lấy thành công", status: 200 });
   } catch (error) {
     res.json(error);
+  }
+}
+exports.xoaTheo_maChuDe = async (req, res) => {
+  try {
+    const findBaiGiang = await baiGiangModel.findOne({maChuDe: req.params.maChuDe , trangThai:1});
+    if(findBaiGiang){
+      return res.json({message: 'Có chứa bài giàng không thể xóa', status:200});
+    }
+    const chuDe = await chuDeModel.updateOne(
+      { maChuDe: req.params.maChuDe, trangThai:1 },
+      { $set: { trangThai: 0 } }
+    );
+
+    if(chuDe.nModified == 0){
+      return res.json({message: 'Xóa thất bại', status:200})
+    }
+    res.json({message: 'Xóa thành công ', status:200})
+  } catch (error) {
+
   }
 }

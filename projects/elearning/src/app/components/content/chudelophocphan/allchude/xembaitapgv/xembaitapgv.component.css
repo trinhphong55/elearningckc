@@ -7,7 +7,6 @@
 .title-icon{
     width: 100%;
     display: flex;
-    flex-wrap: wrap; 
     color: #007b83;
     border-bottom: 1.5px solid #007b83;
 }
@@ -35,7 +34,6 @@
 .content .thongtin{
     width: 100%;
     display: flex;
-    flex-wrap: wrap;
     border-bottom: solid 1px #e0e0e0;
     cursor: pointer;
     padding-bottom: 10px;
@@ -157,7 +155,6 @@
 .nhanxet .nx-show{
     width: 100%;
     display: flex;
-    flex-wrap: wrap;
 }
 .nhanxet .nx-show .nx-showimg{
     width: 10%;
@@ -366,5 +363,42 @@
         margin-left: -10px;
         padding-top: 00px;
         margin-top: 27px;
+    }
+    .thongtin .tt-icon {
+        width: 20%;
+    }
+    .thongtin .tt-client {
+        width: 40%;
+    }
+    .thongtin .tt-client div {
+        width: 150px;
+    }
+    .thongtin .tt-dealine {
+        width: 22%;
+    }
+    .thongtin .tt-dealine div {
+        font-size: 0.585rem;
+        padding-top: 20px;
+        padding-left: 15px;
+    }
+    .nhanxet .nx-show .nx-showimg{
+        width: 20%;
+    }
+    .nhanxet .nx-show .nx-showimg div {
+        width: 60%;
+        margin: 0 auto;
+    }
+    .nhanxet .nx-show .nx-showname{
+        width: 62.2%;
+    }
+    .comment .cm-show .cm-showimg {
+        width: 20%;
+    }
+    .comment .cm-show .cm-showimg div {
+        width: 60%;
+        margin: 0 auto;
+    }
+    .comment .cm-show .cm-showcomment {
+        width: 75%;
     }
   }

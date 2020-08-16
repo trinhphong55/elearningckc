@@ -12,19 +12,19 @@
     color: white;
     padding-top: 5px;
     padding-bottom: 5px;
-    
+
 }
  .row .col-md-4 button i{
     padding-right: 10px;
 }
  .row .col-md-4 button:hover{
-    
+
     box-shadow: 4px 4px 4px 4px rgba(66, 120, 129, 0.8);
-    
+
 }
 
  .row .col-md-8 a{
-    padding: 20px;
+    padding-right: 20px;
     color: #007b83;
     font-weight: 500;
 }
@@ -42,9 +42,9 @@ button{
     margin-left: 8px;
   }
   .mat-expansion-panel-header-title, .mat-expansion-panel-header-description {
- 
+
     padding-top: 10px;
-  
+
 }
 .mat-expansion-panel-header-title i{
     padding: 5px;
@@ -87,7 +87,7 @@ button{
 .title-icon{
     width: 100%;
     display: flex;
-    flex-wrap: wrap; 
+    flex-wrap: wrap;
     color: #007b83;
     border-bottom: 1.5px solid #007b83;
 }
@@ -112,7 +112,7 @@ button{
 .content-gv{
     padding: 24px;
     color: #007b83;
-   
+
 }
 .content-gv:hover{
     box-shadow: 0px 4px 4px 0px rgba(66, 120, 129, 0.8);
@@ -126,7 +126,7 @@ button{
 }
 
  .content .left{
-    width: 91.5%;
+    width: 89%;
 }
 .content .left .title{
     padding-left: 10px;
@@ -137,7 +137,7 @@ button{
 .content-sv{
     padding: 24px;
     color: #129eaf;
-   
+
 }
 .content-sv .content{
     width: 100%;
@@ -202,7 +202,7 @@ button{
         padding-top: 5px;
         padding-bottom: 5px;
         margin-bottom: 10px;
-        
+
     }
     .row .col-md-8 a{
         margin-top: 10px;

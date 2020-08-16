@@ -19,23 +19,15 @@
                 <label for="ten">Tên</label>
                 <input type="text" name="ten" class="form-control" [(ngModel)]="ten" required>
               </div>
+            </div>
+            <div class="col-3">
               <div class="form-group">
                 <label for="ngaySinh">Ngày sinh</label>
                 <input type="text" name="ngaySinh" class="form-control" maxlength="10" [(ngModel)]="ngaySinh">
               </div>
-            </div>
-            <div class="col-3">
               <div class="form-group">
                 <label for="cmnd">CMND</label>
                 <input type="text" name="cmnd" class="form-control" [(ngModel)]="cmnd" maxlength="9">
-              </div>
-              <div class="form-group">
-                <label for="diaChiThuongTru">Địa chỉ thường trú</label>
-                <input type="text" name="diaChiThuongTru" class="form-control" [(ngModel)]="diaChiThuongTru">
-              </div>
-              <div class="form-group">
-                <label for="soDienThoai">Số điện thoại</label>
-                <input type="tel" name="soDienThoai" class="form-control" [(ngModel)]="sdt" maxlength="10">
               </div>
             </div>
             <div class="col-3">
@@ -44,20 +36,26 @@
                 <input type="text" name="email" class="form-control" [(ngModel)]="email">
               </div>
               <div class="form-group">
-                <label>Bộ môn</label>
-                <select class="form-control" name="maBoMon" [(ngModel)]="selectedMaBoMon">
-                  <option [value]="06">Bộ môn tin học</option>
-                  <option [value]="07">Bộ môn kế toán</option>
-                </select>
+                <label for="sdt">Số điện thoại</label>
+                <input type="tel" name="sdt" class="form-control" [(ngModel)]="sdt" maxlength="10">
               </div>
+              <!-- <div class="form-group">
+                <label>Bộ môn</label>
+                <select class="form-control" #boMon>
+                  <option *ngFor="let boMon of dsBoMon" [value]="boMon.maBoMon">{{ boMon.tenBoMon }}</option>
+                </select>
+              </div> -->
             </div>
             <div class="col-3">
-              <div class="form-group">
+              <!-- <div class="form-group">
                 <label for="maGiaoVien">Mã giáo viên</label>
                 <div class="d-flex align-items-center">
                   <input name="maGiaoVien" class="form-control" readonly [(ngModel)]='maGV' required>
-                  <!-- <div class="mdi mdi-reload mdi-24px ml-2"></div> -->
                 </div>
+              </div> -->
+              <div class="form-group">
+                <label for="diaChiThuongTru">Địa chỉ thường trú</label>
+                <input type="text" name="diaChiThuongTru" class="form-control" [(ngModel)]="diaChiThuongTru">
               </div>
               <div class="form-group">
                 <label>Trình độ chuyên môn</label>
@@ -98,22 +96,37 @@
       <div class="col-12">
         <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
           <div class="d-flex align-items-center mb-2">
-            <label class="mb-0 d-flex align-items-center"><span class="text-nowrap">Hiển thị &nbsp;</span>
+            <!-- <label class="mb-0 d-flex align-items-center"><span class="text-nowrap">Hiển thị &nbsp;</span>
               <select class="custom-select custom-select-sm form-control">
                 <option>10</option>
                 <option>25</option>
                 <option>50</option>
               </select><span class="text-nowrap">&nbsp; hàng</span>
+            </label> -->
+            <label class="mb-0 d-flex align-items-center"><span class="text-nowrap">Trạng thái &nbsp;</span>
+              <select class="form-control" [(ngModel)]="trangThai" (change)="changeTrangThai()">
+                <option value="1">Mặc định</option>
+                <option value="0">Đã xóa</option>
+              </select>
             </label>
-            <label class="ml-auto mb-0 d-flex align-items-center"><span class="text-nowrap">Bộ lọc: &nbsp;</span>
-              <input class="form-control form-control-sm" placeholder="Nhập từ khoá...">
+            <label class="ml-auto mb-0 d-flex align-items-center"><span class="text-nowrap">Tìm kiếm: &nbsp;</span>
+              <input class="form-control form-control-sm" placeholder="Nhập từ khóa ..."  [(ngModel)]="textSearch">
             </label>
           </div>
           <div class="modal_chucnang__table__giaovien table-responsive">
             <table class="modal_chucnang__table table table-hover" id="danhsach_giaovien">
               <thead class="bg__caothang text-white">
-                <th class="text-center" scope="col"><span
-                    class="modal_chucnang__button__save mdi mdi-content-save-outline mdi-24px"></span></th>
+                <th class="text-center" scope="col">
+                  <span role="button" (click)="layDanhSachGiaoVien()" title="Cập lại nhật danh sách giáo viên">
+                    <svg width="24" height="24" viewBox="0 0 16 16" class="bi bi-arrow-repeat" fill="currentColor"
+                      xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd"
+                        d="M2.854 7.146a.5.5 0 0 0-.708 0l-2 2a.5.5 0 1 0 .708.708L2.5 8.207l1.646 1.647a.5.5 0 0 0 .708-.708l-2-2zm13-1a.5.5 0 0 0-.708 0L13.5 7.793l-1.646-1.647a.5.5 0 0 0-.708.708l2 2a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0 0-.708z" />
+                      <path fill-rule="evenodd"
+                        d="M8 3a4.995 4.995 0 0 0-4.192 2.273.5.5 0 0 1-.837-.546A6 6 0 0 1 14 8a.5.5 0 0 1-1.001 0 5 5 0 0 0-5-5zM2.5 7.5A.5.5 0 0 1 3 8a5 5 0 0 0 9.192 2.727.5.5 0 1 1 .837.546A6 6 0 0 1 2 8a.5.5 0 0 1 .501-.5z" />
+                    </svg>
+                  </span>
+                </th>
                 <th class="text-center" scope="col">Mã GV</th>
                 <th scope="col">Họ</th>
                 <th scope="col">Tên</th>
@@ -122,17 +135,35 @@
                 <th scope="col">CMND</th>
                 <th scope="col">Số điện thoại</th>
                 <th scope="col">Bộ môn</th>
-                <!-- <th scope="col">Chức vụ</th>
-                <th scope="col">Đơn vị</th> -->
                 <th scope="col">Trình độ</th>
                 <th scope="col">Địa chỉ </th>
+                <th scope="col">Danh sách lớp giảng dạy</th>
               </thead>
               <tbody>
-                <tr *ngFor="let giaoVien of danhSachGiaoVien">
-                  <td class="text-center">
+                <tr *ngFor="let giaoVien of danhSachGiaoVien | filter:textSearch">
+                  <!-- <td class="text-center">
                     <span (click)="layThongTinGiaoVien(giaoVien.maGiaoVien)" class="modal_chucnang__button__edit mdi mdi-file-document-edit-outline mdi-24px"></span>
                     <span (click)="xoaGiaoVien(giaoVien.maGiaoVien)"class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px"></span>
-                  </td>
+                  </td> -->
+                  <ng-template [ngIf]="trangThai == 0" [ngIfElse]="deleted">
+                    <td class="text-center">
+                      <span title="Phục hồi" role="button" (click)="restoreGiaoVien(giaoVien.maGiaoVien)">
+                        <svg width="24" height="24" viewBox="0 0 16 16" class="bi bi-arrow-counterclockwise"
+                          fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd"
+                            d="M12.83 6.706a5 5 0 0 0-7.103-3.16.5.5 0 1 1-.454-.892A6 6 0 1 1 2.545 5.5a.5.5 0 1 1 .91.417 5 5 0 1 0 9.375.789z" />
+                          <path fill-rule="evenodd"
+                            d="M7.854.146a.5.5 0 0 0-.708 0l-2.5 2.5a.5.5 0 0 0 0 .708l2.5 2.5a.5.5 0 1 0 .708-.708L5.707 3 7.854.854a.5.5 0 0 0 0-.708z" />
+                        </svg>
+                      </span>
+                    </td>
+                  </ng-template>
+                  <ng-template #deleted>
+                    <td class="text-center">
+                      <span (click)="layThongTinGiaoVien(giaoVien.maGiaoVien)" class="modal_chucnang__button__edit mdi mdi-file-document-edit-outline mdi-24px"></span>
+                      <span (click)="xoaGiaoVien(giaoVien.maGiaoVien)"class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px"></span>
+                    </td>
+                  </ng-template>
                   <td class="text-muted text-center" style="min-width: 100px">{{giaoVien.maGiaoVien}}</td>
                   <td>
                     <input class="form-control" disabled value={{giaoVien.ho}}>
@@ -153,23 +184,23 @@
                     <input class="form-control" disabled value={{giaoVien.sdt}}>
                   </td>
                   <td>
-                    <input class="form-control" disabled value={{giaoVien.maBoMon}}>
-                  </td>
-                  <!-- <td>
-                    <select class="form-control" disabled>
-                      <option>Trưởng Khoa</option>
+                    <select class="form-control" #maBoMon (change)="changeBoMon(giaoVien.maGiaoVien, maBoMon.value)">
+                      <option value="null">Chưa có</option>
+                      <option [value]="boMon.maBoMon" *ngFor="let boMon of dsBoMon" [selected]="boMon.maBoMon === giaoVien.maBoMon">
+                        {{ boMon.tenBoMon }}
+                      </option>
                     </select>
                   </td>
-                  <td>
-                    <select class="form-control modal_chucnang__select2" disabled>
-                      <option>Khoa Công nghệ thông tin</option>
-                    </select>
-                  </td> -->
                   <td style="min-width: 150px">
-                    <input class="form-control" disabled value="Thạc sĩ">
+                    <input class="form-control" disabled value={{giaoVien.trinhDoChuyenMon}}>
                   </td>
                   <td>
                     <input class="form-control" disabled value={{giaoVien.diaChiThuongTru}}>
+                  </td>
+                  <td>
+                    <select class="form-control">
+                      <option *ngFor="let lhp of giaoVien.danhSachLopHocPhan">{{ lhp }}</option>
+                    </select>
                   </td>
                 </tr>
               </tbody>

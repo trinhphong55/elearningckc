@@ -5,7 +5,15 @@ const multer = require('multer')
 // get
 router.get('/', async (req, res) => {
   try {
-    const danhsach = await ttthlophoc.find({ trangthai: true }).sort({created_at: -1});
+    const danhsach = await ttthlophoc.find({ trangthai: {$ne:0} }).sort({created_at: -1});
+    res.json(danhsach);
+  } catch (error) {
+    res.json([]);
+  }
+})
+router.get('/list', async (req, res) => {
+  try {
+    const danhsach = await ttthlophoc.find().sort({created_at: -1});
     res.json(danhsach);
   } catch (error) {
     res.json([]);
@@ -16,12 +24,14 @@ router.post('/add', (req, res) => {
   var add = new ttthlophoc({
     makhoahoc: req.body.makhoahoc,
     dot: req.body.dot,
-    lop: req.body.lop,
+    tenlop: req.body.tenlop,
     buoihoc: req.body.buoihoc,
     giohoc: req.body.giohoc,
     ngaykhaigiang: req.body.ngaykhaigiang,
+    nam: req.body.nam,
     hocphi: req.body.hocphi,
     giaovien: req.body.giaovien,
+    nhapdiem: req.body.nhapdiem,
     trangthai: req.body.trangthai,
     nguoitao: req.body.nguoitao,
     nguoisua: req.body.nguoisua,
@@ -43,12 +53,14 @@ router.post('/update', async (req, res) => {
   }, {
     makhoahoc: req.body.makhoahoc,
     dot: req.body.dot,
-    lop: req.body.lop,
+    tenlop: req.body.tenlop,
     buoihoc: req.body.buoihoc,
     giohoc: req.body.giohoc,
     ngaykhaigiang: req.body.ngaykhaigiang,
+    nam: req.body.nam,
     hocphi: req.body.hocphi,
     giaovien: req.body.giaovien,
+    nhapdiem: req.body.nhapdiem,
     trangthai: req.body.trangthai,
     nguoitao: req.body.nguoitao,
     nguoisua: req.body.nguoisua,
@@ -61,7 +73,9 @@ router.post('/delete', async (req, res) => {
   await ttthlophoc.findOneAndUpdate({
     _id: req.body._id
   }, {
-    trangthai: false
+    nguoisua: req.body.nguoisua,
+    updated_at: req.body.updated_at,
+    trangthai: 0
   });
 })
 module.exports = router

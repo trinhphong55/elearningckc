@@ -4,6 +4,7 @@ export class ttthKhoaHoc {
   makhoahoc: String
   noidung: String
   color: String
+  nhapdiem: String
   trangthai: Boolean
   nguoitao: String
   nguoisua: String

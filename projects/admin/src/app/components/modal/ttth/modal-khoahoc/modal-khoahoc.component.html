@@ -8,37 +8,57 @@
       <div class="col-12" [ngClass]="{ 'd-none': selectedItem }">
         <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
           <div class="row justify-content-center align-items-center">
-            <div class="col-9">
+            <div class="col-auto">
               <div class="form-group">
                 <label>Tên khóa học</label>
                 <input type="text" class="form-control" #tenkhoahoc>
               </div>
               <div class="form-group">
-                <label for="exampleFormControlFile1">Tải hình ảnh</label>
-                <input type="file" name="image" class="form-control-file" (change)="onFileSelected($event)"
-                  ng2FileSelect [uploader]="uploader" accept="image/x-png,image/gif,image/jpeg">
-                  <img style="width:180px;height:180px" id="blah" [src]="imageSrc || 'http://placehold.it/180'"/>
-              </div>
-              <div class="form-group">
                 <label>Mã khóa học</label>
                 <input type="text" class="form-control" #makhoahoc>
               </div>
+            </div>
+              <div class="col-auto">
               <div class="form-group">
                 <label>Màu nền</label>
                 <input type="text" class="form-control" #color>
               </div>
               <div class="form-group">
-                <label>Nội dung</label>
-                <ckeditor [editor]="Editor" (change)="onChange($event)"></ckeditor>
+                <label>Nhập điểm</label>
+                <select class="form-control" #nhapdiem>
+                  <option value="Nhập riêng">Nhập riêng</option>
+                  <option value="Nhập chung">Nhập chung</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-auto">
+              <div class="form-group">
+                <label>Tải hình ảnh (128x128)</label>
+                  <div class="upload-btn-wrapper text-center">
+                    <div class="box-img bg-black">
+                      <img  [src]="imageSrc"/>
+                    </div>
+                    <input type="file" id="khoahoc" name="image" ng2FileSelect [uploader]="uploader" (change)="onFileSelected($event)"
+                      accept="image/x-png|image/gif|image/jpeg|image/jpg"/>
+                    <label for="khoahoc" class="btn btn-outline-dark btn-sm btn-block w-100 mb-0 mt-2">
+                      Chọn hình ảnh
+                    </label>
+                  </div>
               </div>
             </div>
             <div class="col-auto">
               <div class="modal_chucnang__group__button">
                 <button class="modal_chucnang__button btn btn-outline-primary px-4 mx-2" [disabled]="!tenkhoahoc.value || !makhoahoc.value || !color.value || !imageSrc"
-                  (click)="add(tenkhoahoc.value,makhoahoc.value,color.value);tenkhoahoc.value=''; makhoahoc.value=''; color.value='';uploader.uploadAll()"><img
+                  (click)="add(tenkhoahoc.value,makhoahoc.value,color.value,nhapdiem.value);tenkhoahoc.value=''; makhoahoc.value=''; color.value='';uploader.uploadAll()"><img
                     class="modal_chucnang__button__icon mb-2" src="assets/img/icons/add.png" alt="image icon">
                   <div>Thêm mới</div>
                 </button>
+              </div>
+            </div>
+            <div class="col-9">
+              <div class="form-group">
+                <label>Nội dung</label>
+                <ckeditor [editor]="Editor" (change)="onChange($event)"></ckeditor>
               </div>
             </div>
           </div>
@@ -47,29 +67,42 @@
       <div class="col-12" *ngIf="selectedItem">
         <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
           <div class="row justify-content-center align-items-center">
-            <div class="col-9">
+            <div class="col-auto">
               <div class="form-group">
                 <label>Tên khóa học</label>
                 <input type="text" class="form-control"  [(ngModel)]="selectedItem.tenkhoahoc">
               </div>
               <div class="form-group">
-                <label for="exampleFormControlFile1">Tải hình ảnh</label>
-                <input type="file" name="image" class="form-control-file" (change)="onFileSelected($event)"
-                ng2FileSelect [uploader]="uploader" accept="image/x-png,image/gif,image/jpeg">
-                <img style="width:180px;height:180px" id="blah" [src]="imageSrc || selectedItem.image"
-                alt="your image" />
-              </div>
-              <div class="form-group">
                 <label>Mã khóa học </label>
                 <input type="text" class="form-control"  [(ngModel)]="selectedItem.makhoahoc">
               </div>
+            </div>
+            <div class="col-auto">
               <div class="form-group">
                 <label>Màu nền</label>
                 <input type="text" class="form-control"  [(ngModel)]="selectedItem.color">
               </div>
               <div class="form-group">
-                <label>Nội dung</label>
-                <ckeditor [editor]="Editor" [(ngModel)]="selectedItem.noidung" ></ckeditor>
+                <label>Nhập điểm</label>
+                <select class="form-control" [(ngModel)]="selectedItem.nhapdiem">
+                  <option  value="Nhập riêng">Nhập riêng</option>
+                  <option  value="Nhập chung">Nhập chung</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-auto">
+              <div class="form-group">
+                <label>Tải hình ảnh (128x128)</label>
+                  <div class="upload-btn-wrapper text-center">
+                    <div class="box-img bg-black">
+                      <img  [src]="imageSrc || selectedItem.image"/>
+                    </div>
+                    <input type="file" id="khoahoc1" name="image" ng2FileSelect [uploader]="uploader" (change)="onFileSelected($event)"
+                      accept="image/x-png|image/gif|image/jpeg|image/jpg"/>
+                    <label for="khoahoc1" class="btn btn-outline-dark btn-sm btn-block w-100 mb-0 mt-2">
+                      Chọn hình ảnh
+                    </label>
+                  </div>
               </div>
             </div>
             <div class="col-auto">
@@ -86,6 +119,12 @@
               </button>
               </div>
             </div>
+            <div class="col-9">
+              <div class="form-group">
+                <label>Nội dung</label>
+                <ckeditor [editor]="Editor" [(ngModel)]="selectedItem.noidung" ></ckeditor>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -99,8 +138,10 @@
                 <th scope="col">Image</th>
                 <th scope="col">Mã khóa học</th>
                 <th scope="col">Màu nền</th>
+                <th scope="col">Nhập điểm</th>
                 <th scope="col">Người tạo</th>
                 <th scope="col">Người sửa</th>
+                <th scope="col">Trạng thái</th>
                 <th class="text-center" scope="col"><span
                     class="modal_chucnang__button__save mdi mdi-content-save-outline mdi-24px"></span></th>
               </tr>
@@ -110,13 +151,18 @@
                 <td style="max-width: 50px">{{i + 1}}</td>
                 <td>{{item.tenkhoahoc}}</td>
                 <td style="max-width: 100px">
-                  <img style="width: 60px;height: 60px;" src="{{item.image}}" alt="">
+                  <div class="box-img box-anhdaidien bg-black">
+                    <img src="{{item.image}}"/>
+                  </div>
                 </td>
                 <td>{{item.makhoahoc}}</td>
-                <td> <div [ngStyle]="{'width': '10px','height': '10px','background-color':item.color}"></div></td>
+                <td> <div height="100px" [style.background]="item.color">{{item.color}}</div></td>
+                <td>{{item.nhapdiem}}</td>
                 <td>{{item.nguoitao}}</td>
                 <td>{{item.nguoisua}}</td>
-                <td class="text-center">
+                <td *ngIf="item.trangthai==false">Đã xóa</td>
+                <td *ngIf="item.trangthai==true">Hiển thị</td>
+                <td class="text-center" *ngIf="item.trangthai==true">
                   <span class="modal_chucnang__button__delete mdi mdi-file-document-edit-outline  mdi-24px  mr-2"
                     (click)="onSelect(item);imageSrc=null"></span>
                   <span class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px" (click)="delete(item)"></span>

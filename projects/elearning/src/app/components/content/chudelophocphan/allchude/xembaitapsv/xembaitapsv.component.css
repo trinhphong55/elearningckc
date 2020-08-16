@@ -7,7 +7,6 @@
 .title-icon{
     width: 100%;
     display: flex;
-    flex-wrap: wrap; 
     color: #007b83;
     border-bottom: 1.5px solid #007b83;
 }
@@ -35,7 +34,6 @@
 .content .thongtin{
     width: 100%;
     display: flex;
-    flex-wrap: wrap;
     border-bottom: solid 1px #e0e0e0;
     cursor: pointer;
     padding-bottom: 10px;
@@ -374,5 +372,32 @@
         margin-left: -10px;
         padding-top: 00px;
         margin-top: 27px;
+    }
+    .title-icon .title {
+        width: 85%;
+    }
+    .thongtin .tt-icon {
+        width: 20%;
+    }
+    .thongtin .tt-client{
+        width: 40%;
+    }
+    .thongtin .tt-client div {
+        width: 130px;
+    }
+    .nhanxet .nx-show .nx-showimg {
+        width: 20%;
+    }
+    .thongtin .tt-dealine {
+        width: 22%;
+    }
+    .nhanxet .nx-show .nx-showname {
+        width: 62%;
+    }
+    .comment .cm-show .cm-showimg {
+        width: 20%;
+    }
+    .comment .cm-show .cm-showcomment {
+        width: 75%;
     }
   }

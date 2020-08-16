@@ -11,7 +11,7 @@ const httpOptions = {
 export class DotthiService {
 
   get(): Observable<any[]  >{
-    return this.http.get<any[] >('https://localhost:4100/api/ttthDotThi/').pipe(
+    return this.http.get<any[] >('https://localhost:4100/api/ttthDotThi/list').pipe(
       retry(1),
       catchError(error => of([]))
     );

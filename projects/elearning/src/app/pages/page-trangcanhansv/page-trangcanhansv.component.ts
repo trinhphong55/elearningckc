@@ -20,6 +20,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { LopHocPhan } from '../../models/lophocphan.interface';
 import { MonHoc } from '../../models/monhoc.interface';
+import { CookieService } from 'ngx-cookie-service';
+
 
 @Component({
   selector: 'app-page-trangcanhansv',
@@ -27,13 +29,7 @@ import { MonHoc } from '../../models/monhoc.interface';
   styleUrls: ['./page-trangcanhansv.component.css'],
 })
 export class PageTrangcanhansvComponent implements OnInit {
-  public taiKhoan = {
-    displayName: '0306171004',
-    email: '0306171004@caothang.edu.vn',
-    password: '12345',
-    role: 'SV',
-    isValid: true,
-  };
+  public taiKhoan:any;
   public sinhVien: SinhVien;
   public sinhViens: SinhVien[] = [];
 
@@ -95,10 +91,12 @@ export class PageTrangcanhansvComponent implements OnInit {
     private monHocService: MonhocService,
     private chuDeService: ChuDeService,
     private thoiKhoaBieu: ThoiKhoaBieuService,
-    private lophocService:LopHocService
+    private lophocService:LopHocService,
+    private cookieService:CookieService,
   ) {}
 
   ngOnInit(): void {
+    this.setTaiKhoan();
     this.layThongTinSV(this.taiKhoan.displayName);
     this.layDiemSinhVien(this.taiKhoan.displayName);
     // this.layLopHocPhan();
@@ -163,6 +161,10 @@ export class PageTrangcanhansvComponent implements OnInit {
     return this.locBangDiemFormGroup.get('chonLop');
   }
   //######################### Lay Thong Tin ##########################
+  public setTaiKhoan(){
+    this.taiKhoan = this.cookieService.getAll();
+    this.taiKhoan.displayName = this.cookieService.get('email').slice(0,10);
+  }
   public layThongTinSV(maSV: string) {
     this.sinhVienService.getonesv(maSV).subscribe(
       (sv) => {
@@ -203,7 +205,7 @@ export class PageTrangcanhansvComponent implements OnInit {
         this.ctDiemLHPs = res.data;
         this.ganTenCotDiemCTDiem(this.ctDiemLHPs);
         this.ganTenLopHocPhanCTDiem(this.ctDiemLHPs);
-        console.log(this.ctDiemLHPs);
+
       }
     });
   }
@@ -214,6 +216,7 @@ export class PageTrangcanhansvComponent implements OnInit {
         if(res.data){
           this.diemSinhViens = res.data;
           this.ganTenLopHocPhanDiemSV(this.diemSinhViens);
+
         }
       },
       (err) => console.log(err)
@@ -245,6 +248,7 @@ export class PageTrangcanhansvComponent implements OnInit {
         .getKHDTByHocKiNMaCTDT(maCTDT, hocKi)
         .subscribe((res: any) => {
           this.dsKHDT = res;
+
           this.dsKHDT.forEach((khdt) => {
             this.diemSinhViens.forEach((diem) => {
               if (diem.maDaoTao == khdt.maDaoTao) {
@@ -257,6 +261,7 @@ export class PageTrangcanhansvComponent implements OnInit {
                 khdt.tenMonHoc = res.tenMonHoc;
               });
           });
+
         });
     } else {
       this.dsKHDT = [];
@@ -339,19 +344,7 @@ export class PageTrangcanhansvComponent implements OnInit {
             });
             this.ctDiemLHPs = ChiTietDiem;
           } else {
-            // ChiTietDiem.forEach((ct) => {
-            //   this.lopHocPhans.forEach((lop) => {
-            //     if (ct.maHocPhan == lop.maLopHocPhan) {
-            //       ct.tenLopHocPhan = lop.tenLopHocPhan;
-            //     }
-            //   });
-            // });
-            // ChiTietDiem.forEach((el) => {
-            //   this.chuDeService.layMot(el.maChuDe).subscribe((res: any) => {
-            //     el.tenChuDe = res.data.tenChuDe;
-            //   });
-            // });
-            // console.log(ChiTietDiem);
+
             this.ctDiemLHPs = [];
           }
         }
@@ -384,10 +377,11 @@ export class PageTrangcanhansvComponent implements OnInit {
     this.layThongTinSV(this.taiKhoan.displayName);
   }
   onSubmitCapNhatSinhVien() {
+    this.messages = [];
     if( !this.password.value){
       this.messages.push({msg:"Vui lòng nhập mật khẩu cũ và mới để thay đổi", status:200});
 
-    }else if(this.password.value != this.sinhVien.matKhau){
+    }else if(this.password.value != '123456'){
       this.messages.push({msg:"Mật khẩu không trùng nhau", status:200});
     }
     else{

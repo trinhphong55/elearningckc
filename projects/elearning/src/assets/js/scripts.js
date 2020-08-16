@@ -51,4 +51,7 @@ function navbarOffCanvas() {
     document.querySelector("body").classList.remove("offcanvas_container");
   }
 }
+$(window).on("load",function(){
+  $(".loader-wrapper").fadeOut("slow");
+});
 //#endregion

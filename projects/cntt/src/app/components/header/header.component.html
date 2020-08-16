@@ -6,7 +6,7 @@
       </a>
       <nav class="nav header_navbar__nav ml-auto">
 
-        <a *ngIf="menu.sub1.length == 0" class="header_navbar__nav__item text-decoration-none" [routerLink]="menu.url1">
+        <a *ngIf="menu.sub1.length == 0" class="header_navbar__nav__item text-decoration-none"  href="{{menu.url1}}">
           <span class="header_navbar__nav__icon {{ menu.icon1 }}"></span>
           <div>{{ menu.name1 }}</div>
         </a>
@@ -14,11 +14,11 @@
           <span class="header_navbar__nav__icon {{ menu.icon1 }}"></span>
           <div>{{ menu.name1 }}</div>
           <div class="header_dropdown__menu shadow">
-            <a class="header_dropdown__item" *ngFor="let item1 of menu.sub1" [routerLink]="item1.url">{{item1.name}}</a>
+            <a class="header_dropdown__item" *ngFor="let item1 of menu.sub1" href="{{item1.url}}">{{item1.name}}</a>
           </div>
         </div>
 
-        <a *ngIf="menu.sub2.length == 0" class="header_navbar__nav__item text-decoration-none" [routerLink]="menu.url2">
+        <a *ngIf="menu.sub2.length == 0" class="header_navbar__nav__item text-decoration-none" href="{{menu.url2}}">
           <span class="header_navbar__nav__icon {{ menu.icon2 }}"></span>
           <div>{{ menu.name2 }}</div>
         </a>
@@ -26,11 +26,11 @@
           <span class="header_navbar__nav__icon {{ menu.icon2 }}"></span>
           <div>{{ menu.name2 }}</div>
           <div class="header_dropdown__menu shadow">
-            <a class="header_dropdown__item" *ngFor="let item2 of menu.sub2" [routerLink]="item2.url">{{item2.name}}</a>
+            <a class="header_dropdown__item" *ngFor="let item2 of menu.sub2" href="{{item2.url}}">{{item2.name}}</a>
           </div>
         </div>
 
-        <a *ngIf="menu.sub3.length == 0" class="header_navbar__nav__item text-decoration-none" [routerLink]="menu.url3">
+        <a *ngIf="menu.sub3.length == 0" class="header_navbar__nav__item text-decoration-none" href="{{menu.url3}}">
           <span class="header_navbar__nav__icon {{ menu.icon3 }}"></span>
           <div>{{ menu.name3 }}</div>
         </a>
@@ -38,11 +38,11 @@
           <span class="header_navbar__nav__icon {{ menu.icon3 }}"></span>
           <div>{{ menu.name3 }}</div>
           <div class="header_dropdown__menu shadow">
-            <a class="header_dropdown__item" *ngFor="let item3 of menu.sub3" [routerLink]="item3.url">{{item3.name}}</a>
+            <a class="header_dropdown__item" *ngFor="let item3 of menu.sub3" href="{{item3.url}}">{{item3.name}}</a>
           </div>
         </div>
 
-        <a *ngIf="menu.sub4.length == 0" class="header_navbar__nav__item text-decoration-none" [routerLink]="menu.url4">
+        <a *ngIf="menu.sub4.length == 0" class="header_navbar__nav__item text-decoration-none" href="{{menu.url4}}">
           <span class="header_navbar__nav__icon {{ menu.icon4 }}"></span>
           <div>{{ menu.name4 }}</div>
         </a>
@@ -50,11 +50,11 @@
           <span class="header_navbar__nav__icon {{ menu.icon4 }}"></span>
           <div>{{ menu.name4 }}</div>
           <div class="header_dropdown__menu shadow">
-            <a class="header_dropdown__item" *ngFor="let item4 of menu.sub4" [routerLink]="item4.url">{{item4.name}}</a>
+            <a class="header_dropdown__item" *ngFor="let item4 of menu.sub4" href="{{item4.url}}">{{item4.name}}</a>
           </div>
         </div>
 
-        <a *ngIf="menu.sub5.length == 0" class="header_navbar__nav__item text-decoration-none" [routerLink]="menu.url5">
+        <a *ngIf="menu.sub5.length == 0" class="header_navbar__nav__item text-decoration-none" href="{{menu.url5}}">
           <span class="header_navbar__nav__icon {{ menu.icon5 }}"></span>
           <div>{{ menu.name5 }}</div>
         </a>
@@ -62,7 +62,7 @@
           <span class="header_navbar__nav__icon {{ menu.icon5 }}"></span>
           <div>{{ menu.name5 }}</div>
           <div class="header_dropdown__menu shadow">
-            <a class="header_dropdown__item" *ngFor="let item5 of menu.sub5" [routerLink]="item5.url">{{item5.name}}</a>
+            <a class="header_dropdown__item" *ngFor="let item5 of menu.sub5" href="{{item5.url}}">{{item5.name}}</a>
           </div>
         </div>
       </nav>
@@ -84,13 +84,13 @@
         </div>
         <ul class="offcanvas_nav">
           <li class="offcanvas_nav__item">
-            <a class="offcanvas_nav__link" [routerLink]="menu.url1">
+            <a class="offcanvas_nav__link" href="{{menu.url1}}">
               <span class="offcanvas_icons mdi {{menu.icon1}}"></span>
               <span class="text">{{menu.name1}}</span>
             </a>
             <ul class="offcanvas_nav__sub" *ngIf="menu.sub1.length > 0">
               <li class="offcanvas_nav__item" *ngFor="let item1 of menu.sub1">
-                <a class="offcanvas_nav__link" [routerLink]="item1.url">
+                <a class="offcanvas_nav__link" href="{{item1.url}}">
                   <span class="offcanvas_icons lnr lnr-chevron-right"></span>
                   <span class="text">{{item1.name}}</span>
                 </a>
@@ -98,13 +98,13 @@
             </ul>
           </li>
           <li class="offcanvas_nav__item">
-            <a class="offcanvas_nav__link" [routerLink]="menu.url2">
+            <a class="offcanvas_nav__link" href="{{menu.url2}}">
               <span class="offcanvas_icons mdi {{menu.icon2}}"></span>
               <span class="text">{{menu.name2}}</span>
             </a>
             <ul class="offcanvas_nav__sub" *ngIf="menu.sub2.length > 0">
               <li class="offcanvas_nav__item" *ngFor="let item2 of menu.sub2">
-                <a class="offcanvas_nav__link" [routerLink]="item2.url">
+                <a class="offcanvas_nav__link" href="{{item2.url}}">
                   <span class="offcanvas_icons lnr lnr-chevron-right"></span>
                   <span class="text">{{item2.name}}</span>
                 </a>
@@ -112,13 +112,13 @@
             </ul>
           </li>
           <li class="offcanvas_nav__item">
-            <a class="offcanvas_nav__link" [routerLink]="menu.url3">
+            <a class="offcanvas_nav__link" href="{{menu.url3}}">
               <span class="offcanvas_icons mdi {{menu.icon3}}"></span>
               <span class="text">{{menu.name3}}</span>
             </a>
             <ul class="offcanvas_nav__sub" *ngIf="menu.sub3.length > 0">
               <li class="offcanvas_nav__item" *ngFor="let item3 of menu.sub3">
-                <a class="offcanvas_nav__link" [routerLink]="item3.url">
+                <a class="offcanvas_nav__link" href="{{item3.url}}">
                   <span class="offcanvas_icons lnr lnr-chevron-right"></span>
                   <span class="text">{{item3.name}}</span>
                 </a>
@@ -126,13 +126,13 @@
             </ul>
           </li>
           <li class="offcanvas_nav__item">
-            <a class="offcanvas_nav__link" [routerLink]="menu.url4">
+            <a class="offcanvas_nav__link" href="{{menu.url4}}">
               <span class="offcanvas_icons mdi {{menu.icon4}}"></span>
               <span class="text">{{menu.name4}}</span>
             </a>
             <ul class="offcanvas_nav__sub" *ngIf="menu.sub4.length > 0">
               <li class="offcanvas_nav__item" *ngFor="let item4 of menu.sub4">
-                <a class="offcanvas_nav__link" [routerLink]="item4.url">
+                <a class="offcanvas_nav__link" href="{{item4.url}}">
                   <span class="offcanvas_icons lnr lnr-chevron-right"></span>
                   <span class="text">{{item4.name}}</span>
                 </a>
@@ -140,13 +140,13 @@
             </ul>
           </li>
           <li class="offcanvas_nav__item">
-            <a class="offcanvas_nav__link" [routerLink]="menu.url5">
+            <a class="offcanvas_nav__link" href="{{menu.url5}}">
               <span class="offcanvas_icons mdi {{menu.icon5}}"></span>
               <span class="text">{{menu.name5}}</span>
             </a>
             <ul class="offcanvas_nav__sub" *ngIf="menu.sub5.length > 0">
               <li class="offcanvas_nav__item" *ngFor="let item5 of menu.sub5">
-                <a class="offcanvas_nav__link" [routerLink]="item5.url">
+                <a class="offcanvas_nav__link" href="{{item5.url}}">
                   <span class="offcanvas_icons lnr lnr-chevron-right"></span>
                   <span class="text">{{item5.name}}</span>
                 </a>

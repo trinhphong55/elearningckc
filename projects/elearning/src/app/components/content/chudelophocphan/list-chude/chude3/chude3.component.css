@@ -7,7 +7,6 @@
 .title-icon{
     width: 100%;
     display: flex;
-    flex-wrap: wrap; 
     color: #007b83;
     border-bottom: 1.5px solid #007b83;
 }

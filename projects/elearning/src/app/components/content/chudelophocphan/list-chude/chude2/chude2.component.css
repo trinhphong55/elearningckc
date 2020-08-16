@@ -7,12 +7,11 @@
 .title-icon{
     width: 100%;
     display: flex;
-    flex-wrap: wrap; 
     color: #007b83;
     border-bottom: 1.5px solid #007b83;
 }
 .title-icon .title{
-    width: 83.2%;
+    width: 80.2%;
 
 }
 .title-icon .title h3{
@@ -34,7 +33,6 @@
 .content .thongtin{
     width: 100%;
     display: flex;
-    flex-wrap: wrap;
     border-bottom: solid 1px #e0e0e0;
     cursor: pointer;
     padding-bottom: 10px;
@@ -74,7 +72,7 @@
    transform: translate(-50%,-50%);
 }
 .thongtin .tt-client{
-    width: 55%;
+    width: 80%;
 }
 .thongtin .tt-client div{
     padding-top: 20px;
@@ -154,7 +152,6 @@
 .content .nhanxet{
     border-bottom: solid 1px #e0e0e0;
 }
-
 .nhanxet .nx-main{
     padding-top: 10px;
     padding-left: 5px;
@@ -185,16 +182,13 @@
 .nhanxet .nx-show .nx-menu{
     width: 10%;
 }
-
 .comment .cm-main{
     padding-top: 10px;
     padding-left: 5px;
 }
-
 .comment .cm-show{
     width: 100%;
     display: flex;
-    flex-wrap: wrap;
 }
 .comment .cm-show .cm-showimg{
     width: 10%;
@@ -211,8 +205,6 @@
 .comment .cm-show .cm-showcomment{
     width: 85%;
 }
-
-
 .comment .input-container {
     display: -ms-flexbox;
     display: flex;
@@ -244,4 +236,92 @@
   .input-field:focus {
     border: 2px solid #006666;
    
+  }
+  @media only screen and (max-width: 600px){
+    .title-icon{
+        width: 100%;
+        display: flex; 
+        color: #007b83;
+        border-bottom: 1.5px solid #007b83;
+    }
+    .title-icon .icon button{
+        margin-left: 85px;
+       padding-top: 20px;
+    }
+    .thongtin .tt-icon{
+        width: 20%;
+    }
+    .thongtin .tt-icon div i{
+       font-size: 1.3rem;
+       color: white;
+       position: absolute;
+       top: 50%;
+       left: 50%;
+       transform: translate(-50%,-50%);
+    }
+    .thongtin .tt-client{
+        width: 62%;
+    }
+    .thongtin .tt-client div{
+        padding-top: 20px;
+        font-size: 1rem;
+        font-weight: 500;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap; 
+        width: 180px;
+    }
+    .thongtin .tt-dealine{
+        width: 25%;
+        color: #555555;
+    }
+    .thongtin .tt-dealine div{
+        font-size: 0.785rem;
+        padding-top: 20px;
+    }
+    .thongtin .tt-menu{
+        width: 5%;
+    }
+    .thongtin .tt-menu button{
+        outline: none;
+        margin-top: 10px;
+    }
+    .nhanxet .nx-show{
+        width: 100%;
+        display: flex;
+    }
+    .nhanxet .nx-show .nx-showimg{
+        width: 20%;
+    }
+    .nhanxet .nx-show .nx-showimg div{
+        width: 60%;
+        margin: 0 auto;
+       
+    }
+    .nhanxet .nx-show .nx-showimg div img{
+        width: 100%;
+        border-radius: 50px;
+    }
+    .nhanxet .nx-show .nx-showname{
+        width: 70%;
+    }
+    .nhanxet .nx-show .nx-menu{
+        width: 10%;
+    }
+    .comment .cm-main{
+        padding-top: 10px;
+        padding-left: 5px;
+    }
+    .nhanxet .nx-show .nx-showname {
+        width: 62%;
+    }
+    .comment .cm-show .cm-showimg {
+        width: 20%;
+    }
+    .comment .cm-show .cm-showimg div {
+        width: 60%;
+    }
+    .comment .cm-show .cm-showcomment {
+        width: 75%;
+    }
   }

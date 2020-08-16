@@ -38,7 +38,7 @@ _router.post("/download", function (req, res, next) {
 
 _router.get("/:maLopHocPhan/lop-hoc-phan", async (req, res) => {
   try {
-    const baiTaps = await BaiTap.find({ lopHocPhan: req.params.maLopHocPhan });
+    const baiTaps = await BaiTap.find({ lopHocPhan: parseInt(req.params.maLopHocPhan) });
     res.json({
       count: baiTaps.length,
       data: baiTaps,
@@ -49,9 +49,10 @@ _router.get("/:maLopHocPhan/lop-hoc-phan", async (req, res) => {
     res.json(error);
   }
 });
+
 _router.get("/:maBaiTap", async (req, res) => {
   try {
-    const baiTaps = await BaiTap.findOne({ maBaiTap: req.params.maBaiTap });
+    const baiTaps = await BaiTap.findOne({ maBaiTap: parseInt(req.params.maBaiTap) });
     res.json({
       id:req.params.maBaiTap,
       data: baiTaps,
@@ -80,8 +81,8 @@ _router.post("/", async (req, res) => {
   const newBaiTap = new BaiTap(baitap);
   await newBaiTap
     .save()
-    .then(() => {
-      return res.status(200).json({ status: 200, message: "Them thanh cong" });
+    .then((bt) => {
+      return res.status(200).json({ status: 200, maDoiTuong: bt.maBaiTap , message: "Them thanh cong" });
     })
     .catch((err) => {
       return res.status(501).json({
@@ -90,4 +91,14 @@ _router.post("/", async (req, res) => {
       });
     });
 });
+// lay all cua bai tap
+_router.get("/baitap/ds", async (req, res) => {
+  try {
+    const baiTaps = await BaiTap.find({trangThai:1});
+    res.json(baiTaps);
+  } catch (error) {
+    res.json(error);
+  }
+});
 module.exports = _router;
+
