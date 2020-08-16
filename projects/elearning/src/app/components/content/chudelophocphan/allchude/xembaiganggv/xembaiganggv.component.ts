@@ -1,4 +1,3 @@
-
 import { BaiGiangService } from './../../../../../services/bai-giang.service';
 import { BaiGiang } from './../../../../../models/bai-giang.interface';
 import { ActivatedRoute } from '@angular/router';
@@ -11,13 +10,14 @@ import { ActivityService } from '../../../../../services/activity.service';
 import { FileService } from '../../../../../services/file.service';
 import { getCookie } from '../../../../../../../../common/helper';
 import saveAs from 'file-saver';
+import { CookieService } from 'ngx-cookie-service';
+import { GiaoVienService } from '../../../../../services/giao-vien.service';
 @Component({
   selector: 'app-xembaiganggv',
   templateUrl: './xembaiganggv.component.html',
-  styleUrls: ['./xembaiganggv.component.css']
+  styleUrls: ['./xembaiganggv.component.css'],
 })
 export class XembaiganggvComponent implements OnInit {
-
   public baiGiang?: BaiGiang;
   public dsBinhLuan: any;
   public maLHP: any;
@@ -28,7 +28,9 @@ export class XembaiganggvComponent implements OnInit {
     private baiGiangService: BaiGiangService,
     private binhLuanService: BinhLuanService,
     private _fileService: FileService,
-    private activityService:ActivityService
+    private activityService: ActivityService,
+    private cookie: CookieService,
+    private giaoVienService: GiaoVienService
   ) {}
 
   ngOnInit(): void {
@@ -41,6 +43,14 @@ export class XembaiganggvComponent implements OnInit {
         .subscribe((res: any) => {
           if (res.data) {
             this.baiGiang = res.data;
+            this.giaoVienService
+              .Laythongtingiaovien(this.baiGiang.nguoiDang)
+              .subscribe((res:any) => {
+
+                if (res.length > 0) {
+                  this.baiGiang.nguoiDang = res[0].ho + ' ' + res[0].ten;
+                }
+              });
             this.layDS_binhLuan_baiGiang(1, this.baiGiang.maBaiGiang);
           }
         });
@@ -53,7 +63,6 @@ export class XembaiganggvComponent implements OnInit {
           element.ngayTao = new Date(element.ngayTao).toUTCString();
         });
         this.dsBinhLuan = res;
-
       },
       (err) => console.log(err)
     );
@@ -70,21 +79,25 @@ export class XembaiganggvComponent implements OnInit {
       noiDung: this.binhLuan.value,
       nguoiTao: this.email,
     };
-    this.binhLuanService.themBinhluan(data).subscribe((res:any) => {
-      if(typeof res.data == 'object'){
+    this.binhLuanService.themBinhluan(data).subscribe((res: any) => {
+      if (typeof res.data == 'object') {
         //mã bài viết là mã bài giảng
-        this.baiGiangService.layTheo_maBaiGiang(data.maBaiViet).subscribe((res:any) => {
-          this.maLHP = res.data.maLopHocPhan;
-          this.themActivity(data.maBaiViet, res.data.tieuDe);
-        })
+        this.baiGiangService
+          .layTheo_maBaiGiang(data.maBaiViet)
+          .subscribe((res: any) => {
+            this.maLHP = res.data.maLopHocPhan;
+            this.themActivity(data.maBaiViet, res.data.tieuDe);
+          });
       }
     });
   }
 
   private themActivity(maDoiTuong, noiDung) {
-    this.activityService.themActivity(this.maLHP, maDoiTuong, "BL-BG", noiDung, "bình luận").subscribe(res => {
-      console.log(res);
-    })
+    this.activityService
+      .themActivity(this.maLHP, maDoiTuong, 'BL-BG', noiDung, 'bình luận')
+      .subscribe((res) => {
+        console.log(res);
+      });
   }
 
   download(filename) {

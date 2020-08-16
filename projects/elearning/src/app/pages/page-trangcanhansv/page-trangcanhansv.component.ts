@@ -165,7 +165,7 @@ export class PageTrangcanhansvComponent implements OnInit {
   public setTaiKhoan() {
     this.taiKhoan = this.cookieService.getAll();
     this.taiKhoan.displayName = this.cookieService.get('email').slice(0, 10);
-    console.log(this.taiKhoan);
+
   }
   public layThongTinSV(maSV: string) {
     this.sinhVienService.getonesv(maSV).subscribe(
@@ -212,7 +212,7 @@ export class PageTrangcanhansvComponent implements OnInit {
         this.ctDiemLHPs = this.ctDiemLHPsTmp;
         this.ganTenLopHocPhanCTDiem();
         this.ctDiemLHPs = this.loc_CTDiem_LopHocPhan(this.ctDiemLHPsTmp);
-        console.log(this.ctDiemLHPs);
+
       }
     });
   }
@@ -356,8 +356,7 @@ export class PageTrangcanhansvComponent implements OnInit {
   onChangeDanhSachCotDiem() {
     this.layThongTinSV(this.taiKhoan.displayName);
     this.layCTDiemLHP(this.taiKhoan.displayName);
-    console.log(this.chonHocKi.value);
-    console.log(this.chonLop.value);
+
 
   }
   onChangBangDiem() {
