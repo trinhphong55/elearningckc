@@ -34,7 +34,7 @@ export class ModelTtthDotthiComponent implements OnInit {
     newItem.ngaythi = ngaythi;
     newItem.giothi = giothi;
     newItem.phongthi = phongthi;
-    newItem.trangthai = true;
+    newItem.trangthai = 1;
     newItem.nguoitao = this._username;
     newItem.nguoisua = null;
     newItem.created_at = (new Date);

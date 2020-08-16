@@ -85,6 +85,7 @@ export class ModalNhapdiemlophocComponent implements OnInit {
       value.nguoitao = nguoitao;
       value.loaidiem = 'Điểm lớp học';
     });
+    console.log(this.DiemThi);
     this.DiemthiService.importDiemThi(this.DiemThi).subscribe(data => { this.DiemThi.push(data);
     });
     this.toastr.success('Import thành công');

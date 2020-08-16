@@ -50,7 +50,7 @@ export class ModalTtthLophocComponent implements OnInit {
     newItem.giaovien = giaovien;
     newItem.nhapdiem = NhapDiem;
     newItem.nam =  String(this.getYear);
-    newItem.trangthai = true;
+    newItem.trangthai = 1;
     newItem.nguoitao = this._username;
     newItem.nguoisua = null;
     newItem.created_at = (new Date);

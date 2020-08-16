@@ -9,7 +9,7 @@ export class ttthLopHoc {
   giaovien: String
   nhapdiem: String
   nam: String
-  trangthai: Boolean
+  trangthai: Number
   nguoitao: String
   nguoisua: String
   created_at: Date
