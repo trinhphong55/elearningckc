@@ -5,7 +5,7 @@ export class ttthDotThi {
   giothi: String
   phongthi: String
   hienthi: Boolean
-  trangthai: Boolean
+  trangthai: Number
   nguoitao: String
   nguoisua: String
   created_at: Date

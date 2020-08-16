@@ -5,7 +5,7 @@ const multer = require('multer')
 // get
 router.get('/', async (req, res) => {
   try {
-    const danhsach = await ttthlophoc.find({ trangthai: true }).sort({created_at: -1});
+    const danhsach = await ttthlophoc.find({ trangthai: {$ne:0} }).sort({created_at: -1});
     res.json(danhsach);
   } catch (error) {
     res.json([]);
@@ -75,7 +75,7 @@ router.post('/delete', async (req, res) => {
   }, {
     nguoisua: req.body.nguoisua,
     updated_at: req.body.updated_at,
-    trangthai: false
+    trangthai: 0
   });
 })
 module.exports = router

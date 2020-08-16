@@ -1,15 +1,32 @@
 const router = require('express').Router()
 const ttthdiemthi = require('../models/ttthdiemthi.model');
 const multer = require('multer')
+const ttthlophoc = require('../models/ttthlophoc.model');
+const ttthdotthi = require('../models/ttthdotthi.model');
 
 //IMPORT EXCEL
 router.post('/importdiemthi', async (req, res) => {
+  console.log(req.body);
   var items = req.body;
   if (items.length > 0) {
     ttthdiemthi.insertMany(items).then(() => {
     })
   } else {
     return res.json( {error: "Dữ liệu trống hoặc không đúng định dạng"})
+  }
+  if(!req.body[0].tendotthi){
+    await ttthlophoc.findOneAndUpdate({
+      tenlop: req.body[0].lop
+    }, {
+      trangthai: 2
+    });
+  }
+  else{
+    await ttthdotthi.findOneAndUpdate({
+      tendot: req.body[0].tendotthi
+    }, {
+      trangthai: 2
+    });
   }
 });
 //tra cuu diem

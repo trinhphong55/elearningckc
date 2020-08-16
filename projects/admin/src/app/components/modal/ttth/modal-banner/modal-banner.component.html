@@ -25,7 +25,7 @@
             </div>
             <div class="col-3">
               <div class="form-group">
-                <label>Link</label>
+                <label>Đường dẫn</label>
                 <input type="text" class="form-control" #link >
               </div>
               <div class="form-group">
@@ -36,7 +36,7 @@
             <div class="col-auto">
               <div class="modal_chucnang__group__button">
                 <button class="modal_chucnang__button btn btn-outline-primary px-4 mx-2" [disabled]="!link.value || !vitri.value|| !imageSrc"
-                (click)="addBanner(link.value,vitri.value);link.value=''; vitri.value='';uploader.uploadAll()"><img
+                (click)="addBanner(link.value,vitri.value);link.value=''; vitri.value='';uploader.uploadAll();imageSrc=null"><img
                     class="modal_chucnang__button__icon mb-2" src="assets/img/icons/add.png" alt="image icon">
                   <div>Thêm mới</div>
                 </button>
@@ -65,7 +65,7 @@
             </div>
             <div class="col-3">
               <div class="form-group">
-                <label>Link</label>
+                <label>Đường dẫn</label>
                 <input type="text" class="form-control" [(ngModel)]="selectedItem.link" >
               </div>
               <div class="form-group">
@@ -104,7 +104,7 @@
               <tr>
                 <th>#</th>
                 <th scope="col">Image</th>
-                <th scope="col">Link</th>
+                <th scope="col">Đường dẫn</th>
                 <th scope="col">Vị trí</th>
                 <th scope="col">Người tạo</th>
                 <th scope="col">Người sửa</th>

@@ -6,6 +6,7 @@ export class ttthDiemThi {
   sobaodanh: String
   noisinh: String
   lop: String
+  tendotthi: String
   tongdiem: String
   xeploai: String
   ngaythi: String

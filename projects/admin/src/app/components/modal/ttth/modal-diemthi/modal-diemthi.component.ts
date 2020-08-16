@@ -115,6 +115,7 @@ export class ModalDiemthiComponent implements OnInit {
     let ngaythi: any;
     let giothi: any;
     let phongthi: any;
+    let tendotthi: any;
     let dotthi = this.selectDotThi;
     let nguoitao = this._username;
     this.DotThi.forEach(function (value) {
@@ -125,6 +126,7 @@ export class ModalDiemthiComponent implements OnInit {
       }
     });
     this.DiemThi.forEach(function (value) {
+      value.tendotthi = dotthi;
       value.ngaythi = ngaythi;
       value.giothi = giothi;
       value.phongthi = phongthi;

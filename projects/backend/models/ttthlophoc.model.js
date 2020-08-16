@@ -12,7 +12,7 @@ var schema = new Schema({
   hocphi: { type: String },
   giaovien: { type: String },
   nhapdiem: { type: String },
-  trangthai: { type: Boolean },
+  trangthai: { type: Number },
   nguoitao: { type: String },
   nguoisua: { type: String },
   created_at: { type: Date },
