@@ -82,7 +82,7 @@
             </div>
             <div class="col-auto">
               <div class="modal_chucnang__group__button">
-                <button class="modal_chucnang__button btn btn-outline-success px-4 mx-2"
+                <button class="modal_chucnang__button btn btn-outline-success px-4 mx-2" [disabled]="!selectedItem.link || !selectedItem.vitri"
                   (click)="saveBanner(selectedItem);uploader.uploadAll()"><img class="modal_chucnang__button__icon mb-2"
                     src="assets/img/icons/upgrade.png" alt="image icon">
                   <div>Cập nhật</div>

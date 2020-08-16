@@ -12,27 +12,27 @@ const httpOptions = {
 export class LophocService {
 
   get(): Observable<ttthLopHoc[]  >{
-    return this.http.get<ttthLopHoc[] >('https://localhost:4100/api/ttthLopHoc/list').pipe(
+    return this.http.get<ttthLopHoc[] >('https://api.cnttckc.edu.vn/api/ttthLopHoc/list').pipe(
       retry(1),
       catchError(error => of([]))
     );
   }
   getfilter(): Observable<ttthLopHoc[]  >{
-    return this.http.get<ttthLopHoc[] >('https://localhost:4100/api/ttthLopHoc/').pipe(
+    return this.http.get<ttthLopHoc[] >('https://api.cnttckc.edu.vn/api/ttthLopHoc/').pipe(
       retry(1),
       catchError(error => of([]))
     );
   }
   add(newItem: ttthLopHoc): Observable<ttthLopHoc> {
-    return this.http.post<ttthLopHoc>('https://localhost:4100/api/ttthLopHoc/add', newItem, httpOptions).pipe(
+    return this.http.post<ttthLopHoc>('https://api.cnttckc.edu.vn/api/ttthLopHoc/add', newItem, httpOptions).pipe(
     );
   }
   update(updateItem: ttthLopHoc): Observable<ttthLopHoc> {
-    return this.http.post<ttthLopHoc>('https://localhost:4100/api/ttthLopHoc/update', updateItem, httpOptions).pipe(
+    return this.http.post<ttthLopHoc>('https://api.cnttckc.edu.vn/api/ttthLopHoc/update', updateItem, httpOptions).pipe(
     );
   }
   delete(deleteItem: ttthLopHoc): Observable<ttthLopHoc> {
-    return this.http.post<ttthLopHoc>('https://localhost:4100/api/ttthLopHoc/delete', deleteItem, httpOptions).pipe(
+    return this.http.post<ttthLopHoc>('https://api.cnttckc.edu.vn/api/ttthLopHoc/delete', deleteItem, httpOptions).pipe(
     );
   }
   constructor(private http: HttpClient) { }

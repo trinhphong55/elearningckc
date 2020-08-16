@@ -9,6 +9,7 @@ var schema = new Schema({
   sobaodanh: { type: String },
   noisinh: { type: String },
   lop: { type: String },
+  tendotthi: { type: String },
   tongdiem: { type: String },
   xeploai: { type: String },
   ngaythi: { type: String },

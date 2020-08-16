@@ -10,11 +10,11 @@ const httpOptions = {
 export class DangkidotthiService {
   constructor(private http: HttpClient) { }
   get(): Observable<any[]  >{
-    return this.http.get<any[] >('https://localhost:4100/api/ttthDangKiDotThi/').pipe(
+    return this.http.get<any[] >('https://api.cnttckc.edu.vn/api/ttthDangKiDotThi/').pipe(
     );
   }
   delete(deleteItem: any): Observable<any> {
-    return this.http.post<any>('https://localhost:4100/api/ttthDangKiDotThi/delete', deleteItem, httpOptions).pipe(
+    return this.http.post<any>('https://api.cnttckc.edu.vn/api/ttthDangKiDotThi/delete', deleteItem, httpOptions).pipe(
     );
   }
 }
