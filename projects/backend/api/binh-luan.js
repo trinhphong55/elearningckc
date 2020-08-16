@@ -37,6 +37,6 @@ exports.themBinhLuan = async (req, res) => {
   } catch (error) {
     return res
       .status(500)
-      .json({ message: "Máy chủ không sữ lý được", error: error, status: 500 });
+      .json({ message: "Máy chủ không xử lý được", error: error, status: 500 });
   }
 };

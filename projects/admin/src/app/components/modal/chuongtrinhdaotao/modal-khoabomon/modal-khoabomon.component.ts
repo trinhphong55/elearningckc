@@ -49,7 +49,7 @@ export class ModalKhoabomonComponent implements OnInit {
       'bg-success': this.isDone,
     };
   }
-  result = { msg: '', status: false };
+  result = { msg: 'Không có gì thay đổi', status: false };
 
   constructor(
     private loaiDonviService: LoaidonviService,
@@ -134,27 +134,28 @@ export class ModalKhoabomonComponent implements OnInit {
   }
   // thêm KhoaBoMon
   addModal() {
+    this.result.msg = '';
     if (this.addForm.value.loaiDonVi == 1) {
       this.KhoaBonmonService.create(this.setData()).subscribe(
-        (response) => {
-          //this.result.msg = response.msg;
-          //this.result.status = response.status;
+        (response:any) => {
+          this.result.msg = response.msg;
+          this.result.status = response.status;
           this.retriveKhoaBoMon();
         },
         (error) => {
-          console.log(error);
+          this.result.msg = error;
         }
       );
     } else {
       this.BomonService.create(this.setData()).subscribe(
-        (response) => {
-          //this.result.msg = response.msg;
-          //this.result.status = response.status;
+        (response:any) => {
+          this.result.msg = response.msg;
+          this.result.status = response.status;
 
           this.retriveKhoaBoMon();
         },
         (error) => {
-          console.log(error);
+          this.result.msg =error;
         }
       );
     }
@@ -172,12 +173,15 @@ export class ModalKhoabomonComponent implements OnInit {
   // cập nhật KhoaBoMonKhoaBoMon
   updateModal(id, khoa) {
     let maLoai = this.addForm.value.loaiDonVi;
+    this.result.msg = '';
 
     if (maLoai == 1) {
+      // this.BomonService.delete(maLoai);
+      // this.KhoaBonmonService.create(this.setData());
       this.KhoaBonmonService.update(id, this.setData()).subscribe(
-        (response) => {
-          // this.result.msg = response.msg;
-          //this.result.status = response.status;
+        (response:any) => {
+          this.result.msg = response.msg;
+          this.result.status = response.status;
           //load lại dữ liệuliệu
           this.retriveKhoaBoMon();
         },
@@ -186,10 +190,11 @@ export class ModalKhoabomonComponent implements OnInit {
         }
       );
     } else if(maLoai == 2) {
+      // this.BomonService.create(this.setData());
       this.BomonService.update(id, this.setData()).subscribe(
-        (response) => {
-          // this.result.msg = response.msg;
-          //this.result.status = response.status;
+        (response:any) => {
+          this.result.msg = response.msg;
+          this.result.status = response.status;
           console.log(response);
           //load lại dữ liệuliệu
           this.getBoMon();
@@ -199,16 +204,20 @@ export class ModalKhoabomonComponent implements OnInit {
         }
       );
     }else{
-      console.log('Khoong tim thay maLoai');
+      this.result.msg = 'Không tìm thấy mã loại';
+
     }
   }
   //Xoa KhoaBoMonKhoaBoMon
   deleteModal(khoa_id, khoa_maloai) {
+    this.result.msg = '';
+
     if(khoa_maloai == 1){
       this.KhoaBonmonService.delete(khoa_id).subscribe(
-        (response) => {
-          //this.result.msg = response.msg;
-          //this.result.status = response.status;
+        (response:any) => {
+          this.result.msg = response.msg;
+          this.result.status = response.status;
+          alert(this.result.msg);
           console.log(response);
           //load lại dữ liệuliệu
           this.retriveKhoaBoMon();
@@ -220,10 +229,11 @@ export class ModalKhoabomonComponent implements OnInit {
       );
     }else{
       this.BomonService.delete(khoa_id).subscribe(
-        (response) => {
-          //this.result.msg = response.msg;
-          //this.result.status = response.status;
-        ;
+        (response:any) => {
+
+          this.result.msg = response.msg;
+          this.result.status = response.status;
+          alert(this.result.msg);
           //load lại dữ liệuliệu
 
           this.getBoMon();

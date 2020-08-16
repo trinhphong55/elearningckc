@@ -163,7 +163,7 @@ export class ModalGiaovienComponent implements OnInit {
     if (form.ho.trim() === "" || form.ten.trim() === "" ||
     form.email.trim() === "" || form.ngaySinh.trim() === "" ||
     form.cmnd.trim() === "" || form.sdt.trim() === "") {
-      alert('Vui lòng nhập đầy dủ thông tin');
+      alert('Vui lòng nhập đầy đủ thông tin');
       return;
     }
     this.giaoVien = form;
@@ -197,7 +197,7 @@ export class ModalGiaovienComponent implements OnInit {
     if (form.ho.trim() === "" || form.ten.trim() === "" ||
     form.email.trim() === "" || form.ngaySinh.trim() === "" ||
     form.cmnd.trim() === "" || form.sdt.trim() === "") {
-      alert('Vui lòng nhập đầy dủ thông tin');
+      alert('Vui lòng nhập đầy đủ thông tin');
       return;
     }
     this.giaoVien = form;

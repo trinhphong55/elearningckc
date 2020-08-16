@@ -20,7 +20,7 @@ export class ModalNhapdiemlophocComponent implements OnInit {
   DiemThi : ttthDiemThi[];
   LopHoc : any[];
   selectLopHoc: any;
-  private _username: any = getCookie('displayName');
+  private _username: any = getCookie('name');
   dataSheet = new Subject;
   @ViewChild('inputFile') inputFile: ElementRef;
   isExcelFile: boolean;

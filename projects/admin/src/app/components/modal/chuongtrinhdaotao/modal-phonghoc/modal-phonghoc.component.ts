@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalService } from '../../../../services/modal.service';
 
+import { PhonghocService } from '../../../../services/phonghoc.service';
+import { PhongHoc } from '../../../../interfaces/PhongHoc.interface';
+
 
 @Component({
   selector: 'app-modal-phonghoc',
@@ -9,30 +12,36 @@ import { ModalService } from '../../../../services/modal.service';
 })
 export class ModalPhonghocComponent implements OnInit {
 
-  selectedPhongHoc = {
-    tenPhongHoc: "ten phong hoc",
-    ghiChu: "ghi chu",
+  selectedPhongHoc: PhongHoc = {
+    tenPhongHoc: "F7. ",
+    ghiChu: "",
     day: "F",
-    lau: "7",
+    lau: 7,
   }
 
   dsDay = ["A", "B", "C", "D", "E", "F"];
-  dsLau = [1, 2, 3, 4, 5, 6, 7];
-  dsPhongHoc = [
-    {
-      maPhongHoc: "maPhongHoc",
-      tenPhongHoc: "ten phong hoc",
-      ghiChu: "ghi chu",
-      day: "F",
-      lau: "7",
-    },
+  dsPhongHoc: PhongHoc[];
 
-  ]
-
-  searchPhongHoc: any;
+  searchPhongHoc;
 
   postPhongHoc() {
-    alert('oke');
+    if (this.selectedPhongHoc.tenPhongHoc.trim() === "") {
+      alert('Nhap ten phong hoc');
+      return;
+    }
+    this._phongHocService.addPhongHoc(this.selectedPhongHoc).subscribe(
+      res => {
+        if (res.status === 200) {
+          alert(res.message);
+          this.changeDayorLau();
+          this.getPhongHoc();
+        }
+        else {
+          alert('Error: ' + res.message);
+        }
+      },
+      error => console.log(error)
+    )
   }
 
   updatePhongHoc() {
@@ -40,15 +49,24 @@ export class ModalPhonghocComponent implements OnInit {
   }
 
   getPhongHoc() {
-    alert('oke');
+    this._phongHocService.getTatCaPhongHoc().subscribe(
+      dsph => this.dsPhongHoc = dsph,
+      error => console.log(error)
+    )
   }
 
   renewPhongHoc() {
     alert('oke');
   }
 
-  onSelect() {
-    alert('oke');
+  changeDayorLau() {
+    this.selectedPhongHoc.tenPhongHoc = `${this.selectedPhongHoc.day}${this.selectedPhongHoc.lau}. `;
+  }
+
+  onSelect(maPH: number): void {
+    this._phongHocService.getOnePhongHoc(maPH).subscribe(onePH => {
+      this.selectedPhongHoc = onePH;
+    })
   }
 
   deletePhongHoc() {
@@ -56,14 +74,16 @@ export class ModalPhonghocComponent implements OnInit {
   }
 
   closeModal(id: string) {
-    this.modalService.close(id)
+    this._modalService.close(id)
   }
 
   constructor(
-    private modalService: ModalService,
+    private _modalService: ModalService,
+    private _phongHocService: PhonghocService,
   ) { }
 
   ngOnInit(): void {
+    this.getPhongHoc();
   }
 
 }

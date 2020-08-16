@@ -16,7 +16,7 @@ const URL = 'https://localhost:4100/api/ttthKhoaHoc/uploads';
 export class ModalKhoahocComponent implements OnInit {
   constructor(private modalService: ModalService,private khoahocService: KhoahocService ,private toastr: ToastrService) { }
   KhoaHoc: ttthKhoaHoc[];
-  private _username: any = getCookie('displayName');
+  private _username: any = getCookie('name');
   ngOnInit(): void {
     this.getdanhsach();
     this.uploader.onAfterAddingFile = (file) => {

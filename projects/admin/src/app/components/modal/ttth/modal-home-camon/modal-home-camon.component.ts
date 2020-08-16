@@ -13,7 +13,7 @@ const URL = 'https://localhost:4100/api/ttthCamOn/uploads';
 })
 export class ModalHomeCamonComponent implements OnInit {
   CamOn: ttthCamOn[];
-  private _username: any = getCookie('displayName');
+  private _username: any = getCookie('name');
 
   constructor(private modalService: ModalService,private camonService: CamonService,private toastr: ToastrService) { }
 

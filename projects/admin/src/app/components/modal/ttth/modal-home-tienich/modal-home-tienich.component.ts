@@ -15,7 +15,7 @@ const URL = 'https://localhost:4100/api/ttthTienIch/uploads';
 export class ModalHomeTienichComponent implements OnInit {
   constructor(private modalService: ModalService,private tienichService: TienichService ,private toastr: ToastrService) { }
   TienIch: ttthTienIch[];
-  private _username: any = getCookie('displayName');
+  private _username: any = getCookie('name');
   ngOnInit(): void {
     this.getdanhsach();
     this.uploader.onAfterAddingFile = (file) => {

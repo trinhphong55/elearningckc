@@ -15,7 +15,7 @@ declare var $: any;
 })
 export class ModalLogoComponent implements OnInit {
   ThongTinWeb: ttthThongTinWeb[];
-  private _username: any = getCookie('displayName');
+  private _username: any = getCookie('name');
   constructor(private modalService: ModalService,private thongtinwebService: ThongtinwebService,private toastr: ToastrService) { }
 
   ngOnInit(): void {

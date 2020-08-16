@@ -25,7 +25,7 @@ export class ModalDiemthiComponent implements OnInit {
   DotThi : any[];
   LopHoc : any[];
   selectDotThi: any;
-  private _username: any = getCookie('displayName');
+  private _username: any = getCookie('name');
   dataSheet = new Subject;
   @ViewChild('inputFile') inputFile: ElementRef;
   isExcelFile: boolean;

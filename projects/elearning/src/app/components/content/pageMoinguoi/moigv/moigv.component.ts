@@ -24,6 +24,7 @@ export class MoigvComponent implements OnInit {
   malophocphan: any;
   maGiaoVien: any;
   maLopHocPhan:any;
+  check:string;
   ngOnInit(): void {
     this.moiGiaoVien();
     this.malophocphan = this.router.snapshot.paramMap.get('id');
@@ -47,26 +48,29 @@ export class MoigvComponent implements OnInit {
               gvLophp=>{
                 if(gvLophp!=null || gvLophp==undefined  )
                 {
-                  alert("Thêm Thành Công")
+                  this.check='Thêm Thành Công'
                 this.gvLophp=this.data;
                 location.reload();
                 this.dialog.closeAll();
                 }
                 else
                 {
-                  alert("Giáo viên đã có trong lớp học")
+                  this.check='Giáo viên đã có trong lớp học'
                 }
                
               },
               (error) => {
-                alert("Giáo viên đã có trong lớp học")
+                this.check='Giáo viên đã có trong lớp học'
                 console.log(error)
               }
 
             )
-           
-           
           }
+          else if( this.emailFormControl.value!='' && x.email != this.emailFormControl.value)
+          { 
+           this.check='tài khoản chưa được sử dụng'
+          }
+        
         })
       },
 

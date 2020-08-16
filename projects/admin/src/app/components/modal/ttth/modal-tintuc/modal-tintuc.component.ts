@@ -196,7 +196,7 @@ export class ModalTintucComponent implements OnInit {
         this.formTaoBaiViet.get('thuTuHienThi').value
       );
       _formData.append('trangthai', this.formTaoBaiViet.get('trangthai').value);
-      _formData.append('nguoitao', getCookie('displayName'));
+      _formData.append('nguoitao', getCookie('name'));
       //#endregion
 
       // new Response(_formData).text().then(console.log); // log form-data
@@ -266,7 +266,7 @@ export class ModalTintucComponent implements OnInit {
         'trangthai',
         this.formChinhSuaBaiViet.get('trangthai').value
       );
-      _formData.append('nguoisua', getCookie('displayName'));
+      _formData.append('nguoisua', getCookie('name'));
       //#endregion
 
       // new Response(_formData).text().then(console.log); // log form-data

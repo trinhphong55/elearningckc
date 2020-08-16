@@ -50,7 +50,6 @@ const routes: Routes = [
     component: PageBaigiangComponent,
     children: [
       { path: '', component: PageChudelophocphanComponent },
-      { path: 'all', component: PageChudelophocphanComponent },
       { path: 'chude/:id', component: Chude2Component },
       { path: 'taobaigiang', component: TaobaigiangComponent },
     ],
