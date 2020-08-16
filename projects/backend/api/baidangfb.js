@@ -4,7 +4,7 @@ const { check, validationResult } = require("express-validator");
 // get tất cả trong db QLBaiDangFB
 exports.getAll= async (req,res)=>{
   try {
-      const data = await baidangfb.find({trangThai:1,trangThai:2});
+      const data = await baidangfb.find();
       res.json(data);
     } catch (error) {
       res.json({message: err});
@@ -28,18 +28,20 @@ exports.postToDrawFB = async (req, res) => {
 
       });
       const savePostToDraw = await posttodrawfbs.save();
+
       res.json({
         status: 200,
         ok:true,
-        msg: "Thêm thành công vào nháp",
+        msg1: "Thêm thành công vào nháp",
         data: savePostToDraw,
       });
-  }catch{
+  }catch(error){
+    res.json(error);
     res.json({
       status: 200,
       ok:true,
       msg: "Thêm không thành công vào nháp",
-      data: savePostToDraw,
+
     });
   }
 };
@@ -67,7 +69,7 @@ exports.deletePostFB = async (req, res) => {
     } else {
       result = {
         status: true,
-        msg: "Xóa bài viết đã đăng thành công ",
+        msg1: "Xóa bài viết đã đăng thành công ",
       };
     }
     res.status(200).json(result);
@@ -83,7 +85,7 @@ exports.postedToFB = async (req, res) => {
     if(!err.isEmpty()){
       res.status(422).json(err.errors);
     }
-    
+
       const postedtofbs = new baidangfb({
         ID:req.body.ID,
         postID: req.body.postID,
@@ -99,11 +101,16 @@ exports.postedToFB = async (req, res) => {
       res.json({
         status: 200,
         ok:true,
-        msg: "Thêm thành công vào bài đã đăng",
+        msg1: "Thêm thành công vào bài đã đăng",
         data: savePosted,
       });
   }catch{
-    res.json(error);
+    res.json({
+      status: 404,
+      ok:false,
+      msg: "Thêm không thành công vào bài đã đăng",
+      data: savePosted,
+    });
   }
 };
 // Update posted to Facebook
@@ -114,8 +121,6 @@ exports.updatePostedFB = async (req, res) => {
     if(!err.isEmpty()){
       res.status(422).json(err.errors);
     }
-    console.log(req.body);
-
     const updatePosted = await baidangfb.update(
       { postID: req.params.postID },
       {
@@ -219,7 +224,7 @@ exports.deleteDrawFB = async (req, res) => {
     res.json(error);
   }
 };
-// Update draw 
+// Update draw
 exports.updateDrawFB = async (req, res) => {
   try {
 

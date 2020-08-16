@@ -63,7 +63,7 @@
                 </div>
                 <div class="">
                   <div class="form-group">
-                    <label>Đường dẫn</label>
+                    <label>Đường dẫn hình ảnh</label>
                     <input class="form-control" type="text" name="picture" id="picture" [formControl]="getURLimg"/>
                   </div>
                 </div>
@@ -75,7 +75,7 @@
 
                 <div class="">
                   <div class="form-group">
-                    <label for="">Loại</label>
+                    <label for="">Loại bài viết</label>
                     <select id="loaip2" [formControl]="getLoaistt" class="col-6 form-control">
                       <option [value]="null">Chọn..</option>
                       <option *ngFor="let l of getloai" class="form-control">{{l.loai}}</option>

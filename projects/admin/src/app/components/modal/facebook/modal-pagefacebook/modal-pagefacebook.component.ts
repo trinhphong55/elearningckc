@@ -14,7 +14,6 @@ import {
 } from '@angular/core';
 import { ModalService } from '../../../../services/modal.service';
 import { ToastrService } from 'ngx-toastr';
-import { options } from 'less';
 
 @Component({
   selector: 'app-modal-pagefacebook',
@@ -42,6 +41,8 @@ export class ModalPagefacebookComponent implements OnInit {
   tenpage: any;
   text: '';
   getidss: any;
+  mss1:any;
+  nofis:any;
   constructor(
     private modalService: ModalService,
     private pageFBService: PagefbService,
@@ -162,7 +163,7 @@ export class ModalPagefacebookComponent implements OnInit {
           this.getAll();
         });
     } catch (err) {
-      this.mess = 'Không được để trống thông tin';
+      this.mess = 'Không được để trống các trường!!';
       this.toastr.warning(this.mess, 'Nhắc nhở', {
         timeOut: 2000,
         positionClass: 'toast-bottom-right',
@@ -229,14 +230,21 @@ export class ModalPagefacebookComponent implements OnInit {
       this.delay(500).then(any=>{
         var nofi = $('#returnloaip2').val();
           if(nofi !== ''){
-            alert(nofi);
+            this.nofis = nofi;
+            this.toastr.warning(this.nofis,'Nhắc nhở',{
+              timeOut:2000,
+              positionClass:'toast-bottom-right',
+            });
           }else{
             var errpage = $('#returnerrorpicturePage').val();
             if(errpage !== ''){
               alert(errpage);
             }
             else{
-              alert('Đăng thành công!');
+              this.toastr.success('Đăng bài thành công!','Thông báo',{
+                timeOut:2000,
+                positionClass:'toast-bottom-right',
+              });
               this.baiDangFBService
               .create({
                 ID: this.idpage,
@@ -250,16 +258,24 @@ export class ModalPagefacebookComponent implements OnInit {
               })
               .subscribe((ress: any) => {
                 this.mess = ress.msg;
-                this.toastr.info(this.mess, 'Thông báo', {
-                  timeOut: 2000,
-                  positionClass: 'toast-bottom-right',
-                });
+                this.mss1 = ress.msg1;
+                if(this.mss1){
+                  this.toastr.success(this.mss1,'Thông báo',{
+                    timeOut:2000,
+                    positionClass:'toast-bottom-right',
+                  });
+                }else{
+                  this.toastr.error(this.mess,'Lỗi',{
+                    timeOut:2000,
+                    positionClass:'toast-bottom-right',
+                  });
+                }
                 console.log(ress);
               });
             console.log('do some think');
-            this.delay(1000).then((any) => {
+            this.delay(2000).then((any) => {
               this.getMessage.setValue('');
-              this.getLoaistt.setValue('');
+              this.getLoaistt.setValue('null');
               this.getURLimg.setValue('');
             });
             }
@@ -270,21 +286,11 @@ export class ModalPagefacebookComponent implements OnInit {
   }
   insertDraft() {
     this.loaistt = this.addForm.value.getLoaistt;
-    this.getloai.filter((item) => {
-      if (item.loai === this.loaistt) {
-        this.MaLoai = item.maLoai;
-      }
-    });
 
-    this.idpage = $('#getidpage').val();
     this.messa = this.addForm.value.getMessage;
-    this.urlImg = this.addForm.value.getURLimg;
-    this.data.filter((item) => {
-      if (item.id_Page === this.idpage) {
-        this.tenpage = item.tenPage;
-      }
-    });
-    if (this.messa == '' || this.loaistt == '') {
+
+    if (this.messa == '' || this.loaistt == 'null') {
+      this.loaistt = 'null';
       this.toastr.warning(
         'Không được để trống Nội dung và Loại bài viết',
         'Nhắc nhở',
@@ -294,6 +300,18 @@ export class ModalPagefacebookComponent implements OnInit {
         }
       );
     } else {
+      this.getloai.filter((item) => {
+        if (item.loai === this.loaistt) {
+          this.MaLoai = item.maLoai;
+        }
+      });
+      this.urlImg = this.addForm.value.getURLimg;
+      this.data.filter((item) => {
+        if (item.id_Page === this.idpage) {
+          this.tenpage = item.tenPage;
+        }
+      });
+      this.idpage = $('#getidpage').val();
       this.baiDangFBService
         .createDraw({
           ID: this.idpage,
@@ -305,15 +323,24 @@ export class ModalPagefacebookComponent implements OnInit {
         })
         .subscribe((ress: any) => {
           this.mess = ress.msg;
-          this.toastr.info(this.mess, 'Thông báo', {
-            timeOut: 2000,
-            positionClass: 'toast-bottom-right',
-          });
+        this.mss1 = ress.msg1;
+          if(this.mss1){
+            this.toastr.success(this.mss1,'Thông báo',{
+              timeOut:2000,
+              positionClass:'toast-bottom-right',
+            });
+          }else{
+            this.toastr.error(this.mess,'Lỗi',{
+              timeOut:2000,
+              positionClass:'toast-bottom-right',
+            });
+          }
+
           console.log(ress);
         });
-      this.delay(1000).then((any) => {
+      this.delay(2000).then((any) => {
         this.getMessage.setValue('');
-        this.getLoaistt.setValue('');
+        this.getLoaistt.setValue('null');
         this.getURLimg.setValue('');
       });
     }

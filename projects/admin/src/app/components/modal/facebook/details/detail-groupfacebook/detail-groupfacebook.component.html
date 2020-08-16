@@ -8,31 +8,31 @@
       <div class="col-12">
         <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white" >
           <div class="row ">
-            <div class="col-4">
+            <div class="col-5">
               <div class="form-group">
-                <div class="form-inline">
-                  Số thành Viên : <div id="soMem" style="padding-left:10px"> </div>
+                <div class="form-inline" style="font-size: medium;">
+                  Số thành Viên : <div id="soMem" style="padding-left:10px;font-size: medium;"> </div>
                 </div>
               </div>
               <div class="form-group">
-                <div class="form-inline">
-                  Số thành viên đang chờ xin vào : <div id="memRes" style="padding-left:10px"> </div>
+                <div class="form-inline " style="font-size: medium;font-size: medium;">
+                  Số thành viên chờ xin vào : <div id="memRes" style="padding-left:10px"> </div>
                 </div>
               </div>
             </div>
             <div class="col-4">
               <div class="form-group">
-                <div class="form-inline">
+                <div class="form-inline"style="font-size: medium;font-size: medium;">
                   Trạng thái : <div id="privacyGr" style="padding-left:10px"> </div>
                 </div>
               </div>
               <div class="form-group">
-                <div class="form-inline">
+                <div class="form-inline"style="font-size: medium;font-size: medium;">
                   Giới thiệu : <div id="Des" style="padding-left:10px"> </div>
                 </div>
               </div>
             </div>
-            <div class="col-4">
+            <div class="col-3">
               <div class="form-group">
                 <div class="form-inline">
                   Ngày Tạo : <div id="createDay" style="padding-left:10px"> </div>
@@ -60,9 +60,9 @@
           <table class="modal_chucnang__table table table-hover" id="">
             <thead class="bg__caothang text-white">
               <th class="text-center">STT</th>
-              <th scope="col" class="text-center">Mô tả</th>
-              <th scope="col" class="text-center">Link</th>
-              <th scope="col" class="text-center">Loại</th>
+              <th scope="col" class="text-center">Nội dung</th>
+              <th scope="col" class="text-center">Đường dẫn</th>
+              <th scope="col" class="text-center">Loại bài viết</th>
               <th scope="col" class="text-center">Trạng Thái</th>
             </thead>
             <tbody>
@@ -72,7 +72,7 @@
                   <div>{{d.message}}</div>
                 </td>
                 <td class="text-center">
-                  <a href="{{d.link}}" target="_blank">Click để đi đến bài viết</a>
+                  <a href="{{d.link}}" target="_blank">Nhấn để đi đến bài viết</a>
                 </td>
                 <td class="text-center">
                   <div>{{d.loai}}</div>

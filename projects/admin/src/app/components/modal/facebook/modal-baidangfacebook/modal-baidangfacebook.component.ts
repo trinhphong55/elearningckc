@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { PagefbService } from './../../../../services/pagefb.service';
 import { LoaifbService } from './../../../../services/loaifb.service';
 import { LopHocService } from './../../../../services/lop-hoc.service';
@@ -16,8 +17,8 @@ export class ModalBaidangfacebookComponent implements OnInit {
   trangthai: any;
   setTrangthai: any;
   mess:any;
-  selectedCityIds:[];
-  selectedPgae:[];
+  selectedCityIds:[null];
+  selectedPgae:[null];
   layloaifb:any;
   getpg:any;
   waitTime = 0;
@@ -28,6 +29,7 @@ export class ModalBaidangfacebookComponent implements OnInit {
   getMaloai:any;
   getloaifb:any;
   tenpage:any;
+  nofis:any;
 
   //Khai báo list
   public posttams: any;
@@ -38,7 +40,9 @@ export class ModalBaidangfacebookComponent implements OnInit {
     private trangthaifbSV: TrangThaifbService,
     private lophocSV: LopHocService,
     private LoaiFB: LoaifbService,
-    private pageSV:PagefbService
+    private pageSV:PagefbService,
+    private toastr:ToastrService
+
   ) {}
   searchpage;
   lopHoc:any;
@@ -49,6 +53,9 @@ export class ModalBaidangfacebookComponent implements OnInit {
       getLoaisTT:new FormControl(),
       conTent:new FormControl(),
       urlimg:new FormControl(),
+      getLoaisTTgrp:new FormControl(),
+      conTentgrp:new FormControl(),
+      urlimggrp:new FormControl(),
     });
     this.getAll();
     this.getTrangthai();
@@ -68,6 +75,16 @@ export class ModalBaidangfacebookComponent implements OnInit {
 
   get urlimg(){
     return this.addForm.get('urlimg');
+  }
+  get getLoaisTTgrp(){
+    return this.addForm.get('getLoaisTTgrp');
+  }
+  get conTentgrp(){
+    return this.addForm.get('conTentgrp');
+  }
+
+  get urlimggrp(){
+    return this.addForm.get('urlimggrp');
   }
 
   getAll() {
@@ -127,6 +144,32 @@ export class ModalBaidangfacebookComponent implements OnInit {
   fixInput(){
     console.log(this.selectedCityIds);
     $('#listidgrp').val(this.selectedCityIds);
+
+    this.delay(1000).then(any=>{
+      var nofi = $('#returnloaigrp1').val();
+        if(nofi !== '' || this.selectedCityIds == [null]){
+          this.nofis = nofi;
+          this.toastr.warning(this.nofis,'Nhắc nhở',{
+            timeOut:2000,
+            positionClass:'toast-bottom-right',
+          });
+        }else{
+          var errpage = $('#returnerrorpicturegrp').val();
+            this.nofis = errpage;
+            if(errpage !== ''){
+              this.toastr.warning(this.nofis,'Nhắc nhở',{
+                timeOut:2000,
+                positionClass:'toast-bottom-right',
+              });
+            }
+            else{
+              this.toastr.success('Cứ sau 20 giây sẽ có 1 trang được đăng bài','Thông báo',{
+                timeOut:2000,
+                positionClass:'toast-bottom-right',
+              });
+            }
+        }
+    });
   }
 
   delay(ms: number) {
@@ -140,52 +183,28 @@ export class ModalBaidangfacebookComponent implements OnInit {
     this.delay(1000).then(any=>{
       var nofi = $('#returnloaip1').val();
         if(nofi !== ''){
-          alert(nofi);
+          this.nofis = nofi;
+          this.toastr.warning(this.nofis,'Nhắc nhở',{
+            timeOut:2000,
+            positionClass:'toast-bottom-right',
+          });
         }else{
-          this._listidpage = this.selectedPgae;
-           //setTimeout(function AutoCallPage(){},1000);
+            var errpage = $('#returnerrorpicturePage').val();
+            this.nofis = errpage;
+            if(errpage !== ''){
+              this.toastr.warning(this.nofis,'Nhắc nhở',{
+                timeOut:2000,
+                positionClass:'toast-bottom-right',
+              });
+            }
+            else{
+              this.toastr.success('Cứ sau 20 giây sẽ có 1 trang được đăng bài','Thông báo',{
+                timeOut:2000,
+                positionClass:'toast-bottom-right',
+              });
+            }
         }
     });
-  }
-
-  AutoCallPage() {
-    //Tạo 1 flat để dừng post
-    var CanContinue = true;
-     this.waitTime = 20;
-    console.log(this.waitTime);
-    //Nếu thời gian chờ == 0 thì chạy hàm post còn khác 0 thì giảm thời gian chờ đi 1 đơn vị rồi hiển thị lên monitor
-    if (this.waitTime == 0) {
-
-      this.waitTime=20;
-        //Sau đó tăng biến đếm index các group đã post
-          this._ListIndex ++;
-          console.log(this._ListIndex);
-
-        //So sánh nếu danh sách các group đã post < độ dài của các group id cần post thì chạy hàm post
-        if (this._ListIndex < this._listidpage.length) {
-
-            this.insertTime(this._listidpage[this._ListIndex]);
-
-
-        } else {
-            //Khi đã hết các group cần post bài thì flat có giá trị fales
-            CanContinue = false;
-        }
-
-    } else {
-      //Nếu waitTime== 0 thì sẽ reset thời gian chờ
-
-      this.waitTime = this.waitTime-1;
-      console.log(this.waitTime);
-
-    }
-
-    // Tự gọi lại chính nó sau 1 giây
-    if (CanContinue) {
-        setTimeout(function(){ this.AutoCallPage()}, 1000);
-    } else {
-        console.log('Đã Đăng hết');
-    }
   }
 
   insertTime(d){

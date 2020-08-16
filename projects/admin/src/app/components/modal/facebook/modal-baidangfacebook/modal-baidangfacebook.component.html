@@ -32,12 +32,15 @@
                 >
                   <span aria-hidden="true">&times;</span>
                 </button>
+                <div style="position: absolute;margin-top: 20px;">
+                  <h4 id="showTimegrp" style="color: red;margin-top: 15px;"></h4>
+                </div>
               </div>
               <div class="modal-body">
                 <div class="">
                   <div class="form-group">
                     <label>Nội dung</label>
-                    <textarea
+                    <textarea [formControl]="conTentgrp"
                       class="form-control"
                       type="text"
                       name="message"
@@ -48,7 +51,7 @@
                 <div class="">
                   <div class="form-group">
                     <label>Đường dẫn hình ảnh (URL)</label>
-                    <input
+                    <input [formControl]="urlimggrp"
                       class="form-control"
                       type="text"
                       name="picture"
@@ -59,7 +62,7 @@
                 <div class="">
                   <div class="form-group">
                     <label for="">Loại bài viết</label>
-                    <select [formControl]="getLoaisTT" class="col-6 form-control">
+                    <select [formControl]="getLoaisTTgrp" class="col-6 form-control" id="getloaigrp1">
                       <option [value]="null">Chọn loại..</option>
                       <option *ngFor="let l of layloaifb" class="form-control">{{l.loai}}</option>
                     </select>
@@ -76,6 +79,8 @@
                               [(ngModel)]="selectedCityIds">
                     </ng-select>
                     <input id="listidgrp"value="" type="text" name="" hidden>
+                    <input id="returnloaigrp1"value="" type="text" name="" hidden>
+
                   </div>
                 </div>
               </div>
@@ -90,7 +95,6 @@
                 <button
                   type="button"
                   class="btn btn-secondary"
-                  data-dismiss="modal"
                 >
                   Lưu nháp
                 </button>
@@ -128,7 +132,11 @@
                 >
                   <span aria-hidden="true">&times;</span>
                 </button>
+                <div style="position: absolute;margin-top: 20px;">
+                  <h4 id="showTime" style="color: red;margin-top: 15px;"></h4>
+                </div>
               </div>
+
               <div class="modal-body">
                 <div class="">
                   <div class="form-group">
@@ -174,7 +182,7 @@
                               [(ngModel)]="selectedPgae">
                     </ng-select>
                   </div>
-                  <input id="listidpage"value="" type="text" name="" hidden>
+                  <input id="listidpage" value="" type="text" name="" hidden>
                   <input id="returnloaip1"value="" type="text" name="" hidden>
                   <input id="addtime" value="" type="text" hidden>
                 </div>
@@ -194,83 +202,58 @@
             </div>
           </div>
         </div>
-        <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
-          <div class="row justify-content-center align-items-center">
-            <div class="col-4">
-              <div class="form-group">
-                <label>Nội dung</label>
-                <input class="form-control" type="text" id="messageupdate" />
-              </div>
-            </div>
-            <div class="col-4">
-              <div class="form-group">
-                <label for="">Đường dẫn hình ảnh (URL)</label>
-                <input class="form-control" type="text" id="pictureupdate" />
-              </div>
-            </div>
-            <div class="">
-              <div class="col-auto">
-                <div class="modal_chucnang__group__button">
-                  <button
-                    class="modal_chucnang__button btn btn-outline-success px-4 mx-2"
-                  >
-                    <img
-                      class="modal_chucnang__button__icon mb-2"
-                      src="assets/img/icons/upgrade.png"
-                      alt="image icon"
-                    />
-                    <div>Cập nhật</div>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="modal_chucnang__group__button">
-            <button
-              class="modal_chucnang__button btn btn-outline-primary px-2 mx-1"
-              data-toggle="modal"
-              data-target="#PostGroup"
-            >
-              <div>Đăng bài cho Group</div>
-            </button>
-            <button
-              class="modal_chucnang__button btn btn-outline-success px-2 mx-1"
-              data-toggle="modal"
-              data-target="#PostPage"
-            >
-              <div>Đăng bài cho Page</div>
-            </button>
-          </div>
-        </div>
       </div>
       <div class="col-12">
         <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
           <div class="d-flex align-items-center mb-2">
-            <label class="mb-0 d-flex align-items-center"
+            <div class="col-2">
+              <label class="mb-0 d-flex align-items-center"
               ><span class="text-nowrap">Hiển thị &nbsp;</span>
               <select class="custom-select custom-select-sm form-control">
                 <option>10</option>
                 <option>25</option>
                 <option>50</option> </select
               ><span class="text-nowrap">&nbsp; hàng</span>
-            </label>
-            <ng-container [formGroup]="addForm">
-              <div class="align-items-center ml-4">
-                <label class="mb-0 d-flex align-items-center"
-                  ><span class="text-nowrap">Trạng thái &nbsp;</span>
-                  <select
-                    class="custom-select custom-select-sm form-control"
-                    id="tinhtrang"
-                    formControlName="trangThai"
-                    (change)="changedTrangThai()"
-                  >
-                    <option value="">Tất cả</option>
-                    <option value="1">Chưa đăng</option>
-                    <option value="2">Đã đăng</option>
-                  </select>
-                </label>
+              </label>
+            </div>
+            <div class="col-2">
+              <ng-container [formGroup]="addForm">
+                <div class="align-items-center ml-4">
+                  <label class="mb-0 d-flex align-items-center"
+                    ><span class="text-nowrap">Trạng thái &nbsp;</span>
+                    <select
+                      class="custom-select custom-select-sm form-control"
+                      id="tinhtrang"
+                      formControlName="trangThai"
+                      (change)="changedTrangThai()"
+                    >
+                      <option value="">Tất cả</option>
+                      <option value="1">Chưa đăng</option>
+                      <option value="2">Đã đăng</option>
+                    </select>
+                  </label>
+                </div>
+              </ng-container>
+            </div>
+
+            <div class="col-4">
+              <div class="modal_chucnang__group__button ml-6" >
+                <button
+                  class="modal_chucnang__button btn btn-primary px-2 mx-1"
+                  data-toggle="modal"
+                  data-target="#PostGroup"
+                >
+                  <div>Đăng bài cho các nhóm</div>
+                </button>
+                <button
+                  class="modal_chucnang__button btn btn-success px-2 mx-1"
+                  data-toggle="modal"
+                  data-target="#PostPage"
+                >
+                  <div>Đăng bài cho các trang</div>
+                </button>
               </div>
-            </ng-container>
+            </div>
 
             <label class="ml-auto mb-0 d-flex align-items-center"
               ><span class="text-nowrap">Tìm kiếm: &nbsp;</span>
@@ -328,10 +311,8 @@
                   <div class="mb-1">
                     <button
                       class="modal_chucnang__button btn btn-outline-secondary"
-                      onclick="DeletePostedPage(this)"
-                      data="{{d.postID}}"
-                      data2="{{d.ID}}"
-                      (click)="changeTrangthai(d)"
+
+
                     >
                       Xóa
                     </button>
