@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
   constructor(private authService: AuthService) {}
 
   // Cờ đã đăng nhập
-  isLogged: Boolean = false;
+  isLogged: Boolean = true;
 
   loginForm = new FormGroup({
     email: new FormControl(),

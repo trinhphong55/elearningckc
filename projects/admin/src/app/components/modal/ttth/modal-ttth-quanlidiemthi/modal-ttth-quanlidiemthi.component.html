@@ -149,7 +149,7 @@
                 <th scope="col">Họ tên</th>
                 <th scope="col">MSSV</th>
                 <th scope="col">SBD</th>
-                <th scope="col">Lớp</th>
+                <th scope="col">Lớp hoặc đợt thi</th>
                 <th scope="col">Tổng điểm</th>
                 <th scope="col">Xếp loại</th>
                 <th scope="col">Lập trình C++</th>
@@ -170,7 +170,8 @@
                 <td>{{item.hoten}}</td>
                 <td>{{item.mssv}}</td>
                 <td>{{item.sobaodanh}}</td>
-                <td>{{item.lop}}</td>
+                <td *ngIf="!item.tendotthi">{{item.lop}}</td>
+                <td *ngIf="item.tendotthi">{{item.tendotthi}}</td>
                 <td>{{item.tongdiem}}</td>
                 <td>{{item.xeploai}}</td>
                 <td>{{item.laptrinhc}}</td>
