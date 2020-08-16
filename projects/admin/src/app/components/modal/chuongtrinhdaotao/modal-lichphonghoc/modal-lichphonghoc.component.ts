@@ -4,16 +4,15 @@ import { ModalService } from '../../../../services/modal.service';
 //Services
 import { LHDTService } from '../../../../services/loaihinhdaotao.service';
 import { BacService } from '../../../../services/Bac.service';
-import { LopHocService } from '../../../../services/lop-hoc.service';
 import { FileService } from '../../../../../../../elearning/src/app/services/file.service';
 import { PhonghocService } from '../../../../services/phonghoc.service';
+import { LichPhongHocService } from '../../../../services/lichphonghoc.service';
 
 //interfaces
-import { CTDT } from '../../../../interfaces/ctdt.interface';
 import { LHDT } from '../../../../interfaces/loaihinhdaotao.interface';
 import { bac } from '../../../../interfaces/Bac.interface';
-import { LopHoc } from '../../../../interfaces/LopHoc.interface';
 import { PhongHoc } from '../../../../interfaces/PhongHoc.interface';
+import { LPH } from '../../../../interfaces/LichPhongHoc.interface';
 
 @Component({
   selector: 'app-modal-lichphonghoc',
@@ -22,158 +21,64 @@ import { PhongHoc } from '../../../../interfaces/PhongHoc.interface';
 })
 export class ModalLichphonghocComponent implements OnInit {
 
-  private maChuongTrinhDaoTao: string;
   dsLoaiHinhDaoTao: LHDT[];
-  dsLH: LopHoc[];
   dsBac: bac[];
 
-  ctdt: CTDT = {
-    maBac: "3",
-    maNganhNghe: "006",
-    khoaHoc: "17",
-    maLoaiHinhDaoTao: "1",
-  };
 
-  tongTuan: string[] = [];
+  dsLPH: LPH[];
 
-  lichHoc = [
-    "", "", "", "", "", "", "", "",
-    "", "", "", "", "", "", "", "",
-    "", "", "", ""
-  ];
+  khoa = "17";
+  maBac = "3";
+  tongTuan = 52;
+  tuanDau = 1;
+  tuanCuoi = 52;
+  titleLPH = "Lịch phòng học Cao đẳng các ngành đào tạo học kì 1 năm học 2019 - 2020";
+  dsTuan: string[] = [];
+  dsNamHoc: object[] = [];
+  display = false;
 
-  hocKi = 1;
-  namHoc = 2019;
-  lichPhongHoc = [
-    {
-      maLopHoc: "30061711",
-      lichHoc: [
-        "", "", "", "", "", "", "", "",
-        "", "", "", "", "", "", "", "",
-        "", "", "", ""
-      ]
-    },
-    {
-      maLopHoc: "30061712",
-      lichHoc: [
-        "", "", "", "", "", "", "", "",
-        "", "", "", "", "", "", "", "",
-        "", "", "", ""
-      ]
-    },
-    {
-      maLopHoc: "30061713",
-      lichHoc: [
-        "", "", "", "", "", "", "", "",
-        "", "", "", "", "", "", "", "",
-        "", "", "", ""
-      ]
-    },
-    {
-      maLopHoc: "30061714",
-      lichHoc: [
-        "", "", "", "", "", "", "", "",
-        "", "", "", "", "", "", "", "",
-        "", "", "", ""
-      ]
-    },
-    {
-      maLopHoc: "30061715",
-      lichHoc: [
-        "", "", "", "", "", "", "", "",
-        "", "", "", "", "", "", "", "",
-        "", "", "", ""
-      ]
-    }
-  ]
-
-  // dsPhong = [
-  //   "F7.1", "F7.2", "F7.3", "F7.4"
-  // ]
   dsPhong: PhongHoc[];
 
-  private convertToMaChuongTrinhDaoTao(item: CTDT): string {
-    return item.maBac + item.maNganhNghe + item.khoaHoc + item.maLoaiHinhDaoTao;
-  }
-
   private loadLPH() {
-    this.maChuongTrinhDaoTao = this.convertToMaChuongTrinhDaoTao(this.ctdt);
-    this.lopHocService.getDSLopHocbymaCTDT(this.maChuongTrinhDaoTao).subscribe(dslop => {
-      this.dsLH = dslop;
-    });
-    this.phongHocService.getPhongHoc().subscribe(dsphong => {
-      this.dsPhong = dsphong;
-    }, error => console.log(error));
-  }
+    this.lichPhongHocService.getbymaBacNkhoa(this.maBac, this.khoa).subscribe(
+      dslph => {
+        this.dsLPH = dslph;
+        if (dslph.length !== 0) {
+          this.display = true
+        } else {
+          this.display = false;
+        }
+      },
+      error => console.log(error));
 
+    for (let i = this.tuanDau; i <= this.tuanCuoi; i++) {
+      this.dsTuan.push(`Tuần ${i}`)
+    }
+  }
 
   select() {
-    this.lichPhongHoc = [
-      {
-        maLopHoc: "30061711",
-        lichHoc: [
-          "", "", "", "", "", "", "", "",
-          "", "", "", "", "", "", "", "",
-          "", "", "", ""
-        ]
-      },
-      {
-        maLopHoc: "30061712",
-        lichHoc: [
-          "", "", "", "", "", "", "", "",
-          "", "", "", "", "", "", "", "",
-          "", "", "", ""
-        ]
-      },
-      {
-        maLopHoc: "30061713",
-        lichHoc: [
-          "", "", "", "", "", "", "", "",
-          "", "", "", "", "", "", "", "",
-          "", "", "", ""
-        ]
-      },
-      {
-        maLopHoc: "30061714",
-        lichHoc: [
-          "", "", "", "", "", "", "", "",
-          "", "", "", "", "", "", "", "",
-          "", "", "", ""
-        ]
-      },
-      {
-        maLopHoc: "30061715",
-        lichHoc: [
-          "", "", "", "", "", "", "", "",
-          "", "", "", "", "", "", "", "",
-          "", "", "", ""
-        ]
-      }
-    ]
+    this.loadLPH();
   }
-
-  selectBac() {
-    alert('oke');
-  }
-
-  // select() {
-  //   alert("change");
-  // }
 
   selectPhongHoc(maPhong: string, sttTuan: number, sttLop: number) {
-    // this.lichPhongHoc[sttLop].lichHoc[sttTuan] = maPhong;
-    console.log(maPhong, sttTuan, sttLop);
     if (maPhong !== "") {
-      for (let i = sttTuan + 1; i < this.tongTuan.length; i++) {
-        if (this.lichPhongHoc[sttLop].lichHoc[i] === "") {
-          this.lichPhongHoc[sttLop].lichHoc[i] = maPhong;
+      for (let i = sttTuan + 1; i < this.tongTuan; i++) {
+        if (this.dsLPH[sttLop].lichHoc[i] === "") {
+          this.dsLPH[sttLop].lichHoc[i] = maPhong;
         }
       }
     }
   }
 
   saveLPH() {
-    console.log(this.lichPhongHoc);
+    console.log('haha');
+    // this.lichPhongHocService.addLPH(this.dsLPH).subscribe(res => {
+    //   if (res.status === 200) {
+    //     alert('Cap nhat thanh cong');
+    //   } else {
+    //     alert('Cap nhat that bai');
+    //   }
+    // })
   }
 
   closeModal(id: string) {
@@ -184,18 +89,18 @@ export class ModalLichphonghocComponent implements OnInit {
     private modalService: ModalService,
     private lhdtService: LHDTService,
     private bacService: BacService,
-    private lopHocService: LopHocService,
     private phongHocService: PhonghocService,
-    private fileService: FileService) {
+    private fileService: FileService,
+    private lichPhongHocService: LichPhongHocService) {
 
   }
 
   ngOnInit(): void {
     this.bacService.getBac().subscribe(dsbac => this.dsBac = dsbac);
     this.lhdtService.getLHDT().subscribe(dslhdt => this.dsLoaiHinhDaoTao = dslhdt);
+    this.phongHocService.getPhongHoc().subscribe(dsphong => {
+      this.dsPhong = dsphong;
+    }, error => console.log(error));
     this.loadLPH();
-    for (let i = 1; i <= 20; i++) {
-      this.tongTuan.push(`Tuần ${i}`);
-    }
   }
 }
