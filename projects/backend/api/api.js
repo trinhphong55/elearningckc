@@ -232,6 +232,7 @@ router.get("/ct-diemsv-lophocphan/:masv",verifyToken, ctDiemLopHP.layCTDiemLopHP
 router.get("/ct-diemsv-lophocphan/:maHocPhan/lophocphan",verifyToken, ctDiemLopHP.layCTDiemLopHPtheoMaLopHP);
 router.get("/ct-diemsv-lophocphan/:maCotDiem/sinhvienlophocphan",verifyToken, ctDiemLopHP.dsChamDiemSinhVien);
 router.put("/ct-diemsv-lophocphan/:id/chamdiem",verifyToken, ctDiemLopHP.chamdiemsinhvienlophocphan);
+router.get("/ct-diemsv-lophocphan/:maCotDiem/exportexcel",verifyToken, ctDiemLopHP.thongTinXuatExcel);
 //=========================== Routes ChuDe =============================================
 router.get("/chude",verifyToken, ChuDe.layTatCa);
 router.get("/chude/:maChuDe",verifyToken, ChuDe.layMot);

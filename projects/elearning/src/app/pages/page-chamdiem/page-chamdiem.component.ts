@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, COMPILER_OPTIONS } from '@angular/core';
 import {ThemePalette} from '@angular/material/core';
 import{BaiTapService} from"../../services/bai-tap.service";
 import{chiTietDiemSVLopHocPhanService} from"../../../../../admin/src/app/services/chiTietDiemSVLHP.service"
@@ -16,6 +16,7 @@ dsSv:any;
 dsDiem:any;
 chamDiemSV:any;
 getDiem:any;
+thongTinExcel:any
 formChamDiem = new FormGroup({
   chamDiemSV: new FormControl(),
 })
@@ -67,5 +68,20 @@ formChamDiem = new FormGroup({
       alert("Nhập Dữ Liệu Sai Vui Lòng Kiểm Tra Lại!")
     }
   }
+  exPortExcel(detail)
+  {
+    this.ChiTietDiemSVLopHocPhanService.xuatThongTinExcel(detail.maCotDiem).subscribe(
+      thongTinExcel=>{
+        this.thongTinExcel=thongTinExcel;
+         this.ChiTietDiemSVLopHocPhanService.exportAsExcelFile(this.thongTinExcel,"DiemSinhvien")
+      },
+      (error)=>{
+        console.log(error);
+      }
+    )
+  }
+   
+  }
 
-}
+
+
