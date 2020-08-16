@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
   }
 
   // Cờ đã đăng nhập
-   isLogged: Boolean = false;
+   isLogged: Boolean = true;
 
   loginForm = new FormGroup({
     email: new FormControl(),

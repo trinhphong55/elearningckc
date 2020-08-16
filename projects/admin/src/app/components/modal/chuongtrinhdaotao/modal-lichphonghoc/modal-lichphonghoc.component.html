@@ -11,35 +11,37 @@
             <div class="col-6">
               <div class="form-group">
                 <label>Bậc</label>
-                <select class="form-control" [(ngModel)]="ctdt.maBac" (change)="selectBac()">
+                <select class="form-control" [(ngModel)]="maBac" (change)="select()">
                   <option *ngFor="let bac of dsBac" [value]="bac.maBac">{{ bac.tenBac }}</option>
                 </select>
               </div>
               <div class="form-group">
                 <label>Năm học</label>
-                <select class="form-control" [(ngModel)]="namHoc" (change)="select()">
-                  <option value="2019">2019 - 2020</option>
-                  <option value="2020">2020 - 2021</option>
+                <select class="form-control" [(ngModel)]="khoa" (change)="select()">
+                  <option value="17">2017 - 2018</option>
+                  <option value="28">2018 - 2019</option>
+                  <option value="19">2019 - 2020</option>
+                  <option value="20">2020 - 2021</option>
                 </select>
               </div>
             </div>
             <div class="col-3">
               <div class="form-group">
                 <label>Loại hình đào tạo</label>
-                <select class="form-control" (change)="select()" [(ngModel)]="ctdt.maLoaiHinhDaoTao">
+                <select class="form-control">
                   <option value="1">Chính quy</option>
                   <option value="2">Liên thông</option>
                 </select>
               </div>
               <div class="form-group">
                 <label>Học kì</label>
-                <select class="form-control" [(ngModel)]="hocKi" (change)="select()">
+                <select class="form-control" (change)="select()">
                   <option value="1">Học kì 1</option>
                   <option value="2">Học kì 2</option>
                 </select>
               </div>
             </div>
-            <div class="col-auto">
+            <div *ngIf="display" class="col-auto">
               <div class="modal_chucnang__group__button">
                 <button class="modal_chucnang__button btn btn-outline-secondary px-4 mx-2" (click)="saveLPH()"><img
                     class="modal_chucnang__button__icon mb-2" src="assets/img/icons/add.png" alt="image icon">
@@ -66,25 +68,23 @@
       <div class="col-12">
         <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
           <div class="d-flex justify-content-center">
-            <h5 class="text-center">Lịch phòng học Cao đẳng các ngành đào tạo học kì 1 năm học 2019 - 2020</h5>
+            <h5 class="text-center"> {{ titleLPH }}</h5>
           </div>
           <div class="table-responsive text-center">
-            <table class="table">
+            <table class="table" *ngIf="display">
               <thead>
                 <tr>
                   <th class="text-center">Lớp / Tuần</th>
-                  <th class="tuan" *ngFor="let tuan of lichPhongHoc[0].lichHoc; index as t">{{ "Tuần " +( t + 1) }}
-                  </th>
+                  <th class="tuan" *ngFor="let tuan of dsTuan">{{tuan}}</th>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let lop of dsLH; index as sttLop">
+                <tr *ngFor="let lop of dsLPH; index as sttLop">
                   <th class="lop align-middle" style="min-width: 150px; background-color: #3b77b6;">{{ lop.tenVietTat }}
                   </th>
-                  <th *ngFor="let phonghoc of tongTuan; index as sttTuan">
-                    <!-- <select #changePhong (change)="selectPhongHoc(changePhong.value, sttTuan, sttLop)" -->
+                  <th *ngFor="let phonghoc of dsTuan; index as sttTuan">
                     <select #changePhong (change)="selectPhongHoc(changePhong.value, sttTuan, sttLop)"
-                      [(ngModel)]="lichPhongHoc[sttLop].lichHoc[sttTuan]" class="lichHoc form-control text-center"
+                      [(ngModel)]="dsLPH[sttLop].lichHoc[sttTuan]" class="lichHoc form-control text-center"
                       style="text-align-last:center">
                       <option value=""></option>
                       <option *ngFor="let phong of dsPhong" [value]="phong.maPhongHoc">{{ phong.tenPhongHoc }}
