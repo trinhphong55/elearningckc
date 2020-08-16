@@ -53,7 +53,7 @@ let Storage = multer.diskStorage({
       let errorMess = `The file <strong>${file.originalname}</strong> is invalid. Only allowed to upload image jpeg or png.`;
       return callback(errorMess, null);
     }
-    let filename = `${file.originalname}`;
+    let filename = 'tienich_' +`${file.originalname}`;
     callback(null, filename);
   }
 });

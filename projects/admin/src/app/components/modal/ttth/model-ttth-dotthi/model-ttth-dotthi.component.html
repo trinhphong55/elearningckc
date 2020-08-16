@@ -108,7 +108,7 @@
                 <td>{{item.nguoisua}}</td>
                 <td *ngIf="item.trangthai==false">Đã xóa</td>
                 <td *ngIf="item.trangthai==true">Hiển thị</td>
-                <td class="text-center">
+                <td class="text-center" *ngIf="item.trangthai==true">
                   <span class="modal_chucnang__button__delete mdi mdi-file-document-edit-outline  mdi-24px  mr-2"
                     (click)="onSelect(item);imageSrc=null"></span>
                   <span class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px" (click)="delete(item)"></span>

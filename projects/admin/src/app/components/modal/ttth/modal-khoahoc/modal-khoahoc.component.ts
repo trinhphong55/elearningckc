@@ -80,7 +80,7 @@ export class ModalKhoahocComponent implements OnInit {
     makhoahoc = makhoahoc.trim();
     const newItem: ttthKhoaHoc = new ttthKhoaHoc();
     newItem.tenkhoahoc = tenkhoahoc;
-    newItem.image = 'https://localhost:4100/uploads/cntt/' + this.nameImage.name;
+    newItem.image = 'https://localhost:4100/uploads/cntt/' + 'khoahoc_'+ this.nameImage.name;
     newItem.makhoahoc = makhoahoc;
     newItem.noidung = this.CK;
     newItem.color = color;
@@ -104,7 +104,7 @@ export class ModalKhoahocComponent implements OnInit {
   }
   update(KhoaHoc: ttthKhoaHoc):void {
     if (this.nameImage) {
-      KhoaHoc.image='https://localhost:4100/uploads/cntt/' + this.nameImage.name;
+      KhoaHoc.image='https://localhost:4100/uploads/cntt/' + 'khoahoc_'+ this.nameImage.name;
     }
     KhoaHoc.updated_at= new Date;
     KhoaHoc.nguoisua= this._username;

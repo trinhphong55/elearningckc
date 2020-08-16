@@ -46,7 +46,7 @@ export class ModalLogoComponent implements OnInit {
       let img = new Image()
       img.src = window.URL.createObjectURL(event.target.files[0])
       img.onload = () => {
-        if(img.width == 900 && img.height == 400){
+        if(img.width == 887 && img.height == 379){
           const file = event.target.files[0];
           const reader = new FileReader();
           reader.onload = (e) => (this.imageSrc = reader.result);
@@ -65,7 +65,7 @@ export class ModalLogoComponent implements OnInit {
   ///edit
   saveThongTinWeb(ThongTinWeb: ttthThongTinWeb):void {
     if (this.nameImage) {
-      ThongTinWeb.logo='https://localhost:4100/uploads/cntt/' + this.nameImage.name;
+      ThongTinWeb.logo='https://localhost:4100/uploads/cntt/' + 'uploads_' + this.nameImage.name;
     }
     ThongTinWeb.updated_at= new Date;
     ThongTinWeb.nguoisua= this._username;

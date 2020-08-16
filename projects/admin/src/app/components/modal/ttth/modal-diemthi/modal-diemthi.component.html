@@ -8,8 +8,8 @@
       <div class="col-12">
         <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white row">
           <div class="col-3">
-            <label>Nhập điểm cho đợt thi <input type="radio" name="check" (change)="getValueCheckBoxDotThi($event)" ></label><br>
-            <div class="form-group" *ngIf="checkboxDotThi==true">
+            <!-- <label>Nhập điểm cho đợt thi <input type="radio" name="check" (change)="getValueCheckBoxDotThi($event)" ></label><br>
+            <div class="form-group" *ngIf="checkboxDotThi==true"> -->
               <label >Chọn đợt thi</label>
               <select  class="form-control" (change)="onChangeDotThi($event.target.value)">
                   <option value=""></option>
@@ -19,7 +19,7 @@
               </select>
             </div>
           </div>
-          <div class="col-3">
+          <!-- <div class="col-3">
             <label>Nhập điểm cho khóa học <input type="radio" name="check" (change)="getValueCheckBoxKhoaHoc($event)" ></label><br>
             <div class="form-group" *ngIf="checkboxKhoaHoc==true">
               <label >Chọn khóa học</label>
@@ -30,7 +30,7 @@
                   </ng-container>
               </select>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
       <div class="col-12">
@@ -61,5 +61,5 @@
         </div>
       </div>
     </div>
-  </div>
+
 </app-modal>

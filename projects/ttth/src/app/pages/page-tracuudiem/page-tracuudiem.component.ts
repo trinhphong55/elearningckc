@@ -22,13 +22,19 @@ export class PageTracuudiemComponent implements OnInit {
   TraCuuDiem(mssv): void {
     if (mssv == '') {
       this.alertnull='Vui lòng nhập mã số sinh viên!';
-    }else{
-      this.DiemthiService.TraCuuDiem(mssv).subscribe((data) => {
-        this.DiemThi = data;
-        this.DiemThiTheoSBD = null;
-        this.tukhoatimkiemmssv=mssv;
-        this.alertnull=null;
-      });
+    }
+    else{
+      if(mssv.length != 10){
+        this.alertnull='Mã số sinh viên không đúng!';
+      }
+      else{
+        this.DiemthiService.TraCuuDiem(mssv).subscribe((data) => {
+          this.DiemThi = data;
+          this.DiemThiTheoSBD = null;
+          this.tukhoatimkiemmssv=mssv;
+          this.alertnull=null;
+        });
+      }
     }
   }
   TraCuuDiemTheoSBD(sbd): void {

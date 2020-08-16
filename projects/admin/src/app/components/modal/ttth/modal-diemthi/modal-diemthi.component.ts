@@ -100,17 +100,17 @@ export class ModalDiemthiComponent implements OnInit {
       this.checkboxKhoaHoc= value;
     }
   }
-  getValueCheckBoxKhoaHoc(e){
-    this.checkboxKhoaHoc= e.target.checked;
-    if (this.checkboxKhoaHoc === true) {
-      let value = false;
-      this.checkboxDotThi= value;
-    }
-    else{
-      let value = true;
-      this.checkboxDotThi= value;
-    }
-  }
+  // getValueCheckBoxKhoaHoc(e){
+  //   this.checkboxKhoaHoc= e.target.checked;
+  //   if (this.checkboxKhoaHoc === true) {
+  //     let value = false;
+  //     this.checkboxDotThi= value;
+  //   }
+  //   else{
+  //     let value = true;
+  //     this.checkboxDotThi= value;
+  //   }
+  // }
   importExcel() {
     let ngaythi: any;
     let giothi: any;
