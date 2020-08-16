@@ -60,13 +60,13 @@
         <div class="row">
           <div class="col-sm-6 col-md mt-3 mt-lg-0">
             <div class="footer_title text-uppercase">
-              <a [routerLink]="footer.url1" class="text-white">{{
+              <a href="{{footer.url1}}" class="text-white">{{
                 footer.name1
               }}</a>
             </div>
             <nav class="footer_text mt-2 mt-lg-3">
               <li class="mt-2" *ngFor="let item1 of footer.sub1">
-                <a class="text-reset" [routerLink]="item1.url">{{
+                <a class="text-reset" href="{{item1.url}}">{{
                   item1.name
                 }}</a>
               </li>
@@ -74,13 +74,13 @@
           </div>
           <div class="col-sm-6 col-md mt-3 mt-lg-0">
             <div class="footer_title text-uppercase">
-              <a [routerLink]="footer.url2" class="text-white">{{
+              <a href="{{footer.url2}}" class="text-white">{{
                 footer.name2
               }}</a>
             </div>
             <nav class="footer_text mt-2 mt-lg-3">
               <li class="mt-2" *ngFor="let item2 of footer.sub2">
-                <a class="text-reset" [routerLink]="item2.url">{{
+                <a class="text-reset" href="{{item2.url}}">{{
                   item2.name
                 }}</a>
               </li>
@@ -88,13 +88,13 @@
           </div>
           <div class="col-sm-6 col-md mt-3 mt-lg-0">
             <div class="footer_title text-uppercase">
-              <a [routerLink]="footer.url3" class="text-white">{{
+              <a href="footer.url3" class="{{text-white}}">{{
                 footer.name3
               }}</a>
             </div>
             <nav class="footer_text mt-2 mt-lg-3">
               <li class="mt-2" *ngFor="let item3 of footer.sub3">
-                <a class="text-reset" [routerLink]="item3.url">{{
+                <a class="text-reset" href="{{item3.url}}">{{
                   item3.name
                 }}</a>
               </li>

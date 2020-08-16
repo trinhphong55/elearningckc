@@ -133,6 +133,7 @@ export class ModalQuanlytienichcnttComponent implements OnInit {
           .editTienIch(this.tienIchForm.value)
           .subscribe((res) => {
             this.loadDanhSachTienIch();
+            this.onResetFormValue();
             console.log(' Tin tuc duoc chinh sua thanh cong!', res);
             this.toastr.success('Chỉnh sửa bài viết thành công!');
           });
@@ -145,11 +146,20 @@ export class ModalQuanlytienichcnttComponent implements OnInit {
           .themTienIch(this.tienIchForm.value)
           .subscribe((res) => {
             this.loadDanhSachTienIch();
+            this.onResetFormValue();
             console.log(' Tien ich duoc them thanh cong!', res);
             this.toastr.success('Thêm tiện ích thành công !');
           });
       }
     }
+  }
+  onResetFormValue() {
+    this.tienIchForm.patchValue({
+      tenTienIch: '',
+      urlTienIch: '',
+      iconClassTienIch: '',
+      maMauTienIch: '',
+    });
   }
   showTrangThai(trangThai: any): string {
     if (trangThai == 1) {
