@@ -19,17 +19,20 @@ export class SinhVienService {
     return this.http.get<any>(`${this.baseUrl}/${maLop}/siso`);
   }
   //trinh phong  sua
-  public laysinhvien(maLop: String){
+  public laysinhvien(maLop: String) {
     return this.http.get(`${this.baseUrl}/${maLop}/malop`);
   }
-  public getAll(){
+  public getAll() {
     return this.http.get(this.baseUrl);
   }
-  public getonesv(masv){
+  public getonesv(masv) {
     return this.http.get(`${this.baseUrl}/${masv}`);
   }
-//tim sinh vien theo lop hoc phan
-public layDsSvByLopHP(maLopHocPhan:any){
-  return this.http.get(`${this.baseUrl}/${maLopHocPhan}/lophocphan`);
-}
+  //tim sinh vien theo lop hoc phan
+  public layDsSvByLopHP(maLopHocPhan: any) {
+    return this.http.get(`${this.baseUrl}/${maLopHocPhan}/lophocphan`);
   }
+  public capNhatSiSoLopHocPhan(maLopHoc){
+    return this.http.get<any>(`${this.baseUrl}/${maLopHoc}/sisolhp`);
+  }
+}

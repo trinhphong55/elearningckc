@@ -9,7 +9,9 @@ import { CookieService } from 'ngx-cookie-service';
 import { FileSelectDirective, FileUploader } from 'ng2-file-upload';
 import { FileService } from '../../../../../services/file.service';
 import saveAs from 'file-saver';
-const uri = 'https://localhost:4100/api/baitap/uploads';
+const uri = 'https://localhost:4100/api/baitapsinhvien/uploads';
+import { ActivityService } from '../../../../../services/activity.service';
+import { getCookie } from '../../../../../../../../common/helper';
 @Component({
   selector: 'app-xembaitapsv',
   templateUrl: './xembaitapsv.component.html',
@@ -18,6 +20,8 @@ const uri = 'https://localhost:4100/api/baitap/uploads';
 export class XembaitapsvComponent implements OnInit {
   public baiTap: BaiTap;
   public dsBinhLuan: any;
+  public maLHP: any;
+  public mssv = getCookie('email').slice(0, 10);
   public binhLuan = new FormControl('');
   //uplpadfile trinh phong
   hasBaseDropZoneOver: boolean;
@@ -50,9 +54,15 @@ export class XembaitapsvComponent implements OnInit {
     private binhLuanService: BinhLuanService,
     private BaiTapSinhVienService: BaiTapSinhVienService,
     private cookie: CookieService,
-    private _fileService: FileService) {
+    private _fileService: FileService,
+    private activityService:ActivityService) {
 
   }
+  public asyncSettings = {
+    saveUrl: 'https://aspnetmvc.syncfusion.com/services/api/uploadbox/Save',
+    removeUrl: 'https://aspnetmvc.syncfusion.com/services/api/uploadbox/Remove'
+  };
+  public autoUpload = false;
 
   ngOnInit(): void {
     this.quyenNopBai();
@@ -68,6 +78,13 @@ export class XembaitapsvComponent implements OnInit {
       item.withCredentials = false;
     }
   }
+
+  private themActivity(maDoiTuong, noiDung) {
+    this.activityService.themActivity(this.maLHP, maDoiTuong, "BL-BT", noiDung, "bình luận").subscribe(res => {
+      console.log(res);
+    })
+  }
+
   quyenNopBai() {
     this.doituong = this.cookie.get("role");
     if (this.doituong == 'GV') {
@@ -108,9 +125,17 @@ export class XembaitapsvComponent implements OnInit {
       loaiBaiViet: '2',
       maBaiViet: maBaiGiang,
       noiDung: this.binhLuan.value,
-      nguoiTao: '0306171249',
+      nguoiTao: this.mssv,
     };
-    this.binhLuanService.themBinhluan(data).subscribe((res) => { });
+    this.binhLuanService.themBinhluan(data).subscribe((res:any) => {
+      if(typeof res.data == 'object'){
+        //mã bài viết là mã bài tập
+        this.baiTapService.layBaiTap_theoMaBaiTap(data.maBaiViet).subscribe((res:any) => {
+          this.maLHP = res.data.lopHocPhan;
+          this.themActivity(data.maBaiViet, res.data.tieuDe);
+        })
+      }
+    });
   }
 
 
@@ -164,7 +189,6 @@ export class XembaitapsvComponent implements OnInit {
       var maBaiTap: any;
       var ChuDe: any;
       this.data = { maLopHocPhan:this.baiTap.lopHocPhan, email: this.cookie.get("email"), maBaiTap: this.baiTap.maBaiTap, chuDe: item?.file?.name };
-      console.log(this.data)
       this.BaiTapSinhVienService.addBaiTap(this.data).subscribe(
         (nopBt) => {
           this.nopBt = nopBt;
@@ -176,11 +200,9 @@ export class XembaitapsvComponent implements OnInit {
                   name: item._file.name,
                   length: item._file.size,
                   contentType: item._file.type,
-                  date: new Date(),
                   maxFileSize: 2048,
                   queueLimit: 3,
                 });
-                console.log(name)
               });
             }
           });

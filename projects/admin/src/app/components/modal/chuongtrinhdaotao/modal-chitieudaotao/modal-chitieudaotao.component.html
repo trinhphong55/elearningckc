@@ -33,11 +33,11 @@
               <div class="form-group">
                 <label for="khoa" class="col-sm-2 mr-sm-2 col-form-label">Khoá </label>
                 <div class="col-sm-4">
-                  <input class="form-control" id="khoa" formControlName="khoa" (blur)="onChangeKhoaHoc()" type="number"
+                  <input class="form-control" id="khoa" formControlName="khoa" (change)="onChangeKhoaHoc()" type="number"
                     min="14" value="15">
                 </div>
               </div>
-              <button type="button" class="btn btn-success" (click)="onChangeKhoaHoc()">Lọc</button>
+
             </form>
           </div>
         </div>
@@ -254,7 +254,8 @@
                       </td>
                       <td>
                         <button type="button" class="btn btn-outline-danger" data-toggle="modal"
-                          data-target="#exampleModalCenter" (click)="onClickResetLopHoc(nganh.maNganhNghe, nganh.maBac)">Xóa</button>
+                          data-target="#exampleModalCenter"
+                          (click)="onClickResetLopHoc(nganh.maNganhNghe, nganh.maBac)">Xóa</button>
                       </td>
                     </tr>
 
@@ -290,17 +291,15 @@
                   <tbody>
                     <!-- <ng-container *ngFor="let item of lopNganhs">
                       <ng-container *ngFor="let lop of item.dsLop, index as i"> -->
-                    <tr *ngFor="let item of lopTams, index as i">
+                    <tr *ngFor="let item of lopTams, index as i ">
 
                       <th scope="row">{{ i+1 }}</th>
                       <td>
                         {{ item.tenLop }}
                       </td>
-                      <ng-container *ngFor="let sv of tongSoSinhVien">
-                        <td *ngIf="item.maLopHoc == sv.maLopHoc">
-                          {{ sv.siSo }}
-                        </td>
-                      </ng-container>
+                      <td>
+                        {{ item.siSo }}
+                      </td>
                       <td>
                         <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#chiTiet"
                           (click)="layLopHocPhan(item.maLopHoc)">Xem</button>
@@ -310,7 +309,6 @@
                           data-target="#dsSV" (click)="onClickThemDSSV(item.maLopHoc)"><img
                             class=" modal_chucnang__button__icon " src="assets/img/icons/excel.png" alt="image icon">
                         </button>
-
                       </td>
                     </tr>
                     <!-- </ng-container> -->

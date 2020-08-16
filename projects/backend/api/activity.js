@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
 router.get('/:loaiActivity/lophocphan/:maLopHocPhan', async (req, res) => {
   const loaiActivity = req.params.loaiActivity;
   const maLopHocPhan = req.params.maLopHocPhan;
-  await Activity.find({ loaiActivity, maLopHocPhan })
+  await Activity.find({ loaiActivity, maLopHocPhan }).sort({"ngayTao": -1})
     .then(dsActi => {
       return res.status(200).json({
         message: "Lay thanh cong",

@@ -9,9 +9,7 @@
           <div class="icon">
             <button mat-button [matMenuTriggerFor]="menu"><i class="fas fa-ellipsis-v"></i></button>
             <mat-menu #menu="matMenu">
-              <button mat-menu-item>Đổi tên</button>
-              <button mat-menu-item>Xóa</button>
-              <button mat-menu-item>sao chép đường liên kết</button>
+              <button mat-menu-item>Sao chép đường liên kết</button>
             </mat-menu>
           </div>
         </div>
@@ -47,7 +45,7 @@
             <div class="songuoinop">
               <div class="left">
                 <div>
-                  <p>Đã đăng vào {{ baiTap?.ngayTao }}</p>
+                  <p>Đã đăng vào {{ baiTap?.ngayTao | date: 'dd-MM-yyyy' }}</p>
                   <p>Hướng dẫn: {{ baiTap?.huongDan }} </p>
                 </div>
               </div>
@@ -73,15 +71,8 @@
                     </div>
                   </div>
                   <div class="nx-showname">
-                    <h6>{{ item.nguoiTao}} <span>{{ item.ngayTao }}</span></h6>
+                    <h6>{{ item.nguoiTao}} <span style='color: #555555'>{{ item.ngayTao | date:'dd-MM-yyyy' }}</span></h6>
                     <p>{{ item.noiDung }}</p>
-                  </div>
-                  <div class="nx-menu">
-                    <button mat-button [matMenuTriggerFor]="menunx"><i class="fas fa-ellipsis-v"></i></button>
-                    <mat-menu #menunx="matMenu">
-                      <button mat-menu-item>Chỉnh sửa</button>
-                      <button mat-menu-item>Xóa</button>
-                    </mat-menu>
                   </div>
                 </div>
               </ng-container>
@@ -116,21 +107,21 @@
     </div>
     <div class="col-md-4"  [ngStyle]="{'display':quyen}">
       <div class="row">
-        <div class="col-md-10 style-element" >
-          <div class="el-header" >
-            <h5>Bài tập của bạn</h5>  
+        <div class="col-md-10 style-element">
+          <div class="el-header">
+            <h5>Bài tập của bạn</h5>
               <span>{{tinhTrang}}</span>
           </div>
           <div class="el-content">
             <table class="table">
               <div>
                 <div class="row uploadList" *ngFor="let i of dsBaiTap">
-                
+
                     <div class="col-sm-8">{{i.chuDe}}</div>
                     <div class="col-sm-2">
                       <button type="button" class="btn btn-danger" (click)="xoabaitap(i)">X</button>
                     </div>
-              
+
                 </div>
               </div>
             </table>
@@ -151,7 +142,7 @@
             </table>
             <button mat-button [matMenuTriggerFor]="themhoactao"><i class="fas fa-plus"></i> Thêm hoặc tạo</button>
             <mat-menu #themhoactao="matMenu">
-              <button mat-menu-item> <input type="file" ng2FileSelect [uploader]="uploader" /><br /><i
+              <button mat-menu-item> <input type="file" name="upload" multiple ng2FileSelect [uploader]="uploader" /><br /><i
                   class="fas fa-file-import"></i>Tệp </button>
               <!-- <button mat-menu-item><i class="fas fa-link"></i><i class="fas fa-link"></i>Liên kết</button>
               <button mat-menu-item><i class="fab fa-google-drive"></i>GG Drive</button> -->
@@ -161,7 +152,7 @@
             <div class="col-md-2" style="margin-bottom: 40px">
             </div>
             <div class="row" *ngIf="uploader?.queue?.length > 0">
-              <button type="button" class="danhdau" (click)="uploader.uploadAll()" (click)="themBaiTap()">Đánh dấu là hoàn tất</button>
+              <button type="button" class="danhdau" (click)="themBaiTap()" (click)="uploader.uploadAll()">Đánh dấu là hoàn tất</button>
             </div>
           </div>
         </div>

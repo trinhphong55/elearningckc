@@ -3,6 +3,10 @@ var _router = express.Router();
 var multer = require("multer");
 var path = require("path");
 const BaiTap = require("../models/BaiTap.model");
+const { Date } = require("mongoose");
+var CHUDE =require("../models/chu-de.model");
+var COTDIEM = require("../models/cotdiem-lophocphan.model");
+const { zip } = require("rxjs");
 
 
 const PATH = "./uploads/elearning/baitap";
@@ -38,7 +42,7 @@ _router.post("/download", function (req, res, next) {
 
 _router.get("/:maLopHocPhan/lop-hoc-phan", async (req, res) => {
   try {
-    const baiTaps = await BaiTap.find({ lopHocPhan: req.params.maLopHocPhan });
+    const baiTaps = await BaiTap.find({ lopHocPhan: parseInt(req.params.maLopHocPhan) });
     res.json({
       count: baiTaps.length,
       data: baiTaps,
@@ -51,7 +55,7 @@ _router.get("/:maLopHocPhan/lop-hoc-phan", async (req, res) => {
 });
 _router.get("/:maBaiTap", async (req, res) => {
   try {
-    const baiTaps = await BaiTap.findOne({ maBaiTap: req.params.maBaiTap });
+    const baiTaps = await BaiTap.findOne({ maBaiTap: parseInt(req.params.maBaiTap) });
     res.json({
       id:req.params.maBaiTap,
       data: baiTaps,
@@ -90,4 +94,33 @@ _router.post("/", async (req, res) => {
       });
     });
 });
+ ///danh sach bai tap 1 lop hoc phan
+ _router.get("/danhsachbaitap/:maLopHocPhan", async (req, res) => {
+   try {
+    var chude= await CHUDE.find({maLopHocPhan:req.params.maLopHocPhan,trangThai:1});
+    var baitap=await BaiTap.find({trangThai:1,lopHocPhan:req.params.maLopHocPhan});
+    var cotdiem = await COTDIEM.find({trangThai:1,maLopHocPhan:req.params.maLopHocPhan});
+    var data=[];
+    chude.forEach(async x => {
+      baitap.forEach(async y => {
+        cotdiem.forEach(async z => {
+          if(x.maChuDe==y.chuDe)
+          {
+            if(y.maBaiTap==z.maBaiTap)
+            {
+             
+             data.push({tieuDe:y.tieuDe,tenChuDe:x.tenChuDe,cotDiem:z.tenCotDiem,maCotDiem:z.maCotDiem})
+            }
+          }
+        })
+      })
+    })
+    return res.status(200).json(data);
+   } catch (err) { 
+    return res.status(501).json({
+      status: 501,
+      message: err,
+    });
+   }
+  });
 module.exports = _router;

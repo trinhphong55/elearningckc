@@ -4,14 +4,12 @@
       <div class="title">
         <h3>{{baiGiang?.tieuDe}}</h3>
       </div>
-      <div class="icon">
+      <!-- <div class="icon">
         <button mat-button [matMenuTriggerFor]="menu"><i class="fas fa-ellipsis-v"></i></button>
         <mat-menu #menu="matMenu">
-          <button mat-menu-item>Đổi tên</button>
-          <button mat-menu-item>Xóa</button>
-          <button mat-menu-item>sao chép đường liên kết</button>
+          <button mat-menu-item>Sao chép đường liên kết</button>
         </mat-menu>
-      </div>
+      </div> -->
     </div>
   </div>
   <div class="row">
@@ -30,16 +28,16 @@
         </div>
         <div class="tt-dealine">
           <div>
-            {{ baiGiang?.ngayChinhSua}}
+            {{ baiGiang?.ngayChinhSua | date:'dd-MM-yyyy'}}
           </div>
         </div>
-        <div class="tt-menu">
+        <!-- <div class="tt-menu">
           <button mat-button [matMenuTriggerFor]="menu"><i class="fas fa-ellipsis-v"></i></button>
           <mat-menu #menu="matMenu">
             <button mat-menu-item>Item 1</button>
             <button mat-menu-item>Item 2</button>
           </mat-menu>
-        </div>
+        </div> -->
       </div>
       <div class="nopbai">
         <div class="songuoinop">
@@ -77,15 +75,8 @@
                 </div>
               </div>
               <div class="nx-showname">
-                <h6>{{ bl.nguoiTao}} <span>{{ bl.ngayTao }}</span></h6>
+                <h6>{{ bl.nguoiTao}} <span style='color: #555555'>{{ bl.ngayTao | date:'dd-MM-yyyy' }}</span></h6>
                 <p>{{ bl.noiDung }}</p>
-              </div>
-              <div class="nx-menu">
-                <button mat-button [matMenuTriggerFor]="menunx"><i class="fas fa-ellipsis-v"></i></button>
-                <mat-menu #menunx="matMenu">
-                  <button mat-menu-item>Chỉnh sửa</button>
-                  <button mat-menu-item>Xóa</button>
-                </mat-menu>
               </div>
 
             </div>

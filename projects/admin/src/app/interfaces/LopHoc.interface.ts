@@ -8,5 +8,5 @@ export interface LopHoc {
   maNganh: String;
   maBac: String;
   khoa: String;
-  siSo:Number;
+  siSo:number;
 }

@@ -9,6 +9,8 @@ import { Component, OnInit } from '@angular/core';
 import { ChuDe } from '../../../../models/chu-de.interface';
 import { ChuDeService } from '../../../../services/chu-de.service';
 import saveAs from 'file-saver';
+import { ActivityService } from '../../../../services/activity.service';
+import { error } from 'protractor';
 
 const uri = 'https://localhost:4100/api/baigiang/upload';
 @Component({
@@ -29,10 +31,11 @@ export class TaobaigiangComponent implements OnInit {
   constructor(
     private _fileService: FileService,
     private _baiGiangService: BaiGiangService,
-    private _chuDeService:ChuDeService,
-    private _lopHocPhanService:LopHocPhanService
+    private _chuDeService: ChuDeService,
+    private _lopHocPhanService: LopHocPhanService,
+    private _activityService: ActivityService
   ) {}
-   baiGiang: any;
+  baiGiang: any;
 
   ngOnInit(): void {
     // this.baiGiang.tieuDe = 'test tieuDe';
@@ -76,18 +79,33 @@ export class TaobaigiangComponent implements OnInit {
   };
 
   saveBaiGiang() {
-
     if (this.uploader.queue.length !== 0) {
       this.uploader.uploadAll();
     } else {
       console.log(this.baiGiang);
       this._baiGiangService.them(this.baiGiang).subscribe((data: any) => {
         alert(data.message);
-        // if (data.status === 200) {
-
-        // }
+        console.log(typeof(data.data.maBaiGiang));
+        if (typeof(data.data.maBaiGiang)) {
+          this._setActivity(data.data.maBaiGiang);
+        }
+      }, error => {
+        console.log(error);
       });
     }
+  }
+  private _setActivity(maDoiTuong) {
+    this._activityService
+      .themActivity(
+        this.baiGiang.maLopHocPhan,
+        maDoiTuong,
+        'BG',
+        this.baiGiang.tieuDe,
+        'đăng'
+      )
+      .subscribe((res) => {
+        console.log(res);
+      });
   }
 
   // Upload file
@@ -113,7 +131,6 @@ export class TaobaigiangComponent implements OnInit {
       (res: any) => {
         if (res.data) {
           this.dsChuDe = res.data;
-
         } else {
           console.log(res);
         }
@@ -126,7 +143,6 @@ export class TaobaigiangComponent implements OnInit {
       (res: any) => {
         if (res) {
           this.dsLopHocPhan = res;
-
         } else {
           console.log(res);
         }
@@ -134,18 +150,15 @@ export class TaobaigiangComponent implements OnInit {
       (err) => console.log(err)
     );
   }
-  public onClickThem(){
-
-    this.baiGiang  = {
+  public onClickThem() {
+    this.baiGiang = {
       tieuDe: this.inputTieuDe.value,
-      maLopHocPhan:(this.lopHoc.value).toString(),
-      maChuDe:this.chuDe.value,
+      maLopHocPhan: this.lopHoc.value.toString(),
+      maChuDe: this.chuDe.value,
       moTa: this.textMoTa.value,
-      nguoiDang:'huy',
-      nguoiChinhSua:'huy',
-
-    }
+      nguoiDang: 'huy',
+      nguoiChinhSua: 'huy',
+    };
     this.saveBaiGiang();
-
   }
 }
