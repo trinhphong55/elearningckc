@@ -120,4 +120,6 @@ export class ModalDanhmucbaivietComponent implements OnInit {
     if (trangThai == 1) { return 'Đã đăng' }
     return 'Đã xóa'
   }
+  get tenDanhMuc() { return this.danhMucForm.get('tenDanhMuc'); }
+  get tenVietTat() { return this.danhMucForm.get('tenVietTat'); }
 }

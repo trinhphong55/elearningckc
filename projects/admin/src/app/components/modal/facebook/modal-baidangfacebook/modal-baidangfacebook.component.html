@@ -1,120 +1,321 @@
 <app-modal class="modal_chucnang__wrapper" id="fb_quanlybaidangfacebook">
-  <div (click)="closeModal('fb_quanlybaidangfacebook')" class="modal_chucnang__close mdi mdi-chevron-left text-white"></div>
+  <div
+    (click)="closeModal('fb_quanlybaidangfacebook')"
+    class="modal_chucnang__close mdi mdi-chevron-left text-white"
+  ></div>
   <div class="container-fluid mt-3">
     <div class="row">
       <div class="col-12">
-        <h1 class="text-center text-white">Quản lý các bài đăng</h1>
+        <h1 class="text-center text-white">QUẢN LÝ CÁC BÀI ĐĂNG</h1>
       </div>
       <div class="col-12">
-        <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
-          <div class="row justify-content-center align-items-center">
-              <!-- <div class="col-4">
-                <div class="form-group">
-                  <label>Message</label>
-                  <input class="form-control" type="text" name="message" id="message" />
-                </div>
-              </div>
-              <div class="col-4">
-                <div class="form-group">
-                  <label>Url picture</label>
-                  <input class="form-control" type="text" name="picture" id="picture"/>
-                </div>
-              </div>
-              <div class="col-4">
-                <div class="form-group">
-                  <label for="">Ảnh/Video</label>
-                  <input class="form-control-file border" type="file">
-                </div>
-              </div> -->
-            <div class="">
-              <div class="col-auto">
-                <div class="modal_chucnang__group__button">
-                  <button class="modal_chucnang__button btn btn-outline-primary px-4 mx-2" ><img
-                    class="modal_chucnang__button__icon mb-2" src="assets/img/icons/add.png" alt="image icon">
-                  <div>Thêm mới</div>
+        <!-- Modal -->
+        <div
+          class="modal fade"
+          id="PostGroup"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="exampleModalLongTitle"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title" id="exampleModalLongTitle">
+                  Đăng bài cho các nhóm
+                </h1>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
                 </button>
-                <button class="modal_chucnang__button btn btn-outline-success px-4 mx-2"><img
-                  class="modal_chucnang__button__icon mb-2" src="assets/img/icons/upgrade.png" alt="image icon">
-                <div>Cập nhật</div>
-              </button>
+                <div style="position: absolute;margin-top: 20px;">
+                  <h4 id="showTimegrp" style="color: red;margin-top: 15px;"></h4>
                 </div>
+              </div>
+              <div class="modal-body">
+                <div class="">
+                  <div class="form-group">
+                    <label>Nội dung</label>
+                    <textarea [formControl]="conTentgrp"
+                      class="form-control"
+                      type="text"
+                      name="message"
+                      id="messagegr1"
+                    ></textarea>
+                  </div>
+                </div>
+                <div class="">
+                  <div class="form-group">
+                    <label>Đường dẫn hình ảnh (URL)</label>
+                    <input [formControl]="urlimggrp"
+                      class="form-control"
+                      type="text"
+                      name="picture"
+                      id="picturegr1"
+                    />
+                  </div>
+                </div>
+                <div class="">
+                  <div class="form-group">
+                    <label for="">Loại bài viết</label>
+                    <select [formControl]="getLoaisTTgrp" class="col-6 form-control" id="getloaigrp1">
+                      <option [value]="null">Chọn loại..</option>
+                      <option *ngFor="let l of layloaifb" class="form-control">{{l.loai}}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="">
+                  <div class="form-group">
+                    <label for="">Chọn Nhóm</label>
+                    <ng-select id="groupsgr1" style="font-size: 1rem;" [items]="lopHoc"
+                              bindLabel="tenGroupFB"
+                              bindValue="IDGroupFB"
+                              [multiple]="true"
+                              placeholder="Chọn..."
+                              [(ngModel)]="selectedCityIds">
+                    </ng-select>
+                    <input id="listidgrp"value="" type="text" name="" hidden>
+                    <input id="returnloaigrp1"value="" type="text" name="" hidden>
+
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+
+                <button
+                  class="btn btn-success"
+                  (click)="fixInput()" onclick="_StartPost()"
+                >
+                  Đăng
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                >
+                  Lưu nháp
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-danger"
+                  data-dismiss="modal"
+                >
+                  Đóng
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Modal -->
+        <div
+          class="modal fade"
+          id="PostPage"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="exampleModalLongTitle"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title" id="exampleModalLongTitle">
+                  Đăng bài cho các trang
+                </h1>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <div style="position: absolute;margin-top: 20px;">
+                  <h4 id="showTime" style="color: red;margin-top: 15px;"></h4>
+                </div>
+              </div>
+
+              <div class="modal-body">
+                <div class="">
+                  <div class="form-group">
+                    <label>Nội dung</label>
+                    <textarea
+                      [formControl]="conTent"
+                      class="form-control"
+                      type="text"
+                      name="message"
+                      id="messagep1"
+                    ></textarea>
+                  </div>
+                </div>
+                <div class="">
+                  <div class="form-group">
+                    <label>Đường dẫn hình ảnh (URL)</label>
+                    <input
+                      [formControl]="urlimg"
+                      class="form-control"
+                      type="text"
+                      name="picture"
+                      id="picturep1"
+                    />
+                  </div>
+                </div>
+                <div class="">
+                  <div class="form-group">
+                    <label for="">Loại bài viết</label>
+                    <select [formControl]="getLoaisTT" class="col-6 form-control" id="getloaip1">
+                      <option [value]="null">Chọn loại..</option>
+                      <option *ngFor="let l of layloaifb" class="form-control">{{l.loai}}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="">
+                  <div class="form-group">
+                    <label for="">Chọn trang</label>
+                    <ng-select id="page1" style="font-size: 1rem;" [items]="getpg"
+                              bindLabel="tenPage"
+                              bindValue="id_Page"
+                              [multiple]="true"
+                              placeholder="Chọn..."
+                              [(ngModel)]="selectedPgae">
+                    </ng-select>
+                  </div>
+                  <input id="listidpage" value="" type="text" name="" hidden>
+                  <input id="returnloaip1"value="" type="text" name="" hidden>
+                  <input id="addtime" value="" type="text" hidden>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-success" onclick="_StartPostPage()" (click)="transIDpage()">Đăng</button>
+                <button type="button" class="btn btn-secondary">Lưu nháp</button>
+
+                <button
+                  type="button"
+                  class="btn btn-danger"
+                  data-dismiss="modal"
+                >
+                  Đóng
+                </button>
               </div>
             </div>
           </div>
         </div>
       </div>
       <div class="col-12">
-        <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white" >
-          <div class="d-flex align-items-center mb-2" >
-            <label class="mb-0 d-flex align-items-center"><span class="text-nowrap">Hiển thị &nbsp;</span>
+        <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
+          <div class="d-flex align-items-center mb-2">
+            <div class="col-2">
+              <label class="mb-0 d-flex align-items-center"
+              ><span class="text-nowrap">Hiển thị &nbsp;</span>
               <select class="custom-select custom-select-sm form-control">
                 <option>10</option>
                 <option>25</option>
-                <option>50</option>
-              </select><span class="text-nowrap">&nbsp; hàng</span>
-            </label>
-            <ng-container [formGroup]="addForm">
-            <div class="align-items-center ml-4 ">
-              <label class="mb-0 d-flex align-items-center"><span class="text-nowrap">Trạng thái  &nbsp;</span>
-                <select class="custom-select custom-select-sm form-control" id="tinhtrang" formControlName="trangThai" (change)="changedTrangThai()" >
-                  <option value="">Tất cả</option>
-                  <option value="1">Chưa đăng</option>
-                  <option value="2">Đã đăng</option>
-                </select>
+                <option>50</option> </select
+              ><span class="text-nowrap">&nbsp; hàng</span>
               </label>
             </div>
-              <!-- <div>
-                <span>Theo loại</span>
-                <select id="loai" formControlName="theLoai" (change)="changedTrangThai()">
-                 <option value="">Select...</option>
-                 <option value="1">Thông báo</option>
-                 <option value="2">Tin tức</option>
-                 <option value="3">Hỏi đáp</option>
-                </select>
-              </div> -->
-            </ng-container>
+            <div class="col-2">
+              <ng-container [formGroup]="addForm">
+                <div class="align-items-center ml-4">
+                  <label class="mb-0 d-flex align-items-center"
+                    ><span class="text-nowrap">Trạng thái &nbsp;</span>
+                    <select
+                      class="custom-select custom-select-sm form-control"
+                      id="tinhtrang"
+                      formControlName="trangThai"
+                      (change)="changedTrangThai()"
+                    >
+                      <option value="">Tất cả</option>
+                      <option value="1">Chưa đăng</option>
+                      <option value="2">Đã đăng</option>
+                    </select>
+                  </label>
+                </div>
+              </ng-container>
+            </div>
 
-            <label class="ml-auto mb-0 d-flex align-items-center"><span class="text-nowrap">Tìm kiếm: &nbsp;</span>
-              <input class="form-control form-control-sm" placeholder="Tìm kiếm" [(ngModel)]="searchpage">
+            <div class="col-4">
+              <div class="modal_chucnang__group__button ml-6" >
+                <button
+                  class="modal_chucnang__button btn btn-primary px-2 mx-1"
+                  data-toggle="modal"
+                  data-target="#PostGroup"
+                >
+                  <div>Đăng bài cho các nhóm</div>
+                </button>
+                <button
+                  class="modal_chucnang__button btn btn-success px-2 mx-1"
+                  data-toggle="modal"
+                  data-target="#PostPage"
+                >
+                  <div>Đăng bài cho các trang</div>
+                </button>
+              </div>
+            </div>
+
+            <label class="ml-auto mb-0 d-flex align-items-center"
+              ><span class="text-nowrap">Tìm kiếm: &nbsp;</span>
+              <input
+                class="form-control form-control-sm"
+                placeholder="Tìm kiếm"
+                [(ngModel)]="searchpage"
+              />
             </label>
           </div>
 
           <table class="modal_chucnang__table table table-hover" id="">
             <thead class="bg__caothang text-white">
               <th class="text-center">STT</th>
-              <th scope="col" class="text-center">id</th>
               <th scope="col" class="text-center">Mô tả</th>
-              <th scope="col" class="text-center">Link</th>
-              <th scope="col" class="text-center">Loại</th>
+              <th scope="col" class="text-center">Đường dẫn</th>
+              <th scope="col" class="text-center">Loại bài viết</th>
               <th scope="col" class="text-center">Thuộc</th>
               <th scope="col" class="text-center">Trạng Thái</th>
               <th scope="col" class="text-center">Tác vụ</th>
             </thead>
             <tbody>
-              <tr *ngFor=" let d of posttams |filter: searchpage; index as stt">
-                <td>{{stt+1}}</td>
+              <tr *ngFor="let d of posttams | filter: searchpage; index as stt">
+                <td class="text-center">{{ stt + 1 }}</td>
                 <td class="text-center">
-                  <div>{{d.id}}</div>
+                  <div>{{ d.message }}</div>
                 </td>
                 <td class="text-center">
-                  <div>{{d.message}}</div>
+                  <div [hidden]="d.link === '' ">
+                    <a [href]="d.link" target="_blank"
+                    >Nhấn để đi đến bài viết</a
+                  >
+                  </div>
                 </td>
                 <td class="text-center">
-                  <div>{{d.link}}</div>
+                  <div>{{ d.loai }}</div>
                 </td>
                 <td class="text-center">
-                  <div>{{d.loai}}</div>
+                  <div>{{ d.thuoc }}</div>
                 </td>
+                <ng-container *ngFor="let item of trangthai">
+                  <td class="text-center" *ngIf="item.trangThai == d.trangThai">
+                    <div>{{ item.tenTrangThai }}</div>
+                  </td>
+                </ng-container>
+
                 <td class="text-center">
-                  <div>{{d.thuoc}}</div>
-                </td>
-                <td class="text-center">
-                  <div>{{d.trangthai}}</div>
-                </td>
-                <td class="text-center">
-                  <div class="form-group">
-                    <span class="modal_chucnang__button__delete ml-2 mdi mdi-delete-outline mdi-24px"></span>
-                    <button class="modal_chucnang__button btn btn-outline-success px-4 mx-2" >View</button>
+                  <div class="mb-1">
+                    <button [hidden]="d.trangThai === 2"
+                      class="modal_chucnang__button btn btn-outline-success"
+                    >
+                      Đăng bài
+                    </button>
+                  </div>
+                  <div class="mb-1">
+                    <button
+                      class="modal_chucnang__button btn btn-outline-secondary"
+
+
+                    >
+                      Xóa
+                    </button>
                   </div>
                 </td>
               </tr>

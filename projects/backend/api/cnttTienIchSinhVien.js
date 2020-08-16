@@ -1,20 +1,21 @@
 const router = require("express").Router();
 const TienIch = require("../models/cnttTienIchSinhVien.model");
 
-router.get("/danhsachtienich", (req, res) => {
-  TienIch.find((error, data) => {
-    if (error) {
-      return res.json({
-        message: "Lấy danh sách bài viết không thành công.",
-        data: [],
-        error: error,
-      });
-    }
+router.get("/danhsachtienich", async (req, res) => {
+  try {
+    const data = await TienIch.find().sort({ maTienIch: "asc" });
     res.json({ message: "Lấy danh sách bài viết thành công.", data: data });
-  });
+  } catch (error) {
+    res.json({
+      message: "Lấy danh sách bài viết không thành công.",
+      data: [],
+      error: error,
+    });
+  }
 });
+
 router.get("/danhsachtienichcntt", (req, res) => {
-  TienIch.find({trangThai: 1},(error, data) => {
+  TienIch.find({ trangThai: 1 }, (error, data) => {
     if (error) {
       return res.json({
         message: "Lấy danh sách bài viết không thành công.",
@@ -26,8 +27,8 @@ router.get("/danhsachtienichcntt", (req, res) => {
   });
 });
 router.post("/xoatienich", async (req, res) => {
-  console.log(" Xoa tien ich");
-  console.log(req.body.maTienIch);
+  // console.log(" Xoa tien ich");
+  // console.log(req.body.maTienIch);
   await TienIch.findOneAndUpdate(
     { maTienIch: req.body.maTienIch },
     {
@@ -46,9 +47,9 @@ router.post("/taotienich", (req, res) => {
     urlTienIch: req.body.urlTienIch,
     iconClassTienIch: req.body.iconClassTienIch,
     maMauTienIch: req.body.maMauTienIch,
-    trangthai: 1
+    trangthai: 1,
   });
-  console.log(tienIch);
+  // console.log(tienIch);
   tienIch.save((err, data) => {
     if (err) {
       return next(err);
@@ -58,7 +59,7 @@ router.post("/taotienich", (req, res) => {
 });
 
 router.post("/chinhSuaTienIch", async (req, res) => {
-  console.log(" Chinh sua tien ich");
+  // console.log(" Chinh sua tien ich");
   await TienIch.findOneAndUpdate(
     { _id: req.body._id },
     {
@@ -67,7 +68,7 @@ router.post("/chinhSuaTienIch", async (req, res) => {
       urlTienIch: req.body.urlTienIch,
       iconClassTienIch: req.body.iconClassTienIch,
       maMauTienIch: req.body.maMauTienIch,
-      trangThai : 1
+      trangThai: 1,
     }
   );
   res.json({

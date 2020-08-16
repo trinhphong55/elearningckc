@@ -11,6 +11,14 @@ router.get('/ttthdanhsachbanner', async (req, res) => {
     res.json([]);
   }
 })
+router.get('/', async (req, res) => {
+  try {
+    const danhsach = await ttthBanner.find().sort({vitri : 1});
+    res.json(danhsach);
+  } catch (error) {
+    res.json([]);
+  }
+})
 // add
 router.post('/ttththembanner', (req, res) => {
   var banner = new ttthBanner({
@@ -45,7 +53,7 @@ let Storage = multer.diskStorage({
       let errorMess = `The file <strong>${file.originalname}</strong> is invalid. Only allowed to upload image jpeg or png.`;
       return callback(errorMess, null);
     }
-    let filename = `${file.originalname}`;
+    let filename = 'slideshow_' +`${file.originalname}`;
     callback(null, filename);
   }
 });
@@ -83,7 +91,8 @@ router.post('/ttthxoabanner', async (req, res) => {
   await ttthBanner.findOneAndUpdate({
     _id: req.body._id
   }, {
-    trangthai: false
+    trangthai: false,
+    nguoisua: req.body.nguoisua,
   });
 })
 module.exports = router

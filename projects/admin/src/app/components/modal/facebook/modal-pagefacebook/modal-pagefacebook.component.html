@@ -1,34 +1,35 @@
+<app-detail-pagefacebook></app-detail-pagefacebook>
 <app-modal class="modal_chucnang__wrapper" id="fb_quanlypagefacebook">
   <div (click)="closeModal('fb_quanlypagefacebook')" class="modal_chucnang__close mdi mdi-chevron-left text-white"></div>
   <div class="container-fluid mt-3">
     <div class="row">
       <div class="col-12">
-        <h1 class="text-center text-white">Quản lý Page Facebook</h1>
+        <h1 class="text-center text-white">Quản lý trang trên Facebook</h1>
       </div>
       <div class="col-12">
         <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
           <div class="row justify-content-center align-items-center">
             <div class="col-4">
               <div class="form-group">
-                <label for="">ID Page</label>
+                <label for="">ID Trang</label>
                 <input type="text" class="form-control" [formControl]="IDpage">
               </div>
             </div>
             <div class="col-4">
               <div class="form-group">
-                <label for="">Tên Page</label>
+                <label for="">Tên Trang</label>
                 <input type="text" class="form-control" [formControl]="tenPage">
               </div>
             </div>
             <div class="col-4">
               <div class="form-group">
-                <label for="">Link</label>
+                <label for="">Đường dẫn</label>
                 <input type="text" class="form-control" [formControl]="linkPage">
               </div>
             </div>
             <div class="">
               <div class="modal_chucnang__group__button">
-                <button class="modal_chucnang__button btn btn-outline-primary px-4 mx-2" (click)="Insert()"><img
+                <button class="modal_chucnang__button btn btn-outline-primary px-4 mx-2" (click)="Insert()" ><img
                     class="modal_chucnang__button__icon mb-2" src="assets/img/icons/add.png" alt="image icon">
                   <div>Thêm mới</div>
                 </button>
@@ -47,7 +48,8 @@
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                <div class="modal-title" id="exampleModalLongTitle"></div>
+                <h1 id="title" ></h1>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -55,26 +57,36 @@
               <div class="modal-body">
                 <div class="">
                   <div class="form-group">
-                    <label>Message</label>
-                    <textarea class="form-control" type="text" name="message" id="message" ></textarea>
+                    <label>Nội dung</label>
+                    <textarea class="form-control" type="text" name="message" id="message" [formControl]="getMessage" ></textarea>
                   </div>
                 </div>
                 <div class="">
                   <div class="form-group">
-                    <label>Url picture</label>
-                    <input class="form-control" type="text" name="picture" id="picture"/>
+                    <label>Đường dẫn hình ảnh</label>
+                    <input class="form-control" type="text" name="picture" id="picture" [formControl]="getURLimg"/>
                   </div>
                 </div>
-                <!-- <div class="">
+                <input type="text" value="" id="linkstt" hidden>
+                <input type="text" value="" id="getidpage" hidden>
+                <input type="text" value="" id="postid" hidden>
+                <input type="text" value="" id="returnloaip2"name=""hidden>
+                <input type="text" value="" id="returnerrorpicturePage"name=""hidden>
+
+                <div class="">
                   <div class="form-group">
-                    <label for="">Ảnh/Video</label>
-                    <input class="form-control-file border" type="file">
+                    <label for="">Loại bài viết</label>
+                    <select id="loaip2" [formControl]="getLoaistt" class="col-6 form-control">
+                      <option [value]="null">Chọn..</option>
+                      <option *ngFor="let l of getloai" class="form-control">{{l.loai}}</option>
+                    </select>
                   </div>
-                </div> -->
+                </div>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" onclick="PostByRequest()">Đăng</button>
+                <button type="button" class="btn btn-success mr-2" onclick="PostByRequest()" (click)="insertTobd()">Đăng</button>
+                <button type="button" class="btn btn-secondary mr-2" (click)="insertDraft()">Lưu Nháp</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
               </div>
             </div>
           </div>
@@ -96,13 +108,13 @@
             <thead class="bg__caothang text-white">
               <th class="text-center">STT</th>
               <th scope="col" class="text-center">id</th>
-              <th scope="col" class="text-center">Tên Page</th>
-              <th scope="col" class="text-center">Link</th>
+              <th scope="col" class="text-center">Tên trang</th>
+              <th scope="col" class="text-center">Đường dẫn</th>
               <th scope="col" class="text-center">Tác vụ</th>
             </thead>
             <tbody>
               <tr *ngFor=" let d of data |filter: searchpage; index as stt" >
-                <td >{{stt+1}}</td>
+                <td class="text-center" >{{stt+1}}</td>
                 <td class="text-center">
                   <div>{{d.id_Page}}</div>
                 </td>
@@ -110,20 +122,20 @@
                   <div>{{d.tenPage}}</div>
                 </td>
                 <td class="text-center">
-                  <div>{{d.linkPage}}</div>
+                  <a href="{{d.linkPage}}" target="_blank">Đi đến trang</a>
                 </td>
                 <td class="text-center">
                   <div class="mb-1">
                     <!-- Button trigger modal -->
-                    <button type="button" class="modal_chucnang__button btn btn-outline-success" data-toggle="modal" data-target="#exampleModalLongpage" onclick="getAccessToken(this)" data="{{d.id_Page}}">
+                    <button type="button" class="modal_chucnang__button btn btn-outline-success" data-toggle="modal" data-target="#exampleModalLongpage" (click)="changeTitle(d.tenPage)" onclick="getAccessToken(this)" data="{{d.id_Page}}">
                       Đăng Bài
                     </button>
                   </div>
                   <div class="mb-1">
-                    <button class="modal_chucnang__button btn btn-outline-success px-4 mx-2" (click)="openDetailpage()">View</button>
+                    <button class="modal_chucnang__button btn btn-outline-secondary" (click)="openDetailpage(d)">Chi tiết</button>
                   </div>
                   <div class="mb-1">
-                    <button class="modal_chucnang__button btn btn-outline-success  px-4 mx-2" (click)="DeletePage(d)">Xóa</button>
+                    <button class="modal_chucnang__button btn btn-outline-danger px-4" (click)="DeletePage(d)">Xóa</button>
                   </div>
 
                 </td>

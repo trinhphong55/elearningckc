@@ -5,6 +5,7 @@ import { FileUploader } from 'ng2-file-upload';
 import { ToastrService } from 'ngx-toastr';
 import { ThongtinwebService } from '../../../../services/ttth/thongtinweb.service';
 import { ttthThongTinWeb } from '../../../../../models/ttthThongTinWeb';
+import { getCookie } from '../../../../../../../common/helper';
 const URL = 'https://localhost:4100/api/ttthThongTinWeb/uploads';
 declare var $: any;
 @Component({
@@ -14,6 +15,7 @@ declare var $: any;
 })
 export class ModalLogoComponent implements OnInit {
   ThongTinWeb: ttthThongTinWeb[];
+  private _username: any = getCookie('name');
   constructor(private modalService: ModalService,private thongtinwebService: ThongtinwebService,private toastr: ToastrService) { }
 
   ngOnInit(): void {
@@ -44,16 +46,17 @@ export class ModalLogoComponent implements OnInit {
       let img = new Image()
       img.src = window.URL.createObjectURL(event.target.files[0])
       img.onload = () => {
-        console.log(img.width);
-        console.log(img.height);
-      if(img.width < 900 && img.height < 400){
-        this.imageSrc = event.target.files[0];
+        if(img.width == 887 && img.height == 379){
+          const file = event.target.files[0];
+          const reader = new FileReader();
+          reader.onload = (e) => (this.imageSrc = reader.result);
+          reader.readAsDataURL(file);
+        }
+        else{
+          this.imageSrc = null;
+          this.toastr.success('Hình ảnh chưa đúng kích thước');
+        }
       }
-      else{
-        this.imageSrc = null;
-        this.toastr.success('Hình ảnh chưa đúng kích thước');
-      }
-    }
     };
     if (event.target.files[0].size > 2097152) {
       this.toastr.success('File yêu cầu nhỏ hơn 2MB');
@@ -62,9 +65,10 @@ export class ModalLogoComponent implements OnInit {
   ///edit
   saveThongTinWeb(ThongTinWeb: ttthThongTinWeb):void {
     if (this.nameImage) {
-      ThongTinWeb.logo='https://localhost:4100/uploads/cntt/' + this.nameImage.name;
+      ThongTinWeb.logo='https://localhost:4100/uploads/cntt/' + 'uploads_' + this.nameImage.name;
     }
     ThongTinWeb.updated_at= new Date;
+    ThongTinWeb.nguoisua= this._username;
     this.thongtinwebService.suaThongTinWeb(ThongTinWeb)
     .subscribe(suaThongTinWeb => {
       this.ThongTinWeb.push(suaThongTinWeb);

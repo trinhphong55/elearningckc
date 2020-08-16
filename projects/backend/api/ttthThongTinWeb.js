@@ -20,7 +20,12 @@ let Storage = multer.diskStorage({
     callback(null, PATH);
   },
   filename: (req, file, callback) => {
-    const filename =`${Date.now()}${file.originalname}`
+    let math = ["image/png", "image/jpeg"];
+    if (math.indexOf(file.mimetype) === -1) {
+      let errorMess = `The file <strong>${file.originalname}</strong> is invalid. Only allowed to upload image jpeg or png.`;
+      return callback(errorMess, null);
+    }
+    let filename = 'uploads_' + `${file.originalname}`;
     callback(null, filename);
   }
 });

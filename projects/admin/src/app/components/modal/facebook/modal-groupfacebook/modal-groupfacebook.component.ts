@@ -1,6 +1,8 @@
+import { BaiDangfbService } from './../../../../services/baidangfb.service';
+import { LoaifbService } from './../../../../services/loaifb.service';
 import { ChangeDetialFB } from './../../../../services/changeDetailFB.service';
 import { LopHocService } from './../../../../services/lop-hoc.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ModalService } from '../../../../services/modal.service';
 import { NganhNgheService } from '../../../../services/NganhNghe.service';
 import {
@@ -9,6 +11,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { BacService } from '../../../../services/Bac.service';
+import { DetailGroupfacebookComponent } from '../details/detail-groupfacebook/detail-groupfacebook.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-modal-groupfacebook',
@@ -16,6 +20,7 @@ import { BacService } from '../../../../services/Bac.service';
   styleUrls: ['./modal-groupfacebook.component.css'],
 })
 export class ModalGroupfacebookComponent implements OnInit {
+  @ViewChild(DetailGroupfacebookComponent) myDetailGrp: DetailGroupfacebookComponent;
   datatmp: any;
   data: any;
   bac: any;
@@ -30,6 +35,16 @@ export class ModalGroupfacebookComponent implements OnInit {
   isDone = false;
   text = '';
   mss: any;
+  getloai:any;
+  loaistt :any;
+  idgroup :any;
+  messa :any;
+  urlImg :any;
+  MaLoai :any;
+  tengroup:any;
+  mess:any
+  nofis:any;
+  mss1;any;
   //Khai báo list
   public bactamlist = [];
   public bacList: any;
@@ -42,7 +57,11 @@ export class ModalGroupfacebookComponent implements OnInit {
     private nganhngheservice: NganhNgheService,
     private bacservice: BacService,
     private lopService: LopHocService,
-    private _changeDetailFB: ChangeDetialFB
+    private _changeDetailFB: ChangeDetialFB,
+    private loaifbService: LoaifbService,
+    private baiDangFBService: BaiDangfbService,
+    private toastr:ToastrService
+
   ) {}
   searchGroup;
   ngOnInit(): void {
@@ -50,6 +69,7 @@ export class ModalGroupfacebookComponent implements OnInit {
     this.getNganh();
     this.getbac();
     this.getLop();
+    this.getLoai();
     this.addForm = new FormGroup({
       maBac: new FormControl(
         { value: '', disabled: true },
@@ -69,6 +89,9 @@ export class ModalGroupfacebookComponent implements OnInit {
       IDGroup: new FormControl(),
       linkGroup: new FormControl(),
       tenGroup: new FormControl(),
+      getLoaisttGrp: new FormControl(),
+      getURLimgGrp: new FormControl(),
+      getMessageGrp: new FormControl()
     });
     this._changeDetailFB.setTitleFormGroupFB(this.text);
   }
@@ -100,6 +123,16 @@ export class ModalGroupfacebookComponent implements OnInit {
   get tenGroup() {
     return this.addForm.get('tenGroup');
   }
+  get getLoaisttGrp(){
+    return this.addForm.get('getLoaisttGrp');
+  }
+  get getURLimgGrp(){
+    return this.addForm.get('getURLimgGrp');
+  }
+
+  get getMessageGrp(){
+    return this.addForm.get('getMessageGrp');
+  }
 
   getAll() {
     this.lopService.getAll().subscribe((data) => {
@@ -125,6 +158,12 @@ export class ModalGroupfacebookComponent implements OnInit {
     this.lopService.getAll().subscribe((lop) => {
       this.lop = lop;
       this.lopTams = this.lop;
+    });
+  }
+
+  getLoai() {
+    this.loaifbService.getAll().subscribe((getloai) => {
+      this.getloai = getloai;
     });
   }
 
@@ -185,7 +224,8 @@ export class ModalGroupfacebookComponent implements OnInit {
     this.linkGroup.setValue(data.linkGroupFB);
   }
   update() {
-    this.lopService
+    try{
+      this.lopService
       .updateFB(this.datatmp.maLopHoc, {
         tenGroupFB: this.addForm.value.tenGroup,
         IDGroupFB: this.addForm.value.IDGroup,
@@ -194,16 +234,190 @@ export class ModalGroupfacebookComponent implements OnInit {
 
       .subscribe((res:any) => {
         this.mss = res.msg;
-        alert(this.mss);
+        this.toastr.info(this.mss,'Thông báo',{
+          timeOut:2000,
+          positionClass:'toast-bottom-right',
+        });
       }
 
       );
+    }catch{
+      this.mess = 'Không được để trống thông tin';
+      this.toastr.warning(this.mess, 'Nhắc nhở', {
+        timeOut: 2000,
+        positionClass: 'toast-bottom-right',
+      });
+    }
+
+  }
+
+  delay(ms: number) {
+    return new Promise( resolve => setTimeout(resolve, ms) );
+}
+
+  insertTobdGrp(){
+    this.delay(1000).then(any=>{
+      //your task after delay.
+      this.loaistt = this.addForm.value.getLoaisttGrp;
+      this.idgroup = $('#getidGrp').val();
+      this.messa = this.addForm.value.getMessageGrp;
+      this.urlImg = this.addForm.value.getURLimgGrp;
+      this.data.filter((item)=>{
+        if(item.IDGroupFB === this.idgroup){
+          this.tengroup = item.tenGroupFB;
+        }
+      })
+      this.getloai.filter((item)=>{
+        if(item.loai === this.loaistt){
+          this.MaLoai = item.maLoai;
+        }
+      })
+      let linkpost = $('#linksttGrp').val();
+      let Post_idd = $('#postidGrp').val();
+      console.log(linkpost);
+      console.log(Post_idd);
+      console.log(this.idgroup);
+      console.log(this.loaistt);
+      console.log(this.messa);
+      console.log(this.urlImg);
+      console.log(this.tengroup);
+      console.log(this.MaLoai);
+      this.delay(500).then(any=>{
+        var nofi = $('#returnloaig2').val();
+          if(nofi !== ''){
+            this.nofis = nofi;
+            this.toastr.warning(this.nofis,'Nhắc nhở',{
+              timeOut:2000,
+              positionClass:'toast-bottom-right',
+            });
+          }else{
+            var errpage = $('#returnerrorpicturegrp').val();
+            this.nofis = errpage;
+            if(errpage !== ''){
+              this.toastr.warning(this.nofis,'Nhắc nhở',{
+                timeOut:2000,
+                positionClass:'toast-bottom-right',
+              });
+            }
+            else{
+              this.toastr.success('Đăng bài thành công!','Thông báo',{
+                timeOut:2000,
+                positionClass:'toast-bottom-right',
+              });
+              this.baiDangFBService.create({
+                ID: this.idgroup,
+                postID: Post_idd,
+                link: linkpost,
+                message: this.messa,
+                url: this.urlImg,
+                maLoai: this.MaLoai,
+                loai: this.loaistt,
+                thuoc: this.tengroup
+              }).subscribe((ress:any)=>{
+                this.mss = ress.msg;
+                this.mss1 = ress.msg1;
+                if(this.mss1){
+                  this.toastr.success(this.mss1,'Thông báo',{
+                    timeOut:2000,
+                    positionClass:'toast-bottom-right',
+                  });
+                }
+                if(this.mss){
+                  this.toastr.error(this.mss,'Lỗi',{
+                    timeOut:2000,
+                    positionClass:'toast-bottom-right',
+                  });
+                }
+
+                console.log(ress);
+              })
+
+            console.log('do some think');
+            this.delay(1000).then(any=>{
+
+              this.getMessageGrp.setValue('');
+              this.getLoaisttGrp.setValue('null');
+              this.getURLimgGrp.setValue('');
+            });
+            }
+
+          }
+      });
+    });
+
+  }
+  insertDraftGrp(){
+    this.loaistt = this.addForm.value.getLoaisttGrp;
+    this.getloai.filter((item)=>{
+      if(item.loai === this.loaistt){
+        this.MaLoai = item.maLoai;
+      }
+    })
+
+    this.idgroup = $('#getidGrp').val();
+    this.messa = this.addForm.value.getMessageGrp;
+    this.urlImg = this.addForm.value.getURLimgGrp;
+    this.data.filter((item)=>{
+      if(item.IDGroupFB === this.idgroup){
+          this.tengroup = item.tenGroupFB;
+      }
+    })
+    console.log(this.loaistt);
+    console.log(this.MaLoai);
+    console.log(this.messa);
+    console.log(this.urlImg);
+    console.log(this.tengroup);
+    console.log(this.idgroup);
+
+    if(this.messa == '' || this.loaistt == 'null'){
+      this.loaistt = 'null';
+       this.toastr.warning('Không được để trống Nội dung và Loại bài viết','Nhắc nhở',{
+         timeOut:2000,
+         positionClass:'toast-bottom-right',
+       });
+    }else{
+
+      this.baiDangFBService.createDraw({
+        ID: this.idgroup,
+        message: this.messa,
+        url: this.urlImg,
+        maLoai: this.MaLoai,
+        loai: this.loaistt,
+        thuoc: this.tengroup
+      }).subscribe((ress:any)=>{
+        this.mss = ress.msg;
+        this.mss1 = ress.msg1;
+        if(this.mss1){
+          this.toastr.success(this.mss1,'Thông báo',{
+            timeOut:2000,
+            positionClass:'toast-bottom-right',
+          });
+        }
+        if(this.mss1){
+          this.toastr.error(this.mss1,'Lỗi',{
+            timeOut:2000,
+            positionClass:'toast-bottom-right',
+          });
+        }
+        console.log(ress);
+      })
+      this.delay(1000).then(any=>{
+
+        this.getMessageGrp.setValue('');
+        this.getLoaisttGrp.setValue('null');
+        this.getURLimgGrp.setValue('');
+      });
+    }
+  }
+  changeTitleGrp(d) {
+    document.getElementById('titlegrp').innerText = 'Đăng bài cho nhóm ' + d;
   }
   openDetail(detail) {
+    console.log(detail);
     this.modalService.open('detail-groupfb');
     this.text = detail.tenGroupFB;
     this._changeDetailFB.setTitleFormGroupFB(this.text);
-    document.getElementById('tenDetail').textContent = (this.text);
+    this.myDetailGrp.selectBaiDangGrp(detail.IDGroupFB);
   }
 
   closeModal(id: string) {

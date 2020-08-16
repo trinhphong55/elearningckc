@@ -32,6 +32,35 @@ export class ModalCrawlingComponent implements OnInit {
       ],
     },
     {
+      name: 'Phòng kế toán',
+      nhomBaiViet: [
+        {
+          name: 'Thông báo dành cho sinh viên',
+          selector: {
+            url: 'https://tckt.caothang.edu.vn/Danh-cho-HSSV-8',
+            wrapper: '.ds_bai_viet',
+            wrapperContent: '#noi_dung',
+            href: 'a:first-of-type',
+            title: 'a:first-of-type',
+            time: '.mo.nghien',
+            listUrl: true,
+          },
+        },
+        {
+          name: 'Công khai tài chính',
+          selector: {
+            url: 'https://tckt.caothang.edu.vn/Cong-khai-tai-chinh-2',
+            wrapper: '.ds_bai_viet',
+            wrapperContent: '#noi_dung',
+            href: '.ten.dam',
+            title: '.ten.dam',
+            time: '.mo.nghien',
+            listUrl: true,
+          },
+        },
+      ],
+    },
+    {
       name: 'Phòng đào tạo',
       nhomBaiViet: [
         {

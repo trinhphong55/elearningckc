@@ -4,8 +4,13 @@ import { ToastrService } from 'ngx-toastr';
 import { DiemthiService } from '../../../../services/ttth/diemthi.service';
 import * as XLSX from 'xlsx';
 import { Subject } from 'rxjs';
-import { ttthDiemThi } from '../../../../../models/ttthDiemThi';import { exit } from 'process';
-;
+import { ttthDiemThi } from '../../../../../models/ttthDiemThi';
+import { DotthiService } from '../../../../services/ttth/dotthi.service';
+import { LophocService } from '../../../../services/ttth/lophoc.service';
+import { getCookie } from '../../../../../../../common/helper';
+import { exit } from 'process';
+
+
 @Component({
   selector: 'app-modal-diemthi',
   templateUrl: './modal-diemthi.component.html',
@@ -13,18 +18,32 @@ import { ttthDiemThi } from '../../../../../models/ttthDiemThi';import { exit } 
 })
 export class ModalDiemthiComponent implements OnInit {
 
-  constructor(private modalService: ModalService,private DiemthiService: DiemthiService,private toastr: ToastrService) { }
+  constructor(private modalService: ModalService,private DiemthiService: DiemthiService,private DotthiService: DotthiService,private LophocService: LophocService,private toastr: ToastrService) { }
   spinnerEnabled = false;
   keys: string[];
   DiemThi : ttthDiemThi[];
+  DotThi : any[];
+  LopHoc : any[];
+  selectDotThi: any;
+  private _username: any = getCookie('name');
   dataSheet = new Subject;
   @ViewChild('inputFile') inputFile: ElementRef;
   isExcelFile: boolean;
   ngOnInit(): void {
+    this.getdanhsachdotthi();
+    this.getdanhsachlophoc();
   }
-
+  getdanhsachdotthi(): void {
+    this.DotthiService.get().subscribe((data) => {this.DotThi = data;  setTimeout(() => {}, 500);});
+  }
+  getdanhsachlophoc(): void {
+    this.LophocService.getfilter().subscribe((data) => {this.LopHoc = data ;setTimeout(() => {}, 500);});
+  }
   closeModal(id: string) {
     this.modalService.close(id)
+  }
+  onChangeDotThi(value) {
+    this.selectDotThi=value;
   }
   onChange(evt) {
     let data;
@@ -67,9 +86,54 @@ export class ModalDiemthiComponent implements OnInit {
     this.keys = null;
     this.DiemThi = undefined;
   }
+  checkboxDotThi: any;
+  checkboxKhoaHoc: any;
+
+  getValueCheckBoxDotThi(e){
+    this.checkboxDotThi= e.target.checked;
+    if (this.checkboxDotThi === true) {
+      let value = false;
+      this.checkboxKhoaHoc= value;
+    }
+    else{
+      let value = true;
+      this.checkboxKhoaHoc= value;
+    }
+  }
+  // getValueCheckBoxKhoaHoc(e){
+  //   this.checkboxKhoaHoc= e.target.checked;
+  //   if (this.checkboxKhoaHoc === true) {
+  //     let value = false;
+  //     this.checkboxDotThi= value;
+  //   }
+  //   else{
+  //     let value = true;
+  //     this.checkboxDotThi= value;
+  //   }
+  // }
   importExcel() {
+    let ngaythi: any;
+    let giothi: any;
+    let phongthi: any;
+    let tendotthi: any;
+    let dotthi = this.selectDotThi;
+    let nguoitao = this._username;
+    this.DotThi.forEach(function (value) {
+      if (dotthi==value.tendot) {
+        ngaythi = value.ngaythi;
+        giothi = value.giothi;
+        phongthi = value.phongthi;
+      }
+    });
+    this.DiemThi.forEach(function (value) {
+      value.tendotthi = dotthi;
+      value.ngaythi = ngaythi;
+      value.giothi = giothi;
+      value.phongthi = phongthi;
+      value.nguoitao = nguoitao;
+      value.loaidiem = 'Điểm thi';
+    });
     this.DiemthiService.importDiemThi(this.DiemThi).subscribe(data => { this.DiemThi.push(data);
-      console.log(this.DiemThi);
     });
     this.toastr.success('Import thành công');
 

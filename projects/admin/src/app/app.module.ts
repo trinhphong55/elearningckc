@@ -1,3 +1,4 @@
+import { NgSelectModule } from '@ng-select/ng-select';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -72,8 +73,6 @@ import { ModalHomeCamonComponent } from './components/modal/ttth/modal-home-camo
 import { ModalHomeTienichComponent } from './components/modal/ttth/modal-home-tienich/modal-home-tienich.component';
 import { ModalKhoahocComponent } from './components/modal/ttth/modal-khoahoc/modal-khoahoc.component';
 import { ModalLienheComponent } from './components/modal/ttth/modal-lienhe/modal-lienhe.component';
-import { ModalMenuComponent } from './components/modal/ttth/modal-menu/modal-menu.component';
-import { ModalHomeChuongtrinhdaotaoComponent } from './components/modal/ttth/modal-home-chuongtrinhdaotao/modal-home-chuongtrinhdaotao.component';
 import { ModalQuanlyslideshowcnttComponent } from './components/modal/cntt/modal-quanlyslideshowcntt/modal-quanlyslideshowcntt.component';
 import { ModalQuanlytintuccnttComponent } from './components/modal/cntt/modal-quanlytintuccntt/modal-quanlytintuccntt.component';
 import { ModalThemtintuccnttComponent } from './components/modal/cntt/modal-themtintuccntt/modal-themtintuccntt.component';
@@ -99,7 +98,11 @@ import { ModalThoikhoabieuComponent } from './components/modal/chuongtrinhdaotao
 import { ModalPhonghocComponent } from './components/modal/chuongtrinhdaotao/modal-phonghoc/modal-phonghoc.component';
 import { ModalLichphonghocComponent } from './components/modal/chuongtrinhdaotao/modal-lichphonghoc/modal-lichphonghoc.component';
 import { ModalBaivietComponent } from './components/modal/cntt/modal-baiviet/modal-baiviet.component';
+<<<<<<< HEAD
 import { AuthInterceptor } from './helper/auth.interceptor';
+=======
+import { ModalNhapdiemlophocComponent } from './components/modal/ttth/modal-nhapdiemlophoc/modal-nhapdiemlophoc.component';
+>>>>>>> master
 
 @NgModule({
   declarations: [
@@ -158,13 +161,10 @@ import { AuthInterceptor } from './helper/auth.interceptor';
     ModalHomeTienichComponent,
     ModalKhoahocComponent,
     ModalLienheComponent,
-    ModalMenuComponent,
-    ModalHomeChuongtrinhdaotaoComponent,
     ModalQuanlyslideshowcnttComponent,
     ModalQuanlytintuccnttComponent,
     ModalThemtintuccnttComponent,
     ModalChinhsuatintuccnttComponent,
-    ModalHomeChuongtrinhdaotaoComponent,
     ModalImportExcelKhoabomonComponent,
     DetailGroupfacebookComponent,
     DetailPagefacebookComponent,
@@ -186,7 +186,8 @@ import { AuthInterceptor } from './helper/auth.interceptor';
     ModalThoikhoabieuComponent,
     ModalPhonghocComponent,
     ModalLichphonghocComponent,
-    ModalBaivietComponent
+    ModalBaivietComponent,
+    ModalNhapdiemlophocComponent
   ],
   imports: [
     BrowserModule,
@@ -203,7 +204,8 @@ import { AuthInterceptor } from './helper/auth.interceptor';
     ToastrModule.forRoot(), // ToastrModule added
     FileUploadModule,
     NgxPrintModule,
-    NgApexchartsModule
+    NgApexchartsModule,
+    NgSelectModule,
   ],
   providers: [ApiService, TintucCnttService,{
     provide: HTTP_INTERCEPTORS,
