@@ -12,7 +12,7 @@ import { getCookie } from '../../../../../../../common/helper';
 export class ModalTtthQuanlidiemthiComponent implements OnInit {
   constructor(private modalService: ModalService,private DiemthiService: DiemthiService ,private toastr: ToastrService) { }
   DiemThi: ttthDiemThi[];
-  private _username: any = getCookie('displayName');
+  private _username: any = getCookie('name');
   ngOnInit(): void {
     this.getdanhsach();
   }

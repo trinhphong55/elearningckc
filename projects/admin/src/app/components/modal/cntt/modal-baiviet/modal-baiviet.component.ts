@@ -37,7 +37,7 @@ export class ModalBaivietComponent implements OnInit, OnDestroy, AfterViewInit {
   public dtTrigger: Subject<any> = new Subject();
   //#endregion
   private _maBaiVietMoiNhat: any;
-  private _username: any = getCookie('displayName');
+  private _username: any = getCookie('name');
   private _image: any = null;
   private _imageCanChinhSua: any = null;
   public image: any = '../../../../../assets/img/background/128.png';

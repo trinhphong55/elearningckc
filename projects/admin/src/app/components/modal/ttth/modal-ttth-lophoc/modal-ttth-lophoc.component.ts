@@ -14,7 +14,7 @@ export class ModalTtthLophocComponent implements OnInit {
   constructor(private modalService: ModalService,private lophocService: LophocService,private khoahocService: KhoahocService ,private toastr: ToastrService) { }
   LopHoc: ttthLopHoc[];
   MaKhoaHoc: any[];
-  private _username: any = getCookie('displayName');
+  private _username: any = getCookie('name');
   getYear = new Date().getFullYear();
   ngOnInit(): void {
     this.getdanhsach();

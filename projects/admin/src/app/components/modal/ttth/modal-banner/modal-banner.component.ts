@@ -15,7 +15,7 @@ declare var $: any;
 })
 export class ModalBannerComponent implements OnInit  {
   Banner: ttthBanner[];
-  private _username: any = getCookie('displayName');
+  private _username: any = getCookie('name');
   constructor(private modalService: ModalService,private bannerService: BannerService,private toastr: ToastrService) { }
 
   ngOnInit(): void {

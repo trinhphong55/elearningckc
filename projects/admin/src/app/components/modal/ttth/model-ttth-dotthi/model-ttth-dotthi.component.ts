@@ -13,7 +13,7 @@ import { getCookie } from '../../../../../../../common/helper';
 export class ModelTtthDotthiComponent implements OnInit {
   constructor(private modalService: ModalService,private DotthiService: DotthiService,private toastr: ToastrService) { }
   DotThi: ttthDotThi[];
-  private _username: any = getCookie('displayName');
+  private _username: any = getCookie('name');
   ngOnInit(): void {
     this.getdanhsach();
   }
