@@ -167,6 +167,8 @@ export class ModalKhoabomonComponent implements OnInit {
 
     this.tenKhoa.setValue(khoa.tenKhoa);
     this.maKhoa.setValue(khoa.maKhoa);
+    this.tenKhoa.setValue(khoa.tenBoMon);
+    this.maKhoa.setValue(khoa.maBoMon);
     this.tenVietTat.setValue(khoa.tenVietTat);
     this.loaiDonVi.setValue(khoa.maLoai);
   }
