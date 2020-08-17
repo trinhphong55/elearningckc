@@ -22,6 +22,7 @@ exports.postToDrawFB = async (req, res) => {
         ID:req.body.ID,
         message: req.body.message,
         url: req.body.url,
+        postOf:req.body.postOf,
         maLoai:req.body.maLoai,
         loai:req.body.loai,
         thuoc:req.body.thuoc
@@ -92,6 +93,7 @@ exports.postedToFB = async (req, res) => {
         link:req.body.link,
         message: req.body.message,
         url: req.body.url,
+        postOf:req.body.postOf,
         maLoai:req.body.maLoai,
         loai:req.body.loai,
         thuoc:req.body.thuoc,
@@ -128,6 +130,7 @@ exports.updatePostedFB = async (req, res) => {
           link: req.body.link,
           message: req.body.message,
           url: req.body.url,
+          postOf:req.body.postOf,
           maLoai:req.body.maLoai,
           loai:req.body.loai,
           thuoc:req.body.thuoc
@@ -241,6 +244,7 @@ exports.updateDrawFB = async (req, res) => {
           link: req.body.link,
           message: req.body.message,
           url: req.body.url,
+          postOf:req.body.postOf,
           maLoai:req.body.maLoai,
           loai:req.body.loai
         },

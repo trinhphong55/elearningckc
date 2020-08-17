@@ -27,6 +27,9 @@ const baidangfbSchema = new Schema({
         
     
     }, 
+    postOf:{
+        type:String
+    },
     maLoai:{
         type:Number,
         reqired: true
