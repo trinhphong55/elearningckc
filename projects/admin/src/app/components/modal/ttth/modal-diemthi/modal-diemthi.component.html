@@ -8,11 +8,12 @@
       <div class="col-12">
         <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white row">
           <div class="col-3">
-            <!-- <label>Nhập điểm cho đợt thi <input type="radio" name="check" (change)="getValueCheckBoxDotThi($event)" ></label><br>
-            <div class="form-group" *ngIf="checkboxDotThi==true"> -->
+            <!-- <label>Nhập điểm cho đợt thi <input type="radio" name="check" (change)="getValueCheckBoxDotThi($event)" ></label><br> -->
+            <!-- <div class="form-group" *ngIf="checkboxDotThi==true"> -->
+              <div class="form-group">
               <label >Chọn đợt thi</label>
               <select  class="form-control" (change)="onChangeDotThi($event.target.value)">
-                  <option value=""></option>
+                  <option value="">Chọn đợt thi cần nhập điểm</option>
                   <ng-container *ngFor="let item of DotThi">
                     <option *ngIf="item.trangthai==1" value="{{item.tendot}}">{{item.tendot}}</option>
                   </ng-container>
@@ -32,6 +33,7 @@
             </div>
           </div> -->
         </div>
+      </div>
       <div class="col-12">
         <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white row">
           <label>Chọn thư mục excel</label>
