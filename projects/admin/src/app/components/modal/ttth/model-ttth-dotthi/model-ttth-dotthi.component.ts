@@ -29,6 +29,16 @@ export class ModelTtthDotthiComponent implements OnInit {
   }
   // add
   add(tendot: string,ngaythi: string,giothi: string,phongthi: string): void {
+    let kiemtra: any;
+    this.DotThi.forEach(function (value) {
+      if(value.tendot==tendot){
+        kiemtra=true;
+      }
+    });
+    if(kiemtra==true){
+      this.toastr.error('Đợt thi đã tồn tại');
+    }
+    else{
     const newItem: ttthDotThi = new ttthDotThi();
     newItem.tendot = tendot;
     newItem.ngaythi = ngaythi;
@@ -46,6 +56,7 @@ export class ModelTtthDotthiComponent implements OnInit {
 
       });
     this.toastr.success('Thêm thành công');
+    }
   }
   ///edit
   selectedItem: ttthDotThi;
