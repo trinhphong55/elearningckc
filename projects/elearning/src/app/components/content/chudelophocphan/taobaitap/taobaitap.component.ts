@@ -40,6 +40,8 @@ export class TaobaitapComponent implements OnInit {
     chuDe: -1,
   }
 
+  newChude = "";
+
   checked: boolean = false;
 
   toppings = new FormControl();
@@ -66,15 +68,46 @@ export class TaobaitapComponent implements OnInit {
     })
   }
 
+  changeChuDe(loai: number) {
+    if (loai === 2) {
+      if (this.newChude.trim() !== "") {
+        this.baitap.chuDe = -1;
+      }
+    } else {
+      if (this.baitap.chuDe !== -1) {
+        this.newChude = "";
+      }
+    }
+  }
+
+  private _checkNewChuDe(addBT: Function) {
+    if (this.newChude.trim() !== "") {
+      let data = {
+        tenChuDe: this.newChude,
+        nguoiChinhSua: 'Huy Ban Bun',
+        maLopHocPhan: this._maLopHocPhan,
+      }
+      this._chuDeService.them(data).subscribe(res => {
+        let a: any = res;
+        this.baitap.chuDe = a.data.maChuDe;
+        addBT();
+      })
+    } else {
+      addBT();
+    }
+  }
+
   saveBaiTap() {
     this._validate(() => {
       if (this.uploader.queue.length !== 0) {
         this.uploader.uploadAll();
       } else {
-        this._baiTapService.addBaiTap(this.baitap).subscribe(res => {
-          alert(res.message);
-          this._setActivity(res.maDoiTuong);
-          this._clearBaiTap();
+        this._checkNewChuDe(() => {
+          this._baiTapService.addBaiTap(this.baitap).subscribe(res => {
+            alert(res.message);
+            this._setActivity(res.maDoiTuong);
+            this._clearBaiTap();
+          })
         })
       }
     });
@@ -91,6 +124,7 @@ export class TaobaitapComponent implements OnInit {
       chuDe: -1,
     }
     this.uploader.queue = [];
+    this.newChude = "";
   }
 
   private _validate(save: Function) {
@@ -115,7 +149,7 @@ export class TaobaitapComponent implements OnInit {
 
   uploader: FileUploader = new FileUploader({
     url: uri,
-    maxFileSize: 2048, // Max 2kB
+    maxFileSize: 8 * 1024 * 1024 * 1, // Max 2kB
     queueLimit: 3, // Max files can upload
   });
 
@@ -146,7 +180,7 @@ export class TaobaitapComponent implements OnInit {
     })
 
     this.uploader.onCompleteAll = () => {
-      this._validate(() => {
+      this._checkNewChuDe(() => {
         this.baitap.file = this.attachmentList;
         this._baiTapService.addBaiTap(this.baitap).subscribe(res => {
           if (res.status === 200) {
@@ -155,7 +189,7 @@ export class TaobaitapComponent implements OnInit {
             this._clearBaiTap();
           }
         })
-      });
+      })
     }
 
     this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {

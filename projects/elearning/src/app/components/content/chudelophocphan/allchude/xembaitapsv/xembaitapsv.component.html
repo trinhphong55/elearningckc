@@ -142,7 +142,7 @@
             </table>
             <button mat-button [matMenuTriggerFor]="themhoactao"><i class="fas fa-plus"></i> Thêm hoặc tạo</button>
             <mat-menu #themhoactao="matMenu">
-              <button mat-menu-item> <input type="file" ng2FileSelect [uploader]="uploader" /><br /><i
+              <button mat-menu-item> <input type="file" name="upload" multiple ng2FileSelect [uploader]="uploader" /><br /><i
                   class="fas fa-file-import"></i>Tệp </button>
               <!-- <button mat-menu-item><i class="fas fa-link"></i><i class="fas fa-link"></i>Liên kết</button>
               <button mat-menu-item><i class="fab fa-google-drive"></i>GG Drive</button> -->
@@ -152,7 +152,7 @@
             <div class="col-md-2" style="margin-bottom: 40px">
             </div>
             <div class="row" *ngIf="uploader?.queue?.length > 0">
-              <button type="button" class="danhdau" (click)="uploader.uploadAll()" (click)="themBaiTap()">Đánh dấu là hoàn tất</button>
+              <button type="button" class="danhdau" (click)="themBaiTap()" (click)="uploader.uploadAll()">Đánh dấu là hoàn tất</button>
             </div>
           </div>
         </div>

@@ -20,6 +20,7 @@ exports.layTatCa = async (req, res) => {
   }
 };
 exports.them = async (req, res) => {
+  console.log('zo');
   try {
     const chuDes = await chuDeModel.find();
     req.body.thuTu = chuDes.length + 1;

@@ -50,8 +50,6 @@ router.post('/nganhnghe', async (req, res) => {
 });
 //sua nganh nghe
 router.put('/nganhnghe/:id', async (req, res) => {
-console.log(NganhNghe.maNganhNghe);
-console.log(req.body.maNganhNghe);
   var ktmaNganhNghe =  await NganhNghe.find({maNganhNghe:req.body.maNganhNghe }).exec();
   const { maNganhNghe, tenNganhNghe, tenVietTat, maBac, maNganhCha } = req.body;
   await NganhNghe.updateOne(
