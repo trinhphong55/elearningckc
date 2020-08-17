@@ -1,229 +1,52 @@
 [{
   "_id": {
-    "$oid": "5f252bac6b251018c8a9f1a8"
-  },
-  "tenkhoahoc": "Đồ họa truyển thông",
-  "image": "https://localhost:4100/uploads/cntt/ctdt1.png",
-  "makhoahoc": "KH1",
-  "noidung": "<p>#</p>",
-  "trangthai": true,
-  "nguoitao": "hieu",
-  "nguoisua": "loc",
-  "created_at": {
-    "$date": "2020-08-01T08:45:32.825Z"
-  },
-  "updated_at": {
-    "$date": "2020-08-02T16:52:34.153Z"
-  },
-  "__v": 0,
-  "color": "#706D3C"
-},{
-  "_id": {
-    "$oid": "5f252bcb6b251018c8a9f1a9"
+    "$oid": "5f350b42ba69292ad81be788"
   },
   "tenkhoahoc": "Thiết kế website",
   "image": "https://localhost:4100/uploads/cntt/ctdt2.png",
-  "makhoahoc": "KH2",
-  "noidung": "<p>#</p>",
+  "makhoahoc": "TKW",
+  "color": "#E65527",
+  "nhapdiem": "Nhập riêng",
   "trangthai": true,
-  "nguoitao": "hieu",
-  "nguoisua": "loc",
+  "nguoitao": "admin",
+  "nguoisua": null,
   "created_at": {
-    "$date": "2020-08-01T08:46:03.893Z"
+    "$date": "2020-08-13T09:43:29.997Z"
   },
-  "updated_at": {
-    "$date": "2020-08-02T16:52:44.567Z"
-  },
-  "__v": 0,
-  "color": "#E65527"
+  "updated_at": null,
+  "__v": 0
 },{
   "_id": {
-    "$oid": "5f252be26b251018c8a9f1aa"
+    "$oid": "5f350b6bba69292ad81be789"
   },
-  "tenkhoahoc": "Lập trình và CSDL",
-  "image": "https://localhost:4100/uploads/cntt/ctdt3.png",
-  "makhoahoc": "KH3",
-  "noidung": "<p>#</p>",
+  "tenkhoahoc": "Tin học văn phòng",
+  "image": "https://localhost:4100/uploads/cntt/ctdt9.png",
+  "makhoahoc": "THVP",
+  "color": "#86B3BB",
+  "nhapdiem": "Nhập riêng",
   "trangthai": true,
-  "nguoitao": "hieu",
-  "nguoisua": "loc",
+  "nguoitao": "admin",
+  "nguoisua": null,
   "created_at": {
-    "$date": "2020-08-01T08:46:26.128Z"
+    "$date": "2020-08-13T09:44:11.708Z"
   },
-  "updated_at": {
-    "$date": "2020-08-02T08:18:10.006Z"
-  },
-  "__v": 0,
-  "color": "#37A5B3"
+  "updated_at": null,
+  "__v": 0
 },{
   "_id": {
-    "$oid": "5f252c57542e3a1598da5219"
-  },
-  "tenkhoahoc": "Lập trình di động",
-  "image": "https://localhost:4100/uploads/cntt/ctdt4.png",
-  "makhoahoc": "KH4",
-  "noidung": "<p>#</p>",
-  "trangthai": true,
-  "nguoitao": "hieu",
-  "nguoisua": "loc",
-  "created_at": {
-    "$date": "2020-08-01T08:48:23.926Z"
-  },
-  "updated_at": {
-    "$date": "2020-08-02T08:03:46.052Z"
-  },
-  "__v": 0,
-  "color": "#363948"
-},{
-  "_id": {
-    "$oid": "5f252c61542e3a1598da521a"
-  },
-  "tenkhoahoc": "Thiết kế giao diện",
-  "image": "https://localhost:4100/uploads/cntt/ctdt5.png",
-  "makhoahoc": "KH5",
-  "noidung": "<p>#</p>",
-  "trangthai": true,
-  "nguoitao": "hieu",
-  "nguoisua": "loc",
-  "created_at": {
-    "$date": "2020-08-01T08:48:33.951Z"
-  },
-  "updated_at": {
-    "$date": "2020-08-02T08:03:55.897Z"
-  },
-  "__v": 0,
-  "color": "#716F84"
-},{
-  "_id": {
-    "$oid": "5f252c6c542e3a1598da521b"
+    "$oid": "5f350b8fba69292ad81be78a"
   },
   "tenkhoahoc": "Mạng máy tính",
   "image": "https://localhost:4100/uploads/cntt/ctdt6.png",
   "makhoahoc": "MMT",
-  "noidung": "<p>#</p>",
+  "color": "#D5BCBA",
+  "nhapdiem": "Nhập riêng",
   "trangthai": true,
-  "nguoitao": "hieu",
-  "nguoisua": "loc",
+  "nguoitao": "admin",
+  "nguoisua": null,
   "created_at": {
-    "$date": "2020-08-01T08:48:44.892Z"
+    "$date": "2020-08-13T09:44:47.788Z"
   },
-  "updated_at": {
-    "$date": "2020-08-05T16:29:30.984Z"
-  },
-  "__v": 0,
-  "color": "#D5BC3A"
-},{
-  "_id": {
-    "$oid": "5f252c75542e3a1598da521c"
-  },
-  "tenkhoahoc": "Internet Marketing",
-  "image": "https://localhost:4100/uploads/cntt/ctdt7.png",
-  "makhoahoc": "#",
-  "noidung": "<p>#</p>",
-  "trangthai": true,
-  "nguoitao": "hieu",
-  "nguoisua": "loc",
-  "created_at": {
-    "$date": "2020-08-01T08:48:53.628Z"
-  },
-  "updated_at": {
-    "$date": "2020-08-02T08:04:15.501Z"
-  },
-  "__v": 0,
-  "color": "#1D6285"
-},{
-  "_id": {
-    "$oid": "5f252c7d542e3a1598da521d"
-  },
-  "tenkhoahoc": "Lập trình cho trẻ em",
-  "image": "https://localhost:4100/uploads/cntt/ctdt8.png",
-  "makhoahoc": "#",
-  "noidung": "<p>#</p>",
-  "trangthai": true,
-  "nguoitao": "hieu",
-  "nguoisua": "loc",
-  "created_at": {
-    "$date": "2020-08-01T08:49:01.863Z"
-  },
-  "updated_at": {
-    "$date": "2020-08-02T08:04:26.635Z"
-  },
-  "__v": 0,
-  "color": "#86B3BB"
-},{
-  "_id": {
-    "$oid": "5f252c86542e3a1598da521e"
-  },
-  "tenkhoahoc": "Tin học văn phòng",
-  "image": "https://localhost:4100/uploads/cntt/ctdt9.png",
-  "makhoahoc": "#",
-  "noidung": "<p>#</p>",
-  "trangthai": true,
-  "nguoitao": "hieu",
-  "nguoisua": "loc",
-  "created_at": {
-    "$date": "2020-08-01T08:49:10.350Z"
-  },
-  "updated_at": {
-    "$date": "2020-08-02T08:04:40.130Z"
-  },
-  "__v": 0,
-  "color": "#CA58D2"
-},{
-  "_id": {
-    "$oid": "5f252c98542e3a1598da521f"
-  },
-  "tenkhoahoc": "Tin học văn phòng chuẩn quốc tế (MOS)",
-  "image": "https://localhost:4100/uploads/cntt/ctdt10.png",
-  "makhoahoc": "#",
-  "noidung": "<p>#</p>",
-  "trangthai": true,
-  "nguoitao": "hieu",
-  "nguoisua": "loc",
-  "created_at": {
-    "$date": "2020-08-01T08:49:28.649Z"
-  },
-  "updated_at": {
-    "$date": "2020-08-02T08:04:49.653Z"
-  },
-  "__v": 0,
-  "color": "#f47e01"
-},{
-  "_id": {
-    "$oid": "5f252cb6542e3a1598da5220"
-  },
-  "tenkhoahoc": "Tin học cho trẻ em",
-  "image": "https://localhost:4100/uploads/cntt/ctdt11.png",
-  "makhoahoc": "#",
-  "noidung": "<p>#</p>",
-  "trangthai": true,
-  "nguoitao": "hieu",
-  "nguoisua": "loc",
-  "created_at": {
-    "$date": "2020-08-01T08:49:58.581Z"
-  },
-  "updated_at": {
-    "$date": "2020-08-02T08:05:03.592Z"
-  },
-  "__v": 0,
-  "color": "#0082c8"
-},{
-  "_id": {
-    "$oid": "5f252cd4542e3a1598da5221"
-  },
-  "tenkhoahoc": "Đồ họa cho trẻ em",
-  "image": "https://localhost:4100/uploads/cntt/ctdt12.png",
-  "makhoahoc": "#",
-  "noidung": "<p>#</p>",
-  "trangthai": true,
-  "nguoitao": "hieu",
-  "nguoisua": "loc",
-  "created_at": {
-    "$date": "2020-08-01T08:50:28.205Z"
-  },
-  "updated_at": {
-    "$date": "2020-08-02T08:05:11.990Z"
-  },
-  "__v": 0,
-  "color": "#363948"
+  "updated_at": null,
+  "__v": 0
 }]

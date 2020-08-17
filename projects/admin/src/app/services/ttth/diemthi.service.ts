@@ -17,7 +17,7 @@ export class DiemthiService {
   }
 
   get(): Observable<any[]  >{
-    return this.http.get<any[] >('https://localhost:4100/api/ttthDiemThi/').pipe(
+    return this.http.get<any[] >('https://localhost:4100/api/ttthDiemThi/list').pipe(
     );
   }
   update(updateItem: any): Observable<any> {

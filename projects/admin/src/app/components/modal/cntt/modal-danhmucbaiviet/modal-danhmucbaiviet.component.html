@@ -1,122 +1,131 @@
 <app-modal class="modal_chucnang__wrapper" id="cntt_quanlydanhmuc">
-  <div
-    (click)="closeModal('cntt_quanlydanhmuc')"
-    class="modal_chucnang__close mdi mdi-chevron-left text-white"
-  ></div>
-  <div class="container-fluid mt-3">
-    <div class="row">
-      <div class="col-12">
-        <h1 class="text-center text-white">Quản lý danh mục</h1>
-      </div>
-      <div class="col-12">
-        <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
-          <form [formGroup]="danhMucForm">
-            <div class="row justify-content-center align-items-center">
-              <div class="col-4">
-                <div class="form-group">
-                  <label>Tên danh mục</label>
-                  <input
-                    formControlName="tenDanhMuc"
-                    type="text"
-                    class="form-control"
-                    placeholder="Nhập tên danh mục mới"
-                  />
-                </div>
-              </div>
-              <div class="col-4">
-                <div class="form-group">
-                  <label>Tên viết tắt</label>
-                  <input
-                    formControlName="tenVietTat"
-                    type="text"
-                    class="form-control"
-                    placeholder="Nhập tên viết tắt mới"
-                  />
-                </div>
-              </div>
-              <div class="col-auto">
-                <button
-                  [ngClass]="{ 'd-none': !hideButtonChinhSua }"
-                  [disabled]="!danhMucForm.valid"
-                  (click)="onThemDanhMuc()"
-                  class="btn btn-outline-primary px-4 mx-2"
-                >
-                  <img
-                    class="modal_chucnang__button__icon mb-2"
-                    src="assets/img/icons/add.png"
-                    alt="image icon"
-                  />
-                  <div>Thêm mới</div>
-                </button>
-                <button
-                  (click)="onSuaDanhMuc()"
-                  [ngClass]="{ 'd-none': hideButtonChinhSua }"
-                  class="btn btn-outline-danger px-4 mx-2"
-                >
-                  <img
-                    class="modal_chucnang__button__icon mb-2"
-                    src="assets/img/icons/upgrade.png"
-                    alt="image icon"
-                  />
-                  <div>Lưu chỉnh sửa</div>
-                </button>
-                <button
-                  (click)="onResetFormValue()"
-                  type="reset"
-                  class="btn btn-outline-dark px-4 mx-2"
-                >
-                  <img
-                    class="modal_chucnang__button__icon mb-2"
-                    src="assets/img/icons/error.png"
-                    alt="image icon"
-                  />
-                  <div>Huỷ bỏ</div>
-                </button>
-              </div>
+    <div (click)="closeModal('cntt_quanlydanhmuc')" class="modal_chucnang__close mdi mdi-chevron-left text-white"></div>
+    <div class="container-fluid mt-3">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="text-center text-white">Quản lý danh mục</h1>
             </div>
-          </form>
+            <div class="col-12">
+                <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
+                    <form [formGroup]="danhMucForm">
+                        <div class="row justify-content-center align-items-center">
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label>Tên danh mục</label>
+                                    <input formControlName="tenDanhMuc" type="text" class="form-control"
+                                        placeholder="Nhập tên danh mục mới" />
+                                    <div *ngIf="
+                      tenDanhMuc.invalid &&
+                      (tenDanhMuc.dirty || tenDanhMuc.touched)
+                    " class="alert alert-danger">
+                                        <div *ngIf="tenDanhMuc.errors.required">
+                                            Nhập Tên danh mục.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label>Tên viết tắt</label>
+                                    <input formControlName="tenVietTat" type="text" class="form-control"
+                                        placeholder="Nhập tên viết tắt mới" />
+                                    <div *ngIf="
+                      tenVietTat.invalid &&
+                      (tenVietTat.dirty || tenVietTat.touched)
+                    " class="alert alert-danger">
+                                        <div *ngIf="tenVietTat.errors.required">
+                                            Nhập tên viết tắt mới.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <button [ngClass]="{ 'd-none': !hideButtonChinhSua }" [disabled]="!danhMucForm.valid"
+                                    (click)="onThemDanhMuc()" class="btn btn-outline-primary px-4 mx-2">
+                                    <img class="modal_chucnang__button__icon mb-2" src="assets/img/icons/add.png"
+                                        alt="image icon" />
+                                    <div>Thêm mới</div>
+                                </button>
+                                <button (click)="onSuaDanhMuc()" [ngClass]="{ 'd-none': hideButtonChinhSua }"
+                                    class="btn btn-outline-danger px-4 mx-2">
+                                    <img class="modal_chucnang__button__icon mb-2" src="assets/img/icons/upgrade.png"
+                                        alt="image icon" />
+                                    <div>Lưu chỉnh sửa</div>
+                                </button>
+                                <button (click)="onResetFormValue()" type="reset"
+                                    class="btn btn-outline-dark px-4 mx-2">
+                                    <img class="modal_chucnang__button__icon mb-2" src="assets/img/icons/error.png"
+                                        alt="image icon" />
+                                    <div>Huỷ bỏ</div>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
+                    <h5 class="text-center m-0" *ngIf="danhSachDanhMuc.length === 0">
+                        Chưa có danh mục nào.
+                    </h5>
+                    <section *ngIf="danhSachDanhMuc.length > 0">
+                        <table class="modal_chucnang__table table table-hover">
+                            <thead class="bg__caothang text-white">
+                                <th class="text-center" scope="col">Mã loại</th>
+                                <th scope="col">Tên loại danh mục</th>
+                                <th scope="col">Tên viết tắt</th>
+                                <th scope="col">Trạng thái</th>
+                                <th class="text-center" scope="col">Tuỳ chọn</th>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of danhSachDanhMuc">
+                                    <td class="text-center" style="max-width: 100px;">
+                                        {{ item.maDanhMuc }}
+                                    </td>
+                                    <td>{{ item.tenDanhMuc }}</td>
+                                    <td>{{ item.tenVietTat }}</td>
+                                    <td>{{ showTrangThai(item.trangThai) }}</td>
+                                    <td class="text-center">
+                                        <span title="Chỉnh sửa" (click)="getInfoDanhMucCanSua(item)"
+                                            class="mx-1 modal_chucnang__button__edit mdi mdi-file-document-edit-outline mdi-24px"></span>
+                                        <span (click)="onXoaDanhMuc(item.maDanhMuc)" title="Xoá"
+                                            class="mx-1 modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px"></span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="col-12">
-        <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
-          <h5 class="text-center m-0" *ngIf="danhSachDanhMuc.length === 0">
-            Chưa có danh mục nào.
-          </h5>
-          <section *ngIf="danhSachDanhMuc.length > 0">
-            <table class="modal_chucnang__table table table-hover">
-              <thead class="bg__caothang text-white">
-                <th class="text-center" scope="col">Mã loại</th>
-                <th scope="col">Tên loại danh mục</th>
-                <th scope="col">Tên viết tắt</th>
-                <th scope="col">Trạng thái</th>
-                <th class="text-center" scope="col">Tuỳ chọn</th>
-              </thead>
-              <tbody>
-                <tr *ngFor="let item of danhSachDanhMuc">
-                  <td class="text-center" style="max-width: 100px;">
-                    {{ item.maDanhMuc }}
-                  </td>
-                  <td>{{ item.tenDanhMuc }}</td>
-                  <td>{{ item.tenVietTat }}</td>
-                  <td>{{ showTrangThai(item.trangThai) }}</td>
-                  <td class="text-center">
-                    <span
-                      title="Chỉnh sửa"
-                      (click)="getInfoDanhMucCanSua(item)"
-                      class="mx-1 modal_chucnang__button__edit mdi mdi-file-document-edit-outline mdi-24px"
-                    ></span>
-                    <span
-                      (click)="onXoaDanhMuc(item.maDanhMuc)"
-                      title="Xoá"
-                      class="mx-1 modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px"
-                    ></span>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </section>
-        </div>
-      </div>
     </div>
-  </div>
+    <!-- <div class="container-fluid mt-3">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="text-center text-white">Quản lý danh mục</h1>
+            </div>
+            <div class="col-12">
+                <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
+                    <form [formGroup]="danhMucForm">
+                        <div class="row justify-content-center align-items-center">
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label>Tên danh mục</label>
+                                    <input formControlName="tenDanhMuc" type="text" class="form-control"
+                                        placeholder="Nhập tên danh mục mới" />
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label>Tên viết tắt</label>
+                                    <input formControlName="tenVietTat" type="text" class="form-control"
+                                        placeholder="Nhập tên viết tắt mới" />
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div> -->
 </app-modal>

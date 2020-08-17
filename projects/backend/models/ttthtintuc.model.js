@@ -1,19 +1,20 @@
-var mongoose = require('mongoose');
+var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var schema = new Schema({
   id_loaitintuc: { type: String },
   image: { type: String },
   tentintuc: { type: String },
-  slug: { type: String },
+  tentintucASCII: { type: String, default: null },
   description: { type: String },
   noidung: { type: String },
-  hienthi: { type: Boolean },
+  noidungASCII: { type: String, default: null },
+  thuTuHienThi: { type: Number, default: 999 },
   trangthai: { type: Boolean },
   nguoitao: { type: String },
   nguoisua: { type: String },
-  created_at: { type: Date },
-  updated_at: { type: Date },
-})
+  thoiGianTao: { type: Date },
+  thoiGianChinhSua: { type: Date },
+});
 
-module.exports = mongoose.model('ttthtintuc', schema, 'ttth_tintuc')
+module.exports = mongoose.model("ttthtintuc", schema, "ttth_tintuc");

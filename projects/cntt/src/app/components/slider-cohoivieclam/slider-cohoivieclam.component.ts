@@ -11,6 +11,7 @@ declare var Swiper: any;
 })
 export class SliderCohoivieclamComponent implements OnInit, AfterViewInit {
   @Input() DanhSachCoHoiViecLam: any;
+  @Input() MoTaNganViecLam: any;
 
   constructor() {}
 

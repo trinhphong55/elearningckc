@@ -660,7 +660,7 @@ input:focus { outline: none; }
     background: #253B80;
   }
   .breadcrumb__step:hover {
-    color:  #FFFFFF ;
+    color:  #FFFFFF !important;
     background: #253B80 ;
   }
   .breadcrumb__step:hover::before {

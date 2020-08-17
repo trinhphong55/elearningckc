@@ -28,7 +28,7 @@ router.post('/login', async(req, res) => {
       result = await sinhVienDAO.login(email, password);
     }
   }
-  console.log(result);
+  console.log('result', result);
   let data = {};
   if(result != false){
     data = {

@@ -1,25 +1,27 @@
 [{
   "_id": {
-    "$oid": "5f2d944d1e95032e5c11ecfc"
+    "$oid": "5f3509d8ba69292ad81be786"
   },
   "id_loaitintuc": "CD00",
   "image": "https://localhost:4100/uploads/cntt/2-554x399.jpg",
   "tentintuc": "[THÔNG BÁO] DANH SÁCH VÀ LỊCH THI VÒNG LOẠI TUYỂN CHỌN ĐỘI TUYỂN OLYMPIC TIN HỌC CAO THẮNG 2020",
   "slug": "slug",
-  "description": "Khoa CNTT xin thông báo danh sách các bạn đăng ký tham gia vòng sơ loại kỳ thi tuyển chọn đội tuyển Oympic Tin học của trường CĐKT Cao Thắng sẽ đại diện cho trường tham gia cuộc thi Olympic Tin sinh viên toàn quốc 2020 tại TP. Cần Thơ",
-  "noidung": "<h2>[THÔNG BÁO] DANH SÁCH VÀ LỊCH THI VÒNG LOẠI TUYỂN CHỌN ĐỘI TUYỂN OLYMPIC TIN HỌC CAO THẮNG 2020</h2><p>Khoa CNTT xin thông báo danh sách các bạn đăng ký tham gia vòng sơ loại kỳ thi tuyển chọn đội tuyển Oympic Tin học của trường CĐKT Cao Thắng sẽ đại diện cho trường tham gia cuộc thi Olympic Tin sinh viên toàn quốc 2020 tại TP. Cần Thơ như sau:</p><figure class=\"table\"><table><tbody><tr><td>STT</td><td>HỌ TÊN</td><td>MSSV</td><td>LỚP</td></tr><tr><td>1</td><td>Nguyễn Thế Lực</td><td>0306191334</td><td>CĐ TH 19D</td></tr><tr><td>2</td><td>Trương Văn Chiến</td><td>0306191107</td><td>CĐ TH 19B</td></tr><tr><td>3</td><td>Đặng Hiếu Liêm</td><td>0306181133</td><td>CĐ TH 18B</td></tr><tr><td>4</td><td>Trần Đức Minh</td><td>0306191144</td><td>CĐ TH 19B</td></tr><tr><td>5</td><td>Huỳnh Nguyễn Vân Anh</td><td>0306191002</td><td>CĐ TH 19A</td></tr><tr><td>6</td><td>Đỗ Hồng Sơn</td><td>0306191070</td><td>CĐ TH 19A</td></tr><tr><td>7</td><td>Nguyễn Đăng Khoa</td><td>0306191134</td><td>CĐ TH 19B</td></tr><tr><td>8</td><td>Võ Bằng Kiều</td><td>0306191326</td><td>CĐ TH 19D</td></tr><tr><td>9</td><td>Lương Đức Tài</td><td>0306181167</td><td>CĐ TH 18B</td></tr><tr><td>10</td><td>Chương Hương Hào</td><td>0306191116</td><td>CĐ TH 19B</td></tr><tr><td>11</td><td>Bùi Khởi Long</td><td>0306191434</td><td>CĐ TH 19E</td></tr><tr><td>12</td><td>Võ Phước Tài</td><td>0306181169</td><td>CĐ TH 18B</td></tr></tbody></table></figure><h2>&nbsp;</h2><h2><strong>LỊCH THI VÒNG SƠ LOẠI</strong></h2><ul><li>Thời gian: <strong>13h30, ngày 24/07/2020 (thứ 6)</strong></li><li>Địa điểm: <strong>phòng F7.4</strong></li><li>Nội dung:<ul><li>Kiến thức xử lý mảng một chiều, mảng hai chiều</li><li>Chuỗi và kiểu cấu trúc (Môn Nhập môn lập trình và môn Cấu trúc dữ liệu và giải thuật)</li></ul></li></ul><h2>Thông tin liên hệ</h2><p>GV phụ trách đội tuyển: Thầy Vũ Đình Bảo |&nbsp;<a href=\"mailto:vubao.edu@gmail.com\">vubao.edu@gmail.com</a></p><p>Website khoa CNTT: cntt.caothang.edu.vn</p>",
+  "description": "Khoa CNTT xin thông báo danh sách các bạn đăng ký tham gia vòng sơ loại kỳ thi tuyển chọn đội tuyển Oympic Tin học của trường CĐKT Cao Thắng sẽ đại diện cho trường tham gia cuộc thi Olympic Tin sinh viên toàn quốc 2020 tại TP. Cần Thơ như sau:",
+  "noidung": "<p>Khoa CNTT xin thông báo danh sách các bạn đăng ký tham gia vòng sơ loại kỳ thi tuyển chọn đội tuyển Oympic Tin học của trường CĐKT Cao Thắng sẽ đại diện cho trường tham gia cuộc thi Olympic Tin sinh viên toàn quốc 2020 tại TP. Cần Thơ như sau:</p><figure class=\"table\"><table><tbody><tr><td>STT</td><td>HỌ TÊN</td><td>MSSV</td><td>LỚP</td></tr><tr><td>1</td><td>Nguyễn Thế Lực</td><td>0306191334</td><td>CĐ TH 19D</td></tr><tr><td>2</td><td>Trương Văn Chiến</td><td>0306191107</td><td>CĐ TH 19B</td></tr><tr><td>3</td><td>Đặng Hiếu Liêm</td><td>0306181133</td><td>CĐ TH 18B</td></tr><tr><td>4</td><td>Trần Đức Minh</td><td>0306191144</td><td>CĐ TH 19B</td></tr><tr><td>5</td><td>Huỳnh Nguyễn Vân Anh</td><td>0306191002</td><td>CĐ TH 19A</td></tr><tr><td>6</td><td>Đỗ Hồng Sơn</td><td>0306191070</td><td>CĐ TH 19A</td></tr><tr><td>7</td><td>Nguyễn Đăng Khoa</td><td>0306191134</td><td>CĐ TH 19B</td></tr><tr><td>8</td><td>Võ Bằng Kiều</td><td>0306191326</td><td>CĐ TH 19D</td></tr><tr><td>9</td><td>Lương Đức Tài</td><td>0306181167</td><td>CĐ TH 18B</td></tr><tr><td>10</td><td>Chương Hương Hào</td><td>0306191116</td><td>CĐ TH 19B</td></tr><tr><td>11</td><td>Bùi Khởi Long</td><td>0306191434</td><td>CĐ TH 19E</td></tr><tr><td>12</td><td>Võ Phước Tài</td><td>0306181169</td><td>CĐ TH 18B</td></tr></tbody></table></figure><h2>&nbsp;</h2><h2><strong>LỊCH THI VÒNG SƠ LOẠI</strong></h2><ul><li>Thời gian: <strong>13h30, ngày 24/07/2020 (thứ 6)</strong></li><li>Địa điểm: <strong>phòng F7.4</strong></li><li>Nội dung:<ul><li>Kiến thức xử lý mảng một chiều, mảng hai chiều</li><li>Chuỗi và kiểu cấu trúc (Môn Nhập môn lập trình và môn Cấu trúc dữ liệu và giải thuật)</li></ul></li></ul><h2>Thông tin liên hệ</h2><p>GV phụ trách đội tuyển: Thầy Vũ Đình Bảo |&nbsp;<a href=\"mailto:vubao.edu@gmail.com\">vubao.edu@gmail.com</a></p><p>Website khoa CNTT: cntt.caothang.edu.vn</p>",
   "hienthi": true,
   "trangthai": true,
   "nguoitao": "hieu",
   "nguoisua": "loc",
   "created_at": {
-    "$date": "2020-08-07T17:50:05.649Z"
+    "$date": "2020-08-13T09:37:28.967Z"
   },
-  "updated_at": null,
+  "updated_at": {
+    "$date": "2020-08-13T09:38:07.386Z"
+  },
   "__v": 0
 },{
   "_id": {
-    "$oid": "5f2d95181e95032e5c11ecfd"
+    "$oid": "5f350a49ba69292ad81be787"
   },
   "id_loaitintuc": "CD00",
   "image": "https://localhost:4100/uploads/cntt/24785288_869745636516590_844923619084968922_o-554x674.jpg",
@@ -32,34 +34,34 @@
   "nguoitao": "hieu",
   "nguoisua": "loc",
   "created_at": {
-    "$date": "2020-08-07T17:53:28.815Z"
+    "$date": "2020-08-13T09:39:21.230Z"
   },
   "updated_at": null,
   "__v": 0
 },{
   "_id": {
-    "$oid": "5f2d967f1e95032e5c11ecfe"
+    "$oid": "5f350a758f831b1dc013e0db"
   },
   "id_loaitintuc": "CD00",
-  "image": "https://localhost:4100/uploads/cntt/e638a5614488b8d6e199-80x80.jpg",
-  "tentintuc": "[THÔNG BÁO] TUYỂN DỤNG SMARTOSC",
+  "image": "https://localhost:4100/uploads/cntt/2-554x399.jpg",
+  "tentintuc": "[THÔNG BÁO] DANH SÁCH VÀ LỊCH THI VÒNG LOẠI TUYỂN CHỌN ĐỘI TUYỂN OLYMPIC TIN HỌC CAO THẮNG 2020",
   "slug": "slug",
-  "description": "[THÔNG BÁO] TUYỂN DỤNG SMARTOSC",
-  "noidung": "<h2>SMARTOSC</h2><p>About SmartOSC: Established in 2006, SmartOSC is a premium, full-service e-commerce agency. The company’s&nbsp;portfolio includes more than 500 clients around the world, including many premium brands: Nestle, Central,&nbsp;Smartbox, Sony, Asus, Lotte, Courts, PayPal, Boozt, SpaceX, eWAY, Priceline Pharmacy, Club 21, Delta Apparel.&nbsp;As of June 2020, SmartOSC acquired a global presence with 500+ employees and offices in Vietnam, Australia,&nbsp;Japan, Thailand, Singapore, the US, and the UK.<br>Our mission is to drive sustainable growth to our partners, customers and employees by fulfilling the global value&nbsp;chain.<br>For additional information about SmartOSC, please visit http://www.smartosc.com/</p><p>FreshSeed Program 2020 – Job Description</p><p>Quantity: 20<br>Working place: Tuoi Tre building, 60A Hoang Van Thu, Ward 09, Phu Nhuan Dist, HCMC<br>REQUIREMENTS<br>• Final year students or fresh graduates with IT major.<br>• Have responsibilities and passion in technology and E-commerce industry<br>• Possible to working full-time during and after training course<br>• Communication in English is a plus point.<br>BENEFITS<br> Get free training package in PHP and Magento<br> Opportunities to study and work with large scale projects<br> Get training allowances each month<br> Have chance to become an official employee after completing the program<br> Have chance to onsite in US, EU, ASIA after officially joining SmartOSC<br>To Apply: Please visit the page: http://freshseed.smartosc.com Or submit your CV to&nbsp;job.hcm@smartosc.com with the following information:<br>• Updated CV in English, including your contact e-mail, phone number.<br>For more information about SmartOSC, please kindly visit:<br>Website: http://www.smartosc.com<br>Facebook: https://www.facebook.com/SmartOSC</p><p>HCM office A: Floor 2, Tuoi Tre Building, 60A Hoang Van Thu Str., Phu Nhuan, Ho Chi Minh, Vietnam</p><p>M: (+84) 906308186 | T: HN (+8424) 3514 9883, HCM (+8428) 38486795</p><p>E: <a href=\"mailto:chauhlb@smartosc.com\">chauhlb@smartosc.com</a> | W: http://www.smartosc.com</p><p>Khoa CNTT ./.</p>",
+  "description": "Khoa CNTT xin thông báo danh sách các bạn đăng ký tham gia vòng sơ loại kỳ thi tuyển chọn đội tuyển Oympic Tin học của trường CĐKT Cao Thắng sẽ đại diện cho trường tham gia cuộc thi Olympic Tin sinh viên toàn quốc 2020 tại TP. Cần Thơ như sau:",
+  "noidung": "<p>Khoa CNTT xin thông báo danh sách các bạn đăng ký tham gia vòng sơ loại kỳ thi tuyển chọn đội tuyển Oympic Tin học của trường CĐKT Cao Thắng sẽ đại diện cho trường tham gia cuộc thi Olympic Tin sinh viên toàn quốc 2020 tại TP. Cần Thơ như sau:</p><figure class=\"table\"><table><tbody><tr><td>STT</td><td>HỌ TÊN</td><td>MSSV</td><td>LỚP</td></tr><tr><td>1</td><td>Nguyễn Thế Lực</td><td>0306191334</td><td>CĐ TH 19D</td></tr><tr><td>2</td><td>Trương Văn Chiến</td><td>0306191107</td><td>CĐ TH 19B</td></tr><tr><td>3</td><td>Đặng Hiếu Liêm</td><td>0306181133</td><td>CĐ TH 18B</td></tr><tr><td>4</td><td>Trần Đức Minh</td><td>0306191144</td><td>CĐ TH 19B</td></tr><tr><td>5</td><td>Huỳnh Nguyễn Vân Anh</td><td>0306191002</td><td>CĐ TH 19A</td></tr><tr><td>6</td><td>Đỗ Hồng Sơn</td><td>0306191070</td><td>CĐ TH 19A</td></tr><tr><td>7</td><td>Nguyễn Đăng Khoa</td><td>0306191134</td><td>CĐ TH 19B</td></tr><tr><td>8</td><td>Võ Bằng Kiều</td><td>0306191326</td><td>CĐ TH 19D</td></tr><tr><td>9</td><td>Lương Đức Tài</td><td>0306181167</td><td>CĐ TH 18B</td></tr><tr><td>10</td><td>Chương Hương Hào</td><td>0306191116</td><td>CĐ TH 19B</td></tr><tr><td>11</td><td>Bùi Khởi Long</td><td>0306191434</td><td>CĐ TH 19E</td></tr><tr><td>12</td><td>Võ Phước Tài</td><td>0306181169</td><td>CĐ TH 18B</td></tr></tbody></table></figure><h2>&nbsp;</h2><h2><strong>LỊCH THI VÒNG SƠ LOẠI</strong></h2><ul><li>Thời gian: <strong>13h30, ngày 24/07/2020 (thứ 6)</strong></li><li>Địa điểm: <strong>phòng F7.4</strong></li><li>Nội dung:<ul><li>Kiến thức xử lý mảng một chiều, mảng hai chiều</li><li>Chuỗi và kiểu cấu trúc (Môn Nhập môn lập trình và môn Cấu trúc dữ liệu và giải thuật)</li></ul></li></ul><h2>Thông tin liên hệ</h2><p>GV phụ trách đội tuyển: Thầy Vũ Đình Bảo |&nbsp;<a href=\"mailto:vubao.edu@gmail.com\">vubao.edu@gmail.com</a></p><p>Website khoa CNTT: cntt.caothang.edu.vn</p>",
   "hienthi": true,
   "trangthai": true,
   "nguoitao": "hieu",
   "nguoisua": "loc",
   "created_at": {
-    "$date": "2020-08-07T17:59:27.516Z"
+    "$date": "2020-08-13T09:37:28.967Z"
   },
   "updated_at": {
-    "$date": "2020-08-08T06:36:04.454Z"
+    "$date": "2020-08-13T09:38:07.386Z"
   },
   "__v": 0
 },{
   "_id": {
-    "$oid": "5f2d96eb4fc0bd2e148617f1"
+    "$oid": "5f350a778f831b1dc013e0dc"
   },
   "id_loaitintuc": "CD00",
   "image": "https://localhost:4100/uploads/cntt/24785288_869745636516590_844923619084968922_o-554x674.jpg",
@@ -72,29 +74,27 @@
   "nguoitao": "hieu",
   "nguoisua": "loc",
   "created_at": {
-    "$date": "2020-08-07T17:53:28.815Z"
+    "$date": "2020-08-13T09:39:21.230Z"
   },
   "updated_at": null,
   "__v": 0
 },{
   "_id": {
-    "$oid": "5f2d96ef4fc0bd2e148617f2"
+    "$oid": "5f350a848f831b1dc013e0dd"
   },
-  "id_loaitintuc": "CD00",
-  "image": "https://localhost:4100/uploads/cntt/e638a5614488b8d6e199-80x80.jpg",
-  "tentintuc": "[THÔNG BÁO] TUYỂN DỤNG SMARTOSC",
+  "id_loaitintuc": "CD01",
+  "image": "https://localhost:4100/uploads/cntt/24785288_869745636516590_844923619084968922_o-554x674.jpg",
+  "tentintuc": "TUYỂN CHỌN SINH VIÊN THAM GIA ĐỘI TUYỂN TRƯỜNG CAO THẮNG DỰ THI OLYMPIC TIN HỌC TOÀN QUỐC 2020",
   "slug": "slug",
-  "description": "[THÔNG BÁO] TUYỂN DỤNG SMARTOSC",
-  "noidung": "<h2>SMARTOSC</h2><p>About SmartOSC: Established in 2006, SmartOSC is a premium, full-service e-commerce agency. The company’s&nbsp;portfolio includes more than 500 clients around the world, including many premium brands: Nestle, Central,&nbsp;Smartbox, Sony, Asus, Lotte, Courts, PayPal, Boozt, SpaceX, eWAY, Priceline Pharmacy, Club 21, Delta Apparel.&nbsp;As of June 2020, SmartOSC acquired a global presence with 500+ employees and offices in Vietnam, Australia,&nbsp;Japan, Thailand, Singapore, the US, and the UK.<br>Our mission is to drive sustainable growth to our partners, customers and employees by fulfilling the global value&nbsp;chain.<br>For additional information about SmartOSC, please visit http://www.smartosc.com/</p><p>FreshSeed Program 2020 – Job Description</p><p>Quantity: 20<br>Working place: Tuoi Tre building, 60A Hoang Van Thu, Ward 09, Phu Nhuan Dist, HCMC<br>REQUIREMENTS<br>• Final year students or fresh graduates with IT major.<br>• Have responsibilities and passion in technology and E-commerce industry<br>• Possible to working full-time during and after training course<br>• Communication in English is a plus point.<br>BENEFITS<br> Get free training package in PHP and Magento<br> Opportunities to study and work with large scale projects<br> Get training allowances each month<br> Have chance to become an official employee after completing the program<br> Have chance to onsite in US, EU, ASIA after officially joining SmartOSC<br>To Apply: Please visit the page: http://freshseed.smartosc.com Or submit your CV to&nbsp;job.hcm@smartosc.com with the following information:<br>• Updated CV in English, including your contact e-mail, phone number.<br>For more information about SmartOSC, please kindly visit:<br>Website: http://www.smartosc.com<br>Facebook: https://www.facebook.com/SmartOSC</p><p>HCM office A: Floor 2, Tuoi Tre Building, 60A Hoang Van Thu Str., Phu Nhuan, Ho Chi Minh, Vietnam</p><p>M: (+84) 906308186 | T: HN (+8424) 3514 9883, HCM (+8428) 38486795</p><p>E: <a href=\"mailto:chauhlb@smartosc.com\">chauhlb@smartosc.com</a> | W: http://www.smartosc.com</p><p>Khoa CNTT ./.</p>",
+  "description": "TUYỂN CHỌN SINH VIÊN THAM GIA ĐỘI TUYỂN TRƯỜNG CAO THẮNG DỰ THI OLYMPIC TIN HỌC TOÀN QUỐC 2020",
+  "noidung": "<h2><strong>TUYỂN CHỌN SINH VIÊN&nbsp;</strong></h2><h2><strong>THAM GIA ĐỘI TUYỂN TRƯỜNG CAO THẮNG&nbsp;</strong></h2><h2><strong>DỰ THI OLYMPIC TIN HỌC TOÀN QUỐC 2020</strong></h2><h2>Giới thiệu</h2><p>Cuộc thi Olympic Tin học Sinh viên toàn quốc là một cuộc thi lớn dành cho các bạn sinh viên đam mê lập trình và thuật toán ở các trường Đại học, Cao đẳng tại Việt Nam, là cơ hội để các bạn có thể được học hỏi, giao lưu và khẳng định khả năng của bản thân mình. Các thí sinh sẽ phải đối mặt với một vài bài toán trong thực tế và phải giải quyết các bài toán ấy bằng thuật toán và lập trình trong vòng 3 giờ. Thí sinh nào có lời giải tối ưu hơn sẽ có điểm cao hơn. Cuộc thi được diễn ra hàng năm, tại một trường Đại học nào đó, năm nay là Đại học Cần Thơ.</p><p>Trường CĐKT Cao Thắng tham gia kỳ thi này và đã may mắn được những thành tích đáng khích lệ. Nhưng điều quan trọng hơn hết, là sau tất cả những giờ học hành, thi đấu căng thẳng là kiến thức, kỹ năng và trải nghiệm, tất cả sẽ để lại một kỷ niệm đẹp trong thời sinh viên của mỗi thí sinh.</p><p>Nay, Khoa Công nghệ Thông tin, trường CĐKT Cao Thắng thông báo rộng rãi đến sinh viên toàn trường về việc tham gia đội tuyển Olympic, nhằm ôn tập và chuẩn bị cho kỳ thi sắp tới.</p><h2>Được gì khi tham gia đội tuyển?</h2><p>Sinh viên được nâng cao khả năng giải quyết vấn đề bằng thuật toán và lập trình. Qua đó, sinh viên cải thiện được kỹ năng lập trình của mình, tạo nền tảng vững chắc giúp sinh viên đi xa hơn trong ngành, đáp ứng được một phần kỳ vọng của doanh nghiệp trong và ngoài nước.</p><p>Thông qua quá trình ôn luyện, sinh viên trau dồi đam mê lập trình, đẩy giới hạn của bản thân lên những tầm cao mới.</p><p>Có cơ hội trở thành thành viên chính thức của đội tuyển Olympic Tin học của trường, tham gia kỳ thi Olympic Tin học Toàn quốc, được tổ chức tại Cần Thơ.</p><h2>Cách thức đăng ký</h2><ol><li>Bước 1: Điền vào mẫu đăng ký:&nbsp; <a href=\"https://forms.gle/8zaY74ZKMt4q1dHf6\"><strong>https://forms.gle/8zaY74ZKMt4q1dHf6</strong></a><br>&nbsp;</li></ol><h3><strong>(Hạn chót: 11h00, ngày 22/07/2020)</strong></h3><ol><li>Bước 2: Tham gia vòng thi sơ loại, dự kiến diễn ra vào thứ 6, lúc 14h00, ngày&nbsp; 24/07/2020, tại F7.4</li></ol><h2>Các mốc thời gian dự kiến</h2><figure class=\"table\"><table><tbody><tr><td><strong>Thời gian</strong></td><td><strong>Công việc</strong></td></tr><tr><td>13/07/2020 – 22/07/2020</td><td>Phổ biến thông tin cho sinh viên, đăng ký tham gia thi sơ loại</td></tr><tr><td>24/07/2020</td><td>Thi chọn chọn tối đa 10 SV tham gia học bồi dưỡng</td></tr><tr><td>03/08/2020 – 03/10/2020</td><td>Tổ chức dạy bồi dưỡng đợt 1</td></tr><tr><td>02/10/2020</td><td>Thi chọn sinh viên tham gia dự thi chọn tối đa 5 SV để bồi dưỡng tham gia kỳ thi</td></tr><tr><td>05/10/2020 – 05/11/2020</td><td>Tổ chức dạy bồi dưỡng đợt 2</td></tr><tr><td>05/11/2020</td><td>Thi chọn đội tuyển chính thức</td></tr><tr><td>08/12/2020</td><td>Tham dự kỳ thi Olympic 2020</td></tr></tbody></table></figure><h2>Thông tin liên hệ</h2><p>GV phụ trách đội tuyển: Thầy Vũ Đình Bảo | <a href=\"mailto:vubao.edu@gmail.com\">vubao.edu@gmail.com</a></p><p>Website khoa CNTT: cntt.caothang.edu.vn</p><p>Khoa CNTT ./.</p>",
   "hienthi": true,
   "trangthai": true,
   "nguoitao": "hieu",
   "nguoisua": "loc",
   "created_at": {
-    "$date": "2020-08-07T17:59:27.516Z"
+    "$date": "2020-08-13T09:39:21.230Z"
   },
-  "updated_at": {
-    "$date": "2020-08-08T06:49:45.644Z"
-  },
+  "updated_at": null,
   "__v": 0
 }]

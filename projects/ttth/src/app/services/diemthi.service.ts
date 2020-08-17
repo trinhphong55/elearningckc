@@ -18,4 +18,9 @@ export class DiemthiService {
       .get('https://localhost:4100/api/ttthDiemThi/tracuudiem=' + mssv)
       .pipe(retry(1));
   }
+  TraCuuDiemTheoSBD(sbd: string): Observable<any> {
+    return this.http
+      .get('https://localhost:4100/api/ttthDiemThi/tracuudiemtheosbd=' + sbd)
+      .pipe(retry(1));
+  }
 }

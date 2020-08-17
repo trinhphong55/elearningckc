@@ -11,6 +11,14 @@ router.get('/', async (req, res) => {
     res.json([]);
   }
 })
+router.get('/list', async (req, res) => {
+  try {
+    const danhsach = await ttthTienIch.find().sort({created_at: -1});
+    res.json(danhsach);
+  } catch (error) {
+    res.json([]);
+  }
+})
 // add
 router.post('/add', (req, res) => {
   var item = new ttthTienIch({
@@ -45,7 +53,7 @@ let Storage = multer.diskStorage({
       let errorMess = `The file <strong>${file.originalname}</strong> is invalid. Only allowed to upload image jpeg or png.`;
       return callback(errorMess, null);
     }
-    let filename = `${file.originalname}`;
+    let filename = 'tienich_' +`${file.originalname}`;
     callback(null, filename);
   }
 });
@@ -84,6 +92,7 @@ router.post('/delete', async (req, res) => {
   await ttthTienIch.findOneAndUpdate({
     _id: req.body._id
   }, {
+    nguoisua: req.body.nguoisua,
     trangthai: false
   });
 })

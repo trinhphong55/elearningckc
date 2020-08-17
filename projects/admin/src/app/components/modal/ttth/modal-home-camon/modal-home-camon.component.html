@@ -3,7 +3,8 @@
   <div class="container-fluid mt-3">
     <div class="row">
       <div class="col-12">
-        <h1 class="text-center text-white">Quản lý mục cảm ơn ở trang chủ</h1>
+        <h1 class="text-center text-white">Quản lý mục cảm ơn</h1>
+        <p class="text-center text-white">Hiển thị tối đa 4 mục</p>
       </div>
       <div class="col-12" [ngClass]="{ 'd-none': selectedItem }">
         <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
@@ -42,8 +43,6 @@
                 <label>Icon</label>
                 <input type="text" class="form-control" [(ngModel)]="selectedItem.icon" >
               </div>
-            </div>
-            <div class="col-3">
               <div class="form-group">
                 <label>Tiêu đề chính</label>
                 <input type="text" class="form-control" [(ngModel)]="selectedItem.tieudechinh" >
@@ -81,6 +80,7 @@
                 <th scope="col">Tiêu đề phụ</th>
                 <th scope="col">Người tạo</th>
                 <th scope="col">Người sửa</th>
+                <th scope="col">Trạng thái</th>
                 <th class="text-center" scope="col"><span
                     class="modal_chucnang__button__save mdi mdi-content-save-outline mdi-24px"></span></th>
               </tr>
@@ -93,7 +93,9 @@
                 <td>{{item.tieudephu}}</td>
                 <td>{{item.nguoitao}}</td>
                 <td>{{item.nguoisua}}</td>
-                <td class="text-center">
+                <td *ngIf="item.trangthai==false">Đã xóa</td>
+                <td *ngIf="item.trangthai==true">Hiển thị</td>
+                <td class="text-center" *ngIf="item.trangthai==true">
                   <span class="modal_chucnang__button__delete mdi mdi-file-document-edit-outline  mdi-24px  mr-2" (click)="onSelect(item)"></span>
                   <span class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px" (click)="xoaCamOn(item)"></span>
                 </td>

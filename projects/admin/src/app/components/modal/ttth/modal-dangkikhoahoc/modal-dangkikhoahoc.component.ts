@@ -25,15 +25,15 @@ export class ModalDangkikhoahocComponent implements OnInit {
     this.modalService.close(id)
   }
   getdanhsach(): void {
-    this.dangkilophocService.get().subscribe((data) => {this.DKKH = data; setTimeout(() => {}, 0);});
+    this.dangkilophocService.get().subscribe((data) => {this.DKKH = data; setTimeout(() => {}, 500);});
   }
   delete(DKKH: any):void {
     this.dangkilophocService.delete(DKKH)
     .subscribe(data => {
       this.DKKH.push(data);
-      setTimeout(() => {}, 0);
-    });
     this.getdanhsach();
+
+    });
     this.toastr.success('Xóa thành công');
     // window.location.reload();
   }

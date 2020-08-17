@@ -10,17 +10,17 @@
           <div class="row justify-content-center align-items-center">
             <div class="col-3">
               <div class="form-group">
-                <label>Chọn mã khóa học</label>
+                <label>Chọn khóa học</label>
                 <select class="modal_chucnang__select2 form-control" #makhoahoc>
                   <option></option>
                   <ng-container *ngFor="let item of MaKhoaHoc">
-                    <option  value="{{item.makhoahoc}}">{{item.makhoahoc}}</option>
+                    <option value="{{item.makhoahoc}}">{{item.tenkhoahoc}}</option>
                   </ng-container>
                 </select>
               </div>
               <div class="form-group">
                 <label>Đợt</label>
-                <input type="text" class="form-control" #dot>
+                <input type="text" class="form-control" #dot placeholder="VD: Đợt 1, Đợt 2 ,...">
               </div>
               <div class="form-group">
                 <label>Giáo viên</label>
@@ -28,7 +28,7 @@
               </div>
               <div class="form-group">
                 <label>Buổi học</label>
-                <input type="text" class="form-control" #buoihoc>
+                <input type="text" class="form-control" #buoihoc placeholder="VD: 246, 357 ,...">
               </div>
             </div>
             <div class="col-3">
@@ -38,7 +38,7 @@
               </div>
               <div class="form-group">
                 <label>Ngày khai giảng</label>
-                <input type="text" class="form-control" #ngaykhaigiang>
+                <input type="date" class="form-control" #ngaykhaigiang placeholder="VD: 20/11/2020">
               </div>
               <div class="form-group">
                 <label>Học phí</label>
@@ -60,19 +60,18 @@
       <div class="col-12" *ngIf="selectedItem">
         <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
           <div class="row justify-content-center align-items-center">
-            <div class="col-auto">
+            <div class="col-3">
               <div class="form-group">
-                <label>Chọn mã khóa học</label>
+                <label>Chọn khóa học</label>
                 <select class="modal_chucnang__select2 form-control" [(ngModel)]="selectedItem.makhoahoc">
-                  <option></option>
                   <ng-container *ngFor="let item of MaKhoaHoc">
-                    <option  value="{{item.makhoahoc}}">{{item.makhoahoc}}</option>
+                    <option value="{{item.makhoahoc}}">{{item.tenkhoahoc}}</option>
                   </ng-container>
                 </select>
               </div>
               <div class="form-group">
                 <label>Đợt </label>
-                <input type="text" class="form-control"  [(ngModel)]="selectedItem.dot">
+                <input type="text" class="form-control"  [(ngModel)]="selectedItem.dot" placeholder="VD: Đợt 1, Đợt 2 ,...">
               </div>
               <div class="form-group">
                 <label>Giáo viên</label>
@@ -80,18 +79,18 @@
               </div>
               <div class="form-group">
                 <label>Buổi học</label>
-                <input type="text" class="form-control"  [(ngModel)]="selectedItem.buoihoc">
+                <input type="text" class="form-control"  [(ngModel)]="selectedItem.buoihoc"  placeholder="VD: 246, 357 ,...">
               </div>
 
             </div>
-            <div class="col-auto">
+            <div class="col-3">
               <div class="form-group">
                 <label>Giờ học</label>
                 <input type="text" class="form-control"  [(ngModel)]="selectedItem.giohoc">
               </div>
               <div class="form-group">
                 <label>Ngày khai giảng</label>
-                <input type="text" class="form-control" [(ngModel)]="selectedItem.ngaykhaigiang">
+                <input type="date" class="form-control" [(ngModel)]="selectedItem.ngaykhaigiang"  placeholder="VD: 20/11/2020">
               </div>
               <div class="form-group">
                 <label>Học phí</label>
@@ -127,6 +126,11 @@
                 <th scope="col">Giờ học</th>
                 <th scope="col">Ngày khai giảng</th>
                 <th scope="col">Học phí</th>
+                <th scope="col">Người tạo</th>
+                <th scope="col">Người sửa</th>
+                <th scope="col">Trạng thái</th>
+                <th scope="col">Ngày tạo</th>
+                <th scope="col">Ngày sửa</th>
                 <th class="text-center" scope="col"><span
                     class="modal_chucnang__button__save mdi mdi-content-save-outline mdi-24px"></span></th>
               </tr>
@@ -138,9 +142,16 @@
                 <td>{{item.dot}}</td>
                 <td>{{item.buoihoc}}</td>
                 <td>{{item.giohoc}}</td>
-                <td>{{item.ngaykhaigiang}}</td>
+                <td>{{item.ngaykhaigiang | date:'dd/MM/yyyy'}}</td>
                 <td>{{item.hocphi}}</td>
-                <td class="text-center">
+                <td>{{item.nguoitao}}</td>
+                <td>{{item.nguoisua}}</td>
+                <td *ngIf="item.trangthai==0">Đã xóa</td>
+                <td *ngIf="item.trangthai==1">Chưa nhập điểm</td>
+                <td *ngIf="item.trangthai==2">Đã nhập điểm</td>
+                <td>{{item.created_at | date:'dd/MM/yyyy'}}</td>
+                <td>{{item.updated_at | date:'dd/MM/yyyy'}}</td>
+                <td class="text-center" *ngIf="item.trangthai!=0">
                   <span class="modal_chucnang__button__delete mdi mdi-file-document-edit-outline  mdi-24px  mr-2"
                     (click)="onSelect(item);imageSrc=null"></span>
                   <span class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px" (click)="delete(item)"></span>

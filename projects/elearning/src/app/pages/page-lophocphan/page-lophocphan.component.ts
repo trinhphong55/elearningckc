@@ -3,6 +3,7 @@ import {ActivatedRoute} from '@angular/router';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {ChiaseComponent} from '../../components/content/pagelophocphan/chiase/chiase.component';
 import { ActivityService } from '../../services/activity.service';
+import { LopHocPhanService } from '../../services/lophocphan.service';
 import { getCookie } from '../../../../../common/helper';
 @Component({
   selector: 'app-page-lophocphan',
@@ -12,10 +13,18 @@ import { getCookie } from '../../../../../common/helper';
 export class PageLophocphanComponent implements OnInit {
 
   maLHP:number;
+  tenLHP: any;
+  soLuongSV: any;
   role:any = getCookie('role').toLocaleLowerCase();
   dsActivity: any;
-  constructor(public dialog:MatDialog, private router :ActivatedRoute, private activityService:ActivityService) {
+  constructor(public dialog:MatDialog, private router :ActivatedRoute, private activityService:ActivityService, private lhpService:LopHocPhanService) {
     this.maLHP = parseInt(this.router.snapshot.paramMap.get('id'));
+    this.lhpService.layLopHocPhanTheoMaLHP(this.maLHP).subscribe(
+      (res) => {
+        this.tenLHP = res.data.tenLopHocPhan;
+        this.soLuongSV = res.data.soLuongSV;
+      }
+    )
     this.activityService.layDanhSachActivityCuaLHP(this.maLHP).subscribe(
       (res) => {
         this.dsActivity = res.data;

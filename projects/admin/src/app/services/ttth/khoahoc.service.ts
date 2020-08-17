@@ -12,7 +12,7 @@ const httpOptions = {
 export class KhoahocService {
 
   get(): Observable<ttthKhoaHoc[]  >{
-    return this.http.get<ttthKhoaHoc[] >('https://localhost:4100/api/ttthKhoaHoc/').pipe(
+    return this.http.get<ttthKhoaHoc[] >('https://localhost:4100/api/ttthKhoaHoc/list').pipe(
       retry(1),
       catchError(error => of([]))
     );
