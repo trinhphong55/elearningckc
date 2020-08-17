@@ -59,11 +59,21 @@ export class ModalKhoabomonComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router
   ) {}
-
+  updateForm: FormGroup;
+  KhoaForm:FormGroup;
   ngOnInit(): void {
     this.retriveKhoaBoMon();
     this.retriveLoaiDonVi();
     this.getBoMon();
+    this.KhoaForm = new FormGroup({
+      tenKhoa:new FormControl(''),
+      tenVietTat: new FormControl('')
+    })
+    this.updateForm = new FormGroup({
+      tenKhoa: new FormControl(''),
+      tenVietTat: new FormControl(''),
+      loaiDonVi: new FormControl(''),
+    });
     this.addForm = new FormGroup({
       loaiDonVi: new FormControl('', [Validators.required]),
       maKhoa: new FormControl('', [
@@ -137,7 +147,7 @@ export class ModalKhoabomonComponent implements OnInit {
     this.result.msg = '';
     if (this.addForm.value.loaiDonVi == 1) {
       this.KhoaBonmonService.create(this.setData()).subscribe(
-        (response:any) => {
+        (response: any) => {
           this.result.msg = response.msg;
           this.result.status = response.status;
           this.retriveKhoaBoMon();
@@ -148,14 +158,14 @@ export class ModalKhoabomonComponent implements OnInit {
       );
     } else {
       this.BomonService.create(this.setData()).subscribe(
-        (response:any) => {
+        (response: any) => {
           this.result.msg = response.msg;
           this.result.status = response.status;
 
           this.retriveKhoaBoMon();
         },
         (error) => {
-          this.result.msg =error;
+          this.result.msg = error;
         }
       );
     }
@@ -164,11 +174,15 @@ export class ModalKhoabomonComponent implements OnInit {
     this.editting = true;
     this.currentIndex = khoa._id;
     this.currentKhoa = khoa;
+    if (khoa.tenKhoa) {
+      this.tenKhoa.setValue(khoa.tenKhoa);
+      this.maKhoa.setValue(khoa.maKhoa);
+    }
+    if (khoa.tenBoMon) {
+      this.tenKhoa.setValue(khoa.tenBoMon);
+      this.maKhoa.setValue(khoa.maBoMon);
+    }
 
-    this.tenKhoa.setValue(khoa.tenKhoa);
-    this.maKhoa.setValue(khoa.maKhoa);
-    this.tenKhoa.setValue(khoa.tenBoMon);
-    this.maKhoa.setValue(khoa.maBoMon);
     this.tenVietTat.setValue(khoa.tenVietTat);
     this.loaiDonVi.setValue(khoa.maLoai);
   }
@@ -181,7 +195,7 @@ export class ModalKhoabomonComponent implements OnInit {
       // this.BomonService.delete(maLoai);
       // this.KhoaBonmonService.create(this.setData());
       this.KhoaBonmonService.update(id, this.setData()).subscribe(
-        (response:any) => {
+        (response: any) => {
           this.result.msg = response.msg;
           this.result.status = response.status;
           //load lại dữ liệuliệu
@@ -191,10 +205,10 @@ export class ModalKhoabomonComponent implements OnInit {
           console.log(error);
         }
       );
-    } else if(maLoai == 2) {
+    } else if (maLoai == 2) {
       // this.BomonService.create(this.setData());
       this.BomonService.update(id, this.setData()).subscribe(
-        (response:any) => {
+        (response: any) => {
           this.result.msg = response.msg;
           this.result.status = response.status;
           console.log(response);
@@ -205,34 +219,31 @@ export class ModalKhoabomonComponent implements OnInit {
           console.log(error);
         }
       );
-    }else{
+    } else {
       this.result.msg = 'Không tìm thấy mã loại';
-
     }
   }
   //Xoa KhoaBoMonKhoaBoMon
   deleteModal(khoa_id, khoa_maloai) {
     this.result.msg = '';
 
-    if(khoa_maloai == 1){
+    if (khoa_maloai == 1) {
       this.KhoaBonmonService.delete(khoa_id).subscribe(
-        (response:any) => {
+        (response: any) => {
           this.result.msg = response.msg;
           this.result.status = response.status;
           alert(this.result.msg);
 
           //load lại dữ liệuliệu
           this.retriveKhoaBoMon();
-
         },
         (error) => {
           console.log(error);
         }
       );
-    }else{
+    } else {
       this.BomonService.delete(khoa_id).subscribe(
-        (response:any) => {
-
+        (response: any) => {
           this.result.msg = response.msg;
           this.result.status = response.status;
           alert(this.result.msg);
@@ -245,7 +256,6 @@ export class ModalKhoabomonComponent implements OnInit {
         }
       );
     }
-
   }
   saveModal() {}
   closeModal(id: string) {

@@ -1,6 +1,6 @@
 const BoMon = require("../models/bomon.model");
 const keHoachDaoTaoModel = require("../models/KeHoachDaoTao.model");
-const { check, validationResult } = require("express-validator");
+const { check, validationResult, body } = require("express-validator");
 const bomonModel = require("../models/bomon.model");
 
 let idIsExist = 0;
@@ -8,12 +8,13 @@ let nameIsExist = 0;
 
 const setData = (req) => {
   return {
-    maBoMon: req.body.maKhoa,
-    tenBoMon: req.body.tenKhoa,
+    maBoMon: req.body.maBoMon,
+    tenBoMon: req.body.tenBoMon,
     tenVietTat: req.body.tenVietTat,
     nguoiTao: req.body.nguoiTao,
     nguoiChinhSua: req.body.nguoiChinhSua,
     maLoai: req.body.maLoai,
+    maKhoa: req.body.maKhoa,
   };
 };
 
@@ -36,6 +37,8 @@ exports.getOneKhoaBoMon = async (req, res) => {
 };
 exports.postKhoaBoMon = async (req, res) => {
   try {
+    idIsExist = 0;
+    nameIsExist = 0;
     const err = validationResult(req);
     if (!err.isEmpty()) {
       res.status(422).json(err.errors);
@@ -43,27 +46,50 @@ exports.postKhoaBoMon = async (req, res) => {
     const khoabomon = await BoMon.find();
 
     khoabomon.forEach((element) => {
-      if (req.body.maKhoa === element.maBoMon) {
+      if (req.body.maBoMon === element.maBoMon) {
         idIsExist++;
       }
-      if (req.body.tenKhoa === element.tenBoMon) {
+      if (req.body.tenBoMon === element.tenBoMon) {
+
         nameIsExist++;
       }
     });
 
     if (idIsExist > 0) {
-      res.json({
+      return res.json({
         status: 200,
         ok: false,
         msg: "Mã khoa này đã tồn tại",
       });
     } else if (nameIsExist > 0) {
-      res.json({
+      return res.json({
         status: 200,
         ok: false,
         msg: "Tên này đã tồn tại",
       });
     } else {
+
+      let nextNumber = 0;
+      await BoMon.findOne(
+        { maKhoa: req.body.maKhoa },
+        {},
+
+      ).sort({maBoMon: -1})
+        .exec()
+        .then((bt) => {
+          if (bt !== null) {
+            nextNumber = parseInt(bt.maBoMon.slice(1, bt.maKhoa.length));
+
+          }
+        });
+        if(nextNumber > 10){
+          req.body.maBoMon = req.body.maKhoa  +''+ (nextNumber + 1);
+
+        }else{
+          req.body.maBoMon = req.body.maKhoa  +'0'+ (nextNumber + 1);
+
+        }
+      console.log(req.body);
       const khoaBoMon = new BoMon(setData(req));
       const saveKhoa = await khoaBoMon.save();
       res.json({
@@ -130,15 +156,15 @@ exports.deleteKhoaBoMon = async (req, res) => {
 
 exports.checkValidate = () => {
   return [
-    check("maKhoa", "MA BO MON is required").notEmpty(),
+    check("tenBoMon", "MA BO MON is required").notEmpty(),
     check("maKhoa", "MA BO MON is must be at least 10 chars long").isLength({
       max: 50,
     }),
 
-    check("tenKhoa", "TEN BO MON is must be at most 50 chars long ").isLength({
+    check("tenBoMon", "TEN BO MON is must be at most 50 chars long ").isLength({
       max: 50,
     }),
-    check("tenKhoa", "TEN BO MON is required").notEmpty(),
+    check("tenBoMon", "TEN BO MON is required").notEmpty(),
 
     check("tenVietTat", "TEN VIET TAT must be at most 15 char long").isLength({
       max: 15,
@@ -155,15 +181,16 @@ exports.checkValidate = () => {
 };
 
 exports.updateKhoaBoMon = async (req, res) => {
-  try {
+    try {
     const err = validationResult(req);
     if (!err.isEmpty()) {
       res.status(422).json(err.errors);
     }
+  //res.json(req.body)
     const updateKhoa = await BoMon.updateOne(
       { _id: req.params.id },
       {
-        $set: setData(req),
+        $set: {tenBoMon: req.body.tenBoMon, tenVietTat: req.body.tenVietTat},
       }
     );
 

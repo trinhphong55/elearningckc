@@ -55,7 +55,7 @@ exports.layTatCaSinhVien = async (req, res) => {
   } catch (error) {
     res
       .status(500)
-      .json({ message: "Máy chủ không sữ lý được", error: error, status: 500 });
+      .json({ message: "Máy chủ không xử lý được", error: error, status: 500 });
   }
 };
 
@@ -68,7 +68,7 @@ exports.Laysinhvientheomalop = async (req, res) => {
   } catch (error) {
     res
       .status(500)
-      .json({ message: "Máy chủ không sữ lý được", error: error, status: 500 });
+      .json({ message: "Máy chủ không xử lý được", error: error, status: 500 });
   }
 };
 
@@ -82,7 +82,7 @@ exports.themSinhVien = async (req, res) => {
   } catch (error) {
     res
       .status(500)
-      .json({ message: "Máy chủ không sữ lý được", error: error, status: 500 });
+      .json({ message: "Máy chủ không xử lý được", error: error, status: 500 });
   }
 };
 
@@ -102,17 +102,13 @@ exports.layThongtinSinhVien = async (req, res) => {
   } catch (error) {
     res
       .status(500)
-      .json({ message: "Máy chủ không sữ lý được", error: error, status: 500 });
+      .json({ message: "Máy chủ không xử lý được", error: error, status: 500 });
   }
 };
 
 exports.capNhatSinhVien = async (req, res) => {
   try {
-    console.log(req.body);
-    // const err = validationResult(req);
-    // if(!err.isEmpty()){
-    //   res.status(422).json(err.errors);
-    // }
+
     let tokens = "12341234";
     if (req.body.sdt.length != 10) {
       return res.status(403).json({
@@ -165,7 +161,7 @@ exports.capNhatSinhVien = async (req, res) => {
     }
   } catch (error) {
     res.status(500).json({
-      message: "Máy chủ không xữ lý được",
+      message: "Máy chủ không xử lý được",
       errors: error,
       status: 500,
       data: null,

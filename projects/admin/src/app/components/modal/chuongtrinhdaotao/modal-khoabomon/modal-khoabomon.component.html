@@ -1,4 +1,4 @@
-<app-modal class="modal_chucnang__wrapper" id="ctdt_khoabomon">
+<app-modal class="modal_chucnang__wrapper show" id="ctdt_khoabomon">
 
   <div (click)="closeModal('ctdt_khoabomon')" class="modal_chucnang__close mdi mdi-chevron-left text-white"></div>
   <div class="container-fluid mt-3">
@@ -23,6 +23,84 @@
         </div>
       </div>
     </div>
+       <!-- Modal khoa-->
+    <div class="modal fade" id="khoa" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header alert alert-primary">
+            <h3 class="modal-title" id="exampleModalLongTitle">Thêm Khoa</h3>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form [formGroup]="KhoaForm">
+              <div class="form-row">
+                <div class="col">
+                  <label for="inputPassword4">Tên Khoa</label>
+                  <input class="form-control" formControlName="tenKhoa">
+                </div>
+                <div class="col">
+                  <label for="inputPassword4">Tên viết tắt</label>
+                  <input  class="form-control" formControlName="tenVietTat">
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+            <button type="button" class="btn btn-outline-success" data-dismiss="modal">Thêm</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="updateForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header alert alert-info">
+            <h3 class="modal-title " id="exampleModalLabel">Cập nhật </h3>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form [formGroup]="updateForm">
+              <div class="form-row">
+
+                <div class="form-group col-md-44">
+                  <label for="inputPassword4">Tên khoa - bộ môn</label>
+                  <input class="form-control" formControlName="tenKhoa">
+                </div>
+                <div class="form-group col-md-44">
+                  <label for="inputEmail4">Tên viết tắt</label>
+                  <input class="form-control" formControlName="tenVietTat">
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="inputPassword4">Loại đơn vị</label>
+
+                  <select class="form-control" formControlName="loaiDonVi">
+                    <option value="" disabled>Chọn...</option>
+                    <option *ngFor="let loai of loais" [ngValue]=loai.maLoaiDonVi>{{ loai.tenLoaiDonVi }}</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- <div class="form-row">
+
+              </div> -->
+
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+            <button type="button" class="btn btn-primary">Thay đổi</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="row">
       <div class="col-12">
         <h1 class="text-center text-white">Quản lý Khoa - Bộ môn</h1>
@@ -32,8 +110,8 @@
 
           <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
             <div class="row justify-content-center align-items-center">
-              <div class="col-3">
-                <div class="form-group">
+              <!-- <div class="col-3">
+                 <div class="form-group">
                   <label>Mã khoa - Bộ môn </label>
                   <input class="form-control" formControlName="maKhoa" required>
                   <div *ngIf="maKhoa.invalid && (maKhoa.dirty || maKhoa.touched)" class="alert alert-danger">
@@ -51,8 +129,11 @@
                     </div>
                   </div>
                 </div>
+
+              </div> -->
+              <div class="col-3">
                 <div class="form-group">
-                  <label>Tên khoa - Bộ môn</label>
+                  <label>Tên đơn vị</label>
                   <input class="form-control" formControlName="tenKhoa">
                   <div *ngIf="tenKhoa.invalid && (tenKhoa.dirty || tenKhoa.touched)" class="alert alert-danger">
                     <div *ngIf="tenKhoa.errors.required">
@@ -66,8 +147,6 @@
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="col-3">
                 <div class="form-group">
                   <label>Tên viết tắt</label>
                   <input class="form-control" formControlName="tenVietTat">
@@ -112,6 +191,11 @@
                       class="modal_chucnang__button__icon mb-2" src="assets/img/icons/upgrade.png" alt="image icon" />
                     <div>Import Excel</div>
                   </button>
+                  <button data-toggle="modal" data-target="#khoa"
+                    class="modal_chucnang__button btn btn-outline-success px-4 mx-2"><img
+                      class="modal_chucnang__button__icon mb-2" src="assets/img/icons/upgrade.png" alt="image icon" />
+                    <div>Thêm Khoa</div>
+                  </button>
                   <button data-toggle="modal" data-target="#exampleModalLong"
                     class="modal_chucnang__button btn btn-outline-success px-4 mx-2"
                     (click)="updateModal(currentIndex,currentKhoa)"><img class="modal_chucnang__button__icon mb-2"
@@ -125,26 +209,26 @@
         </div>
       </form>
       <div class="col-12">
-        <div class="modal fade" id="xoa" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">Thông báo Xoa</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              {{result?.msg }}
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <div class="modal fade" id="xoa" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Thông báo Xoa</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                {{result?.msg }}
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
+              </div>
             </div>
           </div>
         </div>
-      </div>
         <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
           <div class="d-flex align-items-center mb-2">
             <label class="mb-0 d-flex align-items-center"><span class="text-nowrap">Hiển thị &nbsp;</span>
@@ -191,7 +275,7 @@
                 </td>
                 <td class="text-center">
                   <span class="modal_chucnang__button__edit mdi mdi-file-document-edit-outline mdi-24px"
-                    (click)="insertDateforForm(khoa)">
+                    data-toggle="modal" data-target="#updateForm">
                   </span>
                   <span class="modal_chucnang__button__delete ml-2 mdi mdi-delete-outline mdi-24px "
                     (click)="deleteModal(khoa._id, khoa.maLoai)">
@@ -199,7 +283,7 @@
                 </td>
               </tr>
               <tr *ngFor="let khoa of bomons; let i= index" [ngClass]="statusElementList"
-                (click)="insertDateforForm(khoa)">
+                (click)="insertDateforForm(khoa)" data-toggle="modal" data-target="#updateForm">
 
                 <td style="max-width: 50px">{{ i+1  }}</td>
                 <td style="max-width: 100px">
@@ -222,7 +306,7 @@
 
                 <td class="text-center">
                   <span class="modal_chucnang__button__edit mdi mdi-file-document-edit-outline mdi-24px"
-                    (click)="insertDateforForm(khoa)">
+                    data-toggle="modal" data-target="#updateForm" >
                   </span>
                   <span class="modal_chucnang__button__delete ml-2 mdi mdi-delete-outline mdi-24px "
                     (click)="deleteModal(khoa._id, khoa.maLoai)">
