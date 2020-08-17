@@ -1,4 +1,6 @@
 const router = require("express").Router();
+const verifyToken = require('../middleware/accountAuth')
+
 const GiaoVienRoutes = require("./GiaoVien");
 const MonHoc = require("./MonHoc");
 const ChuongTrinhDaoTao = require("./ChuongTrinhDaoTao");
@@ -17,6 +19,7 @@ const BaiTap = require("./BaiTap");
 const BaiTapSinhVien = require("./BaiTapSinhVien");
 const activity = require("./activity");
 const PhongHoc = require("./PhongHoc");
+const LichPhongHoc = require("./LichPhongHoc");
 
 const sinhVien = require("./sinh-vien");
 const Diemsinhvien = require("./diemsinhvien");
@@ -54,7 +57,7 @@ const binhLuan = require("./binh-luan");
 router.use("/loaimonhoc", LoaiMonHoc);
 // router.use("/lophocphan", LopHocPhanRoutes);
 router.use("/giaovien", GiaoVienRoutes);
-router.use("/monhoc", MonHoc);
+router.use("/monhoc",verifyToken, MonHoc);
 router.use("/ctdt", ChuongTrinhDaoTao);
 router.use("/khdt", KeHoachDaoTao);
 router.use("/lhdt", LoaiHinhDaoTao);
@@ -62,6 +65,7 @@ router.use("/lophocphan", LopHocPhan);
 router.use("/gvlhp", GiaoVienLopHocPhan);
 router.use("/tkb", TKB);
 router.use("/phonghoc", PhongHoc);
+router.use("/lichphonghoc", LichPhongHoc);
 
 //Elearning routes
 router.use("/baitap", BaiTap);
@@ -107,10 +111,6 @@ const validate = khoabomonController.checkValidate();
 //nganhnghe bac
 const NganhNgheRoutes = require("./NganhNghe");
 const BacRoutes = require("./Bac");
-
-
-const verifyToken = require('../middleware/accountAuth')
-
 //nganhnghe
 router.use("/", NganhNgheRoutes);
 //bac
@@ -120,29 +120,29 @@ router.use("/", auth);
 
 //-------------------------------Route KhoaBoMonn
 //Lấy toàn bộ dữ liệu từ KhoaBoMon
-router.get("/khoabomon", khoabomonController.getKhoaBonMon);
-router.get("/khoabomon/:id", khoabomonController.getOneKhoaBoMon);
+router.get("/khoabomon",verifyToken, khoabomonController.getKhoaBonMon);
+router.get("/khoabomon/:id",verifyToken, khoabomonController.getOneKhoaBoMon);
 //Thêm dữ liệu vào KhoaBoMon
 router.post("/khoabomon", validate, khoabomonController.postKhoaBoMon);
 //Xóa KhoaBoMon theo :id truyền vào
-router.delete("/khoabomon/:id", khoabomonController.deleteKhoaBoMon);
+router.delete("/khoabomon/:id", verifyToken,khoabomonController.deleteKhoaBoMon);
 //Cập nhật KHoaBoMon theo :id và data truyền vào ( lư ý data ở request.body)
-router.put("/khoabomon/:id", validate, khoabomonController.updateKhoaBoMon);
+router.put("/khoabomon/:id",verifyToken, validate, khoabomonController.updateKhoaBoMon);
 
 //lấy danh sách môn học phần của sinh viên theo môn truyền vào
-router.get("/diemsinhvien/:maSinhVien/search", Diemsinhvien.getDiemsinhvien);
-router.get("/diemsinhvien/:maSinhVien/khdt", Diemsinhvien.getDiemSinhVien_maSSV);
-router.get("/diemsinhvien/:maLopHocPhan/laytongdiem", Diemsinhvien.LayTONGDIEM);
+router.get("/diemsinhvien/:maSinhVien/search",verifyToken, Diemsinhvien.getDiemsinhvien);
+router.get("/diemsinhvien/:maSinhVien/khdt",verifyToken, Diemsinhvien.getDiemSinhVien_maSSV);
+router.get("/diemsinhvien/:maLopHocPhan/laytongdiem",verifyToken, Diemsinhvien.LayTONGDIEM);
 
 //Lấy toàn bộ dữ liệu từ KhoaBoMon
-router.get("/bomon", boMon.getKhoaBonMon);
-router.get("/bomon/:id", boMon.getOneKhoaBoMon);
+router.get("/bomon",verifyToken,  boMon.getKhoaBonMon);
+router.get("/bomon/:id", verifyToken, boMon.getOneKhoaBoMon);
 //Thêm dữ liệu vào KhoaBoMon
-router.post("/bomon", boMon.checkValidate(), boMon.postKhoaBoMon);
+router.post("/bomon",verifyToken,  boMon.checkValidate(), boMon.postKhoaBoMon);
 //Xóa KhoaBoMon theo :id truyền vào
-router.delete("/bomon/:id", boMon.deleteKhoaBoMon);
+router.delete("/bomon/:id", verifyToken, boMon.deleteKhoaBoMon);
 //Cập nhật KHoaBoMon theo :id và data truyền vào ( lư ý data ở request.body)
-router.put("/bomon/:id", boMon.checkValidate(), boMon.updateKhoaBoMon);
+router.put("/bomon/:id", verifyToken, boMon.checkValidate(), boMon.updateKhoaBoMon);
 
 //---------------------------Routes LopHoc--------------------------
 router.post("/thongKeLopTheoNganhCuaNam", async (req, res) => {
@@ -164,23 +164,23 @@ router.post("/thongKeLopTheoNganhCuaNam", async (req, res) => {
   res.send(data);
 })
 //Lấy toàn bộ dữ liệu từ KhoaBoMon
-router.get("/lophoc", LopHoc.getAll);
-router.get("/lophoc/:id", LopHoc.getOne);
-router.get("/lophoc/:khoa/searchkhoa", LopHoc.getAllForkhoa);
-router.get("/lophoc/:maNganh/searchnganh", LopHoc.getAllForManghanh);
-router.get("/lophoc/mabac/:maBac", LopHoc.timLopTheoMaBac); //trinh phong them
-router.get("/lophoc/mactdt/:maCTDT", LopHoc.getDSLopHocbymaCTDT); // Yasuo fam 100 con linh trong 10 phut
+router.get("/lophoc",verifyToken, LopHoc.getAll);
+router.get("/lophoc/:id",verifyToken, LopHoc.getOne);
+router.get("/lophoc/:khoa/searchkhoa",verifyToken, LopHoc.getAllForkhoa);
+router.get("/lophoc/:maNganh/searchnganh",verifyToken, LopHoc.getAllForManghanh);
+router.get("/lophoc/mabac/:maBac",verifyToken, LopHoc.timLopTheoMaBac); //trinh phong them
+router.get("/lophoc/mactdt/:maCTDT",verifyToken, LopHoc.getDSLopHocbymaCTDT); // verifyToken, Yasuo fam 100 con linh trong 10 phut
 
 //Thêm dữ liệu vào KhoaBoMon
-router.post("/lophoc", LopHoc.checkValidate(), LopHoc.insert);
+router.post("/lophoc",verifyToken, LopHoc.checkValidate(), LopHoc.insert);
 //Xóa KhoaBoMon theo :id truyền vào
-router.delete("/lophoc/:id", LopHoc.delete);
-router.delete("/lophoc", LopHoc.removeAll);
-router.delete("/lophoc/:tienTo/tiento", LopHoc.deleteTheoTienTo);
+router.delete("/lophoc/:id",verifyToken, LopHoc.delete);
+router.delete("/lophoc",verifyToken, LopHoc.removeAll);
+router.delete("/lophoc/:tienTo/tiento",verifyToken, LopHoc.deleteTheoTienTo);
 //Cập nhật KHoaBoMon theo :id và data truyền vào ( lư ý data ở request.body)
 router.put("/lophoc/:id", LopHoc.checkValidate(), LopHoc.update);
 router.put("/lophoc/:maLop/facebook", LopHoc.capNhatThongTinFaceBook);
-router.get("/lophoc/:tienTo/tiento", LopHoc.timLopTheoTienTo);
+router.get("/lophoc/:tienTo/tiento",verifyToken, LopHoc.timLopTheoTienTo);
 
 //-----------------------------Routes LoaiDonVi
 router.get("/loaidonvi", loaidonviController.getLoaiDonVi);
@@ -208,44 +208,49 @@ router.delete("/baidangfb/:id",baidangfb.deletePostFB);
 router.put("/baidangfbv2/:id",baidangfb.updateDrawToPosted);
 //----------------------------Routes SinhVien------------
 router.get("/sinhvien", verifyToken,sinhVien.layTatCaSinhVien);
-router.get("/sinhvien/:maLopHoc/malop", sinhVien.Laysinhvientheomalop);
-router.post("/sinhvien", sinhVien.themSinhVien);
-router.get("/sinhvien/:maSV", sinhVien.layThongtinSinhVien);
-router.put("/sinhvien", sinhVien.capNhatSinhVien);
-router.delete("/sinhvien", sinhVien.removeAll);
-router.get("/sinhvien/:maLopHoc/siso", sinhVien.tinhTongSinhVien);
-router.get("/sinhvien/:maLopHocPhan/lophocphan", sinhVien.laySinhVienLopHocPhan);
+router.get("/sinhvien/:maLopHoc/malop",verifyToken, sinhVien.Laysinhvientheomalop);
+router.post("/sinhvien",verifyToken, sinhVien.themSinhVien);
+router.get("/sinhvien/:maSV",verifyToken, sinhVien.layThongtinSinhVien);
+router.put("/sinhvien",verifyToken, sinhVien.capNhatSinhVien);
+router.delete("/sinhvien",verifyToken, sinhVien.removeAll);
+router.get("/sinhvien/:maLopHoc/siso",verifyToken, sinhVien.tinhTongSinhVien);
+router.get("/sinhvien/:maLopHoc/sisolhp",verifyToken, sinhVien.layDSLopHocPhan);
+router.get("/sinhvien/:maLopHocPhan/lophocphan",verifyToken, sinhVien.laySinhVienLopHocPhan);
+
 
 //========================= Routes CotDiemLopHocPhan ===================================
-router.get("/cotdiemlhp", cotDiemLHP.layDiemLHP);
-router.get("/cotdiemlhp/:maLopHocPhan", cotDiemLHP.layDiemLHPtheoMaLHP);
-router.get("/cotdiemlhp/lophocphan/:maLopHocPhan", cotDiemLHP.layDiemLHPtheoMaLHP);
-router.get("/cotdiemlophocphan/:maLopHocPhan", cotDiemLHP.layCotDiemTheoMaLopHp);
-router.post("/cotdiemlophocphan", cotDiemLHP.themCotDiem);
-router.put("/suacotdiemlophocphan/:maCotDiem",cotDiemLHP.suaCotDiem);
-router.get("/cotdiemlophocphan/:maCotDiem/chitiet", cotDiemLHP.layCotDiemTheoMaCotDiem);
+router.get("/cotdiemlhp",verifyToken, cotDiemLHP.layDiemLHP);
+router.get("/cotdiemlhp/:maLopHocPhan",verifyToken, cotDiemLHP.layDiemLHPtheoMaLHP);
+router.get("/cotdiemlhp/lophocphan/:maLopHocPhan",verifyToken, cotDiemLHP.layDiemLHPtheoMaLHP);
+router.get("/cotdiemlophocphan/:maLopHocPhan",verifyToken, cotDiemLHP.layCotDiemTheoMaLopHp);
+router.post("/cotdiemlophocphan",verifyToken, cotDiemLHP.themCotDiem);
+router.put("/suacotdiemlophocphan/:maCotDiem",verifyToken,cotDiemLHP.suaCotDiem);
+router.get("/cotdiemlophocphan/:maCotDiem/chitiet",verifyToken, cotDiemLHP.layCotDiemTheoMaCotDiem);
 
 //======================= Routes ChitietDiemSVLopHocPhan ==================================
-router.get("/ct-diemsv-lophocphan/:masv", ctDiemLopHP.layCTDiemLopHPtheoMaSV);
-router.get("/ct-diemsv-lophocphan/:maHocPhan/lophocphan", ctDiemLopHP.layCTDiemLopHPtheoMaLopHP);
+router.get("/ct-diemsv-lophocphan/:masv",verifyToken, ctDiemLopHP.layCTDiemLopHPtheoMaSV);
+router.get("/ct-diemsv-lophocphan/:maHocPhan/lophocphan",verifyToken, ctDiemLopHP.layCTDiemLopHPtheoMaLopHP);
+router.get("/ct-diemsv-lophocphan/:maCotDiem/sinhvienlophocphan",verifyToken, ctDiemLopHP.dsChamDiemSinhVien);
+router.put("/ct-diemsv-lophocphan/:id/chamdiem",verifyToken, ctDiemLopHP.chamdiemsinhvienlophocphan);
+router.get("/ct-diemsv-lophocphan/:maCotDiem/exportexcel",verifyToken, ctDiemLopHP.thongTinXuatExcel);
 //=========================== Routes ChuDe =============================================
-router.get("/chude", ChuDe.layTatCa);
-router.get("/chude/:maChuDe", ChuDe.layMot);
-router.get("/chude/:maLopHocPhan/lop-hoc-phan", ChuDe.layTheo_MaLHP);
-router.post("/chude", ChuDe.them);
-router.delete("/chude/:maChuDe", ChuDe.xoaTheo_maChuDe);
+router.get("/chude",verifyToken, ChuDe.layTatCa);
+router.get("/chude/:maChuDe",verifyToken, ChuDe.layMot);
+router.get("/chude/:maLopHocPhan/lop-hoc-phan",verifyToken, ChuDe.layTheo_MaLHP);
+router.post("/chude",verifyToken, ChuDe.them);
+router.delete("/chude/:maChuDe",verifyToken, ChuDe.xoaTheo_maChuDe);
 
 //=========================== Routes BaiGiang =============================================
-router.get("/baigiang", baiGiang.layTatCa);
+router.get("/baigiang",verifyToken, baiGiang.layTatCa);
 router.get("/baigiang/:maChuDe", baiGiang.layTheoMaChuDe);
-router.post("/baigiang", baiGiang.them);
-router.get("/baigiang/:maLopHocPhan/lop-hoc-phan", baiGiang.layTheo_MaLHP);
-router.get("/baigiang/:maBaiGiang/ma-bai-giang", baiGiang.layTheo_maBaiGiang);
-router.post("/baigiang/upload", baiGiang.upload);
-router.post("/baigiang/download", baiGiang.download);
+router.post("/baigiang",verifyToken, baiGiang.them);
+router.get("/baigiang/:maLopHocPhan/lop-hoc-phan",verifyToken, baiGiang.layTheo_MaLHP);
+router.get("/baigiang/:maBaiGiang/ma-bai-giang",verifyToken, baiGiang.layTheo_maBaiGiang);
+router.post("/baigiang/upload",verifyToken, baiGiang.upload);
+router.post("/baigiang/download",verifyToken, baiGiang.download);
 router.delete("/baigiang/:maBaiGiang", baiGiang.xoa);
 
 //========================= Routes BinhLuan ==========================================
-router.get("/binhluan/:loaiBaiViet/baiviet/:maBaiViet", binhLuan.layBinhLuan_theoBaiViet);
-router.post("/binhluan", binhLuan.themBinhLuan);
+router.get("/binhluan/:loaiBaiViet/baiviet/:maBaiViet", verifyToken,binhLuan.layBinhLuan_theoBaiViet);
+router.post("/binhluan",verifyToken, binhLuan.themBinhLuan);
 module.exports = router;

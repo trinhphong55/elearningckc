@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
@@ -98,6 +98,7 @@ import { ModalPhonghocComponent } from './components/modal/chuongtrinhdaotao/mod
 import { ModalLichphonghocComponent } from './components/modal/chuongtrinhdaotao/modal-lichphonghoc/modal-lichphonghoc.component';
 import { ModalBaivietComponent } from './components/modal/cntt/modal-baiviet/modal-baiviet.component';
 import { ModalNhapdiemlophocComponent } from './components/modal/ttth/modal-nhapdiemlophoc/modal-nhapdiemlophoc.component';
+import { AuthInterceptor } from './helper/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -201,7 +202,11 @@ import { ModalNhapdiemlophocComponent } from './components/modal/ttth/modal-nhap
     NgxPrintModule,
     NgApexchartsModule
   ],
-  providers: [ApiService, TintucCnttService],
+  providers: [ApiService, TintucCnttService,{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

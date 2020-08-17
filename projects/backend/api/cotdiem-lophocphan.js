@@ -63,7 +63,7 @@ exports.themCotDiem = async (req, res) => {
                 maSinhVien: y.maSinhVien,
                 maHocPhan: req.body.maLopHocPhan,
                 maCotDiem: a,
-                diem: 2,
+                diem: 0,
                 maChuDe: req.body.maBaiTap,
                 nguoiTao: "admin",
                 nguoiChinhSua: "admin",

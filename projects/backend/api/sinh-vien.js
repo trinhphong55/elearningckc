@@ -4,6 +4,7 @@ const lopHoc = require("../models/LopHoc.model");
 const lopHocPhan = require("../models/LopHocPhan.model");
 const diemSV = require("../models/diemsinhvien.model");
 const { check, validationResult } = require("express-validator");
+const LopHocModel = require("../models/LopHoc.model");
 
 setSinhVien = (req) => {
   return {
@@ -16,8 +17,7 @@ setSinhVien = (req) => {
     nguoiTao: req.nguoiTao,
     nguoiChinhSua: req.nguoiChinhSua,
     email: req.maSinhVien + "@caothang.edu.vn",
-    matKhau:req.matKhau,
-
+    matKhau: req.matKhau,
   };
 };
 setSinhVienUpdate = (req) => {
@@ -186,8 +186,13 @@ exports.removeAll = async (req, res) => {
 exports.tinhTongSinhVien = async (req, res) => {
   try {
     const total = await SinhVienModel.find({ maLopHoc: req.params.maLopHoc });
+    const lophoc = await LopHocModel.findOne({ maLopHoc: req.params.maLopHoc });
     // const lopHoc = await LopHocModel.findOne({ maLopHoc: req.params.maLopHoc });
-    res.json({ maLopHoc: req.params.maLopHoc, siSo: total.length });
+    res.json({
+      maLopHoc: req.params.maLopHoc,
+      siSo: total.length,
+      data: lophoc,
+    });
   } catch (error) {
     res.json(error);
   }
@@ -198,27 +203,35 @@ exports.laySinhVienLopHocPhan = async (req, res) => {
   try {
     var lopHP = await lopHocPhan.find({ maLopHocPhan: req.params.maLopHocPhan });
     var sinhvien = await SinhVienModel.find({trangThai:1});
-    var diemSinhVien = await diemSV.find({ maLopHocPhan:req.params.maLopHocPhan});
     var data=[]
     lopHP.forEach(async x => {
         sinhvien.forEach(async y => {
-          diemSinhVien.forEach(async z => {
             if(x.maLopHoc==y.maLopHoc)
             {
-              if(y.maSinhVien==z.maSinhVien)
-              {
-                data.push({ho:y.ho,ten:y.ten,maSinhVien:y.maSinhVien,maLopHocPhan:z.maLopHocPhan,diem:z.diem})
-              }
+                data.push({ho:y.ho,ten:y.ten,maSinhVien:y.maSinhVien})
             }
-          })
         })
       })
-    res.json(data)
+    res.status(200).json(data)
+  } catch (error) {
+    res.json({error,status:500});
+  }
+};
+exports.layDSLopHocPhan = async (req, res) => {
+  try {
+   const total = await SinhVienModel.find({ maLopHoc: req.params.maLopHoc });
+
+    const dsLopHP_Update = await lopHocPhan.updateMany(
+      { maLopHoc: req.params.maLopHoc },
+      { $set: { soLuongSV: total.length } }
+    );
+    const dsLopHP = await lopHocPhan.find({ maLopHoc: req.params.maLopHoc });
+
+    res.json({count:dsLopHP.length, data: dsLopHP, message: 'Cập nhật sỉ số thành công'});
   } catch (error) {
     res.json(error);
   }
 };
-
 exports.checkValidate = () => {
   return [
     check("sdt", "Số điện thoại phải 10 số").isLength({ max: 10, min: 10 }),
