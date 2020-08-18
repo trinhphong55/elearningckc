@@ -14,6 +14,8 @@ import { TaobaigiangComponent } from '../../components/content/chudelophocphan/t
 import { BaiTapService } from '../../services/bai-tap.service';
 import { CookieService } from 'ngx-cookie-service';
 import { getCookie } from '../../../../../common/helper';
+import {GiaoVienService} from '../../services/giao-vien.service'
+
 @Component({
   selector: 'app-page-chudelophocphan',
   templateUrl: './page-chudelophocphan.component.html',
@@ -43,7 +45,8 @@ export class PageChudelophocphanComponent implements OnInit {
     private baiGiangService: BaiGiangService,
     private binhLuanService: BinhLuanService,
     private baiTapService: BaiTapService,
-    private cookie: CookieService
+    private cookie: CookieService,
+    private giaoVienService: GiaoVienService
   ) {
     this.maLopHocPhan = this.route.snapshot.paramMap.get('id');
   }
@@ -101,6 +104,7 @@ export class PageChudelophocphanComponent implements OnInit {
               ' : ' +
               new Date(el.ngayChinhSua).toLocaleTimeString();
             this.layDS_BinhLuan(1, el.maBaiGiang);
+
           });
         }
       },

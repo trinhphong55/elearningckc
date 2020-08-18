@@ -10,8 +10,7 @@ import { ChuDe } from '../../../../models/chu-de.interface';
 import { ChuDeService } from '../../../../services/chu-de.service';
 import saveAs from 'file-saver';
 import { ActivityService } from '../../../../services/activity.service';
-import { error } from 'protractor';
-
+import { CookieService } from 'ngx-cookie-service';
 const uri = 'https://localhost:4100/api/baigiang/upload';
 @Component({
   selector: 'app-taobaigiang',
@@ -33,7 +32,8 @@ export class TaobaigiangComponent implements OnInit {
     private _baiGiangService: BaiGiangService,
     private _chuDeService: ChuDeService,
     private _lopHocPhanService: LopHocPhanService,
-    private _activityService: ActivityService
+    private _activityService: ActivityService,
+    private cookieService: CookieService
   ) {}
   baiGiang: any;
 
@@ -83,15 +83,18 @@ export class TaobaigiangComponent implements OnInit {
       this.uploader.uploadAll();
     } else {
       console.log(this.baiGiang);
-      this._baiGiangService.them(this.baiGiang).subscribe((data: any) => {
-        alert(data.message);
-        console.log(typeof(data.data.maBaiGiang));
-        if (typeof(data.data.maBaiGiang)) {
-          this._setActivity(data.data.maBaiGiang);
+      this._baiGiangService.them(this.baiGiang).subscribe(
+        (data: any) => {
+          alert(data.message);
+          console.log(typeof data.data.maBaiGiang);
+          if (typeof data.data.maBaiGiang) {
+            this._setActivity(data.data.maBaiGiang);
+          }
+        },
+        (error) => {
+          console.log(error);
         }
-      }, error => {
-        console.log(error);
-      });
+      );
     }
   }
   private _setActivity(maDoiTuong) {
@@ -156,8 +159,8 @@ export class TaobaigiangComponent implements OnInit {
       maLopHocPhan: this.lopHoc.value.toString(),
       maChuDe: this.chuDe.value,
       moTa: this.textMoTa.value,
-      nguoiDang: 'huy',
-      nguoiChinhSua: 'huy',
+      nguoiDang: this.cookieService.get('email'),
+      nguoiChinhSua: this.cookieService.get('email'),
     };
     this.saveBaiGiang();
   }

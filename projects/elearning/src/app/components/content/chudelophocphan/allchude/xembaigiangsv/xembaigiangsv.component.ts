@@ -36,7 +36,7 @@ export class XembaigiangsvComponent implements OnInit {
 
   private themActivity(maDoiTuong, noiDung) {
     this.activityService.themActivity(this.maLHP, maDoiTuong, "BL-BG", noiDung, "bình luận").subscribe(res => {
-      console.log(res);
+      // console.log(res);
     })
   }
 
@@ -46,7 +46,7 @@ export class XembaigiangsvComponent implements OnInit {
         .layTheo_maBaiGiang(params.id)
         .subscribe((res: any) => {
           if (res.data) {
-            console.log('res', res.data);
+
             this.baiGiang = res.data;
             this.layDS_binhLuan_baiGiang(1, this.baiGiang.maBaiGiang);
           }

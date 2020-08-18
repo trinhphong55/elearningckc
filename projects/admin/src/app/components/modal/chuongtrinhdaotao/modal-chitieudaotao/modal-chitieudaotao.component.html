@@ -33,8 +33,8 @@
               <div class="form-group">
                 <label for="khoa" class="col-sm-2 mr-sm-2 col-form-label">Khoá </label>
                 <div class="col-sm-4">
-                  <input class="form-control" id="khoa" formControlName="khoa" (change)="onChangeKhoaHoc()" type="number"
-                    min="14" value="15">
+                  <input class="form-control" id="khoa" formControlName="khoa" (change)="onChangeKhoaHoc()"
+                    type="number" min="14" value="15">
                 </div>
               </div>
 
@@ -56,9 +56,9 @@
                 </button>
               </div>
               <div class="modal-body">
-                <h6>
+                <h3>
                   {{ msg }}
-                </h6>
+                </h3>
                 <ul class="list-group">
                   <li class="list-group-item" *ngFor="let item of msgList">{{ item.msg }} </li>
                 </ul>
@@ -253,8 +253,7 @@
                         </div>
                       </td>
                       <td>
-                        <button type="button" class="btn btn-outline-danger" data-toggle="modal"
-                          data-target="#exampleModalCenter"
+                        <button type="button" class="btn btn-outline-danger"
                           (click)="onClickResetLopHoc(nganh.maNganhNghe, nganh.maBac)">Xóa</button>
                       </td>
                     </tr>
