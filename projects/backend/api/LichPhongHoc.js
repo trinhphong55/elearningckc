@@ -18,16 +18,13 @@ router.get('/:maBac/:khoa', async (req, res) => {
   dsLPH = [];
   lichHoc = [];
 
-  for (let i = 0; i < 52; i++) {
-    lichHoc.push("");
-  }
-
   dsLH = await getDSLopHoctheomaBacvaKhoa(maBac, khoa);
   if (dsLH.length === 0) {
-    return res.json({
-      status: 204,
-      message: "Chưa có lớp học",
-    })
+    return res.json(dsLPH);
+  }
+
+  for (let i = 0; i < 52; i++) {
+    lichHoc.push("");
   }
 
   await asyncForEach(dsLH, async (lh, index) => {
@@ -44,32 +41,19 @@ router.get('/:maBac/:khoa', async (req, res) => {
   return res.json(dsLPH);
 });
 
-router.get('/', async (req, res) => {
-  try {
-    const data = await LichPhongHoc.find({ trangThai: 1 }, {}, { sort: { 'tenLichPhongHoc': 1 } }).exec();
-    return res.json(data);
-  } catch (error) {
-    return res.json({ message: "Something so wrong" + message });
-  }
-});
-
-router.get('/getone/:maLichPhongHoc', async (req, res) => {
-  const maLichPhongHoc = req.params.maLichPhongHoc;
-  await LichPhongHoc.findOne({ maLichPhongHoc }).then(ph => {
-    if (ph === null) {
-      return res.status(404).json({
-        message: "Khong co phong nao nhu vay",
-        status: 404,
-      })
-    } else {
-      return res.status(200).json(ph);
-    }
-  })
-})
-
-
 router.post('/them', async (req, res) => {
-  let maLichPhongHoc = await getNextNumber();
+
+  function checkIfDuplicateExists(w) {
+    return new Set(w).size !== w.length
+  }
+  console.log(
+    checkIfDuplicateExists(["a", "b", "c", "a"])
+    // true
+  );
+  console.log(
+    checkIfDuplicateExists(["a", "b", "c"]))
+
+  return res.json('end');
   const { day, lau, ghiChu, tenLichPhongHoc } = req.body;
 
   let ph = new LichPhongHoc({ day, lau, ghiChu, tenLichPhongHoc, maLichPhongHoc });

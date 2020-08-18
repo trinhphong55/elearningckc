@@ -3,11 +3,8 @@ var _router = express.Router();
 var multer = require("multer");
 var path = require("path");
 const BaiTap = require("../models/BaiTap.model");
-const { Date } = require("mongoose");
 var CHUDE =require("../models/chu-de.model");
 var COTDIEM = require("../models/cotdiem-lophocphan.model");
-const { zip } = require("rxjs");
-
 
 const PATH = "./uploads/elearning/baitap";
 

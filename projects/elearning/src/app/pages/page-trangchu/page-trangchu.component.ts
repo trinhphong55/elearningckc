@@ -135,6 +135,8 @@ export class PageTrangchuComponent implements OnInit {
         this.lopHocPhanService.getLopHocPhanbyemail(this.thongtin).subscribe(
           dsGiaoVienBymaGv => {
             this.dsGiaoVienBymaGv = dsGiaoVienBymaGv;
+            this.danhSachLop();
+            this.dsLop
             this.filterDsLop = []
             this.dsLop.forEach(lop => {
               this.dsGiaoVienBymaGv.find(p => {
@@ -167,7 +169,6 @@ export class PageTrangchuComponent implements OnInit {
       this.lopHocPhanService.getLopHocPhanbyemailSinhvien(this.thongtin).subscribe(
         dsLopHP => {
           this.layCookie();
-
           this.dsLopHP = dsLopHP;
           this.filterDsLop = []
           this.filterDsLop = this.dsLopHP.filter(x => {
