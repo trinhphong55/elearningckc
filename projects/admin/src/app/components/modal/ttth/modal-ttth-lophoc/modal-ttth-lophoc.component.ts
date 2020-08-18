@@ -39,6 +39,16 @@ export class ModalTtthLophocComponent implements OnInit {
         NhapDiem = value.nhapdiem;
       }
     });
+    let kiemtra: any;
+    this.LopHoc.forEach(function (value) {
+      if(value.makhoahoc==makhoahoc&&value.dot==dot){
+        kiemtra=true;
+      }
+    });
+    if(kiemtra==true){
+      this.toastr.error('Lớp học đã tồn tại');
+    }
+    else{
     const newItem: ttthLopHoc = new ttthLopHoc();
     newItem.makhoahoc = makhoahoc;
     newItem.dot = dot;
@@ -61,6 +71,7 @@ export class ModalTtthLophocComponent implements OnInit {
         this.getdanhsach();
       });
     this.toastr.success('Thêm thành công');
+    }
   }
   ///edit
   selectedItem: ttthLopHoc;

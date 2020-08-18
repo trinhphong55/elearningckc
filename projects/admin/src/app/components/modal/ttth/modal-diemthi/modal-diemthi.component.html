@@ -8,9 +8,7 @@
       <div class="col-12">
         <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white row">
           <div class="col-3">
-            <!-- <label>Nhập điểm cho đợt thi <input type="radio" name="check" (change)="getValueCheckBoxDotThi($event)" ></label><br> -->
-            <!-- <div class="form-group" *ngIf="checkboxDotThi==true"> -->
-              <div class="form-group">
+            <div class="form-group">
               <label >Chọn đợt thi</label>
               <select  class="form-control" (change)="onChangeDotThi($event.target.value)">
                   <option value="">Chọn đợt thi cần nhập điểm</option>
@@ -20,18 +18,6 @@
               </select>
             </div>
           </div>
-          <!-- <div class="col-3">
-            <label>Nhập điểm cho khóa học <input type="radio" name="check" (change)="getValueCheckBoxKhoaHoc($event)" ></label><br>
-            <div class="form-group" *ngIf="checkboxKhoaHoc==true">
-              <label >Chọn khóa học</label>
-              <select  class="form-control" (change)="onChangeDotThi($event.target.value)">
-                  <option value=""></option>
-                  <ng-container *ngFor="let item of LopHoc">
-                    <option *ngIf="item.nhapdiem=='Nhập chung'" value="{{item.tenlop}}">{{item.tenlop}}</option>
-                  </ng-container>
-              </select>
-            </div>
-          </div> -->
         </div>
       </div>
       <div class="col-12">
@@ -40,11 +26,11 @@
           <div  class="custom-file">
             <input type="file" (change)="onChange($event)" #inputFile>
           </div>
-            <div *ngIf="isExcelFile === false">
-              This is not an Excel file
-            </div>
-            <button class="btn btn-danger mr-2" (click)="removeData()">Remove Data</button>
-            <button  class="btn btn-success " (click)="importExcel()" *ngIf="DiemThi!== undefined">Import</button>
+          <div *ngIf="isExcelFile === false" style="color:red">
+            Đây không phải là file excel.Vui lòng chọn file excel theo mẫu!
+          </div>
+          <button class="btn btn-danger mr-2" (click)="removeData()" *ngIf="DiemThi!== undefined">Hủy bỏ dữ liệu</button>
+          <button  class="btn btn-success " (click)="importExcel()" *ngIf="DiemThi!== undefined">Nhập vào</button>
             <table class="modal_chucnang__table table table-hover">
               <thead class="bg__caothang text-white">
                 <tr>
