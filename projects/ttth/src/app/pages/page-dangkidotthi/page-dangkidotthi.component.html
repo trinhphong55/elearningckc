@@ -125,7 +125,7 @@
                 <select class="form-control ttth__select2" #tendot>
                   <option value="">Chọn đợt thi</option>
                   <ng-container *ngFor="let item of DotThi">
-                    <option value="{{item.tendot}} - {{item.ngaythi | date:'dd/MM/yyyy'}} - {{item.giothi}} - {{item.phongthi}}">{{item.tendot}} - {{item.ngaythi | date:'dd/MM/yyyy'}} - {{item.giothi}} - {{item.phongthi}}</option>
+                    <option *ngIf="item.trangthai==1" value="{{item.tendot}} - {{item.ngaythi | date:'dd/MM/yyyy'}} - {{item.giothi}} - {{item.phongthi}}">{{item.tendot}} - {{item.ngaythi | date:'dd/MM/yyyy'}} - {{item.giothi}} - {{item.phongthi}}</option>
                   </ng-container>
                 </select>
             </div>

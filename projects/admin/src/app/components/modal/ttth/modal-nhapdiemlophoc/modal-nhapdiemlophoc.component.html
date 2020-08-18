@@ -11,6 +11,7 @@
            <label>Chọn lớp học cần nhập điểm <input type="radio" class="ml-2" name="check" (change)="getValueCheckBoxLopHocRieng($event)" ></label><br>
             <div class="form-group" *ngIf="checkboxLopHocRieng==true">
               <select class="form-control" (change)="onChangeLopHoc($event.target.value)">
+                <option value="">Chọn lớp học</option>
                 <ng-container *ngFor="let item of LopHoc">
                   <option *ngIf="item.nhapdiem=='Nhập riêng' && item.trangthai==1" value="{{item.tenlop}}">{{item.tenlop}}</option>
                 </ng-container>

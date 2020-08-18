@@ -108,12 +108,13 @@ export class ModalNhapdiemlophocComponent implements OnInit {
       let value = true;
       this.checkboxLopHocRieng= value;
     }
+    this.selectLopHoc=null;
   }
   importExcel() {
     let kiemtradiem : any ;
     let kiemtramssv : any ;
     let nguoitao = this._username;
-    if(!this.selectLopHoc){
+    if(this.selectLopHoc==null){
       let nguoitao = this._username;
       this.DiemThi.forEach(function (value) {
         value.nguoitao = nguoitao;

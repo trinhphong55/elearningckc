@@ -125,7 +125,7 @@
                 <select  class="form-control ttth__select2" #lophoc>
                   <option value=""></option>
                   <ng-container *ngFor="let item of LopHoc">
-                    <option value="{{item.tenlop}}">{{item.tenlop}}</option>
+                    <option *ngIf="item.trangthai==1" value="{{item.tenlop}}">{{item.tenlop}}</option>
                   </ng-container>
                 </select>
             </div>

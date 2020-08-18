@@ -40,8 +40,9 @@ export class ModalTtthLophocComponent implements OnInit {
       }
     });
     let kiemtra: any;
+    let getyear= String(this.getYear);
     this.LopHoc.forEach(function (value) {
-      if(value.tenlop == makhoahoc + '-' + String(this.getYear) + '-' + dot){
+      if(value.tenlop == makhoahoc + '-' + getyear + '-' + dot){
         kiemtra=true;
       }
     });
