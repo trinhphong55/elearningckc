@@ -34,8 +34,12 @@ export class ModalMonhocComponent implements OnInit, OnChanges {
   isExcelFile: boolean;
 
   getMonHoc() {
-    this.monhocService.getMonHocbyTrangThai(this.trangThai).subscribe(data => {
-      this.dsMonHoc = data;
+    this.monhocService.getMonHocbyTrangThai(this.trangThai).subscribe(res => {
+      if (res.status === 200) {
+        this.dsMonHoc = res.data;
+      } else {
+        this.dsMonHoc = [];
+      }
     });
   }
 
@@ -56,9 +60,9 @@ export class ModalMonhocComponent implements OnInit, OnChanges {
       alert('Oke fine, nhap thong tin mon hoc di ban ey');
       return;
     }
-    this.monhocService.addMonHoc(this.selectedMonHoc).subscribe(status => {
-      if (status.success) {
-        alert(status.success);
+    this.monhocService.addMonHoc(this.selectedMonHoc).subscribe(res => {
+      if (res.success) {
+        alert(status);
         this.renewMonHoc();
         this.getMonHoc();
       } else {
@@ -98,7 +102,7 @@ export class ModalMonhocComponent implements OnInit, OnChanges {
   }
 
   deleteMonHoc(maMonHoc: string) {
-    this.customConfirm("May co chac muon xoa mon hoc nay?", () => {
+    this.customConfirm("Ban co chac muon xoa mon hoc nay?", () => {
       this.monhocService.deleteMonHoc(maMonHoc).subscribe(res => {
         if (res.status === 200) {
           this.getMonHoc();

@@ -26,7 +26,10 @@ router.get('/trangthai/:trangThai', async (req, res) => {
   const trangThai = req.params.trangThai;
   await MonHoc.find({ trangThai }, {}, { sort: { 'created_at': -1 } })
     .then(dsMonHoc => {
-      return res.status(200).json(dsMonHoc)
+      return res.status(200).json({
+        status: 200,
+        data: dsMonHoc,
+      })
     })
     .catch(err => {
       return res.status(500).json({
@@ -78,6 +81,13 @@ router.get('/malophoc/:maLopHoc/hocki/:hocKi', async (req, res) => {
 //IMPORT EXCEL
 router.post('/importexcel', async (req, res) => {
   var items = req.body;
+  if (!items[0].tenMonHoc || !items[0].tenVietTat || !items[0].loaiMonHoc) {
+    console.log('false');
+  } else {
+    console.log(req.body);
+  }
+
+  return res.json('end');
   var filterItems = [];
 
   //Get next maMonHoc
@@ -119,14 +129,26 @@ router.post('/importexcel', async (req, res) => {
 
 //POST MONHOC
 router.post('/', async (req, res) => {
+  const { tenMonHoc, tenVietTat, maLoaiMonHoc } = req.body;
 
-  nameExist = await isNameExist(req.body.tenMonHoc);
+  if (!tenMonHoc) {
+    return res.json({
+      message: "ten mon hoc khong ton tai",
+      status: 401,
+    });
+  }
+
+  nameExist = await isNameExist(tenMonHoc);
   if (!nameExist) {
-    return res.json({ error: "ten mon hoc da ton tai" });
+    return res.json({
+      message: "ten mon hoc da ton tai",
+      status: 401,
+    });
   }
 
   maMonHoc = await getNextNumber();
-  const { tenMonHoc, tenVietTat, maLoaiMonHoc } = req.body;
+  return res.json('end');
+  console.log(maLoaiMonHoc);
   const monHoc = new MonHoc({ maMonHoc, tenMonHoc, tenVietTat, maLoaiMonHoc });
   monHoc.save().then(() => {
     return res.json({ success: "added MonHoc" });

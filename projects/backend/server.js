@@ -9,7 +9,7 @@ const morgan = require("morgan");
 const path = require("path");
 
 const MONGODB_URI =
-  "mongodb://elearning_team:123@103.92.26.177:27017/testAngularckc?retryWrites=true&w=majority?authSource=admin";
+  "mongodb://ai_noi_mongo_die:123@103.92.26.177:27017/devAngular?retryWrites=true&w=majority?authSource=admin";
 
 const PORT = 4100;
 

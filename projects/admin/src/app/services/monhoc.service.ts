@@ -22,9 +22,9 @@ export class MonhocService {
     return this.http.get<MonHoc[]>(this.monHocURL);
   }
 
-  getMonHocbyTrangThai(trangThai: number): Observable<MonHoc[]> {
+  getMonHocbyTrangThai(trangThai: number): Observable<any> {
     let url = `${this.monHocURL}/trangthai/${trangThai}`;
-    return this.http.get<MonHoc[]>(url);
+    return this.http.get<any>(url);
   }
 
   getDSMonHocbymaLopHocNhocKi(maLopHoc: string, hocKi: number): Observable<MonHoc[]> {
