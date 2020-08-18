@@ -81,7 +81,6 @@ exports.postKhoaBoMon = async (req, res) => {
       } else {
         req.body.maBoMon = req.body.maKhoa + "0" + (nextNumber + 1);
       }
-      console.log(req.body);
       const khoaBoMon = new BoMon(setData(req));
       const saveKhoa = await khoaBoMon.save();
       res.json({
@@ -217,7 +216,8 @@ exports.updateKhoaBoMon = async (req, res) => {
           $set: {
             tenBoMon: req.body.tenBoMon,
             tenVietTat: req.body.tenVietTat,
-            nguoiChinhSua:req.body.nguoiChinhSua
+            nguoiChinhSua:req.body.nguoiChinhSua,
+            maLoai: req.body.maLoai
           },
         }
       );

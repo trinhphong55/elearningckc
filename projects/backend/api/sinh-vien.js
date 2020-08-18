@@ -72,17 +72,33 @@ exports.Laysinhvientheomalop = async (req, res) => {
   }
 };
 
-exports.themSinhVien = async (req, res) => {
+exports.themSinhVien = async (req, res, next) => {
   try {
     const matkhau = await settingModel.findOne();
     req.body.matKhau = matkhau.matKhauSinhVien;
+    const sv_exist = await SinhVienModel.findOne({
+      maSinhVien: req.body.maSinhVien,
+    });
+    if (sv_exist) {
+      return res.json({
+        data: setSinhVien(sv_exist),
+        message: "Sinh viên có mã " + sv_exist.maSinhVien +" đã tồn tại trong lớp " + sv_exist.maLopHoc,
+        status: 422,
+      });
 
+    }
     const sinhViens = await SinhVienModel.create(setSinhVien(req.body));
-    res.json(sinhViens);
+    return res.json({
+      data: setSinhVien(sinhViens),
+      message: "Đã thêm thành công sinh viên có mã sinh viên: " + sinhViens.maSinhVien,
+      status: 200,
+    });
+
   } catch (error) {
     res
       .status(500)
       .json({ message: "Máy chủ không xử lý được", error: error, status: 500 });
+    next(error);
   }
 };
 
@@ -93,9 +109,9 @@ exports.layThongtinSinhVien = async (req, res) => {
       maSinhVien: req.params.maSV,
     });
     if (sinhViens === null) {
-      res.status(404).json({ message: "Không tìm thấy" });
+      return res.status(404).json({ message: "Không tìm thấy" });
     } else {
-      res
+      return res
         .status(200)
         .json({ data: sinhViens, message: "Lấy thành công", status: 200 });
     }
@@ -108,25 +124,17 @@ exports.layThongtinSinhVien = async (req, res) => {
 
 exports.capNhatSinhVien = async (req, res) => {
   try {
-
-    let tokens = "12341234";
-    if (req.body.sdt.length != 10) {
+    if (!(req.body.sdt.length == 10) || isNaN(req.body.sdt)) {
       return res.status(403).json({
         message: "Số điện thoại không hợp lệ",
         status: 403,
       });
     }
-    if (req.body.tokens != tokens) {
-      return res.status(403).json({
-        message: "Tài khoản này không đủ quyền để thay đổi",
-        status: 403,
-      });
-    }
-    const findSinhVien = await SinhVienModel.find({
+    const findSinhVien = await SinhVienModel.findOne({
       maSinhVien: req.body.maSinhVien,
     });
 
-    if (findSinhVien.length === 0) {
+    if (!findSinhVien) {
       return res.status(404).json({ message: "Không tìm thấy", status: 400 });
     }
     let sinhViens;
@@ -224,12 +232,12 @@ exports.laySinhVienLopHocPhan = async (req, res) => {
     });
     res.json(data);
   } catch (error) {
-    res.json({error,status:500});
+    res.json({ error, status: 500 });
   }
 };
 exports.layDSLopHocPhan = async (req, res) => {
   try {
-   const total = await SinhVienModel.find({ maLopHoc: req.params.maLopHoc });
+    const total = await SinhVienModel.find({ maLopHoc: req.params.maLopHoc });
 
     const dsLopHP_Update = await lopHocPhan.updateMany(
       { maLopHoc: req.params.maLopHoc },
@@ -237,7 +245,11 @@ exports.layDSLopHocPhan = async (req, res) => {
     );
     const dsLopHP = await lopHocPhan.find({ maLopHoc: req.params.maLopHoc });
 
-    res.json({count:dsLopHP.length, data: dsLopHP, message: 'Cập nhật sỉ số thành công'});
+    res.json({
+      count: dsLopHP.length,
+      data: dsLopHP,
+      message: "Cập nhật sỉ số thành công",
+    });
   } catch (error) {
     res.json(error);
   }

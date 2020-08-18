@@ -6,6 +6,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalService } from '../../../../services/modal.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-modal-khoabomon',
@@ -58,7 +59,8 @@ export class ModalKhoabomonComponent implements OnInit {
     private modalService: ModalService,
     private BomonService: BomonService,
     private KhoaBonmonService: KhoaBonmonService,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private toastr: ToastrService
   ) {}
   updateForm: FormGroup;
   KhoaForm: FormGroup;
@@ -158,14 +160,17 @@ export class ModalKhoabomonComponent implements OnInit {
 
     this.BomonService.create(data).subscribe(
       (response: any) => {
-        console.log(response);
         this.result.msg = response.msg;
         this.result.status = response.status;
+        this.toastr.success(response.msg, 'Thông báo', { timeOut: 5000 });
         this.getBoMon();
       },
       (error) => {
-        console.log(error);
-        this.result.msg = error.message;
+
+        if (error.status == 422)
+          error.error.forEach((element) => {
+            this.toastr.error(element.msg, 'ERROR', { timeOut: 6000 });
+          });
       }
     );
   }
@@ -183,10 +188,15 @@ export class ModalKhoabomonComponent implements OnInit {
       (response: any) => {
         this.result.msg = response.msg;
         this.result.status = response.status;
+        this.toastr.success(response.msg, 'Thông báo', { timeOut: 6000 });
         this.getKhoaBoMon();
       },
       (error) => {
-        this.result.msg = error;
+        if (error.status == 422)
+          error.error.forEach((element) => {
+            this.toastr.error(element.msg, 'ERROR', { timeOut: 6000 });
+          });
+        // this.toastr.error(error.error, 'ERROR', { timeOut: 6000 });
       }
     );
   }
@@ -225,13 +235,13 @@ export class ModalKhoabomonComponent implements OnInit {
       (response: any) => {
         this.result.msg = response.msg;
         this.result.status = response.status;
-        console.log(response);
+        this.toastr.success(this.result.msg, 'Thông báo', { timeOut: 6000 });
         //load lại dữ liệuliệu
         this.getBoMon();
         //this.xem_ChiTiet(this.maKhoaHienTai);
       },
       (error) => {
-        console.log(error);
+        this.toastr.error(error.message, 'ERROR', { timeOut: 6000 });
       }
     );
   }
@@ -250,7 +260,7 @@ export class ModalKhoabomonComponent implements OnInit {
       (response: any) => {
         this.result.msg = response.msg;
         this.result.status = response.status;
-        console.log(response);
+        this.toastr.success(response.msg, 'Thông báo', { timeOut: 3000 });
         //load lại dữ liệuliệu
         this.getKhoaBoMon();
       },
@@ -262,14 +272,12 @@ export class ModalKhoabomonComponent implements OnInit {
   //Xoa KhoaBoMonKhoaBoMon
   deleteModal(khoa_id, khoa_maloai) {
     this.result.msg = '';
-    console.log(khoa_maloai);
     if (khoa_maloai == 1) {
-      console.log(khoa_id);
       this.KhoaBonmonService.delete(khoa_id).subscribe(
         (response: any) => {
           this.result.msg = response.msg;
           this.result.status = response.status;
-          alert(this.result.msg);
+          this.toastr.success(response.msg, 'Thông báo', { timeOut: 6000 });
 
           //load lại dữ liệuliệu
           this.getKhoaBoMon();
@@ -283,9 +291,7 @@ export class ModalKhoabomonComponent implements OnInit {
         (response: any) => {
           this.result.msg = response.msg;
           this.result.status = response.status;
-          //alert(this.result.msg);
-          //load lại dữ liệuliệu
-
+          this.toastr.success(response.msg, 'Thông báo', { timeOut: 6000 });
           this.getBoMon();
         },
         (error) => {

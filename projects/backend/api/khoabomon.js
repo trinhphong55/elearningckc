@@ -42,9 +42,17 @@ exports.postKhoaBoMon = async (req, res) => {
         res.status(200).json({
           status: 200,
           ok: false,
-          msg: "Tên này đã tồn tại",
+          msg: "Thêm thất bại, tên này đã tồn tại",
         });
         return idIsExist++;
+      }
+      if (req.body.tenVietTat === element.tenVietTat) {
+        res.status(200).json({
+          status: 200,
+          ok: false,
+          msg: "Thêm thất bại, tên viết tắt này đã tồn tại",
+        });
+        return nameIsExist++;
       }
     });
 
@@ -168,7 +176,7 @@ exports.updateKhoaBoMon = async (req, res) => {
         res.status(200).json({
           status: 200,
           ok: false,
-          msg: "Tên này đã tồn tại",
+          msg: "Thêm thất bại, tên này đã tồn tại",
         });
         return nameIsExist++;
       }
@@ -176,7 +184,7 @@ exports.updateKhoaBoMon = async (req, res) => {
         res.status(200).json({
           status: 200,
           ok: false,
-          msg: "Tên viết tắt này đã tồn tại",
+          msg: "Thêm thất bại, tên viết tắt này đã tồn tại",
         });
         return nameIsExist++;
       }

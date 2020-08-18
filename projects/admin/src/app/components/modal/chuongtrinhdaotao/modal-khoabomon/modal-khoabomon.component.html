@@ -34,7 +34,7 @@
             <button type="button" class="btn btn-outline-success" (click)="onClick_ThemKhoa()" *ngIf="editting==false"
               data-dismiss="modal">Thêm</button>
             <button type="button" class="btn btn-outline-info" (click)="capNhat_Khoa()" *ngIf="editting"
-              data-toggle="modal" data-target="#exampleModalLong" data-dismiss="modal">Cập nhật</button>
+              data-dismiss="modal">Cập nhật</button>
 
           </div>
         </div>
@@ -68,27 +68,27 @@
               <tbody>
                 <tr *ngFor="let khoa of bomons; let i= index" [ngClass]="statusElementList">
 
-                  <td style="max-width: 50px">{{ i+1  }}</td>
+                  <td class="text-center">{{ i+1  }}</td>
 
-                  <td>
+                  <td class="text-center">
                     <input class="form-control" disabled value=" {{ khoa.tenBoMon }}">
                   </td>
                   <td>
                     <input class="form-control" disabled value=" {{ khoa.tenVietTat }}">
                   </td>
-                  <td>
+                  <td class="text-center">
                     <div *ngFor="let loai of loais">
                       <p *ngIf="khoa.maLoai == loai.maLoaiDonVi"> {{ loai.tenLoaiDonVi }}</p>
                     </div>
-                  <td>
+                  <td class="text-center">
                     <button class="btn btn-outline-success" (click)="insertDateforForm(khoa)" data-toggle="modal"
                       data-target="#updateForm"><i class="fa fa-pen"></i>
                     </button>
 
                   </td>
-                  <td>
+                  <td class="text-center">
                     <button class="btn btn-outline-danger " (click)="deleteModal(khoa._id, khoa.maLoai)"
-                     ><i class="fa fa-trash"></i></button>
+                     ><i class="fa fa-ban"></i></button>
                   </td>
 
                 </tr>
@@ -97,8 +97,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-            <button type="button" class="btn btn-primary" (click)="capNhat_BoMon()" data-dismiss="modal"
-              data-toggle="modal" data-target="#exampleModalLong">Thay
+            <button type="button" class="btn btn-primary" (click)="capNhat_BoMon()" data-dismiss="modal">Thay
               đổi</button>
           </div>
         </div>
@@ -143,8 +142,7 @@
        </div>
        <div class="modal-footer">
          <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-         <button type="button" class="btn btn-primary" (click)="capNhat_BoMon()" data-dismiss="modal"
-           data-toggle="modal" data-target="#exampleModalLong">Thay
+         <button type="button" class="btn btn-primary" (click)="capNhat_BoMon()">Thay
            đổi</button>
        </div>
      </div>
@@ -240,8 +238,8 @@
 
             </div>
             <div class="col-auto">
-              <div class="modal_chucnang__group__button">
-                <button data-toggle="modal" data-target="#exampleModalLong"
+              <div class="modal_chucnang__group__button text-center">
+                <button
                   class="modal_chucnang__button btn btn-outline-primary px-4 mx-2" (click)="themDonVi()"><img
                     class="modal_chucnang__button__icon mb-2" src="assets/img/icons/add.png" alt="image icon">
                   <div>Thêm đơn vị</div>
@@ -265,7 +263,7 @@
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Thông báo Xoa</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Thông báo </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -300,7 +298,7 @@
               <th scope="col">Tên viết tắt</th>
               <th scope="col">Cập nhật</th>
               <th scope="col">Xóa</th>
-              <th scope="col">Đơn vị trực thuộc</th>
+              <th scope="col">Đơn vị</th>
             </thead>
             <tbody>
               <tr *ngFor="let khoa of khoas; let i= index" [ngClass]="statusElementList">
@@ -313,18 +311,18 @@
                   <input class="form-control" disabled value=" {{ khoa.tenVietTat }}">
                 </td>
 
-                <td>
+                <td class="text-center">
                   <button class="btn btn-outline-success" (click)="insertDateforForm(khoa)" data-toggle="modal"
                     data-target="#khoa"><i class="fa fa-pen"></i>
                   </button>
 
                 </td>
-                <td>
+                <td class="text-center">
                   <button class="btn btn-outline-danger " (click)="deleteModal(khoa._id, khoa.maLoai)"><i
-                      class="fa fa-trash"></i></button>
+                      class="fa fa-ban"></i></button>
 
                 </td>
-                <td>
+                <td class="text-center">
                   <button class="btn btn-outline-primary" data-toggle="modal" data-target="#xemDonVi"
                     (click)="xem_ChiTiet(khoa.maKhoa)"><i class="fa fa-list"></i></button>
                 </td>
