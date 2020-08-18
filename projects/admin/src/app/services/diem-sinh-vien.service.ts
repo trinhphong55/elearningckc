@@ -16,4 +16,13 @@ export class DiemSinhVienService  {
   layThongTinDiemSVByLHP(maLopHOcPhan:any) {
     return this.http.get(`${baseUrl}/${maLopHOcPhan}/laytongdiem`);
   }
+
+  //luu tong diem
+  luuDiem(diemTongKet:any){
+    try {
+      return this.http.post<any>(baseUrl, diemTongKet)
+    } catch (error) {
+      return error;
+    }
+  }
 }

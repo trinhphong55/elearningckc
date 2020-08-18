@@ -146,4 +146,7 @@ export class PageTongdiemComponent implements OnInit {
       }
     )
   }
+  luuDiem(){
+    console.log(this.ctDiem)
+  }
 }
