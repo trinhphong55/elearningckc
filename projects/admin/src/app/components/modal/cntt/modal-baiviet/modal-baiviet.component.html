@@ -179,7 +179,7 @@
                                     </div> -->
                   <div class="form-group">
                     <label class="mb-0">Mô tả ngắn(Tối đa 200 ký tự)</label>
-                    <input
+                    <textarea
                       formControlName="moTaNgan"
                       type="text"
                       class="form-control"
@@ -188,7 +188,7 @@
                       required
                       minlength="25"
                       maxlength="200"
-                    />
+                    ></textarea>
                     <div
                       *ngIf="
                         moTaNgan.invalid && (moTaNgan.dirty || moTaNgan.touched)
@@ -475,7 +475,7 @@
                   </div>
                   <div class="form-group">
                     <label class="mb-0">Mô tả ngắn(Tối đa 200 ký tự)</label>
-                    <input
+                    <textarea
                       formControlName="moTaNgan"
                       type="text"
                       class="form-control"
@@ -484,7 +484,8 @@
                       minlength="25"
                       maxlength="200"
                       required
-                    />
+                    >
+                    </textarea>
                     <div
                       *ngIf="
                         moTaNgan2.invalid &&
