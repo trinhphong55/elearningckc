@@ -31,38 +31,35 @@ exports.postKhoaBoMon = async (req, res) => {
 
     khoabomon.forEach((element) => {
       if (req.body.maKhoa === element.maKhoa) {
-        idIsExist++;
+        res.status(200).json({
+          status: 200,
+          ok: false,
+          msg: "Mã khoa này đã tồn tại",
+        });
+        return nameIsExist++;
       }
       if (req.body.tenKhoa === element.tenKhoa) {
-        nameIsExist++;
+        res.status(200).json({
+          status: 200,
+          ok: false,
+          msg: "Tên này đã tồn tại",
+        });
+        return idIsExist++;
       }
     });
 
     if (idIsExist > 0) {
-      res.json({
-        status: 200,
-        ok: false,
-        msg: "Mã khoa này đã tồn tại",
-      });
     } else if (nameIsExist > 0) {
-      res.json({
-        status: 200,
-        ok: false,
-        msg: "Tên này đã tồn tại",
-      });
     } else {
       let nextNumber = 0;
-      await KhoaBoMon
-        .findOne({}, {})
+      await KhoaBoMon.findOne({}, {})
         .sort({ maKhoa: -1 })
         .exec()
         .then((bt) => {
           if (bt !== null) {
             nextNumber = bt.maKhoa;
-           console.log('toi');
           }
         });
-
 
       req.body.maKhoa = nextNumber + 1;
       req.body.maLoai = 1;
@@ -71,7 +68,7 @@ exports.postKhoaBoMon = async (req, res) => {
         maKhoa: req.body.maKhoa,
         tenKhoa: req.body.tenKhoa,
         tenVietTat: req.body.tenVietTat,
-        nguoiTao: req.body.nguoiTao,
+        nguoiTao: req.body.nguoiChinhSua,
         nguoiChinhSua: req.body.nguoiChinhSua,
         maLoai: req.body.maLoai,
       });
@@ -133,7 +130,6 @@ exports.deleteKhoaBoMon = async (req, res) => {
 
 exports.checkValidate = () => {
   return [
-
     check("tenKhoa", "TEN KHOA is must be at most 50 chars long ").isLength({
       max: 50,
     }),
@@ -144,9 +140,7 @@ exports.checkValidate = () => {
     }),
     check("tenVietTat", "TEN VIET TAT is required").notEmpty(),
 
-
-    check("nguoiChinhSua", "NGUOI CHINH SUASUA is required").notEmpty(),
-
+    check("nguoiChinhSua", "NGUOI CHINH SUA is required").notEmpty(),
   ];
 };
 
@@ -156,34 +150,66 @@ exports.updateKhoaBoMon = async (req, res) => {
     if (!err.isEmpty()) {
       res.status(422).json(err.errors);
     }
-    console.log(req.body);
+    let idIsExist = 0;
+    let nameIsExist = 0;
 
-    const updateKhoa = await KhoaBoMon.update(
-      { _id: req.params.id },
-      {
-        $set: {
+    const khoabomon = await KhoaBoMon.find({_id:{$ne:req.params.id}});
 
-          tenKhoa: req.body.tenKhoa,
-          tenVietTat: req.body.tenVietTat,
-          nguoiChinhSua: req.body.nguoiChinhSua,
-
-        },
+    khoabomon.forEach((element) => {
+      if (req.body.maKhoa === element.maKhoa) {
+        res.status(200).json({
+          status: 200,
+          ok: false,
+          msg: "Mã khoa này đã tồn tại",
+        });
+        return idIsExist++;
       }
-    );
+      if (req.body.tenKhoa === element.tenKhoa) {
+        res.status(200).json({
+          status: 200,
+          ok: false,
+          msg: "Tên này đã tồn tại",
+        });
+        return nameIsExist++;
+      }
+      if (req.body.tenVietTat === element.tenVietTat) {
+        res.status(200).json({
+          status: 200,
+          ok: false,
+          msg: "Tên viết tắt này đã tồn tại",
+        });
+        return nameIsExist++;
+      }
+    });
 
-    let result = {
-      status: 200,
-      ok: false,
-      msg: "",
-    };
+    if (idIsExist > 0 || nameIsExist > 0) {
 
-    if (updateKhoa.nModified === 0) {
-      result.msg = "Chưa được cập nhật";
-    } else {
-      result.ok = true;
-      result.msg = "Cập nhật thành công Khoa-Bộ môn";
+    }else{
+      const updateKhoa = await KhoaBoMon.updateOne(
+        { _id: req.params.id },
+        {
+          $set: {
+            tenKhoa: req.body.tenKhoa,
+            tenVietTat: req.body.tenVietTat,
+            nguoiChinhSua: req.body.nguoiChinhSua,
+          },
+        }
+      );
+
+      let result = {
+        status: 200,
+        ok: false,
+        msg: "",
+      };
+
+      if (updateKhoa.nModified === 0) {
+        result.msg = "Chưa được cập nhật";
+      } else {
+        result.ok = true;
+        result.msg = "Cập nhật thành công Khoa-Bộ môn";
+      }
+      res.status(200).json(result);
     }
-    res.status(200).json(result);
   } catch (error) {
     res.json(error);
   }

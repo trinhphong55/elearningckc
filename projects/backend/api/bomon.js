@@ -11,7 +11,7 @@ const setData = (req) => {
     maBoMon: req.body.maBoMon,
     tenBoMon: req.body.tenBoMon,
     tenVietTat: req.body.tenVietTat,
-    nguoiTao: req.body.nguoiTao,
+    nguoiTao: req.body.nguoiChinhSua,
     nguoiChinhSua: req.body.nguoiChinhSua,
     maLoai: req.body.maLoai,
     maKhoa: req.body.maKhoa,
@@ -50,7 +50,6 @@ exports.postKhoaBoMon = async (req, res) => {
         idIsExist++;
       }
       if (req.body.tenBoMon === element.tenBoMon) {
-
         nameIsExist++;
       }
     });
@@ -68,27 +67,20 @@ exports.postKhoaBoMon = async (req, res) => {
         msg: "Tên này đã tồn tại",
       });
     } else {
-
       let nextNumber = 0;
-      await BoMon.findOne(
-        { maKhoa: req.body.maKhoa },
-        {},
-
-      ).sort({maBoMon: -1})
+      await BoMon.findOne({ maKhoa: req.body.maKhoa }, {})
+        .sort({ maBoMon: -1 })
         .exec()
         .then((bt) => {
           if (bt !== null) {
             nextNumber = parseInt(bt.maBoMon.slice(1, bt.maKhoa.length));
-
           }
         });
-        if(nextNumber > 10){
-          req.body.maBoMon = req.body.maKhoa  +''+ (nextNumber + 1);
-
-        }else{
-          req.body.maBoMon = req.body.maKhoa  +'0'+ (nextNumber + 1);
-
-        }
+      if (nextNumber > 10) {
+        req.body.maBoMon = req.body.maKhoa + "" + (nextNumber + 1);
+      } else {
+        req.body.maBoMon = req.body.maKhoa + "0" + (nextNumber + 1);
+      }
       console.log(req.body);
       const khoaBoMon = new BoMon(setData(req));
       const saveKhoa = await khoaBoMon.save();
@@ -171,8 +163,6 @@ exports.checkValidate = () => {
     }),
     check("tenVietTat", "TEN VIET TAT is required").notEmpty(),
 
-    check("nguoiTao", "NGUOI TAO is required").notEmpty(),
-
     check("nguoiChinhSua", "NGUOI CHINH SUA is required").notEmpty(),
 
     check("maLoai", "MA LOAI is required").notEmpty(),
@@ -181,32 +171,71 @@ exports.checkValidate = () => {
 };
 
 exports.updateKhoaBoMon = async (req, res) => {
-    try {
+  try {
     const err = validationResult(req);
     if (!err.isEmpty()) {
       res.status(422).json(err.errors);
     }
-  //res.json(req.body)
-    const updateKhoa = await BoMon.updateOne(
-      { _id: req.params.id },
-      {
-        $set: {tenBoMon: req.body.tenBoMon, tenVietTat: req.body.tenVietTat},
+    let idIsExist = 0;
+    let nameIsExist = 0;
+
+    const khoabomon = await BoMon.find({ _id: { $ne: req.params.id } });
+
+    khoabomon.forEach((element) => {
+      if (req.body.maBoMon === element.maBoMon) {
+        res.status(200).json({
+          status: 200,
+          ok: false,
+          msg: "Mã khoa này đã tồn tại",
+        });
+        return idIsExist++;
       }
-    );
+      if (req.body.tenBoMon === element.tenBoMon) {
+        res.status(200).json({
+          status: 200,
+          ok: false,
+          msg: "Tên này đã tồn tại",
+        });
+        return nameIsExist++;
+      }
+      if (req.body.tenVietTat === element.tenVietTat) {
+        res.status(200).json({
+          status: 200,
+          ok: false,
+          msg: "Tên viết tắt này đã tồn tại",
+        });
+        return nameIsExist++;
+      }
+    });
 
-    let result = {
-      status: 200,
-      ok: false,
-      msg: "",
-    };
-    if (updateKhoa.nModified === 0) {
-      result.msg = "Chưa được cập nhật";
+    if (idIsExist > 0 || nameIsExist > 0) {
     } else {
-      result.ok = true;
-      result.msg = "Cập nhật thành công Khoa-Bộ môn";
-    }
+      //res.json(req.body)
+      const updateKhoa = await BoMon.updateOne(
+        { _id: req.params.id },
+        {
+          $set: {
+            tenBoMon: req.body.tenBoMon,
+            tenVietTat: req.body.tenVietTat,
+            nguoiChinhSua:req.body.nguoiChinhSua
+          },
+        }
+      );
 
-    res.status(200).json(result);
+      let result = {
+        status: 200,
+        ok: false,
+        msg: "",
+      };
+      if (updateKhoa.nModified === 0) {
+        result.msg = "Chưa được cập nhật";
+      } else {
+        result.ok = true;
+        result.msg = "Cập nhật thành công Khoa-Bộ môn";
+      }
+
+      res.status(200).json(result);
+    }
   } catch (error) {
     res.json(error);
   }

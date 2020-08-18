@@ -137,7 +137,7 @@ router.get("/diemsinhvien/:maSinhVien/khdt",verifyToken, Diemsinhvien.getDiemSin
 router.get("/diemsinhvien/:maLopHocPhan/laytongdiem",verifyToken, Diemsinhvien.LayTONGDIEM);
 
 //Lấy toàn bộ dữ liệu từ KhoaBoMon
-router.get("/bomon",verifyToken,  boMon.getKhoaBonMon);
+router.get("/bomon", verifyToken, boMon.getKhoaBonMon);
 router.get("/bomon/:id", verifyToken, boMon.getOneKhoaBoMon);
 //Thêm dữ liệu vào KhoaBoMon
 router.post("/bomon",verifyToken,  boMon.checkValidate(), boMon.postKhoaBoMon);
@@ -202,7 +202,7 @@ router.get("/baidangfb",baidangfb.getAll);
 router.post("/baidangfb",baidangfb.postToDrawFB);
 //Thêm vào posted
 router.post("/baidangfb/all",baidangfb.postedToFB);
-//Update posted 
+//Update posted
 router.put("/baidangfb/:postID",baidangfb.updatePostedFB);
 //Update draw
 router.put("/baidangfbraw/:id",baidangfb.updateDrawFB);
