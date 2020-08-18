@@ -28,7 +28,7 @@ export class ModelTtthDotthiComponent implements OnInit {
     this.selectedItem=null;
   }
   // add
-  add(tendot: string,ngaythi: string,giothi: string,phongthi: string): void {
+  add(tendot: string,ngaythi: string,giothi: string,phongthi: string,ngayhethan: string): void {
     let kiemtra: any;
     this.DotThi.forEach(function (value) {
       if(value.tendot==tendot){
@@ -45,6 +45,7 @@ export class ModelTtthDotthiComponent implements OnInit {
     newItem.giothi = giothi;
     newItem.phongthi = phongthi;
     newItem.trangthai = 1;
+    newItem.ngayhethan = ngayhethan;
     newItem.nguoitao = this._username;
     newItem.nguoisua = null;
     newItem.created_at = (new Date);

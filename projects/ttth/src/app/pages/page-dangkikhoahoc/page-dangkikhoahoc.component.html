@@ -125,7 +125,7 @@
                 <select  class="form-control ttth__select2" #lophoc>
                   <option value=""></option>
                   <ng-container *ngFor="let item of LopHoc">
-                    <option *ngIf="item.trangthai==1" value="{{item.tenlop}}">{{item.tenlop}}</option>
+                    <option *ngIf="item.trangthai==1 && (item.ngayhethan| date: 'dd/MM/yyyy') > (getday| date: 'dd/MM/yyyy')" value="{{item.tenlop}}">{{item.tenlop}}</option>
                   </ng-container>
                 </select>
             </div>

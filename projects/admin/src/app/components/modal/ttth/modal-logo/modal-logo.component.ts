@@ -6,7 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ThongtinwebService } from '../../../../services/ttth/thongtinweb.service';
 import { ttthThongTinWeb } from '../../../../../models/ttthThongTinWeb';
 import { getCookie } from '../../../../../../../common/helper';
-const URL = 'https://localhost:4100/api/ttthThongTinWeb/uploads';
+const URL = 'https://api.cnttckc.edu.vn/api/ttthThongTinWeb/uploads';
 declare var $: any;
 @Component({
   selector: 'app-modal-logo',
@@ -65,7 +65,7 @@ export class ModalLogoComponent implements OnInit {
   ///edit
   saveThongTinWeb(ThongTinWeb: ttthThongTinWeb):void {
     if (this.nameImage) {
-      ThongTinWeb.logo='https://localhost:4100/uploads/cntt/' + 'uploads_' + this.nameImage.name;
+      ThongTinWeb.logo='https://api.cnttckc.edu.vn/uploads/cntt/' + 'uploads_' + this.nameImage.name;
     }
     ThongTinWeb.updated_at= new Date;
     ThongTinWeb.nguoisua= this._username;

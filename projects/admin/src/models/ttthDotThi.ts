@@ -4,6 +4,7 @@ export class ttthDotThi {
   ngaythi: String
   giothi: String
   phongthi: String
+  ngayhethan: String
   hienthi: Boolean
   trangthai: Number
   nguoitao: String
