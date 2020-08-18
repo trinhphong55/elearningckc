@@ -156,9 +156,9 @@
                 <th scope="col">MS Word</th>
                 <th scope="col">MS Excel</th>
                 <th scope="col">MS Powerpoint</th>
-                <!-- <th scope="col">Người tạo</th>
-                <th scope="col">Người sửa</th>
-                <th scope="col">Trạng thái</th> -->
+                <!-- <th scope="col">Người tạo</th> -->
+                <!-- <th scope="col">Người sửa</th> -->
+                <th scope="col">Trạng thái</th>
                 <th class="text-center" scope="col"><span
                     class="modal_chucnang__button__save mdi mdi-content-save-outline mdi-24px"></span></th>
               </tr>
@@ -178,10 +178,10 @@
                 <td>{{item.msword}}</td>
                 <td>{{item.msexcel}}</td>
                 <td>{{item.mspowerpoint}}</td>
-                <!-- <td>{{item.nguoitao}}</td>
-                <td>{{item.nguoisua}}</td>
+                <!-- <td>{{item.nguoitao}}</td> -->
+                <!-- <td>{{item.nguoisua}}</td> -->
                 <td *ngIf="item.trangthai==false">Đã xóa</td>
-                <td *ngIf="item.trangthai==true">Hiển thị</td> -->
+                <td *ngIf="item.trangthai==true">Hiển thị</td>
                 <td class="text-center">
                   <span class="modal_chucnang__button__delete mdi mdi-file-document-edit-outline mdi-24px  mr-2"
                     (click)="onSelect(item)"></span>

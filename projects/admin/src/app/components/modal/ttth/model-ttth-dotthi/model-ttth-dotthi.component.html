@@ -17,6 +17,10 @@
                 <label>Ngày thi</label>
                 <input type="date" class="form-control" #ngaythi>
               </div>
+              <div class="form-group">
+                <label>Ngày hết hạn</label>
+                <input type="date" class="form-control" #ngayhethan>
+              </div>
             </div>
             <div class="col-4">
               <div class="form-group">
@@ -30,8 +34,8 @@
             </div>
             <div class="col-auto">
               <div class="modal_chucnang__group__button">
-                <button class="modal_chucnang__button btn btn-outline-primary px-4 mx-2" [disabled]="!tendot.value  || !ngaythi.value|| !giothi.value|| !phongthi.value "
-                  (click)="add(tendot.value,ngaythi.value,giothi.value,phongthi.value);tendot.value=''; ngaythi.value=''; giothi.value=''; phongthi.value=''"><img
+                <button class="modal_chucnang__button btn btn-outline-primary px-4 mx-2" [disabled]="!tendot.value  || !ngaythi.value|| !giothi.value|| !phongthi.value|| !ngayhethan.value "
+                  (click)="add(tendot.value,ngaythi.value,giothi.value,phongthi.value,ngayhethan.value);tendot.value=''; ngaythi.value=''; giothi.value=''; phongthi.value=''; ngayhethan.value=''"><img
                     class="modal_chucnang__button__icon mb-2" src="assets/img/icons/add.png" alt="image icon">
                   <div>Thêm mới</div>
                 </button>
@@ -51,6 +55,10 @@
               <div class="form-group">
                 <label>Ngày thi</label>
                 <input type="date" class="form-control" [(ngModel)]="selectedItem.ngaythi">
+              </div>
+              <div class="form-group">
+                <label>Ngày hết hạn</label>
+                <input type="date" class="form-control" [(ngModel)]="selectedItem.ngayhethan">
               </div>
             </div>
             <div class="col-4">
@@ -90,6 +98,7 @@
                 <th scope="col">Ngày thi</th>
                 <th scope="col">Giờ thi</th>
                 <th scope="col">Phòng thi</th>
+                <th scope="col">Ngày hết hạn</th>
                 <th scope="col">Người tạo</th>
                 <th scope="col">Người sửa</th>
                 <th scope="col">Trạng thái</th>
@@ -104,6 +113,7 @@
                 <td>{{item.ngaythi}}</td>
                 <td>{{item.giothi}}</td>
                 <td>{{item.phongthi}}</td>
+                <td>{{item.ngayhethan}}</td>
                 <td>{{item.nguoitao}}</td>
                 <td>{{item.nguoisua}}</td>
                 <td *ngIf="item.trangthai==0">Đã xóa</td>

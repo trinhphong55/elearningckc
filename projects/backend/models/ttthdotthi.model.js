@@ -7,6 +7,7 @@ var schema = new Schema({
   ngaythi: { type: String },
   giothi: { type: String },
   phongthi: { type: String },
+  ngayhethan: { type: String },
   trangthai: { type: Number },
   nguoitao: { type: String },
   nguoisua: { type: String },

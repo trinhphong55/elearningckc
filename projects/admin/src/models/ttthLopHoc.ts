@@ -6,6 +6,7 @@ export class ttthLopHoc {
   ngaykhaigiang: String
   tenlop: String
   hocphi: String
+  ngayhethan: String
   giaovien: String
   nhapdiem: String
   nam: String

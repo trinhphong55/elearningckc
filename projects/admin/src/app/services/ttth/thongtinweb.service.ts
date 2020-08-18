@@ -13,11 +13,11 @@ export class ThongtinwebService {
 
   constructor(private http: HttpClient) { }
   getThongTinWeb(): Observable<ttthThongTinWeb[]  >{
-    return this.http.get<ttthThongTinWeb[] >('https://localhost:4100/api/ttthThongTinWeb/ttthdanhsachthongtinweb').pipe(
+    return this.http.get<ttthThongTinWeb[] >('https://api.cnttckc.edu.vn/api/ttthThongTinWeb/ttthdanhsachthongtinweb').pipe(
     );
   }
   suaThongTinWeb(updateThongTinWeb): Observable<any> {
-    return this.http.post<any>('https://localhost:4100/api/ttthThongTinWeb/ttthsuathongtinweb', updateThongTinWeb, httpOptions).pipe(
+    return this.http.post<any>('https://api.cnttckc.edu.vn/api/ttthThongTinWeb/ttthsuathongtinweb', updateThongTinWeb, httpOptions).pipe(
     );
   }
 }

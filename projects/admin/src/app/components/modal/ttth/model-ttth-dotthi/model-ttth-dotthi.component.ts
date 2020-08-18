@@ -28,13 +28,24 @@ export class ModelTtthDotthiComponent implements OnInit {
     this.selectedItem=null;
   }
   // add
-  add(tendot: string,ngaythi: string,giothi: string,phongthi: string): void {
+  add(tendot: string,ngaythi: string,giothi: string,phongthi: string,ngayhethan: string): void {
+    let kiemtra: any;
+    this.DotThi.forEach(function (value) {
+      if(value.tendot==tendot){
+        kiemtra=true;
+      }
+    });
+    if(kiemtra==true){
+      this.toastr.error('Đợt thi đã tồn tại');
+    }
+    else{
     const newItem: ttthDotThi = new ttthDotThi();
     newItem.tendot = tendot;
     newItem.ngaythi = ngaythi;
     newItem.giothi = giothi;
     newItem.phongthi = phongthi;
     newItem.trangthai = 1;
+    newItem.ngayhethan = ngayhethan;
     newItem.nguoitao = this._username;
     newItem.nguoisua = null;
     newItem.created_at = (new Date);
@@ -46,6 +57,7 @@ export class ModelTtthDotthiComponent implements OnInit {
 
       });
     this.toastr.success('Thêm thành công');
+    }
   }
   ///edit
   selectedItem: ttthDotThi;

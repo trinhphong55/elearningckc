@@ -6,7 +6,7 @@ import { ttthKhoaHoc } from '../../../../../models/ttthKhoaHoc';
 import { FileUploader } from 'ng2-file-upload';
 import { ToastrService } from 'ngx-toastr';
 import { getCookie } from '../../../../../../../common/helper';
-const URL = 'https://localhost:4100/api/ttthKhoaHoc/uploads';
+const URL = 'https://api.cnttckc.edu.vn/api/ttthKhoaHoc/uploads';
 
 @Component({
   selector: 'app-modal-khoahoc',
@@ -76,26 +76,38 @@ export class ModalKhoahocComponent implements OnInit {
     };
    }
   add(tenkhoahoc: string,makhoahoc: string,color: string,nhapdiem: string): void {
-    tenkhoahoc = tenkhoahoc.trim();
-    makhoahoc = makhoahoc.trim();
-    const newItem: ttthKhoaHoc = new ttthKhoaHoc();
-    newItem.tenkhoahoc = tenkhoahoc;
-    newItem.image = 'https://localhost:4100/uploads/cntt/' + 'khoahoc_'+ this.nameImage.name;
-    newItem.makhoahoc = makhoahoc;
-    newItem.noidung = this.CK;
-    newItem.color = color;
-    newItem.nhapdiem = nhapdiem;
-    newItem.trangthai = true;
-    newItem.nguoitao = this._username;
-    newItem.nguoisua = null;
-    newItem.created_at = (new Date);
-    newItem.updated_at = null;
-    this.khoahocService.add(newItem)
-      .subscribe(data => {
-        this.KhoaHoc.push(data);
-        this.getdanhsach();
-      });
-    this.toastr.success('Thêm thành công');
+    let kiemtra: any;
+    this.KhoaHoc.forEach(function (value) {
+      if(value.tenkhoahoc==tenkhoahoc){
+        kiemtra=true;
+      }
+    });
+    if(kiemtra==true){
+      this.toastr.error('Tên khóa học đã tồn tại');
+    }
+    else{
+      tenkhoahoc = tenkhoahoc.trim();
+      makhoahoc = makhoahoc.trim();
+      const newItem: ttthKhoaHoc = new ttthKhoaHoc();
+      newItem.tenkhoahoc = tenkhoahoc;
+      newItem.image = 'https://api.cnttckc.edu.vn/uploads/cntt/' + 'khoahoc_'+ this.nameImage.name;
+      newItem.makhoahoc = makhoahoc;
+      newItem.noidung = this.CK;
+      newItem.color = color;
+      newItem.nhapdiem = nhapdiem;
+      newItem.trangthai = true;
+      newItem.nguoitao = this._username;
+      newItem.nguoisua = null;
+      newItem.created_at = (new Date);
+      newItem.updated_at = null;
+      this.khoahocService.add(newItem)
+        .subscribe(data => {
+          this.KhoaHoc.push(data);
+          this.getdanhsach();
+        });
+      this.toastr.success('Thêm thành công');
+    }
+
   }
   ///edit
   selectedItem: ttthKhoaHoc;
@@ -104,7 +116,7 @@ export class ModalKhoahocComponent implements OnInit {
   }
   update(KhoaHoc: ttthKhoaHoc):void {
     if (this.nameImage) {
-      KhoaHoc.image='https://localhost:4100/uploads/cntt/' + 'khoahoc_'+ this.nameImage.name;
+      KhoaHoc.image='https://api.cnttckc.edu.vn/uploads/cntt/' + 'khoahoc_'+ this.nameImage.name;
     }
     KhoaHoc.updated_at= new Date;
     KhoaHoc.nguoisua= this._username;

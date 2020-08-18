@@ -154,12 +154,7 @@ export class ModalQuanlytienichcnttComponent implements OnInit {
     }
   }
   onResetFormValue() {
-    this.tienIchForm.patchValue({
-      tenTienIch: '',
-      urlTienIch: '',
-      iconClassTienIch: '',
-      maMauTienIch: '',
-    });
+    this.tienIchForm.reset();
   }
   showTrangThai(trangThai: any): string {
     if (trangThai == 1) {

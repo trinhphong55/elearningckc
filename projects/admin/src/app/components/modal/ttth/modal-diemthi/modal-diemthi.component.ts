@@ -23,7 +23,6 @@ export class ModalDiemthiComponent implements OnInit {
   keys: string[];
   DiemThi : ttthDiemThi[];
   DotThi : any[];
-  LopHoc : any[];
   selectDotThi: any;
   private _username: any = getCookie('name');
   dataSheet = new Subject;
@@ -31,13 +30,9 @@ export class ModalDiemthiComponent implements OnInit {
   isExcelFile: boolean;
   ngOnInit(): void {
     this.getdanhsachdotthi();
-    this.getdanhsachlophoc();
   }
   getdanhsachdotthi(): void {
     this.DotthiService.get().subscribe((data) => {this.DotThi = data;  setTimeout(() => {}, 500);});
-  }
-  getdanhsachlophoc(): void {
-    this.LophocService.getfilter().subscribe((data) => {this.LopHoc = data ;setTimeout(() => {}, 500);});
   }
   closeModal(id: string) {
     this.modalService.close(id)
@@ -86,36 +81,10 @@ export class ModalDiemthiComponent implements OnInit {
     this.keys = null;
     this.DiemThi = undefined;
   }
-  checkboxDotThi: any;
-  checkboxKhoaHoc: any;
-
-  getValueCheckBoxDotThi(e){
-    this.checkboxDotThi= e.target.checked;
-    if (this.checkboxDotThi === true) {
-      let value = false;
-      this.checkboxKhoaHoc= value;
-    }
-    else{
-      let value = true;
-      this.checkboxKhoaHoc= value;
-    }
-  }
-  // getValueCheckBoxKhoaHoc(e){
-  //   this.checkboxKhoaHoc= e.target.checked;
-  //   if (this.checkboxKhoaHoc === true) {
-  //     let value = false;
-  //     this.checkboxDotThi= value;
-  //   }
-  //   else{
-  //     let value = true;
-  //     this.checkboxDotThi= value;
-  //   }
-  // }
   importExcel() {
     let ngaythi: any;
     let giothi: any;
     let phongthi: any;
-    let tendotthi: any;
     let dotthi = this.selectDotThi;
     let nguoitao = this._username;
     this.DotThi.forEach(function (value) {
@@ -125,6 +94,8 @@ export class ModalDiemthiComponent implements OnInit {
         phongthi = value.phongthi;
       }
     });
+    let kiemtradiem : any ;
+    let kiemtramssv : any ;
     this.DiemThi.forEach(function (value) {
       value.tendotthi = dotthi;
       value.ngaythi = ngaythi;
@@ -132,10 +103,29 @@ export class ModalDiemthiComponent implements OnInit {
       value.phongthi = phongthi;
       value.nguoitao = nguoitao;
       value.loaidiem = 'Điểm thi';
+      if(isNaN(+value.tongdiem) || value.tongdiem < 0 || value.tongdiem > 10
+      || isNaN(+value.laptrinhc) || value.laptrinhc < 0 || value.laptrinhc > 10
+      || isNaN(+value.msword) || value.msword < 0 || value.msword > 10
+      || isNaN(+value.msexcel) || value.msexcel < 0 || value.msexcel > 10
+      || isNaN(+value.mspowerpoint) || value.mspowerpoint < 0 || value.mspowerpoint > 10
+      ){
+        kiemtradiem=false;
+      }
+      if(isNaN(+value.mssv) || value.mssv.length !=10 || value.mssv.substr(0, 1) != '0'){
+        kiemtramssv=false;
+      }
     });
-    this.DiemthiService.importDiemThi(this.DiemThi).subscribe(data => { this.DiemThi.push(data);
-    });
-    this.toastr.success('Import thành công');
-
+    if (kiemtradiem==false) {
+      this.toastr.error('Vui lòng kiểm tra lại điểm nhập vào');
+    }
+    else if (kiemtramssv==false) {
+      this.toastr.error('Mã số sinh viên không đúng định dạng. Vui long kiểm tra lại');
+    }
+    else{
+      this.DiemthiService.importDiemThi(this.DiemThi).subscribe(data => { this.DiemThi.push(data);});
+      this.toastr.success('Nhập điểm đợt thi thành công');
+      this.DiemThi=null;
+      this.getdanhsachdotthi();
+    }
   }
 }
