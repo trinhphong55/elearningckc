@@ -186,6 +186,7 @@
                       placeholder="Mô tả ngắn"
                       style="min-height: 90px;"
                       required
+                      minlength="25"
                     />
                     <div
                       *ngIf="
@@ -195,6 +196,9 @@
                     >
                       <div *ngIf="moTaNgan.errors.required">
                         Nhập Mô tả ngắn.
+                      </div>
+                      <div *ngIf="moTaNgan.errors.minlength">
+                        Mô tả ngắn phải trên 25 ký tự.
                       </div>
                     </div>
                   </div>
@@ -355,6 +359,7 @@
                   class="col-12"
                   formControlName="noiDung"
                   [editor]="Editor"
+                  minlength="50"
                 ></ckeditor>
                 <div
                   *ngIf="noiDung.invalid && (noiDung.dirty || noiDung.touched)"
@@ -362,6 +367,9 @@
                 >
                   <div *ngIf="noiDung.errors.required">
                     Nhập nội dung bài viết.
+                  </div>
+                  <div *ngIf="noiDung.errors.minlength">
+                    Nội dung cần nhiều hơn 50 ký tự.
                   </div>
                 </div>
                 <div
@@ -469,6 +477,7 @@
                       class="form-control"
                       placeholder="Mô tả ngắn"
                       style="min-height: 90px;"
+                      minlength="25"
                       required
                     />
                     <div
@@ -480,6 +489,9 @@
                     >
                       <div *ngIf="moTaNgan2.errors.required">
                         Nhập Mô tả ngắn.
+                      </div>
+                      <div *ngIf="moTaNgan2.errors.minlength">
+                        Mô tả ngắn phải trên 25 ký tự.
                       </div>
                     </div>
                   </div>
@@ -631,6 +643,7 @@
                   class="col-12"
                   formControlName="noiDung"
                   [editor]="Editor"
+                  minlength="50"
                 ></ckeditor>
                 <div
                   *ngIf="
@@ -639,7 +652,10 @@
                   class="alert alert-danger"
                 >
                   <div *ngIf="noiDung2.errors.required">
-                    Chọn Vị trí Hiển thị lên trang chủ.
+                    Điền nội dung.
+                  </div>
+                  <div *ngIf="noiDung2.errors.minlength">
+                    Nội dung cần nhiều hơn 50 ký tự.
                   </div>
                 </div>
                 <div
