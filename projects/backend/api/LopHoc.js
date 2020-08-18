@@ -49,10 +49,13 @@ exports.getAll = async (req, res) => {
     });
     let result = [];
     result = await LopHocs.map(async (lop) => {
-      const total = await sinhVienModel.countDocuments({ maLopHoc: lop.maLopHoc });
+      const total = await sinhVienModel.countDocuments({
+        maLopHoc: lop.maLopHoc,
+      });
       lop.siSo = total;
       return view(lop);
     });
+
     const kq = await Promise.all(result);
     res.json(kq);
   } catch (error) {
@@ -93,8 +96,10 @@ exports.deleteTheoTienTo = async (req, res) => {
     TienTo = TienTo.slice(0, 7);
 
     if (TienTo.length >= 7) {
-      const sv = await sinhVienModel.findOne({ maLopHoc: { $regex: TienTo + ".*" },});
-      if(sv){
+      const sv = await sinhVienModel.findOne({
+        maLopHoc: { $regex: TienTo + ".*" },
+      });
+      if (sv) {
         return res.status(200).json({
           status: 200,
           msg: "Xóa thất bại, lớp có chứa sinh viên",
@@ -172,21 +177,21 @@ exports.insert = async (req, res) => {
 
     LopHocs.forEach((element) => {
       if (req.body.maLopHoc == element.maLopHoc) {
-        return res.json({
+        return res.end({
           status: 200,
           ok: false,
           msg: "Mã này đã tồn tại",
         });
       }
       if (req.body.tenLop == element.tenLop) {
-        return res.json({
+        return res.end({
           status: 200,
           ok: false,
           msg: "Tên này đã tồn tại",
         });
       }
       if (req.body.tenVietTat == element.tenVietTat) {
-        return res.json({
+        return res.end({
           status: 200,
           ok: false,
           msg: "Tên viết tắt này đã tồn tại",
@@ -197,13 +202,14 @@ exports.insert = async (req, res) => {
     const lophoc = new LopHoc(setLopHoc(req));
     const data = await lophoc.save();
 
-    res.json({
+    return res.json({
       status: 200,
       ok: true,
-      msg: "Thêm thành công Lớp học",
+      msg: "Thêm thành công Lớp học " + req.body.tenVietTat ,
       data: data,
     });
   } catch (error) {
+
     res.json(error);
   }
 };

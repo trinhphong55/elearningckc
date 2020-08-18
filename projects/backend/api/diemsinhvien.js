@@ -143,3 +143,19 @@ exports.LayTONGDIEM = async (req, res) => {
     console.log(err)
   }
 };
+exports.luuTongDiem = async (req, res) => {
+  try {
+    var ktDiem =  await Diemsinhvien.find({maSinhVien:req.body.mssv}).exec();
+    if(ktDiem=="")
+    {
+      const diem = new Diemsinhvien(req.body);
+        var data = await diem.save();
+        res.status(201).json({ data });
+    }
+    else  {
+      res.status(500).json({ message:"lỗi trùng dữ liệu" });
+    }
+    } catch (error) {
+      res.status(500).json({ message:"lỗi trùng dữ liệu" });
+    }
+};

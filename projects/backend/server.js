@@ -12,7 +12,6 @@ const MONGODB_URI =
   "mongodb://ai_noi_mongo_die:123@103.92.26.177:27017/devAngular?retryWrites=true&w=majority?authSource=admin";
 
 const PORT = 4100;
-
 const httpsOptions = {
   key: fs.readFileSync("security/localhost.key"),
   cert: fs.readFileSync("security/localhost.crt"),
