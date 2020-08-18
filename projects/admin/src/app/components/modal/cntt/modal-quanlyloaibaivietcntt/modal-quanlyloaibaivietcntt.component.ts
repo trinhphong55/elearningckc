@@ -81,6 +81,7 @@ export class ModalQuanlyloaibaivietcnttComponent implements OnInit {
         // console.log(this._logResult);
         alert('Thêm loại bài viết mới thành công');
         this.getDanhSachLoaiBaiViet();
+        this.onResetFormValue();
       });
     this.loaiBaiVietForm.patchValue({
       tenLoaiBaiViet: '',
@@ -95,8 +96,8 @@ export class ModalQuanlyloaibaivietcnttComponent implements OnInit {
         // this._logResult = data;
         // console.log(this._logResult);
         alert('Chỉnh sửa loại bài viết thành công');
-        this.onResetFormValue();
         this.getDanhSachLoaiBaiViet();
+        this.onResetFormValue();
       });
   }
 
