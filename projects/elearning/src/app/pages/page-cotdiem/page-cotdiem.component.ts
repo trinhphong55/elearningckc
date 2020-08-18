@@ -99,8 +99,8 @@ export class PageCotodiemComponent implements OnInit {
 
 
   themDanhSachCotDiem() {
-    if (this.formCotDiem.get('tenCotDiem').value == '' || this.formCotDiem.get('heSo').value == '' || this.formCotDiem.get('moTa').value == '' ||  this.formCotDiem.get('maBaiTap').value == null) {
-        this.err="Dữ Liệu Không Được Để Trống";
+    if (this.formCotDiem.get('tenCotDiem').value == ''||this.formCotDiem.get('tenCotDiem').value == null || this.formCotDiem.get('heSo').value == '' || this.formCotDiem.get('moTa').value == '' ||  this.formCotDiem.get('maBaiTap').value == null ||  (this.formCotDiem.get('heSo').value) <0 || this.formCotDiem.get('heSo').value >5) {
+        this.err="Dữ Liệu Không Được Để Trống hoặc hệ số không hợp lệ";
     }
     else {
       this.arr = { maLopHocPhan: this.router.snapshot.paramMap.get('id'), tenCotDiem: this.formCotDiem.get('tenCotDiem').value, heSo: this.formCotDiem.get('heSo').value, tinhDiem: this.formCotDiem.get('moTa').value, maBaiTap: this.formCotDiem.get('maBaiTap').value }
@@ -120,8 +120,9 @@ export class PageCotodiemComponent implements OnInit {
   }
   suaCotDiem() {
     
-    if (  this.formCotDiem.get('heSo').value == null || this.formCotDiem.get('moTa').value =='' || this.formCotDiem.get('tenCotDiem').value ==''|| this.formCotDiem.get('maBaiTap').value == null) {
-      this.err="Dữ Liệu Không Được Để Trống";
+    if (  this.formCotDiem.get('heSo').value == null || this.formCotDiem.get('moTa').value =='' || this.formCotDiem.get('tenCotDiem').value ==''|| this.formCotDiem.get('maBaiTap').value == null ||  (this.formCotDiem.get('heSo').value) <0 || this.formCotDiem.get('heSo').value >5) {
+      this.err="Dữ Liệu Không Được Để Trống hoặc hệ số không hợp lệ";
+      
   }
   else{
     this.arrs = { tenCotDiem: this.formCotDiem.get('tenCotDiem').value, heSo: this.formCotDiem.get('heSo').value, tinhDiem: this.formCotDiem.get('moTa').value, maBaiTap: this.formCotDiem.get('maBaiTap').value }
@@ -133,9 +134,11 @@ export class PageCotodiemComponent implements OnInit {
         this.err="";
         this.quyenSua = "none";
         this.quyenThem = ''
+        
       },
       (error) => {
         console.log(error);
+        this.err="có lỗi xảy ra";
       }
     )
   }

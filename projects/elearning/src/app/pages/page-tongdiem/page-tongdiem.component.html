@@ -7,8 +7,8 @@
 
         </div>
         <div class="col-md-4">
-          <button type="button" class="btn btn-info">Chấm điểm all</button>
-          <div class="btn-group ml-2">
+          <button type="button" style="float:right" (click)="exPortExcel()" class="btn btn-info">Export Excel</button>
+          <!-- <div class="btn-group ml-2">
             <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
               aria-expanded="false">
               Nhập từ
@@ -17,7 +17,7 @@
               <input type="file" (change)="onFileChange($event)" multiple="false">
               <a class="dropdown-item">Bài tập</a>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
       <div class="table-scroll">
@@ -42,25 +42,17 @@
               <tbody *ngFor="let hs of dsTenHocSinh ; index as stt">
                 <tr>
                   <td>{{stt+1}}</td>
-                  <td>{{hs.maSinhVien}}</td>
+                  <td>{{hs.mssv}}</td>
                   <td>{{hs.ho}} {{hs.ten}}</td>
-                  <ng-template *ngFor="let ct of ctDiem" [ngIf]="hs.maSinhVien== ct.maSinhVien">
+                  <ng-template *ngFor="let ct of ctDiem" [ngIf]="hs.mssv== ct.maSinhVien">
                     <ng-template *ngFor="let t of cotDiemHP" [ngIf]="ct.maCotDiem == t.maCotDiem">
-                        <td >
-                          <form>
-                            <div class="form-group">
-                              <input type="text" class="form-control" id="diemsv" placeholder="{{ct.diem}}">
-                            </div>
-                          </form>
+                        <td >                     
+                            {{ct.diem}}      
                         </td>
                     </ng-template>
                   </ng-template>
                   <td>
-                    <form>
-                        <div class="form-group">
-                          <input type="text" class="form-control" id="diemsv" placeholder="{{hs.diem}}">
-                        </div>
-                    </form>
+                    {{hs.diemTongKet}} 
                   </td>
                 </tr>
               </tbody>

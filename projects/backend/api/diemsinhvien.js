@@ -4,6 +4,10 @@ const monHoc = require("../models/MonHoc.model");
 const COTDIEMLOPHP = require("../models/cotdiem-lophocphan.model");
 const CTDIEMLHP = require("../models/ct-diemsv-lhp.model");
 const SINHVIEN = require("../models/sinh-vien.model");
+const lophocphan = require("../models/LopHocPhan.model");
+const { FORMERR } = require("dns");
+const { combineLatest } = require("rxjs");
+const { config } = require("process");
 const setData = (req) => {
   return {
     maSinhVien: req.body.maSinhVien,
@@ -89,22 +93,53 @@ let result = (req) => {
 
 //lấy thong tin diem sinh vien theo malop hoc phan
 exports.LayTONGDIEM = async (req, res) => {
-  var sinhvien = await SINHVIEN.find({trangThai:1});
-  var diem = await Diemsinhvien.find({ maLopHocPhan:req.params.maLopHocPhan});
-  var cotDiemHP = await COTDIEMLOPHP.find({trangThai:1});
-  var ctDiem = await CTDIEMLHP.find({trangThai:1});
-  var data = [];
-  var beta = [];
-  var ceta = [];
-  var tongDiem = [];
-  sinhvien.forEach(async s => {
-    diem.forEach(async x => {
-     if(s.maSinhVien==x.maSinhVien)
-     {
-      data.push({ho:s.ho,ten:s.ten, maSinhVien: x.maSinhVien,tongDiem:x.diem});
-     }
-    })
-  })
-  res.json(data);
+  try {
+    var sinhvien = await SINHVIEN.find({ trangThai: 1 });
+    var diem = await Diemsinhvien.find({ maLopHocPhan: req.params.maLopHocPhan });
+    var cotDiemHP = await COTDIEMLOPHP.find({ trangThai: 1, maLopHocPhan: req.params.maLopHocPhan });
+    var ctDiem = await CTDIEMLHP.find({ trangThai: 1 });
+    var lhp = await lophocphan.find({ maLopHocPhan: req.params.maLopHocPhan, trangThai: 1 })
+    //dssv
+    var dsSv = [];
+    for (let sv of sinhvien) {
+      for (let lh of lhp) {
+        if (sv.maLopHoc == lh.maLopHoc) {
+          dsSv.push({ ho: sv.ho, ten: sv.ten, mssv: sv.maSinhVien, email: sv.email, tongDiem: 0, tongHeSo: 0 })
+        }
+      }
+    }
+    ///chi tiet cot diem
+    var data = [];
+    for (let ct of cotDiemHP) {
+      for (let i of ctDiem) {
+        if (i.maCotDiem == ct.maCotDiem) {
+          data.push({ diem: (i.diem * ct.heSo), mssv: i.maSinhVien, heSo: parseInt(ct.heSo) })
+        }
+      }
+    }
+    ///lay tong diem  sinh vien
+    var dsTongDiem = [];
+    for (let sv of dsSv) {
+      for (let d of data) {
+        if (sv.mssv == d.mssv) {
 
+          sv.tongDiem += d.diem;
+          sv.tongHeSo += d.heSo;
+          dsTongDiem.push({ ho: sv.ho, ten: sv.ten, mssv: sv.mssv, email: sv.email, tongDiem: sv.tongDiem, tongHeSo: sv.tongHeSo, diemTongKet: ( Math.round(((sv.tongDiem / sv.tongHeSo ) + Number.EPSILON) * 100) / 100) })
+        }
+      }
+    }
+    //lay ds diem tong ke 
+    var diemTongKet = [];
+ var cd = cotDiemHP.length;
+ var ct = ctDiem.length;
+ for(let i=0;i<ct;i++)
+ {
+   i=i+(cd-1);
+   diemTongKet.push(dsTongDiem[i])
+ }
+     res.json(diemTongKet);
+  } catch (err) {
+    console.log(err)
+  }
 };

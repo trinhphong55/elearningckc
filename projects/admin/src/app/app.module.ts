@@ -1,7 +1,7 @@
 import { NgSelectModule } from '@ng-select/ng-select';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
@@ -98,6 +98,7 @@ import { ModalThoikhoabieuComponent } from './components/modal/chuongtrinhdaotao
 import { ModalPhonghocComponent } from './components/modal/chuongtrinhdaotao/modal-phonghoc/modal-phonghoc.component';
 import { ModalLichphonghocComponent } from './components/modal/chuongtrinhdaotao/modal-lichphonghoc/modal-lichphonghoc.component';
 import { ModalBaivietComponent } from './components/modal/cntt/modal-baiviet/modal-baiviet.component';
+import { AuthInterceptor } from './helper/auth.interceptor';
 import { ModalNhapdiemlophocComponent } from './components/modal/ttth/modal-nhapdiemlophoc/modal-nhapdiemlophoc.component';
 
 @NgModule({
@@ -203,7 +204,11 @@ import { ModalNhapdiemlophocComponent } from './components/modal/ttth/modal-nhap
     NgApexchartsModule,
     NgSelectModule,
   ],
-  providers: [ApiService, TintucCnttService],
+  providers: [ApiService, TintucCnttService,{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

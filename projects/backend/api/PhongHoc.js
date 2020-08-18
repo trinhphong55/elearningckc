@@ -11,6 +11,15 @@ router.get('/laytatca', async (req, res) => {
   }
 });
 
+router.get('/', async (req, res) => {
+  try {
+    const data = await PhongHoc.find({ trangThai: 1}, {}, { sort: { 'tenPhongHoc': 1 } }).exec();
+    return res.json(data);
+  } catch (error) {
+    return res.json({ message: "Something so wrong" + message });
+  }
+});
+
 router.get('/getone/:maPhongHoc', async (req, res) => {
   const maPhongHoc = req.params.maPhongHoc;
   await PhongHoc.findOne({ maPhongHoc }).then(ph => {

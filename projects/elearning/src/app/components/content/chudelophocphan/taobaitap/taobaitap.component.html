@@ -34,8 +34,8 @@
           <form>
             <div class="form-group">
               <label for="exampleFormControlTextarea1">Hướng dẫn (không bắt buộc)</label>
-              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
-                [(ngModel)]="baitap.huongDan" name="huongdan"></textarea>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="baitap.huongDan"
+                name="huongdan"></textarea>
             </div>
           </form>
         </div>
@@ -48,11 +48,6 @@
             <div>
               <div class="row uploadList" *ngFor="let item of uploader.queue">
                 <div class="col-sm-2">{{item.file.name}}</div>
-                <div class="col-sm-4">
-                  <div class="progress">
-                    <div class="progress-bar bg-success" [ngStyle]="{'width':item.progress+'%'}"></div>
-                  </div>
-                </div>
                 <div class="col-sm-4">
                   <!-- <button type="button" class="btn btn-dark" (click)="item.upload()">Upload</button>  -->
                   <button type="button" class="btn btn-danger" (click)="item.remove()">Bỏ</button>
@@ -96,14 +91,14 @@
       <mat-label>Chủ đề </mat-label>
       <form class="example-form">
         <mat-form-field class="example-full-width">
-          <mat-label>tạo chủ đề</mat-label>
-          <input matInput placeholder="Tạo chủ đề" [disabled]="true">
-        </mat-form-field>
-        <mat-form-field class="example-full-width">
           <mat-label>Không có chủ đề</mat-label>
-          <mat-select [(ngModel)]="baitap.chuDe" name="selectChuDe">
+          <mat-select [(ngModel)]="baitap.chuDe" (selectionChange)="changeChuDe(1)" name="selectChuDe">
             <mat-option *ngFor="let chude of dsChuDe" [value]="chude.maChuDe">{{ chude.tenChuDe }} </mat-option>
           </mat-select>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>tạo chủ đề</mat-label>
+          <input [(ngModel)]="newChude" (change)="changeChuDe(2)" name="chuDeMoi" matInput placeholder="Tạo chủ đề">
         </mat-form-field>
       </form>
       <button mat-button [matMenuTriggerFor]="Tieuchichamdiem"><i class="fas fa-plus"></i> Tiêu chí chấm

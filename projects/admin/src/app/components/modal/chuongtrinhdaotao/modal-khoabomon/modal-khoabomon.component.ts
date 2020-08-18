@@ -218,7 +218,7 @@ export class ModalKhoabomonComponent implements OnInit {
           this.result.msg = response.msg;
           this.result.status = response.status;
           alert(this.result.msg);
-          console.log(response);
+
           //load lại dữ liệuliệu
           this.retriveKhoaBoMon();
 

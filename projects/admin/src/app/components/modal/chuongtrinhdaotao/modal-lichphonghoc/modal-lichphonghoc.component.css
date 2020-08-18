@@ -1,0 +1,57 @@
+#test {
+  /* max-height: 20em; */
+  overflow: scroll;
+  position: relative;
+}
+
+table {
+  position: relative;
+  border-collapse: collapse;
+}
+
+td,
+th {
+  padding: 0.25em;
+}
+
+.tuan,
+.lop {
+  z-index: 1;
+}
+
+.lop {
+  color: white;
+}
+
+.lichHoc {
+  cursor: pointer;
+}
+
+thead th {
+  position: -webkit-sticky; /* for Safari */
+  position: sticky;
+  top: 0;
+  background: #3b77b6;
+  color: #fff;
+}
+
+thead th:first-child {
+  left: 0;
+  z-index: 2;
+}
+
+tbody th {
+  position: -webkit-sticky; /* for Safari */
+  position: sticky;
+  left: 0;
+  background: #fff;
+  border-right: 1px solid #ccc;
+  min-width: 100px;
+}
+
+tbody select.form-control {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  border: none;
+}

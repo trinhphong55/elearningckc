@@ -28,6 +28,10 @@ export class BaiTapService {
   public layBaiTap_theoMaBaiTap(maBaiTap){
     return this.http.get<any>(this.baiTapURL + `/${maBaiTap}`, httpOptions);
   }
+  //lay danh sach bt thro chu de
+  public danhSachBtChamDiem(maLopHocPhan:any){
+    return this.http.get<any>(this.baiTapURL + `/danhsachbaitap/${maLopHocPhan}`, httpOptions);
+  }
   constructor(
     private http: HttpClient ) {}
 }
