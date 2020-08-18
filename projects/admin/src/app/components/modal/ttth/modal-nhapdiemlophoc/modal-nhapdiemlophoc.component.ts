@@ -108,23 +108,40 @@ export class ModalNhapdiemlophocComponent implements OnInit {
       let value = true;
       this.checkboxLopHocRieng= value;
     }
+    this.selectLopHoc=null;
   }
   importExcel() {
-    let lop = this.selectLopHoc;
-    let nguoitao = this._username;
     let kiemtradiem : any ;
     let kiemtramssv : any ;
-    this.DiemThi.forEach(function (value) {
-      value.lop = lop;
-      value.nguoitao = nguoitao;
-      value.loaidiem = 'Điểm lớp học';
-      if(isNaN(+value.tongdiem) || value.tongdiem < 0 || value.tongdiem > 10){
-        kiemtradiem=false;
-      }
-      if(isNaN(+value.mssv) || value.mssv.length !=10 || value.mssv.substr(0, 1) != '0'){
-        kiemtramssv=false;
-      }
-    });
+    let nguoitao = this._username;
+    if(this.selectLopHoc==null){
+      let nguoitao = this._username;
+      this.DiemThi.forEach(function (value) {
+        value.nguoitao = nguoitao;
+        value.loaidiem = 'Điểm lớp học';
+        if(isNaN(+value.tongdiem) || value.tongdiem < 0 || value.tongdiem > 10){
+          kiemtradiem=false;
+        }
+        if(isNaN(+value.mssv) || value.mssv.length !=10 || value.mssv.substr(0, 1) != '0'){
+          kiemtramssv=false;
+        }
+      });
+    }
+    else{
+      let lop = this.selectLopHoc;
+      this.DiemThi.forEach(function (value) {
+        value.lop = lop;
+        value.nguoitao = nguoitao;
+        value.loaidiem = 'Điểm lớp học';
+        if(isNaN(+value.tongdiem) || value.tongdiem < 0 || value.tongdiem > 10){
+          kiemtradiem=false;
+        }
+        if(isNaN(+value.mssv) || value.mssv.length !=10 || value.mssv.substr(0, 1) != '0'){
+          kiemtramssv=false;
+        }
+      });
+    }
+
     if (kiemtradiem==false) {
       this.toastr.error('Vui lòng kiểm tra lại điểm nhập vào');
     }
