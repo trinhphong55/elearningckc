@@ -7,7 +7,7 @@ exports.getAll= async (req,res)=>{
       const data = await baidangfb.find();
       res.json(data);
     } catch (error) {
-      res.json({message: err});
+      res.json({error});
     }
 };
 //Thêm vào draw

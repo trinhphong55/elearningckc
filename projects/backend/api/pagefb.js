@@ -7,7 +7,7 @@ exports.getAll= async (req,res)=>{
       const data = await pagefb.find({trangThai: "1"});
       res.json(data);
     } catch (error) {
-      res.json({message: err});
+      res.json({error});
     }
 };
 //add vào db PageFB
@@ -77,7 +77,7 @@ exports.updatePageFB = async (req, res) => {
         },
       }
     );
-    
+
     let  result = {
       status: 200,
       ok: false,

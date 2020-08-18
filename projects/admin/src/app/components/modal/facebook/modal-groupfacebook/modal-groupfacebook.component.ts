@@ -256,7 +256,7 @@ export class ModalGroupfacebookComponent implements OnInit {
 }
 
   insertTobdGrp(){
-    this.delay(1000).then(any=>{
+    this.delay(2000).then(any=>{
       //your task after delay.
       this.loaistt = this.addForm.value.getLoaisttGrp;
       this.idgroup = $('#getidGrp').val();
@@ -267,11 +267,7 @@ export class ModalGroupfacebookComponent implements OnInit {
           this.tengroup = item.tenGroupFB;
         }
       })
-      this.getloai.filter((item)=>{
-        if(item.loai === this.loaistt){
-          this.MaLoai = item.maLoai;
-        }
-      })
+
       let linkpost = $('#linksttGrp').val();
       let Post_idd = $('#postidGrp').val();
       console.log(linkpost);
@@ -281,10 +277,10 @@ export class ModalGroupfacebookComponent implements OnInit {
       console.log(this.messa);
       console.log(this.urlImg);
       console.log(this.tengroup);
-      console.log(this.MaLoai);
+
       this.delay(500).then(any=>{
         var nofi = $('#returnloaig2').val();
-          if(nofi !== ''){
+          if(nofi !== ''||this.loaistt == null||this.messa==""){
             this.nofis = nofi;
             this.toastr.warning(this.nofis,'Nhắc nhở',{
               timeOut:2000,
@@ -304,6 +300,12 @@ export class ModalGroupfacebookComponent implements OnInit {
                 timeOut:2000,
                 positionClass:'toast-bottom-right',
               });
+              this.getloai.filter((item)=>{
+                if(item.loai === this.loaistt){
+                  this.MaLoai = item.maLoai;
+                }
+              });
+              console.log(this.MaLoai);
               this.baiDangFBService.create({
                 ID: this.idgroup,
                 postID: Post_idd,
@@ -312,7 +314,8 @@ export class ModalGroupfacebookComponent implements OnInit {
                 url: this.urlImg,
                 maLoai: this.MaLoai,
                 loai: this.loaistt,
-                thuoc: this.tengroup
+                thuoc: this.tengroup,
+                postOf: 'group'
               }).subscribe((ress:any)=>{
                 this.mss = ress.msg;
                 this.mss1 = ress.msg1;
@@ -336,7 +339,7 @@ export class ModalGroupfacebookComponent implements OnInit {
             this.delay(1000).then(any=>{
 
               this.getMessageGrp.setValue('');
-              this.getLoaisttGrp.setValue('null');
+              this.getLoaisttGrp.setValue(null);
               this.getURLimgGrp.setValue('');
             });
             }
@@ -348,11 +351,7 @@ export class ModalGroupfacebookComponent implements OnInit {
   }
   insertDraftGrp(){
     this.loaistt = this.addForm.value.getLoaisttGrp;
-    this.getloai.filter((item)=>{
-      if(item.loai === this.loaistt){
-        this.MaLoai = item.maLoai;
-      }
-    })
+
 
     this.idgroup = $('#getidGrp').val();
     this.messa = this.addForm.value.getMessageGrp;
@@ -363,27 +362,32 @@ export class ModalGroupfacebookComponent implements OnInit {
       }
     })
     console.log(this.loaistt);
-    console.log(this.MaLoai);
+
     console.log(this.messa);
     console.log(this.urlImg);
     console.log(this.tengroup);
     console.log(this.idgroup);
 
-    if(this.messa == '' || this.loaistt == 'null'){
-      this.loaistt = 'null';
+    if(this.messa == null || this.messa=="" || this.loaistt == null ||this.loaistt == 'null'){
        this.toastr.warning('Không được để trống Nội dung và Loại bài viết','Nhắc nhở',{
          timeOut:2000,
          positionClass:'toast-bottom-right',
        });
     }else{
-
+      this.getloai.filter((item)=>{
+        if(item.loai === this.loaistt){
+          this.MaLoai = item.maLoai;
+        }
+      })
+      console.log(this.MaLoai);
       this.baiDangFBService.createDraw({
         ID: this.idgroup,
         message: this.messa,
         url: this.urlImg,
         maLoai: this.MaLoai,
         loai: this.loaistt,
-        thuoc: this.tengroup
+        thuoc: this.tengroup,
+        postOf: 'group'
       }).subscribe((ress:any)=>{
         this.mss = ress.msg;
         this.mss1 = ress.msg1;
@@ -393,8 +397,8 @@ export class ModalGroupfacebookComponent implements OnInit {
             positionClass:'toast-bottom-right',
           });
         }
-        if(this.mss1){
-          this.toastr.error(this.mss1,'Lỗi',{
+        if(this.mss){
+          this.toastr.error(this.mss,'Lỗi',{
             timeOut:2000,
             positionClass:'toast-bottom-right',
           });

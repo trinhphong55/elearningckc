@@ -17,8 +17,8 @@ export class ModalBaidangfacebookComponent implements OnInit {
   trangthai: any;
   setTrangthai: any;
   mess:any;
-  selectedCityIds:[null];
-  selectedPgae:[null];
+  selectedCityIds:[];
+  selectedPgae:any[];
   layloaifb:any;
   getpg:any;
   waitTime = 0;
@@ -30,6 +30,9 @@ export class ModalBaidangfacebookComponent implements OnInit {
   getloaifb:any;
   tenpage:any;
   nofis:any;
+  mss1:any;
+  mss:any;
+  mslink:any;
 
   //Khai báo list
   public posttams: any;
@@ -41,7 +44,9 @@ export class ModalBaidangfacebookComponent implements OnInit {
     private lophocSV: LopHocService,
     private LoaiFB: LoaifbService,
     private pageSV:PagefbService,
-    private toastr:ToastrService
+    private toastr:ToastrService,
+    private baiDangFBService: BaiDangfbService,
+
 
   ) {}
   searchpage;
@@ -53,9 +58,11 @@ export class ModalBaidangfacebookComponent implements OnInit {
       getLoaisTT:new FormControl(),
       conTent:new FormControl(),
       urlimg:new FormControl(),
+      mslinkpage:new FormControl(),
       getLoaisTTgrp:new FormControl(),
       conTentgrp:new FormControl(),
       urlimggrp:new FormControl(),
+      mslinkgroup:new FormControl(),
     });
     this.getAll();
     this.getTrangthai();
@@ -85,6 +92,12 @@ export class ModalBaidangfacebookComponent implements OnInit {
 
   get urlimggrp(){
     return this.addForm.get('urlimggrp');
+  }
+  get mslinkpage(){
+    return this.addForm.get('mslinkpage');
+  }
+  get mslinkgroup(){
+    return this.addForm.get('mslinkgroup');
   }
 
   getAll() {
@@ -178,7 +191,7 @@ export class ModalBaidangfacebookComponent implements OnInit {
 
   transIDpage(){
     $('#listidpage').val(this.selectedPgae);
-
+    console.log(this.selectedPgae);
 
     this.delay(1000).then(any=>{
       var nofi = $('#returnloaip1').val();
@@ -207,30 +220,163 @@ export class ModalBaidangfacebookComponent implements OnInit {
     });
   }
 
-  insertTime(d){
+  insertdartbdgage(){
     this.conTentt = this.addForm.value.conTent;
     this.urlImg = this.addForm.value.urlimg;
-    let linkpost = $('#linkstt').val();
-    let Post_idd = $('#postid').val();
     this.getloaifb = this.addForm.value.getLoaisTT;
+    this.mslink = this.addForm.value.mslinkpage;
 
-    this.getpg.filter((item)=>{
-      if(item.id_Page === d){
-        this.tenpage = item.tenPage;
-      }
-    })
-    this.layloaifb.filter((item)=>{
-      if(item.loai === this.getloaifb){
-        this.getMaloai = item.maLoai;
-      }
-    })
+
     console.log(this.conTentt);
     console.log(this.urlImg);
-    console.log(this.tenpage);
     console.log(this.getloaifb);
-    console.log(this.getMaloai);
+
+    console.log(this.selectedPgae);
+    if(this.conTentt === '' || this.getloaifb == 'null'|| this.selectedPgae==null|| this.selectedPgae.length==0||this.conTentt ==null){
+       this.toastr.warning('Không được để trống Nội dung và Loại bài viết','Nhắc nhở',{
+         timeOut:2000,
+         positionClass:'toast-bottom-right',
+       });
+    }else{
+      this.layloaifb.filter((item)=>{
+        if(item.loai === this.getloaifb){
+          this.getMaloai = item.maLoai;
+        }
+      });
+      console.log(this.getMaloai);
+      this.selectedPgae.forEach(d => {
+        this.getpg.filter((item)=>{
+          if(item.id_Page === d){
+            this.tenpage = item.tenPage;
+          }
+        })
+      console.log(this.tenpage);
+      this.baiDangFBService.createDraw({
+        ID: d,
+        message: this.conTentt + this.mslink,
+        url: this.urlImg,
+        maLoai: this.getMaloai,
+        loai: this.getloaifb,
+        thuoc: this.tenpage,
+        postOf: 'page'
+      }).subscribe((ress:any)=>{
+        this.mss = ress.msg;
+        this.mss1 = ress.msg1;
+        if(this.mss1){
+          this.toastr.success(this.mss1,'Thông báo',{
+            timeOut:2000,
+            positionClass:'toast-bottom-right',
+          });
+        }
+        if(this.mss){
+          this.toastr.error(this.mss,'Lỗi',{
+            timeOut:2000,
+            positionClass:'toast-bottom-right',
+          });
+        }
+        console.log(ress);
+      })
+
+
+      });
+      this.delay(1000).then(any=>{
+
+        this.conTent.setValue('');
+        this.getLoaisTT.setValue('');
+        this.urlimg.setValue('');
+      });
+    }
+
+
+
     // console.log(linkpost);
     // console.log(Post_idd);
+
+  }
+
+  insertdartbdgrp(){
+    this.conTentt = this.addForm.value.conTentgrp;
+    this.urlImg = this.addForm.value.urlimggrp;
+    this.getloaifb = this.addForm.value.getLoaisTTgrp;
+    this.mslink = this.addForm.value.mslinkgroup;
+
+
+    console.log(this.conTentt);
+    console.log(this.urlImg);
+    console.log(this.getloaifb);
+
+    console.log(this.selectedCityIds);
+    if(this.conTentt === '' || this.getloaifb == 'null'|| this.selectedCityIds==null|| this.selectedCityIds.length==0||this.conTentt ==null){
+       this.toastr.warning('Không được để trống Nội dung và Loại bài viết','Nhắc nhở',{
+         timeOut:2000,
+         positionClass:'toast-bottom-right',
+       });
+    }else{
+      this.layloaifb.filter((item)=>{
+        if(item.loai === this.getloaifb){
+          this.getMaloai = item.maLoai;
+        }
+      });
+      console.log(this.getMaloai);
+      this.selectedCityIds.forEach(d => {
+        this.getpg.filter((item)=>{
+          if(item.IDGroupFB === d){
+            this.tenpage = item.tenGroupFB;
+          }
+        })
+      console.log(this.tenpage);
+      this.baiDangFBService.createDraw({
+        ID: d,
+        message: this.conTentt + this.mslink,
+        url: this.urlImg,
+        maLoai: this.getMaloai,
+        loai: this.getloaifb,
+        thuoc: this.tenpage,
+        postOf: 'group'
+      }).subscribe((ress:any)=>{
+        this.mss = ress.msg;
+        this.mss1 = ress.msg1;
+        if(this.mss1){
+          this.toastr.success(this.mss1,'Thông báo',{
+            timeOut:2000,
+            positionClass:'toast-bottom-right',
+          });
+        }
+        if(this.mss){
+          this.toastr.error(this.mss,'Lỗi',{
+            timeOut:2000,
+            positionClass:'toast-bottom-right',
+          });
+        }
+        console.log(ress);
+      })
+
+
+      });
+      this.delay(1000).then(any=>{
+
+        this.conTentgrp.setValue('');
+        this.getLoaisTTgrp.setValue('');
+        this.urlimggrp.setValue('');
+      });
+    }
+
+
+
+    // console.log(linkpost);
+    // console.log(Post_idd);
+
+  }
+
+  capnhatchuadang(){
+    console.log('cập nhật chưa đăng');
+  }
+
+  capnhatdadang(){
+    console.log('cập nhật đã đăng');
+  }
+
+  updatedadang(){
 
   }
 

@@ -59,6 +59,21 @@
                     />
                   </div>
                 </div>
+                <!-- <div class="">
+                  <div class="form-group">
+                    <label for="">Chia tin tức từ trang công nghệ thông tin</label>
+                    <ng-select id="mslink" style="font-size: 1rem;" [items]=""
+                              bindLabel=""
+                              bindValue=""
+                              [multiple]="true"
+                              placeholder="Chọn..."
+                              [(ngModel)]="">
+                    </ng-select>
+                    <input id="listidgrp"value="" type="text" name="" hidden>
+                    <input id="returnloaigrp1"value="" type="text" name="" hidden>
+
+                  </div>
+                </div> -->
                 <div class="">
                   <div class="form-group">
                     <label for="">Loại bài viết</label>
@@ -95,6 +110,7 @@
                 <button
                   type="button"
                   class="btn btn-secondary"
+                  (click)="insertdartbdgrp()"
                 >
                   Lưu nháp
                 </button>
@@ -189,7 +205,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-success" onclick="_StartPostPage()" (click)="transIDpage()">Đăng</button>
-                <button type="button" class="btn btn-secondary">Lưu nháp</button>
+                <button type="button" class="btn btn-secondary" (click)="insertdartbdgage()">Lưu nháp</button>
 
                 <button
                   type="button"
@@ -282,7 +298,7 @@
                   <div>{{ d.message }}</div>
                 </td>
                 <td class="text-center">
-                  <div [hidden]="d.link === '' ">
+                  <div [hidden]="d.link==null">
                     <a [href]="d.link" target="_blank"
                     >Nhấn để đi đến bài viết</a
                   >
@@ -309,10 +325,26 @@
                     </button>
                   </div>
                   <div class="mb-1">
-                    <button
+                    <button [hidden]="(d.postOf ==='group' && d.trangThai === 2)|| d.trangThai === 1"
                       class="modal_chucnang__button btn btn-outline-secondary"
+                      (click)="capnhatdadang()"
+                    >
+                      Cập nhật
+                    </button>
+                  </div>
+                  <div class="mb-1">
+                    <button [hidden]=" d.trangThai===2"
+                      class="modal_chucnang__button btn btn-outline-secondary"
+                      (click)="capnhatchuadang()"
+                    >
+                      Cập nhật
+                    </button>
+                  </div>
+                  <div class="mb-1">
+                    <button
+                      class="modal_chucnang__button btn btn-outline-danger"
 
-
+                    (click)="changeTrangthai(d)"
                     >
                       Xóa
                     </button>
