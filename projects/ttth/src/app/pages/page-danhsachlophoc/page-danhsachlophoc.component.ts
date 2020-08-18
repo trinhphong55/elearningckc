@@ -8,6 +8,7 @@ import { LophocService } from '../../services/lophoc.service';
 })
 export class PageDanhsachlophocComponent implements OnInit {
   LopHoc: any[];
+  getday= Date.now();
   constructor(private lophocService: LophocService) {}
 
   ngOnInit(): void {

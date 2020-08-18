@@ -15,6 +15,7 @@ export class PageDangkidotthiComponent implements OnInit,AfterViewInit {
   checkexist= false;
   checkmssv= false;
   DangKiDotThi=[];
+  getday= Date.now();
   constructor(private DangkidotthiService: DangkidotthiService ) {}
 
   ngOnInit(): void {

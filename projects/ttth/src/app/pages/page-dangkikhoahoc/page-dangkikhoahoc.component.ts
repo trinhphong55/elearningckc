@@ -17,6 +17,7 @@ export class PageDangkikhoahocComponent implements OnInit,AfterViewInit {
   error= false;
   checkexist= false;
   checkmssv= false;
+  getday= Date.now();
 
   constructor(private lophocService: LophocService,private dangkikhoahocService: DangkikhoahocService ) {}
 

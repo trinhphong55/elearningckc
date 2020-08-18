@@ -32,7 +32,7 @@ export class ModalTtthLophocComponent implements OnInit {
   reset():void{
     this.selectedItem=null;
   }
-  add(makhoahoc: string,dot: string,giaovien: string,buoihoc: string,giohoc: string,ngaykhaigiang: string,hocphi: string): void {
+  add(makhoahoc: string,dot: string,giaovien: string,buoihoc: string,giohoc: string,ngaykhaigiang: string,hocphi: string,ngayhethan: string): void {
     let NhapDiem: any;
     this.MaKhoaHoc.forEach(function (value) {
       if (makhoahoc==value.makhoahoc) {
@@ -58,6 +58,7 @@ export class ModalTtthLophocComponent implements OnInit {
     newItem.ngaykhaigiang = ngaykhaigiang;
     newItem.tenlop = makhoahoc + '-' + String(this.getYear) + '-' + dot;
     newItem.hocphi = hocphi;
+    newItem.ngayhethan = ngayhethan;
     newItem.giaovien = giaovien;
     newItem.nhapdiem = NhapDiem;
     newItem.nam =  String(this.getYear);
