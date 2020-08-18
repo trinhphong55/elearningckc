@@ -19,6 +19,12 @@
       <div  *ngIf="error==true" class="alert alert-danger" role="alert">
         Vui lòng nhập đủ thông tin!
       </div>
+      <div  *ngIf="checkexist==true" class="alert alert-danger" role="alert">
+        Bạn đã đăng kí lớp học này rồi!
+      </div>
+      <div  *ngIf="checkmssv==true" class="alert alert-danger" role="alert">
+        Mã số sinh viên không đúng định dạng!
+      </div>
       <div class="dangkikhoahoc-box featured-box-primary">
         <div class="box-content">
           <h4 class="color-primary font-weight-semibold text-4 mb-3">Vui lòng điền đầy đủ thông tin bên dưới.</h4>
@@ -117,8 +123,9 @@
             <div class="form-group col">
                 <label class="font-weight-bold text-dark text-2 required">Lớp học</label>
                 <select  class="form-control ttth__select2" #lophoc>
+                  <option value=""></option>
                   <ng-container *ngFor="let item of LopHoc">
-                    <option value="{{item.makhoahoc + '-' + item.lop + '-' + item.dot + '-' + item.buoihoc + '-' + item.giaovien}}">{{item.makhoahoc + '-' + item.lop + '-' + item.dot + '-' + item.buoihoc + '-' + item.giaovien}}</option>
+                    <option value="{{item.tenlop}}">{{item.tenlop}}</option>
                   </ng-container>
                 </select>
             </div>
@@ -127,6 +134,7 @@
             <div class="form-group col">
                 <label class="font-weight-bold text-dark text-2 required">Hình thức học</label>
                 <select  class="form-control" #hinhthuchoc>
+                    <option value=""></option>
                     <option value="Học tại trường">Học tại trường</option>
                     <option value="Trực tuyến -Elearning">Trực tuyến -Elearning</option>
                 </select>

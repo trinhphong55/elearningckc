@@ -13,5 +13,9 @@ export class DangkikhoahocService {
     return this.http.post<any>('https://localhost:4100/api/ttthDangKiKhoaHoc/add', newItem, httpOptions).pipe(
     );
   }
+  getDKLH(): Observable<any[]  >{
+    return this.http.get<any[] >('https://localhost:4100/api/ttthDangKiKhoaHoc/').pipe(
+    );
+  }
   constructor(private http: HttpClient) { }
 }
