@@ -78,11 +78,8 @@ export class ModalDanhmucbaivietComponent implements OnInit {
       .subscribe((data) => {
         alert('Thêm danh mục mới thành công');
         this.getdanhSachDanhMuc();
+        this.onResetFormValue();
       });
-    this.danhMucForm.patchValue({
-      tenDanhMuc: '',
-      tenVietTat: '',
-    });
   }
 
   onSuaDanhMuc() {
@@ -90,8 +87,8 @@ export class ModalDanhmucbaivietComponent implements OnInit {
       .saveEditDanhMuc(this.danhMucForm.value)
       .subscribe((data) => {
         alert('Chỉnh sửa danh mục thành công');
-        this.onResetFormValue();
         this.getdanhSachDanhMuc();
+        this.onResetFormValue();
       });
   }
 
@@ -111,10 +108,7 @@ export class ModalDanhmucbaivietComponent implements OnInit {
 
   onResetFormValue() {
     this.hideButtonChinhSua = true;
-    this.danhMucForm.patchValue({
-      tenDanhMuc: '',
-      tenVietTat: '',
-    });
+    this.danhMucForm.reset();
   }
   showTrangThai(trangThai: any): string {
     if (trangThai == 1) { return 'Đã đăng' }

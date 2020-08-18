@@ -1,12 +1,12 @@
-<div class="bg__caothang__light">
+<section class="bg__caothang__light">
   <app-breadcrumb></app-breadcrumb>
   <section class="search_page__wrapper mt-4">
-    <div class="container-fluid bg-white shadow rounded-lg mt-4">
+    <div class="container-fluid bg-white shadow rounded-lg">
       <div class="px-3 py-4 p-lg-5">
         <div class="row justify-content-center">
           <div class="col-md-11">
-            <div class="search_page__result mt-4"*ngFor="let item of cnttVieclam">
-              <div class="py-4 border-top">
+            <div class="search_page__result mt-4">
+              <div class="py-4 border-top" *ngFor="let item of cnttTaiLieu">
                 <div class="row">
                   <div class="col-12 col-sm-auto">
                     <div class="search_page__result__image mx-auto">
@@ -19,7 +19,9 @@
                   </div>
                   <div class="col">
                     <div class="search_page__result__title mt-2 mt-sm-0">
-                      <a class="font-weight-bold text-reset" href="/bai-viet/{{ item._id }}"
+                      <a
+                        class="font-weight-bold text-reset"
+                        routerLink="/bai-viet/{{ item._id }}"
                         >{{ item.tieuDe }}</a
                       >
                     </div>
@@ -32,9 +34,7 @@
                         ><span>{{ formatDatetime(item.thoiGianDangBai) }}</span></span
                       >
                     </div>
-                    <div class="mt-2">
-                      {{ item.moTaNgan }}
-                    </div>
+                    <div class="mt-2">{{ item.moTaNgan }}</div>
                   </div>
                 </div>
               </div>
@@ -44,4 +44,4 @@
       </div>
     </div>
   </section>
-</div>
+</section>

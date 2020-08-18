@@ -1,6 +1,8 @@
-const MongoClient = require('mongodb').MongoClient;
+const MongoClient = require("mongodb").MongoClient;
 // const url = 'mongodb://localhost:27017/?readPreference=primary&authSource=GosuReport&appname=MongoDB%20Compass&ssl=false';
-const url = 'mongodb://elearning_team:123@103.92.26.177:27017/testAngularckc?retryWrites=true&w=majority?authSource=admin';
+// const url = 'mongodb://elearning_team:123@103.92.26.177:27017/testAngularckc?retryWrites=true&w=majority?authSource=admin';
+const url =
+  "mongodb://ai_noi_mongo_die:123@103.92.26.177:27017/devAngular?authSource=devAngular&readPreference=primary&appname=MongoDB%20Compass&ssl=false";
 class MongoDB {
   constructor() {
     this.conDb = null;
@@ -8,17 +10,20 @@ class MongoDB {
   }
 
   async connectDB() {
-    let dbName = 'testAngularckc';
+    // let dbName = "testAngularckc";
+    let dbName = "devAngular";
     try {
-      if(!this.dbClose) {
-        const connectRs = await MongoClient.connect(url, { useUnifiedTopology: true });
+      if (!this.dbClose) {
+        const connectRs = await MongoClient.connect(url, {
+          useUnifiedTopology: true,
+        });
         this.conDb = connectRs.db(dbName);
         this.dbClose = connectRs;
         return this.conDb;
       }
-    } catch(ex) {
-      console.log('connect error db', ex)
-      throw ex
+    } catch (ex) {
+      console.log("connect error db", ex);
+      throw ex;
     }
   }
 
@@ -28,33 +33,38 @@ class MongoDB {
     let result = false;
     try {
       await this.connectDB();
-      if(!collectionName || !collectionName.length) {
+      if (!collectionName || !collectionName.length) {
         collectionName = this.collectionName;
       }
-      result = await this.conDb.collection(collectionName).updateOne(key,{$set: data}, { upsert: true});
+      result = await this.conDb
+        .collection(collectionName)
+        .updateOne(key, { $set: data }, { upsert: true });
       await this.closeDB();
     } catch (error) {
-      console.log('error: ', error.message);
+      console.log("error: ", error.message);
       await this.closeDB();
     }
     return result;
   }
 
   async closeDB() {
-    if(this.dbClose) {
+    if (this.dbClose) {
       await this.dbClose.close();
       this.dbClose = null;
     }
   }
 
   async getAll() {
-    let result=false;
+    let result = false;
     try {
       await this.connectDB();
-      result = await this.conDb.collection(this.collectionName).find({}).toArray();
+      result = await this.conDb
+        .collection(this.collectionName)
+        .find({})
+        .toArray();
       await this.closeDB();
     } catch (error) {
-      console.log('errrr.......', error.message);
+      console.log("errrr.......", error.message);
       await this.closeDB();
     }
     return result;
@@ -64,10 +74,13 @@ class MongoDB {
     let result = false;
     try {
       await this.connectDB();
-      result = await this.conDb.collection(this.collectionName).find(options).toArray();
+      result = await this.conDb
+        .collection(this.collectionName)
+        .find(options)
+        .toArray();
       await this.closeDB();
     } catch (error) {
-      console.log('errrr.......', error.message);
+      console.log("errrr.......", error.message);
       await this.closeDB();
     }
     return result;
