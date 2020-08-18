@@ -126,10 +126,6 @@ export class ModalQuanlybosuutapcnttComponent implements OnInit {
     return 'Đã xóa'
   }
   onResetFormValue() {
-    this.boSuuTapForm.patchValue({
-      maBST: '',
-      url: '',
-      alt: '',
-    });
+    this.boSuuTapForm.reset();
   }
 }

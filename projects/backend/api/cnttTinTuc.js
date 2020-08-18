@@ -148,7 +148,7 @@ router.get("/maBaiViet=:maBaiViet", async (req, res) => {
   }
 });
 
-// Get All Tintuc
+// Get All Tintuc => hiển thị tất cả bài viết lên "quản lý bài viết"
 router.get("/danhsachtintuc", async (req, res) => {
   try {
     const data = await TinTuc.find().sort({ maBaiViet: "asc" });
@@ -170,7 +170,7 @@ router.get("/danhsachtintuctheothutuhienthi", async (req, res) => {
   try {
     const data = await TinTuc.find().sort({ thuTuHienThi: "asc" });
     res.json({
-      message: "Lấy danh sách bài viết thành công.",
+      message: "Lấy danh sách b ài viết thành công.",
       domain: req.headers.host,
       data: data,
     });
@@ -211,6 +211,7 @@ router.get("/tintucnoibatcntt", (req, res) => {
     .limit(10);
 });
 
+//get all tin tuc > 4300
 router.get("/danhsachtintuccntt", (req, res) => {
   TinTuc.find({ trangThai: 1 }, (error, data) => {
     if (error) {
@@ -223,7 +224,54 @@ router.get("/danhsachtintuccntt", (req, res) => {
     res.json({ message: "Lấy danh sách bài viết thành công.", data: data });
   });
 });
-
+router.get("/danhsachthongbaocntt", (req, res) => {
+  TinTuc.find({ trangThai: 1, maDanhMuc: "DM09" }, (error, data) => {
+    if (error) {
+      return res.json({
+        message: "Lấy danh sách bài viết thành công.",
+        data: [],
+        error: error,
+      });
+    }
+    res.json({ message: "Lấy danh sách bài viết thành công.", data: data });
+  });
+});
+router.get("/danhsachtailieucntt", (req, res) => {
+  TinTuc.find({ trangThai: 1, maDanhMuc: "DM010" }, (error, data) => {
+    if (error) {
+      return res.json({
+        message: "Lấy danh sách bài viết thành công.",
+        data: [],
+        error: error,
+      });
+    }
+    res.json({ message: "Lấy danh sách bài viết thành công.", data: data });
+  });
+});
+router.get("/danhsachtkbcntt", (req, res) => {
+  TinTuc.find({ trangThai: 1, maDanhMuc: "DM11" }, (error, data) => {
+    if (error) {
+      return res.json({
+        message: "Lấy danh sách bài viết thành công.",
+        data: [],
+        error: error,
+      });
+    }
+    res.json({ message: "Lấy danh sách bài viết thành công.", data: data });
+  });
+});
+router.get("/danhsachjobcntt", (req, res) => {
+  TinTuc.find({ trangThai: 1, maDanhMuc: "DM01" }, (error, data) => {
+    if (error) {
+      return res.json({
+        message: "Lấy danh sách bài viết thành công.",
+        data: [],
+        error: error,
+      });
+    }
+    res.json({ message: "Lấy danh sách bài viết thành công.", data: data });
+  });
+});
 router.get("/tintucmoinhat", async (req, res) => {
   const data = await TinTuc.find({ trangThai: 1 }).limit(10).sort({
     updatedAt: "desc", // asc || desc

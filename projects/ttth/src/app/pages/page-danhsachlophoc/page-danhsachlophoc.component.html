@@ -20,16 +20,20 @@
         <th scope="col">Giờ học</th>
         <th scope="col">Ngày khai giảng</th>
         <th scope="col">Học phí</th>
+        <th scope="col">Ngày hết hạn đăng kí</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of LopHoc;let i = index" class="text-center" >
-        <th scope="row">{{i + 1}}</th>
-        <td>{{item.lop}}</td>
-        <td>{{item.giohoc}}</td>
-        <td>{{item.ngaykhaigiang | date: 'dd/MM/yyyy'}}</td>
-        <td>{{item.hocphi}}</td>
-      </tr>
+        <tr *ngFor="let item of LopHoc;let i = index" class="text-center" >
+          <ng-container *ngIf="item.trangthai==1 && (item.ngayhethan| date: 'dd/MM/yyyy') > (getday| date: 'dd/MM/yyyy')">
+            <td scope="row">{{i + 1}}</td>
+            <td>{{item.tenlop}}</td>
+            <td>{{item.giohoc}}</td>
+            <td>{{item.ngaykhaigiang | date: 'dd/MM/yyyy'}}</td>
+            <td>{{item.hocphi}}</td>
+            <td>{{item.ngayhethan | date: 'dd/MM/yyyy'}}</td>
+          </ng-container>
+        </tr>
     </tbody>
   </table>
 </section>

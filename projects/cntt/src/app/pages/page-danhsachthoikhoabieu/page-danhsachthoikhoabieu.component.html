@@ -1,0 +1,47 @@
+<section class="bg__caothang__light">
+  <app-breadcrumb></app-breadcrumb>
+  <section class="search_page__wrapper mt-4">
+    <div class="container-fluid bg-white shadow rounded-lg">
+      <div class="px-3 py-4 p-lg-5">
+        <div class="row justify-content-center">
+          <div class="col-md-11">
+            <div class="search_page__result mt-4">
+              <div class="py-4 border-top" *ngFor="let item of cnttTKB">
+                <div class="row">
+                  <div class="col-12 col-sm-auto">
+                    <div class="search_page__result__image mx-auto">
+                      <img
+                        class="lazy"
+                        data-src="https://localhost:4100/{{ item.anhBia }}"
+                        alt="result item"
+                      />
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="search_page__result__title mt-2 mt-sm-0">
+                      <a
+                        class="font-weight-bold text-reset"
+                        routerLink="/bai-viet/{{ item._id }}"
+                        >{{ item.tieuDe }}</a
+                      >
+                    </div>
+                    <div class="small mt-2">
+                      <span class="mr-3"
+                        ><span class="mdi mdi-pencil mr-1"></span
+                        ><strong>{{ item.nguoiViet }}</strong></span
+                      ><span
+                        ><span class="mdi mdi-clock mr-1"></span
+                        ><span>{{ formatDatetime(item.thoiGianDangBai) }}</span></span
+                      >
+                    </div>
+                    <div class="mt-2">{{ item.moTaNgan }}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>

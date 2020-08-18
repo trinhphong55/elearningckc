@@ -62,6 +62,42 @@ export class TinTucCnttService {
       catchError(this.errorMgmt)
     );
   }
+  loadThongBaoCntt(): Observable<any> {
+    let url = `${this.baseUri}/danhsachthongbaocntt`;
+    return this.http.get(url, { headers: this.headers }).pipe(
+      map((res: Response) => {
+        return res || {};
+      }),
+      catchError(this.errorMgmt)
+    );
+  }
+  loadTaiLieuCntt(): Observable<any> {
+    let url = `${this.baseUri}/danhsachtailieucntt`;
+    return this.http.get(url, { headers: this.headers }).pipe(
+      map((res: Response) => {
+        return res || {};
+      }),
+      catchError(this.errorMgmt)
+    );
+  }
+  loadTkbCntt(): Observable<any> {
+    let url = `${this.baseUri}/danhsachtkbcntt`;
+    return this.http.get(url, { headers: this.headers }).pipe(
+      map((res: Response) => {
+        return res || {};
+      }),
+      catchError(this.errorMgmt)
+    );
+  }
+  loadJobCntt(): Observable<any> {
+    let url = `${this.baseUri}/danhsachjobcntt`;
+    return this.http.get(url, { headers: this.headers }).pipe(
+      map((res: Response) => {
+        return res || {};
+      }),
+      catchError(this.errorMgmt)
+    );
+  }
   searchTinTuc(query: string): Observable<any> {
     return this.http
       .get(this.baseUri + '/search=' + query)

@@ -3,9 +3,7 @@ var Schema = mongoose.Schema;
 
 var schema = new Schema({
   tendot: { type: String },
-  lophoc: { type: String },
-  ngaythi: { type: String },
-  mssv: { type: String },
+  mssv: { type: Number },
   hoten: { type: String },
   ngaysinh: { type: String },
   noisinh: { type: String },
