@@ -350,4 +350,26 @@ router.get("/search=:query", async (req, res) => {
 });
 //#endregion
 
+// API cho nhóm FB
+router.get("/sharedanhsachbaiviet", async (req, res) => {
+  try {
+    const data = await TinTuc.find({ trangThai: 1 }, { tieuDe: 1, _id: 1});
+    const result = [];
+    for (const item of data) {
+      const url = `http://localhost:4300/bai-viet/${item._id}`;
+      result.push({
+        tieuDe: item.tieuDe,
+        url: url
+      })
+    }
+    res.json({ message: "Lấy danh sách bài viết nhóm FB thành công.", data: result });
+  } catch (error) {
+    res.json({
+      message: "Lấy danh sách bài viết nhóm FB thất bại",
+      data: [],
+      error: error,
+    });
+  }
+});
+
 module.exports = router;
