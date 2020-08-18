@@ -11,19 +11,19 @@ const httpOptions = {
 export class TienichService {
   constructor(private http: HttpClient) { }
   get(): Observable<ttthTienIch[]  >{
-    return this.http.get<ttthTienIch[] >('https://api.cnttckc.edu.vn/api/ttthTienIch/list').pipe(
+    return this.http.get<ttthTienIch[] >('https://localhost:4100/api/ttthTienIch/list').pipe(
     );
   }
   add(newItem: ttthTienIch): Observable<ttthTienIch> {
-    return this.http.post<ttthTienIch>('https://api.cnttckc.edu.vn/api/ttthTienIch/add', newItem, httpOptions).pipe(
+    return this.http.post<ttthTienIch>('https://localhost:4100/api/ttthTienIch/add', newItem, httpOptions).pipe(
     );
   }
   update(updateItem: ttthTienIch): Observable<ttthTienIch> {
-    return this.http.post<ttthTienIch>('https://api.cnttckc.edu.vn/api/ttthTienIch/update', updateItem, httpOptions).pipe(
+    return this.http.post<ttthTienIch>('https://localhost:4100/api/ttthTienIch/update', updateItem, httpOptions).pipe(
     );
   }
   delete(delItem: ttthTienIch): Observable<ttthTienIch> {
-    return this.http.post<ttthTienIch>('https://api.cnttckc.edu.vn/api/ttthTienIch/delete', delItem, httpOptions).pipe(
+    return this.http.post<ttthTienIch>('https://localhost:4100/api/ttthTienIch/delete', delItem, httpOptions).pipe(
     );
   }
 }

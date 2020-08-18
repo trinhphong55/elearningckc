@@ -9,7 +9,7 @@ import { retry, catchError } from 'rxjs/operators';
 export class ChuDeService {
   constructor(private http: HttpClient) {}
 
-  private API_URL = 'https://api.cnttckc.edu.vn/api/ttth/chude';
+  private API_URL = 'https://localhost:4100/api/ttth/chude';
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',

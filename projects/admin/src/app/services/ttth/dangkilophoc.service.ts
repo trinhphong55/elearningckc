@@ -11,11 +11,11 @@ export class DangkilophocService {
 
   constructor(private http: HttpClient) { }
   get(): Observable<any[]  >{
-    return this.http.get<any[] >('https://api.cnttckc.edu.vn/api/ttthDangKiKhoaHoc/').pipe(
+    return this.http.get<any[] >('https://localhost:4100/api/ttthDangKiKhoaHoc/').pipe(
     );
   }
   delete(deleteItem: any): Observable<any> {
-    return this.http.post<any>('https://api.cnttckc.edu.vn/api/ttthDangKiKhoaHoc/delete', deleteItem, httpOptions).pipe(
+    return this.http.post<any>('https://localhost:4100/api/ttthDangKiKhoaHoc/delete', deleteItem, httpOptions).pipe(
     );
   }
 }

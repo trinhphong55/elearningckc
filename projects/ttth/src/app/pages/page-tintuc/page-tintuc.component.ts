@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {TintucService} from '../../services/tintuc.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-page-tintuc',
@@ -17,5 +18,13 @@ export class PageTintucComponent implements OnInit {
     this.tintucService.getAllTinTuc().subscribe(data => {
       this.TinTuc = data.data;
     });
+  }
+
+  formatDatetime(time: string): string {
+    if (time) {
+      time = moment(time).format('HH:mm, DD-MM-YYYY');
+      return time;
+    }
+    return '';
   }
 }
