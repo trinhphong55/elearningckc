@@ -77,7 +77,7 @@
                 <div class="col-12 col-sm-auto">
                   <div class="search_page__result__image mx-auto">
                     <img
-                      src="https://localhost:4100/{{ item.anhBia }}"
+                      src="{{ item.image }}"
                       alt="result item"
                     />
                   </div>
@@ -86,22 +86,22 @@
                   <div class="search_page__result__title mt-2 mt-sm-0">
                     <a
                       class="font-weight-bold text-reset"
-                      routerLink="/bai-viet/{{ item._id }}"
-                      >{{ item.tieuDe }}</a
+                      routerLink="/chitiettintuc/{{ item._id }}"
+                      >{{ item.tentintuc }}</a
                     >
                   </div>
                   <div class="small mt-2">
                     <span class="mr-3"
                       ><span class="mdi mdi-pencil mr-1"></span
-                      ><strong>{{ item.nguoiViet || "Admin" }}</strong></span
+                      ><strong>{{ item.nguoitao || "" }}</strong></span
                     ><span
                       ><span class="mdi mdi-clock mr-1"></span
                       ><span>{{
-                        formatDatetime(item.thoiGianDangBai)
+                        formatDatetime(item.thoiGianChinhSua)
                       }}</span></span
                     >
                   </div>
-                  <div class="mt-2">{{ item.moTaNgan }}</div>
+                  <div class="mt-2 limit" >{{ item.description }}</div>
                 </div>
               </div>
             </div>
