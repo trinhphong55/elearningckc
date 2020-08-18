@@ -9,7 +9,7 @@ const morgan = require("morgan");
 const path = require("path");
 
 const MONGODB_URI =
-  "mongodb://ai_noi_mongo_die:123@103.92.26.177:27017/devAngular?authSource=devAngular&readPreference=primary&appname=MongoDB%20Compass%20Community&ssl=false";
+  "mongodb://localhost:27017/testAngularckc?readPreference=primary&appname=MongoDB%20Compass%20Community&ssl=false";
 
 const PORT = 4100;
 
