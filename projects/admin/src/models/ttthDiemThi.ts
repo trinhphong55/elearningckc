@@ -1,10 +1,12 @@
 export class ttthDiemThi {
+  loaidiem: String
   hoten: String
   mssv: String
   ngaysinh: String
   sobaodanh: String
   noisinh: String
   lop: String
+  tendotthi: String
   tongdiem: String
   xeploai: String
   ngaythi: String

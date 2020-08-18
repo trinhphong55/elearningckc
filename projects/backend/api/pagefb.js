@@ -24,14 +24,14 @@ exports.postPageFB = async (req, res) => {
         res.json({
           status: 200,
           ok:false,
-          msg: "Page ID này đã tồn tại",
+          msg: "ID trang này đã tồn tại",
         });
       }
       if (req.body.tenPage === element.tenPage) {
         res.json({
           status: 200,
           ok:false,
-          msg: "Tên Page này đã tồn tại",
+          msg1: "Tên trang này đã tồn tại",
         });
       }
     });
@@ -45,11 +45,15 @@ exports.postPageFB = async (req, res) => {
       res.json({
         status: 200,
         ok:true,
-        msg: "Thêm thành công Page Facebook vào danh sách",
+        msg2: "Thêm thành công trang Facebook vào danh sách",
         data: savePage,
       });
   }catch{
-    res.json(error);
+    res.json({
+      status:404,
+      ok:false,
+      msg3:'Không được để trống thông tin '
+    });
   }
 };
 //Update Page Facebook
@@ -73,7 +77,7 @@ exports.updatePageFB = async (req, res) => {
         },
       }
     );
-
+    
     let  result = {
       status: 200,
       ok: false,
@@ -89,8 +93,12 @@ exports.updatePageFB = async (req, res) => {
 
     }
     res.status(200).json(result);
-  } catch (error) {
-    res.json(error);
+  } catch{
+    res.json({
+      status:404,
+      ok:false,
+      msg:'Không được để trống thông tin'
+    });
   }
 };
 //Delete Page Facebook

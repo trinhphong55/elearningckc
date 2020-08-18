@@ -33,6 +33,10 @@ export class PageTrangchuComponent implements OnInit {
       maViTri: 3,
       tenViTri: 'Tin tức nổi bật',
     },
+    {
+      maViTri: 4,
+      tenViTri: 'Mô tả cơ hội việc làm',
+    },
   ];
   private _footer: any;
   private _thongTinChung: any;
@@ -41,8 +45,10 @@ export class PageTrangchuComponent implements OnInit {
   public listCoHoiViecLam: any = [];
   public listGioiThieuNgan: any = [];
   public listTinTucNoiBat: any = [];
+  public listMoTaNganViecLam: any = [];
   public gioiThieuNganDauTien: any = {};
   public baiVietQuanTrongDauTien: any = {};
+  public baiVietMoTaNganViecLam: any = {};
 
   public footer: any = {};
   public logoMenuMobile: any;
@@ -65,6 +71,7 @@ export class PageTrangchuComponent implements OnInit {
       this.filterDataTheoTungViTri();
       this.baiVietQuanTrongDauTien = this.listBaiVietQuanTrong[0];
       this.gioiThieuNganDauTien = this.listGioiThieuNgan[0];
+      this.baiVietMoTaNganViecLam = this.listMoTaNganViecLam[0];
     });
   }
 
@@ -80,6 +87,9 @@ export class PageTrangchuComponent implements OnInit {
     );
     this.listTinTucNoiBat = this._rawData.data.filter(
       (x) => x.viTriHienThi === 3
+    );
+    this.listMoTaNganViecLam = this._rawData.data.filter(
+      (x) => x.viTriHienThi === 4
     );
   }
 

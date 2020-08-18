@@ -51,6 +51,7 @@ export class ModalQuanlybosuutapcnttComponent implements OnInit {
       console.log(this.imgValue);
       this.cnttBoSuuTapService.onSave(formData).subscribe((data) => {
         this.loadDanhSachBST();
+        this.onResetFormValue()
         this.toastr.success('Thêm item thành công !');
       });
     } else {
@@ -63,6 +64,7 @@ export class ModalQuanlybosuutapcnttComponent implements OnInit {
       console.log(this.imgValue);
       this.cnttBoSuuTapService.editItemTienIch(formData).subscribe((data) => {
         this.loadDanhSachBST();
+        this.onResetFormValue()
         this.toastr.success('Edit item thành công !');
       });
     }
@@ -88,6 +90,7 @@ export class ModalQuanlybosuutapcnttComponent implements OnInit {
         .subscribe((data) => {
           this.toastr.success('Xóa Item thành công!');
           this.loadDanhSachBST();
+          this.onResetFormValue()
         });
     }
   }
@@ -122,5 +125,11 @@ export class ModalQuanlybosuutapcnttComponent implements OnInit {
     if (trangThai == 1) { return 'Đã đăng' }
     return 'Đã xóa'
   }
-
+  onResetFormValue() {
+    this.boSuuTapForm.patchValue({
+      maBST: '',
+      url: '',
+      alt: '',
+    });
+  }
 }

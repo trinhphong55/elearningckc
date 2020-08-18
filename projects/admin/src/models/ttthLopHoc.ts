@@ -1,13 +1,15 @@
 export class ttthLopHoc {
   makhoahoc: String
   dot: String
-  lop: String
   buoihoc: String
   giohoc: String
   ngaykhaigiang: String
+  tenlop: String
   hocphi: String
   giaovien: String
-  trangthai: Boolean
+  nhapdiem: String
+  nam: String
+  trangthai: Number
   nguoitao: String
   nguoisua: String
   created_at: Date

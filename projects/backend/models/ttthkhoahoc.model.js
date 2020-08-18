@@ -7,6 +7,7 @@ var schema = new Schema({
   makhoahoc: { type: String },
   noidung: { type: String },
   color: { type: String },
+  nhapdiem: { type: String },
   trangthai: { type: Boolean },
   nguoitao: { type: String },
   nguoisua: { type: String },

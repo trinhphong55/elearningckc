@@ -7,14 +7,10 @@
             class="job_home__desc__title text-white text-center text-md-left text-uppercase"
             style="font-weight: 900;"
           >
-            Cơ hội việc làm
+            {{ MoTaNganViecLam.tieuDe }}
           </div>
           <div class="text-justify text-white-50 text-md-left mt-2">
-            Mô hình đào tạo sát với thực tiễn mở rộng cơ hội việc làm cho sinh
-            viên khi mới ra trường. Chương trình đạo tạo chất lượng tiên tiến,
-            theo chuẩn mô hình đào tạo quốc tế. Kiến thức chuyên ngành, phương
-            pháp học tập và trang thiết bị không ngừng được cập nhật. Ứng dụng
-            các công trình nghiên cứu khoa học vào cuộc sống.
+            <div [innerHTML]="MoTaNganViecLam.noiDung"></div>
           </div>
         </div>
       </div>

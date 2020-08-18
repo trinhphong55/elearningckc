@@ -54,7 +54,7 @@ export class ModalDiemchinhthucComponent implements OnInit {
     this.nganhngheservice.getNganhnghe().subscribe(dsnn => this.dsNganhNghe = dsnn);
     this.lopHocService.getAll().subscribe(lop=> this.dsLophoc=lop);
     this.Sinhvienservice.getAll().subscribe(sv=> this.dsSinhvien=sv);
-    console.log(this.dsSinhvien);
+    // console.log(this.dsSinhvien);
   }
   selectbac(e){
     this.dsNganhNghetmp=[];

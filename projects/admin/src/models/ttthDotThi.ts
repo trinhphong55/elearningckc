@@ -1,9 +1,11 @@
 export class ttthDotThi {
   tendot: String
   lophoc: String
-  ngaythi: Date
+  ngaythi: String
+  giothi: String
+  phongthi: String
   hienthi: Boolean
-  trangthai: Boolean
+  trangthai: Number
   nguoitao: String
   nguoisua: String
   created_at: Date

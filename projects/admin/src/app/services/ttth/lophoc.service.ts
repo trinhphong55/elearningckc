@@ -12,6 +12,12 @@ const httpOptions = {
 export class LophocService {
 
   get(): Observable<ttthLopHoc[]  >{
+    return this.http.get<ttthLopHoc[] >('https://localhost:4100/api/ttthLopHoc/list').pipe(
+      retry(1),
+      catchError(error => of([]))
+    );
+  }
+  getfilter(): Observable<ttthLopHoc[]  >{
     return this.http.get<ttthLopHoc[] >('https://localhost:4100/api/ttthLopHoc/').pipe(
       retry(1),
       catchError(error => of([]))

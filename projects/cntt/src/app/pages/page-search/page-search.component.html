@@ -28,7 +28,10 @@
         </div>
       </div>
     </div>
-    <div class="container-fluid bg-white shadow rounded-lg mt-4">
+    <div
+      *ngIf="defaultElement === false"
+      class="container-fluid bg-white shadow rounded-lg mt-4"
+    >
       <div class="px-3 py-4 p-lg-5">
         <div class="row justify-content-center">
           <div class="col-md-11">
@@ -46,12 +49,12 @@
               >
               </ngx-skeleton-loader>
             </section>
-            <div class="h5 m-0" *ngIf="result.data.length === 0">
+            <div class="h5 m-0" *ngIf="result.data.length === 0 && loading === false">
               Chưa có kết quả
             </div>
             <div
-              class="search_page__result mt-4"
-              *ngIf="result.data.length > 0"
+              class="search_page__result"
+              *ngIf="result.data.length > 0 && loading === false"
             >
               <div class="h5 m-3">Có {{ result.data.length }} kết quả</div>
               <div class="py-4 border-top" *ngFor="let item of result.data">
