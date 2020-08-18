@@ -118,10 +118,7 @@ export class ModalQuanlyloaibaivietcnttComponent implements OnInit {
 
   onResetFormValue() {
     this.hideButtonChinhSua = true;
-    this.loaiBaiVietForm.patchValue({
-      tenLoaiBaiViet: '',
-      tenVietTat: '',
-    });
+    this.loaiBaiVietForm.reset()
   }
   get tenLoaiBaiViet() { return this.loaiBaiVietForm.get('tenLoaiBaiViet'); }
   get tenVietTat() { return this.loaiBaiVietForm.get('tenVietTat'); }

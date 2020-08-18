@@ -1,28 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { TinTucCnttService } from '../../services/tintuc.service';
 import * as moment from 'moment';
-@Component({
-  selector: 'app-page-job',
-  templateUrl: './page-job.component.html',
-  styleUrls: ['./page-job.component.css']
-})
-export class PageJobComponent implements OnInit {
 
-  cnttVieclam: any = [];
+@Component({
+  selector: 'app-page-danhsachthoikhoabieu',
+  templateUrl: './page-danhsachthoikhoabieu.component.html',
+  styleUrls: ['./page-danhsachthoikhoabieu.component.css']
+})
+export class PageDanhsachthoikhoabieuComponent implements OnInit {
+  cnttTKB: any = [];
   constructor(private tinTucCnttService: TinTucCnttService) {
-    this.loadJobCntt()
+    this.loadTkbCntt()
   }
 
   ngOnInit(): void {
   }
-  loadJobCntt(){
-    this.tinTucCnttService.loadJobCntt().subscribe(data => {
-      this.cnttVieclam = data.data;
+  loadTkbCntt(){
+    this.tinTucCnttService.loadTkbCntt().subscribe(data => {
+      this.cnttTKB = data.data;
     });
   }
   formatDatetime(time: string): string {
     time = moment(time).format('HH:mm, DD-MM-YYYY');
     return time;
   }
-
 }

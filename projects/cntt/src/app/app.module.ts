@@ -26,6 +26,13 @@ import { SliderHighlightComponent } from './components/slider-highlight/slider-h
 import { SliderCohoivieclamComponent } from './components/slider-cohoivieclam/slider-cohoivieclam.component';
 import { SliderTintucnoibatComponent } from './components/slider-tintucnoibat/slider-tintucnoibat.component';
 import { PageBaivietComponent } from './pages/page-baiviet/page-baiviet.component';
+import { PageThongbaoComponent } from './pages/page-thongbao/page-thongbao.component';
+import { PageDanhsachthongbaoComponent } from './pages/page-danhsachthongbao/page-danhsachthongbao.component';
+import { PageDanhsachtailieuComponent } from './pages/page-danhsachtailieu/page-danhsachtailieu.component';
+import { PageTailieuComponent } from './pages/page-tailieu/page-tailieu.component';
+import { PageThoikhoabieuComponent } from './pages/page-thoikhoabieu/page-thoikhoabieu.component';
+import { PageDanhsachthoikhoabieuComponent } from './pages/page-danhsachthoikhoabieu/page-danhsachthoikhoabieu.component';
+import { PageVieclamComponent } from './pages/page-vieclam/page-vieclam.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,6 +55,13 @@ import { PageBaivietComponent } from './pages/page-baiviet/page-baiviet.componen
     SliderCohoivieclamComponent,
     SliderTintucnoibatComponent,
     PageBaivietComponent,
+    PageThongbaoComponent,
+    PageDanhsachthongbaoComponent,
+    PageDanhsachtailieuComponent,
+    PageTailieuComponent,
+    PageThoikhoabieuComponent,
+    PageDanhsachthoikhoabieuComponent,
+    PageVieclamComponent,
   ],
   imports: [
     BrowserModule,

@@ -35,7 +35,7 @@
                       Hình ảnh Sinh Viên
                     </option>
                   </select>
-                  <div *ngIf="maBST.invalid && (maBST.dirty || maBST.touched)" class="alert alert-danger">
+                  <div *ngIf="maBST.invalid && maBST.touched" class="alert alert-danger">
                     <div *ngIf="maBST.errors.required">
                       Vui lòng chọn loại BST.
                     </div>
@@ -44,7 +44,7 @@
                 <div class="form-group">
                   <label>Nhập alt ảnh</label>
                   <input class="form-control" type="text" formControlName="alt" required />
-                  <div *ngIf="alt.invalid && (alt.dirty || alt.touched)" class="alert alert-danger">
+                  <div *ngIf="alt.invalid && alt.touched" class="alert alert-danger">
                     <div *ngIf="alt.errors.required">
                       Vui lòng nhập Alt ảnh.
                     </div>
@@ -53,7 +53,7 @@
                 <div class="form-group">
                   <label>Nhập đường dẫn ảnh</label>
                   <input class="form-control" type="text" formControlName="url" required/>
-                  <div *ngIf="url.invalid && (url.dirty || url.touched)" class="alert alert-danger">
+                  <div *ngIf="url.invalid && url.touched" class="alert alert-danger">
                     <div *ngIf="url.errors.required">
                       Vui lòng nhập đường dẫn liên kết
                     </div>
@@ -65,7 +65,7 @@
                 <div class="form-group">
                   <div class="modal_chucnang__group__button">
                     <button class="modal_chucnang__button btn btn-outline-primary px-4 mx-2" type="submit"
-                      (click)="onSave()">
+                      (click)="onSave()" [disabled]="!boSuuTapForm.valid">
                       <img class="modal_chucnang__button__icon mb-2" src="assets/img/icons/add.png" alt="image icon" />
                       <div>Lưu</div>
                     </button>
