@@ -20,18 +20,52 @@ router.post('/them-giao-vien', async (req, res) =>{
   const maGV = formatMaGV(temp.maGiaoVien);
   req.body.password = md5(req.body.password);
   req.body.maGiaoVien = maGV;
-  let result = await giaoVienDAO.updateOrInsertOne({maGiaoVien: maGV}, req.body, 'GiaoVien')
-  if(result != false){
+  let result = await giaoVienDAO.find({email: req.body.email});
+  if(result.length > 0){
     res.send({
-      'msg': 'Thêm thành công',
-      'status': true
-    });
+      'msg': 'Đã tồn tại email này',
+      'status': false
+    })
   }
   else{
+    let result = await giaoVienDAO.updateOrInsertOne({maGiaoVien: maGV}, req.body, 'GiaoVien')
+    if(result != false){
+      res.send({
+        'msg': 'Thêm giáo viên thành công',
+        'status': true
+      });
+    }
+    else{
+      res.send({
+        'msg': 'Thêm giáo viên thất bại',
+        'status': false
+      });
+    }
+  }
+})
+
+router.post('/cap-nhat-giao-vien', async (req, res) => {
+  let result = await giaoVienDAO.find({email: req.body.email});
+  if(result.length > 0){
     res.send({
-      'msg': 'Thêm thất bại',
+      'msg': 'Đã tồn tại email này',
       'status': false
-    });
+    })
+  }
+  else{
+    let result = await giaoVienDAO.updateOrInsertOne({maGiaoVien: req.body.maGiaoVien}, req.body, 'GiaoVien')
+    if(result != false){
+      res.send({
+        'msg': 'Cập nhật thông tin giáo viên thành công',
+        'status': true
+      });
+    }
+    else{
+      res.send({
+        'msg': 'Cập nhật thông tin giáo viên thất bại',
+        'status': false
+      });
+    }
   }
 })
 
@@ -94,21 +128,6 @@ router.get('/thong-tin-giao-vien-email/:email', async (req, res) => {
   res.send(result);
 })
 
-router.post('/cap-nhat-giao-vien', async (req, res) => {
-  let result = await giaoVienDAO.updateOrInsertOne({maGiaoVien: req.body.maGiaoVien}, req.body, 'GiaoVien');
-  if(result != false){
-    res.send({
-      'msg': 'Cập nhật thành công',
-      'status': true
-    });
-  }
-  else{
-    res.send({
-      'msg': 'Cập nhật thất bại',
-      'status': false
-    });
-  }
-})
 router.post('/cap-nhat-giao-vien-new-tt', async (req, res) => {
   var data = {
     sdt:req.body.sdt,
