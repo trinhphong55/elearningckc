@@ -10,7 +10,15 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  constructor(private authService: AuthService, private toastr: ToastrService) {}
+  constructor(private authService: AuthService, private toastr: ToastrService) {
+    if (getCookie('token') && getCookie('role') == 'admin') {
+      this.isLogged = true;
+    }
+    if (getCookie('role') && getCookie('role') != 'admin') {
+      this.toastr.error('Tài khoản này không có quyền truy cập vào trang admin', 'ERROR', { timeOut: 6000 });
+      window.location.href = 'http://localhost:4400';
+    }
+  }
 
   // Cờ đã đăng nhập
   isLogged: Boolean = false;
@@ -36,13 +44,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (getCookie('token') && getCookie('role') == 'admin') {
-      this.isLogged = true;
-    }
-    if (getCookie('role') && getCookie('role') != 'admin') {
-      this.toastr.error('Bạn không có quyền truy cập vào trang admin', 'ERROR', { timeOut: 6000 });
-      window.location.href = 'http://localhost:4400';
-    }
   }
 
   onLogout(): void {
@@ -78,7 +79,7 @@ export class AppComponent implements OnInit {
         }
 
         if (response.data != null && response.data.role != 'admin') {
-          this.toastr.error('Bạn không có quyền truy cập vào trang admin', 'ERROR', { timeOut: 6000 });
+          this.toastr.error('Tài khoản này không có quyền truy cập vào trang admin', 'ERROR', { timeOut: 6000 });
         }
       });
     }
