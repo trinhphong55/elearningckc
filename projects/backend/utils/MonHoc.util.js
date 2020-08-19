@@ -17,10 +17,6 @@ async function getNextNumber() {
 }
 
 async function isNameExist(tenMonHoc) {
-  // const item = await MonHoc.findOne({ tenMonHoc: req.body.tenMonHoc }).exec();
-  // if (item !== null) {
-  //   return res.json({ error: "tenMonHoc existed" });
-  // }
   tenMonHoc = tenMonHoc.trim().toLowerCase();
   const item = await MonHoc.findOne({ tenMonHoc: { $regex: new RegExp("^" + tenMonHoc , "i") } }).exec();
   if (item === null) {

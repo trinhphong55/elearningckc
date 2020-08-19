@@ -19,7 +19,7 @@ const MonHocSchema = new mongoose.Schema({
   },
   maLoaiMonHoc: {
     type: String,
-    trim: true,
+    default: 1,
   },
   nguoiTao: {
     type: String,

@@ -37,14 +37,14 @@ export class ModalComponent implements OnInit {
       }
     });
 
-    // // close modal on Escape key
-    // document.addEventListener("keyup", function (e: any) {
-    //   const keycode = e.which || e.keyCode;
-    //   if (keycode == 27 && element.classList.contains('show')) {
-    //     element.classList.remove('show');
-    //     document.body.classList.remove('overflow-hidden');
-    //   }
-    // });
+    // close modal on Escape key
+    document.addEventListener("keyup", function (e: any) {
+      const keycode = e.which || e.keyCode;
+      if (keycode == 27 && element.classList.contains('show')) {
+        element.classList.remove('show');
+        document.body.classList.remove('overflow-hidden');
+      }
+    });
 
     // add self (this modal instance) to the modal service so it's accessible from controllers
     this.modalService.add(this);

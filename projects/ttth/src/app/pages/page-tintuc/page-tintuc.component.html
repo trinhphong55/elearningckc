@@ -17,7 +17,7 @@
               <div class="col-md-3">
                   <div class="sub-news">
                       <div class="img-wrap"><img src="{{item.image}}" alt="co-khi"></div><a class="sub-title" href="/chitiettintuc/{{item._id}}">{{item.tentintuc}}</a>
-                      <div class="posted"><i class="far fa-clock"></i>{{item.updated_at}}</div>
+                      <div class="posted"><i class="far fa-clock"></i>{{formatDatetime(item.created_at)}}</div>
                       <div class="news-content" [innerHTML]="item.noidung">
                       </div>
                   </div>
@@ -25,4 +25,3 @@
           </div>
       </div>
   </section>
-

@@ -6,7 +6,7 @@ import { FileUploader } from 'ng2-file-upload';
 import { ToastrService } from 'ngx-toastr';
 import { getCookie } from '../../../../../../../common/helper';
 
-const URL = 'https://api.cnttckc.edu.vn/api/ttthTienIch/uploads';
+const URL = 'https://localhost:4100/api/ttthTienIch/uploads';
 @Component({
   selector: 'app-modal-home-tienich',
   templateUrl: './modal-home-tienich.component.html',
@@ -74,7 +74,7 @@ export class ModalHomeTienichComponent implements OnInit {
     const newTinTuc: ttthTienIch = new ttthTienIch();
     newTinTuc.ten = ten;
     newTinTuc.mota = mota;
-    newTinTuc.image = 'https://api.cnttckc.edu.vn/uploads/cntt/' + 'tienich_'+ this.nameImage.name;
+    newTinTuc.image = 'https://localhost:4100/uploads/cntt/' + 'tienich_'+ this.nameImage.name;
     newTinTuc.link = link;
     newTinTuc.trangthai = true;
     newTinTuc.nguoitao = this._username;
@@ -100,7 +100,7 @@ export class ModalHomeTienichComponent implements OnInit {
   }
   update(TienIch: ttthTienIch):void {
     if (this.nameImage) {
-      TienIch.image='https://api.cnttckc.edu.vn/uploads/cntt/'+ 'tienich_' + this.nameImage.name;
+      TienIch.image='https://localhost:4100/uploads/cntt/'+ 'tienich_' + this.nameImage.name;
     }
     TienIch.updated_at= new Date;
     TienIch.nguoisua= this._username;
