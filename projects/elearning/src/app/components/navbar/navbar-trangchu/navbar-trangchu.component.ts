@@ -13,6 +13,9 @@ dsBac:any;
 khoa:any;
 bac:any;
 hocKi:any;
+doiTuong:any;
+quyenGV:string="";
+quyenSV:string="";
 
 formDanhSachLop = new FormGroup({
   khoa: new FormControl("-1"),
@@ -27,6 +30,22 @@ constructor(private bacService:BacService ,
   ngOnInit(): void {
     this.onFilter();
     this.layDanhSachBac();
+    this.quyenTimKiem();
+  }
+  //
+  quyenTimKiem()
+  {
+    this.doiTuong = this.cookie.get("role");
+    if(this.doiTuong== 'SV')
+    {
+      this.quyenGV='none';
+      this.quyenSV=''
+    }
+    else
+    {
+      this.quyenGV='';
+      this.quyenSV='none'
+    }
   }
   //lấy ds bậc
   layDanhSachBac(){

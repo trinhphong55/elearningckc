@@ -73,6 +73,7 @@ export class PageTrangchuComponent implements OnInit {
     this.lopHocService.getAll().subscribe(
       dsLop => {
         this.dsLop = dsLop;
+        setTimeout(this.danhSachLopGV(),1000)
       },
       (error) => {
         console.log(error);
@@ -135,9 +136,7 @@ export class PageTrangchuComponent implements OnInit {
         this.lopHocPhanService.getLopHocPhanbyemail(this.thongtin).subscribe(
           dsGiaoVienBymaGv => {
             this.dsGiaoVienBymaGv = dsGiaoVienBymaGv;
-            this.danhSachLop();
-            this.dsLop
-            this.filterDsLop = []
+            this.filterDsLop = [];
             this.dsLop.forEach(lop => {
               this.dsGiaoVienBymaGv.find(p => {
                 if (this.maBac != -1 || this.maKhoa != -1) {
