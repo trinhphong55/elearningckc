@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild, ElementRef, OnChanges, SimpleChanges } fr
 import { ModalService } from '../../../../services/modal.service';
 import * as XLSX from 'xlsx';
 import { Subject } from 'rxjs';
+import { CookieService } from 'ngx-cookie-service';
+import { ToastrService } from 'ngx-toastr';
 
 //Services
 import { MonhocService } from '../../../../services/monhoc.service';
@@ -22,7 +24,8 @@ export class ModalMonhocComponent implements OnInit, OnChanges {
   searchMonHoc;
   dsMonHoc: MonHoc[];
   dsLoaiMonHoc: LoaiMonHoc[];
-  selectedMonHoc: MonHoc;
+  selectedMonHoc: MonHoc = { maMonHoc: "", maLoaiMonHoc: "LT", tenMonHoc: "", tenVietTat: "" };
+  newMonHoc: MonHoc = { maMonHoc: "", maLoaiMonHoc: "LT", tenMonHoc: "", tenVietTat: "" };
   trangThai: number = 1;
 
   //Import Excel variables
@@ -36,6 +39,7 @@ export class ModalMonhocComponent implements OnInit, OnChanges {
   getMonHoc() {
     this.monhocService.getMonHocbyTrangThai(this.trangThai).subscribe(res => {
       if (res.status === 200) {
+        console.log(res.data);
         this.dsMonHoc = res.data;
       } else {
         this.dsMonHoc = [];
@@ -56,13 +60,13 @@ export class ModalMonhocComponent implements OnInit, OnChanges {
   }
 
   postMonHoc() {
-    if (this.selectedMonHoc.tenMonHoc.trim() === "") {
+    if (this.newMonHoc.tenMonHoc.trim() === "") {
       alert('Oke fine, nhap thong tin mon hoc di ban ey');
       return;
     }
-    this.monhocService.addMonHoc(this.selectedMonHoc).subscribe(res => {
-      if (res.success) {
-        alert(status);
+    this.monhocService.addMonHoc(this.newMonHoc).subscribe(res => {
+      if (res.status === 200) {
+        alert(res.message);
         this.renewMonHoc();
         this.getMonHoc();
       } else {
@@ -73,13 +77,14 @@ export class ModalMonhocComponent implements OnInit, OnChanges {
   }
 
   updateMonHoc() {
-    if (this.selectedMonHoc.maMonHoc === "") {
-      alert('Chua chon mon hoc');
+    if (this.selectedMonHoc.tenMonHoc.trim() === "") {
+      alert('Nhap ten di ban ey');
       return;
     }
     this.monhocService.updateMonHoc(this.selectedMonHoc).subscribe(res => {
       if (res.status === 200) {
         alert(res.message);
+        this.getMonHoc();
       } else {
         alert('Error: ' + res.message);
         this.renewMonHoc();
@@ -115,7 +120,7 @@ export class ModalMonhocComponent implements OnInit, OnChanges {
   }
 
   renewMonHoc() {
-    this.selectedMonHoc = { maMonHoc: "", tenMonHoc: "", maLoaiMonHoc: "LT", tenVietTat: "" };
+    this.newMonHoc = { maMonHoc: "", tenMonHoc: "", maLoaiMonHoc: "LT", tenVietTat: "" };
   }
 
   changeTrangThai() {

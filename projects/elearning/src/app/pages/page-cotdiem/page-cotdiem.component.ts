@@ -3,6 +3,7 @@ import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { CotDiemLopHocPhanService } from '../../../../../admin/src/app/services/cotDiemLopHP.service';
 import { BaiTapService } from '../../services/bai-tap.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-page-cotdiem',
   templateUrl: './page-cotdiem.component.html',
@@ -33,7 +34,8 @@ export class PageCotodiemComponent implements OnInit {
     maBaiTap: new FormControl(),
   })
   constructor(private router: ActivatedRoute, private cotDiemLopHocPhanService: CotDiemLopHocPhanService,
-    private baiTapService: BaiTapService) {
+    private baiTapService: BaiTapService,
+    private toastrService:ToastrService) {
     this.maLopHocPhan = this.router.snapshot.paramMap.get('id');
 
   }
@@ -133,7 +135,8 @@ export class PageCotodiemComponent implements OnInit {
         this.xoaAll();
         this.err="";
         this.quyenSua = "none";
-        this.quyenThem = ''
+        this.quyenThem = '';
+        // this.toastrService.success("sửa thành công ", 'Thông Báo', { timeOut: 6000 });
         
       },
       (error) => {

@@ -8,8 +8,13 @@ const app = express();
 const morgan = require("morgan");
 const path = require("path");
 
+const ip = "103.92.26.177:27017";
+const db = "devAngular";
+const user = "ai_noi_mongo_die";
+const password = "khongthechetduoc";
+
 const MONGODB_URI =
-  "mongodb://ai_noi_mongo_die:123@103.92.26.177:27017/devAngular?retryWrites=true&w=majority?authSource=admin";
+  `mongodb://${user}:${password}@${ip}/${db}?retryWrites=true&w=majority?authSource=admin`;
 
 const PORT = 4100;
 const httpsOptions = {

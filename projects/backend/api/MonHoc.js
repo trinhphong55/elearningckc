@@ -26,9 +26,15 @@ router.get('/trangthai/:trangThai', async (req, res) => {
   const trangThai = req.params.trangThai;
   await MonHoc.find({ trangThai }, {}, { sort: { 'created_at': -1 } })
     .then(dsMonHoc => {
+      dsmh = [];
+      dsMonHoc.forEach(mh => {
+        let mhObject = mh.toObject();
+        mhObject.tenMonHocKhongDau = nonAccentVietnamese(mh.tenMonHoc);
+        dsmh.push(mhObject);
+      })
       return res.status(200).json({
         status: 200,
-        data: dsMonHoc,
+        data: dsmh,
       })
     })
     .catch(err => {
@@ -147,11 +153,12 @@ router.post('/', async (req, res) => {
   }
 
   maMonHoc = await getNextNumber();
-  return res.json('end');
-  console.log(maLoaiMonHoc);
   const monHoc = new MonHoc({ maMonHoc, tenMonHoc, tenVietTat, maLoaiMonHoc });
   monHoc.save().then(() => {
-    return res.json({ success: "added MonHoc" });
+    return res.json({
+      message: "added MonHoc",
+      status: 200,
+    });
   }).catch(err => {
     return res.status(500).json({
       status: 500,
@@ -265,5 +272,19 @@ router.put('/settrangthai/:maMonHoc', async (req, res) => {
     })
   });
 })
+
+function nonAccentVietnamese(str) {
+  str = str.toLowerCase();
+  str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a");
+  str = str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, "e");
+  str = str.replace(/ì|í|ị|ỉ|ĩ/g, "i");
+  str = str.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g, "o");
+  str = str.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g, "u");
+  str = str.replace(/ỳ|ý|ỵ|ỷ|ỹ/g, "y");
+  str = str.replace(/đ/g, "d");
+  str = str.replace(/\u0300|\u0301|\u0303|\u0309|\u0323/g, "");
+  str = str.replace(/\u02C6|\u0306|\u031B/g, "");
+  return str;
+}
 
 module.exports = router;
