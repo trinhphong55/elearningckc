@@ -24,7 +24,7 @@ export class ModalBannerComponent implements OnInit  {
       file.withCredentials = false;
     };
     this.uploader.onCompleteItem = (item: any, status: any) => {
-      this.toastr.success('Tải hình ảnh thành công');
+      // this.toastr.success('Tải hình ảnh thành công');
     };
 
   }

@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
   }
 })
 // add
-router.post('/add', (req, res) => {
+router.post('/add', (req, res,next) => {
   var add = new ttthdangkilophoc({
     mssv: req.body.mssv,
     hoten: req.body.hoten,

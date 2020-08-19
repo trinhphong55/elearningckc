@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var schema = new Schema({
-  mssv: { type: Number },
+  mssv: { type: String },
   hoten: { type: String },
   ngaysinh: { type: String },
   noisinh: { type: String },
