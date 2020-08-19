@@ -9,7 +9,7 @@ class MongoDB {
   }
 
   async connectDB() {
-    let dbName = 'db-caothang';
+    let dbName = 'devAngular';
     try {
       if (!this.dbClose) {
         const connectRs = await MongoClient.connect(url, {
