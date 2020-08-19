@@ -82,7 +82,7 @@ export class ModalBannerComponent implements OnInit  {
      }
      else{
        const newItem: ttthBanner = new ttthBanner();
-       newItem.image = 'https://localhost:4100/uploads/cntt/' + 'slideshow_' + this.nameImage.name;
+       newItem.image = 'uploads/cntt/' + 'slideshow_' + this.nameImage.name;
        newItem.link = link;
        newItem.vitri = vitri;
        newItem.hienthi = true;

@@ -1,0 +1,10 @@
+.search_page__wrapper{
+  margin:80px 0;
+}
+.limit{
+  overflow: hidden;
+  display: -webkit-box;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}

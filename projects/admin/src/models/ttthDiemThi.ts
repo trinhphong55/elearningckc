@@ -7,15 +7,15 @@ export class ttthDiemThi {
   noisinh: String
   lop: String
   tendotthi: String
-  tongdiem: String
+  tongdiem: Number
   xeploai: String
   ngaythi: String
   giothi: String
   phongthi: String
-  laptrinhc: String
-  msword: String
-  msexcel: String
-  mspowerpoint: String
+  laptrinhc: Number
+  msword: Number
+  msexcel: Number
+  mspowerpoint: Number
   trangthai: Boolean
   nguoitao: String
   nguoisua: String

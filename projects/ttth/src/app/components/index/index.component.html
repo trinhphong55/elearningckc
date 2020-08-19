@@ -1,119 +1,163 @@
 <body>
   <section class="home-banner">
-      <div  class="swiper-container gallery_home__slider">
-          <div class="swiper-wrapper">
-            <ng-container *ngFor="let item of Banner">
-              <a href="{{item.link}}" class="swiper-slide" ><img [ngStyle]="{'height': '600px'}" [src]="item.image" alt="slide"></a>
-            </ng-container>
-          </div>
-          <!-- Add Pagination -->
-  <div class="swiper-pagination"></div>
+    <div class="swiper-container gallery_home__slider">
+      <div class="swiper-wrapper">
+        <ng-container *ngFor="let item of Banner">
+          <a href="{{ item.link }}" class="swiper-slide"
+            ><img
+              [ngStyle]="{ width: '100%', height: '404px' }"
+              [src]="item.image"
+              alt="slide"
+          /></a>
+        </ng-container>
+      </div>
+      <!-- Add Pagination -->
+      <div class="swiper-pagination"></div>
 
-  <!-- Add Arrows -->
-  <div class="swiper-button-next"></div>
-  <div class="swiper-button-prev"></div>
-      </div>
+      <!-- Add Arrows -->
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
   </section>
-  <section class="chuong-trinh-dao-tao mt-100 " >
+  <section class="chuong-trinh-dao-tao mt-100">
+    <div class="container">
+      <div class="text-center mb-40">
+        <h2 class="title">CHƯƠNG TRÌNH ĐÀO TẠO</h2>
+        <img src="assets/img/line.png" alt="line" />
+        <p class="p-3">
+          Chương trình học đa dạng và thường xuyên cập nhật công nghệ mới.<br />
+          Hãy để chúng tôi đồng hành cùng bạn trên hành trình chinh phục tri
+          thức - vững vàng bước vào thế giới công nghệ 4.0.
+        </p>
+      </div>
+    </div>
+    <div class="chuong-trinh-dao-tao-content mt-3 p-10">
       <div class="container">
-          <div class="text-center mb-40">
-              <h2 class="title">CHƯƠNG TRÌNH ĐÀO TẠO</h2>
-              <img src="assets/img/line.png" alt="line">
-              <p class="p-3">Chương trình học đa dạng và thường xuyên cập nhật công nghệ mới.<br>
-              Hãy để chúng tôi đồng hành cùng bạn trên hành trình chinh phục tri thức - vững vàng bước vào thế giới công nghệ 4.0.</p>
-          </div>
+        <div class="row text-center justify-content-center">
+          <ng-container *ngFor="let item of KhoaHoc">
+            <div
+              [ngStyle]="{ 'background-color': item.color }"
+              class="chuong-trinh-dao-tao-item col-lg-2 col-md-3 col-sm-3 col-6"
+              data-aos="zoom-out"
+              data-aos-duration="2000"
+            >
+              <a
+                routerLink="/chitietkhoahoc/{{ item._id }}"
+                routerLinkActive="router-link-active"
+              >
+                <p>{{ item.tenkhoahoc }}</p>
+                <img src="{{ item.image }}" alt="{{ item.image }}" />
+              </a>
+            </div>
+          </ng-container>
+        </div>
       </div>
-      <div class="chuong-trinh-dao-tao-content mt-3 p-10 " >
-          <div class="container">
-              <div class="row text-center justify-content-center"  >
-                <ng-container *ngFor="let item of KhoaHoc">
-                  <div [ngStyle]="{'background-color': item.color}" class="chuong-trinh-dao-tao-item col-lg-2 col-md-3 col-sm-3 col-6" data-aos="zoom-out" data-aos-duration="2000" >
-                    <a routerLink="/chitietkhoahoc/{{item._id}}" routerLinkActive="router-link-active" >
-                      <p>{{item.tenkhoahoc}}</p>
-                      <img src="{{item.image}}" alt="{{item.image}}">
-                    </a>
-                  </div>
-                </ng-container>
-              </div>
-          </div>
+    </div>
+  </section>
+  <section class="lich-thi">
+    <a [routerLink]="['/dangkikhoahoc']" routerLinkActive="router-link-active">
+      <div class="text-center pt-4 pb-4">
+        <h2 class="title">Đăng kí khóa học</h2>
+        <img src="assets/img/line.png" alt="line" />
+        <br />
+        <p>Chứng chỉ tin học quốc gia</p>
+        <span>Dành cho thí sinh tự do</span>
       </div>
+    </a>
   </section>
-  <section class="lich-thi " >
-      <a [routerLink]="['/dangkikhoahoc']" routerLinkActive="router-link-active" >
-          <div class="text-center pt-4 pb-4 ">
-              <h2 class="title">Đăng kí khóa học</h2>
-              <img src="assets/img/line.png" alt="line">
-              <br>
-              <p>Chứng chỉ tin học quốc gia</p> <span>Dành cho thí sinh tự do</span>
-          </div>
-      </a>
-  </section>
-  <section class="tien-ich-ho-tro mt-100 " >
-      <div class="container" >
-          <div class=" text-center mt-4 mb-4" data-aos="fade-down" data-aos-duration="2000">
-              <h2 class="title">Tiện ích hỗ trợ</h2><img src="assets/img/line.png" alt="line">
-          </div>
-          <div class="row" data-aos="fade-right" data-aos-duration="2000">
-              <div class="col-lg-4 col-md-6 col-sm-6 col-12" *ngFor="let item of TienIch">
-                  <div class="item"><img [src]="item.image" alt="{{item.image}}">
-                      <div class="item-content">
-                          <a href="{{item.link}}" class="sub-title">{{item.ten}}</a>
-                          <p>{{item.mota}}</p>
-                      </div>
-                  </div>
-              </div>
-          </div>
+  <section class="tien-ich-ho-tro mt-100">
+    <div class="container">
+      <div
+        class="text-center mt-4 mb-4"
+        data-aos="fade-down"
+        data-aos-duration="2000"
+      >
+        <h2 class="title">Tiện ích hỗ trợ</h2>
+        <img src="assets/img/line.png" alt="line" />
       </div>
+      <div class="row" data-aos="fade-right" data-aos-duration="2000">
+        <div
+          class="col-lg-4 col-md-6 col-sm-6 col-12"
+          *ngFor="let item of TienIch"
+        >
+          <div class="item">
+            <img [src]="item.image" alt="{{ item.image }}" />
+            <div class="item-content">
+              <a href="{{ item.link }}" class="sub-title">{{ item.ten }}</a>
+              <p>{{ item.mota }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
-  <section class="down-chevron text-center mt-100 mb-40"><img src="assets/img/icon-down-chevron.png" alt="icon-down-chevron"></section>
+  <section class="down-chevron text-center mt-100 mb-40">
+    <img src="assets/img/icon-down-chevron.png" alt="icon-down-chevron" />
+  </section>
   <section class="tin-tuc-su-kien mb-100">
-      <div class="container">
-          <div class="text-center mb-40">
-              <h2 class="title-bg">Tin tức sự kiện</h2>
-          </div>
-          <div class="row">
-              <div class="col-lg-6 col-md-6 col-12 p-1" *ngFor="let item of TinTucChinh">
-                  <div class="main-news">
-                      <a routerLink="/chitiettintuc/{{item._id}}">
-                          <span class="overlay"></span>
-                          <img [src]="item.image" [alt]="item.image">
-                          <div class="name-new p-3">
-                              {{item.tentintuc}}
-                          </div>
-                      </a>
-                  </div>
-              </div>
-              <div class="col-lg-6 col-md-6 col-12 p-0" >
-                  <div class="row m-0 p-0">
-                      <div class="col-md-6 p-1"*ngFor="let item of TinTucPhu">
-                          <div class="sub-news">
-                              <a href="#">
-                                  <span class="overlay"></span>
-                                  <img [src]="item.image" [alt]="item.image">
-                                  <div class="name-new p-3">
-                                    {{item.tentintuc}}
-                                  </div>
-                              </a>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
+    <div class="container">
+      <div class="text-center mb-40">
+        <h2 class="title-bg">Tin tức sự kiện</h2>
       </div>
+      <div class="row">
+        <div
+          class="col-lg-6 col-md-6 col-12 p-1"
+          *ngFor="let item of TinTucChinh"
+        >
+          <div class="main-news">
+            <a routerLink="/chitiettintuc/{{ item._id }}">
+              <span class="overlay"></span>
+              <img [src]="item.image" [alt]="item.image" />
+              <div class="name-new p-3">
+                {{ item.tentintuc }}
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-12 p-0">
+          <div class="row m-0 p-0">
+            <div class="col-md-6 p-1" *ngFor="let item of TinTucPhu">
+              <div class="sub-news">
+                <a href="#">
+                  <span class="overlay"></span>
+                  <img [src]="item.image" [alt]="item.image" />
+                  <div class="name-new p-3">
+                    {{ item.tentintuc }}
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
   <section class="cam-on mt-100 mb-80">
-      <div class="container">
-          <div class="text-center mb-40 " data-aos="fade-down" data-aos-duration="2000">
-              <h2 class="title-bg">Cám ơn các bạn đã tin tưởng và đồng hành cùng chúng tôi</h2>
-          </div>
-          <div class="row justify-content-center" data-aos="fade-up" data-aos-duration="2000" >
-              <div class="col-md-3 col-sm-6 col-12 cam-on-item text-center" *ngFor="let item of CamOn">
-                  <i class="{{item.icon}}"></i>
-                  <p class="cam-on-item-text">{{item.tieudechinh}}</p>
-                  <p>{{item.tieudephu}}</p>
-              </div>
-          </div>
+    <div class="container">
+      <div
+        class="text-center mb-40"
+        data-aos="fade-down"
+        data-aos-duration="2000"
+      >
+        <h2 class="title-bg">
+          Cám ơn các bạn đã tin tưởng và đồng hành cùng chúng tôi
+        </h2>
       </div>
+      <div
+        class="row justify-content-center"
+        data-aos="fade-up"
+        data-aos-duration="2000"
+      >
+        <div
+          class="col-md-3 col-sm-6 col-12 cam-on-item text-center"
+          *ngFor="let item of CamOn"
+        >
+          <i class="{{ item.icon }}"></i>
+          <p class="cam-on-item-text">{{ item.tieudechinh }}</p>
+          <p>{{ item.tieudephu }}</p>
+        </div>
+      </div>
+    </div>
   </section>
   <div class="back-to-top"><i class="fas fa-chevron-up"></i></div>
 </body>
