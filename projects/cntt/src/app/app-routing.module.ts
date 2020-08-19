@@ -9,7 +9,13 @@ import { PageDocumentComponent } from './pages/page-document/page-document.compo
 import { PageJobComponent } from './pages/page-job/page-job.component';
 import { PageDanhsachtintucComponent } from './pages/page-danhsachtintuc/page-danhsachtintuc.component';
 import { PageBaivietComponent } from './pages/page-baiviet/page-baiviet.component';
-
+import { PageThongbaoComponent } from './pages/page-thongbao/page-thongbao.component';
+import { PageDanhsachthongbaoComponent } from './pages/page-danhsachthongbao/page-danhsachthongbao.component';
+import { PageDanhsachtailieuComponent } from './pages/page-danhsachtailieu/page-danhsachtailieu.component';
+import { PageTailieuComponent } from './pages/page-tailieu/page-tailieu.component';
+import { PageThoikhoabieuComponent } from './pages/page-thoikhoabieu/page-thoikhoabieu.component';
+import { PageDanhsachthoikhoabieuComponent } from './pages/page-danhsachthoikhoabieu/page-danhsachthoikhoabieu.component';
+import { PageVieclamComponent } from './pages/page-vieclam/page-vieclam.component';
 const routes: Routes = [
   {
     path: '',
@@ -31,20 +37,6 @@ const routes: Routes = [
     },
   },
   {
-    path: 'tai-lieu',
-    component: PageDocumentComponent,
-    data: {
-      breadcrumb: 'Tài liệu',
-    },
-  },
-  {
-    path: 'viec-lam',
-    component: PageJobComponent,
-    data: {
-      breadcrumb: 'Việc làm',
-    },
-  },
-  {
     path: 'bai-viet',
     component: PageBaivietComponent,
     data: {
@@ -54,6 +46,98 @@ const routes: Routes = [
       {
         path: '',
         component: PageDanhsachtintucComponent,
+        data: {
+          breadcrumb: '',
+        },
+      },
+      {
+        path: ':id',
+        component: PagePostComponent,
+        data: {
+          breadcrumb: '',
+        },
+      },
+    ],
+  },
+  {
+    path: 'thong-bao',
+    component: PageThongbaoComponent,
+    data: {
+      breadcrumb: 'Thông báo',
+    },
+    children: [
+      {
+        path: '',
+        component: PageDanhsachthongbaoComponent,
+        data: {
+          breadcrumb: '',
+        },
+      },
+      {
+        path: ':id',
+        component: PagePostComponent,
+        data: {
+          breadcrumb: '',
+        },
+      },
+    ],
+  },
+  {
+    path: 'tai-lieu',
+    component: PageTailieuComponent,
+    data: {
+      breadcrumb: 'Tài Liệu',
+    },
+    children: [
+      {
+        path: '',
+        component: PageDanhsachtailieuComponent,
+        data: {
+          breadcrumb: '',
+        },
+      },
+      {
+        path: ':id',
+        component: PagePostComponent,
+        data: {
+          breadcrumb: '',
+        },
+      },
+    ],
+  },
+  {
+    path: 'thoi-khoa-bieu',
+    component: PageThoikhoabieuComponent,
+    data: {
+      breadcrumb: 'Thời Khoá Biểu',
+    },
+    children: [
+      {
+        path: '',
+        component: PageDanhsachthoikhoabieuComponent,
+        data: {
+          breadcrumb: '',
+        },
+      },
+      {
+        path: ':id',
+        component: PagePostComponent,
+        data: {
+          breadcrumb: '',
+        },
+      },
+    ],
+  },
+  {
+    path: 'viec-lam',
+    component: PageVieclamComponent,
+    data: {
+      breadcrumb: 'Cơ hội việc làm',
+    },
+    children: [
+      {
+        path: '',
+        component: PageJobComponent,
         data: {
           breadcrumb: '',
         },

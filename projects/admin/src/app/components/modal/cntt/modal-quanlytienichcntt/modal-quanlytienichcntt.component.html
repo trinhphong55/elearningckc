@@ -22,8 +22,7 @@
                   />
                   <div
                     *ngIf="
-                      maMauTienIch.invalid &&
-                      (maMauTienIch.dirty || maMauTienIch.touched)
+                      maMauTienIch.invalid && maMauTienIch.touched
                     "
                     class="alert alert-danger"
                   >
@@ -49,8 +48,7 @@
                   />
                   <div
                     *ngIf="
-                      tenTienIch.invalid &&
-                      (tenTienIch.dirty || tenTienIch.touched)
+                      tenTienIch.invalid && tenTienIch.touched
                     "
                     class="alert alert-danger"
                   >
@@ -70,8 +68,7 @@
                   />
                   <div
                     *ngIf="
-                      urlTienIch.invalid &&
-                      (urlTienIch.dirty || urlTienIch.touched)
+                      urlTienIch.invalid && urlTienIch.touched
                     "
                     class="alert alert-danger"
                   >
@@ -89,8 +86,7 @@
                   />
                   <div
                     *ngIf="
-                      iconClassTienIch.invalid &&
-                      (iconClassTienIch.dirty || iconClassTienIch.touched)
+                      iconClassTienIch.invalid && iconClassTienIch.touched
                     "
                     class="alert alert-danger"
                   >
@@ -106,6 +102,7 @@
                     <button
                       class="modal_chucnang__button btn btn-outline-primary px-4 mx-2"
                       type="submit"
+                      [disabled]="!tienIchForm.valid"
                     >
                       <img
                         class="modal_chucnang__button__icon mb-2"

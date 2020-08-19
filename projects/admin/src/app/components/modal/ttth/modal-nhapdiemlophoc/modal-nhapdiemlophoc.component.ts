@@ -8,17 +8,20 @@ import { ttthDiemThi } from '../../../../../models/ttthDiemThi';
 import { DotthiService } from '../../../../services/ttth/dotthi.service';
 import { LophocService } from '../../../../services/ttth/lophoc.service';
 import { getCookie } from '../../../../../../../common/helper';
+import { KhoahocService } from '../../../../services/ttth/khoahoc.service';
+
 @Component({
   selector: 'app-modal-nhapdiemlophoc',
   templateUrl: './modal-nhapdiemlophoc.component.html',
   styleUrls: ['./modal-nhapdiemlophoc.component.css']
 })
 export class ModalNhapdiemlophocComponent implements OnInit {
-  constructor(private modalService: ModalService,private DiemthiService: DiemthiService,private DotthiService: DotthiService,private LophocService: LophocService,private toastr: ToastrService) { }
+  constructor(private modalService: ModalService,private DiemthiService: DiemthiService,private DotthiService: DotthiService,private LophocService: LophocService,private KhoahocService: KhoahocService,private toastr: ToastrService) { }
   spinnerEnabled = false;
   keys: string[];
   DiemThi : ttthDiemThi[];
   LopHoc : any[];
+  KhoaHoc : any[];
   selectLopHoc: any;
   private _username: any = getCookie('name');
   dataSheet = new Subject;
@@ -26,9 +29,13 @@ export class ModalNhapdiemlophocComponent implements OnInit {
   isExcelFile: boolean;
   ngOnInit(): void {
     this.getdanhsachlophoc();
+    this.getdanhsachkhoahoc();
   }
   getdanhsachlophoc(): void {
     this.LophocService.getfilter().subscribe((data) => {this.LopHoc = data ;setTimeout(() => {}, 500);});
+  }
+  getdanhsachkhoahoc(): void {
+    this.KhoahocService.get().subscribe((data) => {this.KhoaHoc = data;setTimeout(() => {}, 500);});
   }
   closeModal(id: string) {
     this.modalService.close(id)
@@ -77,17 +84,75 @@ export class ModalNhapdiemlophocComponent implements OnInit {
     this.keys = null;
     this.DiemThi = undefined;
   }
+  checkboxLopHocRieng: any;
+  checkboxKhoaHoc: any;
+
+  getValueCheckBoxLopHocRieng(e){
+    this.checkboxLopHocRieng= e.target.checked;
+    if (this.checkboxLopHocRieng === true) {
+      let value = false;
+      this.checkboxKhoaHoc= value;
+    }
+    else{
+      let value = true;
+      this.checkboxKhoaHoc= value;
+    }
+  }
+  getValueCheckBoxKhoaHoc(e){
+    this.checkboxKhoaHoc= e.target.checked;
+    if (this.checkboxKhoaHoc === true) {
+      let value = false;
+      this.checkboxLopHocRieng= value;
+    }
+    else{
+      let value = true;
+      this.checkboxLopHocRieng= value;
+    }
+    this.selectLopHoc=null;
+  }
   importExcel() {
-    let lop = this.selectLopHoc;
+    let kiemtradiem : any ;
+    let kiemtramssv : any ;
     let nguoitao = this._username;
-    this.DiemThi.forEach(function (value) {
-      value.lop = lop;
-      value.nguoitao = nguoitao;
-      value.loaidiem = 'Điểm lớp học';
-    });
-    console.log(this.DiemThi);
-    this.DiemthiService.importDiemThi(this.DiemThi).subscribe(data => { this.DiemThi.push(data);
-    });
-    this.toastr.success('Import thành công');
+    if(this.selectLopHoc==null){
+      let nguoitao = this._username;
+      this.DiemThi.forEach(function (value) {
+        value.nguoitao = nguoitao;
+        value.loaidiem = 'Điểm lớp học';
+        if(isNaN(+value.tongdiem) || value.tongdiem < 0 || value.tongdiem > 10){
+          kiemtradiem=false;
+        }
+        if(isNaN(+value.mssv) || value.mssv.length !=10 || value.mssv.substr(0, 1) != '0'){
+          kiemtramssv=false;
+        }
+      });
+    }
+    else{
+      let lop = this.selectLopHoc;
+      this.DiemThi.forEach(function (value) {
+        value.lop = lop;
+        value.nguoitao = nguoitao;
+        value.loaidiem = 'Điểm lớp học';
+        if(isNaN(+value.tongdiem) || value.tongdiem < 0 || value.tongdiem > 10){
+          kiemtradiem=false;
+        }
+        if(isNaN(+value.mssv) || value.mssv.length !=10 || value.mssv.substr(0, 1) != '0'){
+          kiemtramssv=false;
+        }
+      });
+    }
+
+    if (kiemtradiem==false) {
+      this.toastr.error('Vui lòng kiểm tra lại điểm nhập vào');
+    }
+    else if (kiemtramssv==false) {
+      this.toastr.error('Mã số sinh viên không đúng định dạng. Vui long kiểm tra lại');
+    }
+    else{
+      this.DiemthiService.importDiemThi(this.DiemThi).subscribe(data => { this.DiemThi.push(data);});
+      this.toastr.success('Nhập điểm lớp học thành công');
+      this.DiemThi=null;
+      this.getdanhsachlophoc();
+    }
   }
 }

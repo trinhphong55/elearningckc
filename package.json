@@ -8,7 +8,7 @@
     "ckc-api-cntt": "concurrently \"npm run ckc-backend\" \"npm run ckc-cntt\"",
     "ckc-api-elearning": "concurrently \"npm run ckc-backend\" \"npm run ckc-elearning\"",
     "ckc-api-ttth": "concurrently \"npm run ckc-backend\" \"npm run ckc-ttth\"",
-    "ckc-backend": "concurrently \"cd projects/backend & npm run start\"",
+    "ckc-backend": "concurrently \"cd projects/backend & npm run dev\"",
     "ckc-admin": "ng serve admin --port=4200 --ssl true --ssl-cert \"ssl/localhost.crt\" --ssl-key \"ssl/localhost.key\"",
     "ckc-cntt": "ng serve cntt --port=4300",
     "ckc-elearning": "ng serve elearning --port=4400",

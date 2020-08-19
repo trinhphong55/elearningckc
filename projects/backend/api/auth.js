@@ -28,7 +28,6 @@ router.post('/login', async(req, res) => {
       result = await sinhVienDAO.login(email, password);
     }
   }
-  console.log('result', result);
   let data = {};
   if(result != false){
     data = {
@@ -50,7 +49,7 @@ router.post("/change-password", async (req, res) => {
   const oldPass = req.body.oldPass;
   const newPass = req.body.newPass;
   const newPassConfirm = req.body.newPassConfirm;
-  let result = await userDAO.changePassword(mssv, oldPass, newPass, newPassConfirm);
+  let result = await sinhVienDAO.changePassword(mssv, oldPass, newPass, newPassConfirm);
   let data = {};
   if(result != false){
     data = {
@@ -69,7 +68,7 @@ router.post("/change-password", async (req, res) => {
 
 router.post("/reset-password", async (req, res) => {
   const email = req.body.email;
-  let result = await userDAO.resetPassword(email);
+  let result = await sinhVienDAO.resetPassword(email);
   let data = {};
   if(result != false){
     data = {

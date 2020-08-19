@@ -12,6 +12,10 @@ export class DangkidotthiService {
     return this.http.post<any>('https://localhost:4100/api/ttthDangKiDotThi/add', newItem, httpOptions).pipe(
     );
   }
+  getDKDT(): Observable<any[]  >{
+    return this.http.get<any[] >('https://localhost:4100/api/ttthDangKiDotThi/').pipe(
+    );
+  }
   getDotThi(): Observable<any[]  >{
     return this.http.get<any[] >('https://localhost:4100/api/ttthDotThi/').pipe(
     );

@@ -178,15 +178,17 @@
                                         </div>
                                     </div> -->
                   <div class="form-group">
-                    <label class="mb-0">Mô tả ngắn</label>
-                    <input
+                    <label class="mb-0">Mô tả ngắn(Tối đa 200 ký tự)</label>
+                    <textarea
                       formControlName="moTaNgan"
                       type="text"
                       class="form-control"
                       placeholder="Mô tả ngắn"
                       style="min-height: 90px;"
                       required
-                    />
+                      minlength="25"
+                      maxlength="200"
+                    ></textarea>
                     <div
                       *ngIf="
                         moTaNgan.invalid && (moTaNgan.dirty || moTaNgan.touched)
@@ -195,6 +197,12 @@
                     >
                       <div *ngIf="moTaNgan.errors.required">
                         Nhập Mô tả ngắn.
+                      </div>
+                      <div *ngIf="moTaNgan.errors.minlength">
+                        Mô tả ngắn phải trên 25 ký tự.
+                      </div>
+                      <div *ngIf="moTaNgan.errors.maxlength">
+                        Mô tả ngắn phải ít hơn 200 ký tự.
                       </div>
                     </div>
                   </div>
@@ -355,6 +363,7 @@
                   class="col-12"
                   formControlName="noiDung"
                   [editor]="Editor"
+                  minlength="50"
                 ></ckeditor>
                 <div
                   *ngIf="noiDung.invalid && (noiDung.dirty || noiDung.touched)"
@@ -362,6 +371,9 @@
                 >
                   <div *ngIf="noiDung.errors.required">
                     Nhập nội dung bài viết.
+                  </div>
+                  <div *ngIf="noiDung.errors.minlength">
+                    Nội dung cần nhiều hơn 50 ký tự.
                   </div>
                 </div>
                 <div
@@ -462,15 +474,18 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="mb-0">Mô tả ngắn</label>
-                    <input
+                    <label class="mb-0">Mô tả ngắn(Tối đa 200 ký tự)</label>
+                    <textarea
                       formControlName="moTaNgan"
                       type="text"
                       class="form-control"
                       placeholder="Mô tả ngắn"
                       style="min-height: 90px;"
+                      minlength="25"
+                      maxlength="200"
                       required
-                    />
+                    >
+                    </textarea>
                     <div
                       *ngIf="
                         moTaNgan2.invalid &&
@@ -480,6 +495,9 @@
                     >
                       <div *ngIf="moTaNgan2.errors.required">
                         Nhập Mô tả ngắn.
+                      </div>
+                      <div *ngIf="moTaNgan2.errors.minlength">
+                        Mô tả ngắn phải trên 25 ký tự.
                       </div>
                     </div>
                   </div>
@@ -631,6 +649,7 @@
                   class="col-12"
                   formControlName="noiDung"
                   [editor]="Editor"
+                  minlength="50"
                 ></ckeditor>
                 <div
                   *ngIf="
@@ -639,7 +658,10 @@
                   class="alert alert-danger"
                 >
                   <div *ngIf="noiDung2.errors.required">
-                    Chọn Vị trí Hiển thị lên trang chủ.
+                    Điền nội dung.
+                  </div>
+                  <div *ngIf="noiDung2.errors.minlength">
+                    Nội dung cần nhiều hơn 50 ký tự.
                   </div>
                 </div>
                 <div
