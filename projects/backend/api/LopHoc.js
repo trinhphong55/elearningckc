@@ -171,28 +171,28 @@ exports.insert = async (req, res) => {
   try {
     const err = validationResult(req);
     if (!err.isEmpty()) {
-      res.status(422).json(err.errors);
+      return res.status(422).json(err.errors);
     }
     const LopHocs = await LopHoc.find({ trangThai: 1 });
 
     LopHocs.forEach((element) => {
       if (req.body.maLopHoc == element.maLopHoc) {
         return res.json({
-          status: 200,
+          status: 422,
           ok: false,
           msg: "Mã này đã tồn tại",
         });
       }
       if (req.body.tenLop == element.tenLop) {
         return res.json({
-          status: 200,
+          status: 422,
           ok: false,
           msg: "Tên này đã tồn tại",
         });
       }
       if (req.body.tenVietTat == element.tenVietTat) {
         return res.json({
-          status: 200,
+          status: 422,
           ok: false,
           msg: "Tên viết tắt này đã tồn tại",
         });
@@ -202,14 +202,13 @@ exports.insert = async (req, res) => {
     const lophoc = new LopHoc(setLopHoc(req));
     const data = await lophoc.save();
 
-    return res.json({
+    res.json({
       status: 200,
       ok: true,
       msg: "Thêm thành công lớp " + req.body.tenVietTat ,
       data: data,
     });
   } catch (error) {
-
     res.json(error);
   }
 };
@@ -280,9 +279,9 @@ exports.timLopTheoTienTo = async (req, res) => {
       const lop = await LopHoc.find({
         maLopHoc: { $regex: +TienTo + ".*" },
       });
-      res.json({ count: lop.length, tienTo: TienTo, data: lop });
+      return res.json({ count: lop.length, tienTo: TienTo, data: lop });
     } else {
-      res.json({ count: 0, tienTo: TienTo, data: null });
+      return res.json({ count: 0, tienTo: TienTo, data: null });
     }
   } catch (error) {
     res.json(error);

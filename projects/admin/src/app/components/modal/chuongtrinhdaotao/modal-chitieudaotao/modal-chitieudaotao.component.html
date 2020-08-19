@@ -1,4 +1,4 @@
-<app-modal class="modal_chucnang__wrapper show" id="ctdt_chitieudaotao">
+<app-modal class="modal_chucnang__wrapper" id="ctdt_chitieudaotao">
   <div (click)="closeModal('ctdt_chitieudaotao')" class="modal_chucnang__close mdi mdi-chevron-left text-white"></div>
   <div class="container mt-3">
 
@@ -72,11 +72,11 @@
         </div>
         <!-- Modal -->
         <div class="modal fade" id="sinhVienThongBao" tabindex="-1" role="dialog"
-          aria-labelledby="exampleModalCenterTitle" aria-hidden="true" *ngIf="soSinhVienthemThatBai>0">
+          aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
-            <div class="modal-content">
+            <div class="modal-content" *ngIf="dsSinhVienThemThatBai?.length > 0">
               <div class="modal-header alert alert-info">
-                <h5 class="modal-title" id="exampleModalLongTitle">Danh sách thêm thất bại</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Danh sách thêm thất bại </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -104,7 +104,7 @@
                         {{item.ngaySinh}}
                       </td>
                       <td>
-                        <form [formGroup]="dsLopFormArray.controls[i]">
+                        <form [formGroup]="dsLopFormArray?.controls[i]">
                           <select class="form-control" formControlName="maLopHoc">
                             <option *ngFor="let loai of lopHocs" [ngValue]=loai.maLopHoc> {{loai.tenVietTat }}</option>
                           </select>
@@ -119,9 +119,9 @@
                 </table>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button class="btn btn-outline-success" (click)="capNhat_LopChoSinhVien()"><i
-                    class="fa fa-pen"></i></button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                <button class="btn btn-outline-success" (click)="capNhat_LopChoSinhVien()"><i class="fa fa-pen"></i> Cập
+                  nhật</button>
               </div>
             </div>
           </div>
@@ -131,7 +131,7 @@
         <!--Chi tiet LopHocPhan-->
         <div class="modal fade" id="chiTiet" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
           aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
             <div class="modal-content">
               <div class="modal-header alert alert-success">
                 <h5 class="modal-title" id="exampleModalLongTitle">Danh sách lớp học phần</h5>
@@ -140,18 +140,29 @@
                 </button>
               </div>
               <div class="modal-body">
-                <table class="modal_chucnang__table table table-hover table table-bordered">
+                <ng-container>
+                  <form [formGroup]="hocKiForm">
+                    <label for="hocKi">Chọn học kì</label>
+                    <select id="hocKi" class="form-control" formControlName="hocKi"
+                      (change)="onChangeLopHocPhan_theoHocKi()">
+                      <option *ngFor="let loai of hocKis" [ngValue]=loai.maHK> {{loai.tenHK }}</option>
+                    </select>
+                  </form>
+                </ng-container>
+                <table class="modal_chucnang__table table table-hover table table-bordered"
+                  *ngIf="dsLHPTam?.length > 0">
                   <thead class="bg__caothang text-white">
                     <tr>
-                      <th scope="col">STT</th>
+                      <th scope="col">#</th>
                       <th scope="col">Tên lớp học phần</th>
                       <th scope="col">Mã lớp</th>
+                      <th scope="col">Học kì</th>
                     </tr>
                   </thead>
                   <tbody>
                     <!-- <ng-container *ngFor="let item of lopNganhs">
                       <ng-container *ngFor="let lop of item.dsLop, index as i"> -->
-                    <tr *ngFor="let item of lopHocPhans, index as i">
+                    <tr *ngFor="let item of dsLHPTam, index as i">
                       <th scope="row">{{ i+1 }}</th>
                       <td>
                         {{  item.tenLopHocPhan }}
@@ -159,11 +170,15 @@
                       <td>
                         {{ item.maLopHoc }}
                       </td>
+                      <td>
+                        {{ item.hocKi }}
+                      </td>
                     </tr>
                     <!-- </ng-container> -->
                     <!-- </ng-container> -->
                   </tbody>
                 </table>
+                <ng-container *ngIf="dsLHPTam?.length == 0">Không có lớp học phần nào</ng-container>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
@@ -202,7 +217,7 @@
         <!-- Modal Execl Danh sách sinh viên-->
         <div class="modal fade" id="dsSV" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
           aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
             <div class="modal-content">
               <div class="modal-header alert alert-warning">
                 <h5 class="modal-title" id="exampleModalLongTitle">Nhập danh sách sinh viên</h5>
@@ -217,18 +232,24 @@
                   <input type="file" class="form-control-file" id="excelSV" (change)="onChangeSinhVien($event)"
                     #inputFile>
                 </div>
-                <button type="button" data-toggle="modal" data-target="#sinhVienThongBao"
-                  (click)="onClickImportExeclSinhVien()" data-dismiss="modal" class="btn btn-outline-success">
-                  Import Excel
-                </button>
-
                 <hr>
-                <div>
-                  <button class="btn btn-danger" (click)="removeData()">Remove Data</button>
+                <div class="row center">
+                  <div class="col-6">
+                    <button type="button" data-toggle="modal" data-target="#sinhVienThongBao"
+                      (click)="onClickImportExeclSinhVien()" data-dismiss="modal" class="btn btn-outline-success">
+                      <i class="fa fa-file-download"></i> Import
+                    </button></div>
+                  <div class="col-6">
+                    <button class="btn btn-outline-danger" (click)="removeData()"><i class="fa fa-trash"></i> Xoá tất cả
+                    </button>
+                  </div>
                 </div>
                 <hr>
-                <div>
-                  <p class="h6">Danh sách sinh viên từ EXCEL </p>
+                <div class="row">
+                  <div class="col-12 text-center">
+                    <h5>Danh sách sinh viên từ EXCEL</h5>
+                  </div>
+                  <hr>
                   <table class="modal_chucnang__table table table-hover table table-bordered ">
                     <thead class="bg__caothang text-white">
                       <tr>
@@ -305,7 +326,8 @@
                       </td>
                       <td>
                         <button type="button" class="btn btn-outline-danger"
-                          (click)="onClickResetLopHoc(nganh.maNganhNghe, nganh.maBac)"><i class="fa fa-ban"></i></button>
+                          (click)="onClickResetLopHoc(nganh.maNganhNghe, nganh.maBac)"><i
+                            class="fa fa-ban"></i></button>
                       </td>
                     </tr>
 
@@ -335,7 +357,7 @@
                       <th scope="col">Tên lớp</th>
                       <th scope="col">Sỉ số</th>
                       <th scope="col">Lớp học phần</th>
-                      <th scope="col">Import DSSV</th>
+                      <th scope="col">DSSV</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -352,12 +374,13 @@
                       </td>
                       <td>
                         <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#chiTiet"
-                          (click)="layLopHocPhan(item.maLopHoc)"><i class="fa fa-list"></i> Xem</button>
+                          (click)="onClickLayLopHocPhan_theoMaLop(item.maLopHoc)"><i class="fa fa-list"></i>
+                          Xem</button>
                       </td>
                       <td>
                         <button type="button" class="modal_chucnang__button btn btn-outline-success" data-toggle="modal"
-                          data-target="#dsSV" (click)="onClickThemDSSV(item.maLopHoc)"><img
-                            class=" modal_chucnang__button__icon " src="assets/img/icons/excel.png" alt="image icon">
+                          data-target="#dsSV" (click)="onClickThemDSSV(item.maLopHoc)"><i class="fa fa-file-excel"></i>
+                          Import
                         </button>
                       </td>
                     </tr>
