@@ -18,9 +18,9 @@ export class DiemSinhVienService  {
   }
 
   //luu tong diem
-  luuDiem(diemTongKet:any){
+  luuDiem(diemTongKet:any,maLopHOcPhan:any){
     try {
-      return this.http.post<any>(baseUrl, diemTongKet)
+      return this.http.post<any>(`${baseUrl}/${maLopHOcPhan}`, diemTongKet)
     } catch (error) {
       return error;
     }

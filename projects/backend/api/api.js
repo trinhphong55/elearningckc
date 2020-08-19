@@ -246,7 +246,7 @@ router.put("/ct-diemsv-lophocphan/:id/chamdiem",verifyToken, ctDiemLopHP.chamdie
 router.get("/ct-diemsv-lophocphan/:maCotDiem/exportexcel",verifyToken, ctDiemLopHP.thongTinXuatExcel);
 
 //======================= Routes Diem tong ket ==================================
-router.post("/diemsinhvien", Diemsinhvien.luuTongDiem);
+router.post("/diemsinhvien/:maLopHocPhan", Diemsinhvien.luuTongDiem);
 
 //=========================== Routes ChuDe =============================================
 router.get("/chude",verifyToken, ChuDe.layTatCa);
