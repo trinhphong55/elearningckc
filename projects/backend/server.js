@@ -8,6 +8,8 @@ const app = express();
 const morgan = require("morgan");
 const path = require("path");
 
+// const MONGODB_URI =
+//   "mongodb://localhost:27017/testAngularckc?readPreference=primary&appname=MongoDB%20Compass%20Community&ssl=false";
 const MONGODB_URI =
   'mongodb://ai_noi_mongo_die:123@103.92.26.177:27017/devAngular?authSource=devAngular&readPreference=primary&appname=MongoDB%20Compass&ssl=false';
 
@@ -20,7 +22,7 @@ const httpsOptions = {
 
 // Connect with MongoDB
 // mongoose.connect("mongodb://127.0.0.1:27017/ttth", {
-mongoose.connect(MONGODB_URI, {
+  mongoose.connect(MONGODB_URI, {
   useNewUrlParser: true,
   useFindAndModify: false,
   useCreateIndex: true,

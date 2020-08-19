@@ -15,8 +15,6 @@ router.get('/', async (req, res) => {
 router.post('/add', (req, res) => {
   var add = new ttthdangkidotthi({
     tendot: req.body.tendot,
-    lophoc: req.body.lophoc,
-    ngaythi: req.body.ngaythi,
     mssv: req.body.mssv,
     hoten: req.body.hoten,
     ngaysinh: req.body.ngaysinh,

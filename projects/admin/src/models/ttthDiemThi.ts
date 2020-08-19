@@ -6,15 +6,16 @@ export class ttthDiemThi {
   sobaodanh: String
   noisinh: String
   lop: String
-  tongdiem: String
+  tendotthi: String
+  tongdiem: Number
   xeploai: String
   ngaythi: String
   giothi: String
   phongthi: String
-  laptrinhc: String
-  msword: String
-  msexcel: String
-  mspowerpoint: String
+  laptrinhc: Number
+  msword: Number
+  msexcel: Number
+  mspowerpoint: Number
   trangthai: Boolean
   nguoitao: String
   nguoisua: String

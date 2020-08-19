@@ -13,21 +13,21 @@ export class BannerService {
 
   constructor(private http: HttpClient) { }
   getBanner(): Observable<ttthBanner[]  >{
-    return this.http.get<ttthBanner[] >('https://localhost:4100/api/ttthbanner/').pipe(
+    return this.http.get<ttthBanner[] >('https://api.cnttckc.edu.vn/api/ttthbanner/').pipe(
     );
   }
   addBanner(newBanner: ttthBanner): Observable<ttthBanner> {
-    return this.http.post<ttthBanner>('https://localhost:4100/api/ttthBanner/ttththemBanner', newBanner, httpOptions).pipe(
+    return this.http.post<ttthBanner>('https://api.cnttckc.edu.vn/api/ttthBanner/ttththemBanner', newBanner, httpOptions).pipe(
     );
   }
   suaBanner(newBanner: ttthBanner): Observable<ttthBanner> {
-    return this.http.post<ttthBanner>('https://localhost:4100/api/ttthBanner/ttthsuabanner', newBanner, httpOptions).pipe(
+    return this.http.post<ttthBanner>('https://api.cnttckc.edu.vn/api/ttthBanner/ttthsuabanner', newBanner, httpOptions).pipe(
       // tap((newBanner: ttthBanner) => console.log(`inserted TinTuc = ${JSON.stringify(newBanner)}`)),
       // catchError(error => of(new ttthBanner()))
     );
   }
   xoaBanner(newBanner: ttthBanner): Observable<ttthBanner> {
-    return this.http.post<ttthBanner>('https://localhost:4100/api/ttthBanner/ttthxoabanner', newBanner, httpOptions).pipe(
+    return this.http.post<ttthBanner>('https://api.cnttckc.edu.vn/api/ttthBanner/ttthxoabanner', newBanner, httpOptions).pipe(
     );
   }
 }

@@ -1,30 +1,31 @@
+<app-detail-groupfacebook></app-detail-groupfacebook>
 <app-modal class="modal_chucnang__wrapper " id="fb_quanlygroupfacebook">
   <div (click)="closeModal('fb_quanlygroupfacebook')" class="modal_chucnang__close mdi mdi-chevron-left text-white"></div>
   <div class="container-fluid mt-3">
     <div class="row">
       <div class="col-12">
-        <h1 class="text-center text-white">Quản lý Group Facebook</h1>
+        <h1 class="text-center text-white">Quản lý các nhóm lớp trên Facebook</h1>
       </div>
       <div class="col-12">
         <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
            <div class="row justify-content-center align-items-center">
             <div class="col-4" >
               <div class="form-group">
-                <label> Tên Group</label>
+                <label> Tên nhóm</label>
                 <input class="form-control" type="text" [formControl]="tenGroup" >
               </div>
               <div class="form-group">
-                <label> Link Group</label>
+                <label> Đường dẫn</label>
                 <input class="form-control" [formControl]="linkGroup">
               </div>
             </div>
             <div class="col-4">
               <div class="form-group">
-                <label> ID Group</label>
+                <label> ID nhóm</label>
                 <input class="form-control" [formControl]="IDGroup">
               </div>
               <div class="form-group">
-                <label>Lớp</label>
+                <label>Thuộc lớp</label>
                 <input class="form-control" [formControl]="tenLop">
               </div>
             </div>
@@ -49,8 +50,8 @@
                 <div class="modal_chucnang__group__button">
                   <button class="modal_chucnang__button btn btn-outline-success px-4 mx-2" (click)="update()"><img
                     class="modal_chucnang__button__icon mb-2" src="assets/img/icons/upgrade.png" alt="image icon">
-                  <div>Cập nhật</div>
-                </button>
+                    <div>Cập nhật</div>
+                  </button>
                 </div>
               </div>
             </div>
@@ -63,7 +64,7 @@
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+              <h1 id="titlegrp"></h1>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -71,26 +72,38 @@
               <div class="modal-body">
                 <div class="">
                   <div class="form-group">
-                    <label>Message</label>
-                    <textarea class="form-control" type="text" name="message" id="messagegr" ></textarea>
+                    <label>Nội dung</label>
+                    <textarea class="form-control" type="text" [formControl]="getMessageGrp" id="messagegr" ></textarea>
                   </div>
                 </div>
                 <div class="">
                   <div class="form-group">
-                    <label>Url picture</label>
-                    <input class="form-control" type="text" name="picture" id="picturegr"/>
+                    <label>Url hình ảnh</label>
+                    <input class="form-control" type="text" [formControl]="getURLimgGrp" id="picturegr"/>
                   </div>
                 </div>
-                <!-- <div class="">
+                <div class="">
                   <div class="form-group">
-                    <label for="">Ảnh/Video</label>
-                    <input class="form-control-file border" type="file">
+                    <label for="">Loại</label>
+                    <select id="loaig2" [formControl]="getLoaisttGrp" class="col-6 form-control">
+                      <option [value]="null">Chọn..</option>
+                      <option *ngFor="let l of getloai" class="form-control">{{l.loai}}</option>
+                    </select>
                   </div>
-                </div> -->
+                </div>
+                <input type="text" value="" id="linksttGrp" hidden>
+                <input type="text" value="" id="getidGrp" hidden>
+                <input type="text" value="" id="postidGrp" hidden>
+                <input id="returnloaig2"value="" type="text" name="" hidden>
+                <input id="returnerrorpicturegrp" value="" type="text" name="" hidden>
+
+
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" onclick="PostByRequest()">Đăng</button>
+                <button type="button" class="btn btn-success" onclick="PostGrpByRequest()" (click)="insertTobdGrp()">Đăng</button>
+                <button type="button" class="btn btn-secondary" (click)="insertDraftGrp()">Lưu Nháp</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+
               </div>
             </div>
           </div>
@@ -102,14 +115,14 @@
                 <div class="form-group">
                   <label for="bac">Bậc </label>
                   <select id="bac" class="form-control ml-4 mb-1" formControlName="TenB" (change)="changedBac($event)" >
-                    <option value="">Select...</option>
+                    <option value="null">Chọn bậc...</option>
                     <option *ngFor="let b of bactamlist" [ngValue]=b.maBac > {{b.tenBac }}</option>
                   </select>
                 </div>
                 <div class="form-group">
                   <label for="nganh" class="col-form-label">Ngành </label>
                   <select id="nganh" class="form-control ml-2" formControlName="TenN" (change)="changedNganh($event)" >
-                    <option value="">Select..</option>
+                    <option value="null">Chọn ngành...</option>
                     <option *ngFor="let n of nganhs" [ngValue]=n.maNganhNghe > {{n.tenNganhNghe }}</option>
                   </select>
                 </div>
@@ -131,9 +144,9 @@
           <table class="modal_chucnang__table table table-hover" id="">
             <thead class="bg__caothang text-white">
               <th scope="col" class="text-center">STT</th>
-              <th scope="col" class="text-center">ID Group</th>
+              <th scope="col" class="text-center">Tên nhóm</th>
               <th scope="col" class="text-center">Tên Lớp</th>
-              <th scope="col" class="text-center">Link</th>
+              <th scope="col" class="text-center">Đường dẫn</th>
               <th scope="col" class="text-center">Người tạo</th>
               <th scope="col" class="text-center">Khóa</th>
               <th scope="col" class="text-center">Tác vụ</th>
@@ -142,7 +155,7 @@
               <tr *ngFor=" let d of lopTams |filter: searchGroup; index as stt" >
                 <td class="text-center">{{stt+1}}</td>
                 <td class="text-center">
-                  <div class="a" id="maGoup + {{stt}}">{{d.IDGroupFB}}</div>
+                  <div>{{d.tenGroupFB}}</div>
                 </td>
                 <td class="text-center" (click)="insertDateforForm(d)">
                   <label >{{d.tenVietTat}}</label>
@@ -159,12 +172,12 @@
                 <td class="text-center">
                   <div class="mb-1">
                     <!-- Button trigger modal -->
-                    <button type="button" class="modal_chucnang__button btn btn-outline-success" data-toggle="modal" data-target="#exampleModalLong" onclick="getIDGroup(this)" data="{{d.IDGroupFB}}" >
+                    <button type="button" class="modal_chucnang__button btn btn-outline-success" data-toggle="modal" data-target="#exampleModalLong" (click)="changeTitleGrp(d.tenGroupFB)" onclick="getIDGroup(this)" data="{{d.IDGroupFB}}" >
                       Đăng Bài
                     </button>
                   </div>
                   <div class="form-group">
-                    <button class="modal_chucnang__button btn btn-outline-success px-4 mx-2" (click)="openDetail(d)" onclick="getIDGroup(this)" data="{{d.IDGroupFB}}">View</button>
+                    <button class="modal_chucnang__button btn btn-outline-secondary" (click)="openDetail(d)" onclick="getIDGroup(this)" data="{{d.IDGroupFB}}">Chi tiết</button>
                   </div>
                 </td>
               </tr>

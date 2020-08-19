@@ -19,6 +19,12 @@
       <div  *ngIf="error==true" class="alert alert-danger" role="alert">
         Vui lòng nhập đủ thông tin!
       </div>
+      <div  *ngIf="checkexist==true" class="alert alert-danger" role="alert">
+        Bạn đã đăng kí đợt thi này rồi!
+      </div>
+      <div  *ngIf="checkmssv==true" class="alert alert-danger" role="alert">
+        Mã số sinh viên không đúng định dạng!
+      </div>
       <div class="dangkikhoahoc-box featured-box-primary">
         <div class="box-content">
           <h4 class="color-primary font-weight-semibold text-4 mb-3">Vui lòng điền đầy đủ thông tin bên dưới.</h4>
@@ -116,9 +122,10 @@
           <div class="form-row">
             <div class="form-group col">
                 <label class="font-weight-bold text-dark text-2 required">Đợt thi</label>
-                <select class="form-control ttth__select2" #lophoc>
+                <select class="form-control ttth__select2" #tendot>
+                  <option value="">Chọn đợt thi</option>
                   <ng-container *ngFor="let item of DotThi">
-                    <option value="{{item.lophoc}}">{{item.tendot}} - {{item.lophoc}} - {{item.ngaythi | date:'dd/MM/yyyy'}}</option>
+                    <option *ngIf="item.trangthai==1 && (item.ngayhethan| date: 'dd/MM/yyyy') > (getday| date: 'dd/MM/yyyy')" value="{{item.tendot}} - {{item.ngaythi | date:'dd/MM/yyyy'}} - {{item.giothi}} - {{item.phongthi}}">{{item.tendot}} - {{item.ngaythi | date:'dd/MM/yyyy'}} - {{item.giothi}} - {{item.phongthi}}</option>
                   </ng-container>
                 </select>
             </div>
@@ -126,7 +133,7 @@
           <div class="form-row">
             <div class="form-group col-lg-12">
                 <input type="submit" value="Đăng Ký" class="btn btn-primary float-right" style="font-size: 0.8em;"
-                (click)="dangkidotthi(mssv.value,hoten.value,ngaysinh.value,noisinh.value,sodienthoai.value,lophoc.value);mssv.value=''; hoten.value=''; ngaysinh.value=''; noisinh.value=''; sodienthoai.value=''; lophoc.value=''">
+                (click)="dangkidotthi(mssv.value,hoten.value,ngaysinh.value,noisinh.value,sodienthoai.value,tendot.value);mssv.value=''; hoten.value=''; ngaysinh.value=''; noisinh.value=''; sodienthoai.value=''; tendot.value=''">
             </div>
           </div>
         </div>

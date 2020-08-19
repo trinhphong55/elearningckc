@@ -204,7 +204,7 @@
             <div class="col-md-6">
               <div class="form-group pr-3 pt-1">
                 <select class="form-control" id="exampleFormControlSelect1" formControlName="chonHocKi"
-                  (change)="onChangeDanhSachCotDiem()">
+                  (change)="onChangeChonHocKi()">
                   <option value="">Chọn học kì</option>
                   <option *ngFor="let item of hocKis" [ngValue]=item.maHK>{{ item.tenHK }}</option>
                 </select>

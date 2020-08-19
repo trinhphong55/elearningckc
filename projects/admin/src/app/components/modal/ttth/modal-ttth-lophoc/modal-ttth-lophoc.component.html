@@ -38,17 +38,21 @@
               </div>
               <div class="form-group">
                 <label>Ngày khai giảng</label>
-                <input type="date" class="form-control" #ngaykhaigiang placeholder="VD: 20/11/2020">
+                <input type="date" class="form-control" #ngaykhaigiang>
               </div>
               <div class="form-group">
                 <label>Học phí</label>
                 <input type="text" class="form-control" #hocphi>
               </div>
+              <div class="form-group">
+                <label>Ngày hết hạn đăng kí</label>
+                <input type="date" class="form-control" #ngayhethan>
+              </div>
             </div>
             <div class="col-auto">
               <div class="modal_chucnang__group__button">
-                <button class="modal_chucnang__button btn btn-outline-primary px-4 mx-2" [disabled]="!makhoahoc.value || !dot.value || !giaovien.value|| !buoihoc.value|| !giohoc.value|| !hocphi.value || !ngaykhaigiang.value "
-                  (click)="add(makhoahoc.value,dot.value,giaovien.value,buoihoc.value,giohoc.value,ngaykhaigiang.value,hocphi.value);makhoahoc.value=''; dot.value=''; giaovien.value=''; buoihoc.value=''; giohoc.value=''; hocphi.value=''; ngaykhaigiang.value=''"><img
+                <button class="modal_chucnang__button btn btn-outline-primary px-4 mx-2" [disabled]="!makhoahoc.value || !dot.value || !giaovien.value|| !buoihoc.value|| !giohoc.value|| !hocphi.value || !ngaykhaigiang.value || !ngayhethan.value"
+                  (click)="add(makhoahoc.value,dot.value,giaovien.value,buoihoc.value,giohoc.value,ngaykhaigiang.value,hocphi.value,ngayhethan.value);makhoahoc.value=''; dot.value=''; giaovien.value=''; buoihoc.value=''; giohoc.value=''; hocphi.value=''; ngaykhaigiang.value=''; ngayhethan.value=''"><img
                     class="modal_chucnang__button__icon mb-2" src="assets/img/icons/add.png" alt="image icon">
                   <div>Thêm mới</div>
                 </button>
@@ -90,11 +94,15 @@
               </div>
               <div class="form-group">
                 <label>Ngày khai giảng</label>
-                <input type="date" class="form-control" [(ngModel)]="selectedItem.ngaykhaigiang"  placeholder="VD: 20/11/2020">
+                <input type="date" class="form-control" [(ngModel)]="selectedItem.ngaykhaigiang" >
               </div>
               <div class="form-group">
                 <label>Học phí</label>
                 <input type="text" class="form-control"  [(ngModel)]="selectedItem.hocphi">
+              </div>
+              <div class="form-group">
+                <label>Ngày hết hạn đăng kí</label>
+                <input type="date" class="form-control" [(ngModel)]="selectedItem.ngayhethan" >
               </div>
             </div>
             <div class="col-auto">
@@ -126,6 +134,7 @@
                 <th scope="col">Giờ học</th>
                 <th scope="col">Ngày khai giảng</th>
                 <th scope="col">Học phí</th>
+                <th scope="col">Ngày hết hạn</th>
                 <th scope="col">Người tạo</th>
                 <th scope="col">Người sửa</th>
                 <th scope="col">Trạng thái</th>
@@ -144,13 +153,15 @@
                 <td>{{item.giohoc}}</td>
                 <td>{{item.ngaykhaigiang | date:'dd/MM/yyyy'}}</td>
                 <td>{{item.hocphi}}</td>
+                <td>{{item.ngayhethan | date:'dd/MM/yyyy'}}</td>
                 <td>{{item.nguoitao}}</td>
                 <td>{{item.nguoisua}}</td>
-                <td *ngIf="item.trangthai==false">Đã xóa</td>
-                <td *ngIf="item.trangthai==true">Hiển thị</td>
+                <td *ngIf="item.trangthai==0">Đã xóa</td>
+                <td *ngIf="item.trangthai==1">Chưa nhập điểm</td>
+                <td *ngIf="item.trangthai==2">Đã nhập điểm</td>
                 <td>{{item.created_at | date:'dd/MM/yyyy'}}</td>
                 <td>{{item.updated_at | date:'dd/MM/yyyy'}}</td>
-                <td class="text-center" *ngIf="item.trangthai==true">
+                <td class="text-center" *ngIf="item.trangthai!=0">
                   <span class="modal_chucnang__button__delete mdi mdi-file-document-edit-outline  mdi-24px  mr-2"
                     (click)="onSelect(item);imageSrc=null"></span>
                   <span class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px" (click)="delete(item)"></span>

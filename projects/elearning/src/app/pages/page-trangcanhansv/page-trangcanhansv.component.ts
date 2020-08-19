@@ -165,7 +165,7 @@ export class PageTrangcanhansvComponent implements OnInit {
   public setTaiKhoan() {
     this.taiKhoan = this.cookieService.getAll();
     this.taiKhoan.displayName = this.cookieService.get('email').slice(0, 10);
-    console.log(this.taiKhoan);
+
   }
   public layThongTinSV(maSV: string) {
     this.sinhVienService.getonesv(maSV).subscribe(
@@ -212,7 +212,7 @@ export class PageTrangcanhansvComponent implements OnInit {
         this.ctDiemLHPs = this.ctDiemLHPsTmp;
         this.ganTenLopHocPhanCTDiem();
         this.ctDiemLHPs = this.loc_CTDiem_LopHocPhan(this.ctDiemLHPsTmp);
-        console.log(this.ctDiemLHPs);
+
       }
     });
   }
@@ -332,33 +332,38 @@ export class PageTrangcanhansvComponent implements OnInit {
       (res) => {
         if (res) {
           this.lopHocPhans = res;
+          //this.ctDiemLHPs = [];
           this.lopHocPhans = this.locMaLopHocPhanTheoHocKi(this.lopHocPhans);
         }
       },
       (err) => console.log(err)
     );
   }
-  public ganTenCotDiemCTDiem(ChiTiemDiems: ChiTietDiemSVLHP[]) {
-    this.cotDiemService.layTatCa().subscribe((res: any) => {
-      this.cotDiems = res;
-      ChiTiemDiems.forEach((ct) => {
-        this.cotDiems.forEach((lop) => {
-          if (ct.maCotDiem == lop.maCotDiem) {
-            ct.tenCotDiem = lop.tenCotDiem;
-            ct.heSo = lop.heSo;
-          }
-        });
-      });
-    });
-  }
+  // public ganTenCotDiemCTDiem(ChiTiemDiems: ChiTietDiemSVLHP[]) {
+  //   this.cotDiemService.layTatCa().subscribe((res: any) => {
+  //     this.cotDiems = res;
+  //     ChiTiemDiems.forEach((ct) => {
+  //       this.cotDiems.forEach((lop) => {
+  //         if (ct.maCotDiem == lop.maCotDiem) {
+  //           ct.tenCotDiem = lop.tenCotDiem;
+  //           ct.heSo = lop.heSo;
+  //         }
+  //       });
+  //     });
+  //   });
+  // }
 
   //################################# Xu ly su kien ##################################
   onChangeDanhSachCotDiem() {
     this.layThongTinSV(this.taiKhoan.displayName);
     this.layCTDiemLHP(this.taiKhoan.displayName);
-    console.log(this.chonHocKi.value);
-    console.log(this.chonLop.value);
 
+
+  }
+  onChangeChonHocKi(){
+    this.layThongTinSV(this.taiKhoan.displayName);
+    this.layCTDiemLHP(this.taiKhoan.displayName);
+    this.chonLop.setValue('');
   }
   onChangBangDiem() {
     this.chonHocKi.setValue('');
@@ -387,6 +392,7 @@ export class PageTrangcanhansvComponent implements OnInit {
   }
   //################################ Xu ly loc #######################################
   public loc_CTDiem_LopHocPhan(ChiTietDiem) {
+
     if (this.chonLop.value && this.chonHocKi.value) {
       let tmp = ChiTietDiem;
       ChiTietDiem = [];

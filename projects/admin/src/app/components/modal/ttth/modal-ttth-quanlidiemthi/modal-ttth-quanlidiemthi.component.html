@@ -149,16 +149,16 @@
                 <th scope="col">Họ tên</th>
                 <th scope="col">MSSV</th>
                 <th scope="col">SBD</th>
-                <th scope="col">Lớp</th>
+                <th scope="col">Lớp hoặc đợt thi</th>
                 <th scope="col">Tổng điểm</th>
                 <th scope="col">Xếp loại</th>
                 <th scope="col">Lập trình C++</th>
                 <th scope="col">MS Word</th>
                 <th scope="col">MS Excel</th>
                 <th scope="col">MS Powerpoint</th>
-                <!-- <th scope="col">Người tạo</th>
-                <th scope="col">Người sửa</th>
-                <th scope="col">Trạng thái</th> -->
+                <!-- <th scope="col">Người tạo</th> -->
+                <!-- <th scope="col">Người sửa</th> -->
+                <th scope="col">Trạng thái</th>
                 <th class="text-center" scope="col"><span
                     class="modal_chucnang__button__save mdi mdi-content-save-outline mdi-24px"></span></th>
               </tr>
@@ -170,17 +170,18 @@
                 <td>{{item.hoten}}</td>
                 <td>{{item.mssv}}</td>
                 <td>{{item.sobaodanh}}</td>
-                <td>{{item.lop}}</td>
+                <td *ngIf="!item.tendotthi">{{item.lop}}</td>
+                <td *ngIf="item.tendotthi">{{item.tendotthi}}</td>
                 <td>{{item.tongdiem}}</td>
                 <td>{{item.xeploai}}</td>
                 <td>{{item.laptrinhc}}</td>
                 <td>{{item.msword}}</td>
                 <td>{{item.msexcel}}</td>
                 <td>{{item.mspowerpoint}}</td>
-                <!-- <td>{{item.nguoitao}}</td>
-                <td>{{item.nguoisua}}</td>
+                <!-- <td>{{item.nguoitao}}</td> -->
+                <!-- <td>{{item.nguoisua}}</td> -->
                 <td *ngIf="item.trangthai==false">Đã xóa</td>
-                <td *ngIf="item.trangthai==true">Hiển thị</td> -->
+                <td *ngIf="item.trangthai==true">Hiển thị</td>
                 <td class="text-center">
                   <span class="modal_chucnang__button__delete mdi mdi-file-document-edit-outline mdi-24px  mr-2"
                     (click)="onSelect(item)"></span>

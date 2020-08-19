@@ -6,31 +6,42 @@
         <h1 class="text-center text-white">Nhập điểm lớp học</h1>
       </div>
       <div class="col-12">
-        <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
+        <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white row">
           <div class="col-3">
-            <div class="form-group">
-              <label>Chọn lớp học</label>
+           <label>Chọn lớp học cần nhập điểm <input type="radio" class="ml-2" name="check" (change)="getValueCheckBoxLopHocRieng($event)" ></label><br>
+            <div class="form-group" *ngIf="checkboxLopHocRieng==true">
               <select class="form-control" (change)="onChangeLopHoc($event.target.value)">
-                  <option value=""></option>
+                <option value="">Chọn lớp học</option>
                 <ng-container *ngFor="let item of LopHoc">
-                  <option *ngIf="item.nhapdiem=='Nhập riêng'" value="{{item.tenlop}}">{{item.tenlop}}</option>
+                  <option *ngIf="item.nhapdiem=='Nhập riêng' && item.trangthai==1" value="{{item.tenlop}}">{{item.tenlop}}</option>
                 </ng-container>
               </select>
             </div>
           </div>
+          <div class="col-3">
+            <label>Nhập điểm chung<input type="radio" class="ml-2" name="check" (change)="getValueCheckBoxKhoaHoc($event)" ></label><br>
+            <!-- <div class="form-group" *ngIf="checkboxKhoaHoc==true">
+              <select class="form-control" (change)="onChangeLopHoc($event.target.value)">
+                  <option value="">Chọn khóa học cần nhập điểm</option>
+                <ng-container *ngFor="let item of KhoaHoc">
+                  <option *ngIf="item.nhapdiem=='Nhập chung' && item.trangthai==true" value="{{item.tenkhoahoc}}">{{item.tenkhoahoc}}</option>
+                </ng-container>
+              </select>
+            </div> -->
+          </div>
         </div>
       </div>
       <div class="col-12">
-        <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
+        <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white row">
           <label>Chọn thư mục excel</label>
           <div  class="custom-file">
             <input type="file" (change)="onChange($event)" #inputFile>
           </div>
-            <div *ngIf="isExcelFile === false">
-              This is not an Excel file
-            </div>
-            <button class="btn btn-danger mr-2" (click)="removeData()">Remove Data</button>
-            <button  class="btn btn-success " (click)="importExcel()" *ngIf="DiemThi!== undefined">Import</button>
+          <div *ngIf="isExcelFile === false" style="color:red">
+            Đây không phải là file excel.Vui lòng chọn file excel theo mẫu!
+          </div>
+            <button class="btn btn-danger mr-2" (click)="removeData()" *ngIf="DiemThi!== undefined">Hủy bỏ dữ liệu</button>
+            <button  class="btn btn-success " (click)="importExcel()" *ngIf="DiemThi!== undefined">Nhập vào</button>
             <table class="modal_chucnang__table table table-hover">
               <thead class="bg__caothang text-white">
                 <tr>

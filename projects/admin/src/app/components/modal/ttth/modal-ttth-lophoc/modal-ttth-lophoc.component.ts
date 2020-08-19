@@ -32,13 +32,24 @@ export class ModalTtthLophocComponent implements OnInit {
   reset():void{
     this.selectedItem=null;
   }
-  add(makhoahoc: string,dot: string,giaovien: string,buoihoc: string,giohoc: string,ngaykhaigiang: string,hocphi: string): void {
+  add(makhoahoc: string,dot: string,giaovien: string,buoihoc: string,giohoc: string,ngaykhaigiang: string,hocphi: string,ngayhethan: string): void {
     let NhapDiem: any;
     this.MaKhoaHoc.forEach(function (value) {
       if (makhoahoc==value.makhoahoc) {
         NhapDiem = value.nhapdiem;
       }
     });
+    let kiemtra: any;
+    let getyear= String(this.getYear);
+    this.LopHoc.forEach(function (value) {
+      if(value.tenlop == makhoahoc + '-' + getyear + '-' + dot){
+        kiemtra=true;
+      }
+    });
+    if(kiemtra==true){
+      this.toastr.error('Lớp học đã tồn tại');
+    }
+    else{
     const newItem: ttthLopHoc = new ttthLopHoc();
     newItem.makhoahoc = makhoahoc;
     newItem.dot = dot;
@@ -47,10 +58,11 @@ export class ModalTtthLophocComponent implements OnInit {
     newItem.ngaykhaigiang = ngaykhaigiang;
     newItem.tenlop = makhoahoc + '-' + String(this.getYear) + '-' + dot;
     newItem.hocphi = hocphi;
+    newItem.ngayhethan = ngayhethan;
     newItem.giaovien = giaovien;
     newItem.nhapdiem = NhapDiem;
     newItem.nam =  String(this.getYear);
-    newItem.trangthai = true;
+    newItem.trangthai = 1;
     newItem.nguoitao = this._username;
     newItem.nguoisua = null;
     newItem.created_at = (new Date);
@@ -61,6 +73,7 @@ export class ModalTtthLophocComponent implements OnInit {
         this.getdanhsach();
       });
     this.toastr.success('Thêm thành công');
+    }
   }
   ///edit
   selectedItem: ttthLopHoc;

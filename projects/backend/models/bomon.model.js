@@ -31,11 +31,19 @@ const khoabomonSchema = new Schema({
   },
   ngayChinhSua: {
     type: Date,
-    default: Date.now,
+    default: Date.now(),
+  },
+  ngayTao:{
+    type:Date,
+    default: Date.now()
   },
   trangThai: {
     type: Number,
     default: 1,
+  },
+  maKhoa:{
+    type:Number,
+
   },
   maLoai:{
     type: Number,

@@ -1,3 +1,4 @@
+import { NgSelectModule } from '@ng-select/ng-select';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -200,7 +201,8 @@ import { AuthInterceptor } from './helper/auth.interceptor';
     ToastrModule.forRoot(), // ToastrModule added
     FileUploadModule,
     NgxPrintModule,
-    NgApexchartsModule
+    NgApexchartsModule,
+    NgSelectModule,
   ],
   providers: [ApiService, TintucCnttService,{
     provide: HTTP_INTERCEPTORS,

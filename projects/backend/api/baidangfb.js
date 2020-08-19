@@ -16,28 +16,33 @@ exports.postToDrawFB = async (req, res) => {
     const err = validationResult(req);
     if(!err.isEmpty()){
       res.status(422).json(err.errors);
-    } 
-   
+    }
+
       const posttodrawfbs = new baidangfb({
         ID:req.body.ID,
-        link:req.body.link,
         message: req.body.message,
         url: req.body.url,
         maLoai:req.body.maLoai,
         loai:req.body.loai,
         thuoc:req.body.thuoc
-        
+
       });
       const savePostToDraw = await posttodrawfbs.save();
+
       res.json({
         status: 200,
         ok:true,
-        msg: "Thêm thành công vào draw",
+        msg1: "Thêm thành công vào nháp",
         data: savePostToDraw,
       });
-  }catch{
-    console.log(res.json.error);
+  }catch(error){
     res.json(error);
+    res.json({
+      status: 200,
+      ok:true,
+      msg: "Thêm không thành công vào nháp",
+
+    });
   }
 };
 //Delete bai post
@@ -45,7 +50,7 @@ exports.deletePostFB = async (req, res) => {
   try {
 
     const updatePosted = await baidangfb.updateOne(
-      { _id: req.params.id },
+      { postID: req.params.postID },
       {
         $set: {
           trangThai: 0,
@@ -59,12 +64,12 @@ exports.deletePostFB = async (req, res) => {
     if (updatePosted.nModified === 0) {
       result = {
         status: false,
-        msg: "Xóa thất bại",
+        msg: "Xóa bài viết đã đăng thất bại",
       };
     } else {
       result = {
         status: true,
-        msg: "Xóa thành công ",
+        msg1: "Xóa bài viết đã đăng thành công ",
       };
     }
     res.status(200).json(result);
@@ -74,15 +79,16 @@ exports.deletePostFB = async (req, res) => {
 };
 //Thêm vào posted
 exports.postedToFB = async (req, res) => {
+  console.log(req.body)
   try {
     const err = validationResult(req);
     if(!err.isEmpty()){
       res.status(422).json(err.errors);
     }
-   
-      const posedttofbs = new baidangfb({
+
+      const postedtofbs = new baidangfb({
         ID:req.body.ID,
-        postID: req.params.postID,
+        postID: req.body.postID,
         link:req.body.link,
         message: req.body.message,
         url: req.body.url,
@@ -91,15 +97,20 @@ exports.postedToFB = async (req, res) => {
         thuoc:req.body.thuoc,
         trangThai:2
       });
-      const savePosted = await posedttofbs.save();
+      const savePosted = await postedtofbs.save();
       res.json({
         status: 200,
         ok:true,
-        msg: "Thêm thành công vào post",
+        msg1: "Thêm thành công vào bài đã đăng",
         data: savePosted,
       });
   }catch{
-    res.json(error);
+    res.json({
+      status: 404,
+      ok:false,
+      msg: "Thêm không thành công vào bài đã đăng",
+      data: savePosted,
+    });
   }
 };
 // Update posted to Facebook
@@ -110,17 +121,16 @@ exports.updatePostedFB = async (req, res) => {
     if(!err.isEmpty()){
       res.status(422).json(err.errors);
     }
-    console.log(req.body);
-
     const updatePosted = await baidangfb.update(
-      { postID: req.params.id },
+      { postID: req.params.postID },
       {
         $set: {
           link: req.body.link,
           message: req.body.message,
           url: req.body.url,
           maLoai:req.body.maLoai,
-          loai:req.body.loai
+          loai:req.body.loai,
+          thuoc:req.body.thuoc
         },
       }
     );
@@ -132,11 +142,11 @@ exports.updatePostedFB = async (req, res) => {
     };
 
     if (updatePosted.nModified === 0) {
-      result.msg = "Chưa được cập nhật trong posted";
+      result.msg = "Chưa được cập nhật trong bài đã đăng";
 
     } else {
       result.ok = true;
-      result.msg ="Cập nhật thành công posted to Facebook";
+      result.msg ="Cập nhật thành công bài đã đăng";
 
     }
     res.status(200).json(result);
@@ -170,11 +180,11 @@ exports.updateDrawToPosted = async (req, res) => {
     };
 
     if (updatePosted.nModified === 0) {
-      result.msg = "Cập nhật từ draw to posted không thành công";
+      result.msg = "Cập nhật từ nháp sang đã đăng không thành công";
 
     } else {
       result.ok = true;
-      result.msg ="Cập nhật thành công từ draw to posted";
+      result.msg ="Cập nhật thành công từ nháp sang đã đăng";
 
     }
     res.status(200).json(result);
@@ -182,4 +192,77 @@ exports.updateDrawToPosted = async (req, res) => {
     res.json(error);
   }
 };
-  
+//Delete draw
+exports.deleteDrawFB = async (req, res) => {
+  try {
+
+    const updateDrawed = await baidangfb.updateOne(
+      { _id: req.params.id },
+      {
+        $set: {
+          trangThai: 0,
+        },
+      }
+    );
+
+    let  result = {
+    };
+
+    if (updateDrawed.nModified === 0) {
+      result = {
+        status: false,
+        msg: "Xóa bản lưu thất bại",
+      };
+    } else {
+      result = {
+        status: true,
+        msg: "Xóa bản lưu thành công ",
+      };
+    }
+    res.status(200).json(result);
+  } catch (error) {
+    res.json(error);
+  }
+};
+// Update draw
+exports.updateDrawFB = async (req, res) => {
+  try {
+
+    const err = validationResult(req);
+    if(!err.isEmpty()){
+      res.status(422).json(err.errors);
+    }
+    console.log(req.body);
+
+    const updateDrawed = await baidangfb.update(
+      { _id: req.params.id },
+      {
+        $set: {
+          link: req.body.link,
+          message: req.body.message,
+          url: req.body.url,
+          maLoai:req.body.maLoai,
+          loai:req.body.loai
+        },
+      }
+    );
+
+    let  result = {
+      status: 200,
+      ok: false,
+      msg: "",
+    };
+
+    if (updateDrawed.nModified === 0) {
+      result.msg = "Chưa được cập nhật trong bản lưu nháp";
+
+    } else {
+      result.ok = true;
+      result.msg ="Cập nhật thành công trong bản lưu nháp";
+
+    }
+    res.status(200).json(result);
+  } catch (error) {
+    res.json(error);
+  }
+};
