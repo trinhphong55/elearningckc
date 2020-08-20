@@ -83,7 +83,11 @@ exports.themSinhVien = async (req, res, next) => {
 
     if (sv_exist) {
       const lopHoc = await LopHocModel.findOne({ maLopHoc: sv_exist.maLopHoc });
-      sv_exist.tenLopHoc = lopHoc.tenVietTat;
+
+      if(lopHoc){
+        sv_exist.tenLopHoc = lopHoc.tenVietTat;
+      }
+
       return res.json({
         data: setSinhVien(sv_exist),
         message:
@@ -137,7 +141,7 @@ exports.capNhatSinhVien = async (req, res) => {
     });
 
     if (!findSinhVien) {
-      return res.status(404).json({ message: "Không tìm thấy", status: 400 });
+      return res.status(404).json({ message: "Không tìm thấy", status: 404 });
     }
     let sinhViens;
     //Xet quyen o day
@@ -169,7 +173,7 @@ exports.capNhatSinhVien = async (req, res) => {
     if (sinhViens.nModified > 0) {
       return res.status(200).json({
         data: setSinhVienUpdate(findSinhVienUpdate),
-        message: "Cập nhật thành công",
+        message: "Cập nhật thành công "+ findSinhVienUpdate.ho + ' ' + findSinhVienUpdate.ten,
         status: 200,
       });
     } else {

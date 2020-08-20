@@ -120,7 +120,7 @@ import { ToastrModule } from 'ngx-toastr';
     HttpClientModule,
     FileUploadModule,
     HttpClientModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot(), // ToastrModule added
   ],
   entryComponents: [],
   providers: [
