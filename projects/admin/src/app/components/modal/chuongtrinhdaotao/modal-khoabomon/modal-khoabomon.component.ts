@@ -67,7 +67,7 @@ export class ModalKhoabomonComponent implements OnInit {
   updateForm: FormGroup;
   KhoaForm: FormGroup;
   tongSoTrang: any;
-  gioiHan: number = 2;
+  gioiHan: number = 3;
   ngOnInit(): void {
     this.soTrang = new FormControl(0);
     this.taiKhoan = this.cookieService.getAll();

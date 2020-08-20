@@ -21,6 +21,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { LopHocPhan } from '../../models/lophocphan.interface';
 import { MonHoc } from '../../models/monhoc.interface';
 import { CookieService } from 'ngx-cookie-service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-page-trangcanhansv',
@@ -35,7 +36,6 @@ export class PageTrangcanhansvComponent implements OnInit {
   public ctDiemLHP: ChiTietDiemSVLHP;
   public ctDiemLHPs: ChiTietDiemSVLHP[] = [];
   public ctDiemLHPsTmp: ChiTietDiemSVLHP[] = [];
-
 
   public lopHocPhan: LopHocPhan;
   public lopHocPhans: LopHocPhan[] = [];
@@ -93,15 +93,17 @@ export class PageTrangcanhansvComponent implements OnInit {
     private chuDeService: ChuDeService,
     private thoiKhoaBieu: ThoiKhoaBieuService,
     private lophocService: LopHocService,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private toastr:ToastrService,
   ) {}
 
   ngOnInit(): void {
     this.setTaiKhoan();
     this.layThongTinSV(this.taiKhoan.displayName);
     this.layDiemSinhVien(this.taiKhoan.displayName);
-    // this.layLopHocPhan();
-    // this.layCotDiemSinhVienLHP();
+    this.layCTDiemLHP(this.taiKhoan.displayName);
+
+
     this.sinhVienFormGroup = new FormGroup({
       mssv: new FormControl({ value: '', disabled: true }),
       gioiTinh: new FormControl({ value: '', disabled: true }),
@@ -165,7 +167,6 @@ export class PageTrangcanhansvComponent implements OnInit {
   public setTaiKhoan() {
     this.taiKhoan = this.cookieService.getAll();
     this.taiKhoan.displayName = this.cookieService.get('email').slice(0, 10);
-
   }
   public layThongTinSV(maSV: string) {
     this.sinhVienService.getonesv(maSV).subscribe(
@@ -211,8 +212,7 @@ export class PageTrangcanhansvComponent implements OnInit {
         this.ctDiemLHPsTmp = res.data;
         this.ctDiemLHPs = this.ctDiemLHPsTmp;
         this.ganTenLopHocPhanCTDiem();
-        this.ctDiemLHPs = this.loc_CTDiem_LopHocPhan(this.ctDiemLHPsTmp);
-
+        // this.ctDiemLHPs = this.loc_CTDiem_LopHocPhan(this.ctDiemLHPsTmp);
       }
     });
   }
@@ -357,10 +357,9 @@ export class PageTrangcanhansvComponent implements OnInit {
   onChangeDanhSachCotDiem() {
     this.layThongTinSV(this.taiKhoan.displayName);
     this.layCTDiemLHP(this.taiKhoan.displayName);
-
-
   }
-  onChangeChonHocKi(){
+  onChangeChonHocKi() {
+
     this.layThongTinSV(this.taiKhoan.displayName);
     this.layCTDiemLHP(this.taiKhoan.displayName);
     this.chonLop.setValue('');
@@ -371,10 +370,11 @@ export class PageTrangcanhansvComponent implements OnInit {
     this.layThongTinSV(this.taiKhoan.displayName);
   }
   onSubmitCapNhatSinhVien() {
+    this.toastr.success('thongbao', 'thongbao');
     this.messages = [];
     if (!this.password.value) {
       this.messages.push({
-        msg: 'Vui lòng nhập mật khẩu cũ và mới để thay đổi',
+        msg: 'Vui lòng nhập mật khẩu để thay đổi',
         status: 200,
       });
     } else if (this.password.value != '123456') {
@@ -392,7 +392,6 @@ export class PageTrangcanhansvComponent implements OnInit {
   }
   //################################ Xu ly loc #######################################
   public loc_CTDiem_LopHocPhan(ChiTietDiem) {
-
     if (this.chonLop.value && this.chonHocKi.value) {
       let tmp = ChiTietDiem;
       ChiTietDiem = [];
@@ -401,7 +400,7 @@ export class PageTrangcanhansvComponent implements OnInit {
           ChiTietDiem.push(ct);
         }
       });
-    }else{
+    } else {
       return [];
     }
     return ChiTietDiem;

@@ -138,17 +138,17 @@ exports.deleteKhoaBoMon = async (req, res) => {
 
 exports.checkValidate = () => {
   return [
-    check("tenKhoa", "TEN KHOA is must be at most 50 chars long ").isLength({
+    check("tenKhoa", "Tên khoa không dài hơn 50 kí tự ").isLength({
       max: 50,
     }),
-    check("tenKhoa", "TEN KHOA is required").notEmpty(),
+    check("tenKhoa", "Tên khoa không được trốngtrống").notEmpty(),
 
-    check("tenVietTat", "TEN VIET TAT must be at most 15 char long").isLength({
+    check("tenVietTat", "Tên viết tắt không nhiều hơn 15 kí tựtự").isLength({
       max: 15,
     }),
-    check("tenVietTat", "TEN VIET TAT is required").notEmpty(),
+    check("tenVietTat", "Tên viết tắt không được để trốngtrống").notEmpty(),
 
-    check("nguoiChinhSua", "NGUOI CHINH SUA is required").notEmpty(),
+    check("nguoiChinhSua", "Người chỉnh sữa không được để trống").notEmpty(),
   ];
 };
 
