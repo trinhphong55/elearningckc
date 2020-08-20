@@ -66,19 +66,19 @@ export class ModalBannerComponent implements OnInit  {
         }
         else{
           this.imageSrc = null;
-          this.toastr.success('Hình ảnh chưa đúng kích thước');
+          this.toastr.error('Hình ảnh chưa đúng kích thước');
         }
       }
     };
     if (event.target.files[0].size > 2097152) {
-      this.toastr.success('File yêu cầu nhỏ hơn 2MB');
+      this.toastr.error('File yêu cầu nhỏ hơn 2MB');
     };
    }
    addBanner(link: string,vitri: string): void {
      console.log(vitri);
      link = link.trim();
      if (!link || !vitri || !this.nameImage) {
-       this.toastr.success('Vui lòng nhập đủ thông tin');
+       this.toastr.error('Vui lòng nhập đủ thông tin');
      }
      else{
        const newItem: ttthBanner = new ttthBanner();

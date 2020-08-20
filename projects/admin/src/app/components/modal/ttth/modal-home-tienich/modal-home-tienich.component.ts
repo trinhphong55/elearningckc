@@ -59,12 +59,12 @@ export class ModalHomeTienichComponent implements OnInit {
         }
         else{
           this.imageSrc = null;
-          this.toastr.success('Hình ảnh chưa đúng kích thước');
+          this.toastr.error('Hình ảnh chưa đúng kích thước');
         }
       }
     };
     if (event.target.files[0].size > 2097152) {
-      this.toastr.success('File yêu cầu nhỏ hơn 2MB');
+      this.toastr.error('File yêu cầu nhỏ hơn 2MB');
     };
    }
   add(ten: string,mota: string, link:string): void {
