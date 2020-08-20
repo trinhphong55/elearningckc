@@ -561,7 +561,7 @@ export class ModalGiaovienComponent implements OnInit {
             }
           }
         );
-        }, index * 500);
+        }, index * 1000);
     });
   }
 
