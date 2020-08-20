@@ -146,7 +146,7 @@
             <table class="modal_chucnang__table table table-hover" id="danhsach_giaovien">
               <thead class="bg__caothang text-white">
                 <th class="text-center" scope="col">
-                  <span role="button" (click)="layDanhSachGiaoVien()" title="Cập lại nhật danh sách giáo viên">
+                  <span role="button" (click)="layDanhSachGiaoVien()" title="Cập nhật danh sách giáo viên">
                     <svg width="24" height="24" viewBox="0 0 16 16" class="bi bi-arrow-repeat" fill="currentColor"
                       xmlns="http://www.w3.org/2000/svg">
                       <path fill-rule="evenodd"
@@ -166,7 +166,7 @@
                 <th scope="col">Bộ môn</th>
                 <th scope="col">Trình độ</th>
                 <th scope="col">Địa chỉ </th>
-                <th scope="col">Danh sách lớp giảng dạy</th>
+                <!-- <th scope="col">Danh sách lớp giảng dạy</th> -->
               </thead>
               <tbody>
                 <tr *ngFor="let giaoVien of danhSachGiaoVien | filter:textSearch">
@@ -187,14 +187,14 @@
                     <td class="text-center">
                       <!-- Icon Edit -->
                       <span class="modal_chucnang__button__edit mdi mdi-file-document-edit-outline mdi-24px"
-                        (click)="layThongTinGiaoVien(giaoVien)" data-toggle="modal"
+                        (click)="layThongTinGiaoVien(giaoVien)" data-toggle="modal" title="Cập nhật thông tin giáo viên"
                         data-target="#exampleModalCenter"></span>
                       <!-- Icon Delete -->
-                      <span (click)="xoaGiaoVien(giaoVien.maGiaoVien)"
+                      <span (click)="xoaGiaoVien(giaoVien.maGiaoVien)" title="Xóa giáo viên"
                         class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px"></span><br>
                       <!-- Icon More Options -->
                       <span class="modal_chucnang__button__delete fa fa-clipboard mdi-24px" data-toggle="modal"
-                        (click)="layMaGVSelected(giaoVien)"
+                        (click)="layMaGVSelected(giaoVien)" title="Xem danh sách lớp học phần giáo viên phụ trách"
                         data-target="#exampleModalCenter2"></span>
 
                     </td>
@@ -233,11 +233,11 @@
                   <td>
                     <input class="form-control" disabled value={{giaoVien.diaChiThuongTru}}>
                   </td>
-                  <td>
+                  <!-- <td>
                     <select class="form-control">
                       <option *ngFor="let lhp of giaoVien.danhSachLopHocPhan">{{ lhp }}</option>
                     </select>
-                  </td>
+                  </td> -->
                 </tr>
               </tbody>
             </table>
@@ -420,6 +420,23 @@
                       </select>
                     </div>
                   </div>
+                  <div class="col-md-2">
+                    <div class="form-group pr-3 pt-1">
+                      Khóa:<select class="form-control" id="exampleFormControlSelect1" formControlName="khoa"
+                      (change)="dsLHP()">
+                        <option value="-1">Chọn khóa</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group pr-3 pt-1">
+                      Giáo viên: <b>{{hoTenSelected}}</b>
+                    </div>
+                  </div>
                 </div>
                 <div class="row">
                   <div class="col-md-12 shadow">
@@ -433,76 +450,13 @@
                             <th scope="col">Tổng sinh viên</th>
                           </tr>
                         </thead>
-                        <!-- <tbody *ngFor="let l of filterDsLop;index as i">
+                        <tbody *ngFor="let l of filterDsLop;index as i">
                           <tr>
                             <td scope="row">{{i+1}}</td>
                             <td>{{l.tenLopHocPhan}}</td>
                             <td>{{l.hocKi}}</td>
                             <td>{{l.soLuongSV}}</td>
                           </tr>
-                        </tbody> -->
-                        <tbody>
-                          <tr>
-                            <td scope="row">a</td>
-                            <td>b</td>
-                            <td>c</td>
-                            <td>d</td>
-                          </tr>
-                          <tr>
-                            <td scope="row">a</td>
-                            <td>b</td>
-                            <td>c</td>
-                            <td>d</td>
-                          </tr>
-                          <tr>
-                            <td scope="row">a</td>
-                            <td>b</td>
-                            <td>c</td>
-                            <td>d</td>
-                          </tr>
-                          <tr>
-                            <td scope="row">a</td>
-                            <td>b</td>
-                            <td>c</td>
-                            <td>d</td>
-                          </tr>
-                          <tr>
-                            <td scope="row">a</td>
-                            <td>b</td>
-                            <td>c</td>
-                            <td>d</td>
-                          </tr>
-                          <tr>
-                            <td scope="row">a</td>
-                            <td>b</td>
-                            <td>c</td>
-                            <td>d</td>
-                          </tr>
-                          <tr>
-                            <td scope="row">a</td>
-                            <td>b</td>
-                            <td>c</td>
-                            <td>d</td>
-                          </tr>
-                          <tr>
-                            <td scope="row">a</td>
-                            <td>b</td>
-                            <td>c</td>
-                            <td>d</td>
-                          </tr>
-                          <tr>
-                            <td scope="row">a</td>
-                            <td>b</td>
-                            <td>c</td>
-                            <td>d</td>
-                          </tr>
-                          <tr>
-                            <td scope="row">a</td>
-                            <td>b</td>
-                            <td>c</td>
-                            <td>d</td>
-                          </tr>
-
                         </tbody>
                       </table>
                     </div>

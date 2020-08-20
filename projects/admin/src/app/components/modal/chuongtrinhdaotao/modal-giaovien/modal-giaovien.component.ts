@@ -3,6 +3,7 @@ import { ModalService } from '../../../../services/modal.service';
 import { ApiService } from '../../../../services/api.service';
 import { BomonService } from '../../../../services/khoa-bomons/bomon.service';
 import { GvlhpService } from '../../../../services/gvlhp.service';
+import { LopHocService } from '../../../../services/lop-hoc.service';
 import { LopHocPhanService } from '../../../../services/lophocphan.service';
 import { FormControl, FormGroup, Validators, FormsModule } from '@angular/forms';
 import { BacService } from '../../../../services/Bac.service';
@@ -28,11 +29,13 @@ export class ModalGiaovienComponent implements OnInit {
 
   dsBoMon: any;
   dsgvLHP: any;
+  dsLop: any;
   giaoVienForm:FormGroup;
   updateForm: FormGroup;
   filterForm: FormGroup;
   maGVSelected:string = '';
-
+  emailSelected:string = '';
+  hoTenSelected:string = '';
   //loc lhp
   bacSelected: any;
   hocKiSelected: any = 1;
@@ -96,6 +99,7 @@ export class ModalGiaovienComponent implements OnInit {
     private gvLHPService: GvlhpService,
     private lopHocPhanService: LopHocPhanService,
     private toastr: ToastrService,
+    private lopHocService: LopHocService,
     //loc lop hoc phan
     private bacService: BacService,
     ) {
@@ -173,18 +177,11 @@ export class ModalGiaovienComponent implements OnInit {
       trinhDoChuyenMonUpdate: new FormControl('Thạc sĩ')
     })
     // Filter Form
-      //form loc lop hoc phan
     this.filterForm = new FormGroup({
       bac: new FormControl("-1"),
       hocKi: new FormControl("-1"),
+      khoa: new FormControl("-1")
     })
-    // Form Lọc LHP
-    // this.danhSachLopHocPhan();
-    // this.layCookie();
-    // this.LaySachLopHocPhan();
-    // this.danhSachLopGV();
-    // this.layThongtinGV();
-    // this.layDanhSachBac();
   }
 
 
@@ -241,6 +238,18 @@ export class ModalGiaovienComponent implements OnInit {
 
   ngOnInit(): void {
     this.layDanhSachGiaoVien();
+    this.danhSachLop();
+  }
+  ///hien thi ds lop
+  danhSachLop() {
+    this.lopHocService.getAll().subscribe(
+      dsLop => {
+        this.dsLop = dsLop;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
   themGiaoVien(){
@@ -273,12 +282,33 @@ export class ModalGiaovienComponent implements OnInit {
 
   layMaGVSelected(giaoVien:any){
     this.maGVSelected = giaoVien.maGiaoVien;
+    this.emailSelected = giaoVien.email;
+    this.hoTenSelected = giaoVien.ho + ' ' + giaoVien.ten;
   }
+
   dsLHP(){
     this.bacSelected = this.filterForm.get('bac').value;
     this.hocKiSelected = this.filterForm.get('hocKi').value;
-    console.log('bậc', this.bacSelected);
-    console.log('học kì', this.hocKiSelected);
+    try {
+      this.lopHocPhanService.getLopHocPhanbyemail(this.emailSelected).subscribe(
+        res => {
+          this.dsLopHPGV = res;
+          this.filterDsLop = [];
+          this.dsLop.forEach(lop => {
+            this.dsLopHPGV.find(p => {
+              if (p.maLopHoc == lop.maLopHoc && p.hocKi == this.filterForm.get('hocKi').value && lop.maBac== this.filterForm.get('bac').value && lop.khoa== this.filterForm.get('khoa').value) {
+                this.filterDsLop.push(p)
+              }
+            });
+          });
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    } catch (error) {
+      return error;
+    }
   }
 
   capNhatGiaoVien(){
@@ -336,9 +366,12 @@ export class ModalGiaovienComponent implements OnInit {
     this.customConfirm("Bạn muốn phục hồi giáo viên này?", () => {
       this.apiService.setTrangThai(maGiaoVien).subscribe(
         (response) => {
-          alert(response.msg);
           if(response.status == true){
+            this.toastr.success(response.msg, 'Thông báo', { timeOut: 5000 });
             this.layDanhSachGiaoVienTheoTrangThai();
+          }
+          else{
+            this.toastr.error(response.msg, 'Lỗi', { timeOut: 5000 });
           }
         }
       )
@@ -375,9 +408,12 @@ export class ModalGiaovienComponent implements OnInit {
   changeBoMon(maGV: string, maBoMon: string) {
     this.apiService.capNhatBoMon(maGV, maBoMon).subscribe(
       (response) => {
-        alert(response.msg);
         if(response.status == true){
+          this.toastr.success(response.msg, 'Thông báo', { timeOut: 5000 });
           this.layDanhSachGiaoVien();
+        }
+        else{
+          this.toastr.error(response.msg, 'Lỗi', { timeOut: 5000 });
         }
       }
     )
@@ -400,9 +436,12 @@ export class ModalGiaovienComponent implements OnInit {
     this.customConfirm("Bạn có chắc muốn xóa giáo viên này?", () => {
       this.apiService.xoaGiaoVien({maGiaoVien: maGiaoVien}).subscribe(
         (response) => {
-          alert(response.msg);
           if(response.status == true){
+            this.toastr.success(response.msg, 'Thông báo', { timeOut: 5000 });
             this.layDanhSachGiaoVien();
+          }
+          else{
+            this.toastr.error(response.msg, 'Lỗi', { timeOut: 5000 });
           }
         }
       )
