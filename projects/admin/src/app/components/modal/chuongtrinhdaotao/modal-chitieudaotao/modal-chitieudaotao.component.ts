@@ -607,8 +607,8 @@ export class ModalChitieudaotaoComponent implements OnInit {
       this.SinhVienService.capNhatSinhVien(sv).subscribe(
         (res: any) => {
           index++;
+          this.lopTams = [];
           if (index == this.dsLopFormArray.value.length) {
-
             this.getLopHoc();
             let maCT = this.taoTienTo(
               this.maNganh,
@@ -617,7 +617,7 @@ export class ModalChitieudaotaoComponent implements OnInit {
               this.addForm.value.loaiHinhDaoTao
             );
             this.xepLoptheoMaNganh(maCT);
-            this.lopTams = [];
+
             this.toastr.success('Cập nhật thành công sinh viên', 'Thông báo', {
               timeOut: 3000,
             });
@@ -647,11 +647,9 @@ export class ModalChitieudaotaoComponent implements OnInit {
     });
     this.SinhVienService.themSinhVien(this.dsSinhVien).subscribe(
       (response: any) => {
-
         this.dsSinhVienThemThatBai = response.dsSinhVienThatBai;
 
         this.dsSinhVienThemThatBai.forEach((el: any) => {
-
           this.dsLopFormArray.push(
             new FormGroup({
               maLopHoc: new FormControl(el.data.maLopHoc),
@@ -675,6 +673,9 @@ export class ModalChitieudaotaoComponent implements OnInit {
           'Thông báo',
           { timeOut: 120000 }
         );
+
+          this.lopTams = [];
+
       },
       (error: any) => {}
     );
