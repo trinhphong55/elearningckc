@@ -13,20 +13,21 @@
                 <label>Họ tên</label>
                 <input type="text" class="form-control"  [(ngModel)]="selectedItem.hoten">
               </div>
-              <div class="form-group">
+              <!-- <div class="form-group">
                 <label>MSSV</label>
                 <input type="text" class="form-control" [(ngModel)]="selectedItem.mssv">
-              </div>
+              </div> -->
               <div class="form-group">
                 <label>Ngày sinh</label>
                 <input type="text" class="form-control"  [(ngModel)]="selectedItem.ngaysinh">
               </div>
-            </div>
-            <div class="col-auto">
               <div class="form-group">
                 <label>Số báo danh</label>
                 <input type="text" class="form-control"  [(ngModel)]="selectedItem.sobaodanh">
               </div>
+            </div>
+            <div class="col-auto">
+
               <div class="form-group">
                 <label>Nơi sinh</label>
                 <input type="text" class="form-control" [(ngModel)]="selectedItem.noisinh">
@@ -35,12 +36,13 @@
                 <label>Lớp</label>
                 <input type="text" class="form-control"  [(ngModel)]="selectedItem.lop">
               </div>
-            </div>
-            <div class="col-auto">
               <div class="form-group">
                 <label>Tổng điểm</label>
                 <input type="text" class="form-control"  [(ngModel)]="selectedItem.tongdiem">
               </div>
+            </div>
+            <div class="col-auto">
+
               <div class="form-group">
                 <label>Xếp loại</label>
                 <input type="text" class="form-control"  [(ngModel)]="selectedItem.xeploai">
@@ -49,12 +51,13 @@
                 <label>Ngày thi</label>
                 <input type="text" class="form-control"  [(ngModel)]="selectedItem.ngaythi">
               </div>
-            </div>
-            <div class="col-auto">
               <div class="form-group">
                 <label>Giờ thi</label>
                 <input type="text" class="form-control"  [(ngModel)]="selectedItem.giothi">
               </div>
+            </div>
+            <div class="col-auto">
+
               <div class="form-group">
                 <label>Phòng thi</label>
                 <input type="text" class="form-control"  [(ngModel)]="selectedItem.phongthi">
@@ -63,12 +66,13 @@
                 <label>Lập trình C++</label>
                 <input type="text" class="form-control"  [(ngModel)]="selectedItem.laptrinhc">
               </div>
-            </div>
-            <div class="col-auto">
               <div class="form-group">
                 <label>MS Word</label>
                 <input type="text" class="form-control"  [(ngModel)]="selectedItem.msword">
               </div>
+            </div>
+            <div class="col-auto">
+
               <div class="form-group">
                 <label>MS Excel</label>
                 <input type="text" class="form-control"  [(ngModel)]="selectedItem.msexcel">
@@ -152,10 +156,10 @@
                 <th scope="col">Lớp hoặc đợt thi</th>
                 <th scope="col">Tổng điểm</th>
                 <th scope="col">Xếp loại</th>
-                <th scope="col">Lập trình C++</th>
+                <!-- <th scope="col">Lập trình C++</th>
                 <th scope="col">MS Word</th>
                 <th scope="col">MS Excel</th>
-                <th scope="col">MS Powerpoint</th>
+                <th scope="col">MS Powerpoint</th> -->
                 <!-- <th scope="col">Người tạo</th> -->
                 <!-- <th scope="col">Người sửa</th> -->
                 <th scope="col">Trạng thái</th>
@@ -174,10 +178,10 @@
                 <td *ngIf="item.tendotthi">{{item.tendotthi}}</td>
                 <td>{{item.tongdiem}}</td>
                 <td>{{item.xeploai}}</td>
-                <td>{{item.laptrinhc}}</td>
+                <!-- <td>{{item.laptrinhc}}</td>
                 <td>{{item.msword}}</td>
                 <td>{{item.msexcel}}</td>
-                <td>{{item.mspowerpoint}}</td>
+                <td>{{item.mspowerpoint}}</td> -->
                 <!-- <td>{{item.nguoitao}}</td> -->
                 <!-- <td>{{item.nguoisua}}</td> -->
                 <td *ngIf="item.trangthai==false">Đã xóa</td>
