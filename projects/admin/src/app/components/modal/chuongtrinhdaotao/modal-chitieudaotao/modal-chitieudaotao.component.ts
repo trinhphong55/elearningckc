@@ -608,7 +608,8 @@ export class ModalChitieudaotaoComponent implements OnInit {
         (res: any) => {
           index++;
           if (index == this.dsLopFormArray.value.length) {
-         
+            this.lopTams = [];
+            this.getLopHoc();
             let maCT = this.taoTienTo(
               this.maNganh,
               this.maBac,
