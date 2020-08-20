@@ -1,4 +1,4 @@
-var NganhNghe = require("../models/NganhNghe.model");
+var NganhNghe = require("../models/Nganhnghe.model");
 
 async function getNextNumber() {
   const nganhnghe = await NganhNghe.findOne({}, {}, { sort: { 'created_at' : -1 } }).exec();

@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
-var NganhNghe = require("../models/NganhNghe.model");
+var NganhNghe = require("../models/Nganhnghe.model");
 var Bac = require("../models/Bac.model");
-const { json } = require('body-parser');
 const router = require('express').Router();
 const isNameExist = require('../utils/NganhNghe.util');
 
@@ -46,7 +45,7 @@ router.post('/nganhnghe', async (req, res) => {
   } catch (error) {
     return error;
   }
-  
+
 });
 //sua nganh nghe
 router.put('/nganhnghe/:id', async (req, res) => {
