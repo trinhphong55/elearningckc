@@ -321,7 +321,7 @@ export class ModalChitieudaotaoComponent implements OnInit {
           typeof data[0].ngaySinh == 'undefined'
         ) {
           this.removeData();
-          this.toastr.warning('Định dạng sai', 'Cảnh báo');
+          this.toastr.warning('Cấu trúc file sai, vui lòng kiểm tra lại', 'Cảnh báo');
         } else {
           this.dsSinhVien = data;
         }
@@ -358,7 +358,7 @@ export class ModalChitieudaotaoComponent implements OnInit {
             )} " khóa 20${this.addForm.value.khoa}  ` +
               ' đã tồn tại danh sách lớp',
             'Cảnh báo',
-            { timeOut: 120000 }
+            { timeOut: 5000 }
           );
         }
       }
@@ -603,6 +603,7 @@ export class ModalChitieudaotaoComponent implements OnInit {
   }
   public capNhat_LopChoSinhVien() {
     let index = 0;
+    this.toastr.clear();
     this.dsLopFormArray.value.forEach((sv) => {
       this.SinhVienService.capNhatSinhVien(sv).subscribe(
         (res: any) => {
@@ -610,14 +611,6 @@ export class ModalChitieudaotaoComponent implements OnInit {
           this.lopTams = [];
           if (index == this.dsLopFormArray.value.length) {
             this.getLopHoc();
-            let maCT = this.taoTienTo(
-              this.maNganh,
-              this.maBac,
-              this.addForm.value.khoa,
-              this.addForm.value.loaiHinhDaoTao
-            );
-            this.xepLoptheoMaNganh(maCT);
-
             this.toastr.success('Cập nhật thành công sinh viên', 'Thông báo', {
               timeOut: 3000,
             });
@@ -674,8 +667,7 @@ export class ModalChitieudaotaoComponent implements OnInit {
           { timeOut: 120000 }
         );
 
-          this.lopTams = [];
-
+        this.lopTams = [];
       },
       (error: any) => {}
     );
@@ -705,15 +697,7 @@ export class ModalChitieudaotaoComponent implements OnInit {
 
   public capNhat_SLSinhVien_LopHocPhan(maLopHoc) {
     this.SinhVienService.capNhatSiSoLopHocPhan(maLopHoc).subscribe((res) => {
-      let maCT = this.taoTienTo(
-        this.maNganh,
-        this.maBac,
-        this.addForm.value.khoa,
-        this.addForm.value.loaiHinhDaoTao
-      );
       this.getLopHoc();
-
-      this.xepLoptheoMaNganh(maCT);
     });
   }
 }

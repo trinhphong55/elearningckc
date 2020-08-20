@@ -13,6 +13,7 @@ router.get("/:maSinhVien", async (req, res) => {
       trangThai: 1,
       maSinhVien: req.params.maSinhVien,
     });
+    console.log(diemSV);
     const monHoc = await monHocModel.find();
     let khdt_diemtb = [];
     for (let i = 1; i < 7; i++) {
@@ -25,12 +26,11 @@ router.get("/:maSinhVien", async (req, res) => {
           diemSV.forEach((diem) => {
             if (diem.maDaoTao == kh.maDaoTao) {
               item.diem = diem.diem;
-
             }
-            diemTB_HocKi = diemTB_HocKi + item.diem;
-            heso++;
-          });
 
+          });
+          diemTB_HocKi = diemTB_HocKi + item.diem;
+          heso++;
           monHoc.forEach(mh => {
             if(mh.maMonHoc === item.maMonHoc){
               item.tenMonHoc = mh.tenMonHoc;
@@ -42,7 +42,7 @@ router.get("/:maSinhVien", async (req, res) => {
 
       khdt_diemtb.push({
         hocKi: i,
-        diem: Math.round(((diemTB_HocKi/heso) + Number.EPSILON) * 100) / 100,
+        diem: diemTB_HocKi!= 0?Math.round(((diemTB_HocKi/heso) + Number.EPSILON) * 100) / 100:0,
         khdt: khdt_tmp,
         count: khdt_tmp.length,
       });

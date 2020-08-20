@@ -47,7 +47,6 @@ export class TaobaigiangComponent implements OnInit {
 
     this.uploader.onCompleteAll = () => {
       this.baiGiang.dinhKem = this.attachmentList;
-      console.log(this.baiGiang);
       this._baiGiangService.them(this.baiGiang).subscribe((data: any) => {
         this.toastr.success(data.message, 'Thông báo');
 
@@ -80,7 +79,7 @@ export class TaobaigiangComponent implements OnInit {
     if (this.uploader.queue.length !== 0) {
       this.uploader.uploadAll();
     } else {
-      console.log(this.baiGiang);
+
       this._baiGiangService.them(this.baiGiang).subscribe(
         (data: any) => {
           this.toastr.success(data.message, 'Thông báo');
@@ -118,7 +117,6 @@ export class TaobaigiangComponent implements OnInit {
 
   download(filename) {
     // var filename = this.attachmentList[index].uploadname;
-    console.log(filename);
     this._fileService.downloadFile(filename).subscribe(
       (data) => saveAs(data, filename),
       (error) => console.error(error)

@@ -101,7 +101,6 @@ export class XembaiganggvComponent implements OnInit {
   }
 
   download(filename) {
-    // var filename = this.attachmentList[index].uploadname;
 
     this._fileService.downloadFileBaiGiang(filename).subscribe(
       (data) => saveAs(data, filename),

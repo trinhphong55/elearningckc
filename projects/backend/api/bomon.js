@@ -214,7 +214,8 @@ exports.updateKhoaBoMon = async (req, res) => {
             tenBoMon: req.body.tenBoMon,
             tenVietTat: req.body.tenVietTat,
             nguoiChinhSua:req.body.nguoiChinhSua,
-            maLoai: req.body.maLoai
+            maLoai: req.body.maLoai,
+            maKhoa: req.body.maKhoa
           },
         }
       );

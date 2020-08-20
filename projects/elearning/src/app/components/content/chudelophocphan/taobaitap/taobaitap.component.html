@@ -2,20 +2,20 @@
   <div class="row style-magintop" style="border-bottom:solid 0.5px black;padding-bottom: 20px;">
     <div class="col-md-6 mt-4">
       <div mat-dialog-actions>
-        <button mat-button mat-dialog-close><i class="fas fa-times"></i></button>
+        <button mat-stroked-button color="warn"  mat-dialog-close><i class="fas fa-times"></i></button>
         <span style="margin-left: 5px;">Bài tập</span>
       </div>
     </div>
     <div class="col-md-6 mt-4">
       <div>
-        <button mat-button (click)="saveBaiTap()">Giao bài</button>
-        <button mat-button [matMenuTriggerFor]="menu"><i class="fas fa-angle-down"></i></button>
+        <button mat-raised-button color="primary" (click)="saveBaiTap()">Giao bài</button>
+        <!-- <button mat-button [matMenuTriggerFor]="menu"><i class="fas fa-angle-down"></i></button>
         <mat-menu #menu="matMenu">
           <button mat-menu-item>Giao bài</button>
           <button mat-menu-item>Lên lịch</button>
           <button mat-menu-item>Lưu bản nháp</button>
           <button mat-menu-item>Hủy bản nháp</button>
-        </mat-menu>
+        </mat-menu> -->
       </div>
     </div>
   </div>
@@ -71,7 +71,7 @@
           </mat-select>
         </mat-form-field>
       </form>
-      <mat-label>Điểm</mat-label>
+      <!-- <mat-label>Điểm</mat-label>
       <form class="example-form">
         <mat-form-field class="example-full-width">
           <mat-label>100</mat-label>
@@ -79,7 +79,7 @@
             <mat-option>Chưa chấm điểm</mat-option>
           </mat-select>
         </mat-form-field>
-      </form>
+      </form> -->
       <mat-label>Đến hạn</mat-label>
       <form class="example-form">
         <mat-form-field>
@@ -101,13 +101,13 @@
           <input [(ngModel)]="newChude" (change)="changeChuDe(2)" name="chuDeMoi" matInput placeholder="Tạo chủ đề">
         </mat-form-field>
       </form>
-      <button mat-button [matMenuTriggerFor]="Tieuchichamdiem"><i class="fas fa-plus"></i> Tiêu chí chấm
-        điểm</button>
-      <mat-menu #Tieuchichamdiem="matMenu">
+      <!-- <button mat-button [matMenuTriggerFor]="Tieuchichamdiem"><i class="fas fa-plus"></i> Tiêu chí chấm
+        điểm</button> -->
+      <!-- <mat-menu #Tieuchichamdiem="matMenu">
         <button mat-menu-item>Tại tiêu chí chấm điểm</button>
         <button mat-menu-item>Sử dụng lại tiêu chí chấm điểm</button>
         <button mat-menu-item>Nhập từ trang tính</button>
-      </mat-menu>
+      </mat-menu> -->
     </div>
   </div>
   <script>
