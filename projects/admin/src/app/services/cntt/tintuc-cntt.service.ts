@@ -31,6 +31,14 @@ export class TintucCnttService {
       .pipe(catchError(this.errorMgmt));
   }
 
+  danhSachTinTucAPI(): Observable<any> {
+    return this.http
+      .get<any>(`${this.baseUri}/sharedanhsachbaiviet`, {
+        headers: this.headers,
+      })
+      .pipe(catchError(this.errorMgmt));
+  }
+
   danhSachTinTucSapXepTheoMaBaiViet(): Observable<any> {
     return this.http
       .get<any>(`${this.baseUri}/danhsachtintuc`, {
@@ -38,6 +46,7 @@ export class TintucCnttService {
       })
       .pipe(catchError(this.errorMgmt));
   }
+
   deleteTinTuc(body: any): Observable<any> {
     return this.http
       .post<any>(`${this.baseUri}/xoatintuc`, body, {
@@ -57,12 +66,14 @@ export class TintucCnttService {
     let url = `${this.baseUri}/taotintuc`;
     return this.http.post(url, data).pipe(catchError(this.errorMgmt));
   }
+
   //edit tintuc
   editTinTuc(data): Observable<any> {
     return this.http
       .post<any>(this.baseUri + '/chinhSuaTinTuc', data)
       .pipe(catchError(this.errorMgmt));
   }
+
   // Error handling
   errorMgmt(error: HttpErrorResponse) {
     let errorMessage = '';

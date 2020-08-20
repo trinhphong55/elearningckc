@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 const baseUrl = 'https://localhost:4100/api/baidangfb';
 const baseUrl2='https://localhost:4100/api/baidangfbv2';
 const baseUrl3='https://localhost:4100/api/baidangfb/all';
-const baseUrl4='https://localhost:4100/api/baidangfbraw/';
+const baseUrl4='https://localhost:4100/api/baidangfbraw';
 @Injectable({
   providedIn: 'root'
 })
