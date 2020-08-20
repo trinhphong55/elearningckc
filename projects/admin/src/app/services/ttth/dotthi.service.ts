@@ -11,21 +11,21 @@ const httpOptions = {
 export class DotthiService {
 
   get(): Observable<any[]  >{
-    return this.http.get<any[] >('https://api.cnttckc.edu.vn/api/ttthDotThi/list').pipe(
+    return this.http.get<any[] >('https://localhost:4100/api/ttthDotThi/list').pipe(
       retry(1),
       catchError(error => of([]))
     );
   }
   add(newItem: any): Observable<any> {
-    return this.http.post<any>('https://api.cnttckc.edu.vn/api/ttthDotThi/add', newItem, httpOptions).pipe(
+    return this.http.post<any>('https://localhost:4100/api/ttthDotThi/add', newItem, httpOptions).pipe(
     );
   }
   update(updateItem: any): Observable<any> {
-    return this.http.post<any>('https://api.cnttckc.edu.vn/api/ttthDotThi/update', updateItem, httpOptions).pipe(
+    return this.http.post<any>('https://localhost:4100/api/ttthDotThi/update', updateItem, httpOptions).pipe(
     );
   }
   delete(deleteItem: any): Observable<any> {
-    return this.http.post<any>('https://api.cnttckc.edu.vn/api/ttthDotThi/delete', deleteItem, httpOptions).pipe(
+    return this.http.post<any>('https://localhost:4100/api/ttthDotThi/delete', deleteItem, httpOptions).pipe(
     );
   }
   constructor(private http: HttpClient) { }

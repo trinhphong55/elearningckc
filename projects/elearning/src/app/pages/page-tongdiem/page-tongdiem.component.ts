@@ -31,6 +31,7 @@ export class PageTongdiemComponent implements OnInit {
   dsGiaoVienhp: any;
   dsGiaoVienLophp: any;
   excel:any;
+  luuDTK:any;
   constructor(public dialog: MatDialog,
     private sinhVienService: SinhVienService,
     private router: ActivatedRoute, private route: Router,
@@ -146,4 +147,14 @@ export class PageTongdiemComponent implements OnInit {
       }
     )
   }
+  luuDiem(){
+    this.diemSinhVienServiceL.luuDiem(this.dsTenHocSinh,this.router.snapshot.paramMap.get('id')).subscribe(
+      luuDTK => {
+      this.luuDTK = luuDTK;
+    },
+    (error) => {
+      console.log(error);
+    }
+  )
+}
 }

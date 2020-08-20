@@ -1,9 +1,8 @@
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { ChuDe } from './../../../../models/chu-de.interface';
 import { ChuDeService } from './../../../../services/chu-de.service';
 import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
-
 @Component({
   selector: 'app-taochude',
   templateUrl: './taochude.component.html',
@@ -11,7 +10,7 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class TaochudeComponent implements OnInit {
   checked: boolean = true;
-  public maLopHocPhan: number = 1;
+  public maLopHocPhan: number =1;
   public tenChuDe: string;
   public chuDe: ChuDe;
   public taiKhoan: any;
@@ -38,5 +37,7 @@ export class TaochudeComponent implements OnInit {
         }
       );
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.route.snapshot.paramMap)
+  }
 }

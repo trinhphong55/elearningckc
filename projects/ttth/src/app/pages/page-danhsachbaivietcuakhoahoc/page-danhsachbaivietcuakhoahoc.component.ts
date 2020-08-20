@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TintucService } from '../../services/tintuc.service';
+import * as moment from 'moment';
+
 @Component({
   selector: 'app-page-danhsachbaivietcuakhoahoc',
   templateUrl: './page-danhsachbaivietcuakhoahoc.component.html',
@@ -18,6 +20,14 @@ export class PageDanhsachbaivietcuakhoahocComponent implements OnInit {
   ngOnInit(): void {
     let id = this.activatedRoute.snapshot.paramMap.get('id');
     this.getTinTucTheoChuDe(id);
+  }
+
+  formatDatetime(time: string): string {
+    if (time) {
+      time = moment(time).format('HH:mm, DD-MM-YYYY');
+      return time;
+    }
+    return '';
   }
 
   getTinTucTheoChuDe(id: string): void {

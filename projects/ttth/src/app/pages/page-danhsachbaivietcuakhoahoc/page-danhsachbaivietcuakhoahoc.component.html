@@ -42,7 +42,7 @@
                       ><strong>{{ item.nguoitao || "Admin" }}</strong></span
                     ><span
                       ><span class="fas fa-clock mr-1"></span
-                      ><span>{{ item.created_at }}</span></span
+                      ><span>{{ formatDatetime(item.created_at) }}</span></span
                     >
                   </div>
                   <div class="mt-2">{{ item.description }}</div>

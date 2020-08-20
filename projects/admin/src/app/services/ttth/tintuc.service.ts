@@ -15,7 +15,7 @@ import { ttthTinTuc } from '../../../models/ttthTinTuc';
 export class TintucService {
   constructor(private http: HttpClient) {}
 
-  private url = 'https://api.cnttckc.edu.vn/api/ttthTinTuc';
+  private url = 'https://localhost:4100/api/ttthTinTuc';
 
   getTinTuc(): Observable<ttthTinTuc[]> {
     return this.http.get<ttthTinTuc[]>(this.url + '/ttthdanhsachtintuc');
