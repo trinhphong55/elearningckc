@@ -70,7 +70,7 @@ class SinhVienDAO extends MongoDB{
 
     async resetPassword(email){
       const checkUser = await this.getEmail(email);
-      console.log('checkUser', checkUser);
+      // console.log('checkUser', checkUser);
       let token;
       if (checkUser && checkUser.length){
         const temp = parseInt(Math.random() * 10000);

@@ -35,13 +35,13 @@ const upload = multer({
 function uploadPhotos(req, res, next) {
     upload.single("image")(req, res, function (error) {
         try {
-            console.log("run uploadPhotos");
+            // console.log("run uploadPhotos");
             const photos = req.file;
-            console.log(photos);
-            console.log(req.file);
+            // console.log(photos);
+            // console.log(req.file);
             // check if photos are available
             if (!photos) {
-                console.log("no photo");
+                // console.log("no photo");
                 next();
             } else {
                 req.body.uploads = photos;
@@ -56,8 +56,8 @@ function uploadPhotos(req, res, next) {
 
 async function addBST(req, res) {
     try {
-        console.log("run save");
-        console.log(req.body);
+        // console.log("run save");
+        // console.log(req.body);
         if (!req.body.uploads) {
             var boSuuTap = new BoSuuTap({
                 maBST: req.body.maBST,
@@ -66,7 +66,7 @@ async function addBST(req, res) {
                 src: "",
                 trangThai: 1
             });
-            console.log(boSuuTap);
+            // console.log(boSuuTap);
             boSuuTap.save((err, data) => {
                 if (err) {
                     return next(err);
@@ -81,7 +81,7 @@ async function addBST(req, res) {
                 src: "uploads/cntt/" + req.body.uploads.filename,
                 trangThai: 1
             });
-            console.log(boSuuTap);
+            // console.log(boSuuTap);
             boSuuTap.save((err, data) => {
                 if (err) {
                     return next(err);
@@ -97,9 +97,9 @@ router.post("/taobst", uploadPhotos, addBST);
 
 async function editBST(req, res) {
     try {
-        console.log("run edit");
-        console.log(req.body);
-        console.log("uploads:"+ req.body.uploads);
+        // console.log("run edit");
+        // console.log(req.body);
+        // console.log("uploads:"+ req.body.uploads);
         if (!req.body.uploads) {
             await BoSuuTap.findOneAndUpdate(
                 { _id: req.body._id },
@@ -172,8 +172,8 @@ router.get("/danhsachslidercntt", (req, res) => {
 });
 // add Tintuc add
 router.post("/xoabst", async (req, res) => {
-    console.log(" Xoa item bst");
-    console.log(req.body._id);
+    // console.log(" Xoa item bst");
+    // console.log(req.body._id);
     await BoSuuTap.findOneAndUpdate(
         { _id: req.body._id },
         {

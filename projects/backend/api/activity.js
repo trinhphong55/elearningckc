@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
 
 router.get('/:loaiActivity', async (req, res) => {
   const loaiActivity = req.params.loaiActivity;
-  console.log('loaiActivity', loaiActivity);
+  // console.log('loaiActivity', loaiActivity);
   await Activity.find({loaiActivity: loaiActivity}).sort({"ngayTao": -1})
     .then(dsActi => {
       return res.status(200).json({

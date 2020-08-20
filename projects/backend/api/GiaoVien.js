@@ -70,7 +70,7 @@ router.post('/cap-nhat-giao-vien', async (req, res) => {
 })
 
 router.post('/xoa-giao-vien', async (req, res) =>{
-  console.log('xoa-giao-vien');
+  // console.log('xoa-giao-vien');
   let result = await giaoVienDAO.updateOrInsertOne({maGiaoVien: req.body.maGiaoVien}, {trangThai: 0}, 'GiaoVien')
   if(result != false){
     res.send({

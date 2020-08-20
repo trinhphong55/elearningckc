@@ -24,7 +24,7 @@ exports.them = async (req, res) => {
     const chuDes = await chuDeModel.find();
     req.body.thuTu = chuDes.length + 1;
     req.body.maChuDe  = chuDes.length + 1;
-    console.log(req.body);
+    // console.log(req.body);
     const chuDeMoi = await chuDeModel.create(setChuDe(req.body));
     res.json({data:chuDeMoi, message:'Thêm thành công'});
   } catch (error) {

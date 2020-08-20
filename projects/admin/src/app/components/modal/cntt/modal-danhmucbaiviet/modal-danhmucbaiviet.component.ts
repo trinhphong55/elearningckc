@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ModalService } from '../../../../services/modal.service';
 import { DanhmucService } from '../../../../services/cntt/danhmuc.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-modal-danhmucbaiviet',
@@ -11,7 +12,8 @@ import { DanhmucService } from '../../../../services/cntt/danhmuc.service';
 export class ModalDanhmucbaivietComponent implements OnInit {
   constructor(
     private modalService: ModalService,
-    private danhMucService: DanhmucService
+    private danhMucService: DanhmucService,
+    private toastrService: ToastrService
   ) {}
 
   private _danhSachDanhMuc: {
@@ -76,7 +78,12 @@ export class ModalDanhmucbaivietComponent implements OnInit {
     this.danhMucService
       .saveNewDanhMuc(this.danhMucForm.value)
       .subscribe((data) => {
-        alert('Thêm danh mục mới thành công');
+        // alert('Thêm danh mục mới thành công');
+        this.toastrService.success(
+          'Thêm danh mục mới thành công',
+          'Thông báo',
+          { timeOut: 4000 }
+        );
         this.getdanhSachDanhMuc();
         this.onResetFormValue();
       });
@@ -86,7 +93,12 @@ export class ModalDanhmucbaivietComponent implements OnInit {
     this.danhMucService
       .saveEditDanhMuc(this.danhMucForm.value)
       .subscribe((data) => {
-        alert('Chỉnh sửa danh mục thành công');
+        // alert('Chỉnh sửa danh mục thành công');
+        this.toastrService.success(
+          'Chỉnh sửa danh mục mới thành công',
+          'Thông báo',
+          { timeOut: 4000 }
+        );
         this.getdanhSachDanhMuc();
         this.onResetFormValue();
       });
@@ -100,7 +112,12 @@ export class ModalDanhmucbaivietComponent implements OnInit {
           maDanhMuc: maDanhMuc,
         })
         .subscribe((data) => {
-          alert('Xoá danh mục thành công');
+          this.toastrService.success(
+            'Xoá danh mục mới thành công',
+            'Thông báo',
+            { timeOut: 4000 }
+          );
+          // alert('Xoá danh mục thành công');
           this.getdanhSachDanhMuc();
         });
     }
@@ -111,9 +128,15 @@ export class ModalDanhmucbaivietComponent implements OnInit {
     this.danhMucForm.reset();
   }
   showTrangThai(trangThai: any): string {
-    if (trangThai == 1) { return 'Đã đăng' }
-    return 'Đã xóa'
+    if (trangThai == 1) {
+      return 'Đã đăng';
+    }
+    return 'Đã xóa';
   }
-  get tenDanhMuc() { return this.danhMucForm.get('tenDanhMuc'); }
-  get tenVietTat() { return this.danhMucForm.get('tenVietTat'); }
+  get tenDanhMuc() {
+    return this.danhMucForm.get('tenDanhMuc');
+  }
+  get tenVietTat() {
+    return this.danhMucForm.get('tenVietTat');
+  }
 }

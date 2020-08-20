@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ModalService } from '../../../../services/modal.service';
 import { LoaibaivietService } from '../../../../services/cntt/loaibaiviet.service';
 import { LoaiBaiViet } from '../../../../models/LoaiBaiViet';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-modal-quanlyloaibaivietcntt',
@@ -12,7 +13,8 @@ import { LoaiBaiViet } from '../../../../models/LoaiBaiViet';
 export class ModalQuanlyloaibaivietcnttComponent implements OnInit {
   constructor(
     private modalService: ModalService,
-    private loaiBaiVietService: LoaibaivietService
+    private loaiBaiVietService: LoaibaivietService,
+    private toastrService: ToastrService
   ) {}
 
   private _logResult: any;
@@ -79,7 +81,14 @@ export class ModalQuanlyloaibaivietcnttComponent implements OnInit {
       .subscribe((data) => {
         // this._logResult = data;
         // console.log(this._logResult);
-        alert('Thêm loại bài viết mới thành công');
+        // alert('Thêm loại bài viết mới thành công');
+        this.toastrService.success(
+          'Thêm loại bài viết mới thành công',
+          'Thông báo',
+          {
+            timeOut: 4000,
+          }
+        );
         this.getDanhSachLoaiBaiViet();
         this.onResetFormValue();
       });
@@ -95,7 +104,14 @@ export class ModalQuanlyloaibaivietcnttComponent implements OnInit {
       .subscribe((data) => {
         // this._logResult = data;
         // console.log(this._logResult);
-        alert('Chỉnh sửa loại bài viết thành công');
+        // alert('Chỉnh sửa loại bài viết thành công');
+        this.toastrService.success(
+          'Chỉnh sửa loại bài viết mới thành công',
+          'Thông báo',
+          {
+            timeOut: 4000,
+          }
+        );
         this.getDanhSachLoaiBaiViet();
         this.onResetFormValue();
       });
@@ -111,7 +127,14 @@ export class ModalQuanlyloaibaivietcnttComponent implements OnInit {
         .subscribe((data) => {
           // this._logResult = data;
           // console.log(this._logResult);
-          alert('Xoá loại bài viết thành công');
+          // alert('Xoá loại bài viết thành công');
+          this.toastrService.success(
+            'Xoá loại bài viết mới thành công',
+            'Thông báo',
+            {
+              timeOut: 4000,
+            }
+          );
           this.getDanhSachLoaiBaiViet();
         });
     }
@@ -119,8 +142,12 @@ export class ModalQuanlyloaibaivietcnttComponent implements OnInit {
 
   onResetFormValue() {
     this.hideButtonChinhSua = true;
-    this.loaiBaiVietForm.reset()
+    this.loaiBaiVietForm.reset();
   }
-  get tenLoaiBaiViet() { return this.loaiBaiVietForm.get('tenLoaiBaiViet'); }
-  get tenVietTat() { return this.loaiBaiVietForm.get('tenVietTat'); }
+  get tenLoaiBaiViet() {
+    return this.loaiBaiVietForm.get('tenLoaiBaiViet');
+  }
+  get tenVietTat() {
+    return this.loaiBaiVietForm.get('tenVietTat');
+  }
 }

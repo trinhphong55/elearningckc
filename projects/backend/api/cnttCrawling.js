@@ -209,7 +209,7 @@ async function crawlThongBaoVaLichCongTacTuanCuaTruong() {
     BaiVietDaLuu
   );
 
-  console.log("filterDanhSachThongBao: ", filterDanhSachThongBao.length);
+  // console.log("filterDanhSachThongBao: ", filterDanhSachThongBao.length);
 
   if (filterDanhSachThongBao.length > 0) {
     for (const item of filterDanhSachThongBao) {
@@ -218,10 +218,10 @@ async function crawlThongBaoVaLichCongTacTuanCuaTruong() {
     }
   }
 
-  console.log(
-    "filterDanhSachLichCongTacTuan: ",
-    filterDanhSachLichCongTacTuan.length
-  );
+  // console.log(
+  //   "filterDanhSachLichCongTacTuan: ",
+  //   filterDanhSachLichCongTacTuan.length
+  // );
 
   if (filterDanhSachLichCongTacTuan.length > 0) {
     for (const item of filterDanhSachLichCongTacTuan) {

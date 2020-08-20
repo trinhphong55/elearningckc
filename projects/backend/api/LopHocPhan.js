@@ -129,7 +129,7 @@ router.post("/", async (req, res) => {
           lhp.tenLopHocPhan = tenlhp + " - " + mh.tenMonHoc;
           lhp.tenVietTatLopHocPhan = tenlhp + " - " + mh.tenVietTat;
           LopHocPhan.create(lhp)
-            .then(console.log("added " + lhp.maDaoTao))
+            .then()
             .catch((err) => {
               return res.json({ message: err });
             });
@@ -213,7 +213,7 @@ router.get("/cunggiaovien/malophocphan/:maLopHocPhan", async (req, res) => {
   await asyncForEach(dsGVLHPbymaGiaoVien, async gvlhp => {
     await LopHocPhan.findOne({ maLopHocPhan: gvlhp.maLopHocPhan, trangThai: { $ne: 0 } })
       .then(lhp => {
-        console.log(lhp.maLopHocPhan);
+        // console.log(lhp.maLopHocPhan);
         if (lhp.length !== 0) {
           dsLHP.push(lhp);
         }

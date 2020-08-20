@@ -21,7 +21,7 @@ router.post('/', async (req, res) => {
   const chiTieu = parseInt(req.body.chiTieu);
   const { maChuongTrinhDaoTao, maBac, maNganhNghe, khoaHoc, maLoaiHinhDaoTao } = req.body;
   const ctdt = new CTDT({ maChuongTrinhDaoTao, maBac, maNganhNghe, khoaHoc, maLoaiHinhDaoTao, soHocKi, chiTieu });
-  console.log(ctdt);
+  // console.log(ctdt);
   ctdt.save().then(() => {
     res.json({ success: "added CTDT" });
   }).catch(err => {

@@ -67,7 +67,7 @@ export class ModalQuanlytintuccnttComponent implements OnInit {
   onFileSelected(event) {
     if (event.target.files.length > 0) {
       this.imgValue = event.target.files[0].name;
-      console.log('imgValue ' + this.imgValue);
+      // console.log('imgValue ' + this.imgValue);
     }
   }
   //update
@@ -125,7 +125,7 @@ export class ModalQuanlytintuccnttComponent implements OnInit {
         .editTinTuc(this.tinTucForm.value)
         .subscribe((res) => {
           this.loadDanhSachTinTuc();
-          console.log(' Tin tuc duoc chinh sua thanh cong!', res);
+          // console.log(' Tin tuc duoc chinh sua thanh cong!', res);
           this.toastr.success('Chỉnh sửa bài viết thành công!');
         });
     }
@@ -155,7 +155,7 @@ export class ModalQuanlytintuccnttComponent implements OnInit {
       viTriHienThi: baiViet.viTriHienThi,
       trangThai: baiViet.trangThai,
     });
-    console.log(this.tinTucForm.value);
+    // console.log(this.tinTucForm.value);
   }
 
   closeModal(id: string) {

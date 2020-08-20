@@ -16,6 +16,8 @@ import { DanhmucService } from '../../../../services/cntt/danhmuc.service';
 import { LoaibaivietService } from '../../../../services/cntt/loaibaiviet.service';
 import { StringCommonService } from '../../../../services/cntt/stringcommon.service';
 import { getCookie } from '../../../../../../../common/helper';
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-modal-baiviet',
   templateUrl: './modal-baiviet.component.html',
@@ -27,7 +29,8 @@ export class ModalBaivietComponent implements OnInit, OnDestroy, AfterViewInit {
     private tintucCnttService: TintucCnttService,
     private danhMucService: DanhmucService,
     private loaiBaiVietService: LoaibaivietService,
-    private stringCommonService: StringCommonService
+    private stringCommonService: StringCommonService,
+    private toastrService: ToastrService
   ) {}
 
   //#region DataTables
@@ -349,11 +352,17 @@ export class ModalBaivietComponent implements OnInit, OnDestroy, AfterViewInit {
       this.tintucCnttService.themTinTuc(formData).subscribe((res) => {
         this.getDanhSachBaiViet();
         this.onResetForm();
-        alert(res.message);
+        this.toastrService.success(res.message, 'Thông báo', { timeOut: 4000 });
+        // alert(res.message);
         // this.reRenderDataTables(); // DataTables
       });
     } else {
-      alert('Vui lòng nhập đầy đủ các thông tin');
+      this.toastrService.error(
+        'Vui lòng nhập đầy đủ các thông tin',
+        'Thông báo',
+        { timeOut: 4000 }
+      );
+      // alert('Vui lòng nhập đầy đủ các thông tin');
     }
   }
 
@@ -417,12 +426,18 @@ export class ModalBaivietComponent implements OnInit, OnDestroy, AfterViewInit {
       this.tintucCnttService.editTinTuc(formData).subscribe((res) => {
         this.getDanhSachBaiViet();
         this.onResetFormChinhSua();
-        alert(res.message);
-        this.closeModal('cntt_chinhsuabaiviet');
+        // alert(res.message);
+        this.toastrService.success(res.message, 'Thông báo', { timeOut: 4000 });
+        // this.closeModal('cntt_chinhsuabaiviet');
         // this.reRenderDataTables(); // DataTables
       });
     } else {
-      alert('Vui lòng nhập đầy đủ các thông tin');
+      this.toastrService.error(
+        'Vui lòng nhập đầy đủ các thông tin',
+        'Thông báo',
+        { timeOut: 4000 }
+      );
+      // alert('Vui lòng nhập đầy đủ các thông tin');
     }
   }
 
@@ -435,7 +450,10 @@ export class ModalBaivietComponent implements OnInit, OnDestroy, AfterViewInit {
         })
         .subscribe((res) => {
           this.getDanhSachBaiViet();
-          alert('Xoá bài viết thành công');
+          // alert('Xoá bài viết thành công');
+          this.toastrService.success('Xoá bài viết thành công', 'Thông báo', {
+            timeOut: 4000,
+          });
         });
     }
   }

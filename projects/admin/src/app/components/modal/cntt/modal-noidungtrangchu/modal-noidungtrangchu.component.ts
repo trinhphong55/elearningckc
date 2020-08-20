@@ -83,16 +83,16 @@ export class ModalNoidungtrangchuComponent
   }
 
   onClickLogData(): void {
-    console.log('log rawData');
-    console.log(this.rawData.data);
-    console.log('log listBaiVietQuanTrong');
-    console.log(this.listBaiVietQuanTrong);
-    console.log('log listCoHoiViecLam');
-    console.log(this.listCoHoiViecLam);
-    console.log('log listGioiThieuNgan');
-    console.log(this.listGioiThieuNgan);
-    console.log('log listTinTucNoiBat');
-    console.log(this.listTinTucNoiBat);
+    // console.log('log rawData');
+    // console.log(this.rawData.data);
+    // console.log('log listBaiVietQuanTrong');
+    // console.log(this.listBaiVietQuanTrong);
+    // console.log('log listCoHoiViecLam');
+    // console.log(this.listCoHoiViecLam);
+    // console.log('log listGioiThieuNgan');
+    // console.log(this.listGioiThieuNgan);
+    // console.log('log listTinTucNoiBat');
+    // console.log(this.listTinTucNoiBat);
   }
 
   formatDatetime(time: string): string {

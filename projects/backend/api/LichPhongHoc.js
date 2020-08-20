@@ -46,12 +46,12 @@ router.post('/them', async (req, res) => {
   function checkIfDuplicateExists(w) {
     return new Set(w).size !== w.length
   }
-  console.log(
-    checkIfDuplicateExists(["a", "b", "c", "a"])
-    // true
-  );
-  console.log(
-    checkIfDuplicateExists(["a", "b", "c"]))
+  // console.log(
+  //   checkIfDuplicateExists(["a", "b", "c", "a"])
+  //   // true
+  // );
+  // console.log(
+  //   checkIfDuplicateExists(["a", "b", "c"]))
 
   return res.json('end');
   const { day, lau, ghiChu, tenLichPhongHoc } = req.body;

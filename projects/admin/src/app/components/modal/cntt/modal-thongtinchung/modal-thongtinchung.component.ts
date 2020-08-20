@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ModalService } from '../../../../services/modal.service';
 import { ThongTinChungService } from '../../../../services/cntt/thongtinchung.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-modal-thongtinchung',
@@ -11,7 +12,8 @@ import { ThongTinChungService } from '../../../../services/cntt/thongtinchung.se
 export class ModalThongtinchungComponent implements OnInit {
   constructor(
     private modalService: ModalService,
-    private thongTinChungService: ThongTinChungService
+    private thongTinChungService: ThongTinChungService,
+    private toastrService: ToastrService
   ) {}
   private _id: any;
   private _logo: any;
@@ -67,7 +69,7 @@ export class ModalThongtinchungComponent implements OnInit {
   }
 
   logData(): void {
-    console.log(this._id);
+    // console.log(this._id);
   }
 
   onSave(): void {
@@ -93,7 +95,10 @@ export class ModalThongtinchungComponent implements OnInit {
     this.thongTinChungService.onSave(formData).subscribe((data) => {
       // console.log(data);
       this.getThongTinChung();
-      alert('Cập nhật thành công');
+      // alert('Cập nhật thành công');
+      this.toastrService.success('Cập nhật thành công', 'Thông báo', {
+        timeOut: 4000,
+      });
     });
   }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormArray } from '@angular/forms';
 import { ModalService } from '../../../../services/modal.service';
 import { HeaderService } from '../../../../services/cntt/header.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-modal-quanlyheadercntt',
@@ -11,7 +12,8 @@ import { HeaderService } from '../../../../services/cntt/header.service';
 export class ModalQuanlyheadercnttComponent implements OnInit {
   constructor(
     private modalService: ModalService,
-    private headerService: HeaderService
+    private headerService: HeaderService,
+    private toastrService: ToastrService
   ) {}
 
   private _defaultFormvalue: any;
@@ -82,10 +84,10 @@ export class ModalQuanlyheadercnttComponent implements OnInit {
   }
 
   logData(): void {
-    console.log('default');
-    console.log(this._defaultFormvalue);
-    console.log('form');
-    console.log(this.formMenuHeader.value);
+    // console.log('default');
+    // console.log(this._defaultFormvalue);
+    // console.log('form');
+    // console.log(this.formMenuHeader.value);
   }
 
   getHeaderFromDatabase(): void {
@@ -173,7 +175,10 @@ export class ModalQuanlyheadercnttComponent implements OnInit {
           _id: data.data._id,
         });
         this._defaultFormvalue = this.formMenuHeader.value;
-        alert(data.message);
+        // alert(data.message);
+        this.toastrService.success(data.message, 'Thông báo', {
+          timeOut: 4000,
+        });
       });
   }
 }

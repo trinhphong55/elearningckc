@@ -89,14 +89,14 @@ router.post("/", async (req, res) => {
           }
         ).then((result) => {
           if (result === null) {
-            console.log("Them moi");
+            // console.log("Them moi");
             KHDT.create(khdt)
-              .then(console.log("added " + khdt.maDaoTao))
+              .then()
               .catch((err) => {
                 return res.json({ status: 501, message: err });
               });
           } else {
-            console.log("Cap nhat", result.maDaoTao);
+            // console.log("Cap nhat", result.maDaoTao);
           }
         });
       });

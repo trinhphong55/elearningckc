@@ -18,7 +18,7 @@ async function isExistedInLHP(maKHDT) {
   //     isExisted = true;
   //   })
   // return isExisted;
-  console.log('haha');
+  // console.log('haha');
 }
 
 module.exports = {

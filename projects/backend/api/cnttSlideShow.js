@@ -64,8 +64,8 @@ function uploadPhotos(req, res, next) {
 
 async function saveInformationsSlideShowToDatabase(req, res) {
   try {
-    console.log("run save infomartion");
-    console.log(req.body);
+    // console.log("run save infomartion");
+    // console.log(req.body);
     const slideShow = new SlideShow();
     slideShow.maSlide = req.body.maSlide;
     slideShow.tenSlide = req.body.tenSlide;
@@ -84,7 +84,7 @@ router.post("/save", uploadPhotos, saveInformationsSlideShowToDatabase);
 
 router.get("/", async (req, res) => {
   try {
-    console.log("Slideshow: Lay danh sach slideshow");
+    // console.log("Slideshow: Lay danh sach slideshow");
     const danhSachSlideShow = await SlideShow.find({});
     res.json({
       message: "Lấy danh sách slideshow thành công",

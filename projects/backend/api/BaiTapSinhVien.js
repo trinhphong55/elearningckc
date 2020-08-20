@@ -73,7 +73,7 @@ _router.get("/:email/:maBaiTap/baitap", async (req, res) => {
 // Add BaiTap
 _router.post("/", async (req, res) => {
   try {
-    console.log(req.body)
+    // console.log(req.body)
     const bt = new BaiTapSinhVien(req.body);
     var data = await bt.save();
     res.status(201).json({ data });

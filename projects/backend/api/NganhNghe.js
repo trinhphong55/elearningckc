@@ -21,7 +21,7 @@ router.get('/nganhnghe/:id', async (req, res) => {
   try {
     var data = await NganhNghe.findById(req.params.id).exec();
     var data = await NganhNghe.findOne({ _id: _id })
-    console.log(data)
+    // console.log(data)
     res.json(data);
   } catch (error) {
     res.json({ message: error });
@@ -82,14 +82,14 @@ router.delete('/nganhnghe/:id', async(req, res) => {
 
 //importexcel
 router.post('/nganhnghe/importexcel', async (req, res) => {
-  console.log('BAT DAU IMPORT EXCEL');
+  // console.log('BAT DAU IMPORT EXCEL');
   var items = req.body;
   var filterItems = [];
 
   //Get next ma nganh nghe
 
   async function asyncForEach(array, callback) {
-    console.log('Xu ly excel');
+    // console.log('Xu ly excel');
     for (let index = 0; index < array.length; index++) {
       await callback(array[index], index);
     }
@@ -100,11 +100,11 @@ router.post('/nganhnghe/importexcel', async (req, res) => {
           filterItems.push(nn);
         })
     });
-    console.log('Done');
+    // console.log('Done');
   }
   await start();
 
-  console.log(filterItems);
+  // console.log(filterItems);
 
   if (filterItems.length > 0) {
     NganhNghe.insertMany(filterItems).then(() => {

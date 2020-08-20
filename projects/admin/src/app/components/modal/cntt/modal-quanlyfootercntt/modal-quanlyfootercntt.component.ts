@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormArray } from '@angular/forms';
 import { ModalService } from '../../../../services/modal.service';
 import { FooterService } from '../../../../services/cntt/footer.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-modal-quanlyfootercntt',
@@ -11,7 +12,8 @@ import { FooterService } from '../../../../services/cntt/footer.service';
 export class ModalQuanlyfootercnttComponent implements OnInit {
   constructor(
     private modalService: ModalService,
-    private footerService: FooterService
+    private footerService: FooterService,
+    private toastrService: ToastrService
   ) {}
 
   private _defaultFormvalue: any;
@@ -56,10 +58,10 @@ export class ModalQuanlyfootercnttComponent implements OnInit {
   }
 
   logData(): void {
-    console.log('default');
-    console.log(this._defaultFormvalue);
-    console.log('form');
-    console.log(this.formMenuFooter.value);
+    // console.log('default');
+    // console.log(this._defaultFormvalue);
+    // console.log('form');
+    // console.log(this.formMenuFooter.value);
   }
 
   getFooterFromDatabase(): void {
@@ -135,7 +137,10 @@ export class ModalQuanlyfootercnttComponent implements OnInit {
           _id: data.data._id,
         });
         this._defaultFormvalue = this.formMenuFooter.value;
-        alert(data.message);
+        // alert(data.message);
+        this.toastrService.success(data.message, 'Thông báo', {
+          timeOut: 4000,
+        });
       });
   }
 }

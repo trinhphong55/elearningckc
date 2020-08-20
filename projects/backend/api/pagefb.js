@@ -64,7 +64,7 @@ exports.updatePageFB = async (req, res) => {
     if(!err.isEmpty()){
       res.status(422).json(err.errors);
     }
-    console.log(req.body);
+    // console.log(req.body);
 
     const updatePage = await pagefb.update(
       { _id: req.params.id },

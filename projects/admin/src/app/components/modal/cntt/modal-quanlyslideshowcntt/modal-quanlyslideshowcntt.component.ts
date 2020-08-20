@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ModalService } from '../../../../services/modal.service';
 import { SlideshowService } from '../../../../services/cntt/slideshow.service';
+import { ToastrService } from 'ngx-toastr';
 declare var $: any;
 @Component({
   selector: 'app-modal-quanlyslideshowcntt',
@@ -12,7 +13,8 @@ export class ModalQuanlyslideshowcnttComponent
   implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     private modalService: ModalService,
-    private slideShowService: SlideshowService
+    private slideShowService: SlideshowService,
+    private toastrService: ToastrService
   ) {}
 
   private _images: any = [];
@@ -99,7 +101,10 @@ export class ModalQuanlyslideshowcnttComponent
     formData.append('tenSlide', this.tenSlide.value);
     this.slideShowService.saveNewSlideShow(formData).subscribe((data) => {
       this.getDanhSachSlideShow();
-      alert('Thêm slide mới thành công');
+      // alert('Thêm slide mới thành công');
+      this.toastrService.success('Thêm slide mới thành công', 'Thông báo', {
+        timeOut: 4000,
+      });
     });
   }
 }

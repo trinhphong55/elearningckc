@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalService } from '../../../../services/modal.service';
 import { CrawlingService } from '../../../../services/cntt/crawling.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-modal-crawling',
@@ -249,7 +250,8 @@ export class ModalCrawlingComponent implements OnInit {
 
   constructor(
     private modalService: ModalService,
-    private crawlingService: CrawlingService
+    private crawlingService: CrawlingService,
+    private toastrService: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -281,7 +283,10 @@ export class ModalCrawlingComponent implements OnInit {
 
   onStartCrawl() {
     if (!this.infoCrawling) {
-      alert('Vui lòng chọn nhóm bài viết');
+      this.toastrService.error('Vui lòng chọn các thông tin', 'Thông báo', {
+        timeOut: 4000,
+      });
+      // alert('Vui lòng chọn nhóm bài viết');
       return;
     }
     this.showSkeleton = true;
@@ -321,7 +326,10 @@ export class ModalCrawlingComponent implements OnInit {
         this.danhSachBaiViet = this.danhSachBaiViet.filter(
           (x) => x.href !== url
         );
-        alert('Lưu thành công');
+        // alert('Lưu thành công');
+        this.toastrService.success('Lưu thành công', 'Thông báo', {
+          timeOut: 4000,
+        });
       });
   }
 }

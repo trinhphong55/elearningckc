@@ -76,7 +76,7 @@ export class ModalThemtintuccnttComponent implements OnInit {
     // console.log('loai bai viet');
     // console.log(this.loaiBaiViet);
     // console.log(this.tinTucForm.value);
-    console.log(this.ViTriHienThi);
+    // console.log(this.ViTriHienThi);
   }
 
   // getDanhSachViTriHienThi(): void {
@@ -98,7 +98,7 @@ export class ModalThemtintuccnttComponent implements OnInit {
   onFileSelected(event) {
     if (event.target.files.length > 0) {
       this.imgValue = event.target.files[0].name;
-      console.log('imgValue ' + this.imgValue);
+      // console.log('imgValue ' + this.imgValue);
     }
   }
 
@@ -149,23 +149,23 @@ export class ModalThemtintuccnttComponent implements OnInit {
       this.TinTuc = data.data;
     });
   }
-  
+
   // Getter to access form control
   get myForm() {
     return this.tinTucForm.controls;
   }
-  
+
   onSubmit() {
     this.submitted = true;
     if (!this.tinTucForm.valid) {
       return false;
     } else {
-      console.log('this.tinTucForm.value)' + this.tinTucForm.value);
+      // console.log('this.tinTucForm.value)' + this.tinTucForm.value);
       this.tintucCnttService
         .themTinTuc(this.tinTucForm.value)
         .subscribe((res) => {
           this.loadDanhSachTinTuc();
-          console.log(' Tin tuc duoc them thanh cong!', res);
+          // console.log(' Tin tuc duoc them thanh cong!', res);
           this.toastr.success('Thêm mới bài viết thành công!');
         });
     }

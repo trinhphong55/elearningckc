@@ -88,9 +88,9 @@ router.get('/malophoc/:maLopHoc/hocki/:hocKi', async (req, res) => {
 router.post('/importexcel', async (req, res) => {
   var items = req.body;
   if (!items[0].tenMonHoc || !items[0].tenVietTat || !items[0].loaiMonHoc) {
-    console.log('false');
+    // console.log('false');
   } else {
-    console.log(req.body);
+    // console.log(req.body);
   }
 
   return res.json('end');

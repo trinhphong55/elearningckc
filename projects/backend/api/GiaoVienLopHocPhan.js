@@ -14,14 +14,14 @@ router.post("/", async (req, res) => {
   await GVLHP.findOneAndUpdate({ maLopHocPhan }, { $set: { maGiaoVien } })
     .then((result) => {
       if (result !== null) {
-        console.log('Cap nhat');
+        // console.log('Cap nhat');
         return res.json({
           status: 200,
           data: [],
           message: "Cap nhat thanh cong",
         });
       } else {
-        console.log('Them moi');
+        // console.log('Them moi');
         let newGVLHP = new GVLHP({ maGiaoVien, maLopHocPhan });
         newGVLHP.save().catch((err) => {
           return res.json({ status: 401, data: [], message: err });

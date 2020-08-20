@@ -37,7 +37,7 @@ router.post('/add', (req, res) => {
     }
     res.json(data)
   })
-  console.log(banner);
+  // console.log(banner);
 
 })
 // sua
