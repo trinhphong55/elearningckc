@@ -20,23 +20,25 @@ setSinhVien = (req) => {
     tenLopHoc: req.tenLopHoc,
   };
 };
-setSinhVienUpdate = (req,sv) => {
+setSinhVienUpdate = (req, sv) => {
   return {
-    maLopHoc:req.maLopHoc?req.maLopHoc:sv.maLopHoc,
-    CMND: req.CMND?req.CMND:sv.CMND,
-    ho: req.ho?req.ho:sv.ho,
-    ten: req.ten?req.ten:sv.ten,
-    gioiTinh: req.gioiTinh?req.gioiTinh:sv.gioiTinh,
-    ngaySinh: req.ngaySinh?req.ngaySinh: sv.ngaySinh,
-    nguoiChinhSua: req.nguoiChinhSua?req.nguoiChinhSua:sv.nguoiChinhSua,
-    diaChiThuongTru: req.diaChiThuongTru?req.diaChiThuongTru:sv.diaChiThuongTru,
-    diaChiTamTru: req.diaChiTamTru?req.diaChiTamTru:sv.diaChiTamTru,
-    sdt: req.sdt?req.sdt:sv.sdt,
-    email: req.email?req.email:sv.email,
-    hoTenCha: req.hoTenCha?req.hoTenCha:sv.hoTenCha,
-    hoTenMe: req.hoTenMe?req.hoTenMe:sv.hoTenMe,
-    sdtCha: req.sdtCha?req.sdtCha:sv.sdtCha,
-    sdtMe: req.sdtMe?req.sdtMe:sv.sdtMe,
+    maLopHoc: req.maLopHoc ? req.maLopHoc : sv.maLopHoc,
+    CMND: req.CMND ? req.CMND : sv.CMND,
+    ho: req.ho ? req.ho : sv.ho,
+    ten: req.ten ? req.ten : sv.ten,
+    gioiTinh: req.gioiTinh ? req.gioiTinh : sv.gioiTinh,
+    ngaySinh: req.ngaySinh ? req.ngaySinh : sv.ngaySinh,
+    nguoiChinhSua: req.nguoiChinhSua ? req.nguoiChinhSua : sv.nguoiChinhSua,
+    diaChiThuongTru: req.diaChiThuongTru
+      ? req.diaChiThuongTru
+      : sv.diaChiThuongTru,
+    diaChiTamTru: req.diaChiTamTru ? req.diaChiTamTru : sv.diaChiTamTru,
+    sdt: req.sdt ? req.sdt : sv.sdt,
+    email: req.email ? req.email : sv.email,
+    hoTenCha: req.hoTenCha ? req.hoTenCha : sv.hoTenCha,
+    hoTenMe: req.hoTenMe ? req.hoTenMe : sv.hoTenMe,
+    sdtCha: req.sdtCha ? req.sdtCha : sv.sdtCha,
+    sdtMe: req.sdtMe ? req.sdtMe : sv.sdtMe,
     ngayChinhSua: req.ngayChinhSua
       ? new Date(req.ngayChinhSua).toISOString()
       : Date.now(),
@@ -75,36 +77,57 @@ exports.Laysinhvientheomalop = async (req, res) => {
 
 exports.themSinhVien = async (req, res, next) => {
   try {
-    const matkhau = await settingModel.findOne();
-    req.body.matKhau = matkhau.matKhauSinhVien;
-    const sv_exist = await SinhVienModel.findOne({
-      maSinhVien: req.body.maSinhVien,
-    });
+    let dsSinhVien = req.body;
+    console.log(dsSinhVien);
+    let dsSinhVienThatBai = [];
+    let dsSinhVienThanhCong = [];
+    dsSinhVien.forEach(async (sv) => {
+      const matkhau = await settingModel.findOne();
+      sv.matKhau = matkhau.matKhauSinhVien;
+      const sv_exist = await SinhVienModel.findOne({
+        maSinhVien: sv.maSinhVien,
+      });
 
-    if (sv_exist) {
-      const lopHoc = await LopHocModel.findOne({ maLopHoc: sv_exist.maLopHoc });
+      if (sv_exist) {
+        const lopHoc = await LopHocModel.findOne({
+          maLopHoc: sv_exist.maLopHoc,
+        });
 
-      if(lopHoc){
-        sv_exist.tenLopHoc = lopHoc.tenVietTat;
+        if (lopHoc) {
+          sv_exist.tenLopHoc = lopHoc.tenVietTat;
+        }
+        dsSinhVienThatBai.push({
+          data: setSinhVien(sv_exist),
+          message:
+            "Sinh viên có mã " +
+            sv_exist.maSinhVien +
+            " đã tồn tại trong lớp " +
+            lopHoc.tenVietTat,
+          status: 422,
+        });
+      }else{
+        const sinhViens = await SinhVienModel.create(setSinhVien(sv));
+        dsSinhVienThanhCong.push({
+          data: setSinhVien(sinhViens),
+          message:
+            "Đã thêm thành công sinh viên có mã sinh viên: " +
+            sinhViens.maSinhVien,
+          status: 200,
+        });
+      }
+      if(dsSinhVien.length == (dsSinhVienThanhCong.length + dsSinhVienThatBai.length)){
+        res.json({
+          soSinhVienThemThanhCong: dsSinhVienThanhCong.length,
+          soSinhVienThemThatBai: dsSinhVienThatBai.length,
+          dsSinhVienThanhCong: dsSinhVienThanhCong,
+          dsSinhVienThatBai: dsSinhVienThatBai,
+        });
+
       }
 
-      return res.json({
-        data: setSinhVien(sv_exist),
-        message:
-          "Sinh viên có mã " +
-          sv_exist.maSinhVien +
-          " đã tồn tại trong lớp " +
-          lopHoc.tenVietTat,
-        status: 422,
-      });
-    }
-    const sinhViens = await SinhVienModel.create(setSinhVien(req.body));
-    return res.json({
-      data: setSinhVien(sinhViens),
-      message:
-        "Đã thêm thành công sinh viên có mã sinh viên: " + sinhViens.maSinhVien,
-      status: 200,
     });
+
+
   } catch (error) {
     res
       .status(500)
@@ -135,7 +158,6 @@ exports.layThongtinSinhVien = async (req, res) => {
 
 exports.capNhatSinhVien = async (req, res) => {
   try {
-
     const findSinhVien = await SinhVienModel.findOne({
       maSinhVien: req.body.maSinhVien,
     });
@@ -145,7 +167,7 @@ exports.capNhatSinhVien = async (req, res) => {
     }
     let sinhViens;
     //Xet quyen o day
-    if(req.body.sdt){
+    if (req.body.sdt) {
       if (!(req.body.sdt.length == 10) || isNaN(req.body.sdt)) {
         return res.status(403).json({
           message: "Số điện thoại không hợp lệ",
@@ -154,16 +176,14 @@ exports.capNhatSinhVien = async (req, res) => {
       }
     }
     if (req.body.role == "SV") {
-
       sinhViens = await SinhVienModel.updateOne(
         { maSinhVien: req.body.maSinhVien },
         { $set: setSinhVien_SV(req.body) }
       );
     } else if (req.body.role == "GV" || req.body.role == "admin") {
-
       sinhViens = await SinhVienModel.updateOne(
         { maSinhVien: req.body.maSinhVien },
-        { $set: setSinhVienUpdate(req.body,findSinhVien) }
+        { $set: setSinhVienUpdate(req.body, findSinhVien) }
       );
     }
     //kiem tra thong tin duoc cap nhat
@@ -173,7 +193,11 @@ exports.capNhatSinhVien = async (req, res) => {
     if (sinhViens.nModified > 0) {
       return res.status(200).json({
         data: setSinhVienUpdate(findSinhVienUpdate),
-        message: "Cập nhật thành công "+ findSinhVienUpdate.ho + ' ' + findSinhVienUpdate.ten,
+        message:
+          "Cập nhật thành công " +
+          findSinhVienUpdate.ho +
+          " " +
+          findSinhVienUpdate.ten,
         status: 200,
       });
     } else {
