@@ -27,7 +27,7 @@
                   </div>
                   <div class="col-md-6 flex-ic footer-social-wrap">
                       <ul class="flex footer-social" *ngFor="let item of ThongTinWeb">
-                          <a *ngFor="let mxh of item.mxh" href="#"><li class="ml-2"><i class="{{mxh.icon}}"></i></li></a>
+                          <a *ngFor="let mxh of item.mxh" href="{{mxh.link}}"><li class="ml-2"><i class="{{mxh.icon}}"></i></li></a>
                       </ul>
                   </div>
               </div>

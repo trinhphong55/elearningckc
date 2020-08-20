@@ -2,6 +2,7 @@ export class ttthDiemThi {
   loaidiem: String
   hoten: String
   mssv: String
+  id: String
   ngaysinh: String
   sobaodanh: String
   noisinh: String

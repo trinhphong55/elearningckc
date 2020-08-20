@@ -13,7 +13,7 @@
               <select  class="form-control" (change)="onChangeDotThi($event.target.value)">
                   <option value="">Chọn đợt thi cần nhập điểm</option>
                   <ng-container *ngFor="let item of DotThi">
-                    <option *ngIf="item.trangthai==1" value="{{item.tendot}}">{{item.tendot}}</option>
+                    <option *ngIf="item.trangthai==1" value="{{item._id}}">{{item.tendot}} - {{item.ngaythi | date:'dd/MM/yyyy'}} - {{item.giothi}} - {{item.phongthi}}</option>
                   </ng-container>
               </select>
             </div>

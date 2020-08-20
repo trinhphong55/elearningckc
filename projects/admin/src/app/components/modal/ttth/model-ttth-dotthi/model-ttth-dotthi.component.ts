@@ -4,6 +4,7 @@ import { DotthiService } from '../../../../services/ttth/dotthi.service';
 import { ttthDotThi } from '../../../../../models/ttthDotThi';
 import { ToastrService } from 'ngx-toastr';
 import { getCookie } from '../../../../../../../common/helper';
+import { exit } from 'process';
 
 @Component({
   selector: 'app-model-ttth-dotthi',
@@ -31,7 +32,7 @@ export class ModelTtthDotthiComponent implements OnInit {
   add(tendot: string,ngaythi: string,giothi: string,phongthi: string,ngayhethan: string): void {
     let kiemtra: any;
     this.DotThi.forEach(function (value) {
-      if(value.tendot==tendot){
+      if(value.tendot==tendot&&value.ngaythi==ngaythi){
         kiemtra=true;
       }
     });

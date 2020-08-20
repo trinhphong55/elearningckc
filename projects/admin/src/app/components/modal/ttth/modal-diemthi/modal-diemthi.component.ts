@@ -85,41 +85,37 @@ export class ModalDiemthiComponent implements OnInit {
     let ngaythi: any;
     let giothi: any;
     let phongthi: any;
+    let tendotthi: any;
     let dotthi = this.selectDotThi;
     let nguoitao = this._username;
     this.DotThi.forEach(function (value) {
-      if (dotthi==value.tendot) {
+      if (dotthi==value._id) {
         ngaythi = value.ngaythi;
         giothi = value.giothi;
         phongthi = value.phongthi;
+        tendotthi = value.tendot+'-'+value.ngaythi+'-'+value.giothi+'-'+value.phongthi;
       }
     });
     let kiemtradiem : any ;
-    let kiemtramssv : any ;
     this.DiemThi.forEach(function (value) {
-      value.tendotthi = dotthi;
+      value.tendotthi = tendotthi;
+      value.id = dotthi;
       value.ngaythi = ngaythi;
       value.giothi = giothi;
       value.phongthi = phongthi;
       value.nguoitao = nguoitao;
       value.loaidiem = 'Điểm thi';
-      if(isNaN(+value.tongdiem) || value.tongdiem < 0 || value.tongdiem > 10
-      || isNaN(+value.laptrinhc) || value.laptrinhc < 0 || value.laptrinhc > 10
-      || isNaN(+value.msword) || value.msword < 0 || value.msword > 10
-      || isNaN(+value.msexcel) || value.msexcel < 0 || value.msexcel > 10
-      || isNaN(+value.mspowerpoint) || value.mspowerpoint < 0 || value.mspowerpoint > 10
+      if(isNaN(+value.tongdiem) || value.tongdiem < 0 || value.tongdiem > 100
+      || isNaN(+value.laptrinhc) || value.laptrinhc < 0 || value.laptrinhc > 20
+      || isNaN(+value.msword) || value.msword < 0 || value.msword > 30
+      || isNaN(+value.msexcel) || value.msexcel < 0 || value.msexcel > 30
+      || isNaN(+value.mspowerpoint) || value.mspowerpoint < 0 || value.mspowerpoint > 20
       ){
         kiemtradiem=false;
-      }
-      if(isNaN(+value.mssv) || value.mssv.length !=10 || value.mssv.substr(0, 1) != '0'){
-        kiemtramssv=false;
       }
     });
     if (kiemtradiem==false) {
       this.toastr.error('Vui lòng kiểm tra lại điểm nhập vào');
-    }
-    else if (kiemtramssv==false) {
-      this.toastr.error('Mã số sinh viên không đúng định dạng. Vui long kiểm tra lại');
     }
     else{
       this.DiemthiService.importDiemThi(this.DiemThi).subscribe(data => { this.DiemThi.push(data);});

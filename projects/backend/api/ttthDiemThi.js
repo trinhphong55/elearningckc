@@ -22,7 +22,7 @@ router.post('/importdiemthi', async (req, res) => {
   }
   else{
     await ttthdotthi.findOneAndUpdate({
-      tendot: req.body[0].tendotthi
+      _id: req.body[0].id
     }, {
       trangthai: 2
     });

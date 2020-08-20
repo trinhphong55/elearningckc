@@ -25,8 +25,8 @@
     </thead>
     <tbody>
         <tr *ngFor="let item of LopHoc;let i = index" class="text-center" >
-          <ng-container *ngIf="item.trangthai==1 && (item.ngayhethan| date: 'dd/MM/yyyy') > (getday| date: 'dd/MM/yyyy')">
-            <td scope="row">{{i + 1}}</td>
+          <ng-container *ngIf="item.trangthai==1 && (item.ngayhethan| date) > (getday| date)">
+            <td scope="row">{{i+1}}</td>
             <td>{{item.tenlop}}</td>
             <td>{{item.giohoc}}</td>
             <td>{{item.ngaykhaigiang | date: 'dd/MM/yyyy'}}</td>
