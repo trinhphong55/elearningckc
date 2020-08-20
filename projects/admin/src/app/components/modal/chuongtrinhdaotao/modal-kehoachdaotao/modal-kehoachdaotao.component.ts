@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 //Services
 import { ModalService } from '../../../../services/modal.service';
@@ -51,12 +52,12 @@ export class ModalKehoachdaotaoComponent implements OnInit {
   private loadKHDT() {
     this.maChuongTrinhDaoTao = this.convertToMaChuongTrinhDaoTao(this.ctdt);
     this.monhocService.getMonHoc().subscribe(dsmonhoc => this.dsMonHoc = dsmonhoc);
-    this.khdtService.getKHDTByHocKiNMaCTDT(this.maChuongTrinhDaoTao,"1").subscribe(dskhdt => this.dsKHDT = dskhdt);
+    this.khdtService.getKHDTByHocKiNMaCTDT(this.maChuongTrinhDaoTao, "1").subscribe(dskhdt => this.dsKHDT = dskhdt);
   }
 
   private checkChange() {
     if (this.isChanged) {
-      let a = confirm("may da thay doi, co muon luu khong?");
+      let a = confirm("Bạn đã thay đổi KHĐT, có muốn lưu không?");
       if (a) {
         this.saveKHDT();
       }
@@ -79,7 +80,7 @@ export class ModalKehoachdaotaoComponent implements OnInit {
     this.checkChange();
     this.maChuongTrinhDaoTao = this.convertToMaChuongTrinhDaoTao(this.ctdt);
     this.khdtService.getKHDTByHocKiNMaCTDT(this.maChuongTrinhDaoTao, this.hocKi)
-    .subscribe(dskhdt => this.dsKHDT = dskhdt);
+      .subscribe(dskhdt => this.dsKHDT = dskhdt);
     this.isChanged = false;
   }
 
@@ -96,8 +97,8 @@ export class ModalKehoachdaotaoComponent implements OnInit {
   }
 
   removeKHDT(index: number) {
-    if (this.dsKHDT !== []){
-      this.dsKHDT.splice(index,1);
+    if (this.dsKHDT !== []) {
+      this.dsKHDT.splice(index, 1);
       this.isChanged = true;
     }
   }
@@ -111,7 +112,7 @@ export class ModalKehoachdaotaoComponent implements OnInit {
     this.khdtService.addDSKHDT(this.ctdt, this.dsKHDT, this.hocKi).subscribe(data => {
       // console.log(status);
       if (data.status === 200) {
-        alert(data.message);
+        this.toastr.success(data.message, 'Thông báo', { timeOut: 3000 });
         this.isChanged = false;
       }
     })
@@ -130,9 +131,10 @@ export class ModalKehoachdaotaoComponent implements OnInit {
     private monhocService: MonhocService,
     private lhdtService: LHDTService,
     private bacService: BacService,
-    private nganhNgheService: NganhNgheService) {
+    private nganhNgheService: NganhNgheService,
+    private toastr: ToastrService,) {
 
-    }
+  }
 
   closeModal(id: string) {
     this.modalService.close(id)

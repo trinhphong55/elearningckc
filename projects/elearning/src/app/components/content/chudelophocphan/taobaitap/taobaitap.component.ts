@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
 import { FormControl } from '@angular/forms';
 import { FileUploader } from 'ng2-file-upload';
-import saveAs from 'file-saver';
 
 //Services
 import { FileService } from '../../../../services/file.service';
@@ -155,22 +154,13 @@ export class TaobaitapComponent implements OnInit {
 
   attachmentList: string[] = [];
 
-  download() {
-    // var filename = this.attachmentList[index].uploadname;
-    this._fileService.downloadFile("yasuo.png")
-      .subscribe(
-        data => saveAs(data, "yasuo.png"),
-        error => console.error(error)
-      );
-  }
-
   constructor(
-    private _fileService: FileService,
+    private _router: Router,
     private _chuDeService: ChuDeService,
     private _baiTapService: BaiTapService,
     private _activityService: ActivityService,
     private _lopHocPhanService: LopHocPhanService,
-    private _router: Router,) {
+    ) {
     this._maLopHocPhan = parseInt(this._router.url.split('/')[2][0]);
   }
 
