@@ -246,8 +246,9 @@ export class ModalKhoabomonComponent implements OnInit {
       tenVietTat: this.updateForm.get('tenVietTat').value,
       maLoai: this.updateForm.get('loaiDonVi').value,
       nguoiChinhSua: this.taiKhoan.email,
+      maKhoa: this.currentKhoa.maKhoa,
     };
-
+    console.log(data);
     this.BomonService.update(id, data).subscribe(
       (response: any) => {
         this.result.msg = response.msg;
