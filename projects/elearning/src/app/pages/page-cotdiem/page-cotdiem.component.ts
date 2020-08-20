@@ -38,6 +38,7 @@ export class PageCotodiemComponent implements OnInit {
     private toastrService:ToastrService) {
     this.maLopHocPhan = this.router.snapshot.paramMap.get('id');
 
+
   }
 
   ngOnInit(): void {
@@ -137,7 +138,9 @@ export class PageCotodiemComponent implements OnInit {
         this.quyenSua = "none";
         this.quyenThem = '';
         // this.toastrService.success("sửa thành công ", 'Thông Báo', { timeOut: 6000 });
-        
+        this.toastrService.success('Sửa thành công', ' thông báo', {
+          timeOut:3000,
+        });
       },
       (error) => {
         console.log(error);

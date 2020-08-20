@@ -11,6 +11,7 @@ import { chiTietDiemSVLopHocPhanService } from '../../../../../admin/src/app/ser
 import { GvlhpService } from '../../../../../admin/src/app/services/gvlhp.service';
 import { DiemSinhVienService } from '../../../../../admin/src/app/services/diem-sinh-vien.service';
 import { from } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 import { CookieService } from 'ngx-cookie-service';
 @Component({
@@ -30,8 +31,8 @@ export class PageTongdiemComponent implements OnInit {
   ctDiem: any;
   dsGiaoVienhp: any;
   dsGiaoVienLophp: any;
-  excel:any;
-  luuDTK:any;
+  excel: any;
+  luuDTK: any;
   constructor(public dialog: MatDialog,
     private sinhVienService: SinhVienService,
     private router: ActivatedRoute, private route: Router,
@@ -41,7 +42,8 @@ export class PageTongdiemComponent implements OnInit {
     private cotDiemLopHocPhanService: CotDiemLopHocPhanService,
     private chiTietDiemSVLopHocPhanService: chiTietDiemSVLopHocPhanService,
     private gvlhpService: GvlhpService,
-    private diemSinhVienServiceL: DiemSinhVienService) { }
+    private diemSinhVienServiceL: DiemSinhVienService,
+    private toastrService:ToastrService) { }
 
   ngOnInit(): void {
     this.danhSachSinhVien();
@@ -136,25 +138,33 @@ export class PageTongdiemComponent implements OnInit {
     this.diemSinhVienServiceL.layThongTinDiemSVByLHP(this.router.snapshot.paramMap.get('id')).subscribe(
       (dsTenHocSinh) => {
         this.dsTenHocSinh = dsTenHocSinh;
-        this.excel=[];
-        this.dsTenHocSinh.filter(x=>{
-          this.excel.push({HO:x.ho,ten:x.ten,masosinhvien:x.mssv,DTB:x.diemTongKet})
+        this.excel = [];
+        this.dsTenHocSinh.filter(x => {
+          this.excel.push({ HO: x.ho, ten: x.ten, masosinhvien: x.mssv, DTB: x.diemTongKet })
         })
-        this.chiTietDiemSVLopHocPhanService.exportAsExcelFile(this.excel,"diemtongket")
+        this.chiTietDiemSVLopHocPhanService.exportAsExcelFile(this.excel, "diemtongket")
       },
       (error) => {
         console.log(error);
       }
     )
   }
-  luuDiem(){
-    this.diemSinhVienServiceL.luuDiem(this.dsTenHocSinh,this.router.snapshot.paramMap.get('id')).subscribe(
+  luuDiem() {
+    this.diemSinhVienServiceL.luuDiem(this.dsTenHocSinh, this.router.snapshot.paramMap.get('id')).subscribe(
       luuDTK => {
-      this.luuDTK = luuDTK;
-    },
-    (error) => {
-      console.log(error);
-    }
-  )
-}
+        if (luuDTK != "") {
+          this.luuDTK = luuDTK;
+        }
+        else {
+          alert("loi")
+       }
+      },
+      (error) => {
+        this.toastrService.error('Sửa thành công', ' thông báo', {
+          timeOut:3000,
+        });
+        console.log(error);
+      }
+    )
+  }
 }
