@@ -141,7 +141,7 @@ exports.capNhatSinhVien = async (req, res) => {
     });
 
     if (!findSinhVien) {
-      return res.status(404).json({ message: "Không tìm thấy", status: 400 });
+      return res.status(404).json({ message: "Không tìm thấy", status: 404 });
     }
     let sinhViens;
     //Xet quyen o day

@@ -94,7 +94,7 @@ export class PageTrangcanhansvComponent implements OnInit {
     private thoiKhoaBieu: ThoiKhoaBieuService,
     private lophocService: LopHocService,
     private cookieService: CookieService,
-    private toastr:ToastrService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -102,7 +102,6 @@ export class PageTrangcanhansvComponent implements OnInit {
     this.layThongTinSV(this.taiKhoan.displayName);
     this.layDiemSinhVien(this.taiKhoan.displayName);
     this.layCTDiemLHP(this.taiKhoan.displayName);
-
 
     this.sinhVienFormGroup = new FormGroup({
       mssv: new FormControl({ value: '', disabled: true }),
@@ -195,13 +194,13 @@ export class PageTrangcanhansvComponent implements OnInit {
     this.messages = [];
     this.sinhVienService.capNhatSinhVien(data).subscribe(
       (res: any) => {
-        this.messages.push({ msg: res.message, status: res.status });
+        if (res.status == 200) this.toastr.success(res.message, 'Thông báo');
+        else {
+          this.toastr.warning(res.message, 'Cảnh báo');
+        }
       },
       (err: any) => {
-        this.messages.push({
-          msg: 'Máy chủ không sữ lý được',
-          status: err.status,
-        });
+        this.toastr.error('Máy chủ không sử lý được', 'Lỗi');
       }
     );
   }
@@ -359,7 +358,6 @@ export class PageTrangcanhansvComponent implements OnInit {
     this.layCTDiemLHP(this.taiKhoan.displayName);
   }
   onChangeChonHocKi() {
-
     this.layThongTinSV(this.taiKhoan.displayName);
     this.layCTDiemLHP(this.taiKhoan.displayName);
     this.chonLop.setValue('');
@@ -370,15 +368,16 @@ export class PageTrangcanhansvComponent implements OnInit {
     this.layThongTinSV(this.taiKhoan.displayName);
   }
   onSubmitCapNhatSinhVien() {
-    this.toastr.success('thongbao', 'thongbao');
     this.messages = [];
     if (!this.password.value) {
-      this.messages.push({
-        msg: 'Vui lòng nhập mật khẩu để thay đổi',
-        status: 200,
-      });
+      // this.messages.push({
+      //   msg: 'Vui lòng nhập mật khẩu để thay đổi',
+      //   status: 200,
+      // });
+      this.toastr.warning('Vui lòng nhập mật khẩu để thay đổi', 'Thông báo');
     } else if (this.password.value != '123456') {
-      this.messages.push({ msg: 'Mật khẩu không trùng nhau', status: 200 });
+      this.toastr.warning('Mật khẩu không trùng nhau', 'Thông báo');
+      // this.messages.push({ msg: 'Mật khẩu không trùng nhau', status: 200 });
     } else {
       const req = {
         maSinhVien: this.sinhVien.maSinhVien,
