@@ -2,21 +2,21 @@
   <div class="row style-magintop" style="border-bottom:solid 0.5px black;padding-bottom: 20px;">
     <div class="col-md-6 mt-3">
       <div mat-dialog-actions>
-        <button mat-button mat-dialog-close><i class="fas fa-times"></i></button>
+        <button mat-stroked-button color="warn" mat-dialog-close><i class="fas fa-times"></i></button>
         <span style="margin-left: 5px;" class="style-none">Bài giảng</span>
       </div>
 
     </div>
     <div class="col-md-6 mt-3">
-      <div>
-        <button mat-button (click)="onClickThem()">Đăng</button>
-        <button mat-button [matMenuTriggerFor]="menu"><i class="fas fa-angle-down"></i></button>
+      <div class="example-button-row">
+        <button mat-raised-button color="primary" (click)="onClickThem()">Đăng</button>
+        <!-- <button mat-button [matMenuTriggerFor]="menu"><i class="fas fa-angle-down"></i></button>
         <mat-menu #menu="matMenu">
           <button mat-menu-item>Giao bài</button>
           <button mat-menu-item>Lên lịch</button>
           <button mat-menu-item>Lưu bản nháp</button>
           <button mat-menu-item>Hủy bản nháp</button>
-        </mat-menu>
+        </mat-menu> -->
       </div>
     </div>
   </div>
@@ -64,7 +64,7 @@
                     </div> -->
           </div>
         </div>
-        <div class="col-md-4 ">
+        <!-- <div class="col-md-4 ">
           <button mat-button [matMenuTriggerFor]="menuthem">Thêm</button>
           <mat-menu #menuthem="matMenu">
             <button mat-menu-item><i class="fab fa-google-drive style-icon"></i>Google Drive</button>
@@ -72,7 +72,7 @@
             <button mat-menu-item><i class="fas fa-folder-open style-icon"></i>Tệp</button>
             <button mat-menu-item><i class="fab fa-youtube style-icon"></i>Youtube</button>
           </mat-menu>
-        </div>
+        </div> -->
       </div>
     </div>
     <div class="col-4">

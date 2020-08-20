@@ -27,7 +27,7 @@ const BaiTapSchema = new mongoose.Schema({
   },
   chuDe: {
     type: Number,
-    default: -1,
+    default: 1,
   },
   nguoiTao: {
     type: String,
@@ -35,7 +35,7 @@ const BaiTapSchema = new mongoose.Schema({
   },
   nguoiChinhSua: {
     type: String,
-    default: "Yasuo",
+    default: "Lữ Cao Tiến",
   },
   ngayChinhSua: {
     type: Date,

@@ -4,6 +4,7 @@ const LopHocPhan = require("../models/LopHocPhan.model");
 const cotdiemLophocphanModel = require("../models/cotdiem-lophocphan.model");
 const BaiTap = require("../models/BaiTap.model");
 const chuDeModel = require("../models/chu-de.model");
+const { CONNREFUSED } = require("dns");
 ///lay chi tiet diem lop hp theo ma lop hp
 exports.layCTDiemLopHPtheoMaLopHP = async (req, res) => {
   try {
@@ -123,9 +124,9 @@ exports.thongTinXuatExcel = async (req, res) => {
     cotdiem = await cotdiemLophocphanModel.find({ maCotDiem: req.params.maCotDiem, trangThai: 1 });
     var data = []
     cotdiem.forEach(async z => {
-    diemsinhvien.forEach(async x => {
-      sinhvien.forEach(async y => {
-          if (z.maCotDiem==z.maCotDiem) {
+      diemsinhvien.forEach(async x => {
+        sinhvien.forEach(async y => {
+          if (z.maCotDiem == z.maCotDiem) {
             if (x.maSinhVien == y.maSinhVien) {
               data.push({ Họ: y.ho, Tên: y.ten, MSSV: x.maSinhVien, Điểm: x.diem, TênCộtĐiểm: z.tenCotDiem, hệsố: z.heSo })
             }
@@ -136,5 +137,50 @@ exports.thongTinXuatExcel = async (req, res) => {
     res.json(data);
   } catch (error) {
     res.json(error);
+  }
+};
+
+exports.thongTinNhapExcel = async (req, res) => {
+  try {
+    var arr = [];
+   
+    var diemsinhvien = await ctDiemsvLhpModel.find({ maCotDiem: req.params.maCotDiem, trangThai: 1 });
+    dsDiemSV = req.body;
+    for (let i = 0; i < dsDiemSV.length; i++) {
+      for (let j = 0; j < diemsinhvien.length; j++) {
+        if (dsDiemSV[i].MSSV == diemsinhvien[j].maSinhVien) {
+          arr.push(dsDiemSV[i]);
+          break
+        }
+      }
+    }
+    var data=[]
+    //check req.body rong
+    for (let i = 0; i < arr.length; i++) {
+   
+  var a = await ctDiemsvLhpModel.updateOne(
+        { maSinhVien:"0"+arr[i].MSSV.toString(), maCotDiem: req.params.maCotDiem, trangThai: 1 },
+        { $set: {diem:arr[i].Diem } })
+
+     data.push(a)
+   
+  
+      
+    } 
+    res.json(a)
+  } catch (error) {
+    res.json(error);
+  }
+};
+
+
+
+//xoa diem 
+exports.xoaDiem = async (req, res) => {
+  try {
+    var data = await ctDiemsvLhpModel.deleteMany();
+    res.json({ code: 200, message: "xoa thành công", data });
+  } catch (error) {
+    res.json({ code: 400, message: error, data: null });
   }
 };

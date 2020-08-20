@@ -86,48 +86,56 @@ router.get('/malophoc/:maLopHoc/hocki/:hocKi', async (req, res) => {
 
 //IMPORT EXCEL
 router.post('/importexcel', async (req, res) => {
-  var items = req.body;
-  if (!items[0].tenMonHoc || !items[0].tenVietTat || !items[0].loaiMonHoc) {
-    // console.log('false');
-  } else {
-    // console.log(req.body);
-  }
+  // console.log(req.body);
+  let items = req.body;
+  // let failItems = [];
 
-  return res.json('end');
-  var filterItems = [];
+  let success_num = 0;
 
   //Get next maMonHoc
-  var maMonHoc = await getNextNumber();
-  var numMaMonHoc = parseInt(maMonHoc);
+  let maMonHoc = await getNextNumber();
+  let numMaMonHoc = parseInt(maMonHoc);
 
-  await asyncForEach(items, async (mh, index) => {
+  await asyncForEach(items, async mh => {
     await MonHoc.findOne({ tenMonHoc: mh.tenMonHoc }).exec().then((data) => {
       if (data === null) {
         let stringMaMonHoc = "000" + numMaMonHoc;
         mh.maMonHoc = stringMaMonHoc.slice(stringMaMonHoc.length - 4, stringMaMonHoc.length);
         numMaMonHoc++;
         monHoc = new MonHoc(mh);
-        filterItems.push(mh);
+        success_num++;
+        monHoc.save();
+        mh.success = true;
+      } else {
+        // failItems.push(mh);
+        mh.success = false;
       }
     });
   });
-  if (filterItems.length > 0) {
-    await MonHoc.insertMany(filterItems).then(() => {
-      return res.status(200).json({
-        status: 200,
-        message: `added ${filterItems.length} mon hoc from file Excel`,
-      });
-    }).catch((err) => {
-      return res.status(500).json({
-        status: 500,
-        message: err,
-      })
+  console.log(items);
+  console.log(success_num);
+  if (success_num === 0) {
+    return res.json({
+      message: "Tất cả môn học trong danh sách đã tồn tại",
+      status: 401,
+      data: items,
     })
   } else {
-    return res.json({
-      status: 401,
-      message: `Du lieu khong dung hoac da ton tai`,
-    });
+    if (success_num === items.length) {
+      return res.json({
+        message: "Import danh sách môn học thành công",
+        status: 200,
+        data: items,
+      })
+    }
+    else {
+      let fail_num = items.length - success_num;
+      return res.json({
+        message: `Import thành công ${success_num} môn học và ${fail_num} môn học đã tồn tại`,
+        status: 200,
+        data: items,
+      })
+    }
   }
 
 });

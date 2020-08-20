@@ -66,7 +66,7 @@ exports.layTheoMaChuDe = async (req, res) => {
     });
   } catch (error) {
     res.status(500).json({
-      message: "Máy chủ không sữ lý được",
+      message: "Máy chủ không sử lý được",
       errors: error,
       status: 500,
     });
@@ -137,7 +137,7 @@ exports.download = function (req, res, next) {
       req.body.filename;
     res.sendFile(filepath);
   } catch (error) {
-    res.json({ err: "Khong tim thay file" });
+    res.json({ err: "Không tìm thấy file" });
   }
 };
 

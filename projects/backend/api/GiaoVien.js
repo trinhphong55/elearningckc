@@ -17,7 +17,13 @@ function formatMaGV(maGV){
 }
 router.post('/them-giao-vien', async (req, res) =>{
   const temp = await giaoVienDAO.layMaGVMoiNhat();
-  const maGV = formatMaGV(temp.maGiaoVien);
+  let maGV;
+  if(temp != undefined){
+    maGV = formatMaGV(temp.maGiaoVien);
+  }
+  else{
+    maGV = '0001';
+  }
   req.body.password = md5(req.body.password);
   req.body.maGiaoVien = maGV;
   let result = await giaoVienDAO.find({email: req.body.email});

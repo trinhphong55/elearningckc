@@ -23,7 +23,7 @@ module.exports = function (io) {
   const activity = require("./activity");
   const PhongHoc = require("./PhongHoc");
   const LichPhongHoc = require("./LichPhongHoc");
-
+  const Template = require("./Template");
   const sinhVien = require("./sinh-vien");
   const Diemsinhvien = require("./diemsinhvien");
   const GiaoVienLopHocPhan = require("./GiaoVienLopHocPhan");
@@ -69,6 +69,7 @@ module.exports = function (io) {
   router.use("/tkb", TKB);
   router.use("/phonghoc", PhongHoc);
   router.use("/lichphonghoc", LichPhongHoc);
+  router.use("/template", Template);
 
   //Elearning routes
   router.use("/baitap", BaiTap);
@@ -312,6 +313,35 @@ module.exports = function (io) {
     cotDiemLHP.layCotDiemTheoMaCotDiem
   );
 
+  //========================= Routes CotDiemLopHocPhan ===================================
+  router.get("/cotdiemlhp", verifyToken, cotDiemLHP.layDiemLHP);
+  router.get(
+    "/cotdiemlhp/:maLopHocPhan",
+    verifyToken,
+    cotDiemLHP.layDiemLHPtheoMaLHP
+  );
+  router.get(
+    "/cotdiemlhp/lophocphan/:maLopHocPhan",
+    verifyToken,
+    cotDiemLHP.layDiemLHPtheoMaLHP
+  );
+  router.get(
+    "/cotdiemlophocphan/:maLopHocPhan",
+    verifyToken,
+    cotDiemLHP.layCotDiemTheoMaLopHp
+  );
+  router.post("/cotdiemlophocphan", verifyToken, cotDiemLHP.themCotDiem);
+  router.put(
+    "/suacotdiemlophocphan/:maCotDiem",
+    verifyToken,
+    cotDiemLHP.suaCotDiem
+  );
+  router.get(
+    "/cotdiemlophocphan/:maCotDiem/chitiet",
+    verifyToken,
+    cotDiemLHP.layCotDiemTheoMaCotDiem
+  );
+
   //======================= Routes ChitietDiemSVLopHocPhan ==================================
   router.get(
     "/ct-diemsv-lophocphan/:masv",
@@ -338,9 +368,15 @@ module.exports = function (io) {
     verifyToken,
     ctDiemLopHP.thongTinXuatExcel
   );
-
+  router.post(
+    "/ct-diemsv-lophocphan/:maCotDiem/importexcel",
+    verifyToken,
+    ctDiemLopHP.thongTinNhapExcel
+  );
+  router.delete("/ct-diemsv-lophocphan", ctDiemLopHP.xoaDiem);
   //======================= Routes Diem tong ket ==================================
   router.post("/diemsinhvien/:maLopHocPhan", Diemsinhvien.luuTongDiem);
+  router.delete("/diemsinhvien", verifyToken, Diemsinhvien.xoaDiem);
 
   //=========================== Routes ChuDe =============================================
   router.get("/chude", verifyToken, ChuDe.layTatCa);
@@ -367,8 +403,8 @@ module.exports = function (io) {
     verifyToken,
     baiGiang.layTheo_maBaiGiang
   );
-  router.post("/baigiang/upload", verifyToken, baiGiang.upload);
-  router.post("/baigiang/download", verifyToken, baiGiang.download);
+  router.post("/baigiang/upload", baiGiang.upload);
+  router.post("/baigiang/download", baiGiang.download);
   router.delete("/baigiang/:maBaiGiang", baiGiang.xoa);
 
   //========================= Routes BinhLuan ==========================================
@@ -378,7 +414,7 @@ module.exports = function (io) {
     binhLuan.layBinhLuan_theoBaiViet
   );
   router.post("/binhluan", verifyToken, binhLuan.themBinhLuan);
+  router.get("/binhluan", verifyToken, binhLuan.layTatCaBinhLuan);
 
   return router;
 };
-// module.exports = router;

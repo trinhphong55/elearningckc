@@ -11,6 +11,7 @@ import { ChuDeService } from '../../../../services/chu-de.service';
 import saveAs from 'file-saver';
 import { ActivityService } from '../../../../services/activity.service';
 import { CookieService } from 'ngx-cookie-service';
+import { ToastrService } from 'ngx-toastr';
 const uri = 'https://localhost:4100/api/baigiang/upload';
 @Component({
   selector: 'app-taobaigiang',
@@ -33,7 +34,8 @@ export class TaobaigiangComponent implements OnInit {
     private _chuDeService: ChuDeService,
     private _lopHocPhanService: LopHocPhanService,
     private _activityService: ActivityService,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private toastr: ToastrService
   ) {}
   baiGiang: any;
 
@@ -45,14 +47,8 @@ export class TaobaigiangComponent implements OnInit {
 
     this.uploader.onCompleteAll = () => {
       this.baiGiang.dinhKem = this.attachmentList;
-      console.log(this.baiGiang);
       this._baiGiangService.them(this.baiGiang).subscribe((data: any) => {
-        alert(data.message);
-        if (data.status === 200) {
-          alert(
-            'Chuan bi cap nhat chuc nang sau khi them thanh cong se clear du lieu cu'
-          );
-        }
+        this.toastr.success(data.message, 'Thông báo');
       });
     };
 
@@ -82,14 +78,11 @@ export class TaobaigiangComponent implements OnInit {
     if (this.uploader.queue.length !== 0) {
       this.uploader.uploadAll();
     } else {
-      console.log(this.baiGiang);
       this._baiGiangService.them(this.baiGiang).subscribe(
         (data: any) => {
-          alert(data.message);
-          console.log(typeof data.data.maBaiGiang);
-          if (typeof data.data.maBaiGiang) {
-            this._setActivity(data.data.maBaiGiang);
-          }
+          this.toastr.success(data.message, 'Thông báo');
+
+          this._setActivity(data.data.maBaiGiang);
         },
         (error) => {
           console.log(error);
@@ -106,16 +99,14 @@ export class TaobaigiangComponent implements OnInit {
         this.baiGiang.tieuDe,
         'đăng'
       )
-      .subscribe((res) => {
-        console.log(res);
-      });
+      .subscribe((res) => {});
   }
 
   // Upload file
 
   uploader: FileUploader = new FileUploader({
     url: uri,
-    maxFileSize: 2048, // Max 2kB
+    maxFileSize: 1024 * 1024 * 5 * 8, // Max 2kB
     queueLimit: 3, // Max files can upload
   });
 
@@ -123,7 +114,6 @@ export class TaobaigiangComponent implements OnInit {
 
   download(filename) {
     // var filename = this.attachmentList[index].uploadname;
-    console.log(filename);
     this._fileService.downloadFile(filename).subscribe(
       (data) => saveAs(data, filename),
       (error) => console.error(error)
@@ -135,10 +125,9 @@ export class TaobaigiangComponent implements OnInit {
         if (res.data) {
           this.dsChuDe = res.data;
         } else {
-          console.log(res);
         }
       },
-      (err) => console.log(err)
+      (err) => this.toastr.error(err.message, 'Lỗi')
     );
   }
   public layDS_LopHocPhan() {
@@ -147,10 +136,10 @@ export class TaobaigiangComponent implements OnInit {
         if (res) {
           this.dsLopHocPhan = res;
         } else {
-          console.log(res);
+          this.toastr.error(res + '', 'Lỗi');
         }
       },
-      (err) => console.log(err)
+      (err) => this.toastr.error(err.message, 'Lỗi')
     );
   }
   public onClickThem() {

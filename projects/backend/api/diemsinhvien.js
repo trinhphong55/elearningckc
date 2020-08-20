@@ -96,10 +96,11 @@ let result = (req) => {
 //lấy thong tin diem sinh vien theo malop hoc phan
 exports.LayTONGDIEM = async (req, res) => {
   try {
-    var sinhvien = await SINHVIEN.find({ trangThai: 1 });
+    var sinhvien=[]
+     sinhvien = await SINHVIEN.find({ trangThai: 1 });
     var diem = await Diemsinhvien.find({ maLopHocPhan: req.params.maLopHocPhan });
     var cotDiemHP = await COTDIEMLOPHP.find({ trangThai: 1, maLopHocPhan: req.params.maLopHocPhan });
-    var ctDiem = await CTDIEMLHP.find({ trangThai: 1 });
+    var ctDiem = await CTDIEMLHP.find({ trangThai: 1 , maHocPhan:req.params.maLopHocPhan });
     var lhp = await lophocphan.find({ maLopHocPhan: req.params.maLopHocPhan, trangThai: 1 })
     //dssv
     var dsSv = [];
@@ -140,7 +141,6 @@ exports.LayTONGDIEM = async (req, res) => {
       diemTongKet.push(dsTongDiem[i])
     }
     res.json(diemTongKet);
-    diemTongKet = []
   } catch (err) {
     console.log(err)
   }
@@ -154,6 +154,18 @@ async function asyncForEach(array, callback) {
 
 exports.luuTongDiem = async (req, res) => {
     try {
+      var dsv= await Diemsinhvien.find({maLopHocPhan:req.params.maLopHocPhan,trangThai:1});
+      var a;
+      req.body.forEach(x=>{
+      dsv.forEach(y=>{
+        if(x.mssv==y.maSinhVien)
+        {
+          a=1;
+        }
+      })
+      });
+      if(a!=1)
+      {
       dsDiem = req.body;
     //check req.body rong
     await asyncForEach(dsDiem, async (diem, index) => {
@@ -169,7 +181,24 @@ exports.luuTongDiem = async (req, res) => {
       newDiem.save();
     })
     return res.json({status:200});
+  }
+  else
+  {
+    return res.status(500).json({
+      status: 200,
+      message: "Điểm tông kết đã được lưu",
+    });
+  }
     } catch (error) {
       
     }
+};
+
+exports.xoaDiem = async (req, res) => {
+  try {
+    var data =   await Diemsinhvien.deleteMany();
+    res.json({ code: 200, message: "xoa thành công", data });
+  } catch (error) {
+    res.json({ code: 400, message: error, data: null });
+  }
 };
