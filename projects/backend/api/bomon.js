@@ -52,6 +52,9 @@ exports.postKhoaBoMon = async (req, res) => {
       if (req.body.tenBoMon === element.tenBoMon) {
         nameIsExist++;
       }
+      if (req.body.tenVietTat === element.tenVietTat) {
+        nameIsExist++;
+      }
     });
 
     if (idIsExist > 0) {
