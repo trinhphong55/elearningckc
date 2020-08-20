@@ -78,7 +78,6 @@ exports.Laysinhvientheomalop = async (req, res) => {
 exports.themSinhVien = async (req, res, next) => {
   try {
     let dsSinhVien = req.body;
-    console.log(dsSinhVien);
     let dsSinhVienThatBai = [];
     let dsSinhVienThanhCong = [];
     dsSinhVien.forEach(async (sv) => {
