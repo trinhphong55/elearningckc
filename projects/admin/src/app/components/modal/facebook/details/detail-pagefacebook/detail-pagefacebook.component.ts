@@ -43,14 +43,14 @@ export class DetailPagefacebookComponent implements OnInit {
   }
 
   selectBaiDang(val){
-    console.log(val);
+    //console.log(val);
     this.baiDangtmp = [];
     this.data.forEach(element => {
       if(element.ID == val && element.trangThai == 2){
         this.baiDangtmp.push(element);
       }
     });
-    console.log(this.baiDangtmp);
+    //console.log(this.baiDangtmp);
   }
 
   closeModal(id: string) {

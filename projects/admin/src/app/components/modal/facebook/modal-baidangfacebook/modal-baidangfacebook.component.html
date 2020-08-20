@@ -21,9 +21,9 @@
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h1 class="modal-title" id="exampleModalLongTitle">
+                <h2 class="modal-title" id="exampleModalLongTitle">
                   Đăng bài cho các nhóm
-                </h1>
+                </h2>
                 <button
                   type="button"
                   class="close"
@@ -32,15 +32,19 @@
                 >
                   <span aria-hidden="true">&times;</span>
                 </button>
-                <div style="position: absolute;margin-top: 20px;">
-                  <h4 id="showTimegrp" style="color: red;margin-top: 15px;"></h4>
+                <div style="position: absolute; margin-top: 32px;">
+                  <div
+                    id="showTimegrp"
+                    style="color: red; margin-top: 15px;"
+                  ></div>
                 </div>
               </div>
               <div class="modal-body">
                 <div class="">
                   <div class="form-group">
                     <label>Nội dung</label>
-                    <textarea [formControl]="conTentgrp"
+                    <textarea
+                      [formControl]="conTentgrp"
                       class="form-control"
                       type="text"
                       name="message"
@@ -51,23 +55,24 @@
                 <div class="">
                   <div class="form-group">
                     <label>Đường dẫn hình ảnh (URL)</label>
-                    <input [formControl]="urlimggrp"
+                    <textarea
+                      [formControl]="urlimggrp"
                       class="form-control"
                       type="text"
                       name="picture"
                       id="picturegr1"
-                    />
+                    ></textarea>
                   </div>
                 </div>
                 <!-- <div class="">
                   <div class="form-group">
                     <label for="">Chia tin tức từ trang công nghệ thông tin</label>
-                    <ng-select id="mslink" style="font-size: 1rem;" [items]=""
-                              bindLabel=""
-                              bindValue=""
+                    <ng-select id="mslink" style="font-size: 1rem;" [items]="news"
+                              bindLabel="tieuDe"
+                              bindValue="url"
                               [multiple]="true"
                               placeholder="Chọn..."
-                              [(ngModel)]="">
+                              [(ngModel)]="mslinkgrp">
                     </ng-select>
                     <input id="listidgrp"value="" type="text" name="" hidden>
                     <input id="returnloaigrp1"value="" type="text" name="" hidden>
@@ -77,33 +82,70 @@
                 <div class="">
                   <div class="form-group">
                     <label for="">Loại bài viết</label>
-                    <select [formControl]="getLoaisTTgrp" class="col-6 form-control" id="getloaigrp1">
+                    <select
+                      [formControl]="getLoaisTTgrp"
+                      class="col-6 form-control"
+                      id="getloaigrp1"
+                    >
                       <option [value]="null">Chọn loại..</option>
-                      <option *ngFor="let l of layloaifb" class="form-control">{{l.loai}}</option>
+                      <option
+                        *ngFor="let l of layloaifb"
+                        class="form-control"
+                        >{{ l.loai }}</option
+                      >
+                    </select>
+                  </div>
+                </div>
+                <div class="">
+                  <div class="form-group">
+                    <label for=""
+                      >Chọn tin tức từ trang công nghệ thông tin</label
+                    >
+                    <select
+                      [formControl]="mslinkgroup"
+                      class="form-control"
+                      id="mslink"
+                    >
+                      <option [value]="null">Chọn loại..</option>
+                      <option
+                        *ngFor="let tt of news"
+                        value="{{ tt.url }}"
+                        class="form-control"
+                        >{{ tt.tieuDe }}</option
+                      >
                     </select>
                   </div>
                 </div>
                 <div class="">
                   <div class="form-group">
                     <label for="">Chọn Nhóm</label>
-                    <ng-select id="groupsgr1" style="font-size: 1rem;" [items]="lopHoc"
-                              bindLabel="tenGroupFB"
-                              bindValue="IDGroupFB"
-                              [multiple]="true"
-                              placeholder="Chọn..."
-                              [(ngModel)]="selectedCityIds">
+                    <ng-select
+                      id="groupsgr1"
+                      style="font-size: 1rem;"
+                      [items]="lopHoc"
+                      bindLabel="tenGroupFB"
+                      bindValue="IDGroupFB"
+                      [multiple]="true"
+                      placeholder="Chọn..."
+                      [(ngModel)]="selectedCityIds"
+                    >
                     </ng-select>
-                    <input id="listidgrp"value="" type="text" name="" hidden>
-                    <input id="returnloaigrp1"value="" type="text" name="" hidden>
-
+                    <input id="listidgrp" value="" type="text" name="" hidden />
+                    <input
+                      id="returnloaigrp1"
+                      value=""
+                      type="text"
+                      name=""
+                      hidden
+                    />
                   </div>
                 </div>
               </div>
               <div class="modal-footer">
-
                 <button
                   class="btn btn-success"
-                  (click)="fixInput()" onclick="_StartPost()"
+                  (click)="fixInput()"
+                  onclick="_StartPost()"
                 >
                   Đăng
                 </button>
@@ -137,9 +179,9 @@
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h1 class="modal-title" id="exampleModalLongTitle">
+                <h2 class="modal-title" id="exampleModalLongTitle">
                   Đăng bài cho các trang
-                </h1>
+                </h2>
                 <button
                   type="button"
                   class="close"
@@ -148,8 +190,11 @@
                 >
                   <span aria-hidden="true">&times;</span>
                 </button>
-                <div style="position: absolute;margin-top: 20px;">
-                  <h4 id="showTime" style="color: red;margin-top: 15px;"></h4>
+                <div style="position: absolute; margin-top: 32px;">
+                  <div
+                    id="showTime"
+                    style="color: red; margin-top: 15px;"
+                  ></div>
                 </div>
               </div>
 
@@ -164,6 +209,8 @@
                       name="message"
                       id="messagep1"
                     ></textarea>
+                    <!-- <ckeditor id="messagep1" [(ngModel)]="testContent" (change)="testChange()" [editor]="Editor"></ckeditor>
+                    <div id="fixfont"></div> -->
                   </div>
                 </div>
                 <div class="">
@@ -181,31 +228,86 @@
                 <div class="">
                   <div class="form-group">
                     <label for="">Loại bài viết</label>
-                    <select [formControl]="getLoaisTT" class="col-6 form-control" id="getloaip1">
+                    <select
+                      [formControl]="getLoaisTT"
+                      class="col-6 form-control"
+                      id="getloaip1"
+                    >
                       <option [value]="null">Chọn loại..</option>
-                      <option *ngFor="let l of layloaifb" class="form-control">{{l.loai}}</option>
+                      <option
+                        *ngFor="let l of layloaifb"
+                        class="form-control"
+                        >{{ l.loai }}</option
+                      >
+                    </select>
+                  </div>
+                </div>
+                <div class="">
+                  <div class="form-group">
+                    <label for=""
+                      >Chọn tin tức từ trang công nghệ thông tin</label
+                    >
+                    <select
+                      [formControl]="mslinkpage"
+                      class="form-control"
+                      id="mslinkpage"
+                    >
+                      <option [value]="null">Chọn tin tức..</option>
+                      <option
+                        >https://vnexpress.net/nhieu-nguoi-o-da-nang-bi-phat-vi-ra-duong-tap-the-duc-4148598.html</option
+                      >
+
+                      <option
+                        *ngFor="let tt of news"
+                        value="{{ tt.url }}"
+                        class="form-control"
+                        >{{ tt.tieuDe }}</option
+                      >
                     </select>
                   </div>
                 </div>
                 <div class="">
                   <div class="form-group">
                     <label for="">Chọn trang</label>
-                    <ng-select id="page1" style="font-size: 1rem;" [items]="getpg"
-                              bindLabel="tenPage"
-                              bindValue="id_Page"
-                              [multiple]="true"
-                              placeholder="Chọn..."
-                              [(ngModel)]="selectedPgae">
+                    <ng-select
+                      id="page1"
+                      style="font-size: 1rem;"
+                      [items]="getpg"
+                      bindLabel="tenPage"
+                      bindValue="id_Page"
+                      [multiple]="true"
+                      placeholder="Chọn..."
+                      [(ngModel)]="selectedPgae"
+                    >
                     </ng-select>
                   </div>
-                  <input id="listidpage" value="" type="text" name="" hidden>
-                  <input id="returnloaip1"value="" type="text" name="" hidden>
-                  <input id="addtime" value="" type="text" hidden>
+                  <input id="listidpage" value="" type="text" name="" hidden />
+                  <input
+                    id="returnloaip1"
+                    value=""
+                    type="text"
+                    name=""
+                    hidden
+                  />
+                  <input id="addtime" value="" type="text" hidden />
                 </div>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-success" onclick="_StartPostPage()" (click)="transIDpage()">Đăng</button>
-                <button type="button" class="btn btn-secondary" (click)="insertdartbdgage()">Lưu nháp</button>
+                <button
+                  type="button"
+                  class="btn btn-success"
+                  onclick="_StartPostPage()"
+                  (click)="transIDpage()"
+                >
+                  Đăng
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  (click)="insertdartbdgage()"
+                >
+                  Lưu nháp
+                </button>
 
                 <button
                   type="button"
@@ -222,16 +324,16 @@
       <div class="col-12">
         <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
           <div class="d-flex align-items-center mb-2">
-            <div class="col-2">
+            <!-- <div class="col-2">
               <label class="mb-0 d-flex align-items-center"
-              ><span class="text-nowrap">Hiển thị &nbsp;</span>
-              <select class="custom-select custom-select-sm form-control">
-                <option>10</option>
-                <option>25</option>
-                <option>50</option> </select
-              ><span class="text-nowrap">&nbsp; hàng</span>
+                ><span class="text-nowrap">Hiển thị &nbsp;</span>
+                <select class="custom-select custom-select-sm form-control">
+                  <option>10</option>
+                  <option>25</option>
+                  <option>50</option> </select
+                ><span class="text-nowrap">&nbsp; hàng</span>
               </label>
-            </div>
+            </div> -->
             <div class="col-2">
               <ng-container [formGroup]="addForm">
                 <div class="align-items-center ml-4">
@@ -253,7 +355,7 @@
             </div>
 
             <div class="col-4">
-              <div class="modal_chucnang__group__button ml-6" >
+              <div class="modal_chucnang__group__button ml-6">
                 <button
                   class="modal_chucnang__button btn btn-primary px-2 mx-1"
                   data-toggle="modal"
@@ -298,10 +400,10 @@
                   <div>{{ d.message }}</div>
                 </td>
                 <td class="text-center">
-                  <div [hidden]="d.link==null">
+                  <div [hidden]="d.link == null">
                     <a [href]="d.link" target="_blank"
-                    >Nhấn để đi đến bài viết</a
-                  >
+                      >Nhấn để đi đến bài viết</a
+                    >
                   </div>
                 </td>
                 <td class="text-center">
@@ -318,14 +420,33 @@
 
                 <td class="text-center">
                   <div class="mb-1">
-                    <button [hidden]="d.trangThai === 2"
+                    <button
+                      [hidden]="d.trangThai === 2 || d.postOf === 'group'"
                       class="modal_chucnang__button btn btn-outline-success"
+                      (click)="dangbai(d)"
+                      onclick="dangbaiPage(this)"
+                      data="{{ d.ID }}"
                     >
                       Đăng bài
                     </button>
                   </div>
                   <div class="mb-1">
-                    <button [hidden]="(d.postOf ==='group' && d.trangThai === 2)|| d.trangThai === 1"
+                    <button
+                      [hidden]="d.trangThai === 2 || d.postOf === 'page'"
+                      class="modal_chucnang__button btn btn-outline-success"
+                      (click)="dangbaigrp(d)"
+                      onclick="dangbaiGroup(this)"
+                      data="{{ d.ID }}"
+                    >
+                      Đăng bài
+                    </button>
+                  </div>
+                  <!-- <div class="mb-1">
+                    <button
+                      [hidden]="
+                        (d.postOf === 'group' && d.trangThai === 2) ||
+                        d.trangThai === 1
+                      "
                       class="modal_chucnang__button btn btn-outline-secondary"
                       (click)="capnhatdadang()"
                     >
@@ -333,18 +454,19 @@
                     </button>
                   </div>
                   <div class="mb-1">
-                    <button [hidden]=" d.trangThai===2"
+                    <button
+                      [hidden]="d.trangThai === 2"
                       class="modal_chucnang__button btn btn-outline-secondary"
                       (click)="capnhatchuadang()"
                     >
                       Cập nhật
                     </button>
-                  </div>
+                  </div> -->
                   <div class="mb-1">
                     <button
+                    [hidden]="d.trangThai === 2||d.trangThai === 0"
                       class="modal_chucnang__button btn btn-outline-danger"
-
-                    (click)="changeTrangthai(d)"
+                      (click)="changeTrangthai(d)"
                     >
                       Xóa
                     </button>

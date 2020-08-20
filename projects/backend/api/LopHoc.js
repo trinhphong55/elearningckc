@@ -39,6 +39,9 @@ const view = (req) => {
     maBac: req.maBac,
     khoa: req.khoa,
     siSo: req.siSo,
+    tenGroupFB: req.tenGroupFB,
+    IDGroupFB: req.IDGroupFB,
+    linkGroupFB: req.linkGroupFB,
   };
 };
 
