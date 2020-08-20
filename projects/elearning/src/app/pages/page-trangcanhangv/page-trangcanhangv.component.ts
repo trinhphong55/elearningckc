@@ -14,6 +14,7 @@ import { from } from 'rxjs';
 import { publish } from 'rxjs/operators';
 import {GiaoVienService} from '../../services/giao-vien.service';
 import { BacService } from '../../../../../admin/src/app/services/Bac.service';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-page-trangcanhangv',
   templateUrl: './page-trangcanhangv.component.html',
@@ -71,7 +72,8 @@ export class PageTrangcanhangvComponent implements OnInit {
     private baiGiangService: BaiGiangService,
     private baiTapService: BaiTapService,
     private bacService: BacService,
-    private giaoVienService:GiaoVienService
+    private giaoVienService:GiaoVienService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -204,14 +206,14 @@ export class PageTrangcanhangvComponent implements OnInit {
   }
   public capnhapGV(){
     if((this.formCapnhapGV.get("sodienthoai").value)==''||(this.formCapnhapGV.get("newpassword").value)==''){
-      alert("cập nhập thất bại ! số điện thoại hoặc mật khẩu không được để trống");
+      this.toastr.error('cập nhập thất bại ! số điện thoại hoặc mật khẩu không được để trống','thông báo');
     }else{
       this.capnhapttGV={maGiaoVien:(this.formCapnhapGV.get("maGiaoVien").value),sdt:(this.formCapnhapGV.get("sodienthoai").value),password:(this.formCapnhapGV.get("newpassword").value)}
       this.giaoVienService.CapNhapgv(this.capnhapttGV).subscribe(
         newgiaovien=>{
           this.newgiaovien=newgiaovien;
           this.layThongtinGV();
-           alert("cập nhập thành công");
+          this.toastr.success('cập nhập thành công','thông báo');
     },
       (error) => {
         console.log(error)
