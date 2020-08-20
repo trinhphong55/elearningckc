@@ -371,7 +371,6 @@ export class PageTrangcanhansvComponent implements OnInit {
   onChangBangDiem() {
     let ds = [];
     this.chonHocKi.setValue('');
-    console.log(this.dsTatCaKHDTTmp);
     if (this.chonHocKiBD.value) {
       this.dsTatCaKHDTTmp.forEach((el) => {
         if (el.hocKi == this.chonHocKiBD.value) {
