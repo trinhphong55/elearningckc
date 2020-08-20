@@ -6,8 +6,10 @@ const CTDIEMLHP = require("../models/ct-diemsv-lhp.model");
 const SINHVIEN = require("../models/sinh-vien.model");
 const lophocphan = require("../models/LopHocPhan.model");
 const { FORMERR } = require("dns");
-const { combineLatest } = require("rxjs");
+const { combineLatest, async } = require("rxjs");
 const { config } = require("process");
+const { clear } = require("console");
+const diemsinhvienModel = require("../models/diemsinhvien.model");
 const setData = (req) => {
   return {
     maSinhVien: req.body.maSinhVien,
@@ -103,7 +105,7 @@ exports.LayTONGDIEM = async (req, res) => {
     var dsSv = [];
     for (let sv of sinhvien) {
       for (let lh of lhp) {
-        if (sv.maLopHoc == lh.maLopHoc) {
+        if (sv.maLopHoc == lh.maLopHoc && lh.maLopHocPhan == req.params.maLopHocPhan) {
           dsSv.push({ ho: sv.ho, ten: sv.ten, mssv: sv.maSinhVien, email: sv.email, tongDiem: 0, tongHeSo: 0 })
         }
       }
@@ -125,37 +127,49 @@ exports.LayTONGDIEM = async (req, res) => {
 
           sv.tongDiem += d.diem;
           sv.tongHeSo += d.heSo;
-          dsTongDiem.push({ ho: sv.ho, ten: sv.ten, mssv: sv.mssv, email: sv.email, tongDiem: sv.tongDiem, tongHeSo: sv.tongHeSo, diemTongKet: ( Math.round(((sv.tongDiem / sv.tongHeSo ) + Number.EPSILON) * 100) / 100) })
+          dsTongDiem.push({ ho: sv.ho, ten: sv.ten, mssv: sv.mssv, email: sv.email, tongDiem: sv.tongDiem, tongHeSo: sv.tongHeSo, diemTongKet: (Math.round(((sv.tongDiem / sv.tongHeSo) + Number.EPSILON) * 100) / 100) })
         }
       }
     }
     //lay ds diem tong ke 
     var diemTongKet = [];
- var cd = cotDiemHP.length;
- var ct = ctDiem.length;
- for(let i=0;i<ct;i++)
- {
-   i=i+(cd-1);
-   diemTongKet.push(dsTongDiem[i])
- }
-     res.json(diemTongKet);
+    var cd = cotDiemHP.length;
+    var ct = ctDiem.length;
+    for (let i = 0; i < ct; i++) {
+      i = i + (cd - 1);
+      diemTongKet.push(dsTongDiem[i])
+    }
+    res.json(diemTongKet);
+    diemTongKet = []
   } catch (err) {
     console.log(err)
   }
 };
+
+async function asyncForEach(array, callback) {
+  for (let index = 0; index < array.length; index++) {
+    await callback(array[index], index);
+  }
+}
+
 exports.luuTongDiem = async (req, res) => {
-  try {
-    var ktDiem =  await Diemsinhvien.find({maSinhVien:req.body.mssv}).exec();
-    if(ktDiem=="")
-    {
-      const diem = new Diemsinhvien(req.body);
-        var data = await diem.save();
-        res.status(201).json({ data });
-    }
-    else  {
-      res.status(500).json({ message:"lỗi trùng dữ liệu" });
-    }
+    try {
+      dsDiem = req.body;
+    //check req.body rong
+    await asyncForEach(dsDiem, async (diem, index) => {
+      let newDiem = new Diemsinhvien({
+        maSinhVien: diem.mssv,
+        maDaoTao: "30061711211",
+        maLopHocPhan: req.params.maLopHocPhan,
+        diem: diem.diemTongKet,
+        maChuDe: "1",
+        nguoiTao: "admin",
+        nguoiChinhSua: "admin",
+      });
+      newDiem.save();
+    })
+    return res.json({status:200});
     } catch (error) {
-      res.status(500).json({ message:"lỗi trùng dữ liệu" });
+      
     }
 };

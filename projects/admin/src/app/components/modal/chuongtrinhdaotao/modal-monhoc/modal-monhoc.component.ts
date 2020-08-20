@@ -39,7 +39,6 @@ export class ModalMonhocComponent implements OnInit, OnChanges {
   getMonHoc() {
     this.monhocService.getMonHocbyTrangThai(this.trangThai).subscribe(res => {
       if (res.status === 200) {
-        console.log(res.data);
         this.dsMonHoc = res.data;
       } else {
         this.dsMonHoc = [];

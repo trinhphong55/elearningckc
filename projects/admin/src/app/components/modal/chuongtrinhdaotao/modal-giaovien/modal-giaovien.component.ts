@@ -3,7 +3,11 @@ import { ModalService } from '../../../../services/modal.service';
 import { ApiService } from '../../../../services/api.service';
 import { BomonService } from '../../../../services/khoa-bomons/bomon.service';
 import { GvlhpService } from '../../../../services/gvlhp.service';
+import { LopHocService } from '../../../../services/lop-hoc.service';
 import { LopHocPhanService } from '../../../../services/lophocphan.service';
+import { FormControl, FormGroup, Validators, FormsModule } from '@angular/forms';
+import { BacService } from '../../../../services/Bac.service';
+import { ToastrService } from 'ngx-toastr';
 
 import { GiaoVien } from '../../../../../models/giaoVien';
 import * as XLSX from 'xlsx';
@@ -17,49 +21,322 @@ export class ModalGiaovienComponent implements OnInit {
   public danhSachGiaoVien:GiaoVien[];
   textSearch;
   trangThai: number = 1;
-  trinhDoChuyenMon: string = 'Thạc sĩ';
   selectedMaBoMon: string = '';
   file:File;
   dsGiaoVienExcel: any;
 
   maGV:string = '';
-  ho:string = '';
-  ten:string = '';
-  ngaySinh:string ='';
-  cmnd:string = '';
-  diaChiThuongTru:string = '';
-  sdt:string = '';
-  email:string = '';
-
-  setDefaultValue(){
-    this.ho = '';
-    this.ten = '';
-    this.ngaySinh = '';
-    this.cmnd = '';
-    this.diaChiThuongTru = '';
-    this.email = '';
-    this.sdt = '';
-  }
 
   dsBoMon: any;
   dsgvLHP: any;
+  dsLop: any;
+  giaoVienForm:FormGroup;
+  updateForm: FormGroup;
+  filterForm: FormGroup;
+  maGVSelected:string = '';
+  emailSelected:string = '';
+  hoTenSelected:string = '';
+  //loc lhp
+  bacSelected: any;
+  hocKiSelected: any = 1;
+  maKhoa: any = 17;
+  dsLopHPGV: any;
+  dsBac: any;
+  filterDsLop: any = [];
+  public giaoVienFormGroup: FormGroup;
+  objectKeys = Object.keys;
+  dateValidator(control: FormControl) {
+    let checkDate = control.value;
+    var objDate,  // date object initialized from the checkDate string
+      mSeconds, // checkDate in milliseconds
+      day,      // day
+      month,    // month
+      year;     // year
+    if (checkDate.length !== 10) {
+      return {
+        checkDate:{
+          isValid: false
+        }
+      }
+    }
+    if (checkDate.substring(2, 3) !== '/' || checkDate.substring(5, 6) !== '/') {
+      return {
+        checkDate:{
+          isValid: false
+        }
+      }
+    }
+    day = checkDate.substring(0, 2) - 0; // because months in JS start from 0
+    month = checkDate.substring(3, 5) - 1;
+    year = checkDate.substring(6, 10) - 0;
+    // test year range
+    if (year < 1000 || year > 3000) {
+        return {
+          checkDate:{
+            isValid: false
+          }
+        }
+    }
+    mSeconds = (new Date(year, month, day)).getTime();
+    objDate = new Date();
+    objDate.setTime(mSeconds);
+    if (objDate.getFullYear() !== year ||
+        objDate.getMonth() !== month ||
+        objDate.getDate() !== day) {
+        return {
+          checkDate:{
+            isValid: false
+          }
+        }
+    }
+    // otherwise return true
+    return null;
+  }
+
   constructor(private modalService: ModalService,
     private apiService:ApiService,
     private boMonService:BomonService,
     private gvLHPService: GvlhpService,
-    private lopHocPhanService: LopHocPhanService) {
+    private lopHocPhanService: LopHocPhanService,
+    private toastr: ToastrService,
+    private lopHocService: LopHocService,
+    //loc lop hoc phan
+    private bacService: BacService,
+    ) {
     this.boMonService.getAll().subscribe(
       data => {
         this.dsBoMon = data
       }
     );
+    // Lấy danh sách bậc
+    this.bacService.getBac().subscribe(
+      data => {
+        this.dsBac = data
+      }
+    )
+    // GiaoVienForm
+    this.giaoVienForm = new FormGroup({
+      ho: new FormControl('', [
+        Validators.required,
+        Validators.minLength(1),
+        Validators.maxLength(50)
+      ]),
+      ten: new FormControl('', [
+        Validators.required,
+        Validators.minLength(1),
+        Validators.maxLength(50)
+      ]),
+      ngaySinh: new FormControl('', [
+        Validators.required,
+        this.dateValidator
+      ]),
+      cmnd: new FormControl('', [
+        Validators.required,
+        Validators.pattern('[0-9]{9,12}')
+      ]),
+      email: new FormControl('', [
+        Validators.required,
+        Validators.pattern('^[a-z][a-z0-9_\.]{4,32}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$')
+      ]),
+      sdt: new FormControl('', [
+        Validators.required,
+        Validators.pattern('(03|07|08|09|01[2|6|8|9])+([0-9]{8})')
+      ]),
+      diaChiThuongTru: new FormControl(''),
+      trinhDoChuyenMon: new FormControl('Thạc sĩ')
+    })
+    // Update Form
+    this.updateForm = new FormGroup({
+      hoUpdate: new FormControl('', [
+        Validators.required,
+        Validators.minLength(1),
+        Validators.maxLength(50)
+      ]),
+      tenUpdate: new FormControl('', [
+        Validators.required,
+        Validators.minLength(1),
+        Validators.maxLength(50)
+      ]),
+      ngaySinhUpdate: new FormControl('', [
+        Validators.required,
+        this.dateValidator
+      ]),
+      cmndUpdate: new FormControl('', [
+        Validators.required,
+        Validators.pattern('[0-9]{9,12}')
+      ]),
+      emailUpdate: new FormControl('', [
+        Validators.required,
+        Validators.pattern('^[a-z][a-z0-9_\.]{4,32}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$')
+      ]),
+      sdtUpdate: new FormControl('', [
+        Validators.required,
+        Validators.pattern('(03|07|08|09|01[2|6|8|9])+([0-9]{8})')
+      ]),
+      diaChiThuongTruUpdate: new FormControl(''),
+      trinhDoChuyenMonUpdate: new FormControl('Thạc sĩ')
+    })
+    // Filter Form
+    this.filterForm = new FormGroup({
+      bac: new FormControl("-1"),
+      hocKi: new FormControl("-1"),
+      khoa: new FormControl("-1")
+    })
+  }
+
+
+  //Validation giaoVien form
+  get ho(){
+    return this.giaoVienForm.get('ho');
+  }
+  get ten(){
+    return this.giaoVienForm.get('ten');
+  }
+  get ngaySinh(){
+    return this.giaoVienForm.get('ngaySinh');
+  }
+  get cmnd(){
+    return this.giaoVienForm.get('cmnd');
+  }
+  get email(){
+    return this.giaoVienForm.get('email');
+  }
+  get sdt(){
+    return this.giaoVienForm.get('sdt');
+  }
+  get diaChiThuongTru(){
+    return this.giaoVienForm.get('diaChiThuongTru');
+  }
+  get trinhDoChuyenMon(){
+    return this.giaoVienForm.get('trinhDoChuyenMon');
+  }
+  // Validation update form
+  get hoUpdate(){
+    return this.updateForm.get('hoUpdate');
+  }
+  get tenUpdate(){
+    return this.updateForm.get('tenUpdate');
+  }
+  get ngaySinhUpdate(){
+    return this.updateForm.get('ngaySinhUpdate');
+  }
+  get cmndUpdate(){
+    return this.updateForm.get('cmndUpdate');
+  }
+  get emailUpdate(){
+    return this.updateForm.get('emailUpdate');
+  }
+  get sdtUpdate(){
+    return this.updateForm.get('sdtUpdate');
+  }
+  get diaChiThuongTruUpdate(){
+    return this.updateForm.get('diaChiThuongTruUpdate');
+  }
+  get trinhDoChuyenMonUpdate(){
+    return this.updateForm.get('trinhDoChuyenMonUpdate');
   }
 
   ngOnInit(): void {
     this.layDanhSachGiaoVien();
-    // this.layMaGVMoiNhat();
+    this.danhSachLop();
+  }
+  ///hien thi ds lop
+  danhSachLop() {
+    this.lopHocService.getAll().subscribe(
+      dsLop => {
+        this.dsLop = dsLop;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
+  themGiaoVien(){
+    let data = {
+      ho: this.giaoVienForm.get('ho').value,
+      ten: this.giaoVienForm.get('ten').value,
+      ngaySinh: this.giaoVienForm.get('ngaySinh').value,
+      cmnd: this.giaoVienForm.get('cmnd').value,
+      email: this.giaoVienForm.get('email').value,
+      sdt: this.giaoVienForm.get('sdt').value,
+      diaChiThuongTru: this.giaoVienForm.get('diaChiThuongTru').value,
+      trinhDoChuyenMon: this.giaoVienForm.get('trinhDoChuyenMon').value,
+      password: '123456',
+      trangThai: 1
+    };
+    if(this.giaoVienForm.valid){
+      this.apiService.themGiaoVien(data).subscribe(
+        (response) => {
+          if(response.status == true){
+            this.toastr.success(response.msg, 'Thông báo', { timeOut: 5000 });
+            this.layDanhSachGiaoVien();
+          }
+          else{
+            this.toastr.error(response.msg, 'Lỗi', { timeOut: 5000 });
+          }
+        }
+      );
+    }
+  }
+
+  layMaGVSelected(giaoVien:any){
+    this.maGVSelected = giaoVien.maGiaoVien;
+    this.emailSelected = giaoVien.email;
+    this.hoTenSelected = giaoVien.ho + ' ' + giaoVien.ten;
+  }
+
+  dsLHP(){
+    this.bacSelected = this.filterForm.get('bac').value;
+    this.hocKiSelected = this.filterForm.get('hocKi').value;
+    try {
+      this.lopHocPhanService.getLopHocPhanbyemail(this.emailSelected).subscribe(
+        res => {
+          this.dsLopHPGV = res;
+          this.filterDsLop = [];
+          this.dsLop.forEach(lop => {
+            this.dsLopHPGV.find(p => {
+              if (p.maLopHoc == lop.maLopHoc && p.hocKi == this.filterForm.get('hocKi').value && lop.maBac== this.filterForm.get('bac').value && lop.khoa== this.filterForm.get('khoa').value) {
+                this.filterDsLop.push(p)
+              }
+            });
+          });
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    } catch (error) {
+      return error;
+    }
+  }
+
+  capNhatGiaoVien(){
+    let data = {
+      ho: this.updateForm.get('hoUpdate').value,
+      ten: this.updateForm.get('tenUpdate').value,
+      ngaySinh: this.updateForm.get('ngaySinhUpdate').value,
+      cmnd: this.updateForm.get('cmndUpdate').value,
+      email: this.updateForm.get('emailUpdate').value,
+      sdt: this.updateForm.get('sdtUpdate').value,
+      diaChiThuongTru: this.updateForm.get('diaChiThuongTruUpdate').value,
+      trinhDoChuyenMon: this.updateForm.get('trinhDoChuyenMonUpdate').value,
+      maGiaoVien: this.maGVSelected
+    };
+    if(this.updateForm.valid){
+      this.apiService.capNhatGiaoVien(data).subscribe(
+        (response) => {
+          if(response.status == true){
+            this.toastr.success(response.msg, 'Thông báo', { timeOut: 5000 });
+            this.layDanhSachGiaoVien();
+          }
+          else{
+            this.toastr.error(response.msg, 'Lỗi', { timeOut: 5000 });
+          }
+        }
+      )
+    }
+  }
 
   layDanhSachGiaoVien():void {
     this.trangThai = 1;
@@ -89,10 +366,12 @@ export class ModalGiaovienComponent implements OnInit {
     this.customConfirm("Bạn muốn phục hồi giáo viên này?", () => {
       this.apiService.setTrangThai(maGiaoVien).subscribe(
         (response) => {
-          alert(response.msg);
           if(response.status == true){
-            this.setDefaultValue();
+            this.toastr.success(response.msg, 'Thông báo', { timeOut: 5000 });
             this.layDanhSachGiaoVienTheoTrangThai();
+          }
+          else{
+            this.toastr.error(response.msg, 'Lỗi', { timeOut: 5000 });
           }
         }
       )
@@ -124,31 +403,17 @@ export class ModalGiaovienComponent implements OnInit {
 
   changeTrangThai() {
     this.layDanhSachGiaoVienTheoTrangThai();
-    this.setDefaultValue();
   }
-
-  // layMaGVMoiNhat():void {
-  //   this.apiService.layMaGVMoiNhat().subscribe(
-  //     data => {
-  //       if(data == null){
-  //         this.maGV = '0001';
-  //       }
-  //       else{
-  //         let maGV = data.maGiaoVien;
-  //         this.maGV = this.formatMaGV(maGV);
-  //       }
-  //     }
-  //   );
-  // }
 
   changeBoMon(maGV: string, maBoMon: string) {
     this.apiService.capNhatBoMon(maGV, maBoMon).subscribe(
       (response) => {
-        alert(response.msg);
         if(response.status == true){
-          this.setDefaultValue();
+          this.toastr.success(response.msg, 'Thông báo', { timeOut: 5000 });
           this.layDanhSachGiaoVien();
-          // this.layMaGVMoiNhat();
+        }
+        else{
+          this.toastr.error(response.msg, 'Lỗi', { timeOut: 5000 });
         }
       }
     )
@@ -156,31 +421,6 @@ export class ModalGiaovienComponent implements OnInit {
 
   closeModal(id: string) {
     this.modalService.close(id);
-  }
-
-  onSubmit(form: any): void{
-    // console.log('you submitted value: ', form);
-    if (form.ho.trim() === "" || form.ten.trim() === "" ||
-    form.email.trim() === "" || form.ngaySinh.trim() === "" ||
-    form.cmnd.trim() === "" || form.sdt.trim() === "") {
-      alert('Vui lòng nhập đầy đủ thông tin');
-      return;
-    }
-    this.giaoVien = form;
-    this.giaoVien.trinhDoChuyenMon = this.trinhDoChuyenMon;
-    this.giaoVien.maGiaoVien = this.maGV;
-    this.giaoVien.password = '123456';
-    this.giaoVien.trangThai = 1;
-
-    this.apiService.themGiaoVien(this.giaoVien).subscribe(
-      (response) => {
-        alert(response.msg);
-        if(response.status == true){
-          this.setDefaultValue();
-          this.layDanhSachGiaoVien();
-        }
-      }
-    );
   }
 
   customConfirm(message: string, oke: Function) {
@@ -192,61 +432,34 @@ export class ModalGiaovienComponent implements OnInit {
     }
   }
 
-  Update(form: any): void{
-    // console.log('you submitted value: ', form);
-    if (form.ho.trim() === "" || form.ten.trim() === "" ||
-    form.email.trim() === "" || form.ngaySinh.trim() === "" ||
-    form.cmnd.trim() === "" || form.sdt.trim() === "") {
-      alert('Vui lòng nhập đầy đủ thông tin');
-      return;
-    }
-    this.giaoVien = form;
-    this.giaoVien.trinhDoChuyenMon = this.trinhDoChuyenMon;
-    this.giaoVien.maGiaoVien = this.maGV;
-
-    this.apiService.capNhatGiaoVien(this.giaoVien).subscribe(
-      (response) => {
-        alert(response.msg);
-        if(response.status == true){
-          this.setDefaultValue();
-          this.layDanhSachGiaoVien();
-          // this.layMaGVMoiNhat();
-        }
-      }
-    )
-  }
-
   xoaGiaoVien(maGiaoVien:any){
     this.customConfirm("Bạn có chắc muốn xóa giáo viên này?", () => {
       this.apiService.xoaGiaoVien({maGiaoVien: maGiaoVien}).subscribe(
         (response) => {
-          alert(response.msg);
           if(response.status == true){
+            this.toastr.success(response.msg, 'Thông báo', { timeOut: 5000 });
             this.layDanhSachGiaoVien();
+          }
+          else{
+            this.toastr.error(response.msg, 'Lỗi', { timeOut: 5000 });
           }
         }
       )
     })
   }
 
-  layThongTinGiaoVien(maGiaoVien:any){
-    this.apiService.layThongTinGiaoVien({maGiaoVien: maGiaoVien}).subscribe(
-      (response) => {
-        this.maGV = response[0].maGiaoVien;
-        this.ho = response[0].ho;
-        this.ten = response[0].ten;
-        this.ngaySinh = response[0].ngaySinh;
-        this.cmnd = response[0].cmnd;
-        this.diaChiThuongTru = response[0].diaChiThuongTru;
-        this.email = response[0].email;
-        this.sdt = response[0].sdt;
-        this.selectedMaBoMon = response[0].maBoMon;
-        this.trinhDoChuyenMon = response[0].trinhDoChuyenMon;
-      }
-    )
-  }
-  ResetForm():void{
-    // this.layMaGVMoiNhat();
+  layThongTinGiaoVien(giaoVien){
+    this.updateForm.patchValue({
+      'hoUpdate': giaoVien.ho,
+      'tenUpdate': giaoVien.ten,
+      'ngaySinhUpdate': giaoVien.ngaySinh,
+      'cmndUpdate': giaoVien.cmnd,
+      'emailUpdate': giaoVien.email,
+      'sdtUpdate': giaoVien.sdt,
+      'diaChiThuongTruUpdate': giaoVien.diaChiThuongTru,
+      'trinhDoChuyenMonUpdate': giaoVien.trinhDoChuyenMon
+    });
+    this.maGVSelected = giaoVien.maGiaoVien;
   }
 
   uploadFileExcel(event){
@@ -269,22 +482,9 @@ export class ModalGiaovienComponent implements OnInit {
         (response) => {
           alert(response.msg);
           this.layDanhSachGiaoVien();
-          // this.layMaGVMoiNhat();
         }
       )
     }
     fileReader.readAsArrayBuffer(this.file);
-  }
-
-  formatMaGV(maGV: string): string{
-    let temp: number = Number(maGV) + 1;
-    let i = 4 - temp.toString().length;
-    let result: string = '';
-    while(i > 0){
-      result += '0';
-      i--;
-    }
-    result += temp.toString();
-    return result;
   }
 }
