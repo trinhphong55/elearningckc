@@ -11,6 +11,10 @@ export class BinhLuanService {
   public layBinhLuan(loaiBaiViet,maBaiViet){
     return this.http.get(`${this.baseUrl}/${loaiBaiViet}/baiviet/${maBaiViet}`);
   }
+  public layTatCaBinhLuan(){
+    return this.http.get<any>(this.baseUrl);
+
+  }
   public themBinhluan(data){
     return this.http.post(`${this.baseUrl}`,data);
 

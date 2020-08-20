@@ -47,7 +47,7 @@
         <div class="right">
           <div class="danop_dagiao">
             <ng-container *ngFor="let link of item.dinhKem">
-              <a  download (click)="download(link)"> <button mat-button>
+              <a download (click)="download(link)"> <button mat-button>
                   <p><i class="fas fa-file-archive"></i></p>
                 </button>
               </a>
@@ -57,41 +57,41 @@
       </div>
     </div>
     <div class="nhanxet">
-      <ng-container *ngFor="let dsbl of dsBinhLuan_baiGiang">
-        <ng-container *ngIf="dsbl.maBaiViet == item.maBaiGiang">
-          <div class="nx-main">
-            <div class="nx-number">
-              <button mat-button>{{ dsbl.count }} nhận xét về lớp học</button>
-            </div>
-            <ng-container *ngFor="let bl of dsbl.data">
-              <div class="nx-show">
-                <div class="nx-showimg">
-                  <div>
-                    <img class="gb_Ka gbii"
-                      src="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo"
-                      srcset="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo 1x, https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s64-c-mo 2x "
-                      alt="" aria-hidden="true" data-noaft="">
-                  </div>
-                </div>
+      <div class="nx-main">
+        <!-- <div class="nx-number">
 
-                <div class="nx-showname">
-                  <span>
-                    <h6>{{bl.nguoiTao}} </h6><i>{{bl.ngayTao}}</i>
-                  </span>
-                  <p>{{bl.noiDung}}</p>
+          <button mat-button>{{ dsBinhLuan_baiGiang?.length }} nhận xét về lớp học</button>
+        </div> -->
+        <ng-container *ngFor="let dsbl of dsBinhLuan_baiGiang">
+          <ng-container *ngIf="dsbl.maBaiViet == item.maBaiGiang">
+            <div class="nx-show">
+              <div class="nx-showimg">
+                <div>
+                  <img class="gb_Ka gbii"
+                    src="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo"
+                    srcset="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo 1x, https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s64-c-mo 2x "
+                    alt="" aria-hidden="true" data-noaft="">
                 </div>
-                <!-- <div class="nx-menu">
+              </div>
+
+              <div class="nx-showname">
+                <span>
+                  <b>{{dsbl.nguoiTao}} </b><i>{{dsbl.ngayTao | date:'dd-MM-yyyy'}}</i>
+                </span>
+                <p>{{dsbl.noiDung}}</p>
+              </div>
+              <!-- <div class="nx-menu">
                   <button mat-button [matMenuTriggerFor]="menunx"><i class="fas fa-ellipsis-v"></i></button>
                   <mat-menu #menunx="matMenu">
                     <button mat-menu-item>Chỉnh sửa</button>
                     <button mat-menu-item>Xóa</button>
                   </mat-menu>
                 </div> -->
-              </div>
-            </ng-container>
-          </div>
+            </div>
+          </ng-container>
         </ng-container>
-      </ng-container>
+      </div>
+
     </div>
     <div class="comment">
       <div class="cm-main">
@@ -107,8 +107,114 @@
           <div class="cm-showcomment">
             <form>
               <div class="input-container">
-                <button type="submit" (keyup.enter)="onClick_BinhLuan(item.maBaiGiang)"
-                  (click)="onClick_BinhLuan(item.maBaiGiang)" class="btn"><i class="fas fa-paper-plane"></i></button>
+                <button type="submit" (keyup.enter)="onClick_BinhLuan(item.maBaiGiang, 1)"
+                  (click)="onClick_BinhLuan(item.maBaiGiang,1)" class="btn"><i class="fas fa-paper-plane"></i></button>
+                <input class="input-field" placeholder="Thêm nhập xét của lớp học" [formControl]="binhLuan">
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row" *ngFor="let item of dsBaiTap">
+  <div class="content">
+    <div class="thongtin">
+      <div class="tt-icon">
+        <div>
+          <i class="far fa-calendar-minus"></i>
+        </div>
+
+      </div>
+      <div class="tt-client">
+        <div>
+          {{ item.nguoiTao }} đã đăng: {{item.tieuDe}}
+        </div>
+      </div>
+
+      <!-- <div class="tt-menu">
+        <button mat-button [matMenuTriggerFor]="menu"><i class="fas fa-ellipsis-v"></i></button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>Item 1</button>
+          <button mat-menu-item>Item 2</button>
+        </mat-menu>
+      </div> -->
+    </div>
+    <div class="nopbai">
+      <div class="songuoinop">
+        <div class="left">
+          <div>
+            <p>Đã đăng {{ item.ngayChinhSua |date:'dd-MM-yyyy' }}</p>
+            <p>{{item?.huongDan}} </p>
+          </div>
+        </div>
+        <div class="right">
+          <div class="danop_dagiao">
+            <ng-container *ngFor="let link of item.dinhKem">
+              <a download (click)="download(link)"> <button mat-button>
+                  <p><i class="fas fa-file-archive"></i></p>
+                </button>
+              </a>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="nhanxet">
+
+      <div class="nx-main">
+        <!-- <div class="nx-number">
+          <button mat-button>{{dsBinhLuan_baiTap?.length }} nhận xét về lớp học</button>
+        </div> -->
+        <ng-container *ngFor="let dsbl of dsBinhLuan_baiTap">
+
+          <ng-container *ngIf="dsbl.maBaiViet == item.maBaiTap">
+            <div class="nx-show">
+              <div class="nx-showimg">
+                <div>
+                  <img class="gb_Ka gbii"
+                    src="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo"
+                    srcset="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo 1x, https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s64-c-mo 2x "
+                    alt="" aria-hidden="true" data-noaft="">
+                </div>
+              </div>
+
+              <div class="nx-showname">
+                <span>
+                  <b>{{dsbl.nguoiTao}} </b><i>{{dsbl.ngayTao | date:'dd-MM-yyyy'}}</i>
+                </span>
+                <p>{{dsbl.noiDung}}</p>
+              </div>
+              <!-- <div class="nx-menu">
+                  <button mat-button [matMenuTriggerFor]="menunx"><i class="fas fa-ellipsis-v"></i></button>
+                  <mat-menu #menunx="matMenu">
+                    <button mat-menu-item>Chỉnh sửa</button>
+                    <button mat-menu-item>Xóa</button>
+                  </mat-menu>
+                </div> -->
+            </div>
+          </ng-container>
+        </ng-container>
+      </div>
+
+    </div>
+    <div class="comment">
+      <div class="cm-main">
+        <div class="cm-show">
+          <div class="cm-showimg">
+            <div><img class="gb_Ka gbii"
+                src="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo"
+                srcset="https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s32-c-mo 1x, https://lh3.googleusercontent.com/ogw/ADGmqu_vadAF8Gx0HOS6n8ZRxxCWPLDTEJUnSe0So5rs=s64-c-mo 2x "
+                alt="" aria-hidden="true" data-noaft="">
+
+            </div>
+          </div>
+          <div class="cm-showcomment">
+            <form>
+              <div class="input-container">
+                <button type="submit" (keyup.enter)="onClick_BinhLuan(item.maBaiTap, 2)"
+                  (click)="onClick_BinhLuan(item.maBaiTap,2 )" class="btn"><i class="fas fa-paper-plane"></i></button>
                 <input class="input-field" placeholder="Thêm nhập xét của lớp học" [formControl]="binhLuan">
               </div>
             </form>

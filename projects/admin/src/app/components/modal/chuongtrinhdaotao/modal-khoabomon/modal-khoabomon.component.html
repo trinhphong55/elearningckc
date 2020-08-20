@@ -100,8 +100,8 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-            <button type="button" class="btn btn-primary" (click)="capNhat_BoMon()" data-dismiss="modal">Thay
-              đổi</button>
+            <!-- <button type="button" class="btn btn-primary" (click)="capNhat_BoMon()" data-dismiss="modal">Thay
+              đổi</button> -->
           </div>
         </div>
       </div>
@@ -121,20 +121,28 @@
             <form [formGroup]="updateForm">
               <div class="form-row">
 
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-3">
                   <label for="inputPassword4">Tên đơn vị</label>
-                  <input class="form-control" formControlName="tenKhoa">
+                  <input class="form-control" formControlName="tenDonVi">
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-3">
                   <label for="inputEmail4">Tên viết tắt</label>
                   <input class="form-control" formControlName="tenVietTat">
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-3">
                   <label for="inputPassword4">Loại đơn vị</label>
 
                   <select class="form-control" formControlName="loaiDonVi">
                     <option value="" disabled>Chọn...</option>
                     <option *ngFor="let loai of loais" [ngValue]=loai.maLoaiDonVi>{{ loai.tenLoaiDonVi }}</option>
+                  </select>
+
+                </div>
+                <div class="form-group col-md-3">
+                  <label for="inputPassword4">Khoa</label>
+                  <select class="form-control" formControlName="tenKhoa">
+                    <option value="" disabled>Chọn...</option>
+                    <option *ngFor="let khoa of dskhoaTam" [ngValue]=khoa.maKhoa>{{ khoa.tenKhoa }}</option>
                   </select>
 
                 </div>
@@ -222,7 +230,7 @@
                   <label>Khoa</label>
                   <select class="form-control" formControlName="maKhoa">
                     <option value="" disabled>Chọn...</option>
-                    <option *ngFor="let khoa of khoas" [ngValue]=khoa.maKhoa>{{ khoa.tenKhoa }}</option>
+                    <option *ngFor="let khoa of dskhoaTam" [ngValue]=khoa.maKhoa>{{ khoa.tenKhoa }}</option>
                   </select>
                 </div>
                 <div class="form-group">

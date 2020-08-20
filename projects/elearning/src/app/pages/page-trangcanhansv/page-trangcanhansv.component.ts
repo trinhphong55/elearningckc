@@ -86,6 +86,9 @@ export class PageTrangcanhansvComponent implements OnInit {
       tenHK: 'HK6',
     },
   ];
+  public hocKiTam = this.hocKis;
+  public chonTKB = new FormControl('');
+
   constructor(
     private router: ActivatedRoute,
     private route: Router,
@@ -179,13 +182,10 @@ export class PageTrangcanhansvComponent implements OnInit {
         if (sv.data) {
           this.sinhVien = sv.data;
           let maCT = this.sinhVien.maLopHoc.slice(0, 7);
-          this.hocKis.forEach((hk) => {
-            this.layCTDT_theoHocKi(hk.maHK, maCT);
-          });
+          this.layCTDT_theoHocKi(this.sinhVien.maSinhVien);
 
-
-          this.dsTatCaKHDTTmp = this.dsTatCaKHDT;
           this.layThoiKhoaBieu_theoLop(this.sinhVien.maLopHoc, 1);
+
           this.setValueSinhVienFormGroup(this.sinhVien);
           this.layLopHocPhan(this.sinhVien.maLopHoc);
           this.lophocService
@@ -265,32 +265,12 @@ export class PageTrangcanhansvComponent implements OnInit {
       }
     );
   }
-  public layCTDT_theoHocKi(hocKi, maCTDT) {
-    if (hocKi) {
-      this.kHDTService
-        .getKHDTByHocKiNMaCTDT(maCTDT, hocKi)
-        .subscribe((res: any) => {
-          this.dsKHDT = res;
-
-          this.dsKHDT.forEach((khdt) => {
-            this.diemSinhViens.forEach((diem) => {
-              if (diem.maDaoTao == khdt.maDaoTao) {
-                khdt.diemSinhVien = diem;
-
-              }
-            });
-            this.monHocService
-              .getMonHocFromMaMonHoc(khdt.maMonHoc)
-              .subscribe((res: any) => {
-                khdt.tenMonHoc = res.tenMonHoc;
-              });
-          });
-
-          this.dsTatCaKHDT.push({ hocKi: hocKi, data: this.dsKHDT });
-          this.dsTatCaKHDT.sort((a, b) => {
-            return a.hocKi - b.hocKi;
-          });
-        });
+  public layCTDT_theoHocKi(maSV) {
+    if (maSV) {
+      this.kHDTService.layCTDT_theoMaSV(maSV).subscribe((res: any) => {
+        this.dsTatCaKHDT = res.data;
+        this.dsTatCaKHDTTmp = this.dsTatCaKHDT;
+      });
     } else {
       this.dsTatCaKHDT = [];
     }
@@ -304,6 +284,7 @@ export class PageTrangcanhansvComponent implements OnInit {
       (err) => console.log(err)
     );
   }
+
   public layMonHoc_tuMaMonHoc(dsMaMonHoc) {
     this.monHocService.getMonHoc().subscribe((res: any) => {
       this.dsMonHoc = res;
@@ -396,7 +377,7 @@ export class PageTrangcanhansvComponent implements OnInit {
           ds.push(el);
         }
       });
-    }else{
+    } else {
       ds = this.dsTatCaKHDTTmp;
     }
 
@@ -416,6 +397,14 @@ export class PageTrangcanhansvComponent implements OnInit {
         nguoiChinhSua: this.taiKhoan.displayName,
       };
       this.capNhatSinhVien(req);
+    }
+  }
+  onChangeHocKiTKB(){
+    this.hocKiTam = [];
+    if(this.chonTKB.value){
+      this.hocKiTam.push({maHK:this.chonTKB.value, tenHK:this.chonTKB.value});
+    }else{
+      this.hocKiTam = this.hocKis;
     }
   }
   //################################ Xu ly loc #######################################

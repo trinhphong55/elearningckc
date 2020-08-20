@@ -106,7 +106,7 @@
                       <td>
                         <form [formGroup]="dsLopFormArray?.controls[i]">
                           <select class="form-control" formControlName="maLopHoc">
-                            <option *ngFor="let loai of lopTams" [ngValue]=loai.maLopHoc> {{loai.tenVietTat }}</option>
+                            <option *ngFor="let loai of lopHocs" [ngValue]=loai.maLopHoc> {{loai.tenVietTat }}</option>
                           </select>
                         </form>
                       </td>

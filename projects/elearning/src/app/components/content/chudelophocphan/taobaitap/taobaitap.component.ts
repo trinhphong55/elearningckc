@@ -14,6 +14,7 @@ import { ActivityService } from '../../../../services/activity.service';
 import { BaiTap } from '../../../../models/BaiTap.inteface';
 import { LopHocPhan } from '../../../../models/lophocphan.interface';
 import { ChuDe } from '../../../../models/chu-de.interface';
+import { ToastrService } from 'ngx-toastr';
 
 const uri = 'https://localhost:4100/api/baitap/uploads';
 
@@ -62,8 +63,10 @@ export class TaobaitapComponent implements OnInit {
   }
 
   changeLHP(maLopHocPhan: string) {
+    console.log(maLopHocPhan);
     this._chuDeService.layTheo_maLopHocPhan(parseInt(maLopHocPhan)).subscribe(res => {
       this.dsChuDe = res.data;
+
     })
   }
 
@@ -103,7 +106,7 @@ export class TaobaitapComponent implements OnInit {
       } else {
         this._checkNewChuDe(() => {
           this._baiTapService.addBaiTap(this.baitap).subscribe(res => {
-            alert(res.message);
+            this.toastr.success(res.message, 'Thông báo');
             this._setActivity(res.maDoiTuong);
             this._clearBaiTap();
           })
@@ -128,11 +131,11 @@ export class TaobaitapComponent implements OnInit {
 
   private _validate(save: Function) {
     if (this.baitap.tieuDe.trim() === "") {
-      alert("Nhap tieu de");
+      this.toastr.warning("Nhập tiêu đề", 'Thông báo');
       return;
     }
     if (this.baitap.lopHocPhan === -1) {
-      alert("Chon lop hoc phan");
+      this.toastr.warning("Chọn lớp học phần", 'Thông báo');
       return;
     }
     save();
@@ -160,7 +163,7 @@ export class TaobaitapComponent implements OnInit {
     private _baiTapService: BaiTapService,
     private _activityService: ActivityService,
     private _lopHocPhanService: LopHocPhanService,
-    ) {
+    private toastr: ToastrService,) {
     this._maLopHocPhan = parseInt(this._router.url.split('/')[2][0]);
   }
 
@@ -174,7 +177,7 @@ export class TaobaitapComponent implements OnInit {
         this.baitap.file = this.attachmentList;
         this._baiTapService.addBaiTap(this.baitap).subscribe(res => {
           if (res.status === 200) {
-            alert(res.message);
+            this.toastr.success(res.message, 'Thông báo');
             this._setActivity(res.maDoiTuong);
             this._clearBaiTap();
           }

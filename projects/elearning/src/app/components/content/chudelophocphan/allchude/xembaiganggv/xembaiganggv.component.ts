@@ -41,7 +41,9 @@ export class XembaiganggvComponent implements OnInit {
       this.baiGiangService
         .layTheo_maBaiGiang(params.id)
         .subscribe((res: any) => {
+          console.log(res);
           if (res.data) {
+
             this.baiGiang = res.data;
             this.giaoVienService
               .Laythongtingiaovien(this.baiGiang.nguoiDang)
@@ -101,7 +103,6 @@ export class XembaiganggvComponent implements OnInit {
   }
 
   download(filename) {
-    // var filename = this.attachmentList[index].uploadname;
 
     this._fileService.downloadFileBaiGiang(filename).subscribe(
       (data) => saveAs(data, filename),

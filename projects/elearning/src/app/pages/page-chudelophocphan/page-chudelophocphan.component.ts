@@ -88,11 +88,9 @@ export class PageChudelophocphanComponent implements OnInit {
         if (res.data) {
           this.dsChuDe = [];
           this.dsChuDe = res.data;
-        } else {
-          console.log(res);
         }
       },
-      (err) => console.log(err)
+      (err) => this.toastr.error(err.message, 'Thông báo')
     );
   }
   public layDS_BaiGiang() {
@@ -111,7 +109,7 @@ export class PageChudelophocphanComponent implements OnInit {
           });
         }
       },
-      (err) => console.log(err)
+      (err) => this.toastr.error(err.message, 'Thông báo')
     );
   }
   public layDS_BinhLuan(LoaiBaiViet, maBaiViet) {

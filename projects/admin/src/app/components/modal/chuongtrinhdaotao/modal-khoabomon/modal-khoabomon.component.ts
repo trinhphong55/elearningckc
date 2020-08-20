@@ -15,6 +15,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ModalKhoabomonComponent implements OnInit {
   khoas: any;
+  khoasTmp:any;
   bomons: any;
   dsBoMonTam: any;
   public maKhoaHienTai;
@@ -67,7 +68,7 @@ export class ModalKhoabomonComponent implements OnInit {
   updateForm: FormGroup;
   KhoaForm: FormGroup;
   tongSoTrang: any;
-  gioiHan: number = 3;
+  gioiHan: number = 10;
   ngOnInit(): void {
     this.soTrang = new FormControl(0);
     this.taiKhoan = this.cookieService.getAll();
@@ -83,6 +84,7 @@ export class ModalKhoabomonComponent implements OnInit {
       tenKhoa: new FormControl(''),
       tenVietTat: new FormControl(''),
       loaiDonVi: new FormControl(''),
+      tenDonVi: new FormControl(''),
     });
     this.addForm = new FormGroup({
       loaiDonVi: new FormControl('', [Validators.required]),
@@ -145,7 +147,7 @@ export class ModalKhoabomonComponent implements OnInit {
         this.phanTrang();
       },
       (error) => {
-        console.log(error);
+
       }
     );
   }
@@ -157,7 +159,7 @@ export class ModalKhoabomonComponent implements OnInit {
         this.xem_ChiTiet(this.maKhoaHienTai);
       },
       (error) => {
-        console.log(error);
+
       }
     );
   }
@@ -227,9 +229,10 @@ export class ModalKhoabomonComponent implements OnInit {
       this.KhoaForm.get('tenVietTat').setValue(khoa.tenVietTat);
     }
     if (khoa.tenBoMon) {
-      this.updateForm.get('tenKhoa').setValue(khoa.tenBoMon);
+      this.updateForm.get('tenDonVi').setValue(khoa.tenBoMon);
       this.updateForm.get('tenVietTat').setValue(khoa.tenVietTat);
       this.updateForm.get('loaiDonVi').setValue(khoa.maLoai);
+      this.updateForm.get('tenKhoa').setValue(this.currentKhoa.maKhoa);
     }
   }
   themKhoa() {
@@ -242,10 +245,11 @@ export class ModalKhoabomonComponent implements OnInit {
     this.result.msg = '';
     let id = this.currentIndex;
     let data = {
-      tenBoMon: this.updateForm.get('tenKhoa').value,
+      tenBoMon: this.updateForm.get('tenDonVi').value,
       tenVietTat: this.updateForm.get('tenVietTat').value,
       maLoai: this.updateForm.get('loaiDonVi').value,
       nguoiChinhSua: this.taiKhoan.email,
+      maKhoa: this.updateForm.get('tenKhoa').value ,
     };
 
     this.BomonService.update(id, data).subscribe(
@@ -282,7 +286,7 @@ export class ModalKhoabomonComponent implements OnInit {
         this.getKhoaBoMon();
       },
       (error) => {
-        console.log(error);
+
       }
     );
   }
@@ -300,7 +304,7 @@ export class ModalKhoabomonComponent implements OnInit {
           this.getKhoaBoMon();
         },
         (error) => {
-          console.log(error);
+
         }
       );
     } else {

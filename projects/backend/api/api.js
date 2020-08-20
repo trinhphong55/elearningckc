@@ -262,14 +262,16 @@ router.delete("/chude/:maChuDe", verifyToken, ChuDe.xoaTheo_maChuDe);
 //=========================== Routes BaiGiang =============================================
 router.get("/baigiang", verifyToken, baiGiang.layTatCa);
 router.get("/baigiang/:maChuDe", baiGiang.layTheoMaChuDe);
-router.post("/baigiang", verifyToken, baiGiang.them);
-router.get("/baigiang/:maLopHocPhan/lop-hoc-phan", verifyToken, baiGiang.layTheo_MaLHP);
-router.get("/baigiang/:maBaiGiang/ma-bai-giang", verifyToken, baiGiang.layTheo_maBaiGiang);
-router.post("/baigiang/upload", verifyToken, baiGiang.upload);
-router.post("/baigiang/download", verifyToken, baiGiang.download);
+router.post("/baigiang",verifyToken, baiGiang.them);
+router.get("/baigiang/:maLopHocPhan/lop-hoc-phan",verifyToken, baiGiang.layTheo_MaLHP);
+router.get("/baigiang/:maBaiGiang/ma-bai-giang",verifyToken, baiGiang.layTheo_maBaiGiang);
+router.post("/baigiang/upload", baiGiang.upload);
+router.post("/baigiang/download", baiGiang.download);
 router.delete("/baigiang/:maBaiGiang", baiGiang.xoa);
 
 //========================= Routes BinhLuan ==========================================
-router.get("/binhluan/:loaiBaiViet/baiviet/:maBaiViet", verifyToken, binhLuan.layBinhLuan_theoBaiViet);
-router.post("/binhluan", verifyToken, binhLuan.themBinhLuan);
+router.get("/binhluan/:loaiBaiViet/baiviet/:maBaiViet", verifyToken,binhLuan.layBinhLuan_theoBaiViet);
+router.post("/binhluan",verifyToken, binhLuan.themBinhLuan);
+router.get("/binhluan",verifyToken, binhLuan.layTatCaBinhLuan);
+
 module.exports = router;
