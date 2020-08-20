@@ -140,7 +140,6 @@ exports.LayTONGDIEM = async (req, res) => {
       diemTongKet.push(dsTongDiem[i])
     }
     res.json(diemTongKet);
-    diemTongKet = []
   } catch (err) {
     console.log(err)
   }
@@ -154,6 +153,18 @@ async function asyncForEach(array, callback) {
 
 exports.luuTongDiem = async (req, res) => {
     try {
+      var dsv= await Diemsinhvien.find({maLopHocPhan:req.params.maLopHocPhan,trangThai:1});
+      var a;
+      req.body.forEach(x=>{
+      dsv.forEach(y=>{
+        if(x.mssv==y.maSinhVien)
+        {
+          a=1;
+        }
+      })
+      });
+      if(a!=1)
+      {
       dsDiem = req.body;
     //check req.body rong
     await asyncForEach(dsDiem, async (diem, index) => {
@@ -169,6 +180,14 @@ exports.luuTongDiem = async (req, res) => {
       newDiem.save();
     })
     return res.json({status:200});
+  }
+  else
+  {
+    return res.status(500).json({
+      status: 200,
+      message: "Điểm tông kết đã được lưu",
+    });
+  }
     } catch (error) {
       
     }
