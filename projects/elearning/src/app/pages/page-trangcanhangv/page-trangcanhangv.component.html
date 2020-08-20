@@ -10,95 +10,14 @@
     <div class="col-md-10">
       <ul class="nav nav-tabs">
         <li class="nav-item">
-          <a href="" data-target="#messages" data-toggle="tab" class="nav-link active">Thông báo</a>
-        </li>
-        <li class="nav-item">
-          <a href="" data-target="#edit" data-toggle="tab" class="nav-link">Chỉnh sửa thông tin</a>
+          <a href="" data-target="#edit" data-toggle="tab" class="nav-link active">Chỉnh sửa thông tin</a>
         </li>
         <li class="nav-item">
           <a href="" data-target="#dslophocphan" data-toggle="tab" class="nav-link">Danh sách lớp học phần</a>
         </li>
       </ul>
       <div class="tab-content py-4">
-        <div class="tab-pane active" id="messages">
-          <div class="scrollable">
-            <div class="alert alert-info alert-dismissable">
-              <a class="panel-close close" data-dismiss="alert">×</a><strong>Huy nguyễn</strong>. Đã đăng bài
-              tập mới
-            </div>
-            <div class="alert alert-info alert-dismissable">
-              <a class="panel-close close" data-dismiss="alert">×</a><strong>Huy Nguyễn</strong> đã đăng tài
-              liệu mới
-            </div>
-            <div class="alert alert-info alert-dismissable">
-              <a class="panel-close close" data-dismiss="alert">×</a><strong>Huy Nguyễn</strong> đã đăng tài
-              liệu mới
-            </div>
-            <div class="alert alert-info alert-dismissable">
-              <a class="panel-close close" data-dismiss="alert">×</a><strong>Huy Nguyễn</strong> đã đăng tài
-              liệu mới
-            </div>
-            <table class="table table-hover table-striped">
-              <tbody>
-                <tr>
-                  <td>
-                    <span class="float-right font-weight-bold">3 giờ trước</span> Huy Nguyễn đã đăng một
-                    bài tập mới
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <span class="float-right font-weight-bold">hôm nay</span> Huy Nguyễn đã đăng một tài
-                    liệu mới
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <span class="float-right font-weight-bold">9/10</span> Huy Nguyễn đã đăng một bài
-                    tập mới
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <span class="float-right font-weight-bold">9/4</span> Huy Nguyễn đã đăng một bài tập
-                    mới
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <span class="float-right font-weight-bold">9/4</span> Huy Nguyễn đã đăng một bài tập
-                    mới
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <span class="float-right font-weight-bold">9/4</span> Huy Nguyễn đã đăng một bài tập
-                    mới
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <span class="float-right font-weight-bold">9/4</span> Huy Nguyễn đã đăng một bài tập
-                    mới
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <span class="float-right font-weight-bold">9/4</span> Huy Nguyễn đã đăng một bài tập
-                    mới
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <span class="float-right font-weight-bold">9/4</span> Huy Nguyễn đã đăng một bài tập
-                    mới
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <div class="tab-pane" id="edit">
+        <div class="tab-pane active" id="edit">
           <form role="form" *ngFor="let gv of giaovien" [formGroup]="formCapnhapGV">
             <div class="form-group row">
               <label class="col-lg-3 col-form-label form-control-label">Mã giáo viên</label>
@@ -145,7 +64,7 @@
             <div class="form-group row">
               <label class="col-lg-3 col-form-label form-control-label">Số điện thoại</label>
               <div class="col-lg-9">
-                <input class="form-control" type="text" value="{{gv.sdt}}" formControlName="sodienthoai">
+                <input class="form-control" type="text" value="{{gv.sdt}}" formControlName="sodienthoai" maxlength="10">
               </div>
             </div>
             <div class="form-group row">
