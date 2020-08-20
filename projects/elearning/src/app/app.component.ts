@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { setCookie, getCookie } from '../../../common/helper';
 import { CookieService } from 'ngx-cookie-service';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -14,10 +15,10 @@ export class AppComponent implements OnInit{
   quyenGV:string="";
   quyenHS:string="";
   doiTuong:any;
-  constructor(private cookie: CookieService){
+  constructor(private cookie: CookieService, private toastr:ToastrService){
     if(getCookie('token')){
       if(getCookie('role') == 'admin'){
-        alert('Bạn không có quyền cập vào trang elearning');
+        this.toastr.error('Tài khoản này không có quyền truy cập vào trang elearning', 'ERROR', { timeOut: 6000 });
         window.location.href = "https://localhost:4200";
       }else{
         this.email = getCookie('email');
@@ -28,8 +29,8 @@ export class AppComponent implements OnInit{
     }
   }
   ngOnInit(): void {
-       this.tenTaiKhoan = getCookie('name');
-       this.quyenXemDiem();
+    this.tenTaiKhoan = getCookie('name');
+    this.quyenXemDiem();
   }
 
   onLogout(): void {

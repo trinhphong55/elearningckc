@@ -85,7 +85,7 @@ export class PageTrangcanhangvComponent implements OnInit {
     this.layThongtinGV();
     this.layDanhSachBac();
   }
- 
+
   //trang  ca nhan gv
   // lay cookie
   layCookie() {
@@ -112,7 +112,7 @@ export class PageTrangcanhangvComponent implements OnInit {
     this.lopHocPhanService.getLopHocPhan().subscribe(
       dsLopHP => {
         this.dsLopHP = dsLopHP;
-        
+
       },
       (error) => {
         console.log(error)
@@ -131,11 +131,10 @@ export class PageTrangcanhangvComponent implements OnInit {
             this.dsGiaoVienBymaGv = dsGiaoVienBymaGv;
             this.filterDsLop = []
             this.dsLop.forEach(lop => {
-              this.dsGiaoVienBymaGv.find(p => {        
+              this.dsGiaoVienBymaGv.find(p => {
                 if (p.maLopHoc == lop.maLopHoc && p.hocKi==this.formDanhSachLop.get('hocKi').value && lop.maBac== this.formDanhSachLop.get('bac').value && lop.khoa== this.formDanhSachLop.get('khoa').value) {
                   console.log()
                   this.filterDsLop.push(p)
-
                 }
               });
             });

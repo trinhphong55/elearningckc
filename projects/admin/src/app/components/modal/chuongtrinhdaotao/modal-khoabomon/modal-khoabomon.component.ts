@@ -2,7 +2,7 @@ import { BomonService } from './../../../../services/khoa-bomons/bomon.service';
 import { LoaidonviService } from './../../../../services/loaidonvi/loaidonvi.service';
 import { KhoaBonmonService } from './../../../../services/khoa-bomons/khoa-bonmon.service';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators, Form } from '@angular/forms';
 import { ModalService } from '../../../../services/modal.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
@@ -24,6 +24,8 @@ export class ModalKhoabomonComponent implements OnInit {
   display = true;
   loais: any;
   addForm: FormGroup;
+  soTrang: FormControl;
+  dskhoaTam: any[] = [];
 
   statusElementList = {};
   //status
@@ -64,11 +66,15 @@ export class ModalKhoabomonComponent implements OnInit {
   ) {}
   updateForm: FormGroup;
   KhoaForm: FormGroup;
+  tongSoTrang: any;
+  gioiHan: number = 3;
   ngOnInit(): void {
+    this.soTrang = new FormControl(0);
     this.taiKhoan = this.cookieService.getAll();
     this.getKhoaBoMon();
     this.retriveLoaiDonVi();
     this.getBoMon();
+
     this.KhoaForm = new FormGroup({
       tenKhoa: new FormControl(''),
       tenVietTat: new FormControl(''),
@@ -128,8 +134,15 @@ export class ModalKhoabomonComponent implements OnInit {
   //lay tất cả KhoaBoMonKhoaBoMon
   getKhoaBoMon() {
     this.KhoaBonmonService.getAll().subscribe(
-      (data) => {
+      (data: any) => {
         this.khoas = data;
+        this.dskhoaTam = data;
+        this.tongSoTrang = [];
+        let length = this.khoas.length / this.gioiHan;
+        for (let i = 0; i < length; i++) {
+          this.tongSoTrang.push(i);
+        }
+        this.phanTrang();
       },
       (error) => {
         console.log(error);
@@ -166,7 +179,6 @@ export class ModalKhoabomonComponent implements OnInit {
         this.getBoMon();
       },
       (error) => {
-
         if (error.status == 422)
           error.error.forEach((element) => {
             this.toastr.error(element.msg, 'ERROR', { timeOut: 6000 });
@@ -174,7 +186,12 @@ export class ModalKhoabomonComponent implements OnInit {
       }
     );
   }
+  public phanTrang() {
+    let start = this.soTrang.value * this.gioiHan;
+    let end = start + this.gioiHan;
+    this.khoas = this.dskhoaTam.slice(start, end);
 
+  }
   /**
    * themKhoa
    */

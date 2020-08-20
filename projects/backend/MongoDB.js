@@ -8,7 +8,7 @@ class MongoDB {
   }
 
   async connectDB() {
-    let dbName = 'devAngular';
+    let dbName = 'testAngularckc';
     try {
       if (!this.dbClose) {
         const connectRs = await MongoClient.connect(url, {

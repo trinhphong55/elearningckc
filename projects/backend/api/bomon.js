@@ -147,25 +147,22 @@ exports.deleteKhoaBoMon = async (req, res) => {
 
 exports.checkValidate = () => {
   return [
-    check("tenBoMon", "MA BO MON is required").notEmpty(),
-    check("maKhoa", "MA BO MON is must be at least 10 chars long").isLength({
+    check("tenBoMon", "Tên đơn vị không được để trống").notEmpty(),
+    check("maKhoa", "Khoa không được để trống").notEmpty(),
+
+    check("tenBoMon", "Tên đơn vị không dài quá 50 kí tự ").isLength({
       max: 50,
     }),
 
-    check("tenBoMon", "TEN BO MON is must be at most 50 chars long ").isLength({
-      max: 50,
-    }),
-    check("tenBoMon", "TEN BO MON is required").notEmpty(),
-
-    check("tenVietTat", "TEN VIET TAT must be at most 15 char long").isLength({
+    check("tenVietTat", "Tên viết tắt không dài hơn 15 kí tự").isLength({
       max: 15,
     }),
-    check("tenVietTat", "TEN VIET TAT is required").notEmpty(),
+    check("tenVietTat", "Tên viết tắt không được để trống").notEmpty(),
 
-    check("nguoiChinhSua", "NGUOI CHINH SUA is required").notEmpty(),
+    check("nguoiChinhSua", "Người chỉnh sữa không được để trống").notEmpty(),
 
-    check("maLoai", "MA LOAI is required").notEmpty(),
-    check("maLoai", "MA LOAI is numberic").isNumeric(),
+    check("maLoai", "Loại đơn vị không được để trống").notEmpty(),
+    check("maLoai", "Loại đơn vị phải là một số").isNumeric(),
   ];
 };
 
