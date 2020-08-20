@@ -45,14 +45,14 @@ router.post('/them-giao-vien', async (req, res) =>{
 })
 
 router.post('/cap-nhat-giao-vien', async (req, res) => {
-  let result = await giaoVienDAO.find({email: req.body.email});
-  if(result.length > 0){
-    res.send({
-      'msg': 'Đã tồn tại email này',
-      'status': false
-    })
-  }
-  else{
+  // let result = await giaoVienDAO.find({email: {$ne: req.body.email}});
+  // if(result.length > 0){
+  //   res.send({
+  //     'msg': 'Đã tồn tại email này',
+  //     'status': false
+  //   })
+  // }
+  // else{
     let result = await giaoVienDAO.updateOrInsertOne({maGiaoVien: req.body.maGiaoVien}, req.body, 'GiaoVien')
     if(result != false){
       res.send({
@@ -66,7 +66,7 @@ router.post('/cap-nhat-giao-vien', async (req, res) => {
         'status': false
       });
     }
-  }
+  // }
 })
 
 router.post('/xoa-giao-vien', async (req, res) =>{

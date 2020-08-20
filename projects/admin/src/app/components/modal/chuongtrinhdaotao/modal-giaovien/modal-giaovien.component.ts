@@ -118,12 +118,12 @@ export class ModalGiaovienComponent implements OnInit {
     this.giaoVienForm = new FormGroup({
       ho: new FormControl('', [
         Validators.required,
-        Validators.minLength(4),
+        Validators.minLength(1),
         Validators.maxLength(50)
       ]),
       ten: new FormControl('', [
         Validators.required,
-        Validators.minLength(4),
+        Validators.minLength(1),
         Validators.maxLength(50)
       ]),
       ngaySinh: new FormControl('', [
@@ -149,12 +149,12 @@ export class ModalGiaovienComponent implements OnInit {
     this.updateForm = new FormGroup({
       hoUpdate: new FormControl('', [
         Validators.required,
-        Validators.minLength(4),
+        Validators.minLength(1),
         Validators.maxLength(50)
       ]),
       tenUpdate: new FormControl('', [
         Validators.required,
-        Validators.minLength(4),
+        Validators.minLength(1),
         Validators.maxLength(50)
       ]),
       ngaySinhUpdate: new FormControl('', [

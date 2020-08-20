@@ -19,7 +19,7 @@
                       Họ không được để trống.
                     </div>
                     <div *ngIf="ho.errors.minlength">
-                      Họ ít nhất 4 kí tự.
+                      Họ ít nhất 1 kí tự.
                     </div>
                     <div *ngIf="ho.errors.maxlength">
                       Họ nhiều nhất 50 kí tự.
@@ -34,7 +34,7 @@
                       Tên không được để trống.
                     </div>
                     <div *ngIf="ten.errors.minlength">
-                      Tên ít nhất 4 kí tự.
+                      Tên ít nhất 1 kí tự.
                     </div>
                     <div *ngIf="ten.errors.maxlength">
                       Tên nhiều nhất 50 kí tự.
@@ -271,7 +271,7 @@
                           Họ không được để trống.
                         </div>
                         <div *ngIf="hoUpdate.errors.minlength">
-                          Họ ít nhất 4 kí tự.
+                          Họ ít nhất 1 kí tự.
                         </div>
                         <div *ngIf="hoUpdate.errors.maxlength">
                           Họ nhiều nhất 50 kí tự.
@@ -287,7 +287,7 @@
                           Tên không được để trống.
                         </div>
                         <div *ngIf="tenUpdate.errors.minlength">
-                          Tên ít nhất 4 kí tự.
+                          Tên ít nhất 1 kí tự.
                         </div>
                         <div *ngIf="tenUpdate.errors.maxlength">
                           Tên nhiều nhất 50 kí tự.
@@ -328,7 +328,7 @@
                   <div class="col-3">
                     <div class="form-group">
                       <label for="email">Email</label>
-                      <input type="text" name="emailUpdate" class="form-control" formControlName="emailUpdate">
+                      <input type="text" name="emailUpdate" class="form-control" formControlName="emailUpdate" disabled>
                       <div *ngIf="emailUpdate.invalid && (emailUpdate.dirty || emailUpdate.touched)"
                         class="alert alert-danger">
                         <div *ngIf="emailUpdate.errors.required">
@@ -408,7 +408,7 @@
                   </div>
                   <div class="col-md-2">
                     <div class="form-group pr-3 pt-1">
-                      Học kì:<select class="form-control" id="exampleFormControlSelect1" formControlName="hocKi"
+                      Học kì:<select class="form-control" id="exampleFormControlSelect2" formControlName="hocKi"
                       (change)="dsLHP()">
                         <option value="-1">Chọn học kì</option>
                         <option value="1">1</option>
@@ -422,7 +422,7 @@
                   </div>
                   <div class="col-md-2">
                     <div class="form-group pr-3 pt-1">
-                      Khóa:<select class="form-control" id="exampleFormControlSelect1" formControlName="khoa"
+                      Khóa:<select class="form-control" id="exampleFormControlSelect3" formControlName="khoa"
                       (change)="dsLHP()">
                         <option value="-1">Chọn khóa</option>
                         <option value="16">16</option>
