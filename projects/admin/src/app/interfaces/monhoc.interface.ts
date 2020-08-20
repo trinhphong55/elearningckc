@@ -4,4 +4,6 @@ export interface MonHoc {
   tenVietTat: string;
   maLoaiMonHoc: string;
   tenMonHocKhongDau?: string;
+  loaiMonHoc?: string;
+  importSuccess?: boolean;
 }
