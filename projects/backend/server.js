@@ -8,10 +8,10 @@ const app = express();
 const morgan = require("morgan");
 const path = require("path");
 
-const MONGODB_URI =
-  "mongodb://localhost:27017/testAngularckc?readPreference=primary&appname=MongoDB%20Compass%20Community&ssl=false";
 // const MONGODB_URI =
-//   'mongodb://ai_noi_mongo_die:khongthechetduoc@103.92.26.177:27017/devAngular?retryWrites=true&w=majority?authSource=admin';
+//   "mongodb://localhost:27017/testAngularckc?readPreference=primary&appname=MongoDB%20Compass%20Community&ssl=false";
+const MONGODB_URI =
+  'mongodb://ai_noi_mongo_die:khongthechetduoc@103.92.26.177:27017/devAngular?retryWrites=true&w=majority?authSource=admin';
 
 const PORT = 4100;
 const httpsOptions = {

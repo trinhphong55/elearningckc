@@ -46,65 +46,17 @@
         </div>
         <div class="shadow rounded overflow-hidden">
           <div class="master_page__chucnang__box px-3 px-md-4">
-            <div
-              class="master_page__chucnang__item master_page__chucnang__fb__item py-3"
-            >
-              <div class="d-flex">
-                <div class="mdi mdi-account mr-1"></div>
-                <div>
-                  <strong>lucaotien_cntt</strong><span> vừa làm cái gì </span
-                  ><strong>tại chức năng đó</strong>
-                  <div class="small">1 giờ trước</div>
+            <div *ngFor="let item of listActivityElearning">
+              <div class="master_page__chucnang__item master_page__chucnang__fb__item py-3">
+                <div class="d-flex">
+                  <div class="mdi mdi-account mr-1"></div>
+                  <div>
+                    <strong>{{item.noiDung}}</strong>
+                    <div class="small"> {{item.ngayTao | date:'dd-MM-yyyy'}}</div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div
-              class="master_page__chucnang__item master_page__chucnang__fb__item py-3"
-            >
-              <div class="d-flex">
-                <div class="mdi mdi-account mr-1"></div>
-                <div>
-                  <strong>lucaotien_cntt</strong><span> vừa làm cái gì </span
-                  ><strong>tại chức năng đó</strong>
-                  <div class="small">1 giờ trước</div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="master_page__chucnang__item master_page__chucnang__fb__item py-3"
-            >
-              <div class="d-flex">
-                <div class="mdi mdi-account mr-1"></div>
-                <div>
-                  <strong>lucaotien_cntt</strong><span> vừa làm cái gì </span
-                  ><strong>tại chức năng đó</strong>
-                  <div class="small">1 giờ trước</div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="master_page__chucnang__item master_page__chucnang__fb__item py-3"
-            >
-              <div class="d-flex">
-                <div class="mdi mdi-account mr-1"></div>
-                <div>
-                  <strong>lucaotien_cntt</strong><span> vừa làm cái gì </span
-                  ><strong>tại chức năng đó</strong>
-                  <div class="small">1 giờ trước</div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="master_page__chucnang__item master_page__chucnang__fb__item py-3"
-            >
-              <div class="d-flex">
-                <div class="mdi mdi-account mr-1"></div>
-                <div>
-                  <strong>lucaotien_cntt</strong><span> vừa làm cái gì </span
-                  ><strong>tại chức năng đó</strong>
-                  <div class="small">1 giờ trước</div>
-                </div>
-              </div>
+
             </div>
           </div>
         </div>
