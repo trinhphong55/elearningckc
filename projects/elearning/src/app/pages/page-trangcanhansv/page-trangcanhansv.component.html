@@ -91,32 +91,44 @@
             <h4>Thời khóa biểu lớp {{ sinhVien?.tenLopHoc }}</h4>
           </div>
           <div class="row">
+
             <div class="col-md-12">
-              <table class="table">
-                <thead style="background: #006666;color: white;">
-                  <tr>
-                    <th scope="col">Sáng</th>
-                    <th scope="col">Thứ 2</th>
-                    <th scope="col">Thứ 3</th>
-                    <th scope="col">Thứ 4</th>
-                    <th scope="col">Thứ 5</th>
-                    <th scope="col">Thứ 6</th>
-                    <th scope="col">Thứ 7</th>
-
-                  </tr>
-                </thead>
-                <tbody>
-                  <ng-container *ngFor="let item of dsThoiKhoaBieu?.TKB; index as i">
+              <div class="form-group pr-3 pt-1">
+                <select class="form-control" id="exampleFormControlSelect1" [formControl]="chonTKB"
+                  (change)="onChangeHocKiTKB()">
+                  <option value="">Chọn học kì</option>
+                  <option *ngFor="let item of hocKis" [ngValue]=item.maHK>{{ item.tenHK }}</option>
+                </select>
+              </div>
+              <ng-container *ngFor="let item of hocKiTam">
+                <h1>Học kì {{ item.maHK }}</h1>
+                <table class="table table-bordered">
+                  <thead style="background: #006666;color: white;">
                     <tr>
-                      <th scope="row">Tiết {{ i +1 }}</th>
-                      <ng-container *ngFor="let tiet of item; index as j">
-                        <td>{{ tiet }}</td>
-                      </ng-container>
-                    </tr>
-                  </ng-container>
-                </tbody>
+                      <th scope="col">Sáng</th>
+                      <th scope="col">Thứ 2</th>
+                      <th scope="col">Thứ 3</th>
+                      <th scope="col">Thứ 4</th>
+                      <th scope="col">Thứ 5</th>
+                      <th scope="col">Thứ 6</th>
+                      <th scope="col">Thứ 7</th>
 
-              </table>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <ng-container *ngFor="let item of dsThoiKhoaBieu?.TKB; index as i">
+                      <tr>
+                        <th scope="row">Tiết {{ i +1 }}</th>
+                        <ng-container *ngFor="let tiet of item; index as j">
+                          <td>{{ tiet }}</td>
+                        </ng-container>
+                      </tr>
+                    </ng-container>
+                  </tbody>
+
+                </table>
+              </ng-container>
+
             </div>
           </div>
         </div>

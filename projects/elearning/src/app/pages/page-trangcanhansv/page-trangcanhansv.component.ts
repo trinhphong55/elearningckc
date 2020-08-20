@@ -86,6 +86,9 @@ export class PageTrangcanhansvComponent implements OnInit {
       tenHK: 'HK6',
     },
   ];
+  public hocKiTam = this.hocKis;
+  public chonTKB = new FormControl('');
+
   constructor(
     private router: ActivatedRoute,
     private route: Router,
@@ -182,6 +185,7 @@ export class PageTrangcanhansvComponent implements OnInit {
           this.layCTDT_theoHocKi(this.sinhVien.maSinhVien);
 
           this.layThoiKhoaBieu_theoLop(this.sinhVien.maLopHoc, 1);
+
           this.setValueSinhVienFormGroup(this.sinhVien);
           this.layLopHocPhan(this.sinhVien.maLopHoc);
           this.lophocService
@@ -280,6 +284,7 @@ export class PageTrangcanhansvComponent implements OnInit {
       (err) => console.log(err)
     );
   }
+
   public layMonHoc_tuMaMonHoc(dsMaMonHoc) {
     this.monHocService.getMonHoc().subscribe((res: any) => {
       this.dsMonHoc = res;
@@ -393,6 +398,14 @@ export class PageTrangcanhansvComponent implements OnInit {
         nguoiChinhSua: this.taiKhoan.displayName,
       };
       this.capNhatSinhVien(req);
+    }
+  }
+  onChangeHocKiTKB(){
+    this.hocKiTam = [];
+    if(this.chonTKB.value){
+      this.hocKiTam.push({maHK:this.chonTKB.value, tenHK:this.chonTKB.value});
+    }else{
+      this.hocKiTam = this.hocKis;
     }
   }
   //################################ Xu ly loc #######################################

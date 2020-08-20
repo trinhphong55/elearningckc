@@ -64,8 +64,10 @@ export class TaobaitapComponent implements OnInit {
   }
 
   changeLHP(maLopHocPhan: string) {
+    console.log(maLopHocPhan);
     this._chuDeService.layTheo_maLopHocPhan(parseInt(maLopHocPhan)).subscribe(res => {
       this.dsChuDe = res.data;
+
     })
   }
 
@@ -186,7 +188,7 @@ export class TaobaitapComponent implements OnInit {
         this.baitap.file = this.attachmentList;
         this._baiTapService.addBaiTap(this.baitap).subscribe(res => {
           if (res.status === 200) {
-            this.toastr.success(res.message, 'Thông báobáo');
+            this.toastr.success(res.message, 'Thông báo');
             this._setActivity(res.maDoiTuong);
             this._clearBaiTap();
           }
