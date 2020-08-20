@@ -8,11 +8,15 @@ const app = express();
 const morgan = require("morgan");
 const path = require("path");
 
+const ip = "103.92.26.177:27017";
+const db = "devAngular";
+const user = "ai_noi_mongo_die";
+const password = "khongthechetduoc";
+
 const MONGODB_URI =
-  "mongodb://localhost:27017/testAngularckc?readPreference=primary&appname=MongoDB%20Compass%20Community&ssl=false";
+  `mongodb://${user}:${password}@${ip}/${db}?retryWrites=true&w=majority?authSource=admin`;
 
 const PORT = 4100;
-
 const httpsOptions = {
   key: fs.readFileSync("security/localhost.key"),
   cert: fs.readFileSync("security/localhost.crt"),

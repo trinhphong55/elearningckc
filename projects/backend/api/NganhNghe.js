@@ -46,7 +46,7 @@ router.post('/nganhnghe', async (req, res) => {
   } catch (error) {
     return error;
   }
-  console.log(ktmaNganhNghe)
+  
 });
 //sua nganh nghe
 router.put('/nganhnghe/:id', async (req, res) => {

@@ -12,21 +12,21 @@ const httpOptions = {
 export class KhoahocService {
 
   get(): Observable<ttthKhoaHoc[]  >{
-    return this.http.get<ttthKhoaHoc[] >('https://api.cnttckc.edu.vn/api/ttthKhoaHoc/list').pipe(
+    return this.http.get<ttthKhoaHoc[] >('https://localhost:4100/api/ttthKhoaHoc/list').pipe(
       retry(1),
       catchError(error => of([]))
     );
   }
   add(newItem: ttthKhoaHoc): Observable<ttthKhoaHoc> {
-    return this.http.post<ttthKhoaHoc>('https://api.cnttckc.edu.vn/api/ttthKhoaHoc/add', newItem, httpOptions).pipe(
+    return this.http.post<ttthKhoaHoc>('https://localhost:4100/api/ttthKhoaHoc/add', newItem, httpOptions).pipe(
     );
   }
   update(updateItem: ttthKhoaHoc): Observable<ttthKhoaHoc> {
-    return this.http.post<ttthKhoaHoc>('https://api.cnttckc.edu.vn/api/ttthKhoaHoc/update', updateItem, httpOptions).pipe(
+    return this.http.post<ttthKhoaHoc>('https://localhost:4100/api/ttthKhoaHoc/update', updateItem, httpOptions).pipe(
     );
   }
   delete(deleteItem: ttthKhoaHoc): Observable<ttthKhoaHoc> {
-    return this.http.post<ttthKhoaHoc>('https://api.cnttckc.edu.vn/api/ttthKhoaHoc/delete', deleteItem, httpOptions).pipe(
+    return this.http.post<ttthKhoaHoc>('https://localhost:4100/api/ttthKhoaHoc/delete', deleteItem, httpOptions).pipe(
     );
   }
   constructor(private http: HttpClient) { }

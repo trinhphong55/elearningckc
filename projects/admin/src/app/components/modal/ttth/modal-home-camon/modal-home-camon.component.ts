@@ -5,7 +5,7 @@ import { CamonService } from '../../../../services/ttth/camon.service';
 import { ttthCamOn } from '../../../../../models/ttthCamOn';
 import { getCookie } from '../../../../../../../common/helper';
 
-const URL = 'https://api.cnttckc.edu.vn/api/ttthCamOn/uploads';
+const URL = 'https://localhost:4100/api/ttthCamOn/uploads';
 @Component({
   selector: 'app-modal-home-camon',
   templateUrl: './modal-home-camon.component.html',

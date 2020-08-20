@@ -1,7 +1,7 @@
 
 <form [formGroup]="formDanhSachLop">
 <nav class="header_navbar">
-    <div class="header_navbar__item flex-column p-0">
+    <div class="header_navbar__item flex-column p-0"  [ngStyle]="{'display':quyenGV}"> 
       <span>Khoá học</span>
       <select class="custom-select text-white text-center bg-transparent border-0 py-0 px-3" formControlName="khoa" (change)="onFilter()">
         <option class="bg__caothang" value="-1">-- Chọn khoá học --</option>
@@ -13,7 +13,7 @@
         <option class="bg__caothang" value="21">21</option>
       </select>
     </div>
-    <div class="header_navbar__item flex-column p-0" >
+    <div class="header_navbar__item flex-column p-0"  [ngStyle]="{'display':quyenGV}" >
       <span>Bậc</span>
       <select class="custom-select text-white text-center bg-transparent border-0 py-0 px-3" formControlName="bac" (change)="onFilter()">
         <option class="bg__caothang" value="-1">-- Chọn bậc --</option>
@@ -21,7 +21,7 @@
       </select>
       
     </div>
-    <div class="header_navbar__item flex-column p-0">
+    <div class="header_navbar__item flex-column p-0"  [ngStyle]="{'display':quyenSV}">
       <span>Học kì</span>
       <select class="custom-select text-white text-center bg-transparent border-0 py-0 px-3" formControlName="hocKi" (change)="onFilter()">
         <option class="bg__caothang" value="1">-- Chọn học kì --</option>
