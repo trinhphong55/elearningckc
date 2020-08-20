@@ -33,8 +33,8 @@ const BaiVietTruong = [
 ];
 
 const ThoiGianDangBai = {
-  time: "20:36:10",
-  date: moment().weekday(4).format("DD/MM/YYYY"), // Thứ 6 hằng tuần
+  time: "18:00:00",
+  date: moment().weekday(5).format("DD/MM/YYYY"), // Thứ 6 hằng tuần, Monday(0) -> Sunday(6)
   dateTime: "",
 };
 
@@ -44,6 +44,7 @@ ThoiGianDangBai.dateTime = moment(
 ).format("HH:mm:ss, DD/MM/YYYY");
 
 setInterval(() => {
+  // console.log('Run Auto Crawl after ',moment().diff(moment(ThoiGianDangBai.dateTime, "HH:mm:ss, DD/MM/YYYY"), "seconds"), 'seconds.');
   // console.log(moment().diff(moment(ThoiGianDangBai.dateTime, "HH:mm:ss, DD/MM/YYYY"), "seconds"));
   if (
     moment().diff(

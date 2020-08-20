@@ -7,9 +7,8 @@ const fs = require("fs");
 const app = express();
 const morgan = require("morgan");
 const path = require("path");
+const ioServer = require("socket.io");
 
-// const MONGODB_URI =
-//   "mongodb://localhost:27017/testAngularckc?readPreference=primary&appname=MongoDB%20Compass%20Community&ssl=false";
 const MONGODB_URI =
   "mongodb://ai_noi_mongo_die:khongthechetduoc@103.92.26.177:27017/devAngular?retryWrites=true&w=majority?authSource=admin";
 
@@ -18,6 +17,14 @@ const httpsOptions = {
   key: fs.readFileSync("security/localhost.key"),
   cert: fs.readFileSync("security/localhost.crt"),
 };
+
+const server = https.createServer(httpsOptions, app).listen(PORT, () => {
+  console.log("Backend API running at port " + PORT);
+});
+
+//#region Socket.io
+const io = new ioServer(server);
+//#endregion
 
 // Connect with MongoDB
 // mongoose.connect("mongodb://127.0.0.1:27017/ttth", {
@@ -53,12 +60,22 @@ app.use(morgan("dev"));
 // public images
 app.use("/uploads/cntt", express.static(path.join(__dirname, "uploads/cntt")));
 
-app.use("/api", require("./api/api"));
+app.use("/api", require("./api/api")(io));
 
 app.get("/", (req, res) => {
   res.send("Back end API");
 });
 
-const server = https.createServer(httpsOptions, app).listen(PORT, () => {
-  console.log("Backend API running at port " + PORT);
+//#region Socket.io
+var numUsers = 0;
+// khởi tạo kết nối socket
+io.on("connection", function (socket) {
+  ++numUsers;
+  console.log("a socket connected.", numUsers);
+  // io.emit("ThongBaoKhanCap", "hello world 1"); // main namespace
+  socket.on("disconnect", function () {
+    --numUsers;
+    console.log("a socket disconnected.");
+  });
 });
+//#endregion

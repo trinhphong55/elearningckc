@@ -294,7 +294,7 @@ export class ModalBaivietComponent implements OnInit, OnDestroy, AfterViewInit {
 
   onResetForm(): void {
     this.formBaiViet.reset();
-    // this._image = null;
+    this._image = null;
     this.image = '../../../../../assets/img/background/128.png';
   }
 
@@ -308,7 +308,7 @@ export class ModalBaivietComponent implements OnInit, OnDestroy, AfterViewInit {
   saveBaiViet(): void {
     // console.log(this.formBaiViet.value);
     // console.log(this._image);
-    if (this.formBaiViet.valid && this._image !== null) {
+    if (this.formBaiViet.valid) {
       const tieuDeAfterRemoveHTMLTag = this.stringCommonService.removeSpaceAndHTMLTag(
         this.formBaiViet.get('tieuDe').value
       );

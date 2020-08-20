@@ -1,16 +1,30 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Khoa Công Nghệ Thông Tin - Trường Cao Đẳng Kỹ Thuật Cao Thắng</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  </head>
 
-<head>
-  <meta charset="utf-8">
-  <title>Khoa Công Nghệ Thông Tin - Trường Cao Đẳng Kỹ Thuật Cao Thắng</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-</head>
-
-<body>
-  <app-root></app-root>
-</body>
-
+  <body>
+    <app-root></app-root>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"
+      integrity="sha512-v8ng/uGxkge3d1IJuEo6dJP8JViyvms0cly9pnbfRxT6/31c3dRWxIiwGnMSWwZjHKOuY3EVmijs7k1jz/9bLA=="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      const socket = io("https://localhost:4100");
+      socket.on("connect", () => {
+        console.log(socket.id);
+        // console.log(socket);
+        socket.on("ThongBaoKhanCap", (message) => {
+          console.log(message);
+          alert(message);
+        });
+      });
+    </script>
+  </body>
 </html>

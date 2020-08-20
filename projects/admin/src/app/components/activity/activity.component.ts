@@ -2,7 +2,6 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { TintucCnttService } from '../../services/cntt/tintuc-cntt.service';
 import { ActivityService } from '../../services/activity/activity.service';
 import * as moment from 'moment';
-declare var $: any;
 declare var Swiper: any;
 @Component({
   selector: 'app-activity',
