@@ -15,7 +15,7 @@
   <table class="table table-bordered  table-hover" >
     <thead class="table-primary">
       <tr class="text-center">
-        <th scope="col">#</th>
+        <!-- <th scope="col">#</th> -->
         <th scope="col">Lớp học</th>
         <th scope="col">Giờ học</th>
         <th scope="col">Ngày khai giảng</th>
@@ -26,7 +26,7 @@
     <tbody>
         <tr *ngFor="let item of LopHoc;let i = index" class="text-center" >
           <ng-container *ngIf="item.trangthai==1 && (item.ngayhethan| date) > (getday| date)">
-            <td scope="row">{{i+1}}</td>
+            <!-- <td scope="row">{{i+1}}</td> -->
             <td>{{item.tenlop}}</td>
             <td>{{item.giohoc}}</td>
             <td>{{item.ngaykhaigiang | date: 'dd/MM/yyyy'}}</td>
