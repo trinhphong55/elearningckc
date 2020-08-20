@@ -1,6 +1,6 @@
 const BoMon = require("../models/bomon.model");
 const keHoachDaoTaoModel = require("../models/KeHoachDaoTao.model");
-const { check, validationResult } = require("express-validator");
+const { check, validationResult, body } = require("express-validator");
 const bomonModel = require("../models/bomon.model");
 
 let idIsExist = 0;
@@ -8,12 +8,13 @@ let nameIsExist = 0;
 
 const setData = (req) => {
   return {
-    maBoMon: req.body.maKhoa,
-    tenBoMon: req.body.tenKhoa,
+    maBoMon: req.body.maBoMon,
+    tenBoMon: req.body.tenBoMon,
     tenVietTat: req.body.tenVietTat,
-    nguoiTao: req.body.nguoiTao,
+    nguoiTao: req.body.nguoiChinhSua,
     nguoiChinhSua: req.body.nguoiChinhSua,
     maLoai: req.body.maLoai,
+    maKhoa: req.body.maKhoa,
   };
 };
 
@@ -36,6 +37,8 @@ exports.getOneKhoaBoMon = async (req, res) => {
 };
 exports.postKhoaBoMon = async (req, res) => {
   try {
+    idIsExist = 0;
+    nameIsExist = 0;
     const err = validationResult(req);
     if (!err.isEmpty()) {
       res.status(422).json(err.errors);
@@ -43,27 +46,41 @@ exports.postKhoaBoMon = async (req, res) => {
     const khoabomon = await BoMon.find();
 
     khoabomon.forEach((element) => {
-      if (req.body.maKhoa === element.maBoMon) {
+      if (req.body.maBoMon === element.maBoMon) {
         idIsExist++;
       }
-      if (req.body.tenKhoa === element.tenBoMon) {
+      if (req.body.tenBoMon === element.tenBoMon) {
         nameIsExist++;
       }
     });
 
     if (idIsExist > 0) {
-      res.json({
+      return res.json({
         status: 200,
         ok: false,
         msg: "Mã khoa này đã tồn tại",
       });
     } else if (nameIsExist > 0) {
-      res.json({
+      return res.json({
         status: 200,
         ok: false,
         msg: "Tên này đã tồn tại",
       });
     } else {
+      let nextNumber = 0;
+      await BoMon.findOne({ maKhoa: req.body.maKhoa }, {})
+        .sort({ maBoMon: -1 })
+        .exec()
+        .then((bt) => {
+          if (bt !== null) {
+            nextNumber = parseInt(bt.maBoMon.slice(1, bt.maKhoa.length));
+          }
+        });
+      if (nextNumber > 10) {
+        req.body.maBoMon = req.body.maKhoa + "" + (nextNumber + 1);
+      } else {
+        req.body.maBoMon = req.body.maKhoa + "0" + (nextNumber + 1);
+      }
       const khoaBoMon = new BoMon(setData(req));
       const saveKhoa = await khoaBoMon.save();
       res.json({
@@ -130,27 +147,22 @@ exports.deleteKhoaBoMon = async (req, res) => {
 
 exports.checkValidate = () => {
   return [
-    check("maKhoa", "MA BO MON is required").notEmpty(),
-    check("maKhoa", "MA BO MON is must be at least 10 chars long").isLength({
+    check("tenBoMon", "Tên đơn vị không được để trống").notEmpty(),
+    check("maKhoa", "Khoa không được để trống").notEmpty(),
+
+    check("tenBoMon", "Tên đơn vị không dài quá 50 kí tự ").isLength({
       max: 50,
     }),
 
-    check("tenKhoa", "TEN BO MON is must be at most 50 chars long ").isLength({
-      max: 50,
-    }),
-    check("tenKhoa", "TEN BO MON is required").notEmpty(),
-
-    check("tenVietTat", "TEN VIET TAT must be at most 15 char long").isLength({
+    check("tenVietTat", "Tên viết tắt không dài hơn 15 kí tự").isLength({
       max: 15,
     }),
-    check("tenVietTat", "TEN VIET TAT is required").notEmpty(),
+    check("tenVietTat", "Tên viết tắt không được để trống").notEmpty(),
 
-    check("nguoiTao", "NGUOI TAO is required").notEmpty(),
+    check("nguoiChinhSua", "Người chỉnh sữa không được để trống").notEmpty(),
 
-    check("nguoiChinhSua", "NGUOI CHINH SUA is required").notEmpty(),
-
-    check("maLoai", "MA LOAI is required").notEmpty(),
-    check("maLoai", "MA LOAI is numberic").isNumeric(),
+    check("maLoai", "Loại đơn vị không được để trống").notEmpty(),
+    check("maLoai", "Loại đơn vị phải là một số").isNumeric(),
   ];
 };
 
@@ -160,26 +172,67 @@ exports.updateKhoaBoMon = async (req, res) => {
     if (!err.isEmpty()) {
       res.status(422).json(err.errors);
     }
-    const updateKhoa = await BoMon.updateOne(
-      { _id: req.params.id },
-      {
-        $set: setData(req),
+    let idIsExist = 0;
+    let nameIsExist = 0;
+
+    const khoabomon = await BoMon.find({ _id: { $ne: req.params.id } });
+
+    khoabomon.forEach((element) => {
+      if (req.body.maBoMon === element.maBoMon) {
+        res.status(200).json({
+          status: 200,
+          ok: false,
+          msg: "Mã khoa này đã tồn tại",
+        });
+        return idIsExist++;
       }
-    );
+      if (req.body.tenBoMon === element.tenBoMon) {
+        res.status(200).json({
+          status: 200,
+          ok: false,
+          msg: "Tên này đã tồn tại",
+        });
+        return nameIsExist++;
+      }
+      if (req.body.tenVietTat === element.tenVietTat) {
+        res.status(200).json({
+          status: 200,
+          ok: false,
+          msg: "Tên viết tắt này đã tồn tại",
+        });
+        return nameIsExist++;
+      }
+    });
 
-    let result = {
-      status: 200,
-      ok: false,
-      msg: "",
-    };
-    if (updateKhoa.nModified === 0) {
-      result.msg = "Chưa được cập nhật";
+    if (idIsExist > 0 || nameIsExist > 0) {
     } else {
-      result.ok = true;
-      result.msg = "Cập nhật thành công Khoa-Bộ môn";
-    }
+      //res.json(req.body)
+      const updateKhoa = await BoMon.updateOne(
+        { _id: req.params.id },
+        {
+          $set: {
+            tenBoMon: req.body.tenBoMon,
+            tenVietTat: req.body.tenVietTat,
+            nguoiChinhSua:req.body.nguoiChinhSua,
+            maLoai: req.body.maLoai
+          },
+        }
+      );
 
-    res.status(200).json(result);
+      let result = {
+        status: 200,
+        ok: false,
+        msg: "",
+      };
+      if (updateKhoa.nModified === 0) {
+        result.msg = "Chưa được cập nhật";
+      } else {
+        result.ok = true;
+        result.msg = "Cập nhật thành công Khoa-Bộ môn";
+      }
+
+      res.status(200).json(result);
+    }
   } catch (error) {
     res.json(error);
   }

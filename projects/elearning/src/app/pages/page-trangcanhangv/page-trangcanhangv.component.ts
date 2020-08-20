@@ -45,12 +45,14 @@ export class PageTrangcanhangvComponent implements OnInit {
   maGiaoVien:any;
   sdt:any;
   newgiaovien:any;
+  khoa:any;
   public giaoVienFormGroup: FormGroup;
   objectKeys = Object.keys;
 
   formDanhSachLop = new FormGroup({
     bac: new FormControl("-1"),
     hocKi: new FormControl("-1"),
+    khoa: new FormControl("-1"),
   })
   formCapnhapGV= new FormGroup({
     sodienthoai: new FormControl(),
@@ -83,7 +85,7 @@ export class PageTrangcanhangvComponent implements OnInit {
     this.layThongtinGV();
     this.layDanhSachBac();
   }
- 
+
   //trang  ca nhan gv
   // lay cookie
   layCookie() {
@@ -109,7 +111,8 @@ export class PageTrangcanhangvComponent implements OnInit {
 
     this.lopHocPhanService.getLopHocPhan().subscribe(
       dsLopHP => {
-        this.dsLopHP = dsLopHP
+        this.dsLopHP = dsLopHP;
+
       },
       (error) => {
         console.log(error)
@@ -128,11 +131,10 @@ export class PageTrangcanhangvComponent implements OnInit {
             this.dsGiaoVienBymaGv = dsGiaoVienBymaGv;
             this.filterDsLop = []
             this.dsLop.forEach(lop => {
-              this.dsGiaoVienBymaGv.find(p => {        
-                if (p.maLopHoc == lop.maLopHoc && p.hocKi==this.formDanhSachLop.get('hocKi').value && lop.maBac== this.formDanhSachLop.get('bac').value) {
+              this.dsGiaoVienBymaGv.find(p => {
+                if (p.maLopHoc == lop.maLopHoc && p.hocKi==this.formDanhSachLop.get('hocKi').value && lop.maBac== this.formDanhSachLop.get('bac').value && lop.khoa== this.formDanhSachLop.get('khoa').value) {
                   console.log()
                   this.filterDsLop.push(p)
-
                 }
               });
             });

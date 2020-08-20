@@ -58,7 +58,8 @@ import { PageTrangcanhansvComponent } from './pages/page-trangcanhansv/page-tran
 import { PageTrangcanhangvComponent } from './pages/page-trangcanhangv/page-trangcanhangv.component';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthInterceptor } from '../../../admin/src/app/helper/auth.interceptor';
-
+import { ToastrModule } from 'ngx-toastr';
+import { PageLoginComponent } from './pages/page-login/page-login.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -92,6 +93,7 @@ import { AuthInterceptor } from '../../../admin/src/app/helper/auth.interceptor'
     PageCaidatComponent,
     PageTrangcanhansvComponent,
     PageTrangcanhangvComponent,
+    PageLoginComponent
   ],
   imports: [
     BrowserModule,
@@ -120,6 +122,7 @@ import { AuthInterceptor } from '../../../admin/src/app/helper/auth.interceptor'
     HttpClientModule,
     FileUploadModule,
     HttpClientModule,
+    ToastrModule.forRoot(), // ToastrModule added
   ],
   entryComponents: [],
   providers: [

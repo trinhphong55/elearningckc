@@ -49,10 +49,13 @@ exports.getAll = async (req, res) => {
     });
     let result = [];
     result = await LopHocs.map(async (lop) => {
-      const total = await sinhVienModel.countDocuments({ maLopHoc: lop.maLopHoc });
+      const total = await sinhVienModel.countDocuments({
+        maLopHoc: lop.maLopHoc,
+      });
       lop.siSo = total;
       return view(lop);
     });
+
     const kq = await Promise.all(result);
     res.json(kq);
   } catch (error) {
@@ -93,11 +96,13 @@ exports.deleteTheoTienTo = async (req, res) => {
     TienTo = TienTo.slice(0, 7);
 
     if (TienTo.length >= 7) {
-      const sv = await sinhVienModel.findOne({ maLopHoc: { $regex: TienTo + ".*" },});
-      if(sv){
+      const sv = await sinhVienModel.findOne({
+        maLopHoc: { $regex: TienTo + ".*" },
+      });
+      if (sv) {
         return res.status(200).json({
           status: 200,
-          msg: "Xóa thất bại, lớp có chứa sinh viên",
+          msg: "Xóa thất bại, chỉ tiêu chứa lớp đã được thêm sinh viên",
           tienTo: TienTo,
         });
       }
@@ -166,41 +171,41 @@ exports.insert = async (req, res) => {
   try {
     const err = validationResult(req);
     if (!err.isEmpty()) {
-      res.status(422).json(err.errors);
+      return res.status(422).json(err.errors);
     }
     const LopHocs = await LopHoc.find({ trangThai: 1 });
 
     LopHocs.forEach((element) => {
       if (req.body.maLopHoc == element.maLopHoc) {
         return res.json({
-          status: 200,
+          status: 422,
           ok: false,
           msg: "Mã này đã tồn tại",
         });
       }
       if (req.body.tenLop == element.tenLop) {
         return res.json({
-          status: 200,
+          status: 422,
           ok: false,
           msg: "Tên này đã tồn tại",
         });
       }
       if (req.body.tenVietTat == element.tenVietTat) {
         return res.json({
-          status: 200,
+          status: 422,
           ok: false,
           msg: "Tên viết tắt này đã tồn tại",
         });
       }
     });
-    //res.json(setLopHoc(req))
+
     const lophoc = new LopHoc(setLopHoc(req));
     const data = await lophoc.save();
 
     res.json({
       status: 200,
       ok: true,
-      msg: "Thêm thành công Lớp học",
+      msg: "Thêm thành công lớp " + req.body.tenVietTat ,
       data: data,
     });
   } catch (error) {
@@ -209,15 +214,6 @@ exports.insert = async (req, res) => {
 };
 
 exports.delete = async (req, res) => {
-  // const removeKhoa = await KhoaBoMon.remove({ _id: req.params.id });
-  // if (removeKhoa.deletedCount === 0) {
-  //   res.json({ status: false, msg: "Id nay khong ton tai" });
-  // } else {
-  //   res.json({
-  //     status: true,
-  //     msg: "Deleted successful",
-  //   });
-  // }
 
   try {
     const updateKhoa = await LopHoc.updateOne(
@@ -249,10 +245,10 @@ exports.delete = async (req, res) => {
 };
 exports.checkValidate = () => {
   return [
-    check("maLopHoc", "maLopHoc IS REQUIRE").notEmpty(),
-    check("tenLop", "tenLop IS REQUIRE").notEmpty(),
-    check("tenVietTat", "tenVietTat IS REQUIRE").notEmpty(),
-    check("linkFBLopHoc", "linkFBLopHoc IS REQUIRE").notEmpty(),
+    check("maLopHoc", "Mã lớp học không được để trống").notEmpty(),
+    check("tenLop", "Tên lớp học không được để trốngtrống").notEmpty(),
+    check("tenVietTat", "Tên viết tắt không được để trốngtrống").notEmpty(),
+    check("linkFBLopHoc", "Link Facebook không được để trống").notEmpty(),
   ];
 };
 exports.removeAll = async (req, res) => {
@@ -283,9 +279,9 @@ exports.timLopTheoTienTo = async (req, res) => {
       const lop = await LopHoc.find({
         maLopHoc: { $regex: +TienTo + ".*" },
       });
-      res.json({ count: lop.length, tienTo: TienTo, data: lop });
+      return res.json({ count: lop.length, tienTo: TienTo, data: lop });
     } else {
-      res.json({ count: 0, tienTo: TienTo, data: null });
+      return res.json({ count: 0, tienTo: TienTo, data: null });
     }
   } catch (error) {
     res.json(error);

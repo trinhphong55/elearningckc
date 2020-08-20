@@ -147,7 +147,7 @@ export class XembaitapsvComponent implements OnInit {
   public fileOverAnother(e: any): void {
     this.hasAnotherDropZoneOver = e;
   }
-  hienThiBaiTap() { 
+  hienThiBaiTap() {
     this.BaiTapSinhVienService.getall().subscribe(
       (dsBaiTap) => {
         this.dsBaiTap = dsBaiTap;
@@ -156,7 +156,7 @@ export class XembaitapsvComponent implements OnInit {
             this.dsBaiTap = dsBaiTap;
             if (dsBaiTap != "") {
               this.tinhTrang = "Đã nộp";
-              
+
             }
           })
       },

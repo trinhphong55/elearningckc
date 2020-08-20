@@ -21,6 +21,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { LopHocPhan } from '../../models/lophocphan.interface';
 import { MonHoc } from '../../models/monhoc.interface';
 import { CookieService } from 'ngx-cookie-service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-page-trangcanhansv',
@@ -35,7 +36,6 @@ export class PageTrangcanhansvComponent implements OnInit {
   public ctDiemLHP: ChiTietDiemSVLHP;
   public ctDiemLHPs: ChiTietDiemSVLHP[] = [];
   public ctDiemLHPsTmp: ChiTietDiemSVLHP[] = [];
-
 
   public lopHocPhan: LopHocPhan;
   public lopHocPhans: LopHocPhan[] = [];
@@ -93,15 +93,16 @@ export class PageTrangcanhansvComponent implements OnInit {
     private chuDeService: ChuDeService,
     private thoiKhoaBieu: ThoiKhoaBieuService,
     private lophocService: LopHocService,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
     this.setTaiKhoan();
     this.layThongTinSV(this.taiKhoan.displayName);
     this.layDiemSinhVien(this.taiKhoan.displayName);
-    // this.layLopHocPhan();
-    // this.layCotDiemSinhVienLHP();
+    this.layCTDiemLHP(this.taiKhoan.displayName);
+
     this.sinhVienFormGroup = new FormGroup({
       mssv: new FormControl({ value: '', disabled: true }),
       gioiTinh: new FormControl({ value: '', disabled: true }),
@@ -165,7 +166,6 @@ export class PageTrangcanhansvComponent implements OnInit {
   public setTaiKhoan() {
     this.taiKhoan = this.cookieService.getAll();
     this.taiKhoan.displayName = this.cookieService.get('email').slice(0, 10);
-    console.log(this.taiKhoan);
   }
   public layThongTinSV(maSV: string) {
     this.sinhVienService.getonesv(maSV).subscribe(
@@ -194,13 +194,13 @@ export class PageTrangcanhansvComponent implements OnInit {
     this.messages = [];
     this.sinhVienService.capNhatSinhVien(data).subscribe(
       (res: any) => {
-        this.messages.push({ msg: res.message, status: res.status });
+        if (res.status == 200) this.toastr.success(res.message, 'Thông báo');
+        else {
+          this.toastr.warning(res.message, 'Cảnh báo');
+        }
       },
       (err: any) => {
-        this.messages.push({
-          msg: 'Máy chủ không sữ lý được',
-          status: err.status,
-        });
+        this.toastr.error('Máy chủ không sử lý được', 'Lỗi');
       }
     );
   }
@@ -211,8 +211,7 @@ export class PageTrangcanhansvComponent implements OnInit {
         this.ctDiemLHPsTmp = res.data;
         this.ctDiemLHPs = this.ctDiemLHPsTmp;
         this.ganTenLopHocPhanCTDiem();
-        this.ctDiemLHPs = this.loc_CTDiem_LopHocPhan(this.ctDiemLHPsTmp);
-        console.log(this.ctDiemLHPs);
+        // this.ctDiemLHPs = this.loc_CTDiem_LopHocPhan(this.ctDiemLHPsTmp);
       }
     });
   }
@@ -332,33 +331,36 @@ export class PageTrangcanhansvComponent implements OnInit {
       (res) => {
         if (res) {
           this.lopHocPhans = res;
+          //this.ctDiemLHPs = [];
           this.lopHocPhans = this.locMaLopHocPhanTheoHocKi(this.lopHocPhans);
         }
       },
       (err) => console.log(err)
     );
   }
-  public ganTenCotDiemCTDiem(ChiTiemDiems: ChiTietDiemSVLHP[]) {
-    this.cotDiemService.layTatCa().subscribe((res: any) => {
-      this.cotDiems = res;
-      ChiTiemDiems.forEach((ct) => {
-        this.cotDiems.forEach((lop) => {
-          if (ct.maCotDiem == lop.maCotDiem) {
-            ct.tenCotDiem = lop.tenCotDiem;
-            ct.heSo = lop.heSo;
-          }
-        });
-      });
-    });
-  }
+  // public ganTenCotDiemCTDiem(ChiTiemDiems: ChiTietDiemSVLHP[]) {
+  //   this.cotDiemService.layTatCa().subscribe((res: any) => {
+  //     this.cotDiems = res;
+  //     ChiTiemDiems.forEach((ct) => {
+  //       this.cotDiems.forEach((lop) => {
+  //         if (ct.maCotDiem == lop.maCotDiem) {
+  //           ct.tenCotDiem = lop.tenCotDiem;
+  //           ct.heSo = lop.heSo;
+  //         }
+  //       });
+  //     });
+  //   });
+  // }
 
   //################################# Xu ly su kien ##################################
   onChangeDanhSachCotDiem() {
     this.layThongTinSV(this.taiKhoan.displayName);
     this.layCTDiemLHP(this.taiKhoan.displayName);
-    console.log(this.chonHocKi.value);
-    console.log(this.chonLop.value);
-
+  }
+  onChangeChonHocKi() {
+    this.layThongTinSV(this.taiKhoan.displayName);
+    this.layCTDiemLHP(this.taiKhoan.displayName);
+    this.chonLop.setValue('');
   }
   onChangBangDiem() {
     this.chonHocKi.setValue('');
@@ -368,12 +370,14 @@ export class PageTrangcanhansvComponent implements OnInit {
   onSubmitCapNhatSinhVien() {
     this.messages = [];
     if (!this.password.value) {
-      this.messages.push({
-        msg: 'Vui lòng nhập mật khẩu cũ và mới để thay đổi',
-        status: 200,
-      });
+      // this.messages.push({
+      //   msg: 'Vui lòng nhập mật khẩu để thay đổi',
+      //   status: 200,
+      // });
+      this.toastr.warning('Vui lòng nhập mật khẩu để thay đổi', 'Thông báo');
     } else if (this.password.value != '123456') {
-      this.messages.push({ msg: 'Mật khẩu không trùng nhau', status: 200 });
+      this.toastr.warning('Mật khẩu không trùng nhau', 'Thông báo');
+      // this.messages.push({ msg: 'Mật khẩu không trùng nhau', status: 200 });
     } else {
       const req = {
         maSinhVien: this.sinhVien.maSinhVien,
@@ -395,7 +399,7 @@ export class PageTrangcanhansvComponent implements OnInit {
           ChiTietDiem.push(ct);
         }
       });
-    }else{
+    } else {
       return [];
     }
     return ChiTietDiem;

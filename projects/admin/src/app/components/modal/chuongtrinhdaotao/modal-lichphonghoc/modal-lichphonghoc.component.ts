@@ -40,20 +40,21 @@ export class ModalLichphonghocComponent implements OnInit {
   dsPhong: PhongHoc[];
 
   private loadLPH() {
-    this.lichPhongHocService.getbymaBacNkhoa(this.maBac, this.khoa).subscribe(
-      dslph => {
-        this.dsLPH = dslph;
-        if (dslph.length !== 0) {
-          this.display = true
-        } else {
-          this.display = false;
-        }
-      },
-      error => console.log(error));
+    // this.lichPhongHocService.getbymaBacNkhoa(this.maBac, this.khoa).subscribe(
+    //   dslph => {
+    //     this.dsLPH = dslph;
+    //     // console.log(dslph);
+    //     if (dslph.length !== 0) {
+    //       this.display = true
+    //     } else {
+    //       this.display = false;
+    //     }
+    //   },
+    //   error => console.log(error));
 
-    for (let i = this.tuanDau; i <= this.tuanCuoi; i++) {
-      this.dsTuan.push(`Tuần ${i}`)
-    }
+    // for (let i = this.tuanDau; i <= 5; i++) {
+    //   this.dsTuan.push(`Tuần ${i}`)
+    // }
   }
 
   select() {

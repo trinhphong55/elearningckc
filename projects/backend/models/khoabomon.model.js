@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const khoabomonSchema = new Schema({
   maKhoa: {
-    type: String,
+    type: Number,
     reqired: true,
     unique:true
   },

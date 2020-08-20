@@ -8,101 +8,130 @@
       <!-- Start Form -->
       <div class="col-12">
         <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
-          <form #f="ngForm" (ngSubmit)="onSubmit(f.value)">
-          <div class="row justify-content-center align-items-center">
-            <div class="col-3">
-              <div class="form-group">
-                <label for="ho">Họ</label>
-                <input type="text" name="ho" class="form-control" [(ngModel)]="ho" required>
-              </div>
-              <div class="form-group">
-                <label for="ten">Tên</label>
-                <input type="text" name="ten" class="form-control" [(ngModel)]="ten" required>
-              </div>
-            </div>
-            <div class="col-3">
-              <div class="form-group">
-                <label for="ngaySinh">Ngày sinh</label>
-                <input type="text" name="ngaySinh" class="form-control" maxlength="10" [(ngModel)]="ngaySinh">
-              </div>
-              <div class="form-group">
-                <label for="cmnd">CMND</label>
-                <input type="text" name="cmnd" class="form-control" [(ngModel)]="cmnd" maxlength="9">
-              </div>
-            </div>
-            <div class="col-3">
-              <div class="form-group">
-                <label for="email">Email</label>
-                <input type="text" name="email" class="form-control" [(ngModel)]="email">
-              </div>
-              <div class="form-group">
-                <label for="sdt">Số điện thoại</label>
-                <input type="tel" name="sdt" class="form-control" [(ngModel)]="sdt" maxlength="10">
-              </div>
-              <!-- <div class="form-group">
-                <label>Bộ môn</label>
-                <select class="form-control" #boMon>
-                  <option *ngFor="let boMon of dsBoMon" [value]="boMon.maBoMon">{{ boMon.tenBoMon }}</option>
-                </select>
-              </div> -->
-            </div>
-            <div class="col-3">
-              <!-- <div class="form-group">
-                <label for="maGiaoVien">Mã giáo viên</label>
-                <div class="d-flex align-items-center">
-                  <input name="maGiaoVien" class="form-control" readonly [(ngModel)]='maGV' required>
+          <form [formGroup]="giaoVienForm">
+            <div class="row justify-content-center align-items-center">
+              <div class="col-3">
+                <div class="form-group">
+                  <label for="ho">Họ</label>
+                  <input type="text" name="ho" class="form-control" formControlName="ho">
+                  <div *ngIf="ho.invalid && (ho.dirty || ho.touched)" class="alert alert-danger">
+                    <div *ngIf="ho.errors.required">
+                      Họ không được để trống.
+                    </div>
+                    <div *ngIf="ho.errors.minlength">
+                      Họ ít nhất 1 kí tự.
+                    </div>
+                    <div *ngIf="ho.errors.maxlength">
+                      Họ nhiều nhất 50 kí tự.
+                    </div>
+                  </div>
                 </div>
-              </div> -->
-              <div class="form-group">
-                <label for="diaChiThuongTru">Địa chỉ thường trú</label>
-                <input type="text" name="diaChiThuongTru" class="form-control" [(ngModel)]="diaChiThuongTru">
+                <div class="form-group">
+                  <label for="ten">Tên</label>
+                  <input type="text" name="ten" class="form-control" formControlName="ten">
+                  <div *ngIf="ten.invalid && (ten.dirty || ten.touched)" class="alert alert-danger">
+                    <div *ngIf="ten.errors.required">
+                      Tên không được để trống.
+                    </div>
+                    <div *ngIf="ten.errors.minlength">
+                      Tên ít nhất 1 kí tự.
+                    </div>
+                    <div *ngIf="ten.errors.maxlength">
+                      Tên nhiều nhất 50 kí tự.
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="form-group">
-                <label>Trình độ chuyên môn</label>
-                <select class="form-control" name="trinhDoChuyenMon" [(ngModel)]="trinhDoChuyenMon">
-                  <option>Thạc sĩ</option>
-                  <option>Tiến sĩ</option>
-                  <option>Cử nhân</option>
-                  <option>Kỹ sư</option>
-                </select>
+              <div class="col-3">
+                <div class="form-group">
+                  <label for="ngaySinh">Ngày sinh</label>
+                  <input type="text" name="ngaySinh" class="form-control" maxlength="10" formControlName="ngaySinh"
+                    placeholder="dd/mm/yyyy">
+                  <div *ngIf="ngaySinh.invalid && (ngaySinh.dirty || ngaySinh.touched)" class="alert alert-danger">
+                    <div *ngIf="ngaySinh.errors.required">
+                      Ngày không được để trống.
+                    </div>
+                    <div *ngIf="ngaySinh.errors.checkDate">
+                      Ngày không đúng định dạng.
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="cmnd">CMND</label>
+                  <input type="text" name="cmnd" class="form-control" formControlName="cmnd" maxlength="12">
+                  <div *ngIf="cmnd.invalid && (cmnd.dirty || cmnd.touched)" class="alert alert-danger">
+                    <div *ngIf="cmnd.errors.required">
+                      CMND không được để trống.
+                    </div>
+                    <div *ngIf="cmnd.errors.pattern">
+                      CMND không hợp lệ.
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="text" name="email" class="form-control" formControlName="email">
+                  <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+                    <div *ngIf="email.errors.required">
+                      Email không được để trống.
+                    </div>
+                    <div *ngIf="email.errors.pattern">
+                      Email không hợp lệ.
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="sdt">Số điện thoại</label>
+                  <input type="tel" name="sdt" class="form-control" formControlName="sdt" maxlength="10">
+                  <div *ngIf="sdt.invalid && (sdt.dirty || sdt.touched)" class="alert alert-danger">
+                    <div *ngIf="sdt.errors.required">
+                      SĐT không được để trống.
+                    </div>
+                    <div *ngIf="sdt.errors.pattern">
+                      SĐT không hợp lệ.
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="form-group">
+                  <label for="diaChiThuongTru">Địa chỉ thường trú</label>
+                  <input type="text" name="diaChiThuongTru" class="form-control" formControlName="diaChiThuongTru">
+                </div>
+                <div class="form-group">
+                  <label>Trình độ chuyên môn</label>
+                  <select class="form-control" name="trinhDoChuyenMon" formControlName="trinhDoChuyenMon">
+                    <option>Thạc sĩ</option>
+                    <option>Tiến sĩ</option>
+                    <option>Cử nhân</option>
+                    <option>Kỹ sư</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-auto">
+                <div class="modal_chucnang__group__button">
+                  <button type="button" (click)="themGiaoVien()"
+                    class="modal_chucnang__button btn btn-outline-primary px-4 mx-2 "><img
+                      class="modal_chucnang__button__icon mb-1" src="assets/img/icons/add.png" alt="image icon">
+                    <div>Thêm mới</div>
+                  </button>
+                  <button type="button" data-target="#dsGV" data-toggle="modal"
+                    class="modal_chucnang__button btn btn-outline-primary px-4 mx-2"><img
+                      class="modal_chucnang__button__icon mb-2" src="assets/img/icons/excel.png" alt="image icon">
+                    <div>Import Excel</div>
+                  </button>
+                </div>
               </div>
             </div>
-            <div class="col-auto">
-              <div class="modal_chucnang__group__button">
-                <button type="submit" class="modal_chucnang__button btn btn-outline-primary px-4 mx-2"><img
-                    class="modal_chucnang__button__icon mb-1" src="assets/img/icons/add.png" alt="image icon">
-                  <div>Thêm mới</div>
-                </button>
-                <button type="button" (click)="Update(f.value)" class="modal_chucnang__button btn btn-outline-success px-4 mx-2"><img
-                  class="modal_chucnang__button__icon mb-2" src="assets/img/icons/upgrade.png" alt="image icon">
-                  <div>Cập nhật</div>
-                </button>
-                <button type="button" (click)="ResetForm()"class="modal_chucnang__button btn btn-outline-danger px-4 mx-2" type="reset"><img
-                    class="modal_chucnang__button__icon mb-2" src="assets/img/icons/error.png" alt="image icon">
-                  <div>Huỷ</div>
-                </button>
-                <button type="button" (click)="readFileExcel()" class="modal_chucnang__button btn btn-outline-primary px-4 mx-2"><img
-                  class="modal_chucnang__button__icon mb-2" src="assets/img/icons/excel.png" alt="image icon">
-                  <div>Import Excel</div>
-                </button>
-                <input type="file" accept=".xlsx" (change)="uploadFileExcel($event)" placeholder="Upload File">
-              </div>
-            </div>
-          </div>
-        </form>
+          </form>
         </div>
       </div>
       <!-- End Form -->
       <div class="col-12">
         <div class="modal_chucnang__box border rounded p-4 mt-5 bg-white">
           <div class="d-flex align-items-center mb-2">
-            <!-- <label class="mb-0 d-flex align-items-center"><span class="text-nowrap">Hiển thị &nbsp;</span>
-              <select class="custom-select custom-select-sm form-control">
-                <option>10</option>
-                <option>25</option>
-                <option>50</option>
-              </select><span class="text-nowrap">&nbsp; hàng</span>
-            </label> -->
             <label class="mb-0 d-flex align-items-center"><span class="text-nowrap">Trạng thái &nbsp;</span>
               <select class="form-control" [(ngModel)]="trangThai" (change)="changeTrangThai()">
                 <option value="1">Mặc định</option>
@@ -110,14 +139,14 @@
               </select>
             </label>
             <label class="ml-auto mb-0 d-flex align-items-center"><span class="text-nowrap">Tìm kiếm: &nbsp;</span>
-              <input class="form-control form-control-sm" placeholder="Nhập từ khóa ..."  [(ngModel)]="textSearch">
+              <input class="form-control form-control-sm" placeholder="Nhập từ khóa ..." [(ngModel)]="textSearch">
             </label>
           </div>
           <div class="modal_chucnang__table__giaovien table-responsive">
             <table class="modal_chucnang__table table table-hover" id="danhsach_giaovien">
               <thead class="bg__caothang text-white">
                 <th class="text-center" scope="col">
-                  <span role="button" (click)="layDanhSachGiaoVien()" title="Cập lại nhật danh sách giáo viên">
+                  <span role="button" (click)="layDanhSachGiaoVien()" title="Cập nhật danh sách giáo viên">
                     <svg width="24" height="24" viewBox="0 0 16 16" class="bi bi-arrow-repeat" fill="currentColor"
                       xmlns="http://www.w3.org/2000/svg">
                       <path fill-rule="evenodd"
@@ -137,14 +166,10 @@
                 <th scope="col">Bộ môn</th>
                 <th scope="col">Trình độ</th>
                 <th scope="col">Địa chỉ </th>
-                <th scope="col">Danh sách lớp giảng dạy</th>
+                <!-- <th scope="col">Danh sách lớp giảng dạy</th> -->
               </thead>
               <tbody>
                 <tr *ngFor="let giaoVien of danhSachGiaoVien | filter:textSearch">
-                  <!-- <td class="text-center">
-                    <span (click)="layThongTinGiaoVien(giaoVien.maGiaoVien)" class="modal_chucnang__button__edit mdi mdi-file-document-edit-outline mdi-24px"></span>
-                    <span (click)="xoaGiaoVien(giaoVien.maGiaoVien)"class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px"></span>
-                  </td> -->
                   <ng-template [ngIf]="trangThai == 0" [ngIfElse]="deleted">
                     <td class="text-center">
                       <span title="Phục hồi" role="button" (click)="restoreGiaoVien(giaoVien.maGiaoVien)">
@@ -160,8 +185,18 @@
                   </ng-template>
                   <ng-template #deleted>
                     <td class="text-center">
-                      <span (click)="layThongTinGiaoVien(giaoVien.maGiaoVien)" class="modal_chucnang__button__edit mdi mdi-file-document-edit-outline mdi-24px"></span>
-                      <span (click)="xoaGiaoVien(giaoVien.maGiaoVien)"class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px"></span>
+                      <!-- Icon Edit -->
+                      <span class="modal_chucnang__button__edit mdi mdi-file-document-edit-outline mdi-24px"
+                        (click)="layThongTinGiaoVien(giaoVien)" data-toggle="modal" title="Cập nhật thông tin giáo viên"
+                        data-target="#exampleModalCenter"></span>
+                      <!-- Icon Delete -->
+                      <span (click)="xoaGiaoVien(giaoVien.maGiaoVien)" title="Xóa giáo viên"
+                        class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px"></span><br>
+                      <!-- Icon More Options -->
+                      <span class="modal_chucnang__button__delete fa fa-clipboard mdi-24px" data-toggle="modal"
+                        (click)="layMaGVSelected(giaoVien)" title="Xem danh sách lớp học phần giáo viên phụ trách"
+                        data-target="#exampleModalCenter2"></span>
+
                     </td>
                   </ng-template>
                   <td class="text-muted text-center" style="min-width: 100px">{{giaoVien.maGiaoVien}}</td>
@@ -186,7 +221,8 @@
                   <td>
                     <select class="form-control" #maBoMon (change)="changeBoMon(giaoVien.maGiaoVien, maBoMon.value)">
                       <option value="null">Chưa có</option>
-                      <option [value]="boMon.maBoMon" *ngFor="let boMon of dsBoMon" [selected]="boMon.maBoMon === giaoVien.maBoMon">
+                      <option [value]="boMon.maBoMon" *ngFor="let boMon of dsBoMon"
+                        [selected]="boMon.maBoMon === giaoVien.maBoMon">
                         {{ boMon.tenBoMon }}
                       </option>
                     </select>
@@ -197,17 +233,364 @@
                   <td>
                     <input class="form-control" disabled value={{giaoVien.diaChiThuongTru}}>
                   </td>
-                  <td>
+                  <!-- <td>
                     <select class="form-control">
                       <option *ngFor="let lhp of giaoVien.danhSachLopHocPhan">{{ lhp }}</option>
                     </select>
+                  </td> -->
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!--form dialog -->
+    <div class="modal fade" id="exampleModalCenter" role="dialog" aria-labelledby="exampleModalCenterTitle"
+      aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title text-white" id="exampleModalLongTitle">Cập nhật giáo viên</h5>
+            <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div>
+              <form [formGroup]="updateForm">
+                <div class="row justify-content-center align-items-center">
+                  <div class="col-3">
+                    <div class="form-group">
+                      <label for="ho">Họ</label>
+                      <input type="text" name="hoUpdate" class="form-control" formControlName="hoUpdate">
+                      <div *ngIf="hoUpdate.invalid && (hoUpdate.dirty || hoUpdate.touched)" class="alert alert-danger">
+                        <div *ngIf="hoUpdate.errors.required">
+                          Họ không được để trống.
+                        </div>
+                        <div *ngIf="hoUpdate.errors.minlength">
+                          Họ ít nhất 1 kí tự.
+                        </div>
+                        <div *ngIf="hoUpdate.errors.maxlength">
+                          Họ nhiều nhất 50 kí tự.
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="ten">Tên</label>
+                      <input type="text" name="tenUpdate" class="form-control" formControlName="tenUpdate">
+                      <div *ngIf="tenUpdate.invalid && (tenUpdate.dirty || tenUpdate.touched)"
+                        class="alert alert-danger">
+                        <div *ngIf="tenUpdate.errors.required">
+                          Tên không được để trống.
+                        </div>
+                        <div *ngIf="tenUpdate.errors.minlength">
+                          Tên ít nhất 1 kí tự.
+                        </div>
+                        <div *ngIf="tenUpdate.errors.maxlength">
+                          Tên nhiều nhất 50 kí tự.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-3">
+                    <div class="form-group">
+                      <label for="ngaySinh">Ngày sinh</label>
+                      <input type="text" name="ngaySinhUpdate" class="form-control" maxlength="10"
+                        formControlName="ngaySinhUpdate" placeholder="dd/mm/yyyy">
+                      <div *ngIf="ngaySinhUpdate.invalid && (ngaySinhUpdate.dirty || ngaySinhUpdate.touched)"
+                        class="alert alert-danger">
+                        <div *ngIf="ngaySinhUpdate.errors.required">
+                          Ngày không được để trống.
+                        </div>
+                        <div *ngIf="ngaySinhUpdate.errors.checkDate">
+                          Ngày không đúng định dạng.
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="cmnd">CMND</label>
+                      <input type="text" name="cmndUpdate" class="form-control" formControlName="cmndUpdate"
+                        maxlength="12">
+                      <div *ngIf="cmndUpdate.invalid && (cmndUpdate.dirty || cmndUpdate.touched)"
+                        class="alert alert-danger">
+                        <div *ngIf="cmndUpdate.errors.required">
+                          CMND không được để trống.
+                        </div>
+                        <div *ngIf="cmndUpdate.errors.pattern">
+                          CMND không hợp lệ.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-3">
+                    <div class="form-group">
+                      <label for="email">Email</label>
+                      <input type="text" name="emailUpdate" class="form-control" formControlName="emailUpdate" disabled>
+                      <div *ngIf="emailUpdate.invalid && (emailUpdate.dirty || emailUpdate.touched)"
+                        class="alert alert-danger">
+                        <div *ngIf="emailUpdate.errors.required">
+                          Email không được để trống.
+                        </div>
+                        <div *ngIf="emailUpdate.errors.pattern">
+                          Email không hợp lệ.
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="sdt">Số điện thoại</label>
+                      <input type="tel" name="sdtUpdate" class="form-control" formControlName="sdtUpdate"
+                        maxlength="10">
+                      <div *ngIf="sdtUpdate.invalid && (sdtUpdate.dirty || sdtUpdate.touched)"
+                        class="alert alert-danger">
+                        <div *ngIf="sdtUpdate.errors.required">
+                          SĐT không được để trống.
+                        </div>
+                        <div *ngIf="sdtUpdate.errors.pattern">
+                          SĐT không hợp lệ.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-3">
+                    <div class="form-group">
+                      <label for="diaChiThuongTru">Địa chỉ thường trú</label>
+                      <input type="text" name="diaChiThuongTruUpdate" class="form-control"
+                        formControlName="diaChiThuongTruUpdate">
+                    </div>
+                    <div class="form-group">
+                      <label>Trình độ chuyên môn</label>
+                      <select class="form-control" name="trinhDoChuyenMonUpdate"
+                        formControlName="trinhDoChuyenMonUpdate">
+                        <option>Thạc sĩ</option>
+                        <option>Tiến sĩ</option>
+                        <option>Cử nhân</option>
+                        <option>Kỹ sư</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+            <button type="button" class="btn btn-primary" (click)="capNhatGiaoVien()">Lưu thay đổi</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--form dialog loc-->
+    <div class="modal fade" id="exampleModalCenter2" role="dialog" aria-labelledby="exampleModalCenterTitle"
+      aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title text-white" id="exampleModalLongTitle">Danh sách lớp học phần giáo viên phụ trách</h5>
+            <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="tab-pane" id="dslophocphan">
+              <form [formGroup]="filterForm">
+                <div class="row">
+                  <div class="col-md-2">
+                    <div class="form-group pr-3 pt-1">
+                      Bậc:<select class="form-control" id="exampleFormControlSelect1" formControlName="bac"
+                      (change)="dsLHP()">
+                        <option value="-1">Chọn bậc</option>
+                        <option *ngFor="let b of dsBac" value="{{b.maBac}}">{{b.tenBac}}</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="form-group pr-3 pt-1">
+                      Học kì:<select class="form-control" id="exampleFormControlSelect2" formControlName="hocKi"
+                      (change)="dsLHP()">
+                        <option value="-1">Chọn học kì</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="form-group pr-3 pt-1">
+                      Khóa:<select class="form-control" id="exampleFormControlSelect3" formControlName="khoa"
+                      (change)="dsLHP()">
+                        <option value="-1">Chọn khóa</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group pr-3 pt-1">
+                      Giáo viên: <b>{{hoTenSelected}}</b>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12 shadow">
+                    <div class="scrollable">
+                      <table class="table table-bordered">
+                        <thead>
+                          <tr>
+                            <th scope="col">STT</th>
+                            <th scope="col">Tên lớp học phần</th>
+                            <th scope="col">Học kì</th>
+                            <th scope="col">Tổng sinh viên</th>
+                          </tr>
+                        </thead>
+                        <tbody *ngFor="let l of filterDsLop;index as i">
+                          <tr>
+                            <td scope="row">{{i+1}}</td>
+                            <td>{{l.tenLopHocPhan}}</td>
+                            <td>{{l.hocKi}}</td>
+                            <td>{{l.soLuongSV}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal Execl Danh sách sinh viên-->
+    <div class="modal fade" id="dsGV" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+      <div class="modal-content">
+        <div class="modal-header text-white">
+          <h5 class="modal-title" id="exampleModalLongTitle">Nhập danh sách giáo viên</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="excelSV">Nhập File Excel</label>
+            <input type="file" class="form-control-file" id="excelSV" (change)="onChangeGiaoVien($event)"
+              #inputFile>
+          </div>
+          <hr>
+          <div class="row center">
+            <div class="col-6">
+              <button type="button" data-toggle="modal" data-target="#giaoVienThongBao"
+                (click)="onClickImportExcelGiaoVien()" data-dismiss="modal" class="btn btn-outline-success">
+                <i class="fa fa-file-download"></i> Import
+              </button></div>
+            <div class="col-6">
+              <button class="btn btn-outline-danger" (click)="removeData()"><i class="fa fa-trash"></i> Xoá tất cả
+              </button>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-12 text-center">
+              <h5>Danh sách giáo viên từ EXCEL</h5>
+            </div>
+            <hr>
+            <table class="modal_chucnang__table table table-hover table table-bordered ">
+              <thead class="bg__caothang text-white">
+                <tr>
+                  <th scope="col">STT</th>
+                  <th scope="col">Họ</th>
+                  <th scope="col">Tên</th>
+                  <th scope="col">Ngày sinh</th>
+                  <th scope="col">SĐT</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">CMND</th>
+                  <th scope="col">Trình độ chuyên môn</th>
+                  <th scope="col">Xóa</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of dsGiaoVien; index as i">
+                  <th scope="row">{{ i+ 1 }}</th>
+                  <td> {{ item.ho }} </td>
+                  <td> {{ item.ten }} </td>
+                  <td> {{ item.ngaySinh }} </td>
+                  <td> {{ item.sdt }} </td>
+                  <td> {{ item.email }} </td>
+                  <td> {{ item.cmnd }} </td>
+                  <td> {{ item.trinhDoChuyenMon }} </td>
+                  <td>
+                    <button class="btn btn-outline-danger" (click)="xoaGiaoVien_tuDanhSachExcel(i)"><i
+                        class="fa fa-ban"></i></button>
                   </td>
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
+
+        <div class="modal-footer">
+          <div>
+
+          </div>
+          <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Đóng</button>
+        </div>
       </div>
     </div>
+    </div>
+    <!-- Modal Danh sách giáo viên thêm thất bại -->
+    <div class="modal fade" id="giaoVienThongBao" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
+      <div class="modal-content" *ngIf="dsGiaoVienThemThatBai?.length > 0">
+        <div class="modal-header text-white bg-danger">
+          <h5 class="modal-title" id="exampleModalLongTitle">Danh sách thêm thất bại </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <table class="modal_chucnang__table table table-hover table table-bordered ">
+            <thead class="bg__caothang text-white">
+              <tr>
+                <th scope="col">STT</th>
+                <th scope="col">Họ</th>
+                <th scope="col">Tên</th>
+                <th scope="col">Ngày sinh</th>
+                <th scope="col">SĐT</th>
+                <th scope="col">Email</th>
+                <th scope="col">CMND</th>
+                <th scope="col">Trình độ chuyên môn</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of dsGiaoVienThemThatBai; index as i">
+                <th scope="row">{{ i+ 1 }}</th>
+                <td> {{ item.ho }} </td>
+                <td> {{ item.ten }} </td>
+                <td> {{ item.ngaySinh }} </td>
+                <td> {{ item.sdt }} </td>
+                <td> {{ item.email }} </td>
+                <td> {{ item.cmnd }} </td>
+                <td> {{ item.trinhDoChuyenMon }} </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
   </div>
 </app-modal>

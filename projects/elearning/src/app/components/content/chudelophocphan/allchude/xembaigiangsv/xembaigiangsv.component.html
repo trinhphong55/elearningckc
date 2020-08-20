@@ -49,8 +49,9 @@
           <div class="right">
             <div class="bieumau">
               <ng-container *ngFor="let link of baiGiang?.dinhKem">
+
                 <button mat-button download (click)="download(link)">
-                  <p><i class="fas fa-file-archive"></i></p>
+                  <h1><i class="fas fa-file-download" style="color:blueviolet"></i></h1>
                 </button>
 
               </ng-container>

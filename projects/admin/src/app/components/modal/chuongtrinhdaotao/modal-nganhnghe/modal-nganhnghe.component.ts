@@ -3,6 +3,7 @@ import { ModalService } from '../../../../services/modal.service';
 import { NganhNgheService } from '../../../../services/NganhNghe.service';
 import { BacService } from '../../../../services/Bac.service';
 import { FormControl,FormGroup,FormBuilder,Validator, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-modal-nganhnghe',
   templateUrl: './modal-nganhnghe.component.html',
@@ -24,18 +25,36 @@ export class ModalNganhngheComponent implements OnInit {
   _id: any ="";
   tenNganhcha: string ="Không có ngành cha";
   addForm: FormGroup;
+
+  setData = () => {
+    return {
+      tenNganhNghe: this.addForm.value.tenNganhNghe,
+    };
+  };
   constructor(private modalService: ModalService,
     private nganhngheservice: NganhNgheService,
-     private bacservice: BacService,) {}
+     private bacservice: BacService,
+     private toastrService:ToastrService) {}
   ngOnInit(): void {
     this.getdata();
     this.getbac();
     this.addForm = new FormGroup({
-      tenNganhNghe : new FormControl('', [Validators.required]),
+      tenNganh: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(30),
+      ]),
+      maNganh: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(50),
+        Validators.pattern('[Z0-9]*'),
+      ]),
+      tenVT: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(15),
+        Validators.pattern('[a-zA-Z0-9]*'),
+      ]),
     });
-  }
-  get maKhoa() {
-    return this.addForm.get('tenNganhNghe');
+
   }
   // hiển thị danh sách bậc
   getbac() {
@@ -107,11 +126,14 @@ export class ModalNganhngheComponent implements OnInit {
     this.TenBac ="Cao Đẳng (các ngành đào tạo)";
     this.tenNganhcha ="Không có ngành cha";
   }
+//check du lieu 
+  check(){
 
+  }
   // thêm một ngành nghề mới
   add() {
     if (this.tenNganhNghe == "" || this.tenVietTat == "" || this.maNganhNghe == "" || this.maNganhNghe== '0') {
-      alert("Dữ liệu không được để trống và mã ngành nghề phải khác '0'")
+      this.toastrService.error("Dữ liệu Không được để trống", 'ERROR', { timeOut: 6000 });
     }
     else {
       //lấy ma bac theo ten bac hiên thi
@@ -141,26 +163,26 @@ export class ModalNganhngheComponent implements OnInit {
           {
           this.arr = data;
           this.getdata();
-          alert("Thêm thành công")
+          this.toastrService.success("Thêm Thành Công", 'Thông Báo!', { timeOut: 6000 });
           }
           else
           {
-            alert("Dữ liệu đã tồn tại")
+            this.toastrService.error("Dữ liệu đã tồn tại", 'ERROR', { timeOut: 6000 });
           }
         },
         (error) => {
           console.log(error);
-          alert("thêm thất bại,dữ liệu đã tồn tại")
+          this.toastrService.error("Dữ liệu đã tồn tại", 'ERROR', { timeOut: 6000 });
         });
       this.huy();
     }
   }
-
+ 
 
   //sửa 1 ngành nghề
   update() {
     if (this._id == "" || this.tenNganhNghe == "" || this.tenVietTat == "" || this.maNganhNghe == "") {
-      alert("Dữ liệu không được để trống")
+      this.toastrService.error("Dữ liệu không hợp lệ", 'ERROR', { timeOut: 6000 });
     }
     else {
       this.bac.forEach(x => {
@@ -185,7 +207,7 @@ export class ModalNganhngheComponent implements OnInit {
       this.nganhngheservice.updateMonHoc(this._id, this.arr).subscribe(
         (data) => {
           this.arr = data;
-          alert('Thành Công');
+          this.toastrService.success("Cập Nhập thành Công", 'Thông Báo!', { timeOut: 6000 });
           this.getdata();
         },
         (error) => {
@@ -199,7 +221,9 @@ export class ModalNganhngheComponent implements OnInit {
     this.nganhngheservice.deledeNN(data._id).subscribe(
       (data) => {
         this.data.published = data;
+        this.toastrService.success("Xóa thành Công", 'Thông Báo!', { timeOut: 6000 });
         this.getdata();
+        this.huy(); 
       },
       (error) => {
         console.log(error);
