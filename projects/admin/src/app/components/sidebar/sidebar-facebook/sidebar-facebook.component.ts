@@ -1,3 +1,4 @@
+import { BaiDangfbService } from './../../../services/baidangfb.service';
 import { Component, OnInit } from '@angular/core';
 import { ModalService } from '../../../services/modal.service';
 
@@ -8,14 +9,25 @@ import { ModalService } from '../../../services/modal.service';
 })
 export class SidebarFacebookComponent implements OnInit {
 
-  constructor(private modalService: ModalService) { }
+  data:any;
+  constructor(
+    private modalService: ModalService,
+    private baidang: BaiDangfbService
+    ) { }
 
   ngOnInit(): void {
     // this.fbLibrary();
   }
-
+  baidangfb(){
+    this.baidang.getAll().subscribe(data=>{
+      this.data = data;
+    });
+  }
   openModal(id: string) {
-    this.modalService.open(id)
+    this.modalService.open(id);
+    if(id=='fb_quanlybaidangfacebook'){
+      this.baidangfb();
+    }
   }
   // fbLibrary(){
   //   var AppId='726531241502023';
@@ -64,7 +76,7 @@ export class SidebarFacebookComponent implements OnInit {
   //     }
 
   //   };
-    
+
   // // Hiển thị nút đăng nhập
   //   ShowLoginButton() {
   //           document.getElementById('btnLoginFB').setAttribute('style', 'display:block');
@@ -91,9 +103,9 @@ export class SidebarFacebookComponent implements OnInit {
   //     })
   //   };
 
-  
+
 }
 
- 
+
 
 
