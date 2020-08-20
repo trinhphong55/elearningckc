@@ -122,9 +122,49 @@
       })
     }
 
+    //Nút Đăng bài vào Group
+    function PostGrpByRequest() {
+
+      var getloai = $('#loaig2').val();
+       ms = document.getElementById('messagegr').value;
+       url = document.getElementById('picturegr').value;
+      mslink = document.getElementById('mslinkgrp1').value;
+      console.log(mslink);
+      console.log(ms);
+      if(mslink=='null'){
+        mslink=null;
+      }else{
+        if(ms==''){
+          ms = mslink;
+        mslink=null;
+        }
+      }
+      console.log(ms);
+      console.log(getloai);
+      if(getloai == 'null' || (ms == '' && url == '')){
+        //truyền gtri cho input hidden theo đúng id
+        document.getElementById('returnloaig2').value = 'Không được để trống loại bài viết!!';
+        document.getElementById('loaig2').value = null;
+      }else{
+        document.getElementById('returnloaig2').value = null;
+        //console.log("oke");
+          let a = $('#picturegr').val().trim();
+          if (FBLoaded) {
+            if (a === "") {
+              POSTGroupMess();
+            }
+            else {
+              POSTGrpPictureUrl();
+            }
+          } else {
+            setTimeout("PostGrpByRequest()", 100);
+          }
+      }
+}
+
+
     //post vào Group
     function POSTGroupMess() {
-      var ms = document.getElementById('messagegr').value;
       FB.api('/' + idGroup + '/feed', 'post', { message: ms,link:mslink }, function (response) {
         if (!response || response.error) {
           //alert('Có lỗi khi POST bài: ');
@@ -151,10 +191,25 @@
 
     //Post vào Group với picture by url
     function POSTGrpPictureUrl() {
-      var ms = document.getElementById('messagegr').value;
-      var url = document.getElementById('picturegr').value;
-
-      FB.api('' + idGroup + '/photos', 'post', { message: ms,link:mslink, url: url}, function (response) {
+      console.log(mslink);
+      if(mslink==null){
+        console.log(mslink);
+        FB.api('' + idGroup + '/photos', 'post', { message: ms, url: url}, function (response) {
+          if (!response || response.error) {
+            //alert('Có lỗi khi POST bài: ');
+            document.getElementById('returnerrorpicturegrp').value = 'Không được để trống tất cả các trường!!';
+            //console.log(response);
+          } else {
+            postid = response.post_id;
+            //console.log(postid);
+            getPostLinkGrp();
+            //alert('ĐÃ POST THÀNH CÔNG');
+            document.getElementById('returnerrorpicturegrp').value = '';
+          }
+        });
+      }else{
+        console.log(mslink);
+      FB.api('' + idGroup + '/photos', 'post', { message: ms+'\n'+ mslink, url: url}, function (response) {
         if (!response || response.error) {
           //alert('Có lỗi khi POST bài: ');
           document.getElementById('returnerrorpicturegrp').value = 'Không được để trống tất cả các trường!!';
@@ -167,47 +222,49 @@
           document.getElementById('returnerrorpicturegrp').value = '';
         }
       });
-    }
-
-    //Nút Đăng bài vào Group
-    function PostGrpByRequest() {
-
-      var getloai = $('#loaig2').val();
-      var ms = document.getElementById('messagegr').value;
-      var url = document.getElementById('picturegr').value;
-
-      //console.log(getloai);
-      if(getloai == 'null' || (ms == '' && url == '')){
-        //truyền gtri cho input hidden theo đúng id
-        document.getElementById('returnloaig2').value = 'Không được để trống loại bài viết!!';
-        document.getElementById('loaig2').value = null;
-      }else{
-        document.getElementById('returnloaig2').value = null;
-        //console.log("oke");
-          let a = $('#picturegr').val().trim();
-          if (FBLoaded) {
-            if (a === "") {
-              POSTGroupMess();
-            }
-            else {
-              POSTGrpPictureUrl();
-            }
-          } else {
-            setTimeout("PostGrpByRequest()", 100);
-          }
       }
+      
     }
+
+    
+    function PostGrpByRequest1() {
+
+var getloai = $('#loaig2').val();
+ ms = document.getElementById('messagegr').value;
+ url = document.getElementById('picturegr').value;
+
+//console.log(getloai);
+if(getloai == 'null' || (ms == '' && url == '')){
+  //truyền gtri cho input hidden theo đúng id
+  document.getElementById('returnloaig2').value = 'Không được để trống loại bài viết!!';
+  document.getElementById('loaig2').value = null;
+}else{
+  document.getElementById('returnloaig2').value = null;
+  //console.log("oke");
+    let a = $('#picturegr').val().trim();
+    if (FBLoaded) {
+      if (a === "") {
+        POSTGroupMess();
+      }
+      else {
+        POSTGrpPictureUrl();
+      }
+    } else {
+      setTimeout("PostGrpByRequest()", 100);
+    }
+}
+}
 
     function dangbaiGroup(pid) {
       idGroup = pid.data;
       //console.log(idGroup);
-      mslink = document.getElementById('mslinkp1').value;
+      mslink = document.getElementById('mslinkgrp1').value;
       //console.log(mslink);
       if(mslink=='null'){
         mslink=null;
       }
       //console.log(mslink);
-      setTimeout('PostGrpByRequest()',500);
+      setTimeout('PostGrpByRequest1()',500);
     }
 
     //get accessToken Page
@@ -221,7 +278,6 @@
     }
     //Post lên Page message
     function POSTPageMess() {
-      var ms = document.getElementById('message').value;
       FB.api('me/feed', 'post', { message: ms,link:mslink, access_token: accessToken }, function (response) {
           if (!response || response.error){
             //alert('Có lỗi khi POST bài: ');
@@ -241,9 +297,24 @@
 
     //Post lên Page picture by url
     function POSTPagePictureUrl() {
-      var ms = document.getElementById('message').value;
-      var url = document.getElementById('picture').value;
-      FB.api('me/photos', 'post', { message: ms, url: url,link:mslink, access_token: accessToken }, function (response) {
+      if(mslink==null){
+          FB.api('me/photos', 'post', { message: ms, url: url, access_token: accessToken }, function (response) {
+          if (!response || response.error) {
+            //alert('Có lỗi khi POST bài: ');
+
+            document.getElementById('returnerrorpicturePage').value = 'Không được để trống tất cả các trường!!';
+            //console.log(response);
+          } else {
+            //console.log(response);
+            postid = response.post_id;
+            //console.log(postid);
+            getPostLink();
+            //alert('ĐÃ POST THÀNH CÔNG');
+            document.getElementById('returnerrorpicturePage').value = '';
+          }
+        });
+      }
+      FB.api('me/photos', 'post', { message: ms+'\n'+ mslink, url: url, access_token: accessToken }, function (response) {
         if (!response || response.error) {
           //alert('Có lỗi khi POST bài: ');
 
@@ -258,14 +329,24 @@
           document.getElementById('returnerrorpicturePage').value = '';
         }
       });
+      
     }
 
     //Nút Đăng bài lên Page
     function PostByRequest(){
       var getloai = $('#loaip2').val();
-      var ms = document.getElementById('message').value;
-      var url = document.getElementById('picture').value;
-
+       ms = document.getElementById('message').value;
+       url = document.getElementById('picture').value;
+      mslink = document.getElementById('mslinkp1').value;
+      //console.log(mslink);
+      if(mslink=='null'){
+        mslink=null;
+      }else{
+        if(ms==''){
+          ms = mslink;
+          mslink==null;
+        }
+      }
       //console.log(ms);
       //console.log(getloai);
       if(getloai == 'null' || (ms == ''&& url=='')){
@@ -288,7 +369,32 @@
           }
       }
     }
-
+    function PostByRequest1(){
+      
+      var getloai = $('#loaip2').val();
+       ms = document.getElementById('message').value;
+       url = document.getElementById('picture').value;
+      
+      if(getloai == 'null' || (ms == ''&& url=='')){
+        //truyền gtri cho input hidden theo đúng id
+        $('#returnloaip2').val('Không được để trống loại bài viết!!');
+        document.getElementById('loaip2').value = null;
+      }else{
+          document.getElementById('returnloaip2').value = null;
+          //console.log("ok");
+          let a = $('#picture').val().trim();
+          if(FBLoaded){
+            if (a === "") {
+            POSTPageMess();
+            }
+            else{
+            POSTPagePictureUrl();
+            }
+          }else{
+            setTimeout("PostByRequest()",100);
+          }
+      }
+    }
     //Lấy link bài viết sau khi đăng
     function getPostLink(){
       FB.api('/'+postid,{fields: 'permalink_url'}, function (response) {
@@ -312,7 +418,7 @@
           accessToken = response.access_token;
             //console.log(accessToken);
         });
-      setTimeout('PostByRequest()',500);
+      setTimeout('PostByRequest1()',500);
     }
 
     // Danh sách group id cần post
@@ -337,16 +443,23 @@
       //console.log(mslink);
       if(mslink=='null'){
         mslink=null;
+      }else{
+        if(_message==''){
+          _message = mslink;
+          mslink =null;
+        }
       }
-      //console.log(mslink);
+      
         _List2 =(_List = document.getElementById('listidgrp').value).split(',');
-        _wait_time=20;
+        
         //console.log(mslink);
         //console.log(_picture);
-        //console.log(_message);
-        //console.log(_List2);
+        
+        console.log(_List2);
     }
     function _StartPost() {
+      _wait_time=20;
+      _ListIndex = -1
       setTimeout('validateGrp()',1000);
     }
 
@@ -380,7 +493,7 @@
         _wait_time=20;
           //Sau đó tăng biến đếm index các group đã post
             _ListIndex++;
-            //console.log(_ListIndex);
+            console.log(_ListIndex);
 
           //So sánh nếu danh sách các group đã post < độ dài của các group id cần post thì chạy hàm post
           if (_ListIndex < _List2.length) {
@@ -414,10 +527,12 @@
 
     //post vào Group
     function POSTGroupMessBD(idG) {
+      console.log(mslink);
+        console.log(_message);
       FB.api('/' + idG + '/feed', 'post', { message: _message,link: mslink }, function (response) {
         if (!response || response.error) {
           document.getElementById('returnerrorpicturegrp').value = 'Không được để trống nội dung!!';
-          //console.log(response);
+          console.log(response);
         } else {
           postid = response.id;
           //console.log(postid);
@@ -429,10 +544,25 @@
 
     //Post vào Group với picture by url của Bài Đăng
     function POSTGrpPictureUrlBD(idG) {
-      FB.api('' + idG + '/photos', 'post', { message: _message, url: _picture,link:mslink}, function (response) {
+      console.log(mslink);
+        console.log(_message);
+        if(mslink==null){
+              FB.api('' + idG + '/photos', 'post', { message: _message, url: _picture}, function (response) {
+            if (!response || response.error) {
+              document.getElementById('returnerrorpicturegrp').value = 'Không được để trống tất cả các trường!!';
+              console.log(response);
+            } else {
+              postid = response.post_id;
+              //console.log(postid);
+              getPostLinkGrp();
+              document.getElementById('returnerrorpicturegrp').value = '';
+            }
+          });
+        }
+        FB.api('' + idG + '/photos', 'post', { message: _message +'\n'+ mslink, url: _picture}, function (response) {
         if (!response || response.error) {
           document.getElementById('returnerrorpicturegrp').value = 'Không được để trống tất cả các trường!!';
-          //console.log(response);
+          console.log(response);
         } else {
           postid = response.post_id;
           //console.log(postid);
@@ -440,6 +570,7 @@
           document.getElementById('returnerrorpicturegrp').value = '';
         }
       });
+      
     }
 
     //Nút Đăng bài vào Group của modal bài đăng
@@ -472,9 +603,7 @@
       _monitor = document.getElementById('responsep1');
       mslink = document.getElementById('mslinkpage').value;
       //console.log(mslink);
-      if(mslink=='null'){
-        mslink=null;
-      }
+      
       //console.log(mslink);
       _picture = document.getElementById('picturep1').value;
         _message = document.getElementById('messagep1').value;
@@ -482,6 +611,14 @@
         _List2.forEach(idp => {
           getAccessTokenBD(idp);
         });
+        if(mslink=='null'){
+        mslink=null;
+      }else{
+        if(_message==''){
+          _message = mslink;
+          mslink=null;
+        }
+      }
 
         //console.log(_picture);
         //console.log(_message);
@@ -489,6 +626,7 @@
     }
     function _StartPostPage() {
       _wait_time=20;
+      _ListIndex = -1
       setTimeout('validate()',1000);
 
     }
@@ -578,7 +716,21 @@
 
     //Post lên Page picture by url
     function POSTPagePictureUrlBD(d) {
-      FB.api('me/photos', 'post', { message: _message,link:mslink, url: _picture, access_token: d }, function (response) {
+        if(mslink==null){
+              FB.api('me/photos', 'post', { message: _message, url: _picture, access_token: d }, function (response) {
+            if (!response || response.error) {
+              document.getElementById('returnerrorpicturePage').value = 'Không được để trống tất cả các trường!!';
+              //console.log(response);
+            } else {
+              //console.log(response);
+              postid = response.post_id;
+              //console.log(postid);
+              getPostLink();
+              document.getElementById('returnerrorpicturePage').value = '';
+            }
+          });
+        }
+        FB.api('me/photos', 'post', { message: _message+'\n'+ mslink, url: _picture, access_token: d }, function (response) {
         if (!response || response.error) {
           document.getElementById('returnerrorpicturePage').value = 'Không được để trống tất cả các trường!!';
           //console.log(response);
@@ -590,6 +742,7 @@
           document.getElementById('returnerrorpicturePage').value = '';
         }
       });
+      
     }
 
     //Nút Đăng bài lên Page

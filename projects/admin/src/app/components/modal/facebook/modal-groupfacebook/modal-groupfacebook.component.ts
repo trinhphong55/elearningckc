@@ -348,34 +348,66 @@ export class ModalGroupfacebookComponent implements OnInit {
 
                 });
               }else{
-                this.baiDangFBService.create({
-                  ID: this.idgroup,
-                  postID: Post_idd,
-                  link: linkpost,
-                  message: this.messa +','+ this.mslinkgrp,
-                  url: this.urlImg,
-                  maLoai: this.MaLoai,
-                  loai: this.loaistt,
-                  thuoc: this.tengroup,
-                  postOf: 'group'
-                }).subscribe((ress:any)=>{
-                  this.mss = ress.msg;
-                  this.mss1 = ress.msg1;
-                  if(this.mss1){
-                    this.toastr.success(this.mss1,'Thông báo',{
-                      timeOut:2000,
-                      positionClass:'toast-bottom-right',
-                    });
-                  }
-                  if(this.mss){
-                    this.toastr.error(this.mss,'Lỗi',{
-                      timeOut:2000,
-                      positionClass:'toast-bottom-right',
-                    });
-                  }
-
-
-                });
+                if(this.messa == null||this.messa=='null'||this.messa==''){
+                  this.baiDangFBService.create({
+                    ID: this.idgroup,
+                    postID: Post_idd,
+                    link: linkpost,
+                    message: this.mslinkgrp,
+                    url: this.urlImg,
+                    maLoai: this.MaLoai,
+                    loai: this.loaistt,
+                    thuoc: this.tengroup,
+                    postOf: 'group'
+                  }).subscribe((ress:any)=>{
+                    this.mss = ress.msg;
+                    this.mss1 = ress.msg1;
+                    if(this.mss1){
+                      this.toastr.success(this.mss1,'Thông báo',{
+                        timeOut:2000,
+                        positionClass:'toast-bottom-right',
+                      });
+                    }
+                    if(this.mss){
+                      this.toastr.error(this.mss,'Lỗi',{
+                        timeOut:2000,
+                        positionClass:'toast-bottom-right',
+                      });
+                    }
+  
+  
+                  });
+                }else{
+                  this.baiDangFBService.create({
+                    ID: this.idgroup,
+                    postID: Post_idd,
+                    link: linkpost,
+                    message: this.messa +','+ this.mslinkgrp,
+                    url: this.urlImg,
+                    maLoai: this.MaLoai,
+                    loai: this.loaistt,
+                    thuoc: this.tengroup,
+                    postOf: 'group'
+                  }).subscribe((ress:any)=>{
+                    this.mss = ress.msg;
+                    this.mss1 = ress.msg1;
+                    if(this.mss1){
+                      this.toastr.success(this.mss1,'Thông báo',{
+                        timeOut:2000,
+                        positionClass:'toast-bottom-right',
+                      });
+                    }
+                    if(this.mss){
+                      this.toastr.error(this.mss,'Lỗi',{
+                        timeOut:2000,
+                        positionClass:'toast-bottom-right',
+                      });
+                    }
+  
+  
+                  });
+                }
+                
               }
 
 
@@ -408,7 +440,7 @@ export class ModalGroupfacebookComponent implements OnInit {
     })
 
 
-    if(((this.messa == null || this.messa==""))&&this.urlImg==null || this.loaistt == null ||this.loaistt == 'null'){
+    if((this.messa == null || this.messa=="")&&this.urlImg==null || this.loaistt == null ||this.loaistt == 'null'){
        this.toastr.warning('Không được để trống Nội dung và Loại bài viết','Nhắc nhở',{
          timeOut:2000,
          positionClass:'toast-bottom-right',
@@ -447,31 +479,60 @@ export class ModalGroupfacebookComponent implements OnInit {
 
           });
         }else{
-          this.baiDangFBService.createDraw({
-            ID: this.idgroup,
-            message: this.messa +','+ this.mslinkgrp,
-            url: this.urlImg,
-            maLoai: this.MaLoai,
-            loai: this.loaistt,
-            thuoc: this.tengroup,
-            postOf: 'group'
-          }).subscribe((ress:any)=>{
-            this.mss = ress.msg;
-            this.mss1 = ress.msg1;
-            if(this.mss1){
-              this.toastr.success(this.mss1,'Thông báo',{
-                timeOut:2000,
-                positionClass:'toast-bottom-right',
-              });
-            }
-            if(this.mss){
-              this.toastr.error(this.mss,'Lỗi',{
-                timeOut:2000,
-                positionClass:'toast-bottom-right',
-              });
-            }
-
-          });
+          if(this.messa == null||this.messa=='null'||this.messa==''){
+            this.baiDangFBService.createDraw({
+              ID: this.idgroup,
+              message: this.mslinkgrp,
+              url: this.urlImg,
+              maLoai: this.MaLoai,
+              loai: this.loaistt,
+              thuoc: this.tengroup,
+              postOf: 'group'
+            }).subscribe((ress:any)=>{
+              this.mss = ress.msg;
+              this.mss1 = ress.msg1;
+              if(this.mss1){
+                this.toastr.success(this.mss1,'Thông báo',{
+                  timeOut:2000,
+                  positionClass:'toast-bottom-right',
+                });
+              }
+              if(this.mss){
+                this.toastr.error(this.mss,'Lỗi',{
+                  timeOut:2000,
+                  positionClass:'toast-bottom-right',
+                });
+              }
+  
+            });
+          }else{
+            this.baiDangFBService.createDraw({
+              ID: this.idgroup,
+              message: this.messa +','+ this.mslinkgrp,
+              url: this.urlImg,
+              maLoai: this.MaLoai,
+              loai: this.loaistt,
+              thuoc: this.tengroup,
+              postOf: 'group'
+            }).subscribe((ress:any)=>{
+              this.mss = ress.msg;
+              this.mss1 = ress.msg1;
+              if(this.mss1){
+                this.toastr.success(this.mss1,'Thông báo',{
+                  timeOut:2000,
+                  positionClass:'toast-bottom-right',
+                });
+              }
+              if(this.mss){
+                this.toastr.error(this.mss,'Lỗi',{
+                  timeOut:2000,
+                  positionClass:'toast-bottom-right',
+                });
+              }
+  
+            });
+          }
+          
         }
 
       this.delay(1000).then(any=>{

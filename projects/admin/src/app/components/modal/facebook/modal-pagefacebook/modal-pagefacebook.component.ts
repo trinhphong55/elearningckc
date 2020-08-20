@@ -291,33 +291,64 @@ export class ModalPagefacebookComponent implements OnInit {
                 }
               });
               }else{
-                this.baiDangFBService
-              .create({
-                ID: this.idpage,
-                postID: Post_idd,
-                link: linkpost,
-                message: this.messa +','+ this.mslinkp1,
-                url: this.urlImg,
-                maLoai: this.MaLoai,
-                loai: this.loaistt,
-                thuoc: this.tenpage,
-                postOf: 'page'
-              })
-              .subscribe((ress: any) => {
-                this.mess = ress.msg;
-                this.mss1 = ress.msg1;
-                if(this.mss1){
-                  this.toastr.success(this.mss1,'Thông báo',{
-                    timeOut:2000,
-                    positionClass:'toast-bottom-right',
+                if(this.messa == null||this.messa=='null'||this.messa==''){
+                  this.baiDangFBService
+                  .create({
+                    ID: this.idpage,
+                    postID: Post_idd,
+                    link: linkpost,
+                    message: this.mslinkp1,
+                    url: this.urlImg,
+                    maLoai: this.MaLoai,
+                    loai: this.loaistt,
+                    thuoc: this.tenpage,
+                    postOf: 'page'
+                  })
+                  .subscribe((ress: any) => {
+                    this.mess = ress.msg;
+                    this.mss1 = ress.msg1;
+                    if(this.mss1){
+                      this.toastr.success(this.mss1,'Thông báo',{
+                        timeOut:2000,
+                        positionClass:'toast-bottom-right',
+                      });
+                    }else{
+                      this.toastr.error(this.mess,'Lỗi',{
+                        timeOut:2000,
+                        positionClass:'toast-bottom-right',
+                      });
+                    }
                   });
                 }else{
-                  this.toastr.error(this.mess,'Lỗi',{
-                    timeOut:2000,
-                    positionClass:'toast-bottom-right',
+                  this.baiDangFBService
+                  .create({
+                    ID: this.idpage,
+                    postID: Post_idd,
+                    link: linkpost,
+                    message: this.messa +','+ this.mslinkp1,
+                    url: this.urlImg,
+                    maLoai: this.MaLoai,
+                    loai: this.loaistt,
+                    thuoc: this.tenpage,
+                    postOf: 'page'
+                  })
+                  .subscribe((ress: any) => {
+                    this.mess = ress.msg;
+                    this.mss1 = ress.msg1;
+                    if(this.mss1){
+                      this.toastr.success(this.mss1,'Thông báo',{
+                        timeOut:2000,
+                        positionClass:'toast-bottom-right',
+                      });
+                    }else{
+                      this.toastr.error(this.mess,'Lỗi',{
+                        timeOut:2000,
+                        positionClass:'toast-bottom-right',
+                      });
+                    }
                   });
                 }
-              });
+                
               }
             this.delay(2000).then((any) => {
               this.getMessage.setValue('');

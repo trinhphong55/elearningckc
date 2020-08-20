@@ -38,8 +38,8 @@ exports.postToDrawFB = async (req, res) => {
       msg1: "Thêm thành công vào nháp",
       data: savePostToDraw,
     });
-  } catch (error) {
-    res.json(error);
+  } catch  {
+    
     res.json({
       status: 200,
       ok: true,

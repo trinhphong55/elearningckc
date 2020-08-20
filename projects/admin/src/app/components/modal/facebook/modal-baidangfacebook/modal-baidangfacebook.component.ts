@@ -204,7 +204,6 @@ export class ModalBaidangfacebookComponent implements OnInit {
   transIDpage(){
     $('#listidpage').val(this.selectedPgae);
     this.conTentt = this.addForm.value.conTent;
-    $('#fixfont').html(this.conTentt);
     this.delay(1000).then(any=>{
       var nofi = $('#returnloaip1').val();
         if(nofi !== ''){
@@ -281,31 +280,60 @@ export class ModalBaidangfacebookComponent implements OnInit {
             }
           });
         }else{
-          this.baiDangFBService.createDraw({
-            ID: d,
-            message: this.conTentt +','+ this.mslink,
-            url: this.urlImg,
-            maLoai: this.getMaloai,
-            loai: this.getloaifb,
-            thuoc: this.tenpage,
-            postOf: 'page'
-          }).subscribe((ress:any)=>{
-            this.mss = ress.msg;
-            this.mss1 = ress.msg1;
-            if(this.mss1){
-              this.toastr.success(this.mss1,'Thông báo',{
-                timeOut:2000,
-                positionClass:'toast-bottom-right',
-              });
-            }
-            if(this.mss){
-              this.toastr.error(this.mss,'Lỗi',{
-                timeOut:2000,
-                positionClass:'toast-bottom-right',
-              });
-            }
-
-          });
+          if(this.conTentt == null||this.conTentt=='null'||this.conTentt==''){
+            this.baiDangFBService.createDraw({
+              ID: d,
+              message:this.mslink,
+              url: this.urlImg,
+              maLoai: this.getMaloai,
+              loai: this.getloaifb,
+              thuoc: this.tenpage,
+              postOf: 'page'
+            }).subscribe((ress:any)=>{
+              this.mss = ress.msg;
+              this.mss1 = ress.msg1;
+              if(this.mss1){
+                this.toastr.success(this.mss1,'Thông báo',{
+                  timeOut:2000,
+                  positionClass:'toast-bottom-right',
+                });
+              }
+              if(this.mss){
+                this.toastr.error(this.mss,'Lỗi',{
+                  timeOut:2000,
+                  positionClass:'toast-bottom-right',
+                });
+              }
+  
+            });
+          }else{
+            this.baiDangFBService.createDraw({
+              ID: d,
+              message: this.conTentt +','+ this.mslink,
+              url: this.urlImg,
+              maLoai: this.getMaloai,
+              loai: this.getloaifb,
+              thuoc: this.tenpage,
+              postOf: 'page'
+            }).subscribe((ress:any)=>{
+              this.mss = ress.msg;
+              this.mss1 = ress.msg1;
+              if(this.mss1){
+                this.toastr.success(this.mss1,'Thông báo',{
+                  timeOut:2000,
+                  positionClass:'toast-bottom-right',
+                });
+              }
+              if(this.mss){
+                this.toastr.error(this.mss,'Lỗi',{
+                  timeOut:2000,
+                  positionClass:'toast-bottom-right',
+                });
+              }
+  
+            });
+          }
+          
         }
       });
       this.delay(1000).then(any=>{
@@ -328,11 +356,9 @@ export class ModalBaidangfacebookComponent implements OnInit {
     this.urlImg = this.addForm.value.urlimggrp;
     this.getloaifb = this.addForm.value.getLoaisTTgrp;
     this.mslink = this.addForm.value.mslinkgroup;
+    console.log(this.selectedCityIds);
 
-
-
-
-    if( this.getloaifb == 'null'|| this.selectedCityIds==null|| this.selectedCityIds.length==0||((this.conTentt === '' ||this.conTentt ==null)&& this.urlImg==null)){
+    if((this.conTentt===''||this.conTentt == null) &&this.urlImg==null|| this.getloaifb == 'null'|| this.selectedCityIds==null|| this.selectedCityIds.length==0||this.getloaifb == null){
        this.toastr.warning('Không được để trống Nội dung và Loại bài viết','Nhắc nhở',{
          timeOut:2000,
          positionClass:'toast-bottom-right',
@@ -343,14 +369,13 @@ export class ModalBaidangfacebookComponent implements OnInit {
           this.getMaloai = item.maLoai;
         }
       });
-
       this.selectedCityIds.forEach(d => {
-        this.getpg.filter((item)=>{
+        this.lopHoc.filter((item)=>{
           if(item.IDGroupFB === d){
             this.tenpage = item.tenGroupFB;
           }
-        })
-
+        });
+        console.log(this.tenpage);
         if(this.mslink==null||this.mslink=='null'){
           this.baiDangFBService.createDraw({
             ID: d,
@@ -375,39 +400,68 @@ export class ModalBaidangfacebookComponent implements OnInit {
                 positionClass:'toast-bottom-right',
               });
             }
-
           });
-
         }else{
-          this.baiDangFBService.createDraw({
-            ID: d,
-            message: this.conTentt +','+ this.mslink,
-            url: this.urlImg,
-            maLoai: this.getMaloai,
-            loai: this.getloaifb,
-            thuoc: this.tenpage,
-            postOf: 'group'
-          }).subscribe((ress:any)=>{
-            this.mss = ress.msg;
-            this.mss1 = ress.msg1;
-            if(this.mss1){
-              this.toastr.success(this.mss1,'Thông báo',{
-                timeOut:2000,
-                positionClass:'toast-bottom-right',
-              });
-            }
-            if(this.mss){
-              this.toastr.error(this.mss,'Lỗi',{
-                timeOut:2000,
-                positionClass:'toast-bottom-right',
-              });
-            }
+          if(this.conTentt == null||this.conTentt=='null'||this.conTentt==''){
+            console.log(this.getMaloai);
+            console.log(this.tenpage);
+            console.log(d);
+            console.log(this.mslink);
 
-          });
-
+            this.baiDangFBService.createDraw({
+              ID: d,
+              message:this.mslink,
+              url: this.urlImg,
+              maLoai: this.getMaloai,
+              loai: this.getloaifb,
+              thuoc: this.tenpage,
+              postOf: 'group'
+            }).subscribe((ress:any)=>{
+              this.mss = ress.msg;
+              this.mss1 = ress.msg1;
+              if(this.mss1){
+                this.toastr.success(this.mss1,'Thông báo',{
+                  timeOut:2000,
+                  positionClass:'toast-bottom-right',
+                });
+              }
+              if(this.mss){
+                this.toastr.error(this.mss,'Lỗi',{
+                  timeOut:2000,
+                  positionClass:'toast-bottom-right',
+                });
+              }
+  
+            });
+          }else{
+            this.baiDangFBService.createDraw({
+              ID: d,
+              message: this.conTentt +','+ this.mslink,
+              url: this.urlImg,
+              maLoai: this.getMaloai,
+              loai: this.getloaifb,
+              thuoc: this.tenpage,
+              postOf: 'group'
+            }).subscribe((ress:any)=>{
+              this.mss = ress.msg;
+              this.mss1 = ress.msg1;
+              if(this.mss1){
+                this.toastr.success(this.mss1,'Thông báo',{
+                  timeOut:2000,
+                  positionClass:'toast-bottom-right',
+                });
+              }
+              if(this.mss){
+                this.toastr.error(this.mss,'Lỗi',{
+                  timeOut:2000,
+                  positionClass:'toast-bottom-right',
+                });
+              }
+  
+            });
+          }
+          
         }
-
-
       });
       this.delay(1000).then(any=>{
 
@@ -417,11 +471,6 @@ export class ModalBaidangfacebookComponent implements OnInit {
         this.getAll();
       });
     }
-
-
-
-
-
   }
 
   capnhatchuadang(){
