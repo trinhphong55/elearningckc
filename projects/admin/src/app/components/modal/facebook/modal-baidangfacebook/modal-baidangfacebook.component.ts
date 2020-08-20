@@ -356,7 +356,7 @@ export class ModalBaidangfacebookComponent implements OnInit {
     this.urlImg = this.addForm.value.urlimggrp;
     this.getloaifb = this.addForm.value.getLoaisTTgrp;
     this.mslink = this.addForm.value.mslinkgroup;
-    console.log(this.selectedCityIds);
+    //console.log(this.selectedCityIds);
 
     if((this.conTentt===''||this.conTentt == null) &&this.urlImg==null|| this.getloaifb == 'null'|| this.selectedCityIds==null|| this.selectedCityIds.length==0||this.getloaifb == null){
        this.toastr.warning('Không được để trống Nội dung và Loại bài viết','Nhắc nhở',{
@@ -375,7 +375,7 @@ export class ModalBaidangfacebookComponent implements OnInit {
             this.tenpage = item.tenGroupFB;
           }
         });
-        console.log(this.tenpage);
+        //console.log(this.tenpage);
         if(this.mslink==null||this.mslink=='null'){
           this.baiDangFBService.createDraw({
             ID: d,
@@ -403,10 +403,10 @@ export class ModalBaidangfacebookComponent implements OnInit {
           });
         }else{
           if(this.conTentt == null||this.conTentt=='null'||this.conTentt==''){
-            console.log(this.getMaloai);
-            console.log(this.tenpage);
-            console.log(d);
-            console.log(this.mslink);
+            //console.log(this.getMaloai);
+            //console.log(this.tenpage);
+            //console.log(d);
+            //console.log(this.mslink);
 
             this.baiDangFBService.createDraw({
               ID: d,

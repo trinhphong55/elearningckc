@@ -129,8 +129,8 @@
        ms = document.getElementById('messagegr').value;
        url = document.getElementById('picturegr').value;
       mslink = document.getElementById('mslinkgrp1').value;
-      console.log(mslink);
-      console.log(ms);
+      //console.log(mslink);
+      //console.log(ms);
       if(mslink=='null'){
         mslink=null;
       }else{
@@ -139,8 +139,8 @@
         mslink=null;
         }
       }
-      console.log(ms);
-      console.log(getloai);
+      //console.log(ms);
+      //console.log(getloai);
       if(getloai == 'null' || (ms == '' && url == '')){
         //truyền gtri cho input hidden theo đúng id
         document.getElementById('returnloaig2').value = 'Không được để trống loại bài viết!!';
@@ -191,9 +191,9 @@
 
     //Post vào Group với picture by url
     function POSTGrpPictureUrl() {
-      console.log(mslink);
+      //console.log(mslink);
       if(mslink==null){
-        console.log(mslink);
+        //console.log(mslink);
         FB.api('' + idGroup + '/photos', 'post', { message: ms, url: url}, function (response) {
           if (!response || response.error) {
             //alert('Có lỗi khi POST bài: ');
@@ -208,7 +208,7 @@
           }
         });
       }else{
-        console.log(mslink);
+        //console.log(mslink);
       FB.api('' + idGroup + '/photos', 'post', { message: ms+'\n'+ mslink, url: url}, function (response) {
         if (!response || response.error) {
           //alert('Có lỗi khi POST bài: ');
@@ -455,7 +455,7 @@ if(getloai == 'null' || (ms == '' && url == '')){
         //console.log(mslink);
         //console.log(_picture);
         
-        console.log(_List2);
+        //console.log(_List2);
     }
     function _StartPost() {
       _wait_time=20;
@@ -493,7 +493,7 @@ if(getloai == 'null' || (ms == '' && url == '')){
         _wait_time=20;
           //Sau đó tăng biến đếm index các group đã post
             _ListIndex++;
-            console.log(_ListIndex);
+            //console.log(_ListIndex);
 
           //So sánh nếu danh sách các group đã post < độ dài của các group id cần post thì chạy hàm post
           if (_ListIndex < _List2.length) {
@@ -527,12 +527,12 @@ if(getloai == 'null' || (ms == '' && url == '')){
 
     //post vào Group
     function POSTGroupMessBD(idG) {
-      console.log(mslink);
-        console.log(_message);
+      //console.log(mslink);
+        //console.log(_message);
       FB.api('/' + idG + '/feed', 'post', { message: _message,link: mslink }, function (response) {
         if (!response || response.error) {
           document.getElementById('returnerrorpicturegrp').value = 'Không được để trống nội dung!!';
-          console.log(response);
+          //console.log(response);
         } else {
           postid = response.id;
           //console.log(postid);
@@ -544,13 +544,13 @@ if(getloai == 'null' || (ms == '' && url == '')){
 
     //Post vào Group với picture by url của Bài Đăng
     function POSTGrpPictureUrlBD(idG) {
-      console.log(mslink);
-        console.log(_message);
+      //console.log(mslink);
+        //console.log(_message);
         if(mslink==null){
               FB.api('' + idG + '/photos', 'post', { message: _message, url: _picture}, function (response) {
             if (!response || response.error) {
               document.getElementById('returnerrorpicturegrp').value = 'Không được để trống tất cả các trường!!';
-              console.log(response);
+              //console.log(response);
             } else {
               postid = response.post_id;
               //console.log(postid);
@@ -562,7 +562,7 @@ if(getloai == 'null' || (ms == '' && url == '')){
         FB.api('' + idG + '/photos', 'post', { message: _message +'\n'+ mslink, url: _picture}, function (response) {
         if (!response || response.error) {
           document.getElementById('returnerrorpicturegrp').value = 'Không được để trống tất cả các trường!!';
-          console.log(response);
+          //console.log(response);
         } else {
           postid = response.post_id;
           //console.log(postid);
