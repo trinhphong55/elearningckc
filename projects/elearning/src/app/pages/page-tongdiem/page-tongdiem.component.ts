@@ -153,14 +153,18 @@ export class PageTongdiemComponent implements OnInit {
     this.diemSinhVienServiceL.luuDiem(this.dsTenHocSinh, this.router.snapshot.paramMap.get('id')).subscribe(
       luuDTK => {
         if (luuDTK != "") {
-          this.luuDTK = luuDTK;
+          this.toastrService.success('Lưu bảng điểm thành công', ' thông báo', {
+            timeOut:3000,
+          });
         }
         else {
-          alert("loi")
+          this.toastrService.error('Bảng Điểm đã tồn tại', ' thông báo', {
+            timeOut:3000,
+          });
        }
       },
       (error) => {
-        this.toastrService.error('Sửa thành công', ' thông báo', {
+        this.toastrService.error('Bảng Điểm đã tồn tại', ' thông báo', {
           timeOut:3000,
         });
         console.log(error);
