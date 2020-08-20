@@ -47,7 +47,6 @@ export class AppComponent implements OnInit {
   }
 
   onLogout(): void {
-    console.log('logout');
     setCookie('token', '', '0');
     setCookie('email', '', '0');
     setCookie('role', '', '0');
@@ -67,11 +66,11 @@ export class AppComponent implements OnInit {
         }
 
         if (response.data != null && response.data.role != 'admin') {
-          setCookie('token', response.data.token, '7');
-          setCookie('role', response.data.role, '7');
-          setCookie('email', response.data.email, '7');
-          setCookie('name', response.data.name, '7');
-          window.location.href = 'http://localhost:4400';
+          const token = response.data.token;
+          const role = response.data.role;
+          const email = response.data.email;
+          const name = response.data.name;
+          window.location.href = `http://localhost:4400/login?token=${token}&role=${role}&email=${email}&name=${name}`;
         }
 
         if (response.data == null) {

@@ -22,11 +22,17 @@ import { XembaitapgvComponent } from './components/content/chudelophocphan/allch
 import { XembaiganggvComponent } from './components/content/chudelophocphan/allchude/xembaiganggv/xembaiganggv.component';
 
 import{PageBaigiangComponent} from'./pages/page-baigiang/page-baigiang.component';
+import { PageLoginComponent } from './pages/page-login/page-login.component';
+
 import { from } from 'rxjs';
 const routes: Routes = [
   {
     path: '',
     component: PageTrangchuComponent,
+  },
+  {
+    path: 'login',
+    component: PageLoginComponent,
   },
   {
     path: 'hososv',

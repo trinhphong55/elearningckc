@@ -6,6 +6,25 @@ router.get('/', async (req, res) => {
   return res.status(200).json('Get activity');
 })
 
+router.get('/:loaiActivity', async (req, res) => {
+  const loaiActivity = req.params.loaiActivity;
+  console.log('loaiActivity', loaiActivity);
+  await Activity.find({loaiActivity: loaiActivity}).sort({"ngayTao": -1})
+    .then(dsActi => {
+      return res.status(200).json({
+        message: "Lay thanh cong",
+        data: dsActi,
+        status: 200,
+      })
+    }).catch(err => {
+      return res.status(500).json({
+        message: err,
+        status: 500,
+        data: [],
+      })
+    })
+})
+
 router.get('/:loaiActivity/lophocphan/:maLopHocPhan', async (req, res) => {
   const loaiActivity = req.params.loaiActivity;
   const maLopHocPhan = req.params.maLopHocPhan;
