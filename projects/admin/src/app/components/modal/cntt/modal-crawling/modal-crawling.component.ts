@@ -18,9 +18,45 @@ export class ModalCrawlingComponent implements OnInit {
       name: 'Trường',
       nhomBaiViet: [
         {
-          name: 'Lịch công tác tuần cho giáo viên',
+          name: 'Thông báo',
+          selector: {
+            url: 'https://caothang.edu.vn/bai_viet/Thong-Bao-9',
+            wrapper: '.ds_bai_viet',
+            wrapperContent: '#noi_dung',
+            href: '.ten.dam',
+            title: '.ten.dam',
+            time: '.mo.nghien',
+            listUrl: true,
+          },
+        },
+        {
+          name: 'Lịch công tác tuần',
           selector: {
             url: 'https://caothang.edu.vn/bai_viet/Lich-Cong-Tac-Tuan-14',
+            wrapper: '.ds_bai_viet',
+            wrapperContent: '#noi_dung',
+            href: '.ten.dam',
+            title: '.ten.dam',
+            time: '.mo.nghien',
+            listUrl: true,
+          },
+        },
+        {
+          name: 'Tin Cao Thắng',
+          selector: {
+            url: 'https://caothang.edu.vn/bai_viet/Tin-Cao-Thang-8',
+            wrapper: '.ds_bai_viet',
+            wrapperContent: '#noi_dung',
+            href: '.ten.dam',
+            title: '.ten.dam',
+            time: '.mo.nghien',
+            listUrl: true,
+          },
+        },
+        {
+          name: 'Tin giáo dục',
+          selector: {
+            url: 'https://caothang.edu.vn/bai_viet/Tin-Giao-Duc-17',
             wrapper: '.ds_bai_viet',
             wrapperContent: '#noi_dung',
             href: '.ten.dam',

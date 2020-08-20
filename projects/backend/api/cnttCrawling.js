@@ -1,8 +1,45 @@
 const router = require("express").Router();
 const axios = require("axios");
 const cheerio = require("cheerio");
+const moment = require("moment");
 
 const BaiViet = require("../models/cntttintuc.model");
+
+const ThoiGianDangBai = {
+  time: "18:00:00",
+  date: moment().weekday(6).format("DD/MM/YYYY"), // Thứ 6 hằng tuần
+  dateTime: "",
+};
+
+ThoiGianDangBai.dateTime = moment(
+  `${ThoiGianDangBai.time} ${ThoiGianDangBai.date}`,
+  "HH:mm:ss DD/MM/YYYY"
+).format("HH:mm:ss, DD/MM/YYYY");
+
+// console.log(ThoiGianDangBai);
+
+// setInterval(() => {
+//   // console.log(
+//   //   moment().diff(
+//   //     moment(ThoiGianDangBai.dateTime, "HH:mm:ss, DD/MM/YYYY"),
+//   //     "seconds"
+//   //   )
+//   // );
+//   if (
+//     moment().diff(
+//       moment(ThoiGianDangBai.dateTime, "HH:mm:ss, DD/MM/YYYY"),
+//       "seconds"
+//     ) === 0
+//   ) {
+//     // console.log("true");
+//     ThoiGianDangBai.date = moment().add(1, "weeks").format("DD/MM/YYYY");
+//     ThoiGianDangBai.dateTime = moment(
+//       `${ThoiGianDangBai.time} ${ThoiGianDangBai.date}`,
+//       "HH:mm:ss DD/MM/YYYY"
+//     ).format("HH:mm:ss, DD/MM/YYYY");
+//     // console.log(ThoiGianDangBai);
+//   }
+// }, 1000);
 
 router.get("/", async (req, res) => {
   const data = await BaiViet.find({ crawling: true });
