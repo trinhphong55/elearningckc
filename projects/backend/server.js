@@ -9,9 +9,9 @@ const morgan = require("morgan");
 const path = require("path");
 
 const ip = "103.92.26.177:27017";
-const db = "devAngular";
-const user = "ai_noi_mongo_die";
-const password = "khongthechetduoc";
+const db = "testAngularckc";
+const user = "elearning";
+const password = "123";
 
 const MONGODB_URI =
   `mongodb://${user}:${password}@${ip}/${db}?retryWrites=true&w=majority?authSource=admin`;
