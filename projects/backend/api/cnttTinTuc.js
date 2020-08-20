@@ -42,10 +42,8 @@ function uploadPhotos(req, res, next) {
       const photo = req.file;
       // check if photos are available
       if (!photo) {
-        res.status(400).json({
-          status: false,
-          message: "No photo is selected.",
-        });
+        req.body.anhBia = FILE_PATH + "default.png";
+        next();
       } else {
         req.body.anhBia = photo.destination + photo.filename;
         next();
@@ -168,7 +166,7 @@ router.get("/danhsachtintuc", async (req, res) => {
 
 router.get("/danhsachtintucmoinhat", async (req, res) => {
   try {
-    const data = await TinTuc.find().sort({ thoiGianDangBai: "asc" });
+    const data = await TinTuc.find().sort({ thoiGianDangBai: "asc" }).limit(10);
     res.json({
       message: "Lấy danh sách bài viết thành công.",
       data: data,

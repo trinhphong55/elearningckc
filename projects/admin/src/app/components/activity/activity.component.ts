@@ -18,7 +18,7 @@ export class ActivityComponent implements OnInit, AfterViewInit {
       this.danhSachBaiVietMoiNhat = res.data;
       setTimeout(() => {
         this._highLightSlider.update();
-      }, 1000);
+      }, 1500);
     });
   }
 
@@ -30,7 +30,7 @@ export class ActivityComponent implements OnInit, AfterViewInit {
         delay: 3000,
         disableOnInteraction: false,
       },
-      speed: 1000,
+      speed: 2000,
       navigation: {
         nextEl: '.master_page__chucnang__slider .swiper-button-next',
         prevEl: '.master_page__chucnang__slider .swiper-button-prev',

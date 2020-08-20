@@ -302,8 +302,8 @@ export class ModalCrawlingComponent implements OnInit {
             }
           }
         }
-        console.log('=========== crawling thành công ===========');
-        console.log(this.danhSachBaiViet);
+        // console.log('=========== crawling thành công ===========');
+        // console.log(this.danhSachBaiViet);
         this.disableButton = false;
         this.showSkeleton = false;
       });

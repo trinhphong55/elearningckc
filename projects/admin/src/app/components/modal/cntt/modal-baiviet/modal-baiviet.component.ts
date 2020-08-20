@@ -358,7 +358,7 @@ export class ModalBaivietComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   saveEditBaiViet(): void {
-    if (this.formChinhSuaBaiViet.valid && this._imageCanChinhSua !== null) {
+    if (this.formChinhSuaBaiViet.valid) {
       const tieuDeAfterRemoveHTMLTag = this.stringCommonService.removeSpaceAndHTMLTag(
         this.formChinhSuaBaiViet.get('tieuDe').value
       );
@@ -422,7 +422,7 @@ export class ModalBaivietComponent implements OnInit, OnDestroy, AfterViewInit {
         // this.reRenderDataTables(); // DataTables
       });
     } else {
-      alert('Vui lòng nhập đầy đủ các thông tin và chọn hình ảnh mới');
+      alert('Vui lòng nhập đầy đủ các thông tin');
     }
   }
 
@@ -440,7 +440,7 @@ export class ModalBaivietComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
-  //form them
+  //#region setter - getter
   get maDanhMuc() {
     return this.formBaiViet.get('maDanhMuc');
   }
@@ -484,4 +484,5 @@ export class ModalBaivietComponent implements OnInit, OnDestroy, AfterViewInit {
   get trangThai2() {
     return this.formChinhSuaBaiViet.get('trangThai');
   }
+  //#endregion
 }
