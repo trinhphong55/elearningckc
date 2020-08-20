@@ -49,7 +49,6 @@ export class TaobaigiangComponent implements OnInit {
       this.baiGiang.dinhKem = this.attachmentList;
       this._baiGiangService.them(this.baiGiang).subscribe((data: any) => {
         this.toastr.success(data.message, 'Thông báo');
-
       });
     };
 
@@ -79,13 +78,11 @@ export class TaobaigiangComponent implements OnInit {
     if (this.uploader.queue.length !== 0) {
       this.uploader.uploadAll();
     } else {
-
       this._baiGiangService.them(this.baiGiang).subscribe(
         (data: any) => {
           this.toastr.success(data.message, 'Thông báo');
-          if (typeof data.data.maBaiGiang) {
-            this._setActivity(data.data.maBaiGiang);
-          }
+
+          this._setActivity(data.data.maBaiGiang);
         },
         (error) => {
           console.log(error);
@@ -128,10 +125,9 @@ export class TaobaigiangComponent implements OnInit {
         if (res.data) {
           this.dsChuDe = res.data;
         } else {
-
         }
       },
-      (err) => this.toastr.error(err.message,'Lỗi')
+      (err) => this.toastr.error(err.message, 'Lỗi')
     );
   }
   public layDS_LopHocPhan() {
@@ -140,10 +136,10 @@ export class TaobaigiangComponent implements OnInit {
         if (res) {
           this.dsLopHocPhan = res;
         } else {
-          this.toastr.error(res + '','Lỗi')
+          this.toastr.error(res + '', 'Lỗi');
         }
       },
-      (err) =>this.toastr.error(err.message,'Lỗi')
+      (err) => this.toastr.error(err.message, 'Lỗi')
     );
   }
   public onClickThem() {

@@ -8,6 +8,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ChuDe } from './../../../../../models/chu-de.interface';
 import { Component, OnInit, Input } from '@angular/core';
 import { FileService } from '../../../../../services/file.service';
+import { BaiTapService } from '../../../../../services/bai-tap.service';
+import { BaiTap } from '../../../../../models/bai-tap.interface';
 
 @Component({
   selector: 'app-chude2',
@@ -15,12 +17,14 @@ import { FileService } from '../../../../../services/file.service';
   styleUrls: ['./chude2.component.css'],
 })
 export class Chude2Component implements OnInit {
-
   public chuDe: ChuDe;
   public dsBaiGiang: BaiGiang[] = [];
   public maLopHocPhan: number = 1;
   public dsBinhLuan_baiGiang: any[] = [];
+  public dsBinhLuan_baiTap: any[] = [];
+
   public binhLuan = new FormControl('');
+  public dsBaiTap: BaiTap[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -28,11 +32,13 @@ export class Chude2Component implements OnInit {
     private chuDeService: ChuDeService,
     private baiGiangService: BaiGiangService,
     private binhLuanService: BinhLuanService,
-    private _fileService:FileService,
+    private _fileService: FileService,
+    private baiTapService: BaiTapService
   ) {}
 
   ngOnInit(): void {
     this.xem_ChuDe();
+    this.layBinhLuan();
   }
   public formatDate(ngayChinhSua) {
     return (
@@ -59,6 +65,16 @@ export class Chude2Component implements OnInit {
           this.chuDe = res.data;
         }
       });
+      this.baiTapService.layTatCa().subscribe((res: any) => {
+        this.dsBaiTap = res;
+        let tmp = [];
+        this.dsBaiTap.forEach((bt) => {
+          if (bt.chuDe == params.id) {
+            tmp.push(bt);
+          }
+        });
+        this.dsBaiTap = tmp;
+      });
       this.baiGiangService.layTheoMaChuDe(params.id).subscribe((res: any) => {
         if (res.data) {
           this.dsBaiGiang = [];
@@ -71,25 +87,26 @@ export class Chude2Component implements OnInit {
                 '...' + filename.slice(filename.length / 2, filename.length);
             });
             // console.log(el);
-            this.layDS_binhLuan_baiGiang(1, el.maBaiGiang);
           });
         }
       });
     });
   }
-  public onClick_BinhLuan(maBaiGiang) {
-    this.themBinhLuan(maBaiGiang);
-    this.xem_ChuDe();
+  public onClick_BinhLuan(maBaiGiang, maLoai) {
+    this.themBinhLuan(maBaiGiang, maLoai);
+
     this.binhLuan.setValue('');
   }
-  public themBinhLuan(maBaiGiang) {
+  public themBinhLuan(maBaiGiang, maLoai) {
     let data = {
-      loaiBaiViet: '1',
+      loaiBaiViet: maLoai,
       maBaiViet: maBaiGiang,
       noiDung: this.binhLuan.value,
       nguoiTao: '0306171249',
     };
-    this.binhLuanService.themBinhluan(data).subscribe((res) => {});
+    this.binhLuanService.themBinhluan(data).subscribe((res) => {
+      this.layBinhLuan();
+    });
   }
   download(filename) {
     // var filename = this.attachmentList[index].uploadname;
@@ -97,5 +114,17 @@ export class Chude2Component implements OnInit {
       (data) => saveAs(data, filename),
       (error) => console.log(error)
     );
+  }
+  public layBinhLuan() {
+    this.binhLuanService.layTatCaBinhLuan().subscribe((res: any) => {
+      res.forEach((element) => {
+        if (element.loai == 1) {
+          this.dsBinhLuan_baiGiang = element.data;
+        }
+        if (element.loai == 2) {
+          this.dsBinhLuan_baiTap= element.data;
+        }
+      });
+    });
   }
 }

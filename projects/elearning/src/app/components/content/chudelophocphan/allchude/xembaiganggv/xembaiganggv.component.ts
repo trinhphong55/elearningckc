@@ -41,7 +41,9 @@ export class XembaiganggvComponent implements OnInit {
       this.baiGiangService
         .layTheo_maBaiGiang(params.id)
         .subscribe((res: any) => {
+          console.log(res);
           if (res.data) {
+
             this.baiGiang = res.data;
             this.giaoVienService
               .Laythongtingiaovien(this.baiGiang.nguoiDang)

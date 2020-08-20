@@ -268,4 +268,6 @@ router.delete("/baigiang/:maBaiGiang", baiGiang.xoa);
 //========================= Routes BinhLuan ==========================================
 router.get("/binhluan/:loaiBaiViet/baiviet/:maBaiViet", verifyToken,binhLuan.layBinhLuan_theoBaiViet);
 router.post("/binhluan",verifyToken, binhLuan.themBinhLuan);
+router.get("/binhluan",verifyToken, binhLuan.layTatCaBinhLuan);
+
 module.exports = router;
