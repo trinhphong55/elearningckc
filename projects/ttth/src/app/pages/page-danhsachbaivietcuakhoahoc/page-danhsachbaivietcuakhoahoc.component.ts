@@ -33,7 +33,6 @@ export class PageDanhsachbaivietcuakhoahocComponent implements OnInit {
   getTinTucTheoChuDe(id: string): void {
     this.tinTucService.getDanhSachTinTucTheoChuDe(id).subscribe((data) => {
       this.danhSachBaiVietTheoChuDe = data.data;
-      console.log(this.danhSachBaiVietTheoChuDe);
     });
   }
 }
