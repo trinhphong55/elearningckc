@@ -15,6 +15,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ModalKhoabomonComponent implements OnInit {
   khoas: any;
+  khoasTmp:any;
   bomons: any;
   dsBoMonTam: any;
   public maKhoaHienTai;
@@ -67,7 +68,7 @@ export class ModalKhoabomonComponent implements OnInit {
   updateForm: FormGroup;
   KhoaForm: FormGroup;
   tongSoTrang: any;
-  gioiHan: number = 3;
+  gioiHan: number = 10;
   ngOnInit(): void {
     this.soTrang = new FormControl(0);
     this.taiKhoan = this.cookieService.getAll();
