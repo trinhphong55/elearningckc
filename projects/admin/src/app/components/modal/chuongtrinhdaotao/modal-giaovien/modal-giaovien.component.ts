@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { ModalService } from '../../../../services/modal.service';
 import { ApiService } from '../../../../services/api.service';
 import { BomonService } from '../../../../services/khoa-bomons/bomon.service';
@@ -7,6 +7,7 @@ import { LopHocService } from '../../../../services/lop-hoc.service';
 import { LopHocPhanService } from '../../../../services/lophocphan.service';
 import { FormControl, FormGroup, Validators, FormsModule } from '@angular/forms';
 import { BacService } from '../../../../services/Bac.service';
+import { Subject, from } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 
 import { GiaoVien } from '../../../../../models/giaoVien';
@@ -486,5 +487,142 @@ export class ModalGiaovienComponent implements OnInit {
       )
     }
     fileReader.readAsArrayBuffer(this.file);
+  }
+
+  ///Import Excel GiaoVien
+  spinnerEnabled = false;
+  keys: string[];
+  dsGiaoVien: any;
+  dataSheet = new Subject();
+  @ViewChild('inputFile') inputFile: ElementRef;
+  isExcelFile: boolean;
+  maLopThem: string;
+  msgList: any;
+
+  removeData() {
+    this.inputFile.nativeElement.value = '';
+    this.dataSheet.next(null);
+    this.keys = null;
+    this.dsGiaoVien = undefined;
+  }
+
+  public onClickImportExcelGiaoVien() {
+    this.msgList = [];
+    if (this.dsGiaoVien) {
+      this.importExcel();
+    } else {
+      this.toastr.warning(
+        'Danh sách giáo viên trống, không có giáo viên nào được thêm vào',
+        'Cảnh báo'
+      );
+    }
+  }
+
+  dsGiaoVienThemThatBai: any;
+  dsGiaoVienThemThanhCong: any;
+  soGiaoVienThemThanhCong: number;
+  soGiaoVienThemThatBai: number;
+  private importExcel() {
+    this.dsGiaoVienThemThatBai = [];
+    this.soGiaoVienThemThanhCong = 0;
+    this.soGiaoVienThemThatBai = 0;
+    let index = 0;
+    this.dsGiaoVien.forEach((gv, index) => {
+      setTimeout( () => {
+        let data = gv;
+        data.password = '123456',
+        data.trangThai = 1;
+        this.apiService.themGiaoVien(data).subscribe(
+          (response: any) => {
+            console.log('response', index);
+            if (response.status == false) {
+              this.dsGiaoVienThemThatBai.push(data);
+              this.soGiaoVienThemThatBai++;
+            }
+            else {
+              this.soGiaoVienThemThanhCong++;
+            }
+
+            if (
+              this.soGiaoVienThemThanhCong + this.soGiaoVienThemThatBai === this.dsGiaoVien.length
+            ) {
+              if (this.soGiaoVienThemThatBai > 0) {
+                this.toastr.warning(
+                  'Tổng giáo viên thêm thất bại: ' + this.soGiaoVienThemThatBai,
+                  'Thông báo',
+                  { timeOut: 6000 }
+                );
+              }
+              this.toastr.success(
+                'Tổng giáo viên thêm thành công: ' + this.soGiaoVienThemThanhCong,
+                'Thông báo',
+                { timeOut: 6000 }
+              );
+              this.layDanhSachGiaoVien();
+            }
+          }
+        );
+        }, index * 500);
+    });
+  }
+
+  onChangeGiaoVien(evt) {
+    let data;
+    const target: DataTransfer = <DataTransfer>evt.target;
+    this.isExcelFile = !!target.files[0].name.match(/(.xls|.xlsx)/);
+    if (this.isExcelFile == false) {
+      this.removeData();
+      this.toastr.warning('Đây không phải là file .xls hoặc .xlsx', 'Cảnh báo');
+    }
+    if (target.files.length > 1) {
+      this.inputFile.nativeElement.value = '';
+    }
+
+    if (this.isExcelFile) {
+      this.spinnerEnabled = true;
+      const reader: FileReader = new FileReader();
+
+      reader.onload = (e: any) => {
+        /* read workbook */
+        const bstr: string = e.target.result;
+        const wb: XLSX.WorkBook = XLSX.read(bstr, { type: 'binary' });
+
+        /* grab first sheet */
+        const wsname: string = wb.SheetNames[0];
+        const ws: XLSX.WorkSheet = wb.Sheets[wsname];
+
+        /* save data */
+        data = XLSX.utils.sheet_to_json(ws);
+        if (
+          typeof data[0].ho == 'undefined' ||
+          typeof data[0].ten == 'undefined' ||
+          typeof data[0].ngaySinh == 'undefined' ||
+          typeof data[0].sdt == 'undefined' ||
+          typeof data[0].email == 'undefined' ||
+          typeof data[0].cmnd == 'undefined' ||
+          typeof data[0].trinhDoChuyenMon == 'undefined'
+        ) {
+          this.removeData();
+          this.toastr.warning('Định dạng sai', 'Cảnh báo');
+        } else {
+          this.dsGiaoVien = data;
+        }
+      };
+
+      reader.readAsBinaryString(target.files[0]);
+
+      reader.onloadend = (e) => {
+        this.spinnerEnabled = false;
+        this.keys = Object.keys(data[0]);
+
+        this.dataSheet.next(data);
+      };
+    } else {
+      this.inputFile.nativeElement.value = '';
+    }
+  }
+
+  public xoaGiaoVien_tuDanhSachExcel(index) {
+    this.dsGiaoVien.splice(index, 1);
   }
 }

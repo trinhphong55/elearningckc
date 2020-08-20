@@ -117,7 +117,7 @@
                       class="modal_chucnang__button__icon mb-1" src="assets/img/icons/add.png" alt="image icon">
                     <div>Thêm mới</div>
                   </button>
-                  <button type="button" (click)="readFileExcel()"
+                  <button type="button" data-target="#dsGV" data-toggle="modal"
                     class="modal_chucnang__button btn btn-outline-primary px-4 mx-2"><img
                       class="modal_chucnang__button__icon mb-2" src="assets/img/icons/excel.png" alt="image icon">
                     <div>Import Excel</div>
@@ -471,5 +471,126 @@
         </div>
       </div>
     </div>
+    <!-- Modal Execl Danh sách sinh viên-->
+    <div class="modal fade" id="dsGV" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+      <div class="modal-content">
+        <div class="modal-header text-white">
+          <h5 class="modal-title" id="exampleModalLongTitle">Nhập danh sách giáo viên</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="excelSV">Nhập File Excel</label>
+            <input type="file" class="form-control-file" id="excelSV" (change)="onChangeGiaoVien($event)"
+              #inputFile>
+          </div>
+          <hr>
+          <div class="row center">
+            <div class="col-6">
+              <button type="button" data-toggle="modal" data-target="#giaoVienThongBao"
+                (click)="onClickImportExcelGiaoVien()" data-dismiss="modal" class="btn btn-outline-success">
+                <i class="fa fa-file-download"></i> Import
+              </button></div>
+            <div class="col-6">
+              <button class="btn btn-outline-danger" (click)="removeData()"><i class="fa fa-trash"></i> Xoá tất cả
+              </button>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-12 text-center">
+              <h5>Danh sách giáo viên từ EXCEL</h5>
+            </div>
+            <hr>
+            <table class="modal_chucnang__table table table-hover table table-bordered ">
+              <thead class="bg__caothang text-white">
+                <tr>
+                  <th scope="col">STT</th>
+                  <th scope="col">Họ</th>
+                  <th scope="col">Tên</th>
+                  <th scope="col">Ngày sinh</th>
+                  <th scope="col">SĐT</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">CMND</th>
+                  <th scope="col">Trình độ chuyên môn</th>
+                  <th scope="col">Xóa</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of dsGiaoVien; index as i">
+                  <th scope="row">{{ i+ 1 }}</th>
+                  <td> {{ item.ho }} </td>
+                  <td> {{ item.ten }} </td>
+                  <td> {{ item.ngaySinh }} </td>
+                  <td> {{ item.sdt }} </td>
+                  <td> {{ item.email }} </td>
+                  <td> {{ item.cmnd }} </td>
+                  <td> {{ item.trinhDoChuyenMon }} </td>
+                  <td>
+                    <button class="btn btn-outline-danger" (click)="xoaGiaoVien_tuDanhSachExcel(i)"><i
+                        class="fa fa-ban"></i></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <div>
+
+          </div>
+          <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Đóng</button>
+        </div>
+      </div>
+    </div>
+    </div>
+    <!-- Modal Danh sách giáo viên thêm thất bại -->
+    <div class="modal fade" id="giaoVienThongBao" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
+      <div class="modal-content" *ngIf="dsGiaoVienThemThatBai?.length > 0">
+        <div class="modal-header text-white bg-danger">
+          <h5 class="modal-title" id="exampleModalLongTitle">Danh sách thêm thất bại </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <table class="modal_chucnang__table table table-hover table table-bordered ">
+            <thead class="bg__caothang text-white">
+              <tr>
+                <th scope="col">STT</th>
+                <th scope="col">Họ</th>
+                <th scope="col">Tên</th>
+                <th scope="col">Ngày sinh</th>
+                <th scope="col">SĐT</th>
+                <th scope="col">Email</th>
+                <th scope="col">CMND</th>
+                <th scope="col">Trình độ chuyên môn</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of dsGiaoVienThemThatBai; index as i">
+                <th scope="row">{{ i+ 1 }}</th>
+                <td> {{ item.ho }} </td>
+                <td> {{ item.ten }} </td>
+                <td> {{ item.ngaySinh }} </td>
+                <td> {{ item.sdt }} </td>
+                <td> {{ item.email }} </td>
+                <td> {{ item.cmnd }} </td>
+                <td> {{ item.trinhDoChuyenMon }} </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
   </div>
 </app-modal>
