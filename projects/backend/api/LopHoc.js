@@ -102,7 +102,7 @@ exports.deleteTheoTienTo = async (req, res) => {
       if (sv) {
         return res.status(200).json({
           status: 200,
-          msg: "Xóa thất bại, lớp có chứa sinh viên",
+          msg: "Xóa thất bại, chỉ tiêu chứa lớp đã được thêm sinh viên",
           tienTo: TienTo,
         });
       }
@@ -177,35 +177,35 @@ exports.insert = async (req, res) => {
 
     LopHocs.forEach((element) => {
       if (req.body.maLopHoc == element.maLopHoc) {
-        return res.end({
+        return res.json({
           status: 200,
           ok: false,
           msg: "Mã này đã tồn tại",
         });
       }
       if (req.body.tenLop == element.tenLop) {
-        return res.end({
+        return res.json({
           status: 200,
           ok: false,
           msg: "Tên này đã tồn tại",
         });
       }
       if (req.body.tenVietTat == element.tenVietTat) {
-        return res.end({
+        return res.json({
           status: 200,
           ok: false,
           msg: "Tên viết tắt này đã tồn tại",
         });
       }
     });
-    //res.json(setLopHoc(req))
+
     const lophoc = new LopHoc(setLopHoc(req));
     const data = await lophoc.save();
 
     return res.json({
       status: 200,
       ok: true,
-      msg: "Thêm thành công Lớp học " + req.body.tenVietTat ,
+      msg: "Thêm thành công lớp " + req.body.tenVietTat ,
       data: data,
     });
   } catch (error) {
@@ -215,15 +215,6 @@ exports.insert = async (req, res) => {
 };
 
 exports.delete = async (req, res) => {
-  // const removeKhoa = await KhoaBoMon.remove({ _id: req.params.id });
-  // if (removeKhoa.deletedCount === 0) {
-  //   res.json({ status: false, msg: "Id nay khong ton tai" });
-  // } else {
-  //   res.json({
-  //     status: true,
-  //     msg: "Deleted successful",
-  //   });
-  // }
 
   try {
     const updateKhoa = await LopHoc.updateOne(
@@ -255,10 +246,10 @@ exports.delete = async (req, res) => {
 };
 exports.checkValidate = () => {
   return [
-    check("maLopHoc", "maLopHoc IS REQUIRE").notEmpty(),
-    check("tenLop", "tenLop IS REQUIRE").notEmpty(),
-    check("tenVietTat", "tenVietTat IS REQUIRE").notEmpty(),
-    check("linkFBLopHoc", "linkFBLopHoc IS REQUIRE").notEmpty(),
+    check("maLopHoc", "Mã lớp học không được để trống").notEmpty(),
+    check("tenLop", "Tên lớp học không được để trốngtrống").notEmpty(),
+    check("tenVietTat", "Tên viết tắt không được để trốngtrống").notEmpty(),
+    check("linkFBLopHoc", "Link Facebook không được để trống").notEmpty(),
   ];
 };
 exports.removeAll = async (req, res) => {

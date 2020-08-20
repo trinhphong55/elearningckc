@@ -260,7 +260,7 @@ export class ModalKhoabomonComponent implements OnInit {
       (response: any) => {
         this.result.msg = response.msg;
         this.result.status = response.status;
-        this.toastr.success(response.msg, 'Thông báo', { timeOut: 3000 });
+        this.toastr.success(response.msg, 'Thông báo', { timeOut: 6000 });
         //load lại dữ liệuliệu
         this.getKhoaBoMon();
       },
