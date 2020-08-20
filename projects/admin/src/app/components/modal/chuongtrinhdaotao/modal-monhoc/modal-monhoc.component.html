@@ -1,4 +1,4 @@
-<app-modal class="modal_chucnang__wrapper " id="ctdt_monhoc">
+<app-modal class="modal_chucnang__wrapper" id="ctdt_monhoc">
   <div (click)="closeModal('ctdt_monhoc')" class="modal_chucnang__close mdi mdi-chevron-left text-white"></div>
   <div class="container-fluid mt-3">
     <div class="row">
@@ -130,7 +130,8 @@
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="importExcelMonHocLabel">Import Excel danh sách môn học</h5>
+                  <h5 class="modal-title" id="importExcelMonHocLabel">Import Excel danh sách môn học <a
+                      class="btn btn-info btn-sm" (click)="downloadTemplate()" role="button">Tải xuống file mẫu</a></h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
@@ -141,17 +142,20 @@
                     This is not an Excel file
                   </div>
                   <button (click)="removeData()" *ngIf="dsMonHocfromExcel!== undefined">Remove Data</button>
-                  <table class="table table-striped">
+                  <table *ngIf="dsMonHocfromExcel!== undefined" class="table table-striped" style="margin-top: 10px;">
                     <thead class="thead-light">
                       <tr>
                         <th *ngFor="let key of keys" scope="col">{{key}}</th>
+                        <th *ngIf="importedExcel" scope="col">Trạng thái</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let item of dataSheet | async">
+                      <tr *ngFor="let item of dsMonHocfromExcel" [class.table-success]="item['success']"
+                        [class.table-danger]="!item['success']">
                         <td *ngFor="let key of keys">
                           {{item[key]}}
                         </td>
+                        <td *ngIf="importedExcel">{{item["success"]===true? 'thành công':'đã tồn tại'}}</td>
                       </tr>
                     </tbody>
                   </table>

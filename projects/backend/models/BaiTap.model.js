@@ -27,7 +27,7 @@ const BaiTapSchema = new mongoose.Schema({
   },
   chuDe: {
     type: Number,
-    default: -1,
+    default: 1,
   },
   nguoiTao: {
     type: String,
