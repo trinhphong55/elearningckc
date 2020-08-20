@@ -4,6 +4,7 @@ const TinTuc = require("../models/cntttintuc.model");
 router.get("/all", async (req, res) => {
   try {
     const data = await TinTuc.find({
+      trangThai: 1,
       $or: [
         { viTriHienThi: 0 },
         { viTriHienThi: 1 },

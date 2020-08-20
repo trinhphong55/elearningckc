@@ -180,7 +180,10 @@ export class ModalBaivietComponent implements OnInit, OnDestroy, AfterViewInit {
     const obj = this.danhSachBaiViet.data;
     if (obj.length > 0) {
       this._maBaiVietMoiNhat = obj[obj.length - 1].maBaiViet;
-      if (this._maBaiVietMoiNhat !== undefined) {
+      if (
+        this._maBaiVietMoiNhat !== undefined &&
+        this._maBaiVietMoiNhat !== null
+      ) {
         const index = parseInt(
           this._maBaiVietMoiNhat.substr(2, this._maBaiVietMoiNhat.length)
         );
@@ -189,6 +192,8 @@ export class ModalBaivietComponent implements OnInit, OnDestroy, AfterViewInit {
         } else {
           this._maBaiVietMoiNhat = 'BV' + (index + 1);
         }
+      } else {
+        this._maBaiVietMoiNhat = 'BV01';
       }
     } else {
       this._maBaiVietMoiNhat = 'BV01';
@@ -273,7 +278,7 @@ export class ModalBaivietComponent implements OnInit, OnDestroy, AfterViewInit {
   displayBaiVietCanChinhSua(baiViet: any): void {
     this.formChinhSuaBaiViet.patchValue(baiViet);
     this.baiVietCanChinhSua = baiViet;
-    console.log(this.baiVietCanChinhSua);
+    // console.log(this.baiVietCanChinhSua);
     this.trangThaiCuaForm = 1;
     this.imageCuaBaiVietCanChinhSua =
       'https://' + this.danhSachBaiViet.domain + '/' + baiViet.anhBia;

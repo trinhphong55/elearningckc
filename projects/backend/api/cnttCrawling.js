@@ -86,6 +86,8 @@ router.post("/save", async (req, res) => {
       thoiGianDangBai: Date.now(),
       crawling: true,
       crawlURL: url,
+      anhBia: "uploads/cntt/default.png",
+      nguoiViet: "crawl",
     });
     await baiViet.save();
     res.status(201).json({ message: "Crawling: Lưu bài viết thành công." });

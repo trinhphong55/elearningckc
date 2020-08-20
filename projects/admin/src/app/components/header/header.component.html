@@ -4,7 +4,7 @@
       <img src="assets/img/logo/logo_khoa_white.png" alt="logo khoa cntt" />
     </a>
     <div class="header_dropdown__toggle">
-      <span class="username">{{email}}</span>
+      <span class="username">{{ email }}</span>
     </div>
     <div class="header_dropdown__menu">
       <a routerLink="/" class="header_dropdown__item">
@@ -16,10 +16,10 @@
         <span>Đổi mật khẩu</span>
       </a>
       <hr class="my-1" />
-      <button (click)="onLogout()" class="header_dropdown__item">
+      <a (click)="onLogout()" role="button" class="header_dropdown__item user-select-none">
         <span class="mdi mdi-logout-variant mr-1"></span>
         <span>Đăng xuất</span>
-      </button>
+      </a>
     </div>
   </div>
   <nav class="header_navbar">

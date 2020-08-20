@@ -11,9 +11,9 @@ import {
   ApexTitleSubtitle,
   ApexTooltip,
   ApexFill,
-  ApexLegend
-} from "ng-apexcharts";
-import { LopHocService } from '../../services/lop-hoc.service'
+  ApexLegend,
+} from 'ng-apexcharts';
+import { LopHocService } from '../../services/lop-hoc.service';
 export type ChartOptions = {
   series: ApexAxisChartSeries;
   chart: ApexChart;
@@ -29,42 +29,41 @@ export type ChartOptions = {
 @Component({
   selector: 'app-page-dashboard',
   templateUrl: './page-dashboard.component.html',
-  styleUrls: ['./page-dashboard.component.css']
+  styleUrls: ['./page-dashboard.component.css'],
 })
-
 export class PageDashboardComponent implements OnInit {
-  @ViewChild("chart") chart: ChartComponent;
+  @ViewChild('chart') chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
   nam = '2019';
   temp = parseInt(this.nam);
   public series = [
     {
       name: 'Công nghệ Thông tin',
-      data: [4, 3, 0]
+      data: [4, 3, 0],
     },
     {
       name: 'Quản trị mạng máy tính',
-      data: [0, 0, 2]
+      data: [0, 0, 2],
     },
     {
       name: 'Kỹ thuật sửa chữa, lắp ráp máy tính',
-      data: [0, 0, 2]
+      data: [0, 0, 2],
     },
     {
       name: 'Công nghệ Thông tin-Chuyên ngành Công nghệ phần mềm',
-      data: [0, 2, 2]
+      data: [0, 2, 2],
     },
     {
       name: 'Công nghệ Thông tin-Chuyên ngành Mạng máy tính',
-      data: [0, 2, 2]
+      data: [0, 2, 2],
     },
     {
       name: 'Khoa học máy tính',
-      data: [0, 0, 0]
+      data: [0, 0, 0],
     },
   ];
   public years = [this.temp - 2, this.temp - 1, this.temp];
-  constructor(private el: ElementRef, private lopHocService:LopHocService) {
+  constructor(private el: ElementRef, private lopHocService: LopHocService) {
     // this.lopHocService.thongKe((this.temp - 2).toString()).subscribe(
     //   (response) => {
     //     if(response.data){
@@ -120,28 +119,34 @@ export class PageDashboardComponent implements OnInit {
     this.chartOptions = {
       series: this.series,
       chart: {
-        type: "bar",
+        type: 'bar',
         height: 350,
         stacked: true,
-        stackType: "100%"
+        stackType: '100%',
+        fontFamily: 'inherit',
       },
       plotOptions: {
         bar: {
-          horizontal: true
-        }
+          horizontal: true,
+        },
       },
       title: {
-        text: "Thống kế số lượng sinh viên của từng ngành theo năm"
+        text: 'Thống kế số lượng lớp của từng ngành theo năm',
+        style: {
+          fontSize: '20px',
+          fontWeight: '700',
+          fontFamily: 'inherit',
+        },
       },
       xaxis: {
-        categories: this.years
-      }
-    }
+        categories: this.years,
+      },
+    };
     //2017-2018-2019
   }
   isLogged: Boolean = false;
   ngOnInit(): void {
-    if(getCookie('token') && getCookie('role') == 'admin'){
+    if (getCookie('token') && getCookie('role') == 'admin') {
       this.isLogged = true;
       this.effectLoadPage();
     }
@@ -150,14 +155,15 @@ export class PageDashboardComponent implements OnInit {
 
   effectLoadPage(): void {
     const element = this.el.nativeElement;
-    var opacity = parseInt(element.querySelector('.loadpage_effect').style.opacity);
+    var opacity = parseInt(
+      element.querySelector('.loadpage_effect').style.opacity
+    );
     const setOpacity = setInterval(() => {
       opacity += 0.01;
       element.querySelector('.loadpage_effect').style.opacity = opacity;
       if (opacity >= 1) {
-        clearInterval(setOpacity)
+        clearInterval(setOpacity);
       }
-    }, 10)
+    }, 10);
   }
-
 }

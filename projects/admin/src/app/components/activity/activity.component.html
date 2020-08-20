@@ -3,32 +3,36 @@
     <div class="row">
       <div class="col-sm-6 col-md-4">
         <div class="h5 mb-3 text-center text-truncate">
-          Website Khoa CNTT - Tin mới nhất
+          Khoa CNTT - Tin mới nhất
         </div>
         <div class="shadow rounded overflow-hidden">
           <div class="master_page__chucnang__box px-3 px-md-4">
             <div class="master_page__chucnang__slider swiper-container">
               <div class="swiper-wrapper">
-                <div class="swiper-slide">
+                <div
+                  class="swiper-slide"
+                  *ngFor="let itemBaiViet of danhSachBaiVietMoiNhat"
+                >
                   <div class="master_page__chucnang__khoacntt__item">
                     <div class="master_page__chucnang__khoacntt__image">
                       <img
-                        src="https://cntt.caothang.edu.vn/wp-content/uploads/2015/04/1.jpg"
-                        alt="image"
+                        src="https://localhost:4100/{{ itemBaiViet.anhBia }}"
+                        [alt]="itemBaiViet.tieuDe"
                       />
                     </div>
 
-                    <div class="font-weight-bold mt-2">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Error, aliquid.
+                    <div class="font-weight-bold mt-2 title">
+                      {{ itemBaiViet.tieuDe }}
                     </div>
                     <div class="small mt-2">
                       <span class="mr-3"
                         ><span class="mdi mdi-pencil mr-1"></span
-                        ><strong>Trần Quang Khải</strong></span
+                        ><strong>{{ itemBaiViet.nguoiViet }}</strong></span
                       ><span
                         ><span class="mdi mdi-clock mr-1"></span
-                        ><span>15h15 26/6/2020</span></span
+                        ><span>{{
+                          formatDatetime(itemBaiViet.thoiGianDangBai)
+                        }}</span></span
                       >
                     </div>
                   </div>

@@ -24,6 +24,7 @@
                   <th class="text-center" scope="col">Người viết</th>
                   <th class="text-center" scope="col">Thời gian đăng</th>
                   <th class="text-center" scope="col">Vị trí hiển thị</th>
+                  <th class="text-center" scope="col">Thứ tự hiển thị</th>
                   <th class="text-center" scope="col">Trạng thái</th>
                   <th class="text-center" scope="col">
                     <span
@@ -81,6 +82,9 @@
                   </td>
                   <td style="width: 90px; text-align: center;">
                     {{ displayViTriHienThi(itemBaiViet.viTriHienThi) }}
+                  </td>
+                  <td style="width: 50px; text-align: center;">
+                    {{ itemBaiViet.thuTuHienThi }}
                   </td>
                   <td class="text-nowrap text-center">
                     {{ displayTrangThai(itemBaiViet.trangThai) }}

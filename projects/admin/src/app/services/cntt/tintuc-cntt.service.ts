@@ -22,6 +22,15 @@ export class TintucCnttService {
       })
       .pipe(catchError(this.errorMgmt));
   }
+
+  danhSachTinTucMoiNhat(): Observable<any> {
+    return this.http
+      .get<any>(`${this.baseUri}/danhsachtintucmoinhat`, {
+        headers: this.headers,
+      })
+      .pipe(catchError(this.errorMgmt));
+  }
+
   danhSachTinTucSapXepTheoMaBaiViet(): Observable<any> {
     return this.http
       .get<any>(`${this.baseUri}/danhsachtintuc`, {
