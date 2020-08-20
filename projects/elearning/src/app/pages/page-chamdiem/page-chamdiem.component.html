@@ -28,10 +28,13 @@
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
                                             <div class="modal-footer">
-                                                <button  type="button" class="btn btn-primary ml-1 ">Import Excel</button>
-                                                <button (click)="exPortExcel(bt)" type="button" class="btn btn-primary ml-1 ">Export Excel</button>
+                                                <button type="button"  data-toggle="modal"
+                                                data-target="#importExcelSinhVien"class="btn btn-primary ml-1">Import
+                                                    Excel</button>
+                                                <button (click)="exPortExcel()" type="button"
+                                                    class="btn btn-primary ml-1 ">Export Excel</button>
                                             </div>
-                                        
+
                                             <div class="modal-body">
                                                 <div class="col-md-12 style-table ml-1">
                                                     <p class="h3 p-2 style-title">Bảng chấm điểm</p>
@@ -52,11 +55,13 @@
                                                                     <td>{{sv.ho}} {{sv.ten}}</td>
                                                                     <td (change)="chamDiemSinhVien(sv)">
                                                                         <div class="row w-100 m-auto">
-                                                                            <form class="form-inline"[formGroup]="formChamDiem">
+                                                                            <form class="form-inline"
+                                                                                [formGroup]="formChamDiem">
                                                                                 <div class="form-group mx-sm-1">
-                                                                                    <input type="number"   formControlName="chamDiemSV"
+                                                                                    <input type="number"
+                                                                                        formControlName="chamDiemSV"
                                                                                         class="form-control" id="diemsv"
-                                                                                       value="{{chamDiemSV}}"
+                                                                                        value="{{chamDiemSV}}"
                                                                                         placeholder="{{sv.diem}}">
                                                                                 </div>
                                                                             </form>
@@ -76,6 +81,48 @@
                         </tr>
                     </tbody>
                 </table>
+
+
+                <div class="modal fade" id="importExcelSinhVien" tabindex="-1" role="dialog"
+                    aria-labelledby="importExcelNganhNghecLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document" style="max-width:800px">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="importExcelNganhNgheLabel">Import Excel điểm sinh viên </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <input type="file" (change)="onChange($event)" #inputFile>
+                                <div *ngIf="isExcelFile === false">
+                                    This is not an Excel file
+                                </div>
+                                <button (click)="removeData()" *ngIf="dsDiemSV!== undefined">Remove Data</button>
+                                <table class="table table-striped">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th *ngFor="let key of keys" scope="col">{{key}}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of dataSheet | async">
+                                            <td *ngFor="let key of keys">
+                                                {{item[key]}}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                <button type="button" class="btn btn-primary" (click)="importExcel()"
+                                    *ngIf="dsDiemSV!== undefined">Import</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

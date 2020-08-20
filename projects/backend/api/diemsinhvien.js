@@ -96,10 +96,11 @@ let result = (req) => {
 //lấy thong tin diem sinh vien theo malop hoc phan
 exports.LayTONGDIEM = async (req, res) => {
   try {
-    var sinhvien = await SINHVIEN.find({ trangThai: 1 });
+    var sinhvien=[]
+     sinhvien = await SINHVIEN.find({ trangThai: 1 });
     var diem = await Diemsinhvien.find({ maLopHocPhan: req.params.maLopHocPhan });
     var cotDiemHP = await COTDIEMLOPHP.find({ trangThai: 1, maLopHocPhan: req.params.maLopHocPhan });
-    var ctDiem = await CTDIEMLHP.find({ trangThai: 1 });
+    var ctDiem = await CTDIEMLHP.find({ trangThai: 1 , maHocPhan:req.params.maLopHocPhan });
     var lhp = await lophocphan.find({ maLopHocPhan: req.params.maLopHocPhan, trangThai: 1 })
     //dssv
     var dsSv = [];
@@ -191,4 +192,13 @@ exports.luuTongDiem = async (req, res) => {
     } catch (error) {
       
     }
+};
+
+exports.xoaDiem = async (req, res) => {
+  try {
+    var data =   await Diemsinhvien.deleteMany();
+    res.json({ code: 200, message: "xoa thành công", data });
+  } catch (error) {
+    res.json({ code: 400, message: error, data: null });
+  }
 };

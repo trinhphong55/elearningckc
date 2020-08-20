@@ -50,4 +50,9 @@ export class chiTietDiemSVLopHocPhanService  {
     FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
   }
 
+  //nhap tt excel
+  NhapThongTinExcel(maCotDiem:any,thongtin:any) {
+    return this.http.post(`${baseUrl}/${maCotDiem}/importexcel`,thongtin);
+  }
+
 }

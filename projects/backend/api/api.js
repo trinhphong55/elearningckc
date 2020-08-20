@@ -246,9 +246,11 @@ router.get("/ct-diemsv-lophocphan/:maHocPhan/lophocphan", verifyToken, ctDiemLop
 router.get("/ct-diemsv-lophocphan/:maCotDiem/sinhvienlophocphan", verifyToken, ctDiemLopHP.dsChamDiemSinhVien);
 router.put("/ct-diemsv-lophocphan/:id/chamdiem", verifyToken, ctDiemLopHP.chamdiemsinhvienlophocphan);
 router.get("/ct-diemsv-lophocphan/:maCotDiem/exportexcel", verifyToken, ctDiemLopHP.thongTinXuatExcel);
-
+router.post("/ct-diemsv-lophocphan/:maCotDiem/importexcel", verifyToken, ctDiemLopHP.thongTinNhapExcel);
+router.delete("/ct-diemsv-lophocphan", ctDiemLopHP.xoaDiem);
 //======================= Routes Diem tong ket ==================================
 router.post("/diemsinhvien/:maLopHocPhan", Diemsinhvien.luuTongDiem);
+router.delete("/diemsinhvien", verifyToken, Diemsinhvien.xoaDiem);
 
 //=========================== Routes ChuDe =============================================
 router.get("/chude", verifyToken, ChuDe.layTatCa);
