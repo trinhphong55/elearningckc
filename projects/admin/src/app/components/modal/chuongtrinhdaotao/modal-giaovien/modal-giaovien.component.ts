@@ -534,7 +534,6 @@ export class ModalGiaovienComponent implements OnInit {
         data.trangThai = 1;
         this.apiService.themGiaoVien(data).subscribe(
           (response: any) => {
-            console.log('response', index);
             if (response.status == false) {
               this.dsGiaoVienThemThatBai.push(data);
               this.soGiaoVienThemThatBai++;

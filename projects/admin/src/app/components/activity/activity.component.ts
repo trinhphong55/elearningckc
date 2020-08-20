@@ -12,7 +12,6 @@ export class ActivityComponent implements OnInit {
     this.activityService.layDanhSachActivityElearning().subscribe(
       res => {
         this.listActivityElearning = res.data;
-        console.log('listActivityElearning', this.listActivityElearning)
       }
     )
   }
