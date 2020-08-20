@@ -96,17 +96,17 @@
                   <tbody>
                     <tr *ngFor="let item of dsSinhVienThemThatBai; index as i">
                       <th scope="row">{{ i+ 1 }}</th>
-                      <td>{{item.ho}} {{ item.ten }}</td>
+                      <td>{{item.data.ho}} {{ item.data.ten }}</td>
                       <td>
-                        {{ item.maSinhVien }}
+                        {{ item.data.maSinhVien }}
                       </td>
                       <td>
-                        {{item.ngaySinh}}
+                        {{item.data.ngaySinh}}
                       </td>
                       <td>
                         <form [formGroup]="dsLopFormArray?.controls[i]">
                           <select class="form-control" formControlName="maLopHoc">
-                            <option *ngFor="let loai of lopHocs" [ngValue]=loai.maLopHoc> {{loai.tenVietTat }}</option>
+                            <option *ngFor="let loai of lopTams" [ngValue]=loai.maLopHoc> {{loai.tenVietTat }}</option>
                           </select>
                         </form>
                       </td>
@@ -120,7 +120,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                <button class="btn btn-outline-success" (click)="capNhat_LopChoSinhVien()"><i class="fa fa-pen"></i> Cập
+                <button class="btn btn-outline-success" data-dismiss="modal" (click)="capNhat_LopChoSinhVien()"><i class="fa fa-pen"></i> Cập
                   nhật</button>
               </div>
             </div>

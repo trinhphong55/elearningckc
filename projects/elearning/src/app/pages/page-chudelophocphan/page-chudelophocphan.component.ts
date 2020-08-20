@@ -14,7 +14,8 @@ import { TaobaigiangComponent } from '../../components/content/chudelophocphan/t
 import { BaiTapService } from '../../services/bai-tap.service';
 import { CookieService } from 'ngx-cookie-service';
 import { getCookie } from '../../../../../common/helper';
-import {GiaoVienService} from '../../services/giao-vien.service'
+import { GiaoVienService } from '../../services/giao-vien.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-page-chudelophocphan',
@@ -32,7 +33,7 @@ export class PageChudelophocphanComponent implements OnInit {
   public dsBinhLuan_baiTap: any[] = [];
   quyen: string = '';
   doiTuong: any;
-  role:any = getCookie('role').toLocaleLowerCase();
+  role: any = getCookie('role').toLocaleLowerCase();
   routeBaiGiang: string = `/xembaigiang${this.role}`;
   routeBaiTap: string = `/xembaitap${this.role}`;
   // @Output  dsBaiGiang: BaiGiang[] = [];
@@ -46,7 +47,8 @@ export class PageChudelophocphanComponent implements OnInit {
     private binhLuanService: BinhLuanService,
     private baiTapService: BaiTapService,
     private cookie: CookieService,
-    private giaoVienService: GiaoVienService
+    private giaoVienService: GiaoVienService,
+    private toastr: ToastrService
   ) {
     this.maLopHocPhan = this.route.snapshot.paramMap.get('id');
   }
@@ -66,17 +68,19 @@ export class PageChudelophocphanComponent implements OnInit {
     }
   }
   public layDS_BaiTap() {
-    this.baiTapService.layDS_theoLopHocPhan(this.maLopHocPhan).subscribe((res) => {
-      this.dsBaiTap = [];
-      this.dsBaiTap = res.data;
-      this.dsBaiTap.forEach((bt) => {
-        bt.ngayChinhSua =
-          new Date(bt.ngayChinhSua).toLocaleDateString() +
-          ' : ' +
-          new Date(bt.ngayChinhSua).toLocaleTimeString();
-        this.layDS_BinhLuan(2, bt.maBaiTap);
+    this.baiTapService
+      .layDS_theoLopHocPhan(this.maLopHocPhan)
+      .subscribe((res) => {
+        this.dsBaiTap = [];
+        this.dsBaiTap = res.data;
+        this.dsBaiTap.forEach((bt) => {
+          bt.ngayChinhSua =
+            new Date(bt.ngayChinhSua).toLocaleDateString() +
+            ' : ' +
+            new Date(bt.ngayChinhSua).toLocaleTimeString();
+          this.layDS_BinhLuan(2, bt.maBaiTap);
+        });
       });
-    });
   }
   public layDS_ChuDe() {
     this.chuDeService.layTheo_maLopHocPhan(this.maLopHocPhan).subscribe(
@@ -104,7 +108,6 @@ export class PageChudelophocphanComponent implements OnInit {
               ' : ' +
               new Date(el.ngayChinhSua).toLocaleTimeString();
             this.layDS_BinhLuan(1, el.maBaiGiang);
-
           });
         }
       },
@@ -126,13 +129,14 @@ export class PageChudelophocphanComponent implements OnInit {
           this.dsBinhLuan_baiTap.push(res);
         }
       },
-      (err) => console.log(err)
+      (err) => this.toastr.error(err.message, 'Lỗi')
     );
   }
   onClickXoaBaiGiang(maBaiGiang) {
     // this.dsBaiGiang = [];
     this.baiGiangService.xoa(maBaiGiang).subscribe((res: any) => {
       //this.layDS_ChuDe();
+      this.toastr.warning(res.message, 'Cảnh báo');
       this.baiGiangService.layTatCa().subscribe((res: any) => {
         this.dsBaiGiang = res.data;
         this.dsBaiGiang.forEach((el) => {
@@ -141,7 +145,6 @@ export class PageChudelophocphanComponent implements OnInit {
             new Date(el.ngayChinhSua).toLocaleDateString() +
             ' : ' +
             new Date(el.ngayChinhSua).toLocaleTimeString();
-
         });
       });
     });
@@ -149,7 +152,7 @@ export class PageChudelophocphanComponent implements OnInit {
   onClickXoaChuDe(maChuDe) {
     this.chuDeService.xoa(maChuDe).subscribe((res: any) => {
       this.layDS_ChuDe();
-      console.log(res);
+      if (res.status == 200) this.toastr.warning(res.message, 'Cảnh báo');
     });
   }
   openTaobaitap() {
@@ -164,9 +167,14 @@ export class PageChudelophocphanComponent implements OnInit {
     });
   }
   opentaochude() {
-    let dialog = this.dialog.open(TaochudeComponent, { width: '250px' });
+    let dialog = this.dialog.open(TaochudeComponent, {
+      data: { maLopHocPhan: this.maLopHocPhan },
+      width: '250px',
+    });
     dialog.afterClosed().subscribe((res) => {
       // this.layDS_ChuDe();
+
+      this.toastr.success('Thêm thành công chủ đề ', 'Thông báo');
       window.location.reload();
       //this.layDS_BaiGiang();
     });
@@ -182,8 +190,8 @@ export class PageChudelophocphanComponent implements OnInit {
       window.location.reload();
     });
   }
-  public setTaiKhoan(){
+  public setTaiKhoan() {
     this.taiKhoan = this.cookie.getAll();
-    this.taiKhoan.displayName = this.cookie.get('email').slice(0,10);
+    this.taiKhoan.displayName = this.cookie.get('email').slice(0, 10);
   }
 }

@@ -109,49 +109,49 @@
             <div class="form-group row">
               <label class="col-lg-3 col-form-label form-control-label">Mã số sinh viên</label>
               <div class="col-lg-9">
-                <input class="form-control"  formControlName="mssv">
+                <input class="form-control" formControlName="mssv">
               </div>
             </div>
             <div class="form-group row">
               <label class="col-lg-3 col-form-label form-control-label">Giới tính</label>
               <div class="col-lg-9">
-                <input class="form-control"  formControlName="gioiTinh">
+                <input class="form-control" formControlName="gioiTinh">
               </div>
             </div>
             <div class="form-group row">
               <label class="col-lg-3 col-form-label form-control-label">Email</label>
               <div class="col-lg-9">
-                <input class="form-control"  formControlName="email">
+                <input class="form-control" formControlName="email">
               </div>
             </div>
             <div class="form-group row">
               <label class="col-lg-3 col-form-label form-control-label">Họ </label>
               <div class="col-lg-9">
-                <input class="form-control"   formControlName="ho">
+                <input class="form-control" formControlName="ho">
               </div>
             </div>
             <div class="form-group row">
               <label class="col-lg-3 col-form-label form-control-label">Tên</label>
               <div class="col-lg-9">
-                <input class="form-control"  formControlName="ten">
+                <input class="form-control" formControlName="ten">
               </div>
             </div>
             <div class="form-group row">
               <label class="col-lg-3 col-form-label form-control-label">Ngày sinh</label>
               <div class="col-lg-9">
-                <input class="form-control"  formControlName="ngaySinh">
+                <input class="form-control" formControlName="ngaySinh">
               </div>
             </div>
             <div class="form-group row">
               <label class="col-lg-3 col-form-label form-control-label">Số điện thoại</label>
               <div class="col-lg-9">
-                <input class="form-control"  formControlName="sdt">
+                <input class="form-control" formControlName="sdt">
               </div>
             </div>
             <div class="form-group row">
               <label class="col-lg-3 col-form-label form-control-label">Mật khẩu xác nhận</label>
               <div class="col-lg-9">
-                <input class="form-control"  formControlName="password">
+                <input class="form-control" formControlName="password">
               </div>
             </div>
 
@@ -213,7 +213,7 @@
             <div class="col-md-6">
               <div class="form-group pr-3 pt-1">
                 <select class="form-control" id="exampleFormControlSelect1" formControlName="chonLop"
-                  (change)="onChangeDanhSachCotDiem()">
+                  (change)="onChangeCotDiem_LopHocPhan()">
                   <option value="">Chọn lớp</option>
                   <option *ngFor="let item of lopHocPhans" [ngValue]=item.maLopHocPhan>{{ item.tenLopHocPhan }}
                   </option>
@@ -224,30 +224,36 @@
           <div class="row">
             <div class="col-md-12 shadow">
               <div class="scrollable">
-                <table class="table table-bordered">
-                  <thead>
-                    <tr>
-                      <th scope="col">STT</th>
-                      <th scope="col">Tên cột điểm </th>
-                      <th scope="col">Hệ số</th>
-                      <th scope="col">Tên bài tập</th>
-                      <th scope="col">Điểm số</th>
-                      <th scope="col">Tên chủ đề</th>
-                      <th scope="col">Tên lớp học phần</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let ct of ctDiemLHPs;index as i">
-                      <td scope="row">{{ i + 1 }}</td>
-                      <td>{{ ct.tenCotDiem }}</td>
-                      <td>{{ ct.heSo }}</td>
-                      <td>{{ ct.tenBaiTap }}</td>
-                      <td>{{ ct.diem }}</td>
-                      <td>{{ct.tenChuDe }}</td>
-                      <td>{{ ct.tenLopHocPhan }}</td>
-                    </tr>
-                  </tbody>
-                </table>
+                <ng-container *ngIf="ctDiemLHPs?.length == 0">Không có cột điểm nào</ng-container>
+                <ng-container *ngIf="ctDiemLHPs?.length > 0">
+                  <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th scope="col">STT</th>
+                        <th scope="col">Tên cột điểm </th>
+                        <th scope="col">Hệ số</th>
+                        <th scope="col">Tên bài tập</th>
+                        <th scope="col">Điểm số</th>
+                        <th scope="col">Tên chủ đề</th>
+                        <th scope="col">Tên lớp học phần</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let ct of ctDiemLHPs;index as i">
+                        <td scope="row">{{ i + 1 }}</td>
+                        <td>{{ ct.tenCotDiem }}</td>
+                        <td>{{ ct.heSo }}</td>
+                        <td>{{ ct.tenBaiTap }}</td>
+                        <td>{{ ct.diem }}</td>
+                        <td>{{ct.tenChuDe }}</td>
+                        <td>{{ ct.tenLopHocPhan }}</td>
+                      </tr>
+
+                    </tbody>
+
+                  </table>
+                </ng-container>
+
               </div>
             </div>
           </div>
@@ -263,39 +269,42 @@
                 </select>
               </div>
             </div>
-            <!-- <div class="col-md-6">
-              <div class="form-group pr-3 pt-1">
-                <select class="form-control" id="exampleFormControlSelect1" formControlName="chonLop">
-                  <option>Chọn lớp</option>
-                  <option *ngFor="let item of lopHocPhans" ngValue="item.maLopHocPhan">{{ item.tenLopHocPhan }}</option>
-                </select>
-              </div>
-            </div> -->
+
           </div>
-          <div class="row">
-            <div class="col-md-12 shadow">
-              <div class="scrollable">
-                <table class="table table-bordered">
-                  <thead>
-                    <tr>
-                      <th scope="col">STT</th>
-                      <th scope="col">  Tên môn học</th>
-                      <th scope="col">Điểm tổng kết</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <ng-container *ngFor="let item of dsKHDT; index as i">
+          <ng-container *ngFor="let khdt of dsTatCaKHDT;index as i">
+            <div class="row" *ngIf="khdt.data.length > 0">
+              <div class="col-md-12 shadow">
+                <div class="col-6">
+                  <h5>Học kì {{ khdt.hocKi }}</h5>
+                </div>
+
+                <div class="scrollable">
+                  <table class="table table-bordered">
+                    <thead>
                       <tr>
-                        <td>{{ i+1 }}</td>
-                        <td class="col-4">{{ item.tenMonHoc }}</td>
-                        <td class="col-4">{{ item.diemSinhVien?.diem }}</td>
+                        <th scope="col">STT</th>
+                        <th scope="col"> Tên môn học</th>
+                        <th scope="col">Điểm tổng kết</th>
                       </tr>
-                    </ng-container>
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody>
+                      <ng-container *ngFor="let item of khdt?.data; index as i">
+                        <tr>
+                          <td>{{ i+1 }}</td>
+                          <td class="col-4">{{ item.tenMonHoc }}</td>
+                          <td class="col-4">{{ item.diemSinhVien?.diem }}</td>
+
+                        </tr>
+                      </ng-container>
+                    </tbody>
+
+                  </table>
+
+                </div>
               </div>
+
             </div>
-          </div>
+          </ng-container>
         </div>
       </div>
     </div>

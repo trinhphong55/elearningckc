@@ -606,9 +606,9 @@ export class ModalChitieudaotaoComponent implements OnInit {
     this.dsLopFormArray.value.forEach((sv) => {
       this.SinhVienService.capNhatSinhVien(sv).subscribe(
         (res: any) => {
-          this.toastr.success(res.message, 'Thông báo', { timeOut: 3000 });
           index++;
-          if(index == this.dsLopFormArray.value.length){
+          if (index == this.dsLopFormArray.value.length) {
+            this.lopTams = [];
             this.getLopHoc();
             let maCT = this.taoTienTo(
               this.maNganh,
@@ -617,6 +617,9 @@ export class ModalChitieudaotaoComponent implements OnInit {
               this.addForm.value.loaiHinhDaoTao
             );
             this.xepLoptheoMaNganh(maCT);
+            this.toastr.success('Cập nhật thành công sinh viên', 'Thông báo', {
+              timeOut: 3000,
+            });
           }
         },
         (err) => {
@@ -640,49 +643,40 @@ export class ModalChitieudaotaoComponent implements OnInit {
       sv.nguoiTao = this.taiKhoan.email;
       sv.maLopHoc = this.maLopThem;
       index++;
-      this.SinhVienService.themSinhVien(sv).subscribe(
-        (response: any) => {
-          if (response.status == 422) {
-            this.dsSinhVienThemThatBai.push(response.data);
-            this.dsLopFormArray.push(
-              new FormGroup({
-                maLopHoc: new FormControl(response.data.maLopHoc),
-                maSinhVien: new FormControl(response.data.maSinhVien),
-                role: new FormControl(this.taiKhoan.role),
-              })
-            );
-            this.soSinhVienthemThatBai++;
-            // this.toastr.warning(response.message, 'Thêm thất bại', {
-            //   timeOut: 2000,
-            // });
-          } else if (response.status == 200) {
-            this.soSinhVienthemThanhCong++;
-          }
-          // this.msgList.push({
-          //   msg: response.message,
-          //   status: response.status,
-          // });
-          if (
-            this.soSinhVienthemThanhCong + this.soSinhVienthemThatBai ===
-            this.dsSinhVien.length
-          ) {
-            if (this.soSinhVienthemThatBai > 0) {
-              this.toastr.warning(
-                'Tổng sinh viên thêm thất bại: ' + this.soSinhVienthemThatBai,
-                'Thông báo',
-                { timeOut: 120000 }
-              );
-            }
-            this.toastr.success(
-              'Tổng sinh viên thêm thành công: ' + this.soSinhVienthemThanhCong,
-              'Thông báo',
-              { timeOut: 120000 }
-            );
-          }
-        },
-        (error: any) => {}
-      );
     });
+    this.SinhVienService.themSinhVien(this.dsSinhVien).subscribe(
+      (response: any) => {
+        console.log(response);
+        this.dsSinhVienThemThatBai = response.dsSinhVienThatBai;
+
+        this.dsSinhVienThemThatBai.forEach((el: any) => {
+          console.log(el.data);
+          this.dsLopFormArray.push(
+            new FormGroup({
+              maLopHoc: new FormControl(el.data.maLopHoc),
+              maSinhVien: new FormControl(el.data.maSinhVien),
+              role: new FormControl(this.taiKhoan.role),
+            })
+          );
+        });
+        this.soSinhVienthemThatBai = response.soSinhVienThemThatBai;
+        this.soSinhVienthemThanhCong = response.soSinhVienThemThanhCong;
+
+        if (this.soSinhVienthemThatBai > 0) {
+          this.toastr.warning(
+            'Tổng sinh viên thêm thất bại: ' + this.soSinhVienthemThatBai,
+            'Thông báo',
+            { timeOut: 120000 }
+          );
+        }
+        this.toastr.success(
+          'Tổng sinh viên thêm thành công: ' + this.soSinhVienthemThanhCong,
+          'Thông báo',
+          { timeOut: 120000 }
+        );
+      },
+      (error: any) => {}
+    );
 
     this.capNhat_SLSinhVien_LopHocPhan(this.maLopThem);
   }

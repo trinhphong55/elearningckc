@@ -39,11 +39,17 @@ export class PageTrangcanhansvComponent implements OnInit {
 
   public lopHocPhan: LopHocPhan;
   public lopHocPhans: LopHocPhan[] = [];
+  public lopHocPhansTmp: LopHocPhan[] = [];
 
   public cotDiems: CotDiemSinhVienLopHocPhan[] = [];
   public dsChuDe: ChuDe[] = [];
   public diemSinhViens: DiemSinhVien[] = [];
+  public diemSinhViensTmp: DiemSinhVien[] = [];
   public dsKHDT: KHDT_DiemSinVien[] = [];
+  public dsKHDTTmp: KHDT_DiemSinVien[] = [];
+  public dsTatCaKHDT: any[] = [];
+  public dsTatCaKHDTTmp: any[] = [];
+
   public dsMonHoc: MonHoc[] = [];
   public MonHoc: MonHoc;
   public dsThoiKhoaBieu: ThoiKhoaBieu;
@@ -173,9 +179,15 @@ export class PageTrangcanhansvComponent implements OnInit {
         if (sv.data) {
           this.sinhVien = sv.data;
           let maCT = this.sinhVien.maLopHoc.slice(0, 7);
-          this.layCTDT_theoHocKi(this.chonHocKiBD.value, maCT);
+          this.hocKis.forEach((hk) => {
+            this.layCTDT_theoHocKi(hk.maHK, maCT);
+          });
+
+
+          this.dsTatCaKHDTTmp = this.dsTatCaKHDT;
           this.layThoiKhoaBieu_theoLop(this.sinhVien.maLopHoc, 1);
           this.setValueSinhVienFormGroup(this.sinhVien);
+          this.layLopHocPhan(this.sinhVien.maLopHoc);
           this.lophocService
             .get(this.sinhVien.maLopHoc)
             .subscribe((res: any) => {
@@ -200,7 +212,9 @@ export class PageTrangcanhansvComponent implements OnInit {
         }
       },
       (err: any) => {
-        this.toastr.error('Máy chủ không sử lý được', 'Lỗi');
+        if (err.status == 403) {
+          this.toastr.error(err.error.message, 'Lỗi');
+        }
       }
     );
   }
@@ -210,18 +224,22 @@ export class PageTrangcanhansvComponent implements OnInit {
         this.ctDiemLHPs = [];
         this.ctDiemLHPsTmp = res.data;
         this.ctDiemLHPs = this.ctDiemLHPsTmp;
-        this.ganTenLopHocPhanCTDiem();
+
         // this.ctDiemLHPs = this.loc_CTDiem_LopHocPhan(this.ctDiemLHPsTmp);
       }
     });
   }
-
+  public layMonHoc() {
+    this.monHocService.getMonHoc().subscribe((res) => {});
+  }
   public layDiemSinhVien(maSinhVien: string) {
     this.diemSinhVienService.getAllFor(maSinhVien).subscribe(
       (res: any) => {
         if (res.data) {
           this.diemSinhViens = res.data;
-          this.ganTenLopHocPhanDiemSV(this.diemSinhViens);
+
+          this.diemSinhViensTmp = this.diemSinhViens;
+          // this.ganTenLopHocPhanDiemSV(this.diemSinhViens);
         }
       },
       (err) => console.log(err)
@@ -258,6 +276,7 @@ export class PageTrangcanhansvComponent implements OnInit {
             this.diemSinhViens.forEach((diem) => {
               if (diem.maDaoTao == khdt.maDaoTao) {
                 khdt.diemSinhVien = diem;
+
               }
             });
             this.monHocService
@@ -266,9 +285,14 @@ export class PageTrangcanhansvComponent implements OnInit {
                 khdt.tenMonHoc = res.tenMonHoc;
               });
           });
+
+          this.dsTatCaKHDT.push({ hocKi: hocKi, data: this.dsKHDT });
+          this.dsTatCaKHDT.sort((a, b) => {
+            return a.hocKi - b.hocKi;
+          });
         });
     } else {
-      this.dsKHDT = [];
+      this.dsTatCaKHDT = [];
     }
   }
   public layThoiKhoaBieu_theoLop(maLopHoc, hocKi) {
@@ -313,8 +337,7 @@ export class PageTrangcanhansvComponent implements OnInit {
     this.LopHocPhanService.getLopHocPhan().subscribe((res) => {
       if (res) {
         this.lopHocPhans = res;
-        this.lopHocPhans = this.locMaLopHocPhanTheoHocKi(this.lopHocPhans);
-        diemSV = this.loc_Theo_LopHocPhan(this.diemSinhViens);
+
         diemSV.forEach((ct) => {
           this.lopHocPhans.forEach((lop) => {
             if (ct.maLopHocPhan == lop.maLopHocPhan) {
@@ -323,65 +346,71 @@ export class PageTrangcanhansvComponent implements OnInit {
           });
         });
         this.diemSinhViens = diemSV;
+        this.diemSinhViensTmp = diemSV;
       }
     });
   }
-  public ganTenLopHocPhanCTDiem() {
-    this.LopHocPhanService.getLopHocPhan().subscribe(
+  public layLopHocPhan(maLopHoc) {
+    this.LopHocPhanService.layLopHocPhantheoMaLop(maLopHoc).subscribe(
       (res) => {
         if (res) {
           this.lopHocPhans = res;
-          //this.ctDiemLHPs = [];
-          this.lopHocPhans = this.locMaLopHocPhanTheoHocKi(this.lopHocPhans);
+          this.lopHocPhansTmp = res;
+          //this.lopHocPhans = this.locMaLopHocPhanTheoHocKi(this.lopHocPhans);
         }
       },
       (err) => console.log(err)
     );
   }
-  // public ganTenCotDiemCTDiem(ChiTiemDiems: ChiTietDiemSVLHP[]) {
-  //   this.cotDiemService.layTatCa().subscribe((res: any) => {
-  //     this.cotDiems = res;
-  //     ChiTiemDiems.forEach((ct) => {
-  //       this.cotDiems.forEach((lop) => {
-  //         if (ct.maCotDiem == lop.maCotDiem) {
-  //           ct.tenCotDiem = lop.tenCotDiem;
-  //           ct.heSo = lop.heSo;
-  //         }
-  //       });
-  //     });
-  //   });
-  // }
 
   //################################# Xu ly su kien ##################################
-  onChangeDanhSachCotDiem() {
-    this.layThongTinSV(this.taiKhoan.displayName);
-    this.layCTDiemLHP(this.taiKhoan.displayName);
+  onChangeCotDiem_LopHocPhan() {
+    this.ctDiemLHPs = [];
+    this.ctDiemLHPs = this.loc_CTDiem_LopHocPhan(this.ctDiemLHPsTmp);
   }
   onChangeChonHocKi() {
-    this.layThongTinSV(this.taiKhoan.displayName);
-    this.layCTDiemLHP(this.taiKhoan.displayName);
+    let ctdiem = [];
+    this.ctDiemLHPs = [];
+    this.lopHocPhans = this.locMaLopHocPhanTheoHocKi(this.lopHocPhansTmp);
+
+    this.ctDiemLHPsTmp.forEach((ct) => {
+      this.lopHocPhans.forEach((lhp) => {
+        if (ct.maHocPhan == lhp.maLopHocPhan) {
+          ctdiem.push(ct);
+        }
+      });
+    });
+    if (ctdiem.length > 0) {
+      this.ctDiemLHPs = ctdiem;
+    }
+
     this.chonLop.setValue('');
   }
+  //#########################
   onChangBangDiem() {
+    let ds = [];
     this.chonHocKi.setValue('');
-    this.layDiemSinhVien(this.taiKhoan.displayName);
-    this.layThongTinSV(this.taiKhoan.displayName);
+    if (this.chonHocKiBD.value) {
+      this.dsTatCaKHDTTmp.forEach((el) => {
+        if (el.hocKi == this.chonHocKiBD.value) {
+          ds.push(el);
+        }
+      });
+    }else{
+      ds = this.dsTatCaKHDTTmp;
+    }
+
+    this.dsTatCaKHDT = ds;
   }
   onSubmitCapNhatSinhVien() {
     this.messages = [];
     if (!this.password.value) {
-      // this.messages.push({
-      //   msg: 'Vui lòng nhập mật khẩu để thay đổi',
-      //   status: 200,
-      // });
       this.toastr.warning('Vui lòng nhập mật khẩu để thay đổi', 'Thông báo');
     } else if (this.password.value != '123456') {
       this.toastr.warning('Mật khẩu không trùng nhau', 'Thông báo');
-      // this.messages.push({ msg: 'Mật khẩu không trùng nhau', status: 200 });
     } else {
       const req = {
         maSinhVien: this.sinhVien.maSinhVien,
-        tokens: '12341234',
         role: this.taiKhoan.role,
         sdt: this.sdt.value,
         nguoiChinhSua: this.taiKhoan.displayName,
@@ -391,7 +420,7 @@ export class PageTrangcanhansvComponent implements OnInit {
   }
   //################################ Xu ly loc #######################################
   public loc_CTDiem_LopHocPhan(ChiTietDiem) {
-    if (this.chonLop.value && this.chonHocKi.value) {
+    if (this.chonLop.value) {
       let tmp = ChiTietDiem;
       ChiTietDiem = [];
       tmp.forEach((ct) => {
@@ -400,7 +429,7 @@ export class PageTrangcanhansvComponent implements OnInit {
         }
       });
     } else {
-      return [];
+      return ChiTietDiem;
     }
     return ChiTietDiem;
   }
@@ -419,6 +448,8 @@ export class PageTrangcanhansvComponent implements OnInit {
           lopHocPhans.push(ct);
         }
       });
+    } else {
+      return tmp;
     }
 
     return lopHocPhans;

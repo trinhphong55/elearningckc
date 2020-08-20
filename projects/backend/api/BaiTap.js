@@ -3,7 +3,8 @@ var _router = express.Router();
 var multer = require("multer");
 var path = require("path");
 const BaiTap = require("../models/BaiTap.model");
-var CHUDE =require("../models/chu-de.model");
+const BaiTapSinhVienModel = require("../models/BaiTapSinhVien.model");
+var CHUDE = require("../models/chu-de.model");
 var COTDIEM = require("../models/cotdiem-lophocphan.model");
 
 const PATH = "./uploads/elearning/baitap";
@@ -36,13 +37,40 @@ _router.post("/download", function (req, res, next) {
     req.body.filename;
   res.sendFile(filepath);
 });
-
+setBaiTap = (req) => {
+  return {
+    deadLine: req.deadLine,
+    file: req.file,
+    chuDe: req.chuDe,
+    nguoiTao: req.nguoiTao,
+    nguoiChinhSua: req.nguoiChinhSua,
+    trangThai: req.trangThai,
+    tieuDe: req.tieuDe,
+    huongDan: req.huongDan,
+    lopHocPhan: req.lopHocPhan,
+    maBaiTap: req.maBaiTap,
+    ngayChinhSua: req.ngayChinhSua,
+    ngayTao: req.ngayTao,
+    daNop: req.maBaiTap,
+  };
+};
 _router.get("/:maLopHocPhan/lop-hoc-phan", async (req, res) => {
   try {
-    const baiTaps = await BaiTap.find({ lopHocPhan: parseInt(req.params.maLopHocPhan) });
+    let baitap = [];
+    const baiTaps = await BaiTap.find({
+      lopHocPhan: parseInt(req.params.maLopHocPhan),
+    });
+    baitap = await baiTaps.map(async (bt) => {
+      let baiTapSinhVien = await BaiTapSinhVienModel.countDocuments({
+        maBaiTap: bt.maBaiTap,
+      });
+      bt.daNop = baiTapSinhVien;
+      return setBaiTap(bt);
+    });
+    const kq = await Promise.all(baitap);
     res.json({
       count: baiTaps.length,
-      data: baiTaps,
+      data: kq,
       message: "Lấy thành công danh sách bài tập",
       status: 200,
     });
@@ -53,9 +81,11 @@ _router.get("/:maLopHocPhan/lop-hoc-phan", async (req, res) => {
 
 _router.get("/:maBaiTap", async (req, res) => {
   try {
-    const baiTaps = await BaiTap.findOne({ maBaiTap: parseInt(req.params.maBaiTap) });
+    const baiTaps = await BaiTap.findOne({
+      maBaiTap: parseInt(req.params.maBaiTap),
+    });
     res.json({
-      id:req.params.maBaiTap,
+      id: req.params.maBaiTap,
       data: baiTaps,
       message: "Lấy thành công bài tập",
       status: 200,
@@ -83,7 +113,11 @@ _router.post("/", async (req, res) => {
   await newBaiTap
     .save()
     .then((bt) => {
-      return res.status(200).json({ status: 200, maDoiTuong: bt.maBaiTap , message: "Them thanh cong" });
+      return res.status(200).json({
+        status: 200,
+        maDoiTuong: bt.maBaiTap,
+        message: "Them thanh cong",
+      });
     })
     .catch((err) => {
       return res.status(501).json({
@@ -119,25 +153,24 @@ _router.get("/baitap/ds", async (req, res) => {
              data.push({tieuDe:y.tieuDe,tenChuDe:x.tenChuDe,cotDiem:z.tenCotDiem,maCotDiem:z.maCotDiem})
             }
           }
-        })
-      })
-    })
+        });
+      });
+    });
     return res.status(200).json(data);
-   } catch (err) {
+  } catch (err) {
     return res.status(501).json({
       status: 501,
       message: err,
     });
-   }
-  });
+  }
+});
 // lay all cua bai tap
 _router.get("/baitap/ds", async (req, res) => {
   try {
-    const baiTaps = await BaiTap.find({trangThai:1});
+    const baiTaps = await BaiTap.find({ trangThai: 1 });
     res.json(baiTaps);
   } catch (error) {
     res.json(error);
   }
 });
 module.exports = _router;
-

@@ -2,7 +2,7 @@ export interface DiemSinhVien {
   trangThai: Number;
   maSinhVien: String;
   maDaoTao: String;
-  diem: Number;
+  diem: number;
   maLopHocPhan: Number;
   tenLopHocPhan:String;
   ghiChu: String;
