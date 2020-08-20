@@ -194,6 +194,7 @@
                         class="modal_chucnang__button__delete mdi mdi-delete-outline mdi-24px"></span><br>
                       <!-- Icon More Options -->
                       <span class="modal_chucnang__button__delete fa fa-clipboard mdi-24px" data-toggle="modal"
+                        (click)="layMaGVSelected(giaoVien)"
                         data-target="#exampleModalCenter2"></span>
 
                     </td>
@@ -394,21 +395,21 @@
           </div>
           <div class="modal-body">
             <div class="tab-pane" id="dslophocphan">
-              <form [formGroup]="formDanhSachLop">
+              <form [formGroup]="filterForm">
                 <div class="row">
                   <div class="col-md-2">
                     <div class="form-group pr-3 pt-1">
-                      <select class="form-control" id="exampleFormControlSelect1" formControlName="bac"
-                        >
+                      Bậc:<select class="form-control" id="exampleFormControlSelect1" formControlName="bac"
+                      (change)="dsLHP()">
                         <option value="-1">Chọn bậc</option>
-                        <!-- <option *ngFor="let b of dsBac" value="{{b.maBac}}">{{b.tenBac}}</option> -->
+                        <option *ngFor="let b of dsBac" value="{{b.maBac}}">{{b.tenBac}}</option>
                       </select>
                     </div>
                   </div>
                   <div class="col-md-2">
                     <div class="form-group pr-3 pt-1">
-                      <select class="form-control" id="exampleFormControlSelect1" formControlName="hocKi"
-                       >
+                      Học kì:<select class="form-control" id="exampleFormControlSelect1" formControlName="hocKi"
+                      (change)="dsLHP()">
                         <option value="-1">Chọn học kì</option>
                         <option value="1">1</option>
                         <option value="2">2</option>

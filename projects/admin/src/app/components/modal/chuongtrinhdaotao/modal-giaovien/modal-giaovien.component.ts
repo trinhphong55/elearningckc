@@ -30,11 +30,12 @@ export class ModalGiaovienComponent implements OnInit {
   dsgvLHP: any;
   giaoVienForm:FormGroup;
   updateForm: FormGroup;
+  filterForm: FormGroup;
   maGVSelected:string = '';
 
   //loc lhp
-  maBac: any;
-  hocKi: any = 1;
+  bacSelected: any;
+  hocKiSelected: any = 1;
   maKhoa: any = 17;
   dsLopHPGV: any;
   dsBac: any;
@@ -89,12 +90,6 @@ export class ModalGiaovienComponent implements OnInit {
     return null;
   }
 
-  //form loc lop hoc phan
-  formDanhSachLop = new FormGroup({
-    bac: new FormControl("-1"),
-    hocKi: new FormControl("-1"),
-  })
-
   constructor(private modalService: ModalService,
     private apiService:ApiService,
     private boMonService:BomonService,
@@ -115,6 +110,7 @@ export class ModalGiaovienComponent implements OnInit {
         this.dsBac = data
       }
     )
+    // GiaoVienForm
     this.giaoVienForm = new FormGroup({
       ho: new FormControl('', [
         Validators.required,
@@ -175,6 +171,12 @@ export class ModalGiaovienComponent implements OnInit {
       ]),
       diaChiThuongTruUpdate: new FormControl(''),
       trinhDoChuyenMonUpdate: new FormControl('Thạc sĩ')
+    })
+    // Filter Form
+      //form loc lop hoc phan
+    this.filterForm = new FormGroup({
+      bac: new FormControl("-1"),
+      hocKi: new FormControl("-1"),
     })
     // Form Lọc LHP
     // this.danhSachLopHocPhan();
@@ -267,6 +269,16 @@ export class ModalGiaovienComponent implements OnInit {
         }
       );
     }
+  }
+
+  layMaGVSelected(giaoVien:any){
+    this.maGVSelected = giaoVien.maGiaoVien;
+  }
+  dsLHP(){
+    this.bacSelected = this.filterForm.get('bac').value;
+    this.hocKiSelected = this.filterForm.get('hocKi').value;
+    console.log('bậc', this.bacSelected);
+    console.log('học kì', this.hocKiSelected);
   }
 
   capNhatGiaoVien(){
