@@ -179,12 +179,8 @@ export class PageTrangcanhansvComponent implements OnInit {
         if (sv.data) {
           this.sinhVien = sv.data;
           let maCT = this.sinhVien.maLopHoc.slice(0, 7);
-          this.hocKis.forEach((hk) => {
-            this.layCTDT_theoHocKi(hk.maHK, maCT);
-          });
+          this.layCTDT_theoHocKi(this.sinhVien.maSinhVien);
 
-
-          this.dsTatCaKHDTTmp = this.dsTatCaKHDT;
           this.layThoiKhoaBieu_theoLop(this.sinhVien.maLopHoc, 1);
           this.setValueSinhVienFormGroup(this.sinhVien);
           this.layLopHocPhan(this.sinhVien.maLopHoc);
@@ -265,32 +261,12 @@ export class PageTrangcanhansvComponent implements OnInit {
       }
     );
   }
-  public layCTDT_theoHocKi(hocKi, maCTDT) {
-    if (hocKi) {
-      this.kHDTService
-        .getKHDTByHocKiNMaCTDT(maCTDT, hocKi)
-        .subscribe((res: any) => {
-          this.dsKHDT = res;
-
-          this.dsKHDT.forEach((khdt) => {
-            this.diemSinhViens.forEach((diem) => {
-              if (diem.maDaoTao == khdt.maDaoTao) {
-                khdt.diemSinhVien = diem;
-
-              }
-            });
-            this.monHocService
-              .getMonHocFromMaMonHoc(khdt.maMonHoc)
-              .subscribe((res: any) => {
-                khdt.tenMonHoc = res.tenMonHoc;
-              });
-          });
-
-          this.dsTatCaKHDT.push({ hocKi: hocKi, data: this.dsKHDT });
-          this.dsTatCaKHDT.sort((a, b) => {
-            return a.hocKi - b.hocKi;
-          });
-        });
+  public layCTDT_theoHocKi(maSV) {
+    if (maSV) {
+      this.kHDTService.layCTDT_theoMaSV(maSV).subscribe((res: any) => {
+        this.dsTatCaKHDT = res.data;
+        this.dsTatCaKHDTTmp = this.dsTatCaKHDT;
+      });
     } else {
       this.dsTatCaKHDT = [];
     }
@@ -390,13 +366,14 @@ export class PageTrangcanhansvComponent implements OnInit {
   onChangBangDiem() {
     let ds = [];
     this.chonHocKi.setValue('');
+    console.log(this.dsTatCaKHDTTmp);
     if (this.chonHocKiBD.value) {
       this.dsTatCaKHDTTmp.forEach((el) => {
         if (el.hocKi == this.chonHocKiBD.value) {
           ds.push(el);
         }
       });
-    }else{
+    } else {
       ds = this.dsTatCaKHDTTmp;
     }
 

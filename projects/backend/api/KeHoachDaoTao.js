@@ -1,17 +1,60 @@
 const router = require("express").Router();
 const KHDT = require("../models/KeHoachDaoTao.model");
 const CTDT = require("../models/ChuongTrinhDaoTao.model");
+const diemSinhVienModel = require("../models/diemsinhvien.model");
+const monHocModel = require('../models/MonHoc.model');
 
 const { asyncForEach } = require("../utils/KeHoachDaoTao.util");
 
-router.get("/", async (req, res) => {
+router.get("/:maSinhVien", async (req, res) => {
   try {
-    const khdt = await KHDT.find({trangThai: 1});
-    res.json({count: khdt.length, data:khdt, message:'Lấy thành công'});
+    const khdt = await KHDT.find({ trangThai: 1 });
+    const diemSV = await diemSinhVienModel.find({
+      trangThai: 1,
+      maSinhVien: req.params.maSinhVien,
+    });
+    const monHoc = await monHocModel.find();
+    let khdt_diemtb = [];
+    for (let i = 1; i < 7; i++) {
+      let diemTB_HocKi = 0;
+      let heso = 0;
+      let khdt_tmp = [];
+      khdt.forEach((kh) => {
+        if (kh.hocKi == i) {
+          let item = { maMonHoc: kh.maMonHoc, diem: 7 ,tenMonHoc:''};
+          diemSV.forEach((diem) => {
+            if (diem.maDaoTao == kh.maDaoTao) {
+              item.diem = diem.diem;
+
+            }
+            diemTB_HocKi = diemTB_HocKi + item.diem;
+            heso++;
+          });
+
+          monHoc.forEach(mh => {
+            if(mh.maMonHoc === item.maMonHoc){
+              item.tenMonHoc = mh.tenMonHoc;
+            }
+          })
+          khdt_tmp.push(item);
+        }
+      });
+
+      khdt_diemtb.push({
+        hocKi: i,
+        diem: Math.round(((diemTB_HocKi/heso) + Number.EPSILON) * 100) / 100,
+        khdt: khdt_tmp,
+        count: khdt_tmp.length,
+      });
+    }
+
+    res.json({
+      data: khdt_diemtb,
+      message: "Lấy thành công",
+    });
   } catch (error) {
     res.json(error);
   }
-
 });
 
 //GET KHDT by maChuongTrinhDaoTao and hocKi

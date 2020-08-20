@@ -272,10 +272,11 @@
 
           </div>
           <ng-container *ngFor="let khdt of dsTatCaKHDT;index as i">
-            <div class="row" *ngIf="khdt.data.length > 0">
+            <div class="row" *ngIf="khdt?.khdt.length > 0">
               <div class="col-md-12 shadow">
                 <div class="col-6">
                   <h5>Học kì {{ khdt.hocKi }}</h5>
+                  <h5>Điểm tổng kết học kì: {{ khdt.diem }}</h5>
                 </div>
 
                 <div class="scrollable">
@@ -284,15 +285,15 @@
                       <tr>
                         <th scope="col">STT</th>
                         <th scope="col"> Tên môn học</th>
-                        <th scope="col">Điểm tổng kết</th>
+                        <th scope="col">Điểm </th>
                       </tr>
                     </thead>
                     <tbody>
-                      <ng-container *ngFor="let item of khdt?.data; index as i">
+                      <ng-container *ngFor="let item of khdt?.khdt; index as i">
                         <tr>
                           <td>{{ i+1 }}</td>
                           <td class="col-4">{{ item.tenMonHoc }}</td>
-                          <td class="col-4">{{ item.diemSinhVien?.diem }}</td>
+                          <td class="col-4">{{ item.diem }}</td>
 
                         </tr>
                       </ng-container>

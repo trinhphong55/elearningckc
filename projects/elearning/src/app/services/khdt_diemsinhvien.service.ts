@@ -19,6 +19,9 @@ export class KHDTService {
   getAll(){
     return this.http.get<any>(this.khdtURL, httpOptions);
   }
+  layCTDT_theoMaSV(maSV){
+    return this.http.get<any>(this.khdtURL+'/'+maSV, httpOptions);
+  }
   getKHDTByHocKiNMaCTDT(
     maChuongTrinhDaoTao: string,
     hocKi: string
