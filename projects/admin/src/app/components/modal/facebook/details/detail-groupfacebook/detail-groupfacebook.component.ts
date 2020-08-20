@@ -23,7 +23,7 @@ export class DetailGroupfacebookComponent implements OnInit {
     private _changeDetailFB: ChangeDetialFB,
     private baiDangSv: BaiDangfbService,
     private trangthaiSV: TrangThaifbService,
-    
+
   ) { }
 
   ngOnInit(): void {
@@ -45,15 +45,15 @@ export class DetailGroupfacebookComponent implements OnInit {
   }
 
   selectBaiDangGrp(val){
-    console.log(val);
+    ////console.log(val);
     this.baiDangtmp = [];
-  
+
     this.data.forEach(element => {
       if(element.ID == val && element.trangThai == 2){
         this.baiDangtmp.push(element);
       }
     });
-    console.log(this.baiDangtmp);
+    ////console.log(this.baiDangtmp);
   }
 
   closeModal(id: string) {

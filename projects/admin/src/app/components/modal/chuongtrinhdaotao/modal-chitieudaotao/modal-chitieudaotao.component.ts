@@ -122,8 +122,6 @@ export class ModalChitieudaotaoComponent implements OnInit {
     this.getNganhNghe();
     this.getbac();
     this.getLopHoc();
-    this.getSiSo();
-    this.tongSoSinhVien;
     this.hocKiForm = new FormGroup({
       hocKi: new FormControl(''),
     });
@@ -133,7 +131,6 @@ export class ModalChitieudaotaoComponent implements OnInit {
     this.lopHocService.getAll().subscribe(
       (lop) => {
         this.lopHocs = lop;
-        // this.lopTams = this.lopHocs;
       },
       (err) => (this.msg = err)
     );
@@ -223,8 +220,12 @@ export class ModalChitieudaotaoComponent implements OnInit {
    */
   tenNganhXepLop: String;
   maNganhXepLop: string;
+  public maNganh;
+  public maBac;
 
   public onClickLopTheoNganh(maNganh: string, maBac: string) {
+    this.maBac = maBac;
+    this.maNganh = maNganh;
     let maTienTo = this.taoTienTo(
       maNganh,
       maBac,
@@ -250,7 +251,6 @@ export class ModalChitieudaotaoComponent implements OnInit {
   loadNganh() {
 
     this.layChiTieuTuTienTo();
-    this.setChiTieuTheoTienTo();
     this.nganhtamlist = [];
     if (
       this.addForm.value.bac &&
@@ -358,6 +358,7 @@ export class ModalChitieudaotaoComponent implements OnInit {
     this.lopHocService.filterLopTheoTienTo(maTienTo).subscribe((res) => {
       this.soChiTieu.push(res);
       this.soChiTieuTams = this.soChiTieu.map((el) => el);
+      this.setChiTieuTheoTienTo();
     });
   }
 
@@ -387,7 +388,7 @@ export class ModalChitieudaotaoComponent implements OnInit {
       if (maLopTienTo === tienTo) LopTam.push(element);
     });
     this.lopTams = LopTam;
-    this.getSiSo();
+    // this.getSiSo();
   }
 
   private getMaNTenLopHoc(): Object[] {
@@ -489,14 +490,11 @@ export class ModalChitieudaotaoComponent implements OnInit {
       this.addForm.value.loaiHinhDaoTao
     );
     this.lopHocService.xoaTheoTienTo(ma).subscribe(
-      (data) => {
-        this.xepLoptheoMaNganh(ma);
+      (data:any) => {
+        //this.xepLoptheoMaNganh(ma);
+        console.log(data);
         this.msgList.push({
-          msg: `Xóa thành công lớp học của  ${this.convertToTenBac(
-            maBac
-          )} "${this.convertToTenNganh(maNganh)} " khóa 20${
-            this.addForm.value.khoa
-          } `,
+          msg: data.msg
         });
       },
       (error) => console.log(error)
@@ -537,18 +535,19 @@ export class ModalChitieudaotaoComponent implements OnInit {
       // let maHopLe = this.convertToMaLopHopLe(sv.maLopHoc);
       // let maSv = sv.maSinhVien.slice(0, 7);
       this.SinhVienService.themSinhVien(sv).subscribe(
-        (response) => {
+        (response:any) => {
           this.msgList.push({
-            msg: `Thêm thành công "${sv.ten}" có mã số [${sv.maSinhVien}]`,
+            msg: `Thêm thành công sinh viên tên "${sv.ten}" có mã số [${sv.maSinhVien}]`,
             status: true,
           });
+
         },
         (error) => {
           this.msgList.push({
-            msg: `Thêm thất bại "${sv.ten}" có mã số [${sv.maSinhVien}]`,
+            msg: `Thêm thất bại sinh viên tên "${sv.ten}" có mã số [${sv.maSinhVien}]`,
             status: false,
           });
-          console.log(error);
+
         }
       );
     });
@@ -564,31 +563,28 @@ export class ModalChitieudaotaoComponent implements OnInit {
     if (this.dsSinhVien) {
       this.msg = 'Danh sách sinh viên';
       this.importExcel();
-      this.getSiSo();
+      this.capNhat_SLSinhVien_LopHocPhan(this.maLopThem);
+      // this.getSiSo();
       this.getLopHoc();
+
+
 
     } else {
       this.msg =
         'Danh sách sinh viên trống, không có sinh viên nào được thêm vào';
     }
   }
-  public tongSoSinhVien = [];
 
-  public getSiSo() {
-    this.tongSoSinhVien = [];
-    this.lopHocService.getAll().subscribe(
-      (lop) => {
-        this.lopHocs = lop;
-        this.lopHocs.forEach((el) => {
-          this.tinhTongSinhVien(el.maLopHoc);
-        });
-      },
-      (err) => (this.msg = err)
-    );
+  public capNhat_SLSinhVien_LopHocPhan(maLopHoc){
+    this.SinhVienService.capNhatSiSoLopHocPhan(maLopHoc).subscribe((res)=> {
+      let maCT = this.taoTienTo(
+        this.maNganh,
+        this.maBac,
+        this.addForm.value.khoa,
+        this.addForm.value.loaiHinhDaoTao
+      );
+      this.xepLoptheoMaNganh(maCT);
+    })
   }
-  public tinhTongSinhVien(maLop: String) {
-    this.SinhVienService.tinhTongSinhVien(maLop).subscribe((res) => {
-      this.tongSoSinhVien.push(res);
-    });
-  }
+
 }

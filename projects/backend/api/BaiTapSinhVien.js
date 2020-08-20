@@ -5,7 +5,7 @@ var path = require("path");
 const BaiTapSinhVien = require("../models/BaiTapSinhVien.model");
 const SINHVIEN = require("../models/sinh-vien.model");
 const { combineLatest } = require("rxjs");
-
+const router = require('express').Router();
 const PATH = "./uploads/elearning/nopbaitap";
 
 var store = multer.diskStorage({
@@ -63,7 +63,6 @@ _router.get("/", async (req, res) => {
 ///BT THEO MHP
 _router.get("/:email/:maBaiTap/baitap", async (req, res) => {
   try {
-    console.log(req.params)
     const baiTap = await BaiTapSinhVien.find({ email: req.params.email, maBaiTap: req.params.maBaiTap, trangThai: 1 });
     res.json(baiTap);
   } catch (error) {
@@ -74,6 +73,7 @@ _router.get("/:email/:maBaiTap/baitap", async (req, res) => {
 // Add BaiTap
 _router.post("/", async (req, res) => {
   try {
+    console.log(req.body)
     const bt = new BaiTapSinhVien(req.body);
     var data = await bt.save();
     res.status(201).json({ data });

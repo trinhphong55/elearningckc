@@ -84,6 +84,18 @@
                 </div>
                 <div class="">
                   <div class="form-group">
+                    <label for="">Chọn tin tức từ trang công nghệ thông tin</label>
+                    <select [formControl]="mslinkgrp1" class="form-control" id="mslinkgrp1">
+                      <option [value]="null">Chọn tin tức..</option>
+                      <option >https://vnexpress.net/nhieu-nguoi-o-da-nang-bi-phat-vi-ra-duong-tap-the-duc-4148598.html</option>
+
+
+                      <option *ngFor="let tt of news" value="{{tt.url}}" class="form-control">{{tt.tieuDe}}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="">
+                  <div class="form-group">
                     <label for="">Loại</label>
                     <select id="loaig2" [formControl]="getLoaisttGrp" class="col-6 form-control">
                       <option [value]="null">Chọn..</option>
@@ -132,13 +144,13 @@
               <label class=" d-flex align-items-center"><span class="text-nowrap">Tìm kiếm: &nbsp;</span>
                 <input class="form-control form-control-sm" placeholder="Tìm kiếm" [(ngModel)]="searchGroup">
               </label>
-              <label class=" d-flex align-items-center"><span class="text-nowrap">Hiển thị: &nbsp;</span>
+              <!-- <label class=" d-flex align-items-center"><span class="text-nowrap">Hiển thị: &nbsp;</span>
                 <select class="custom-select custom-select-sm form-control">
                   <option> 10 hàng</option>
                   <option> 25 hàng</option>
                   <option> 50 hàng</option>
                 </select>
-              </label>
+              </label> -->
             </div>
           </div>
           <table class="modal_chucnang__table table table-hover" id="">

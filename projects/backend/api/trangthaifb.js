@@ -7,6 +7,6 @@ exports.getAll= async (req,res)=>{
         const data = await trangthaifb.find();
         res.json(data);
       } catch (error) {
-        res.json({message: err});
+        res.json({message: error});
       }
   };
