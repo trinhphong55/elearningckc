@@ -5,7 +5,13 @@ const CTDT = require("../models/ChuongTrinhDaoTao.model");
 const { asyncForEach } = require("../utils/KeHoachDaoTao.util");
 
 router.get("/", async (req, res) => {
-  res.json("KHDT API GET");
+  try {
+    const khdt = await KHDT.find({trangThai: 1});
+    res.json({count: khdt.length, data:khdt, message:'Lấy thành công'});
+  } catch (error) {
+    res.json(error);
+  }
+
 });
 
 //GET KHDT by maChuongTrinhDaoTao and hocKi
