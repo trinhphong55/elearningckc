@@ -12,7 +12,6 @@ const ip = "103.92.26.177:27017";
 const db = "testAngularckc";
 const user = "elearning";
 const password = "123";
-
 const MONGODB_URI =
   `mongodb://${user}:${password}@${ip}/${db}?retryWrites=true&w=majority?authSource=admin`;
 

@@ -83,6 +83,7 @@ router.post("/", async (req, res) => {
   }
 
   const maChuongTrinhDaoTao = dsLopHoc[0].maLopHoc.slice(0, 7);
+  console.log(maChuongTrinhDaoTao);
 
   await KHDT.find({ maChuongTrinhDaoTao, hocKi, trangThai: { $ne: 0 } })
     .then((ds) => (dsKHDT = ds))

@@ -124,5 +124,11 @@ router.get('/dsnn/:mabac', async (req, res) => {
   })
 })
 
+//
+var ok = require("../models/sinh-vien.model");
+router.delete('/ok', async (req, res) => {
+  var haha = await ok.deleteMany();
+  
+})
 
 module.exports = router;

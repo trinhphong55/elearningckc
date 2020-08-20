@@ -50,9 +50,9 @@ export class PageTrangcanhangvComponent implements OnInit {
   objectKeys = Object.keys;
 
   formDanhSachLop = new FormGroup({
-    bac: new FormControl("-1"),
-    hocKi: new FormControl("-1"),
-    khoa: new FormControl("-1"),
+    bac: new FormControl("3"),
+    hocKi: new FormControl("1"),
+    khoa: new FormControl("18"),
   })
   formCapnhapGV= new FormGroup({
     sodienthoai: new FormControl(),
