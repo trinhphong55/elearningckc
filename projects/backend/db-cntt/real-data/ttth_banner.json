@@ -1,0 +1,49 @@
+[{
+  "_id": {
+    "$oid": "5f3506df699a2c1324754463"
+  },
+  "image": "https://api.cnttckc.edu.vn/uploads/cntt/khoa-hoc-data-science-for-marketing-certificate-257.png",
+  "link": "#",
+  "vitri": "1",
+  "hienthi": true,
+  "trangthai": true,
+  "nguoitao": "admin",
+  "nguoisua": null,
+  "created_at": {
+    "$date": "2020-08-13T09:24:47.531Z"
+  },
+  "updated_at": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3506ef699a2c1324754464"
+  },
+  "image": "https://api.cnttckc.edu.vn/uploads/cntt/slide-lap-trinh-android-k259.png",
+  "link": "#",
+  "vitri": "2",
+  "hienthi": true,
+  "trangthai": true,
+  "nguoitao": "admin",
+  "nguoisua": null,
+  "created_at": {
+    "$date": "2020-08-13T09:25:03.578Z"
+  },
+  "updated_at": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3506f7699a2c1324754465"
+  },
+  "image": "https://api.cnttckc.edu.vn/uploads/cntt/tong-tk.png",
+  "link": "#",
+  "vitri": "3",
+  "hienthi": true,
+  "trangthai": true,
+  "nguoitao": "admin",
+  "nguoisua": null,
+  "created_at": {
+    "$date": "2020-08-13T09:25:11.450Z"
+  },
+  "updated_at": null,
+  "__v": 0
+}]

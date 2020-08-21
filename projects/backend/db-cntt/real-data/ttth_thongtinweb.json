@@ -1,0 +1,29 @@
+[{
+  "_id": {
+    "$oid": "5f226a9ac66ee80c192cff57"
+  },
+  "logo": "https://api.cnttckc.edu.vn/uploads/cntt/logo.png",
+  "diachi": "Lầu 7 - Dãy F <br> Trường CĐKT Cao Thắng <br> 65 Huỳnh Thúc Kháng, P. Bến Nghé, Q.1, TPHCM",
+  "email": "cntt@caothang.edu.vn",
+  "giolamviec": "Thứ 2 - 6: 8:30 đến 17:00 <br> Thứ 7 - CN: nghỉ",
+  "hotline": "(800) 123 4567",
+  "copyright": "© 2020 Khoa CNTT - Trường Cao đẳng Kỹ thuật Cao Thắng.",
+  "mxh": [
+    {
+      "icon": "fab fa-facebook-f",
+      "link": "https://www.facebook.com/fit.caothang"
+    },
+    {
+      "icon": "fab fa-twitter",
+      "link": "#"
+    },
+    {
+      "icon": "fab fa-google",
+      "link": "#"
+    }
+  ],
+  "nguoisua": "admin",
+  "updated_at": {
+    "$date": "2020-08-20T16:31:43.646Z"
+  }
+}]

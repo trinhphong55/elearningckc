@@ -1,0 +1,17 @@
+[{
+  "_id": {
+    "$oid": "5f3f545ecddbca229d1418cf"
+  },
+  "mssv": "0306161291",
+  "hoten": "Nguyễn Trung Hiếu",
+  "ngaysinh": "11/09/1998",
+  "noisinh": "Bắc Giang",
+  "sodienthoai": "0365261352",
+  "lophoc": "UDCNTTCB-2020-Đợt 1",
+  "hinhthuchoc": "Học tại trường",
+  "trangthai": true,
+  "created_at": {
+    "$date": "2020-08-21T04:58:06.085Z"
+  },
+  "__v": 0
+}]

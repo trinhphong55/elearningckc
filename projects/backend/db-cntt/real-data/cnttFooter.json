@@ -1,0 +1,101 @@
+[{
+  "_id": {
+    "$oid": "5f30b2d9e8a3c52c583603af"
+  },
+  "name1": "Sinh viên",
+  "url1": "/sinh-vien",
+  "name2": "Thông báo",
+  "url2": "/thong-bao",
+  "name3": "Hợp tác & Nghiên cứu",
+  "url3": "/bai-viet/5f381c55b2433c31ece5a5a4",
+  "sub1": [
+    {
+      "name": "Cựu sinh viên",
+      "url": "/bai-viet",
+      "_id": {
+        "$oid": "5f3f4de2cddbca229d14188e"
+      }
+    },
+    {
+      "name": "Thời khoá biểu",
+      "url": "/thoi-khoa-bieu",
+      "_id": {
+        "$oid": "5f3f4de2cddbca229d14188f"
+      }
+    },
+    {
+      "name": "E-learning",
+      "url": "https://elearning.cnttckc.edu.vn/",
+      "_id": {
+        "$oid": "5f3f4de2cddbca229d141890"
+      }
+    },
+    {
+      "name": "Tài liệu học tập",
+      "url": "/tai-lieu",
+      "_id": {
+        "$oid": "5f3f4de2cddbca229d141891"
+      }
+    },
+    {
+      "name": "Tra cứu",
+      "url": "/tim-kiem",
+      "_id": {
+        "$oid": "5f3f4de2cddbca229d141892"
+      }
+    },
+    {
+      "name": "Mẫu đơn",
+      "url": "/bai-viet",
+      "_id": {
+        "$oid": "5f3f4de2cddbca229d141893"
+      }
+    },
+    {
+      "name": "Việc làm",
+      "url": "/viec-lam",
+      "_id": {
+        "$oid": "5f3f4de2cddbca229d141894"
+      }
+    }
+  ],
+  "sub2": [
+    {
+      "name": "Thông báo Trường",
+      "url": "/thong-bao",
+      "_id": {
+        "$oid": "5f3f4de2cddbca229d141895"
+      }
+    },
+    {
+      "name": "Thông báo CĐ Ngành",
+      "url": "/thong-bao",
+      "_id": {
+        "$oid": "5f3f4de2cddbca229d141896"
+      }
+    },
+    {
+      "name": "Thông báo CĐ Nghề",
+      "url": "/thong-bao",
+      "_id": {
+        "$oid": "5f3f4de2cddbca229d141897"
+      }
+    }
+  ],
+  "sub3": [
+    {
+      "name": "Doanh nghiệp đồng hành",
+      "url": "/bai-viet/5f3f47f2cddbca229d14180e",
+      "_id": {
+        "$oid": "5f3f4de2cddbca229d141898"
+      }
+    }
+  ],
+  "createdAt": {
+    "$date": "2020-08-10T02:37:13.508Z"
+  },
+  "updatedAt": {
+    "$date": "2020-08-21T04:30:26.878Z"
+  },
+  "__v": 0
+}]

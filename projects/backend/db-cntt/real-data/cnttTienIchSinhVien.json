@@ -1,0 +1,137 @@
+[{
+  "_id": {
+    "$oid": "5f30ec4857afb93878f697e9"
+  },
+  "urlTienIch": "/tai-lieu",
+  "trangThai": 1,
+  "maTienIch": "TI01",
+  "tenTienIch": "tài liệu học tập",
+  "iconClassTienIch": "mdi-stack-overflow",
+  "maMauTienIch": "#79859d",
+  "createdAt": {
+    "$date": "2020-08-10T06:42:16.926Z"
+  },
+  "updatedAt": {
+    "$date": "2020-08-18T07:50:13.254Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f30ec7c57afb93878f697ea"
+  },
+  "urlTienIch": "/tim-kiem",
+  "trangThai": 1,
+  "maTienIch": "TI02",
+  "tenTienIch": "tra cứu",
+  "iconClassTienIch": "mdi-folder-account",
+  "maMauTienIch": "#006865",
+  "createdAt": {
+    "$date": "2020-08-10T06:43:08.815Z"
+  },
+  "updatedAt": {
+    "$date": "2020-08-18T07:05:59.145Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f30ecc157afb93878f697eb"
+  },
+  "urlTienIch": "/viec-lam",
+  "trangThai": 1,
+  "maTienIch": "TI03",
+  "tenTienIch": "cơ hội việc làm",
+  "iconClassTienIch": "mdi-near-me",
+  "maMauTienIch": "#c28f04",
+  "createdAt": {
+    "$date": "2020-08-10T06:44:17.843Z"
+  },
+  "updatedAt": {
+    "$date": "2020-08-10T10:44:47.391Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f30ed0557afb93878f697ec"
+  },
+  "urlTienIch": "https://elearning.cnttckc.edu.vn/",
+  "trangThai": 1,
+  "maTienIch": "TI04",
+  "tenTienIch": "E-learning",
+  "iconClassTienIch": "mdi-laptop",
+  "maMauTienIch": "#054b81",
+  "createdAt": {
+    "$date": "2020-08-10T06:45:25.383Z"
+  },
+  "updatedAt": {
+    "$date": "2020-08-21T03:45:30.676Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f30ed3557afb93878f697ed"
+  },
+  "urlTienIch": "/bai-viet",
+  "trangThai": 1,
+  "maTienIch": "TI05",
+  "tenTienIch": "Cựu sinh viên",
+  "iconClassTienIch": "mdi-school",
+  "maMauTienIch": "#2c841e",
+  "createdAt": {
+    "$date": "2020-08-10T06:46:13.078Z"
+  },
+  "updatedAt": {
+    "$date": "2020-08-18T07:06:14.070Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f30ed5f57afb93878f697ee"
+  },
+  "urlTienIch": "/thoi-khoa-bieu",
+  "trangThai": 1,
+  "maTienIch": "TI06",
+  "tenTienIch": "Thời Khoá Biểu",
+  "iconClassTienIch": "mdi-calendar-check",
+  "maMauTienIch": "#4722ff",
+  "createdAt": {
+    "$date": "2020-08-10T06:46:55.496Z"
+  },
+  "updatedAt": {
+    "$date": "2020-08-18T07:09:18.836Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f30ed8a57afb93878f697ef"
+  },
+  "urlTienIch": "https://ttth.cnttckc.edu.vn",
+  "trangThai": 1,
+  "maTienIch": "TI07",
+  "tenTienIch": "Trung tâm tin học",
+  "iconClassTienIch": "mdi-domain",
+  "maMauTienIch": "#0e86ff",
+  "createdAt": {
+    "$date": "2020-08-10T06:47:38.456Z"
+  },
+  "updatedAt": {
+    "$date": "2020-08-21T04:19:23.334Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f30edc657afb93878f697f0"
+  },
+  "urlTienIch": "/thong-bao",
+  "trangThai": 1,
+  "maTienIch": "TI08",
+  "tenTienIch": "Thông báo",
+  "iconClassTienIch": "mdi-layers-triple-outline",
+  "maMauTienIch": "#4e5c71",
+  "createdAt": {
+    "$date": "2020-08-10T06:48:38.478Z"
+  },
+  "updatedAt": {
+    "$date": "2020-08-18T07:10:00.197Z"
+  },
+  "__v": 0
+}]

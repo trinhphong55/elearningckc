@@ -1,0 +1,196 @@
+[{
+  "_id": {
+    "$oid": "5f227b4d5f77f33214b5cca0"
+  },
+  "maDanhMuc": "DM00",
+  "tenDanhMuc": "CTCT - HSSV",
+  "tenVietTat": "ctcthssv",
+  "trangThai": 1,
+  "createdAt": {
+    "$date": "2020-07-30T07:48:29.085Z"
+  },
+  "updatedAt": {
+    "$date": "2020-08-10T05:36:03.015Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f227b6d5f77f33214b5cca1"
+  },
+  "maDanhMuc": "DM01",
+  "tenDanhMuc": "Việc làm",
+  "tenVietTat": "vieclam",
+  "trangThai": 1,
+  "createdAt": {
+    "$date": "2020-07-30T07:49:01.959Z"
+  },
+  "updatedAt": {
+    "$date": "2020-08-10T10:48:23.803Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f227b7b5f77f33214b5cca2"
+  },
+  "maDanhMuc": "DM02",
+  "tenDanhMuc": "Tin tức",
+  "tenVietTat": "tintuc",
+  "trangThai": 1,
+  "createdAt": {
+    "$date": "2020-07-30T07:49:15.574Z"
+  },
+  "updatedAt": {
+    "$date": "2020-07-30T07:49:15.574Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f227c225f77f33214b5cca3"
+  },
+  "maDanhMuc": "DM03",
+  "tenDanhMuc": "Sinh viên",
+  "tenVietTat": "sinhvien",
+  "trangThai": 1,
+  "createdAt": {
+    "$date": "2020-07-30T07:52:02.527Z"
+  },
+  "updatedAt": {
+    "$date": "2020-07-30T07:52:02.527Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f227c3a5f77f33214b5cca4"
+  },
+  "maDanhMuc": "DM04",
+  "tenDanhMuc": "Hợp tác nghiên cứu",
+  "tenVietTat": "hoptacnghiencuu",
+  "trangThai": 1,
+  "createdAt": {
+    "$date": "2020-07-30T07:52:26.956Z"
+  },
+  "updatedAt": {
+    "$date": "2020-07-30T07:52:26.956Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f227c475f77f33214b5cca5"
+  },
+  "maDanhMuc": "DM05",
+  "tenDanhMuc": "Phòng đào tạo",
+  "tenVietTat": "phongdaotao",
+  "trangThai": 1,
+  "createdAt": {
+    "$date": "2020-07-30T07:52:39.473Z"
+  },
+  "updatedAt": {
+    "$date": "2020-08-10T02:43:25.627Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f227c525f77f33214b5cca6"
+  },
+  "maDanhMuc": "DM06",
+  "tenDanhMuc": "Đoàn - Hội",
+  "tenVietTat": "doanhoi",
+  "trangThai": 1,
+  "createdAt": {
+    "$date": "2020-07-30T07:52:50.652Z"
+  },
+  "updatedAt": {
+    "$date": "2020-08-10T05:33:43.592Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f30b371e8a3c52c583603cb"
+  },
+  "maDanhMuc": "DM07",
+  "tenDanhMuc": "Lịch công tác",
+  "tenVietTat": "lichcongtac",
+  "trangThai": 1,
+  "createdAt": {
+    "$date": "2020-08-10T02:39:45.672Z"
+  },
+  "updatedAt": {
+    "$date": "2020-08-10T02:39:45.672Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f354837a9cf8237b06fa5c9"
+  },
+  "maDanhMuc": "DM08",
+  "tenDanhMuc": "Khoa đại cương",
+  "tenVietTat": "khoadaicuong",
+  "trangThai": 1,
+  "createdAt": {
+    "$date": "2020-08-13T14:03:35.922Z"
+  },
+  "updatedAt": {
+    "$date": "2020-08-13T14:03:35.922Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3b61b952fd6507189aa64c"
+  },
+  "maDanhMuc": "DM09",
+  "tenDanhMuc": "Thông báo",
+  "tenVietTat": "thongbao",
+  "trangThai": 1,
+  "createdAt": {
+    "$date": "2020-08-18T05:06:01.809Z"
+  },
+  "updatedAt": {
+    "$date": "2020-08-18T05:06:01.809Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3b71b8fa201d2910eefced"
+  },
+  "maDanhMuc": "DM010",
+  "tenDanhMuc": "Tài Liệu",
+  "tenVietTat": "tailieu",
+  "trangThai": 1,
+  "createdAt": {
+    "$date": "2020-08-18T06:14:16.204Z"
+  },
+  "updatedAt": {
+    "$date": "2020-08-18T06:14:16.204Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3b7472befa3d16ccde90fd"
+  },
+  "maDanhMuc": "DM11",
+  "tenDanhMuc": "Thời khoá biểu",
+  "tenVietTat": "tkb",
+  "trangThai": 1,
+  "createdAt": {
+    "$date": "2020-08-18T06:25:54.896Z"
+  },
+  "updatedAt": {
+    "$date": "2020-08-18T06:25:54.896Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3f4edfcddbca229d14189a"
+  },
+  "maDanhMuc": "DM12",
+  "tenDanhMuc": "Giới thiệu chung",
+  "tenVietTat": "gioithieuchung",
+  "trangThai": 1,
+  "createdAt": {
+    "$date": "2020-08-21T04:34:39.845Z"
+  },
+  "updatedAt": {
+    "$date": "2020-08-21T04:34:39.845Z"
+  },
+  "__v": 0
+}]

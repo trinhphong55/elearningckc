@@ -1,0 +1,20 @@
+[{
+  "_id": {
+    "$oid": "5f30afa7e8a3c52c583603ad"
+  },
+  "logo": "uploads/cntt/logo.jpg",
+  "logoMenuMobile": "uploads/cntt/logo_white.png",
+  "diaChi": "Phòng F 7.5, toàn nhà H, 65 Huỳnh Thúc Kháng, Q.1, TP.HCM",
+  "email": "cntt@caothang.edu.vn",
+  "copyRight": "© 2020 Khoa CNTT - Trường Cao đẳng Kỹ thuật Cao Thắng.",
+  "soDienThoai": "(08) 8354266 (ext-14)",
+  "urlFacebook": "https://www.facebook.com/cntt.caothang",
+  "urlYoutube": "https://www.youtube.com/channel/UC5WA68i52T9_wvPp2oFr-Ew",
+  "createdAt": {
+    "$date": "2020-08-10T02:23:35.554Z"
+  },
+  "updatedAt": {
+    "$date": "2020-08-10T02:23:35.554Z"
+  },
+  "__v": 0
+}]

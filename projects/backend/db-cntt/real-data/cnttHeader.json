@@ -1,0 +1,140 @@
+[{
+  "_id": {
+    "$oid": "5f30b1afe8a3c52c583603ae"
+  },
+  "icon1": "mdi mdi-home-outline",
+  "name1": "Trang chủ",
+  "url1": "/",
+  "icon2": "mdi mdi-information-outline",
+  "name2": "Giới thiệu",
+  "url2": "/bai-viet/5f3f4471cddbca229d1417f0",
+  "icon3": "mdi mdi-bell-circle-outline",
+  "name3": "Thông báo",
+  "url3": "/thong-bao",
+  "icon4": "mdi mdi-school-outline",
+  "name4": "Sinh viên",
+  "url4": "/bai-viet",
+  "icon5": "mdi mdi-medal-outline",
+  "name5": "Hợp tác & Nghiên cứu",
+  "url5": "/bai-viet/5f381c55b2433c31ece5a5a4",
+  "sub1": [],
+  "sub2": [
+    {
+      "name": "Giới thiệu chung",
+      "url": "/bai-viet/5f3f4471cddbca229d1417f0",
+      "_id": {
+        "$oid": "5f3f4dc6cddbca229d14187f"
+      }
+    },
+    {
+      "name": "Tầm nhìn - Sứ mạng",
+      "url": "/bai-viet/5f3f44accddbca229d1417f1",
+      "_id": {
+        "$oid": "5f3f4dc6cddbca229d141880"
+      }
+    },
+    {
+      "name": "Mục tiêu đào tạo",
+      "url": "/bai-viet/5f3f4568cddbca229d1417f2",
+      "_id": {
+        "$oid": "5f3f4dc6cddbca229d141881"
+      }
+    },
+    {
+      "name": "Ban chủ nhiệm Khoa",
+      "url": "/bai-viet/5f3f45b0cddbca229d1417f3",
+      "_id": {
+        "$oid": "5f3f4dc6cddbca229d141882"
+      }
+    },
+    {
+      "name": "Các bộ phận & Hội đồng",
+      "url": "/bai-viet/5f3f4663cddbca229d1417f5",
+      "_id": {
+        "$oid": "5f3f4dc6cddbca229d141883"
+      }
+    },
+    {
+      "name": "Đội ngũ giáo viên",
+      "url": "/bai-viet/5f3f4696cddbca229d1417f6",
+      "_id": {
+        "$oid": "5f3f4dc6cddbca229d141884"
+      }
+    },
+    {
+      "name": "Liên hệ",
+      "url": "/bai-viet/5f3f46e7cddbca229d1417f7",
+      "_id": {
+        "$oid": "5f3f4dc6cddbca229d141885"
+      }
+    }
+  ],
+  "sub3": [],
+  "sub4": [
+    {
+      "name": "Cựu sinh viên",
+      "url": "/bai-viet",
+      "_id": {
+        "$oid": "5f3f4dc6cddbca229d141886"
+      }
+    },
+    {
+      "name": "Thời khoá biểu",
+      "url": "/thoi-khoa-bieu",
+      "_id": {
+        "$oid": "5f3f4dc6cddbca229d141887"
+      }
+    },
+    {
+      "name": "E-learning",
+      "url": "https://elearning.cnttckc.edu.vn",
+      "_id": {
+        "$oid": "5f3f4dc6cddbca229d141888"
+      }
+    },
+    {
+      "name": "Tài liệu học tập",
+      "url": "/tai-lieu",
+      "_id": {
+        "$oid": "5f3f4dc6cddbca229d141889"
+      }
+    },
+    {
+      "name": "Tra cứu",
+      "url": "/tim-kiem",
+      "_id": {
+        "$oid": "5f3f4dc6cddbca229d14188a"
+      }
+    },
+    {
+      "name": "Mẫu đơn",
+      "url": "/bai-viet",
+      "_id": {
+        "$oid": "5f3f4dc6cddbca229d14188b"
+      }
+    },
+    {
+      "name": "Việc làm",
+      "url": "/viec-lam",
+      "_id": {
+        "$oid": "5f3f4dc6cddbca229d14188c"
+      }
+    }
+  ],
+  "sub5": [
+    {
+      "name": "Doanh nghiệp đồng hành",
+      "url": "/bai-viet/5f3f47f2cddbca229d14180e",
+      "_id": {
+        "$oid": "5f3f4dc6cddbca229d14188d"
+      }
+    }
+  ],
+  "createdAt": {
+    "$date": "2020-08-10T02:32:15.431Z"
+  },
+  "updatedAt": {
+    "$date": "2020-08-21T04:29:58.466Z"
+  },
+  "__v": 0
+}]

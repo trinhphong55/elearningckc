@@ -1,0 +1,1235 @@
+[{
+  "_id": {
+    "$oid": "5f3f4f21cddbca229d14189b"
+  },
+  "trangthai": true,
+  "nguoisua": null,
+  "updated_at": null,
+  "hoten": "Nguyễn Thành",
+  "ngaysinh": "12/09/2000",
+  "sobaodanh": "K69-153",
+  "noisinh": "Bến Tre",
+  "lop": "CÐ ÔTÔ 18D",
+  "tongdiem": 56,
+  "xeploai": "Trung Bình",
+  "laptrinhc": 5,
+  "msword": 19,
+  "msexcel": 18,
+  "mspowerpoint": 14,
+  "tendotthi": "THI ỨNG DỤNG CNTT CƠ BẢN -2020-08-23-12g30 và 15g00-F5.12",
+  "ngaythi": "2020-08-23",
+  "giothi": "12g30 và 15g00",
+  "phongthi": "F5.12",
+  "nguoitao": "admin",
+  "loaidiem": "Điểm thi",
+  "created_at": {
+    "$date": "2020-08-21T04:35:45.955Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3f4f21cddbca229d14189c"
+  },
+  "trangthai": true,
+  "nguoisua": null,
+  "updated_at": null,
+  "hoten": "Lê Ngọc",
+  "ngaysinh": "26/11/1999",
+  "sobaodanh": "K69-154",
+  "noisinh": "Phú Yên",
+  "lop": "CÐ Đ, ĐT 17D",
+  "tongdiem": 35,
+  "xeploai": "Không đạt",
+  "laptrinhc": 0,
+  "msword": 22,
+  "msexcel": 10,
+  "mspowerpoint": 3,
+  "tendotthi": "THI ỨNG DỤNG CNTT CƠ BẢN -2020-08-23-12g30 và 15g00-F5.12",
+  "ngaythi": "2020-08-23",
+  "giothi": "12g30 và 15g00",
+  "phongthi": "F5.12",
+  "nguoitao": "admin",
+  "loaidiem": "Điểm thi",
+  "created_at": {
+    "$date": "2020-08-21T04:35:45.955Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3f4f21cddbca229d14189d"
+  },
+  "trangthai": true,
+  "nguoisua": null,
+  "updated_at": null,
+  "hoten": "Lê Tuấn",
+  "ngaysinh": "26/11/1998",
+  "sobaodanh": "K69-155",
+  "noisinh": "Vĩnh Long",
+  "lop": "CÐ ĐTTT 16B",
+  "tongdiem": 50,
+  "xeploai": "Trung Bình",
+  "laptrinhc": 6,
+  "msword": 20,
+  "msexcel": 15,
+  "mspowerpoint": 9,
+  "tendotthi": "THI ỨNG DỤNG CNTT CƠ BẢN -2020-08-23-12g30 và 15g00-F5.12",
+  "ngaythi": "2020-08-23",
+  "giothi": "12g30 và 15g00",
+  "phongthi": "F5.12",
+  "nguoitao": "admin",
+  "loaidiem": "Điểm thi",
+  "created_at": {
+    "$date": "2020-08-21T04:35:45.956Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3f4f21cddbca229d14189e"
+  },
+  "trangthai": true,
+  "nguoisua": null,
+  "updated_at": null,
+  "hoten": "Vũ Duy",
+  "ngaysinh": "11/10/2000",
+  "sobaodanh": "K69-156",
+  "noisinh": "TP HCM",
+  "lop": "CÐN ÔTÔ 18C",
+  "tongdiem": 69,
+  "xeploai": "Trung Bình",
+  "laptrinhc": 11,
+  "msword": 22,
+  "msexcel": 20,
+  "mspowerpoint": 16,
+  "tendotthi": "THI ỨNG DỤNG CNTT CƠ BẢN -2020-08-23-12g30 và 15g00-F5.12",
+  "ngaythi": "2020-08-23",
+  "giothi": "12g30 và 15g00",
+  "phongthi": "F5.12",
+  "nguoitao": "admin",
+  "loaidiem": "Điểm thi",
+  "created_at": {
+    "$date": "2020-08-21T04:35:45.956Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3f4f21cddbca229d14189f"
+  },
+  "trangthai": true,
+  "nguoisua": null,
+  "updated_at": null,
+  "hoten": "Nguyễn Nhật Duy",
+  "ngaysinh": "21/11/1999",
+  "sobaodanh": "K69-157",
+  "noisinh": "Tiền Giang",
+  "lop": "CÐ Đ, ĐT 17C",
+  "tongdiem": 72,
+  "xeploai": "Khá",
+  "laptrinhc": 11,
+  "msword": 25,
+  "msexcel": 17,
+  "mspowerpoint": 19,
+  "tendotthi": "THI ỨNG DỤNG CNTT CƠ BẢN -2020-08-23-12g30 và 15g00-F5.12",
+  "ngaythi": "2020-08-23",
+  "giothi": "12g30 và 15g00",
+  "phongthi": "F5.12",
+  "nguoitao": "admin",
+  "loaidiem": "Điểm thi",
+  "created_at": {
+    "$date": "2020-08-21T04:35:45.956Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3f4f21cddbca229d1418a0"
+  },
+  "trangthai": true,
+  "nguoisua": null,
+  "updated_at": null,
+  "hoten": "Thông Quan",
+  "ngaysinh": "10/10/1999",
+  "sobaodanh": "K69-158",
+  "noisinh": "Long An",
+  "lop": "CÐ Đ, ĐT 17C",
+  "tongdiem": 76,
+  "xeploai": "Khá",
+  "laptrinhc": 11,
+  "msword": 29,
+  "msexcel": 17,
+  "mspowerpoint": 19,
+  "tendotthi": "THI ỨNG DỤNG CNTT CƠ BẢN -2020-08-23-12g30 và 15g00-F5.12",
+  "ngaythi": "2020-08-23",
+  "giothi": "12g30 và 15g00",
+  "phongthi": "F5.12",
+  "nguoitao": "admin",
+  "loaidiem": "Điểm thi",
+  "created_at": {
+    "$date": "2020-08-21T04:35:45.957Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3f4f21cddbca229d1418a1"
+  },
+  "trangthai": true,
+  "nguoisua": null,
+  "updated_at": null,
+  "hoten": "Nguyễn Lê Trung",
+  "ngaysinh": "21/05/2001",
+  "sobaodanh": "K69-159",
+  "noisinh": "Long An",
+  "lop": "CÐ ÔTÔ 19D",
+  "tongdiem": 80,
+  "xeploai": "Giỏi",
+  "laptrinhc": 12,
+  "msword": 23,
+  "msexcel": 28,
+  "mspowerpoint": 17,
+  "tendotthi": "THI ỨNG DỤNG CNTT CƠ BẢN -2020-08-23-12g30 và 15g00-F5.12",
+  "ngaythi": "2020-08-23",
+  "giothi": "12g30 và 15g00",
+  "phongthi": "F5.12",
+  "nguoitao": "admin",
+  "loaidiem": "Điểm thi",
+  "created_at": {
+    "$date": "2020-08-21T04:35:45.957Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3f4f21cddbca229d1418a2"
+  },
+  "trangthai": true,
+  "nguoisua": null,
+  "updated_at": null,
+  "hoten": "Nguyễn Tiến",
+  "ngaysinh": "25/11/97",
+  "sobaodanh": "K69-160",
+  "noisinh": "Bắc Giang",
+  "lop": "CÐ ÔTÔ 15A",
+  "tongdiem": 82,
+  "xeploai": "Giỏi",
+  "laptrinhc": 12,
+  "msword": 22,
+  "msexcel": 28,
+  "mspowerpoint": 20,
+  "tendotthi": "THI ỨNG DỤNG CNTT CƠ BẢN -2020-08-23-12g30 và 15g00-F5.12",
+  "ngaythi": "2020-08-23",
+  "giothi": "12g30 và 15g00",
+  "phongthi": "F5.12",
+  "nguoitao": "admin",
+  "loaidiem": "Điểm thi",
+  "created_at": {
+    "$date": "2020-08-21T04:35:45.958Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3f4f21cddbca229d1418a3"
+  },
+  "trangthai": true,
+  "nguoisua": null,
+  "updated_at": null,
+  "hoten": "Lê Minh",
+  "ngaysinh": "10/06/2000",
+  "sobaodanh": "K69-161",
+  "noisinh": "An Giang",
+  "lop": "CÐ NL 19C",
+  "tongdiem": 70,
+  "xeploai": "Khá",
+  "laptrinhc": 8,
+  "msword": 23,
+  "msexcel": 20,
+  "mspowerpoint": 19,
+  "tendotthi": "THI ỨNG DỤNG CNTT CƠ BẢN -2020-08-23-12g30 và 15g00-F5.12",
+  "ngaythi": "2020-08-23",
+  "giothi": "12g30 và 15g00",
+  "phongthi": "F5.12",
+  "nguoitao": "admin",
+  "loaidiem": "Điểm thi",
+  "created_at": {
+    "$date": "2020-08-21T04:35:45.958Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3f4f21cddbca229d1418a4"
+  },
+  "trangthai": true,
+  "nguoisua": null,
+  "updated_at": null,
+  "hoten": "Nguyễn Chí",
+  "ngaysinh": "28/09/97",
+  "sobaodanh": "K69-162",
+  "noisinh": "Tiền Giang",
+  "lop": "CÐ ÔTÔ 15E",
+  "tongdiem": 62,
+  "xeploai": "Trung Bình",
+  "laptrinhc": 11,
+  "msword": 20,
+  "msexcel": 20,
+  "mspowerpoint": 11,
+  "tendotthi": "THI ỨNG DỤNG CNTT CƠ BẢN -2020-08-23-12g30 và 15g00-F5.12",
+  "ngaythi": "2020-08-23",
+  "giothi": "12g30 và 15g00",
+  "phongthi": "F5.12",
+  "nguoitao": "admin",
+  "loaidiem": "Điểm thi",
+  "created_at": {
+    "$date": "2020-08-21T04:35:45.958Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3f4f21cddbca229d1418a5"
+  },
+  "trangthai": true,
+  "nguoisua": null,
+  "updated_at": null,
+  "hoten": "Phạm Trung",
+  "ngaysinh": "26/11/1999",
+  "sobaodanh": "K69-163",
+  "noisinh": "Tây Ninh",
+  "lop": "CÐ ÔTÔ 17B",
+  "tongdiem": 55,
+  "xeploai": "Trung Bình",
+  "laptrinhc": 5,
+  "msword": 21,
+  "msexcel": 22,
+  "mspowerpoint": 7,
+  "tendotthi": "THI ỨNG DỤNG CNTT CƠ BẢN -2020-08-23-12g30 và 15g00-F5.12",
+  "ngaythi": "2020-08-23",
+  "giothi": "12g30 và 15g00",
+  "phongthi": "F5.12",
+  "nguoitao": "admin",
+  "loaidiem": "Điểm thi",
+  "created_at": {
+    "$date": "2020-08-21T04:35:45.959Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3f4f21cddbca229d1418a6"
+  },
+  "trangthai": true,
+  "nguoisua": null,
+  "updated_at": null,
+  "hoten": "Nguyễn Thành",
+  "ngaysinh": "11/08/1999",
+  "sobaodanh": "K69-164",
+  "noisinh": "Bến Tre",
+  "lop": "CÐ Đ, ĐT 17F",
+  "tongdiem": 81,
+  "xeploai": "Giỏi",
+  "laptrinhc": 6,
+  "msword": 28,
+  "msexcel": 29,
+  "mspowerpoint": 18,
+  "tendotthi": "THI ỨNG DỤNG CNTT CƠ BẢN -2020-08-23-12g30 và 15g00-F5.12",
+  "ngaythi": "2020-08-23",
+  "giothi": "12g30 và 15g00",
+  "phongthi": "F5.12",
+  "nguoitao": "admin",
+  "loaidiem": "Điểm thi",
+  "created_at": {
+    "$date": "2020-08-21T04:35:45.960Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3f4f21cddbca229d1418a7"
+  },
+  "trangthai": true,
+  "nguoisua": null,
+  "updated_at": null,
+  "hoten": "Đinh Văn",
+  "ngaysinh": "05/11/99",
+  "sobaodanh": "K69-165",
+  "noisinh": "Đồng Nai",
+  "lop": "CÐ CK 17D",
+  "tongdiem": 64,
+  "xeploai": "Trung Bình",
+  "laptrinhc": 11,
+  "msword": 22,
+  "msexcel": 15,
+  "mspowerpoint": 16,
+  "tendotthi": "THI ỨNG DỤNG CNTT CƠ BẢN -2020-08-23-12g30 và 15g00-F5.12",
+  "ngaythi": "2020-08-23",
+  "giothi": "12g30 và 15g00",
+  "phongthi": "F5.12",
+  "nguoitao": "admin",
+  "loaidiem": "Điểm thi",
+  "created_at": {
+    "$date": "2020-08-21T04:35:45.960Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3f4f21cddbca229d1418a8"
+  },
+  "trangthai": true,
+  "nguoisua": null,
+  "updated_at": null,
+  "hoten": "Lê Huỳnh",
+  "ngaysinh": "01/06/1998",
+  "sobaodanh": "K69-166",
+  "noisinh": "TP HCM",
+  "lop": "CÐ ĐTTT 16B",
+  "tongdiem": 55,
+  "xeploai": "Trung Bình",
+  "laptrinhc": 5,
+  "msword": 21,
+  "msexcel": 19,
+  "mspowerpoint": 10,
+  "tendotthi": "THI ỨNG DỤNG CNTT CƠ BẢN -2020-08-23-12g30 và 15g00-F5.12",
+  "ngaythi": "2020-08-23",
+  "giothi": "12g30 và 15g00",
+  "phongthi": "F5.12",
+  "nguoitao": "admin",
+  "loaidiem": "Điểm thi",
+  "created_at": {
+    "$date": "2020-08-21T04:35:45.961Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3f4f21cddbca229d1418a9"
+  },
+  "trangthai": true,
+  "nguoisua": null,
+  "updated_at": null,
+  "hoten": "Đặng Nguyễn Trung",
+  "ngaysinh": "25/09/1999",
+  "sobaodanh": "K69-167",
+  "noisinh": "Đồng Nai",
+  "lop": "CÐ CĐT 17A",
+  "tongdiem": 65,
+  "xeploai": "Trung Bình",
+  "laptrinhc": 7,
+  "msword": 18,
+  "msexcel": 24,
+  "mspowerpoint": 16,
+  "tendotthi": "THI ỨNG DỤNG CNTT CƠ BẢN -2020-08-23-12g30 và 15g00-F5.12",
+  "ngaythi": "2020-08-23",
+  "giothi": "12g30 và 15g00",
+  "phongthi": "F5.12",
+  "nguoitao": "admin",
+  "loaidiem": "Điểm thi",
+  "created_at": {
+    "$date": "2020-08-21T04:35:45.961Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3f4f21cddbca229d1418aa"
+  },
+  "trangthai": true,
+  "nguoisua": null,
+  "updated_at": null,
+  "hoten": "Võ Minh",
+  "ngaysinh": "15/07/1999",
+  "sobaodanh": "K69-168",
+  "noisinh": "Tiền Giang",
+  "lop": "CÐ ÔTÔ 17D",
+  "tongdiem": 37,
+  "xeploai": "Không đạt",
+  "laptrinhc": 0,
+  "msword": 22,
+  "msexcel": 15,
+  "mspowerpoint": 0,
+  "tendotthi": "THI ỨNG DỤNG CNTT CƠ BẢN -2020-08-23-12g30 và 15g00-F5.12",
+  "ngaythi": "2020-08-23",
+  "giothi": "12g30 và 15g00",
+  "phongthi": "F5.12",
+  "nguoitao": "admin",
+  "loaidiem": "Điểm thi",
+  "created_at": {
+    "$date": "2020-08-21T04:35:45.961Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3f4f21cddbca229d1418ab"
+  },
+  "trangthai": true,
+  "nguoisua": null,
+  "updated_at": null,
+  "hoten": "Nguyễn Hữu",
+  "ngaysinh": "18/11/1999",
+  "sobaodanh": "K69-169",
+  "noisinh": "Đồng Tháp",
+  "lop": "CÐ ÔTÔ 17B",
+  "tongdiem": 52,
+  "xeploai": "Trung Bình",
+  "laptrinhc": 0,
+  "msword": 23,
+  "msexcel": 12,
+  "mspowerpoint": 17,
+  "tendotthi": "THI ỨNG DỤNG CNTT CƠ BẢN -2020-08-23-12g30 và 15g00-F5.12",
+  "ngaythi": "2020-08-23",
+  "giothi": "12g30 và 15g00",
+  "phongthi": "F5.12",
+  "nguoitao": "admin",
+  "loaidiem": "Điểm thi",
+  "created_at": {
+    "$date": "2020-08-21T04:35:45.962Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3f4f21cddbca229d1418ac"
+  },
+  "trangthai": true,
+  "nguoisua": null,
+  "updated_at": null,
+  "hoten": "Phạm Hoài",
+  "ngaysinh": "18/11/1998",
+  "sobaodanh": "K69-170",
+  "noisinh": "Bến Tre",
+  "lop": "CÐ ĐTTT 16B",
+  "tongdiem": 54,
+  "xeploai": "Trung Bình",
+  "laptrinhc": 1,
+  "msword": 25,
+  "msexcel": 13,
+  "mspowerpoint": 15,
+  "tendotthi": "THI ỨNG DỤNG CNTT CƠ BẢN -2020-08-23-12g30 và 15g00-F5.12",
+  "ngaythi": "2020-08-23",
+  "giothi": "12g30 và 15g00",
+  "phongthi": "F5.12",
+  "nguoitao": "admin",
+  "loaidiem": "Điểm thi",
+  "created_at": {
+    "$date": "2020-08-21T04:35:45.963Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3f4f21cddbca229d1418ad"
+  },
+  "trangthai": true,
+  "nguoisua": null,
+  "updated_at": null,
+  "hoten": "Trần Thế",
+  "ngaysinh": "20/03/2001",
+  "sobaodanh": "K69-171",
+  "noisinh": "Vĩnh Long",
+  "lop": "CÐ NL 19C",
+  "tongdiem": 65,
+  "xeploai": "Trung Bình",
+  "laptrinhc": 12,
+  "msword": 26,
+  "msexcel": 26,
+  "mspowerpoint": 1,
+  "tendotthi": "THI ỨNG DỤNG CNTT CƠ BẢN -2020-08-23-12g30 và 15g00-F5.12",
+  "ngaythi": "2020-08-23",
+  "giothi": "12g30 và 15g00",
+  "phongthi": "F5.12",
+  "nguoitao": "admin",
+  "loaidiem": "Điểm thi",
+  "created_at": {
+    "$date": "2020-08-21T04:35:45.963Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3f4f21cddbca229d1418ae"
+  },
+  "trangthai": true,
+  "nguoisua": null,
+  "updated_at": null,
+  "hoten": "Nguyễn Hoàng",
+  "ngaysinh": "25/06/2000",
+  "sobaodanh": "K69-172",
+  "noisinh": "Tiền Giang",
+  "lop": "CÐ ÔTÔ 18B",
+  "tongdiem": 71,
+  "xeploai": "Khá",
+  "laptrinhc": 11,
+  "msword": 19,
+  "msexcel": 25,
+  "mspowerpoint": 16,
+  "tendotthi": "THI ỨNG DỤNG CNTT CƠ BẢN -2020-08-23-12g30 và 15g00-F5.12",
+  "ngaythi": "2020-08-23",
+  "giothi": "12g30 và 15g00",
+  "phongthi": "F5.12",
+  "nguoitao": "admin",
+  "loaidiem": "Điểm thi",
+  "created_at": {
+    "$date": "2020-08-21T04:35:45.963Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3f4f21cddbca229d1418af"
+  },
+  "trangthai": true,
+  "nguoisua": null,
+  "updated_at": null,
+  "hoten": "Trương Trúc",
+  "ngaysinh": "10/08/98",
+  "sobaodanh": "K69-173",
+  "noisinh": "Kiên Giang",
+  "lop": "CÐN ĐCN 16B",
+  "tongdiem": 65,
+  "xeploai": "Trung Bình",
+  "laptrinhc": 11,
+  "msword": 23,
+  "msexcel": 15,
+  "mspowerpoint": 16,
+  "tendotthi": "THI ỨNG DỤNG CNTT CƠ BẢN -2020-08-23-12g30 và 15g00-F5.12",
+  "ngaythi": "2020-08-23",
+  "giothi": "12g30 và 15g00",
+  "phongthi": "F5.12",
+  "nguoitao": "admin",
+  "loaidiem": "Điểm thi",
+  "created_at": {
+    "$date": "2020-08-21T04:35:45.965Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3f4f21cddbca229d1418b0"
+  },
+  "trangthai": true,
+  "nguoisua": null,
+  "updated_at": null,
+  "hoten": "Nguyễn Ngọc",
+  "ngaysinh": "27/12/2000",
+  "sobaodanh": "K69-174",
+  "noisinh": "Đắk Lắk",
+  "lop": "CÐ ÔTÔ 18B",
+  "tongdiem": 64,
+  "xeploai": "Trung Bình",
+  "laptrinhc": 13,
+  "msword": 10,
+  "msexcel": 27,
+  "mspowerpoint": 14,
+  "tendotthi": "THI ỨNG DỤNG CNTT CƠ BẢN -2020-08-23-12g30 và 15g00-F5.12",
+  "ngaythi": "2020-08-23",
+  "giothi": "12g30 và 15g00",
+  "phongthi": "F5.12",
+  "nguoitao": "admin",
+  "loaidiem": "Điểm thi",
+  "created_at": {
+    "$date": "2020-08-21T04:35:45.966Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3f4f21cddbca229d1418b1"
+  },
+  "trangthai": true,
+  "nguoisua": null,
+  "updated_at": null,
+  "hoten": "Lê Ngọc",
+  "ngaysinh": "28/11/1998",
+  "sobaodanh": "K69-175",
+  "noisinh": "Bến Tre",
+  "lop": "CÐ CĐT 17A",
+  "tongdiem": 92,
+  "xeploai": "Xuất Sắc",
+  "laptrinhc": 19,
+  "msword": 25,
+  "msexcel": 30,
+  "mspowerpoint": 18,
+  "tendotthi": "THI ỨNG DỤNG CNTT CƠ BẢN -2020-08-23-12g30 và 15g00-F5.12",
+  "ngaythi": "2020-08-23",
+  "giothi": "12g30 và 15g00",
+  "phongthi": "F5.12",
+  "nguoitao": "admin",
+  "loaidiem": "Điểm thi",
+  "created_at": {
+    "$date": "2020-08-21T04:35:45.966Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3f4f21cddbca229d1418b2"
+  },
+  "trangthai": true,
+  "nguoisua": null,
+  "updated_at": null,
+  "hoten": "Nguyễn Xuân",
+  "ngaysinh": "24/10/98",
+  "sobaodanh": "K69-176",
+  "noisinh": "Bình Thuận",
+  "lop": "CÐN HÀN 16",
+  "tongdiem": 57,
+  "xeploai": "Trung Bình",
+  "laptrinhc": 11,
+  "msword": 11,
+  "msexcel": 17,
+  "mspowerpoint": 18,
+  "tendotthi": "THI ỨNG DỤNG CNTT CƠ BẢN -2020-08-23-12g30 và 15g00-F5.12",
+  "ngaythi": "2020-08-23",
+  "giothi": "12g30 và 15g00",
+  "phongthi": "F5.12",
+  "nguoitao": "admin",
+  "loaidiem": "Điểm thi",
+  "created_at": {
+    "$date": "2020-08-21T04:35:45.967Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3f4f21cddbca229d1418b3"
+  },
+  "trangthai": true,
+  "nguoisua": null,
+  "updated_at": null,
+  "hoten": "Bùi Phạm Nhật",
+  "ngaysinh": "08/05/2001",
+  "sobaodanh": "K69-177",
+  "noisinh": "Tiền Giang",
+  "lop": "CÐ ÔTÔ 19C",
+  "tongdiem": 75,
+  "xeploai": "Khá",
+  "laptrinhc": 5,
+  "msword": 28,
+  "msexcel": 25,
+  "mspowerpoint": 17,
+  "tendotthi": "THI ỨNG DỤNG CNTT CƠ BẢN -2020-08-23-12g30 và 15g00-F5.12",
+  "ngaythi": "2020-08-23",
+  "giothi": "12g30 và 15g00",
+  "phongthi": "F5.12",
+  "nguoitao": "admin",
+  "loaidiem": "Điểm thi",
+  "created_at": {
+    "$date": "2020-08-21T04:35:45.967Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3f4f21cddbca229d1418b4"
+  },
+  "trangthai": true,
+  "nguoisua": null,
+  "updated_at": null,
+  "hoten": "Phạm Nhật",
+  "ngaysinh": "02/11/2000",
+  "sobaodanh": "K69-178",
+  "noisinh": "TP HCM",
+  "lop": "CÐ CĐT 18B",
+  "tongdiem": 58,
+  "xeploai": "Trung Bình",
+  "laptrinhc": 5,
+  "msword": 23,
+  "msexcel": 14,
+  "mspowerpoint": 16,
+  "tendotthi": "THI ỨNG DỤNG CNTT CƠ BẢN -2020-08-23-12g30 và 15g00-F5.12",
+  "ngaythi": "2020-08-23",
+  "giothi": "12g30 và 15g00",
+  "phongthi": "F5.12",
+  "nguoitao": "admin",
+  "loaidiem": "Điểm thi",
+  "created_at": {
+    "$date": "2020-08-21T04:35:45.967Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3f4f21cddbca229d1418b5"
+  },
+  "trangthai": true,
+  "nguoisua": null,
+  "updated_at": null,
+  "hoten": "Trần Trung",
+  "ngaysinh": "10/08/1999",
+  "sobaodanh": "K69-179",
+  "noisinh": "Đắk Lắk",
+  "lop": "CÐ ÔTÔ 17D",
+  "tongdiem": 24,
+  "xeploai": "Không đạt",
+  "laptrinhc": 0,
+  "msword": 14,
+  "msexcel": 10,
+  "mspowerpoint": 0,
+  "tendotthi": "THI ỨNG DỤNG CNTT CƠ BẢN -2020-08-23-12g30 và 15g00-F5.12",
+  "ngaythi": "2020-08-23",
+  "giothi": "12g30 và 15g00",
+  "phongthi": "F5.12",
+  "nguoitao": "admin",
+  "loaidiem": "Điểm thi",
+  "created_at": {
+    "$date": "2020-08-21T04:35:45.968Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3f4f21cddbca229d1418b6"
+  },
+  "trangthai": true,
+  "nguoisua": null,
+  "updated_at": null,
+  "hoten": "Nguyễn Ngọc",
+  "ngaysinh": "01/01/2000",
+  "sobaodanh": "K69-180",
+  "noisinh": "Bình Định",
+  "lop": "CÐ CK 18B",
+  "tongdiem": 87,
+  "xeploai": "Giỏi",
+  "laptrinhc": 19,
+  "msword": 27,
+  "msexcel": 24,
+  "mspowerpoint": 17,
+  "tendotthi": "THI ỨNG DỤNG CNTT CƠ BẢN -2020-08-23-12g30 và 15g00-F5.12",
+  "ngaythi": "2020-08-23",
+  "giothi": "12g30 và 15g00",
+  "phongthi": "F5.12",
+  "nguoitao": "admin",
+  "loaidiem": "Điểm thi",
+  "created_at": {
+    "$date": "2020-08-21T04:35:45.968Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3f4f21cddbca229d1418b7"
+  },
+  "trangthai": true,
+  "nguoisua": null,
+  "updated_at": null,
+  "hoten": "Cù Minh",
+  "ngaysinh": "30/08/98",
+  "sobaodanh": "K69-181",
+  "noisinh": "Bình Phước",
+  "lop": "CÐN KTML 17A",
+  "tongdiem": 69,
+  "xeploai": "Trung Bình",
+  "laptrinhc": 11,
+  "msword": 22,
+  "msexcel": 24,
+  "mspowerpoint": 12,
+  "tendotthi": "THI ỨNG DỤNG CNTT CƠ BẢN -2020-08-23-12g30 và 15g00-F5.12",
+  "ngaythi": "2020-08-23",
+  "giothi": "12g30 và 15g00",
+  "phongthi": "F5.12",
+  "nguoitao": "admin",
+  "loaidiem": "Điểm thi",
+  "created_at": {
+    "$date": "2020-08-21T04:35:45.969Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3f4f21cddbca229d1418b8"
+  },
+  "trangthai": true,
+  "nguoisua": null,
+  "updated_at": null,
+  "hoten": "Phạm Đức",
+  "ngaysinh": "15/07/98",
+  "sobaodanh": "K69-182",
+  "noisinh": "Quảng Bình",
+  "lop": "CÐN ĐCN 16A",
+  "tongdiem": 50,
+  "xeploai": "Trung Bình",
+  "laptrinhc": 9,
+  "msword": 19,
+  "msexcel": 10,
+  "mspowerpoint": 12,
+  "tendotthi": "THI ỨNG DỤNG CNTT CƠ BẢN -2020-08-23-12g30 và 15g00-F5.12",
+  "ngaythi": "2020-08-23",
+  "giothi": "12g30 và 15g00",
+  "phongthi": "F5.12",
+  "nguoitao": "admin",
+  "loaidiem": "Điểm thi",
+  "created_at": {
+    "$date": "2020-08-21T04:35:45.969Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3f4f21cddbca229d1418b9"
+  },
+  "trangthai": true,
+  "nguoisua": null,
+  "updated_at": null,
+  "hoten": "Võ Trần",
+  "ngaysinh": "19/03/1999",
+  "sobaodanh": "K69-183",
+  "noisinh": "TP HCM",
+  "lop": "CÐ ÔTÔ 17D",
+  "tongdiem": 35,
+  "xeploai": "Không đạt",
+  "laptrinhc": 3,
+  "msword": 11,
+  "msexcel": 10,
+  "mspowerpoint": 11,
+  "tendotthi": "THI ỨNG DỤNG CNTT CƠ BẢN -2020-08-23-12g30 và 15g00-F5.12",
+  "ngaythi": "2020-08-23",
+  "giothi": "12g30 và 15g00",
+  "phongthi": "F5.12",
+  "nguoitao": "admin",
+  "loaidiem": "Điểm thi",
+  "created_at": {
+    "$date": "2020-08-21T04:35:45.970Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3f4f21cddbca229d1418ba"
+  },
+  "trangthai": true,
+  "nguoisua": null,
+  "updated_at": null,
+  "hoten": "Đỗ Lệnh",
+  "ngaysinh": "29/12/2000",
+  "sobaodanh": "K69-184",
+  "noisinh": "Cần Thơ",
+  "lop": "CÐ ÔTÔ 18D",
+  "tongdiem": 72,
+  "xeploai": "Khá",
+  "laptrinhc": 11,
+  "msword": 22,
+  "msexcel": 22,
+  "mspowerpoint": 17,
+  "tendotthi": "THI ỨNG DỤNG CNTT CƠ BẢN -2020-08-23-12g30 và 15g00-F5.12",
+  "ngaythi": "2020-08-23",
+  "giothi": "12g30 và 15g00",
+  "phongthi": "F5.12",
+  "nguoitao": "admin",
+  "loaidiem": "Điểm thi",
+  "created_at": {
+    "$date": "2020-08-21T04:35:45.971Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3f4f21cddbca229d1418bb"
+  },
+  "trangthai": true,
+  "nguoisua": null,
+  "updated_at": null,
+  "hoten": "Hà Minh",
+  "ngaysinh": "08/01/1999",
+  "sobaodanh": "K69-185",
+  "noisinh": "Tiền Giang",
+  "lop": "CÐN ÔTÔ 18C",
+  "tongdiem": 68,
+  "xeploai": "Trung Bình",
+  "laptrinhc": 6,
+  "msword": 23,
+  "msexcel": 22,
+  "mspowerpoint": 17,
+  "tendotthi": "THI ỨNG DỤNG CNTT CƠ BẢN -2020-08-23-12g30 và 15g00-F5.12",
+  "ngaythi": "2020-08-23",
+  "giothi": "12g30 và 15g00",
+  "phongthi": "F5.12",
+  "nguoitao": "admin",
+  "loaidiem": "Điểm thi",
+  "created_at": {
+    "$date": "2020-08-21T04:35:45.971Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3f4f21cddbca229d1418bc"
+  },
+  "trangthai": true,
+  "nguoisua": null,
+  "updated_at": null,
+  "hoten": "Phạm Minh",
+  "ngaysinh": "22/07/2001",
+  "sobaodanh": "K69-186",
+  "noisinh": "Tiền Giang",
+  "lop": "CÐ NL 19C",
+  "tongdiem": 35,
+  "xeploai": "Không đạt",
+  "laptrinhc": 0,
+  "msword": 18,
+  "msexcel": 0,
+  "mspowerpoint": 17,
+  "tendotthi": "THI ỨNG DỤNG CNTT CƠ BẢN -2020-08-23-12g30 và 15g00-F5.12",
+  "ngaythi": "2020-08-23",
+  "giothi": "12g30 và 15g00",
+  "phongthi": "F5.12",
+  "nguoitao": "admin",
+  "loaidiem": "Điểm thi",
+  "created_at": {
+    "$date": "2020-08-21T04:35:45.971Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3f4f21cddbca229d1418bd"
+  },
+  "trangthai": true,
+  "nguoisua": null,
+  "updated_at": null,
+  "hoten": "Hồng Tuấn",
+  "ngaysinh": "16/10/2000",
+  "sobaodanh": "K69-187",
+  "noisinh": "Long An",
+  "lop": "CÐ Đ, ĐT 18F",
+  "tongdiem": 50,
+  "xeploai": "Trung Bình",
+  "laptrinhc": 5,
+  "msword": 19,
+  "msexcel": 10,
+  "mspowerpoint": 16,
+  "tendotthi": "THI ỨNG DỤNG CNTT CƠ BẢN -2020-08-23-12g30 và 15g00-F5.12",
+  "ngaythi": "2020-08-23",
+  "giothi": "12g30 và 15g00",
+  "phongthi": "F5.12",
+  "nguoitao": "admin",
+  "loaidiem": "Điểm thi",
+  "created_at": {
+    "$date": "2020-08-21T04:35:45.972Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3f4f21cddbca229d1418be"
+  },
+  "trangthai": true,
+  "nguoisua": null,
+  "updated_at": null,
+  "hoten": "Cao Sĩ",
+  "ngaysinh": "04/05/2000",
+  "sobaodanh": "K69-188",
+  "noisinh": "TP HCM",
+  "lop": "CÐ CK 18A",
+  "tongdiem": 82,
+  "xeploai": "Giỏi",
+  "laptrinhc": 6,
+  "msword": 26,
+  "msexcel": 30,
+  "mspowerpoint": 20,
+  "tendotthi": "THI ỨNG DỤNG CNTT CƠ BẢN -2020-08-23-12g30 và 15g00-F5.12",
+  "ngaythi": "2020-08-23",
+  "giothi": "12g30 và 15g00",
+  "phongthi": "F5.12",
+  "nguoitao": "admin",
+  "loaidiem": "Điểm thi",
+  "created_at": {
+    "$date": "2020-08-21T04:35:45.972Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3f4f21cddbca229d1418bf"
+  },
+  "trangthai": true,
+  "nguoisua": null,
+  "updated_at": null,
+  "hoten": "Nguyễn Tuấn",
+  "ngaysinh": "06/12/96",
+  "sobaodanh": "K69-189",
+  "noisinh": "TP HCM",
+  "lop": "CÐ CK 15D",
+  "tongdiem": 81,
+  "xeploai": "Giỏi",
+  "laptrinhc": 8,
+  "msword": 25,
+  "msexcel": 28,
+  "mspowerpoint": 20,
+  "tendotthi": "THI ỨNG DỤNG CNTT CƠ BẢN -2020-08-23-12g30 và 15g00-F5.12",
+  "ngaythi": "2020-08-23",
+  "giothi": "12g30 và 15g00",
+  "phongthi": "F5.12",
+  "nguoitao": "admin",
+  "loaidiem": "Điểm thi",
+  "created_at": {
+    "$date": "2020-08-21T04:35:45.972Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3f4f21cddbca229d1418c0"
+  },
+  "trangthai": true,
+  "nguoisua": null,
+  "updated_at": null,
+  "hoten": "Võ",
+  "ngaysinh": "29/01/1997",
+  "sobaodanh": "K69-190",
+  "noisinh": "Quảng Ngãi",
+  "lop": "CÐ CK 17D",
+  "tongdiem": 80,
+  "xeploai": "Giỏi",
+  "laptrinhc": 11,
+  "msword": 22,
+  "msexcel": 30,
+  "mspowerpoint": 17,
+  "tendotthi": "THI ỨNG DỤNG CNTT CƠ BẢN -2020-08-23-12g30 và 15g00-F5.12",
+  "ngaythi": "2020-08-23",
+  "giothi": "12g30 và 15g00",
+  "phongthi": "F5.12",
+  "nguoitao": "admin",
+  "loaidiem": "Điểm thi",
+  "created_at": {
+    "$date": "2020-08-21T04:35:45.973Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3f4f21cddbca229d1418c1"
+  },
+  "trangthai": true,
+  "nguoisua": null,
+  "updated_at": null,
+  "hoten": "Lữ Đăng",
+  "ngaysinh": "15/05/1994",
+  "sobaodanh": "K69-191",
+  "noisinh": "TP HCM",
+  "lop": "CÐN ÔTÔ 18C",
+  "tongdiem": 85,
+  "xeploai": "Giỏi",
+  "laptrinhc": 11,
+  "msword": 25,
+  "msexcel": 30,
+  "mspowerpoint": 19,
+  "tendotthi": "THI ỨNG DỤNG CNTT CƠ BẢN -2020-08-23-12g30 và 15g00-F5.12",
+  "ngaythi": "2020-08-23",
+  "giothi": "12g30 và 15g00",
+  "phongthi": "F5.12",
+  "nguoitao": "admin",
+  "loaidiem": "Điểm thi",
+  "created_at": {
+    "$date": "2020-08-21T04:35:45.973Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3f4f21cddbca229d1418c2"
+  },
+  "trangthai": true,
+  "nguoisua": null,
+  "updated_at": null,
+  "hoten": "Nguyễn Đăng",
+  "ngaysinh": "23/12/1999",
+  "sobaodanh": "K69-192",
+  "noisinh": "An Giang",
+  "lop": "CÐ Đ, ĐT 17D",
+  "tongdiem": 27,
+  "xeploai": "Không đạt",
+  "laptrinhc": 6,
+  "msword": 8,
+  "msexcel": 10,
+  "mspowerpoint": 3,
+  "tendotthi": "THI ỨNG DỤNG CNTT CƠ BẢN -2020-08-23-12g30 và 15g00-F5.12",
+  "ngaythi": "2020-08-23",
+  "giothi": "12g30 và 15g00",
+  "phongthi": "F5.12",
+  "nguoitao": "admin",
+  "loaidiem": "Điểm thi",
+  "created_at": {
+    "$date": "2020-08-21T04:35:45.974Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3f4f21cddbca229d1418c3"
+  },
+  "trangthai": true,
+  "nguoisua": null,
+  "updated_at": null,
+  "hoten": "Phạm Nguyễn Anh",
+  "ngaysinh": "15/06/1999",
+  "sobaodanh": "K69-193",
+  "noisinh": "TP HCM",
+  "lop": "CÐ Đ, ĐT 17C",
+  "tongdiem": 0,
+  "xeploai": "Không đạt",
+  "laptrinhc": 0,
+  "msword": 0,
+  "msexcel": 0,
+  "mspowerpoint": 0,
+  "tendotthi": "THI ỨNG DỤNG CNTT CƠ BẢN -2020-08-23-12g30 và 15g00-F5.12",
+  "ngaythi": "2020-08-23",
+  "giothi": "12g30 và 15g00",
+  "phongthi": "F5.12",
+  "nguoitao": "admin",
+  "loaidiem": "Điểm thi",
+  "created_at": {
+    "$date": "2020-08-21T04:35:45.974Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3f4f21cddbca229d1418c4"
+  },
+  "trangthai": true,
+  "nguoisua": null,
+  "updated_at": null,
+  "hoten": "Lê Chí",
+  "ngaysinh": "27/09/2000",
+  "sobaodanh": "K69-194",
+  "noisinh": "Bình Thuận",
+  "lop": "CÐN ÔTÔ 18C",
+  "tongdiem": 41,
+  "xeploai": "Không đạt",
+  "laptrinhc": 0,
+  "msword": 10,
+  "msexcel": 22,
+  "mspowerpoint": 9,
+  "tendotthi": "THI ỨNG DỤNG CNTT CƠ BẢN -2020-08-23-12g30 và 15g00-F5.12",
+  "ngaythi": "2020-08-23",
+  "giothi": "12g30 và 15g00",
+  "phongthi": "F5.12",
+  "nguoitao": "admin",
+  "loaidiem": "Điểm thi",
+  "created_at": {
+    "$date": "2020-08-21T04:35:45.974Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3f4f21cddbca229d1418c5"
+  },
+  "trangthai": true,
+  "nguoisua": "admin",
+  "updated_at": {
+    "$date": "2020-08-21T04:36:22.701Z"
+  },
+  "hoten": "Nguyễn Phước",
+  "ngaysinh": "14/02/2000",
+  "sobaodanh": "K69-195",
+  "noisinh": "Tiền Giang",
+  "lop": "CÐ Đ, ĐT 18C",
+  "tongdiem": 80,
+  "xeploai": "Khá",
+  "laptrinhc": 6,
+  "msword": 25,
+  "msexcel": 30,
+  "mspowerpoint": 19,
+  "tendotthi": "THI ỨNG DỤNG CNTT CƠ BẢN -2020-08-23-12g30 và 15g00-F5.12",
+  "ngaythi": "2020-08-23",
+  "giothi": "12g30 và 15g00",
+  "phongthi": "F5.12",
+  "nguoitao": "admin",
+  "loaidiem": "Điểm thi",
+  "created_at": {
+    "$date": "2020-08-21T04:35:45.975Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3f4f21cddbca229d1418c6"
+  },
+  "trangthai": true,
+  "nguoisua": null,
+  "updated_at": null,
+  "hoten": "Nguyễn Thành",
+  "ngaysinh": "28/05/1998",
+  "sobaodanh": "K69-196",
+  "noisinh": "Bình Thuận",
+  "lop": "CÐ ĐĐT 16A",
+  "tongdiem": 86,
+  "xeploai": "Giỏi",
+  "laptrinhc": 13,
+  "msword": 28,
+  "msexcel": 30,
+  "mspowerpoint": 15,
+  "tendotthi": "THI ỨNG DỤNG CNTT CƠ BẢN -2020-08-23-12g30 và 15g00-F5.12",
+  "ngaythi": "2020-08-23",
+  "giothi": "12g30 và 15g00",
+  "phongthi": "F5.12",
+  "nguoitao": "admin",
+  "loaidiem": "Điểm thi",
+  "created_at": {
+    "$date": "2020-08-21T04:35:45.975Z"
+  },
+  "__v": 0
+}]

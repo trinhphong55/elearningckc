@@ -1,0 +1,31 @@
+[{
+  "_id": {
+    "$oid": "5f3bb3d8d9cd481478f91e15"
+  },
+  "maChuDe": "CD00",
+  "tenChuDe": "Tin tức chung",
+  "tenVietTat": "tintucchung",
+  "trangThai": 1,
+  "createdAt": {
+    "$date": "2020-08-18T10:56:24.875Z"
+  },
+  "updatedAt": {
+    "$date": "2020-08-18T10:56:24.875Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3edb59736de813d06c3380"
+  },
+  "maChuDe": "CD01",
+  "tenChuDe": "Thông báo",
+  "tenVietTat": "thongbao",
+  "trangThai": 1,
+  "createdAt": {
+    "$date": "2020-08-20T20:21:45.219Z"
+  },
+  "updatedAt": {
+    "$date": "2020-08-20T20:21:45.219Z"
+  },
+  "__v": 0
+}]

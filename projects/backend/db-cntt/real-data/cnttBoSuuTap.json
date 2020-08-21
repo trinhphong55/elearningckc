@@ -1,0 +1,417 @@
+[{
+  "_id": {
+    "$oid": "5f2fea020e3ff44fe84ac9f0"
+  },
+  "maBST": "BST02",
+  "url": "testsv1",
+  "src": "uploads/cntt/15977382181272-554x399.jpg",
+  "alt": "testsv1sds",
+  "trangThai": 0,
+  "createdAt": {
+    "$date": "2020-08-09T12:20:18.375Z"
+  },
+  "updatedAt": {
+    "$date": "2020-08-18T08:10:28.292Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f2fee0c1a614814084a9381"
+  },
+  "maBST": "BST02",
+  "url": "null",
+  "src": "uploads/cntt/1596981367025113034625_147030310338682_3425555514972385706_n.jpg",
+  "alt": "sve22",
+  "trangThai": 0,
+  "createdAt": {
+    "$date": "2020-08-09T12:37:32.922Z"
+  },
+  "updatedAt": {
+    "$date": "2020-08-09T13:56:09.575Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f2ff789ac8f3f08d8365370"
+  },
+  "maBST": "BST02",
+  "url": "sv3",
+  "src": "uploads/cntt/1596981376647113034625_147030310338682_3425555514972385706_n.jpg",
+  "alt": "sv3",
+  "trangThai": 0,
+  "createdAt": {
+    "$date": "2020-08-09T13:18:01.271Z"
+  },
+  "updatedAt": {
+    "$date": "2020-08-09T13:56:19.247Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3000f768a1e03b60b665a4"
+  },
+  "maBST": "BST02",
+  "url": "null",
+  "src": "uploads/cntt/1597036348222113034625_147030310338682_3425555514972385706_n.jpg",
+  "alt": "sv3test",
+  "trangThai": 0,
+  "createdAt": {
+    "$date": "2020-08-09T13:58:15.249Z"
+  },
+  "updatedAt": {
+    "$date": "2020-08-10T05:12:34.549Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f30011168a1e03b60b665a5"
+  },
+  "maBST": "BST02",
+  "url": "null",
+  "src": "uploads/cntt/1596981521501113034625_147030310338682_3425555514972385706_n.jpg",
+  "alt": "sv3 test",
+  "trangThai": 0,
+  "createdAt": {
+    "$date": "2020-08-09T13:58:41.507Z"
+  },
+  "updatedAt": {
+    "$date": "2020-08-10T05:12:32.469Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f30196a88343a0ee0fd579a"
+  },
+  "maBST": "null",
+  "url": "null",
+  "src": "uploads/cntt/1596987753991sylvanas-windrunner-world-of-warcraft-battle-for-azeroth-uhdpaper.com-4K-4.350-wp.thumbnail.jpg",
+  "alt": "null",
+  "trangThai": 0,
+  "createdAt": {
+    "$date": "2020-08-09T15:42:34.010Z"
+  },
+  "updatedAt": {
+    "$date": "2020-08-09T15:47:32.748Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f30198e88343a0ee0fd579b"
+  },
+  "maBST": "null",
+  "url": "null",
+  "src": "uploads/cntt/1596987790795sylvanas-windrunner-world-of-warcraft-battle-for-azeroth-uhdpaper.com-4K-4.350-wp.thumbnail.jpg",
+  "alt": "null",
+  "trangThai": 0,
+  "createdAt": {
+    "$date": "2020-08-09T15:43:10.800Z"
+  },
+  "updatedAt": {
+    "$date": "2020-08-09T15:47:31.208Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f301a7c88343a0ee0fd579c"
+  },
+  "maBST": "BST02",
+  "url": "null",
+  "src": "uploads/cntt/1596988028513sylvanas-windrunner-world-of-warcraft-battle-for-azeroth-uhdpaper.com-4K-4.350-wp.thumbnail.jpg",
+  "alt": "null",
+  "trangThai": 0,
+  "createdAt": {
+    "$date": "2020-08-09T15:47:08.519Z"
+  },
+  "updatedAt": {
+    "$date": "2020-08-09T15:47:27.591Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f30d9824968f535c8cd20e5"
+  },
+  "maBST": "BST01",
+  "url": "http://www.aao.hcmut.edu.vn/",
+  "src": "uploads/cntt/1597036930872bk.png",
+  "alt": "Đại học Bách khoa TP HCM",
+  "trangThai": 1,
+  "createdAt": {
+    "$date": "2020-08-10T05:22:10.880Z"
+  },
+  "updatedAt": {
+    "$date": "2020-08-10T05:22:10.880Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f30d9d84968f535c8cd20e6"
+  },
+  "maBST": "BST01",
+  "url": "https://daihoc.fpt.edu.vn/",
+  "src": "uploads/cntt/1597037016463fpt.jpg",
+  "alt": "Đại học FPT",
+  "trangThai": 1,
+  "createdAt": {
+    "$date": "2020-08-10T05:23:36.468Z"
+  },
+  "updatedAt": {
+    "$date": "2020-08-10T05:23:36.468Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f30da004968f535c8cd20e7"
+  },
+  "maBST": "BST01",
+  "url": "https://www.uit.edu.vn/",
+  "src": "uploads/cntt/1597037056908Logo_UIT_In.jpg",
+  "alt": "Đại học Công nghệ Thông tin",
+  "trangThai": 1,
+  "createdAt": {
+    "$date": "2020-08-10T05:24:16.931Z"
+  },
+  "updatedAt": {
+    "$date": "2020-08-10T05:24:16.931Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f30da2b4968f535c8cd20e8"
+  },
+  "maBST": "BST01",
+  "url": "https://hcmute.edu.vn/",
+  "src": "uploads/cntt/1597037099106spkt.png",
+  "alt": "Đại học Sư phạm Kỹ thuật TP HCM",
+  "trangThai": 1,
+  "createdAt": {
+    "$date": "2020-08-10T05:24:59.110Z"
+  },
+  "updatedAt": {
+    "$date": "2020-08-10T05:24:59.110Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f30da734968f535c8cd20e9"
+  },
+  "maBST": "BST01",
+  "url": "https://www.hcmus.edu.vn/",
+  "src": "uploads/cntt/1597037171583khtn.png",
+  "alt": "Đại học Khoa học Tự nhiên TP HCM",
+  "trangThai": 1,
+  "createdAt": {
+    "$date": "2020-08-10T05:26:11.586Z"
+  },
+  "updatedAt": {
+    "$date": "2020-08-10T05:26:11.586Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f30da8d4968f535c8cd20ea"
+  },
+  "maBST": "BST02",
+  "url": "null",
+  "src": "uploads/cntt/1597037197853sv1.jpg",
+  "alt": "sv1",
+  "trangThai": 1,
+  "createdAt": {
+    "$date": "2020-08-10T05:26:37.857Z"
+  },
+  "updatedAt": {
+    "$date": "2020-08-10T05:26:37.857Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f30daa24968f535c8cd20eb"
+  },
+  "maBST": "BST02",
+  "url": "null",
+  "src": "uploads/cntt/1597037218083sv2.jpg",
+  "alt": "sv2",
+  "trangThai": 1,
+  "createdAt": {
+    "$date": "2020-08-10T05:26:58.086Z"
+  },
+  "updatedAt": {
+    "$date": "2020-08-10T05:26:58.086Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f30dab94968f535c8cd20ec"
+  },
+  "maBST": "BST02",
+  "url": "null",
+  "src": "uploads/cntt/1597037241221sv3.jpg",
+  "alt": "sv3",
+  "trangThai": 1,
+  "createdAt": {
+    "$date": "2020-08-10T05:27:21.224Z"
+  },
+  "updatedAt": {
+    "$date": "2020-08-10T05:27:21.224Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f30dacf4968f535c8cd20ed"
+  },
+  "maBST": "BST02",
+  "url": "null",
+  "src": "uploads/cntt/1597037263196sv4.jpg",
+  "alt": "sv4",
+  "trangThai": 1,
+  "createdAt": {
+    "$date": "2020-08-10T05:27:43.202Z"
+  },
+  "updatedAt": {
+    "$date": "2020-08-10T05:27:43.202Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f30dada4968f535c8cd20ee"
+  },
+  "maBST": "BST02",
+  "url": "null",
+  "src": "uploads/cntt/1597037274798sv5.jpg",
+  "alt": "sv5",
+  "trangThai": 1,
+  "createdAt": {
+    "$date": "2020-08-10T05:27:54.801Z"
+  },
+  "updatedAt": {
+    "$date": "2020-08-10T05:27:54.801Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3183576017b337281be313"
+  },
+  "maBST": "BST02",
+  "url": "#",
+  "src": "uploads/cntt/1597508191031sv1.jpg",
+  "alt": "sv6",
+  "trangThai": 1,
+  "createdAt": {
+    "$date": "2020-08-10T17:26:47.746Z"
+  },
+  "updatedAt": {
+    "$date": "2020-08-15T16:16:31.035Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f319b503b9db112c0041a23"
+  },
+  "maBST": "BST02",
+  "url": "sv7",
+  "src": "uploads/cntt/1597508271988sv2.jpg",
+  "alt": "sv7",
+  "trangThai": 0,
+  "createdAt": {
+    "$date": "2020-08-10T19:09:04.974Z"
+  },
+  "updatedAt": {
+    "$date": "2020-08-15T16:18:00.920Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f319b5c3b9db112c0041a24"
+  },
+  "maBST": "BST02",
+  "url": "sv8",
+  "src": "uploads/cntt/1597508254703sv2.jpg",
+  "alt": "sv8",
+  "trangThai": 0,
+  "createdAt": {
+    "$date": "2020-08-10T19:09:16.737Z"
+  },
+  "updatedAt": {
+    "$date": "2020-08-15T16:18:03.699Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3809c2b2433c31ece5a594"
+  },
+  "maBST": "BST02",
+  "url": "svtest",
+  "src": "uploads/cntt/1597508034540sv5.jpg",
+  "alt": "svtest",
+  "trangThai": 0,
+  "createdAt": {
+    "$date": "2020-08-15T16:13:54.556Z"
+  },
+  "updatedAt": {
+    "$date": "2020-08-15T16:18:05.341Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f380a4ab2433c31ece5a595"
+  },
+  "maBST": "BST02",
+  "url": "svtest",
+  "src": "uploads/cntt/1597508169996sv1.jpg",
+  "alt": "svtest",
+  "trangThai": 0,
+  "createdAt": {
+    "$date": "2020-08-15T16:16:10.001Z"
+  },
+  "updatedAt": {
+    "$date": "2020-08-15T16:18:08.144Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3b80a3809f5d0ba0834ffe"
+  },
+  "maBST": "null",
+  "url": "null",
+  "src": "",
+  "alt": "null",
+  "trangThai": 0,
+  "createdAt": {
+    "$date": "2020-08-18T07:17:55.428Z"
+  },
+  "updatedAt": {
+    "$date": "2020-08-18T07:18:04.037Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3b84b9809f5d0ba0834fff"
+  },
+  "maBST": "BST01",
+  "url": "test3",
+  "src": "uploads/cntt/15977361210242-554x399.jpg",
+  "alt": "test3",
+  "trangThai": 0,
+  "createdAt": {
+    "$date": "2020-08-18T07:35:21.031Z"
+  },
+  "updatedAt": {
+    "$date": "2020-08-18T08:10:09.262Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3b8cd7f72a5c2ae030a8f6"
+  },
+  "maBST": "BST02",
+  "url": "test1",
+  "src": "uploads/cntt/15977381995882-554x399.jpg",
+  "alt": "test1",
+  "trangThai": 0,
+  "createdAt": {
+    "$date": "2020-08-18T08:09:59.623Z"
+  },
+  "updatedAt": {
+    "$date": "2020-08-18T08:10:06.122Z"
+  },
+  "__v": 0
+}]

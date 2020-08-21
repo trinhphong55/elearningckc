@@ -1,0 +1,99 @@
+[{
+  "_id": {
+    "$oid": "5f3507f6699a2c132475446b"
+  },
+  "ten": "ỨNG DỤNG CNTT CB VÀ NC",
+  "mota": "Kho đề thi mẫu và video hướng dẫn giải đề giúp học viên ôn tập cho kì thi chứng chỉ Ứng Dụng CNTT.",
+  "image": "https://api.cnttckc.edu.vn/uploads/cntt/icon-rating.png",
+  "link": "#",
+  "trangthai": true,
+  "nguoitao": "admin",
+  "nguoisua": null,
+  "created_at": {
+    "$date": "2020-08-13T09:29:26.620Z"
+  },
+  "updated_at": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f350855699a2c132475446e"
+  },
+  "ten": "TRA CỨU ĐIỂM THI",
+  "mota": "Hỗ trợ học viên tra cứu kết quả thi được Trung Tâm thông báo sau ngày thi 2 tuần.",
+  "image": "https://api.cnttckc.edu.vn/uploads/cntt/icon-resume.png",
+  "link": "/tracuudiem",
+  "trangthai": true,
+  "nguoitao": "admin",
+  "nguoisua": null,
+  "created_at": {
+    "$date": "2020-08-13T09:31:01.121Z"
+  },
+  "updated_at": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f35087a699a2c1324754471"
+  },
+  "ten": "TÀI LIỆU HỌC TẬP",
+  "mota": "Chia sẻ kho tài liệu học tập miễn phí, hữu ích với nhiều lĩnh vực phong phú.",
+  "image": "https://api.cnttckc.edu.vn/uploads/cntt/icon-student.png",
+  "link": "#",
+  "trangthai": true,
+  "nguoitao": "admin",
+  "nguoisua": null,
+  "created_at": {
+    "$date": "2020-08-13T09:31:38.473Z"
+  },
+  "updated_at": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f350890699a2c1324754472"
+  },
+  "ten": "LỚP HỌC TRỰC TUYẾN",
+  "mota": "Các lớp học bổ sung kiến thức CNTT, học trực tiếp với giáo viên qua mạng Internet.",
+  "image": "https://api.cnttckc.edu.vn/uploads/cntt/icon-professor.png",
+  "link": "https://cntt.caothang.edu.vn/huong-dan-su-dung-elearning/",
+  "trangthai": true,
+  "nguoitao": "admin",
+  "nguoisua": "admin",
+  "created_at": {
+    "$date": "2020-08-13T09:32:00.887Z"
+  },
+  "updated_at": {
+    "$date": "2020-08-20T16:34:25.941Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3508a4699a2c1324754473"
+  },
+  "ten": "TRA CỨU CHỨNG CHỈ",
+  "mota": "Hỗ trợ học viên tra cứu chứng chỉ được Trung Tâm cấp sau ngày thi 1,5 tháng.",
+  "image": "https://api.cnttckc.edu.vn/uploads/cntt/icon-order.png",
+  "link": "#",
+  "trangthai": true,
+  "nguoitao": "admin",
+  "nguoisua": null,
+  "created_at": {
+    "$date": "2020-08-13T09:32:20.568Z"
+  },
+  "updated_at": null,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3508b9699a2c1324754474"
+  },
+  "ten": "GIỚI THIỆU VIỆC LÀM",
+  "mota": "Cầu nối giúp học viên tiếp cận các cơ hội việc làm từ những doanh nghiệp hàng đầu.",
+  "image": "https://api.cnttckc.edu.vn/uploads/cntt/icon-internship.png",
+  "link": "#",
+  "trangthai": true,
+  "nguoitao": "admin",
+  "nguoisua": null,
+  "created_at": {
+    "$date": "2020-08-13T09:32:41.839Z"
+  },
+  "updated_at": null,
+  "__v": 0
+}]

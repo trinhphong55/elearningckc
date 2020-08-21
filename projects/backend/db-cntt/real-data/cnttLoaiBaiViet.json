@@ -1,0 +1,76 @@
+[{
+  "_id": {
+    "$oid": "5f2291b6e260953ba46dcef9"
+  },
+  "maLoaiBaiViet": "LBV00",
+  "tenLoaiBaiViet": "Thông báo",
+  "tenVietTat": "thongbao",
+  "trangThai": 1,
+  "createdAt": {
+    "$date": "2020-07-30T09:24:06.281Z"
+  },
+  "updatedAt": {
+    "$date": "2020-08-18T08:17:22.482Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f2291c5e260953ba46dcefa"
+  },
+  "maLoaiBaiViet": "LBV01",
+  "tenLoaiBaiViet": "Bài viết",
+  "tenVietTat": "baiviet",
+  "trangThai": 1,
+  "createdAt": {
+    "$date": "2020-07-30T09:24:21.492Z"
+  },
+  "updatedAt": {
+    "$date": "2020-07-30T09:24:21.492Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f2291cee260953ba46dcefb"
+  },
+  "maLoaiBaiViet": "LBV02",
+  "tenLoaiBaiViet": "Việc làm",
+  "tenVietTat": "vieclam",
+  "trangThai": 1,
+  "createdAt": {
+    "$date": "2020-07-30T09:24:30.744Z"
+  },
+  "updatedAt": {
+    "$date": "2020-07-30T09:24:30.744Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f2291d5e260953ba46dcefc"
+  },
+  "maLoaiBaiViet": "LBV03",
+  "tenLoaiBaiViet": "Tài liệu",
+  "tenVietTat": "tailieu",
+  "trangThai": 1,
+  "createdAt": {
+    "$date": "2020-07-30T09:24:37.147Z"
+  },
+  "updatedAt": {
+    "$date": "2020-07-30T09:24:37.147Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3b8e74f72a5c2ae030a8f9"
+  },
+  "maLoaiBaiViet": "LBV04",
+  "tenLoaiBaiViet": "Lịch Thi",
+  "tenVietTat": "lichthi",
+  "trangThai": 0,
+  "createdAt": {
+    "$date": "2020-08-18T08:16:52.442Z"
+  },
+  "updatedAt": {
+    "$date": "2020-08-18T08:17:00.849Z"
+  },
+  "__v": 0
+}]

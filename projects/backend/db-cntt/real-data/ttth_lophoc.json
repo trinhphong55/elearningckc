@@ -1,0 +1,151 @@
+[{
+  "_id": {
+    "$oid": "5f3eb49a3c263c09681bb114"
+  },
+  "makhoahoc": "UDCNTTCB",
+  "dot": "Đợt 1",
+  "tenlop": "UDCNTTCB-2020-Đợt 1",
+  "buoihoc": "Chiều 3-4-5-6",
+  "giohoc": "12g30 đến 17g00",
+  "ngaykhaigiang": "2020-08-25",
+  "nam": "2020",
+  "hocphi": "450.000 đồng",
+  "ngayhethan": "2020-08-24",
+  "giaovien": "Thầy Lộc",
+  "nhapdiem": "Nhập riêng",
+  "trangthai": 1,
+  "nguoitao": "admin",
+  "nguoisua": "admin",
+  "created_at": {
+    "$date": "2020-08-20T17:36:26.579Z"
+  },
+  "updated_at": {
+    "$date": "2020-08-20T17:57:42.226Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3eb5593c263c09681bb115"
+  },
+  "makhoahoc": "ATC",
+  "dot": "Đợt 1",
+  "tenlop": "ATC-2020-Đợt 1",
+  "buoihoc": "Sáng 7-CN",
+  "giohoc": "7g00 đến 11g30",
+  "ngaykhaigiang": "2020-08-24",
+  "nam": "2020",
+  "hocphi": "350.000 đồng",
+  "ngayhethan": "2020-08-24",
+  "giaovien": "Thầy Long",
+  "nhapdiem": "Nhập riêng",
+  "trangthai": 1,
+  "nguoitao": "admin",
+  "nguoisua": "admin",
+  "created_at": {
+    "$date": "2020-08-20T17:39:37.119Z"
+  },
+  "updated_at": {
+    "$date": "2020-08-20T17:57:23.069Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3eb5943c263c09681bb116"
+  },
+  "makhoahoc": "ATC",
+  "dot": "Đợt 2",
+  "tenlop": "ATC-2020-Đợt 2",
+  "buoihoc": "Chiều 2-4-6",
+  "giohoc": "12g30 đến 17g00",
+  "ngaykhaigiang": "2020-08-31",
+  "nam": "2020",
+  "hocphi": "350.000 đồng",
+  "ngayhethan": "2020-08-31",
+  "giaovien": "Thầy Tiến",
+  "nhapdiem": "Nhập riêng",
+  "trangthai": 1,
+  "nguoitao": "admin",
+  "nguoisua": "admin",
+  "created_at": {
+    "$date": "2020-08-20T17:40:36.435Z"
+  },
+  "updated_at": {
+    "$date": "2020-08-20T17:57:13.546Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3eb5c33c263c09681bb117"
+  },
+  "makhoahoc": "ORC",
+  "dot": "Đợt 1",
+  "tenlop": "ORC-2020-Đợt 1",
+  "buoihoc": "Sáng 2-3-4-5-6-7",
+  "giohoc": "7g00 đến 11g30",
+  "ngaykhaigiang": "2020-08-31",
+  "nam": "2020",
+  "hocphi": "350.000 đồng",
+  "ngayhethan": "2020-08-30",
+  "giaovien": "Thầy Sang",
+  "nhapdiem": "Nhập riêng",
+  "trangthai": 1,
+  "nguoitao": "admin",
+  "nguoisua": "admin",
+  "created_at": {
+    "$date": "2020-08-20T17:41:23.894Z"
+  },
+  "updated_at": {
+    "$date": "2020-08-20T17:57:07.616Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3eb6a23c263c09681bb118"
+  },
+  "makhoahoc": "UDCNTTCB",
+  "dot": "Đợt 3",
+  "tenlop": "UDCNTTCB-2020-Đợt 3",
+  "buoihoc": "Sáng 2-3-4-5-6",
+  "giohoc": "7g00 đến 11g30",
+  "ngaykhaigiang": "2020-09-03",
+  "nam": "2020",
+  "hocphi": "450.000 đồng",
+  "ngayhethan": "2020-08-30",
+  "giaovien": "Thầy Long",
+  "nhapdiem": "Nhập riêng",
+  "trangthai": 1,
+  "nguoitao": "admin",
+  "nguoisua": "admin",
+  "created_at": {
+    "$date": "2020-08-20T17:45:06.553Z"
+  },
+  "updated_at": {
+    "$date": "2020-08-20T17:55:34.063Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f3eb6de3c263c09681bb119"
+  },
+  "makhoahoc": "ORC",
+  "dot": "Đợt 2",
+  "tenlop": "ORC-2020-Đợt 2",
+  "buoihoc": "Chiều 2-3-4-5-6",
+  "giohoc": "12g30 đến 17g00",
+  "ngaykhaigiang": "2020-09-04",
+  "nam": "2020",
+  "hocphi": "450.000 đồng",
+  "ngayhethan": "2020-08-22",
+  "giaovien": "Thầy Hiếu",
+  "nhapdiem": "Nhập riêng",
+  "trangthai": 1,
+  "nguoitao": "admin",
+  "nguoisua": "admin",
+  "created_at": {
+    "$date": "2020-08-20T17:46:06.897Z"
+  },
+  "updated_at": {
+    "$date": "2020-08-20T19:43:52.658Z"
+  },
+  "__v": 0
+}]

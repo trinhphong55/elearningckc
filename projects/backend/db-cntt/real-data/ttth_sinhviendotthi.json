@@ -1,0 +1,16 @@
+[{
+  "_id": {
+    "$oid": "5f3f5481cddbca229d1418d2"
+  },
+  "tendot": "THI ỨNG DỤNG CNTT CƠ BẢN - 31/08/2020 - 12g30 - F5.5",
+  "mssv": "0306161291",
+  "hoten": "Nguyễn Trung Hiếu",
+  "ngaysinh": "11/09/1998",
+  "noisinh": "Bà Rịa - Vũng Tàu",
+  "sodienthoai": "0965842651",
+  "trangthai": true,
+  "created_at": {
+    "$date": "2020-08-21T04:58:41.320Z"
+  },
+  "__v": 0
+}]

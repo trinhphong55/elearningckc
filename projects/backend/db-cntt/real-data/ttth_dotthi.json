@@ -1,0 +1,61 @@
+[{
+  "_id": {
+    "$oid": "5f3ead7b2eea0d229828f6df"
+  },
+  "tendot": "THI ỨNG DỤNG CNTT CƠ BẢN ",
+  "ngaythi": "2020-08-23",
+  "giothi": "12g30 và 15g00",
+  "phongthi": "F5.12",
+  "ngayhethan": "2020-08-31",
+  "trangthai": 2,
+  "nguoitao": "admin",
+  "nguoisua": "admin",
+  "created_at": {
+    "$date": "2020-08-20T17:06:03.085Z"
+  },
+  "updated_at": {
+    "$date": "2020-08-20T17:29:51.998Z"
+  },
+  "__v": 0,
+  "lophoc": null
+},{
+  "_id": {
+    "$oid": "5f3eaf353c263c09681bb10f"
+  },
+  "tendot": "THI ỨNG DỤNG CNTT CƠ BẢN",
+  "ngaythi": "2020-09-10",
+  "giothi": "12g30",
+  "phongthi": "F7.5",
+  "ngayhethan": "2020-09-25",
+  "trangthai": 1,
+  "nguoitao": "admin",
+  "nguoisua": "admin",
+  "created_at": {
+    "$date": "2020-08-20T17:13:25.788Z"
+  },
+  "updated_at": {
+    "$date": "2020-08-20T17:29:20.558Z"
+  },
+  "__v": 0,
+  "lophoc": null
+},{
+  "_id": {
+    "$oid": "5f3eaf593c263c09681bb110"
+  },
+  "tendot": "THI ỨNG DỤNG CNTT CƠ BẢN",
+  "ngaythi": "2020-08-31",
+  "giothi": "12g30",
+  "phongthi": "F5.5",
+  "ngayhethan": "2020-08-30",
+  "trangthai": 1,
+  "nguoitao": "admin",
+  "nguoisua": "admin",
+  "created_at": {
+    "$date": "2020-08-20T17:14:01.324Z"
+  },
+  "updated_at": {
+    "$date": "2020-08-20T17:25:57.240Z"
+  },
+  "__v": 0,
+  "lophoc": null
+}]
