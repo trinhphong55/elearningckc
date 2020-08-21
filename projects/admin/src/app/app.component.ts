@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
   loginForm = new FormGroup({
     email: new FormControl('', [
       Validators.required,
-      Validators.pattern('^[a-z][a-z0-9_\.]{4,32}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$')
+      Validators.pattern('([a-z]|[0-9])[a-z0-9_\.]{4,32}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$')
     ]),
     password: new FormControl('', [
       Validators.required,
