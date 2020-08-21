@@ -1197,6 +1197,7 @@ body {
 
 .partner_home__item img {
   max-width: 64px;
+  max-height: 64px;
 }
 
 @media screen and (min-width: 768px) {
@@ -1209,6 +1210,7 @@ body {
 
   .partner_home__item img {
     max-width: 96px;
+    max-height: 96px;
   }
 
   .partner_home__item:hover {
