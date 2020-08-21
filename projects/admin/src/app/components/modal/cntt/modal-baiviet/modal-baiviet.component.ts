@@ -263,7 +263,7 @@ export class ModalBaivietComponent implements OnInit, OnDestroy, AfterViewInit {
       );
       return danhMuc[0].tenDanhMuc;
     } catch (error) {
-      return '-1';
+      return 'Chưa có';
     }
   }
 
@@ -274,7 +274,7 @@ export class ModalBaivietComponent implements OnInit, OnDestroy, AfterViewInit {
       );
       return loaiBaiViet[0].tenLoaiBaiViet;
     } catch (error) {
-      return '-1';
+      return 'Chưa có';
     }
   }
 
