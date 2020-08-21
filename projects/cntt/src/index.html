@@ -16,12 +16,12 @@
       crossorigin="anonymous"
     ></script>
     <script>
-      const socket = io("https://localhost:4100");
+      const socket = io("https://api.cnttckc.edu.vn");
       socket.on("connect", () => {
-        console.log(socket.id);
+        // console.log(socket.id);
         // console.log(socket);
         socket.on("ThongBaoKhanCap", (message) => {
-          console.log(message);
+          // console.log(message);
           alert(message);
         });
       });
